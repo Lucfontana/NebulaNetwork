@@ -10,6 +10,7 @@ a {
     text-decoration: none;
     text-decoration-color: none;
     transition: 1s;
+    cursor: pointer;
 }
 
 header {
