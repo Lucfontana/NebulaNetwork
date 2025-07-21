@@ -1,9 +1,14 @@
+:root {
+    ---navColor: rgb(62, 92, 118);
+    ---contentColor: rgb(116, 140, 171);
+}
+
 /*------------------------ GENERALIDADES ----------------------*/
 
 * {
     padding: 0;
     margin: 0;
-    font-family: 'kanit';
+    font-family: 'arial';
 }
 
 a {
@@ -41,7 +46,7 @@ header>h1:hover {
 
 /*NAVBAR DE BOOTSTRAP*/
 .navStyle {
-    background-color: #0d168b;
+    background-color: var(---navColor);
     padding: 10px 0 10px 0;
     font-size: 18px;
     position: fixed; /*hace que la navbar se quede fija, esto junto al top*/
@@ -49,6 +54,7 @@ header>h1:hover {
     z-index: 100; /*Navbar encima del aside*/
     color: white;
     margin: 0 0 0 0;
+
 
 }
 
@@ -63,6 +69,8 @@ header>h1:hover {
 .container-fluid{
     justify-content: space-around;
 }
+
+
 
 
 /*------------------------ BOTONES - BARRA SUPERIOR ----------------------*/
@@ -123,7 +131,7 @@ nav ul {
     margin: 10px;
     padding: 10px;
     width: 43%;
-    background-color: rgb(61, 48, 133);
+    background-color: var(---contentColor);
 }
 
 .contenido>section>p {
@@ -153,7 +161,7 @@ aside {
     padding: 50px 0 0 0;
     width: 200px;
     height: 100vh; /* 100% del alto visible de la ventana */
-    background-color: #363ea8;
+    background-color: var(---navColor);
     position: fixed;
     grid-area: aside; /* si usás grid, lo podés mantener */
 }
