@@ -60,6 +60,8 @@ header>h1:hover {
 
 .navbar-brand {
     font-size: 30px; /*Tamaño del titulo (ITSP)*/
+    padding: 0 0 0 10px;
+    justify-content: center;
 }
 
 .nav-link, .navbar-brand, .nav-item a{
@@ -124,7 +126,7 @@ nav ul {
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 30px;
-    margin-left: 17%;
+    margin: 5px 0 0 17%;
 }
 
 .contenido>section {
