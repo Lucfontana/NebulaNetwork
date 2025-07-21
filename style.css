@@ -16,7 +16,7 @@ a {
 
 /*------------------------ BARRA SUPERIOR ----------------------*/
 
-header {
+/* header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,20 +37,37 @@ header>h1 {
 header>h1:hover {
     scale: 1.1;
     transition: 1s;
-}
+} */
 
-/*------------------------ BOTONES - BARRA SUPERIOR ----------------------*/
+/*NAVBAR DE BOOTSTRAP*/
 .navStyle {
     background-color: #0d168b;
-    margin: 0;
-    padding: 0;
-    font-size: 30px;
-    position: fixed;
-    z-index: 100;
+    padding: 10px 0 10px 0;
+    font-size: 18px;
+    position: fixed; /*hace que la navbar se quede fija, esto junto al top*/
+    top: 0px;
+    z-index: 100; /*Navbar encima del aside*/
     color: white;
+    margin: 0 0 0 0;
+
 }
 
-#botones_sup {
+.navbar-brand {
+    font-size: 30px; /*Tamaño del titulo (ITSP)*/
+}
+
+.nav-link, .navbar-brand, .nav-item a{
+    color: white; 
+}
+
+.container-fluid{
+    justify-content: space-around;
+}
+
+
+/*------------------------ BOTONES - BARRA SUPERIOR ----------------------*/
+
+/* #botones_sup {
     display: flex;
     gap: 1rem; 
 }
@@ -80,7 +97,7 @@ nav ul {
     scale: 1.1;
     background-color: #080f6b;
     transition: 1s;
-}
+} */
 
 /*------------------------ CONTENIDO DE LA PAGINA ----------------------*/
 
@@ -146,6 +163,8 @@ aside>ul {
     display: flex;
     flex-direction: column;
     text-align: center;
+    list-style-type: none; /*Sacar los puntitos de la lista*/
+    padding: 0;
 }
 
 aside>ul>li>a {
