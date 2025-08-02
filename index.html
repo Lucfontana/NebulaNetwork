@@ -1,59 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
+<link rel="stylesheet" href="style.css">
+
 <body>
-    <header>
-      <h1><a href="index.html">ITSP</a></h1>
-      <nav id="botones_sup">
-      <a><p class="boton">INFORMACIÓN</p></a>
-      <p class="separacion">|</p>
-      <a><p class="boton">CURSOS</p></a>
-      <p class="separacion">|</p>
-      <a><p class="boton">DOCENTES</p></a>
-      </nav>
-    </header>
-   
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navStyle">
+        <div class="container-fluid navStyle">
+            <a class="navbar-brand" href="#">ITSP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">DOCENTES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">CURSOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">DOCENTES</a>
+                    </li>
+                </ul>
+                <!-- <span class="navbar-text">
+            Navbar text with an inline element
+        </span> -->
+            </div>
+        </div>
+    </nav>
 
-<div id="grid">
-   <aside id="aside">
-    <div>
-     <a><p>boton1</p></a>
-     <hr>
-     <a><p>boton1</p></a>
-     <hr>
-     <a><p>boton1</p></a>
-     <hr>
-     <a><p>boton1</p></a>
-     <hr>
-     <a><p>boton1</p></a>
-     <hr>
+
+    <!-- <div id="grid"> -->
+    <aside id="aside">
+        <ul>
+            <li><a>boton1</a></li>
+
+            <li><a>boton1</a></li>
+
+            <li><a>boton1</a></li>
+
+            <li><a>boton1</a></li>
+
+            <li><a>boton1</a></li>
+        </ul>
+    </aside>
     </div>
-   </aside>
-<div class="contenido"> 
-   <div>
-         <h2> ¡Bienvenidos!</h2>
-         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, amet. Beatae vero, dicta laudantium sed iste, sequi vitae numquam maxime libero quibusdam expedita laboriosam eum officiis possimus, voluptate rerum asperiores.</p>
-   </div>
 
-    <section>
-     <img src="https://persistent.imagedescriber.online/image-describer-examples/000.jpg" alt="hola">
-     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, amet. Beatae vero, dicta laudantium sed iste, sequi vitae numquam maxime libero quibusdam expedita laboriosam eum officiis possimus, voluptate rerum asperiores.</p>
-    </section>
+    <div class="contenido">
+        <div>
+            <h2> ¡Bienvenidos!</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, amet. Beatae vero, dicta
+                laudantium sed iste, sequi vitae numquam maxime libero quibusdam expedita laboriosam eum officiis
+                possimus, voluptate rerum asperiores.</p>
+        </div>
 
-    <section>
-     <img src="https://persistent.imagedescriber.online/image-describer-examples/000.jpg" alt="hola">
-     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, amet. Beatae vero, dicta laudantium sed iste, sequi vitae numquam maxime libero quibusdam expedita laboriosam eum officiis possimus, voluptate rerum asperiores.</p>
-    </section>
+        <section>
+            <img src="https://cdn.shortpixel.ai/spai/q_lossless+w_998+to_auto+ret_img/independent-photo.com/wp-content/uploads/2022/03/Karen-Pape-1800x1200.jpeg" alt="hola">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, amet. Beatae vero, dicta
+                laudantium sed iste, sequi vitae numquam maxime libero quibusdam expedita laboriosam eum officiis
+                possimus, voluptate rerum asperiores.</p>
+        </section>
 
-</div>
-</div>
-    <footer id="final"> <div id="footer">
-        <p> &copy; <b> 2024 ITSP. Todos los derechos reservados </b><br></p>
+        <section>
+            <img src="https://cdn.shortpixel.ai/spai/q_lossless+w_998+to_auto+ret_img/independent-photo.com/wp-content/uploads/2022/03/Karen-Pape-1800x1200.jpeg" alt="hola">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, amet. Beatae vero, dicta
+                laudantium sed iste, sequi vitae numquam maxime libero quibusdam expedita laboriosam eum officiis
+                possimus, voluptate rerum asperiores.</p>
+        </section>
+
+    </div>
+    </div>
+    <footer id="final">
+        <div id="footer">
+            <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b><br></p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
