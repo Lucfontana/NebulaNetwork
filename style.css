@@ -45,6 +45,25 @@ header>h1:hover {
 } */
 
 /*NAVBAR DE BOOTSTRAP*/
+
+.sideButton{
+    background-color: transparent;
+    border: none;
+}
+
+.sideMenu {
+    margin: 0 0 0 10px;
+    width: 20px;
+    height: 20px;
+    transition: all ease .5s;
+}
+
+.sideMenu:hover{
+    width: 25px;
+    height: 25px;
+    transition: all ease .5s;
+}
+
 .navStyle {
     background-color: var(---navColor);
     padding: 10px 0 10px 0;
@@ -54,13 +73,11 @@ header>h1:hover {
     z-index: 100; /*Navbar encima del aside*/
     color: white;
     margin: 0 0 0 0;
-
-
 }
 
 .navbar-brand {
     font-size: 30px; /*Tamaño del titulo (ITSP)*/
-    padding: 0 0 0 10px;
+    margin: 0 0 0 10px;
     justify-content: center;
 }
 
@@ -126,7 +143,17 @@ nav ul {
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 30px;
-    margin: 5px 0 0 17%;
+    margin: 8px 0 0 80px;
+    transition: all ease .5s;
+}
+
+/* 
+El se le añade la clase "activo" cuando se apreta el boton,
+el unico cambio que se le agrega es, cambiarle el margen de
+la izquierda porque el "aside" se agranda. */
+.contenido.activo{
+    margin: 8px 0 0 150px;
+    transition: all ease .5s;
 }
 
 .contenido>section {
@@ -160,12 +187,20 @@ nav ul {
 /*------------------------ BARRA LATERAL ----------------------*/
 
 aside {
+    display: block;
     padding: 50px 0 0 0;
-    width: 200px;
+    width: 80px;
     height: 100vh; /* 100% del alto visible de la ventana */
     background-color: var(---navColor);
     position: fixed;
     grid-area: aside; /* si usás grid, lo podés mantener */
+    transition: all ease .5s;
+}
+
+/* Se aumenta el ancho de aside cuando se apreta el boton */
+aside.activo{
+    width: 150px;
+    transition: all ease .5s
 }
 
 aside>ul {
@@ -177,7 +212,30 @@ aside>ul {
     padding: 0;
 }
 
-aside>ul>li>a {
+/* Va rotando si se muestran los iconos o el texto */
+.link-aside-text{
+    display: none;
+}
+
+.link-aside-text.activo{
+    display: block;
+}
+
+.link-aside-images{
+    display: block;
+    margin: 35px 0;
+}
+
+.link-aside-images li {
+    margin: 0 0 10vh 0;
+}
+
+.link-aside-images.activo{
+    display: none;
+}
+
+
+.link-aside {
     display: block;
     font-size: 20px;
     padding: 20px;
@@ -199,7 +257,15 @@ aside ul li:not(:last-child) a::after {
     margin-top: 2rem;  /* opcional */
 }
 
+@media (width < 700px) {
+    aside{
+        display: none;
+    }
 
+    .contenido {
+        margin: ;
+    }
+}
 
 /*------------------------ FOOTER ----------------------*/
 #footer {
