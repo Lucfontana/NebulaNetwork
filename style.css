@@ -237,6 +237,7 @@ aside>ul {
 .link-aside-images.activo{
     display: none;
 }
+/*  */
 
 
 .link-aside {
@@ -261,43 +262,62 @@ aside ul li:not(:last-child) a::after {
     margin-top: 2rem;  /* opcional */
 }
 
-.responsiveAside{
-    display: none;
-}
+/* media query para que el sidebar se vaya para
+abajito cuando el ancho es menos de 700px */
 
 @media (width < 700px) {
-    /* aside{
-        display: none;
-    } */
-
-    .contenido {
+    /* se le cambia el margen a 0 para que
+    no se le agregue cuando el aside se acomoda */
+    .contenido, .contenido.activo {
         margin: 0;
     }
 
+    /* se deja de mostrar el boton pq el sidebar
+    siempre está visible */
     .sideButton{
         display: none;
     }
+
+    /* aside fijo al fondo de la pantalla */
     aside, aside.activo{
         position: fixed;
         bottom: 0;
         left: 0;
         width: 100vw;
-        height: 30px;
+        height: 50px;
         transition: none;
         display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
     }
 
-    .link-aside-text{
+    .link-aside-text, .link-aside-text.activo{
         display: none;
     }
 
-    .link-aside-images{
-        display: block;
+    .link-aside-images, .link-aside-images.activo{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
         padding: 0;
         margin: 0;
     }
-    .link-aside-text{
-        display: none;
+
+    /* estilo a cada imagen individual */
+    .link-aside-images li {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* tamaño para las imagenes */
+    .link-aside-images img {
+        width: 24px;
+        height: 24px;
     }
 
     #footer{
