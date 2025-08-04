@@ -4,6 +4,7 @@ const linkAsideText = document.getElementById("link-aside-text");
 const linkAsideImages = document.getElementById("link-aside-images");
 const mainContent = document.getElementById("contenido");
 const footer = document.getElementById("footer");
+const hdrBackground = document.getElementById("hdrBackground");
 
 
 

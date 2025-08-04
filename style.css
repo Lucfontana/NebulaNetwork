@@ -141,6 +141,31 @@ nav ul {
     padding-top: 80px;
 }
 
+.hdrBackground{
+    background-image: linear-gradient(
+        rgba(9, 4, 0, 0.1),
+        rgba(9, 4, 0, 1)),
+        url(img/backgroundItsp.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    width: calc(99vw - var(---marginAside) -2px);
+    height: calc(100vh - 75px);
+    display: flex;
+    align-items: center;
+    color: white;
+    justify-content: center;
+    text-align: center;
+    /* margin: 75px 0 0 var(---marginAside); */
+    transition: var(---transitionSidebarExpanded);
+}
+
+.hdrBackground.activo{
+    width: calc(99vw - var(---marginAsideActivo) -2px);
+    transition: var(---transitionSidebarExpanded);
+    margin: 75px 0 0 var(---marginAsideActivo);
+}
+
 .contenido {
     grid-area: contenido;
     display: flex;
@@ -320,10 +345,14 @@ abajito cuando el ancho es menos de 700px */
         height: 24px;
     }
 
-    #footer{
+    #footer, #footer.activo{
         margin: 0 0 30px 0;
         width: 100vw;
         padding: 0;
+    }
+    .hdrBackground{
+        height: calc(100vh - 75px - 50px);
+        margin: 75px 0 0 0;
     }
 }
 
