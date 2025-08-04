@@ -156,7 +156,7 @@ nav ul {
     color: white;
     justify-content: center;
     text-align: center;
-    /* margin: 75px 0 0 var(---marginAside); */
+    margin: 75px 0 0 var(---marginAside);
     transition: var(---transitionSidebarExpanded);
 }
 
@@ -345,10 +345,10 @@ abajito cuando el ancho es menos de 700px */
         height: 24px;
     }
 
-    #footer, #footer.activo{
-        margin: 0 0 30px 0;
+    .footer, .footer.activo{
         width: 100vw;
         padding: 0;
+        margin: 0 0 50px 0;
     }
     .hdrBackground{
         height: calc(100vh - 75px - 50px);
@@ -357,20 +357,20 @@ abajito cuando el ancho es menos de 700px */
 }
 
 /*------------------------ FOOTER ----------------------*/
-#footer {
+.footer {
     background-color: rgb(71, 73, 73);
     padding: 20px 0 20px 0;
-    margin: 3rem 0 0 var(---marginAside);
+    margin: 0px;
     text-align: center;
     color: #fff;
     display: flex;
     justify-content: center;
     font-size: 20px;
-    width: 100% - var(---marginAside);
+    width: 100%;
     transition: var(---transitionSidebarExpanded);
 }
 
-#footer.activo{
+.footer.activo{
     margin: 3rem 0 0 var(---marginAsideActivo);
     transition: var(---transitionSidebarExpanded);
 }

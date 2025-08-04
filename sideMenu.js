@@ -14,5 +14,6 @@ button.addEventListener("click", ()=> {
     linkAsideImages.classList.toggle("activo");
     mainContent.classList.toggle("activo");
     footer.classList.toggle("activo");
+    hdrBackground.classList.toggle("activo");
 })
 
