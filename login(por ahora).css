@@ -1,0 +1,24 @@
+:root {
+    ---navColor: rgb(62, 92, 118);
+    ---contentColor: rgb(116, 140, 171);
+    ---marginAside: 50px;
+    ---marginAsideActivo: 120px;
+    ---transitionSidebarExpanded: all ease .5s;
+    ---gradientNav: rgb(26, 56, 155);
+}
+
+/*------------------------ GENERALIDADES ----------------------*/
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'arial';
+}
+
+a {
+    color: aliceblue;
+    text-decoration: none;
+    text-decoration-color: none;
+    transition: 1s;
+    cursor: pointer;
+}

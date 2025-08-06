@@ -4,6 +4,7 @@
     ---marginAside: 50px;
     ---marginAsideActivo: 120px;
     ---transitionSidebarExpanded: all ease .5s;
+    ---gradientNav: rgb(26, 56, 155);
 }
 
 /*------------------------ GENERALIDADES ----------------------*/
@@ -60,11 +61,12 @@ a {
     margin: 0 0 0 0;
 }
 
-.navbar-brand {
-    font-size: 30px; /*Tamaño del titulo (ITSP)*/
-    margin: 0 0 0 30px;
-    justify-content: center;
+#logo {
+    width: 40px;
+
 }
+
+
 
 .nav-link, .navbar-brand, .nav-item a{
     color: white; 
@@ -72,8 +74,25 @@ a {
     transition: 1s;
 }
 
+.navbar-brand {
+    font-size: 30px; /*Tamaño del titulo (ITSP)*/
+    margin: 0 0 0 30px;
+    justify-content: center;
+    padding-left: 0px;
+}
+
 .container-fluid{
     justify-content: space-around;
+}
+
+.navStyle {
+    /* border-style: outset;     */
+    border-bottom-color: rgb(100, 133, 194);
+    background-image: linear-gradient(var(---gradientNav), var(---navColor));
+    /* border-width: 3.5px;
+    border-top: none;
+    border-left: none;
+    border-right: none; */
 }
 
 /*------------------------ CONTENIDO DE LA PAGINA ----------------------*/
@@ -171,6 +190,12 @@ aside {
     position: fixed;
     grid-area: aside; /* si usás grid, lo podés mantener */
     transition: var(---transitionSidebarExpanded);
+    /* border-style: outset;
+    border-right-color: rgb(100, 133, 194);
+    border-width: 3.5px;
+    border-top: none;
+    border-left: none;
+    border-bottom: none; */
 }
 
 /* Se aumenta el ancho de aside cuando se apreta el boton */
