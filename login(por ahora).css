@@ -31,20 +31,20 @@ a {
 
 #form {
     display: flex;
-    background-color: rgb(61, 58, 58);
+    overflow: auto;
     width: 40%;
     height: auto;
     flex-direction: column;
     padding: 20px;
     font-size: 20px;
-    background-color: rgb(116, 140, 171);
+    background-color: var(---navColor);
 }
 
 .input-form {
     color: aliceblue;
     margin-top: 20px;
     border-radius: 30px;
-    background-color:  rgb(92, 126, 172);
+    background-color:  var(---contentColor);
     border-style: none;
 }
 
@@ -80,7 +80,7 @@ a {
 
 #envFormulario {
     width: 170px;
-    font-size: 18px;
+    font-size: 20px;
     margin-top: 30px;
     background-color: rgb(64, 110, 150);
     color: aliceblue;
@@ -92,16 +92,16 @@ a {
 
 #envFormulario:hover {
     scale: 1.05 ;
+    background-color: rgb(56, 100, 138);
     transition: 1s;
 }
 
-#complemento {
+#container-boton-inicio {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     margin-top: 30px;
-    margin-bottom: 30px;
     color: aliceblue;
     text-align: center;
 }
@@ -117,9 +117,6 @@ a {
     object-fit: cover;
     border-left-style: ridge;
     border-left-color: black;
-    background: linear-gradient(
-        rgba(9, 4, 0, 0.1),
-        rgba(9, 4, 0, 1));
 }
 
 #boton-inicio {
@@ -131,11 +128,12 @@ a {
     width: 200px;
     height: auto;
     border-style: none;
-    font-size: 20px;
+    font-size: 18px;
     transition: 1s;
 }
 
 #boton-inicio:hover {
     scale: 1.05;
+    background-color: rgb(47, 54, 150);
     transition: 1s;
 }
