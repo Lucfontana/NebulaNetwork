@@ -4,10 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log-in</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login(por ahora).css">
 
 </head>
 <body>
-    
+     <div class="flex">
+        <form id="form">
+            <h2 id="titulo-login">Inicio de Sesión</h2>
+            <label for="CI" class="label">Cedula de Identidad:</label>
+            <input class="input-form" type="number" name="CI" id="CI" required placeholder="Ingresa sin puntos ni guiones">
+            <label for="CI" class="label">Contraseña:</label>
+            <input class="input-form" type="password" name="" id="contrasena" required placeholder="Ingrese Contraseña">
+            <div id="botones-login">
+            <input  id="envFormulario" type="submit" value="Inicio de Sesión"></input>
+            </div>
+            <div id="mensaje" style="color:red;"></div>
+            <div id="complemento">   
+                <button id="boton-inicio" type="button">Volver al Inicio</button>
+            </div>
+        </form>
+            <div class="fondo-login">
+                <img id="logo-fondo" src="./img/fondo-login.jpg" alt="">
+            </div>
+        </div>
 </body>
 </html>
