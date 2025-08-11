@@ -1,0 +1,139 @@
+:root {
+    ---navColor: rgb(62, 92, 118);
+    ---contentColor: rgb(116, 140, 171);
+    ---marginAside: 50px;
+    ---marginAsideActivo: 120px;
+    ---transitionSidebarExpanded: all ease .5s;
+    ---gradientNav: rgb(26, 56, 155);
+}
+
+/*------------------------ GENERALIDADES ----------------------*/
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'arial';
+}
+
+a {
+    color: aliceblue;
+    text-decoration: none;
+    text-decoration-color: none;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.flex {
+  display: flex;
+} 
+
+#form {
+    display: flex;
+    overflow: auto;
+    width: 40%;
+    height: auto;
+    flex-direction: column;
+    padding: 20px;
+    font-size: 20px;
+    background-color: var(---navColor);
+}
+
+.input-form {
+    color: aliceblue;
+    margin-top: 20px;
+    border-radius: 30px;
+    background-color:  var(---contentColor);
+    border-style: none;
+}
+
+.input-form::placeholder {
+    color: rgb(0, 0, 0);
+}
+
+#CI, #contrasena {
+    font-size: 20px;
+    padding: 15px;
+}
+
+.contraseña {
+    width: 30%;
+    height: 80px;
+}
+
+#botones-login {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.label {
+    margin-top: 40px;
+    font-weight: bold;
+}
+
+#titulo-login {
+    font-size: 25px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#envFormulario {
+    width: 170px;
+    font-size: 20px;
+    margin-top: 30px;
+    background-color: rgb(64, 110, 150);
+    color: aliceblue;
+    padding: 15px;
+    border-style: none;
+    border-radius: 30px;
+    transition: 1s;
+}
+
+#envFormulario:hover {
+    scale: 1.05 ;
+    background-color: rgb(56, 100, 138);
+    transition: 1s;
+}
+
+#container-boton-inicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+    color: aliceblue;
+    text-align: center;
+}
+
+.fondo-login {
+    overflow: hidden;
+}
+
+
+#logo-fondo {
+    width: auto;
+    height: 100vh;
+    object-fit: cover;
+    border-left-style: ridge;
+    border-left-color: black;
+}
+
+#boton-inicio {
+    background-color: rgb(58, 65, 165);
+    color: aliceblue;
+    margin-top: 10px;
+    border-radius: 100px;
+    padding: 15px;
+    width: 200px;
+    height: auto;
+    border-style: none;
+    font-size: 18px;
+    transition: 1s;
+}
+
+#boton-inicio:hover {
+    scale: 1.05;
+    background-color: rgb(47, 54, 150);
+    transition: 1s;
+}
