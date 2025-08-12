@@ -7,6 +7,7 @@
     ---gradientNav: rgb(26, 56, 155);
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&display=swap');
 /*------------------------ GENERALIDADES ----------------------*/
 
 
@@ -14,7 +15,7 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: 'arial';
+    font-family: 'Mozilla';
 }
 
 a {
@@ -31,7 +32,6 @@ a {
 
 #form {
     display: flex;
-    overflow: auto;
     width: 40%;
     height: auto;
     flex-direction: column;
@@ -110,20 +110,35 @@ a {
     overflow: hidden;
 }
 
+#centro-form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-self: center;
+}
+
 
 #logo-fondo {
+    display: block;
     width: auto;
     height: 100vh;
-    object-fit: cover;
     border-left-style: ridge;
     border-left-color: black;
+}
+
+.fondo-login::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* negro con 50% de opacidad */
 }
 
 #boton-inicio {
     background-color: rgb(58, 65, 165);
     color: aliceblue;
     margin-top: 10px;
-    border-radius: 100px;
+    border-radius: 30px;
     padding: 15px;
     width: 200px;
     height: auto;
