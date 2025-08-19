@@ -133,7 +133,6 @@ a {
 }
 
 .contenido {
-    grid-area: contenido;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

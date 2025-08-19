@@ -1,0 +1,79 @@
+:root {
+    ---navColor: rgb(62, 92, 118);
+    ---contentColor: rgb(116, 140, 171);
+    ---marginAside: 50px;
+    ---marginAsideActivo: 120px;
+    ---transitionSidebarExpanded: all ease .5s;
+    ---gradientNav: rgb(26, 56, 155);
+}
+/* Pagina Register */
+
+body {
+    background-color: rgb(158, 203, 206);
+}
+
+.article-register {
+    background-color: rgb(87, 119, 148);
+    width: 30%;
+    text-align: center;
+    margin-top: 50px;
+    color: black;
+    border-radius: 10px;
+    border-style: outset;
+    border-color:  rgb(62, 92, 118);
+    border-width: 4px;
+    transition: 1s;
+}
+
+.article-register:hover {
+    background-color: rgb(43, 71, 95);
+    color: rgb(187, 187, 187);
+    scale: 1.015;
+    transition: 1s;
+}
+
+.article-register > div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.article-register > div > h1 {
+    width: 80%;
+    font-size: 30px;
+    padding: 20px;
+}
+
+.img-register {
+    border-radius: 10px;
+}
+
+.img_container-register {
+    width: 100%;
+}
+
+.button-article-register {
+    text-align: center;
+    font-size: 20px;
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: cadetblue;
+    transition: 1s;
+}
+
+.button-article-register:hover {
+    scale: 1.015;
+    background-color: rgb(109, 183, 185);
+    transition: 1s;
+}
+
+#register-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 30px;
+    margin: 8px 0 8px 10px;
+    transition: var(---transitionSidebarExpanded);
+}
