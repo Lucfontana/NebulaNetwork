@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Mozilla+Headline:wght@200..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
     ---navColor: rgb(62, 92, 118);
     ---contentColor: rgb(116, 140, 171);
@@ -8,26 +10,30 @@
 }
 /* Pagina Register */
 
+* {
+    font-family: lato;
+}
+
 body {
     background-color: rgb(158, 203, 206);
 }
 
 .article-register {
-    background-color: rgb(87, 119, 148);
+    background-color: aliceblue;
     width: 30%;
     text-align: center;
     margin-top: 50px;
     color: black;
     border-radius: 10px;
     border-style: outset;
-    border-color:  rgb(62, 92, 118);
+    border-color:  rgb(137, 151, 163);
     border-width: 4px;
     transition: 1s;
 }
 
 .article-register:hover {
-    background-color: rgb(43, 71, 95);
-    color: rgb(187, 187, 187);
+    background-color: rgb(224, 224, 224);
+    border-color:  rgb(137, 151, 163);
     scale: 1.015;
     transition: 1s;
 }
@@ -52,28 +58,27 @@ body {
     width: 100%;
 }
 
-.button-article-register {
-    text-align: center;
+.btn {
     font-size: 20px;
-    width: 50%;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border-radius: 10px;
-    background-color: cadetblue;
     transition: 1s;
 }
 
-.button-article-register:hover {
+.btn:hover {
     scale: 1.015;
-    background-color: rgb(109, 183, 185);
+    background-color: rgb(47, 47, 209);
     transition: 1s;
 }
 
 #register-content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 30px;
     margin: 8px 0 8px 10px;
     transition: var(---transitionSidebarExpanded);
 }
+
+/* -------------- Div Cartas de Registro -------------- */
