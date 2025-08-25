@@ -81,4 +81,66 @@ body {
     transition: var(---transitionSidebarExpanded);
 }
 
-/* -------------- Div Cartas de Registro -------------- */
+/* -------------- dialog de Registro -------------- */
+
+
+dialog {
+    padding: 20px;
+    margin: 10%;
+    margin-top: 10px;
+    width: 80%;
+    transform: translateY(-50%);
+    height: auto;
+    transition: 1s;
+}
+
+.btn-Cerrar {
+    position: absolute;
+    bottom: 10px;  
+    right: 10px;   
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    background-color: rgb(54, 54, 241);
+    color: aliceblue;
+    transition: 1s;
+}
+
+.btn-Cerrar:hover {
+    scale: 1.05;
+    background-color: rgb(32, 32, 214);
+    transition: 1s;
+}
+
+.btn-enviar-registro {
+    position: absolute;
+    bottom: 10px;  
+    right: 100px;   
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    background-color: rgb(54, 54, 241);
+    color: aliceblue;
+    transition: 1s;
+}
+
+.btn-enviar-registro:hover {
+    scale: 1.05;
+    background-color: rgb(32, 32, 214);
+    transition: 1s;
+}
+
+
+
+.registro-div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+hr {
+    color: blue;
+    border-width: 5px;
+}
