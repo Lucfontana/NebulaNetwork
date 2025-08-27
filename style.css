@@ -278,10 +278,292 @@ aside ul li:not(:last-child) a::after {
     transition: var(---transitionSidebarExpanded);
 }
 
+
+/* Login - CSS */
+
+.flex {
+  display: flex;
+} 
+
+#form {
+    display: flex;
+    width: 40%;
+    height: auto;
+    flex-direction: column;
+    padding: 20px;
+    font-size: 20px;
+    background-color: var(---navColor);
+    z-index: 1;
+}
+
+.input-form {
+    color: aliceblue;
+    margin-top: 20px;
+    border-radius: 30px;
+    padding:15px;
+    font-size: 20px;
+    background-color:  var(---contentColor);
+    border-style: none;
+}
+
+.input-form::placeholder {
+    color: rgb(0, 0, 0);
+}
+
+.contraseña {
+    width: 30%;
+    height: 80px;
+}
+
+#botones-login {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.label {
+    margin-top: 40px;
+    font-weight: bold;
+}
+
+#titulo-login {
+    font-size: 25px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#envFormulario {
+    width: 170px;
+    font-size: 20px;
+    margin-top: 30px;
+    background-color: rgb(64, 110, 150);
+    color: aliceblue;
+    padding: 15px;
+    border-style: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.alert {
+    position: absolute;
+    width: auto;
+    top: 0;
+    left: 50%;
+    width: auto;
+    padding: 20px;
+    visibility: hidden;
+}
+
+.bi {
+    overflow: hidden;
+}
+
+#envFormulario:hover {
+    scale: 1.05 ;
+    background-color: rgb(56, 100, 138);
+    transition: 1s;
+}
+
+#container-boton-inicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+    color: aliceblue;
+    text-align: center;
+}
+
+.fondo-login {
+    overflow: hidden;
+}
+
+#centro-form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-self: center;
+}
+
+
+#logo-fondo {
+    display: block;
+    width: auto;
+    height: 100vh;
+    border-left-style: ridge;
+    border-left-color: black;
+}
+
+.fondo-login::before {
+    content: "";
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* negro con 50% de opacidad */
+}
+
+#boton-inicio {
+    background-color: rgb(58, 65, 165);
+    color: aliceblue;
+    margin-top: 10px;
+    border-radius: 30px;
+    padding: 15px;
+    width: 200px;
+    height: auto;
+    border-style: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+#boton-inicio:hover {
+    scale: 1.05;
+    background-color: rgb(47, 54, 150);
+    transition: 1s;
+}
+
+/* Registro */
+
+.article-register {
+    background-color: aliceblue;
+    width: 30%;
+    text-align: center;
+    margin-top: 50px;
+    color: black;
+    border-radius: 10px;
+    border-style: outset;
+    border-color:  rgb(137, 151, 163);
+    border-width: 4px;
+    transition: 1s;
+}
+
+.article-register:hover {
+    background-color: rgb(224, 224, 224);
+    border-color:  rgb(137, 151, 163);
+    scale: 1.015;
+    transition: 1s;
+}
+
+.article-register > div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.article-register > div > h1 {
+    width: 80%;
+    font-size: 30px;
+    padding: 20px;
+}
+
+.img-register {
+    border-radius: 10px;
+}
+
+.img_container-register {
+    width: 100%;
+}
+
+.btn {
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+.btn:hover {
+    scale: 1.015;
+    background-color: rgb(47, 47, 209);
+    transition: 1s;
+}
+
+#register-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 30px;
+    margin: 8px 0 8px 10px;
+    transition: var(---transitionSidebarExpanded);
+}
+
+/* -------------- dialog de Registro -------------- */
+
+
+dialog {
+    padding: 20px;
+    margin: 10%;
+    margin-top: 10px;
+    width: 80%;
+    transform: translateY(-50%);
+    height: auto;
+    transition: 1s;
+}
+
+.btn-Cerrar,.btn-enviar-registro  {
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 20px;
+    border: none;
+    background-color: rgb(54, 54, 241);
+    color: aliceblue;
+    transition: 1s;
+}
+
+.btn-Cerrar:hover {
+    scale: 1.05;
+    background-color: rgb(32, 32, 214);
+    transition: 1s;
+}
+
+.btn-enviar-registro:hover {
+    scale: 1.05;
+    background-color: rgb(32, 32, 214);
+    transition: 1s;
+}
+
+
+.registro-div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+hr {
+    color: blue;
+    border-width: 5px;
+}
+
+.input-register {
+    margin-top: 20px;
+    border-radius: 30px;
+    width: 50%;
+    padding:15px;
+    font-size: 20px;
+    background-color:  var(---contentColor);
+    border-style: none;
+}
+
 @media (width < 1000px) {
 
     .section {
         width: 80%;
+    }
+
+
+    /*Register*/
+    #register-content {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    }
+
+    .article-register {
+    width: 80%;
     }
 
 }
@@ -358,157 +640,15 @@ abajito cuando el ancho es menos de 700px */
         height: calc(100vh - 75px - 50px);
         margin: 75px 0 0 0;
     }
-}
 
-/* Login - CSS */
-
-.flex {
-  display: flex;
-} 
-
-#form {
-    display: flex;
-    width: 40%;
-    height: auto;
+    /* Registro */
+     #register-content {
     flex-direction: column;
-    padding: 20px;
-    font-size: 20px;
-    background-color: var(---navColor);
-    z-index: 1;
-}
-
-.input-form {
-    color: aliceblue;
-    margin-top: 20px;
-    border-radius: 30px;
-    background-color:  var(---contentColor);
-    border-style: none;
-}
-
-.input-form::placeholder {
-    color: rgb(0, 0, 0);
-}
-
-#CI, #contrasena {
-    font-size: 20px;
-    padding: 15px;
-}
-
-.contraseña {
-    width: 30%;
-    height: 80px;
-}
-
-#botones-login {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.label {
-    margin-top: 40px;
-    font-weight: bold;
-}
-
-#titulo-login {
-    font-size: 25px;
-    text-align: center;
-    margin-top: 20px;
-}
-
-#envFormulario {
-    width: 170px;
-    font-size: 20px;
-    margin-top: 30px;
-    background-color: rgb(64, 110, 150);
-    color: aliceblue;
-    padding: 15px;
-    border-style: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: 1s;
-}
-
-.alert {
-    position: absolute;
-    width: auto;
-    top: 0;
-    left: 50%;
-    width: auto;
-    padding: 20px;
-    visibility: hidden;
-}
-
-
-
-
-
-
-.bi {
-    overflow: hidden;
-}
-
-#envFormulario:hover {
-    scale: 1.05 ;
-    background-color: rgb(56, 100, 138);
-    transition: 1s;
-}
-
-#container-boton-inicio {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
-    margin-top: 30px;
-    color: aliceblue;
-    text-align: center;
-}
+    }
 
-.fondo-login {
-    overflow: hidden;
-}
-
-#centro-form {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    align-self: center;
-}
-
-
-#logo-fondo {
-    display: block;
-    width: auto;
-    height: 100vh;
-    border-left-style: ridge;
-    border-left-color: black;
-}
-
-.fondo-login::before {
-    content: "";
-    position: absolute;
-    top:0;
-    left:0;
+    .article-register {
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3); /* negro con 50% de opacidad */
-}
+    }
 
-#boton-inicio {
-    background-color: rgb(58, 65, 165);
-    color: aliceblue;
-    margin-top: 10px;
-    border-radius: 30px;
-    padding: 15px;
-    width: 200px;
-    height: auto;
-    border-style: none;
-    font-size: 18px;
-    cursor: pointer;
-    transition: 1s;
-}
-
-#boton-inicio:hover {
-    scale: 1.05;
-    background-color: rgb(47, 54, 150);
-    transition: 1s;
 }
