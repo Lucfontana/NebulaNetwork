@@ -504,7 +504,7 @@ dialog {
 
 .btn-Cerrar,.btn-enviar-registro  {
     padding: 10px;
-    margin-top: 20px;
+    margin: 20px;
     font-size: 20px;
     border: none;
     background-color: rgb(54, 54, 241);
@@ -512,21 +512,15 @@ dialog {
     transition: 1s;
 }
 
-.btn-Cerrar:hover {
+.btn-Cerrar:hover, .btn-enviar-registro:hover {
     scale: 1.05;
     background-color: rgb(32, 32, 214);
     transition: 1s;
 }
-
-.btn-enviar-registro:hover {
-    scale: 1.05;
-    background-color: rgb(32, 32, 214);
-    transition: 1s;
-}
-
 
 .registro-div {
     display: flex;
+    align-items: center;
     flex-direction: column;
     width: 100%;
     height: auto;
@@ -536,16 +530,43 @@ dialog {
 hr {
     color: blue;
     border-width: 5px;
+    width: 60%;
 }
 
 .input-register {
-    margin-top: 20px;
-    border-radius: 30px;
-    width: 50%;
+    color: black;
+    margin-top: 10px;
+    border-radius: 15px;
+    width: 60%;
     padding:15px;
     font-size: 20px;
     background-color:  var(---contentColor);
     border-style: none;
+}
+
+.input-register::placeholder {
+    color: rgb(26, 25, 25);
+}
+
+.registro-div > label {
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.div-labels {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.registro-div > .div-labels > label {
+    width: 60%;
+    align-self: left;
+}
+
+.div-botones-register {
+    display: flex;
 }
 
 @media (width < 1000px) {
@@ -563,6 +584,18 @@ hr {
     }
 
     .article-register {
+    width: 80%;
+    }
+
+    .registro-div > .div-labels > label {
+    width: 80%;
+    }
+
+    .input-register {
+    width: 80%;
+    }
+
+    hr {
     width: 80%;
     }
 
