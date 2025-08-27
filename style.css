@@ -424,6 +424,8 @@ aside ul li:not(:last-child) a::after {
     transition: 1s;
 }
 
+
+
 /* Registro */
 
 .article-register {
@@ -684,4 +686,22 @@ abajito cuando el ancho es menos de 700px */
     width: 100%;
     }
 
+}
+
+/* Login responsive */
+
+@media (width < 750px) {
+    #form {
+    width: 100%;
+    height: 100vh;   
+    border-radius: 0; 
+  }
+
+  #logo-fondo {
+    display: none;
+  }
+
+  .fondo-login::before {
+    display: none;
+}
 }
