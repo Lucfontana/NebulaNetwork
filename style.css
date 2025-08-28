@@ -23,6 +23,8 @@ a {
     cursor: pointer;
 }
 
+
+
 /*NAVBAR DE BOOTSTRAP*/
 
 .sideButton{
@@ -96,6 +98,43 @@ a {
 }
 
 /*------------------------ CONTENIDO DE LA PAGINA ----------------------*/
+
+/* Contenedor principal en columna para texto y botones */
+.hdrBackground {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Texto de Bienvenidos */
+.bienvenida-texto {
+    margin-bottom: 90px; /* Separación del bloque de los botones */
+}
+
+/* Botones de Bienvenidos */
+.bienvenida-botones {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-bienvenida {
+    font-size: 22px;
+    padding: 50px 100px;
+    background-color:  white
+    color: black;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-bienvenida:hover {
+    transform: scale(1.08);
+    background-color: #f0f0f0;
+}
 
 #grid {
     display: grid;
@@ -262,7 +301,6 @@ aside ul li:not(:last-child) a::after {
 .footer {
     background-color: rgb(71, 73, 73);
     padding: 20px 0 10px 0;
-    margin: 0px;
     text-align: center;
     color: #fff;
     display: flex;
