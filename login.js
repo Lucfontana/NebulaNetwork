@@ -1,5 +1,7 @@
 const form = document.getElementById("form");
 
+let multiplicadorACadaUno = [2, 9, 8, 7, 6, 3, 4];
+
 form.addEventListener("submit", function(event) {
 event.preventDefault();
 
@@ -16,6 +18,9 @@ if (!verificarCI(CI)) {
     alerttext.textContent = "Contraseña debe tener entre 8 y 20 caracteres.";
     alertdiv.style.visibility = "visible";
     return
+}  else if (!verificarExistenciaCI(CI, multiplicadorACadaUno)) {
+    alerttext.textContent = "Su cedula de identidad no existe";
+    alertdiv.style.visibility = "visible";
 } else {
     alerttext.textContent = "Inicio de Sesión Correcto";
     alertdiv.style.visibility = "visible";
@@ -37,4 +42,48 @@ function tamanoPassword (contrasena) {
     } else {
         return true;
     }
+}
+
+function verificarExistenciaCI(CI, multiplicadorACadaUno){
+
+    let digitos_CI_en_int = CIaArreglo(CI);
+    let digitoVerif = mostrarDigVerificador(CI, multiplicadorACadaUno)
+
+    if (digitos_CI_en_int[7] == digitoVerif) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function mostrarDigVerificador(CI, multiplicadorACadaUno){
+    let digitoVerif;
+    let resultadoFinal = 0;
+    let restador = 0
+    let resultadoActual = 0;
+
+    let digitos_CI_en_int = CIaArreglo(CI);
+
+    for (let i = 0; i < 7; i++){
+        resultadoActual = digitos_CI_en_int[i] * multiplicadorACadaUno[i];
+        
+        resultadoFinal = resultadoFinal + resultadoActual;
+        console.log('Final' + resultadoFinal);
+    }
+
+    for (let i = 0; restador < resultadoFinal; i++){
+        restador = 10 * i;
+        console.log('Restador: ' + restador);
+    }
+
+    digitoVerif = restador - resultadoFinal;
+    console.log('Digito verificador: ' + digitoVerif );
+    return digitoVerif;
+}
+
+function CIaArreglo(CI){
+    let cadenaCI = CI.toString();
+    let digitosCIDivididos = cadenaCI.split('');
+    let digitos_CI_en_int = digitosCIDivididos.map(Number);
+    return digitos_CI_en_int;
 }
