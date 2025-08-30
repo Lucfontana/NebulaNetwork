@@ -11,58 +11,8 @@
 <link rel="stylesheet" href="style.css">
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary navStyle">
-        <div class="container-fluid navStyle">
-            <button class="sideButton" id="sideButton">
-                <img src="img/box-arrow-right-white.svg" alt="menu" class="sideMenu">                
-            </button>
-            
-            <a class="navbar-brand" href="index.html"><img id="logo" src="./img/logo.png">ITSP</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">INFORMACIÓN</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">CURSOS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">DOCENTES</a>
-                    </li>
-                </ul>
-                <!-- <span class="navbar-text">
-            Navbar text with an inline element
-        </span> -->
-            </div>
-        </div>
-    </nav>
-
-
-    <aside id="aside">
-        <ul class="link-aside-text" id="link-aside-text">
-            <li><a class="link-aside" href="Login.html">Mi cuenta</a></li>
-
-            <li><a class="link-aside">Horario</a></li>
-
-            <li><a class="link-aside">Galeria</a></li>
-
-            <li><a class="link-aside">Eventos</a></li>
-
-            <li><a class="link-aside">Notificaciones</a></li>
-        </ul>
-
-        <ul class="link-aside-images" id="link-aside-images">
-            <a href="Login.php"><li><img src="img/person-circle_white_no_bg.png" alt="" height="25px" width="25px"></li></a>
-            <a href=""><li><img src="img/Iconos sidebar/calendario.png" alt="" height="25px" width="25px"></li></a>
-            <a href=""><li><img src="img/Iconos sidebar/galeria.png" alt="" height="25px" width="25px"></li></a>
-            <a href=""><li><img src="img/Iconos sidebar/Eventos.png" alt="" height="25px" width="25px"></li></a>
-            <a href=""><li><img src="img/Iconos sidebar/notificacion.png" alt="" height="25px" width="25px"></li></a>         
-        </ul>
-    </aside>
+    <!-- trae las barras de navegacion (sidebar y superior) -->
+    <?php include 'nav.php'; ?>
 
  <div class="hdrBackground" id="hdrBackground">
     <!-- Texto de Bienvenidos -->
