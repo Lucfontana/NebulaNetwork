@@ -54,7 +54,7 @@
         </ul>
 
         <ul class="link-aside-images" id="link-aside-images">
-            <a href="Login.html"><li><img src="img/person-circle_white_no_bg.png" alt=""></li></a>
+            <a href="Login.php"><li><img src="img/person-circle_white_no_bg.png" alt=""></li></a>
             <li><img src="img/box-arrow-right-white.svg" alt=""></li>
             <li><img src="img/box-arrow-right-white.svg" alt=""></li>
             <li><img src="img/box-arrow-right-white.svg" alt=""></li>
