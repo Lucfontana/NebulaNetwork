@@ -26,7 +26,7 @@ function consultar_existencia($con, $elemento_a_buscar){
 
 function insertar_datos($con, $dato_a_insertar, $existeAsignatura){
     if ($existeAsignatura == false){
-        $consulta_insertar = "INSERT INTO asignaturas (nombre) VALUES '$dato_a_insertar'";
+        $consulta_insertar = "INSERT INTO asignaturas (nombre) VALUES ('$dato_a_insertar')";
 
         if (mysqli_query($con, $consulta_insertar)){
             $salida = consultar_datos($con);
