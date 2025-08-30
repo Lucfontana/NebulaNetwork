@@ -282,14 +282,14 @@
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div">
+    <form id="form-registro" class="registro-div" action="PRUEBA_BASE_DE_DATOS/registro_cosas.php" method="POST">
     <h1>Registro de Asignaturas</h1><hr>
         <div class="div-labels">
         <label for="name" class="label">Nombre:</label>
-            <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="text"  name="nombreAsignatura" id="name" maxlength="20" minlength="3"  required placeholder="Ingresa nombre">
         </div>
     <div class="div-botones-register">
-    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar Asignatura" name="registrarAsignatura"></input>
     <button class="btn-Cerrar">Cerrar</button>
     </div>
     </form>
