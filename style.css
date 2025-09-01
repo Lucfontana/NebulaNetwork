@@ -330,17 +330,17 @@ aside ul li:not(:last-child) a::after {
     flex-direction: column;
     padding: 20px;
     font-size: 20px;
-    background-color: var(---navColor);
+    background-color: rgb(216, 229, 240);
     z-index: 1;
 }
 
 .input-form {
     color: aliceblue;
     margin-top: 20px;
-    border-radius: 30px;
+    border-radius: 10px;
     padding:15px;
     font-size: 20px;
-    background-color:  var(---contentColor);
+    background-color: #3c44aa;
     border-style: none;
 }
 
@@ -364,7 +364,8 @@ aside ul li:not(:last-child) a::after {
 }
 
 #titulo-login {
-    font-size: 25px;
+    font-size: 30px;
+    color: black;
     text-align: center;
     margin-top: 20px;
 }
@@ -373,11 +374,11 @@ aside ul li:not(:last-child) a::after {
     width: 170px;
     font-size: 20px;
     margin-top: 30px;
-    background-color: rgb(64, 110, 150);
+    background-color: #3c44aa;
     color: aliceblue;
     padding: 15px;
     border-style: none;
-    border-radius: 30px;
+    border-radius: 20px;
     cursor: pointer;
     transition: 1s;
 }
@@ -443,10 +444,10 @@ aside ul li:not(:last-child) a::after {
 }
 
 #boton-inicio {
-    background-color: rgb(58, 65, 165);
+    background-color: rgb(93, 101, 206);
     color: aliceblue;
     margin-top: 10px;
-    border-radius: 30px;
+    border-radius: 20px;
     padding: 15px;
     width: 200px;
     height: auto;

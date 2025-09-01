@@ -113,9 +113,9 @@
         </div>
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
-    <button class="btn-Cerrar">Cerrar</button>
-    </div>
 </form>
+<button class="btn-Cerrar">Cerrar</button>
+</div>
 </dialog>
 
 <dialog>
@@ -144,9 +144,9 @@
         </div>
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    </form>
     <button class="btn-Cerrar">Cerrar</button>
     </div>
-    </form>
 </dialog>
 
 <dialog>
@@ -173,9 +173,9 @@
             </select>
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    </form>
     <button class="btn-Cerrar">Cerrar</button>
     </div>
-    </form>
 </dialog>
 
 <dialog>
@@ -199,9 +199,9 @@
         </div>
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    </form>
     <button class="btn-Cerrar">Cerrar</button>
     </div>
-    </form>
 </dialog>
 
 <dialog>
@@ -229,9 +229,9 @@
         </div>
         <div class="div-botones-register">
         <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
-        <button class="btn-Cerrar">Cerrar</button>
-        </div>
     </form>
+    <button class="btn-Cerrar">Cerrar</button>
+    </div>
 </dialog>
 
 <dialog>
@@ -243,9 +243,9 @@
         </div>
     <div class="div-botones-register">
     <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar Asignatura" name="registrarAsignatura"></input>
+    </form>
     <button class="btn-Cerrar">Cerrar</button>
     </div>
-    </form>
 </dialog>
 
 <dialog>
@@ -260,9 +260,9 @@
         </div>
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    </form>
     <button class="btn-Cerrar">Cerrar</button>
     </div>
-    </form>
 </dialog>
 </div>
 
