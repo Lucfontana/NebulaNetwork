@@ -141,20 +141,6 @@ a {
     transform: scale(1.08);
 }
 
-@media (max-width: 768px) {
-    .bienvenida-botones {
-        flex-direction: column;   /* botones en columna */
-        align-items: center;      /* centrados */
-    }
-
-    .btn-bienvenida {
-        width: 90%;      /* que ocupen casi todo el ancho */
-        max-width: 350px;
-        height: 100px;
-    }
-}
-
-
 #grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -744,6 +730,53 @@ abajito cuando el ancho es menos de 700px */
     width: 100%;
     }
 
+}
+
+/* Botones de inicio responsive*/
+
+@media (max-width: 1000px) {
+    .bienvenida-botones {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .btn-bienvenida {
+        width: 200px;
+        height: 100px;
+        font-size: 20px;
+    }
+}
+
+/* Pantallas medianas*/
+@media (max-width: 768px) {
+    .bienvenida-botones {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .btn-bienvenida {
+        width: 180px;
+        height: 90px;
+        font-size: 18px;
+    }
+}
+
+/* Pantallas chicas */
+@media (max-width: 480px) {
+    .bienvenida-botones {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn-bienvenida {
+        width: 90%;   
+        max-width: 280px;
+        height: 80px;
+        font-size: 16px;
+    }
 }
 
 /* Login responsive */
