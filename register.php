@@ -115,7 +115,7 @@
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
 </form>
 <button class="btn-Cerrar">Cerrar</button>
-</div>
+    </div>
 </dialog>
 
 <dialog>
