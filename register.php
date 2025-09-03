@@ -12,55 +12,8 @@
 <link rel="stylesheet" href="register (temporal).css">
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary navStyle">
-        <div class="container-fluid navStyle">
-            <button class="sideButton" id="sideButton">
-                <img src="img/box-arrow-right-white.svg" alt="menu" class="sideMenu">                
-            </button>
-            
-            <a class="navbar-brand" href="/index.html"><img id="logo" src="./img/logo.png">ITSP</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">INFORMACIÓN</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">CURSOS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">DOCENTES</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-    <aside id="aside">
-        <ul class="link-aside-text" id="link-aside-text">
-            <li><a class="link-aside" href="Login.html">Mi cuenta</a></li>
-
-            <li><a class="link-aside">Horario</a></li>
-
-            <li><a class="link-aside">Galeria</a></li>
-
-            <li><a class="link-aside">Eventos</a></li>
-
-            <li><a class="link-aside">Notificaciones</a></li>
-        </ul>
-
-        <ul class="link-aside-images" id="link-aside-images">
-            <a href="Login.html"><li><img src="img/person-circle_white_no_bg.png" alt=""></li></a>
-            <li><img src="img/box-arrow-right-white.svg" alt=""></li>
-            <li><img src="img/box-arrow-right-white.svg" alt=""></li>
-            <li><img src="img/box-arrow-right-white.svg" alt=""></li>
-            <li><img src="img/box-arrow-right-white.svg" alt=""></li>           
-        </ul>
-    </aside>
+    <!-- trae las barras de navegacion (sidebar y superior) -->
+    <?php include 'nav.php'; ?>
 
     <div id="contenido" class="contenido">
 
@@ -160,9 +113,9 @@
         </div>
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
-    <button class="btn-Cerrar">Cerrar</button>
-    </div>
 </form>
+<button class="btn-Cerrar">Cerrar</button>
+    </div>
 </dialog>
 
 <dialog>
@@ -191,9 +144,9 @@
         </div>
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    </form>
     <button class="btn-Cerrar">Cerrar</button>
     </div>
-    </form>
 </dialog>
 
 <dialog>
@@ -220,9 +173,9 @@
             </select>
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    </form>
     <button class="btn-Cerrar">Cerrar</button>
     </div>
-    </form>
 </dialog>
 
 <dialog>
@@ -246,9 +199,9 @@
         </div>
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    </form>
     <button class="btn-Cerrar">Cerrar</button>
     </div>
-    </form>
 </dialog>
 
 <dialog>
@@ -276,23 +229,23 @@
         </div>
         <div class="div-botones-register">
         <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
-        <button class="btn-Cerrar">Cerrar</button>
-        </div>
     </form>
+    <button class="btn-Cerrar">Cerrar</button>
+    </div>
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div">
+    <form id="form-registro" class="registro-div" action="PRUEBA_BASE_DE_DATOS/registro_cosas.php" method="POST">
     <h1>Registro de Asignaturas</h1><hr>
         <div class="div-labels">
         <label for="name" class="label">Nombre:</label>
-            <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="text"  name="nombreAsignatura" id="name" maxlength="20" minlength="3"  required placeholder="Ingresa nombre">
         </div>
     <div class="div-botones-register">
-    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar Asignatura" name="registrarAsignatura"></input>
+    </form>
     <button class="btn-Cerrar">Cerrar</button>
     </div>
-    </form>
 </dialog>
 
 <dialog>
@@ -307,9 +260,9 @@
         </div>
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    </form>
     <button class="btn-Cerrar">Cerrar</button>
     </div>
-    </form>
 </dialog>
 </div>
 
