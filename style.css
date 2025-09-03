@@ -118,23 +118,42 @@ a {
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .btn-bienvenida {
     font-size: 22px;
-    padding: 50px 100px;
-    background-color:  white;
+    width: 250px;       /* ancho consistente */
+    height: 120px;      /* alto consistente */
+    background-color: white;
     color: black;
     border: none;
     border-radius: 10px;
     font-weight: bold;
     transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .btn-bienvenida:hover {
     transform: scale(1.08);
-    background-color: #f0f0f0;
 }
+
+@media (max-width: 768px) {
+    .bienvenida-botones {
+        flex-direction: column;   /* botones en columna */
+        align-items: center;      /* centrados */
+    }
+
+    .btn-bienvenida {
+        width: 90%;      /* que ocupen casi todo el ancho */
+        max-width: 350px;
+        height: 100px;
+    }
+}
+
 
 #grid {
     display: grid;
