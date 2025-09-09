@@ -1,5 +1,5 @@
 <?php
-require('PRUEBA_BASE_DE_DATOS/conexion.php');
+include('PRUEBA_BASE_DE_DATOS/conexion.php');
 
 $connect = conectar_a_bd();
 $sql = "SELECT * FROM asignaturas";
@@ -38,9 +38,9 @@ $query = mysqli_query($connect, $sql);
                 <tbody>
                     <tr class="mostrar-datos">
                         <th><?= $row['id_asignatura'] ?></th>
-                        <th class="nombre"><?=  $row['nombre'] ?></th>
-                        <a href=""><th id="boton-datos-eliminar" class="botones-datos" >Eliminar</th></a>
-                        <a href=""><th  id="boton-datos-editar" class="botones-datos" >Editar</th></a>
+                        <th class="nombre"><?= $row['nombre'] ?></th>
+                        <th><a id="boton-datos-eliminar" class="botones-datos" href="/mostrar datos asignaturas/delete-asignatura.php?id=<?= $row['id_asignatura'] ?>">Eliminar</a></th>
+                        <th><a id="boton-datos-editar" class="botones-datos"  href="/mostrar datos asignaturas/update-asignatura.php?id=<?= $row['id_asignatura'] ?>">Editar</a></th>
                     </tr>
                 </tbody>
                 <?php endwhile; ?>
