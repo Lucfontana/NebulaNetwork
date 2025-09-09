@@ -119,7 +119,7 @@
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div">
+    <form id="form-registro" class="registro-div" action="/PRUEBA_BASE_DE_DATOS/superusuarios_func.php" method="POST">
     <h1>Registro de SuperUsuarios</h1><hr>
         <div class="div-labels">
         <label for="CI" class="label">Cedula de Identidad:</label>
@@ -137,15 +137,16 @@
         <div class="div-labels">
         <label for="acceso" class="label">Nivel de Acceso:</label>
             <select class="input-register" type="text"  name="acceso" id="acceso" maxlength="20" minlength="8"  required placeholder="">
-                <option value="">1 - Adscripta</option>
-                <option value="">2 - Secretaria</option>
-                <option value="">3 - Administrador</option>
+                <option value =""></option>
+                <option value="1">1 - Adscripta</option>
+                <option value="2">2 - Secretaria</option>
+                <option value="3">3 - Administrador</option>
             </select>
         </div>
     <div class="div-botones-register">
-    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarSuperuser"></input>
     </form>
-    <button class="btn-Cerrar">Cerrar</button>
+    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
     </div>
 </dialog>
 
@@ -244,7 +245,7 @@
     <div class="div-botones-register">
     <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar Asignatura" name="registrarAsignatura"></input>
     </form>
-    <button class="btn-Cerrar">Cerrar</button>
+    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
     </div>
 </dialog>
 
@@ -254,14 +255,24 @@
         <div class="div-labels">
         <label for="hora_inicio" class="label">Hora de Inicio:</label>
             <input class="input-register" type="time"  name="hora_inicio" id="hora_inicio" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
-        </div><div class="div-labels">
+        </div>
+        <div class="div-labels">
         <label for="hora_final" class="label">Hora de Salida:</label>
             <input class="input-register" type="time"  name="hora_final" id="hora_final" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
         </div>
+        <div class ="div-labels">
+            <label for="tipo">Tipo de horario:</label>
+                <select class="input-register" type="text"  name="acceso" id="acceso" required placeholder="">
+                    <option value =""></option>
+                    <option value="recreo">Recreo</option>
+                    <option value="clase">Clase</option>
+                </select>
+        </div>
+
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
     </form>
-    <button class="btn-Cerrar">Cerrar</button>
+    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
     </div>
 </dialog>
 </div>
@@ -279,5 +290,12 @@
     <script src="sideMenu.js"></script>
     <script src="/Register-Modal.js"></script>
     <script src="/Validaciones_register.js"></script>
+
+    <script>
+    document.getElementById('cerrar').addEventListener('click', function(e) {
+    e.preventDefault(); // Previene cualquier acción por defecto
+    location.reload(); // Refresca la página
+    });
+    </script>
     </body>
     </html>

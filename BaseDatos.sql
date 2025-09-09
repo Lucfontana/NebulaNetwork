@@ -24,7 +24,8 @@ Create table recursos (
 create table horarios (
     id_horario int AUTO_INCREMENT primary key not null,
     hora_inicio date not null,
-    hora_final date not null
+    hora_final date not null,
+    tipo ENUM('recreo', 'clase') not null
 );
 
 create table espacios_fisicos (
@@ -39,6 +40,7 @@ create table espacios_fisicos (
 create table superUsuario (
     id_superusuario int AUTO_INCREMENT primary key not null,
     nombre varchar (50),
+    pass_superusuario varchar (50),
     apellido varchar(50),
     nivel_acceso ENUM('1', '2', '3')    
 );
