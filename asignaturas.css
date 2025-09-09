@@ -1,6 +1,9 @@
+
+
 #contenido-asignatura {
     width: calc(99vw - var(---marginAside) -2px);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -9,21 +12,83 @@
     transition: var(---transitionSidebarExpanded);
 }
 
-table, tr , td, th {
-    border-style: solid;
-    border-collapse: collapse;
-    padding: 10px;
-    text-align: center;
+#contenido-asignatura > h1 {
+    font-size: 30px;
+    margin: 20px;
 }
 
-table {
+td, th {
+    padding: 15px;
+}
+
+
+.datos-mostrar {
+    border-style: solid;
+    border-color: black;
+}
+
+#datos {
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-color: black;
     width: 100%;
 }
 
 .id {
-    width: 20%;
+    background-color: aquamarine;
 }
 
 .nombre {
-    width: 80%;
+    width: 100%;
+    text-align: left;
 }
+
+.nombre-titulo {
+    background-color: rgb(115, 192, 255);
+    text-align: left;
+    width: 100%;
+}
+
+#boton-datos-eliminar {
+    color: brown;
+}
+
+#boton-datos-editar {
+    color: blue;
+}
+
+.botones-datos {
+    text-align: right;
+    transition: 1s;
+}
+
+.botones-datos:hover {
+    background-color: rgb(158, 158, 158);
+    transition: 1s;
+}
+
+#boton-datos-editar:hover {
+    color: rgb(15, 15, 151);
+    cursor: pointer;
+    transition: 1s;
+}
+
+#boton-datos-eliminar:hover {
+    color: rgb(167, 26, 26);
+    cursor: pointer;
+    transition: 1s;
+}
+
+.mostrar-datos {
+    background-color: aliceblue;
+    transition: 0.5s;
+}
+
+.mostrar-datos:hover {
+    background-color: rgb(204, 204, 204);
+    transition: 0.5s;
+}
+
+
+

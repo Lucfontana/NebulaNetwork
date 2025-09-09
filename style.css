@@ -97,6 +97,13 @@ a {
     border-right: none; */
 }
 
+
+.nav-link:hover {
+    color: rgb(238, 255, 0);
+    padding: 40px;
+    transition: 1s;
+}
+
 /*------------------------ CONTENIDO DE LA PAGINA ----------------------*/
 
 /* Contenedor principal en columna para texto y botones */

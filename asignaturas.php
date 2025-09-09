@@ -1,10 +1,19 @@
+<?php
+require('PRUEBA_BASE_DE_DATOS/conexion.php');
+
+$connect = conectar_a_bd();
+$sql = "SELECT * FROM asignaturas";
+
+$query = mysqli_query($connect, $sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Mostrar Datos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
@@ -17,20 +26,24 @@
     <?php include 'nav.php'; ?>
 
     <div id="contenido-asignatura">
+        <h1>Asignaturas</h1>
         <table id="datos">
-            <caption>Asignaturas</caption>
-            <tr>
-                <th>Id </th>
-                <th>Nombre</th>
-            </tr>
-            <tr>
-                <td class="id">Dato 1.1</td>
-                <td class="nombre">Dato 1.2<button></button><button></button></td>
-            </tr>
-            <tr>
-                <td class="id">Dato 2.1</td>
-                <td class="nombre">Dato 2.2<button></button><button></button></td>
-            </tr>
+                <tr>
+                    <th class="id">Id </th>
+                    <th class="nombre-titulo">Nombre</th>
+                    <th class="nombre-titulo"></th>
+                    <th class="nombre-titulo"></th>
+                </tr>
+                <?php while ($row = mysqli_fetch_array($query)): ?>
+                <tbody>
+                    <tr class="mostrar-datos">
+                        <th><?= $row['id_asignatura'] ?></th>
+                        <th class="nombre"><?=  $row['nombre'] ?></th>
+                        <a href=""><th id="boton-datos-eliminar" class="botones-datos" >Eliminar</th></a>
+                        <a href=""><th  id="boton-datos-editar" class="botones-datos" >Editar</th></a>
+                    </tr>
+                </tbody>
+                <?php endwhile; ?>
         </table>
     </div>
 
