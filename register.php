@@ -1,3 +1,9 @@
+<?php
+
+// include('/PRUEBA_BASE_DE_DATOS/superusuarios_func.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -121,12 +127,17 @@
 <dialog>
     <form id="form-registro" class="registro-div" action="/PRUEBA_BASE_DE_DATOS/superusuarios_func.php" method="POST">
     <h1>Registro de SuperUsuarios</h1><hr>
+        <?php if(isset($mensaje) && !empty($mensaje)): ?>
+            <div class="mensaje <?php echo $tipo_mensaje; ?>">
+                <?php echo $mensaje; ?>
+            </div>
+        <?php endif; ?>
         <div class="div-labels">
         <label for="CI" class="label">Cedula de Identidad:</label>
             <input class="input-register" type="number"  name="CI" id="CI" maxlength="8" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
         </div><div class="div-labels">
         <label for="contrasena" class="label">Contraseña:</label>
-            <input class="input-register" type="password" name="" id="contrasena" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
+            <input class="input-register" type="password" name="password" id="contrasena" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
         </div><div class="div-labels">
         <label for="name" class="label">Nombre:</label>
             <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
