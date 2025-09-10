@@ -1,3 +1,9 @@
+<?php
+
+// include('/PRUEBA_BASE_DE_DATOS/superusuarios_func.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,55 +18,8 @@
 <link rel="stylesheet" href="register (temporal).css">
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary navStyle">
-        <div class="container-fluid navStyle">
-            <button class="sideButton" id="sideButton">
-                <img src="img/box-arrow-right-white.svg" alt="menu" class="sideMenu">                
-            </button>
-            
-            <a class="navbar-brand" href="/index.html"><img id="logo" src="./img/logo.png">ITSP</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">INFORMACIÓN</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">CURSOS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">DOCENTES</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-    <aside id="aside">
-        <ul class="link-aside-text" id="link-aside-text">
-            <li><a class="link-aside" href="Login.html">Mi cuenta</a></li>
-
-            <li><a class="link-aside">Horario</a></li>
-
-            <li><a class="link-aside">Galeria</a></li>
-
-            <li><a class="link-aside">Eventos</a></li>
-
-            <li><a class="link-aside">Notificaciones</a></li>
-        </ul>
-
-        <ul class="link-aside-images" id="link-aside-images">
-            <a href="Login.html"><li><img src="img/person-circle_white_no_bg.png" alt=""></li></a>
-            <li><img src="img/box-arrow-right-white.svg" alt=""></li>
-            <li><img src="img/box-arrow-right-white.svg" alt=""></li>
-            <li><img src="img/box-arrow-right-white.svg" alt=""></li>
-            <li><img src="img/box-arrow-right-white.svg" alt=""></li>           
-        </ul>
-    </aside>
+    <!-- trae las barras de navegacion (sidebar y superior) -->
+    <?php include 'nav.php'; ?>
 
     <div id="contenido" class="contenido">
 
@@ -160,20 +119,25 @@
         </div>
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
-    <button class="btn-Cerrar">Cerrar</button>
-    </div>
 </form>
+<button class="btn-Cerrar">Cerrar</button>
+    </div>
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div">
+    <form id="form-registro" class="registro-div" action="/PRUEBA_BASE_DE_DATOS/superusuarios_func.php" method="POST">
     <h1>Registro de SuperUsuarios</h1><hr>
+        <?php if(isset($mensaje) && !empty($mensaje)): ?>
+            <div class="mensaje <?php echo $tipo_mensaje; ?>">
+                <?php echo $mensaje; ?>
+            </div>
+        <?php endif; ?>
         <div class="div-labels">
         <label for="CI" class="label">Cedula de Identidad:</label>
             <input class="input-register" type="number"  name="CI" id="CI" maxlength="8" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
         </div><div class="div-labels">
         <label for="contrasena" class="label">Contraseña:</label>
-            <input class="input-register" type="password" name="" id="contrasena" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
+            <input class="input-register" type="password" name="password" id="contrasena" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
         </div><div class="div-labels">
         <label for="name" class="label">Nombre:</label>
             <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
@@ -184,16 +148,17 @@
         <div class="div-labels">
         <label for="acceso" class="label">Nivel de Acceso:</label>
             <select class="input-register" type="text"  name="acceso" id="acceso" maxlength="20" minlength="8"  required placeholder="">
-                <option value="">1 - Adscripta</option>
-                <option value="">2 - Secretaria</option>
-                <option value="">3 - Administrador</option>
+                <option value =""></option>
+                <option value="1">1 - Adscripta</option>
+                <option value="2">2 - Secretaria</option>
+                <option value="3">3 - Administrador</option>
             </select>
         </div>
     <div class="div-botones-register">
-    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
-    <button class="btn-Cerrar">Cerrar</button>
-    </div>
+    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarSuperuser"></input>
     </form>
+    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
+    </div>
 </dialog>
 
 <dialog>
@@ -220,9 +185,9 @@
             </select>
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    </form>
     <button class="btn-Cerrar">Cerrar</button>
     </div>
-    </form>
 </dialog>
 
 <dialog>
@@ -246,9 +211,9 @@
         </div>
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    </form>
     <button class="btn-Cerrar">Cerrar</button>
     </div>
-    </form>
 </dialog>
 
 <dialog>
@@ -276,23 +241,23 @@
         </div>
         <div class="div-botones-register">
         <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
-        <button class="btn-Cerrar">Cerrar</button>
-        </div>
     </form>
+    <button class="btn-Cerrar">Cerrar</button>
+    </div>
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div">
+    <form id="form-registro" class="registro-div" action="PRUEBA_BASE_DE_DATOS/registro_cosas.php" method="POST">
     <h1>Registro de Asignaturas</h1><hr>
         <div class="div-labels">
         <label for="name" class="label">Nombre:</label>
-            <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="text"  name="nombreAsignatura" id="name" maxlength="20" minlength="3"  required placeholder="Ingresa nombre">
         </div>
     <div class="div-botones-register">
-    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
-    <button class="btn-Cerrar">Cerrar</button>
-    </div>
+    <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar Asignatura" name="registrarAsignatura"></input>
     </form>
+    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
+    </div>
 </dialog>
 
 <dialog>
@@ -301,15 +266,25 @@
         <div class="div-labels">
         <label for="hora_inicio" class="label">Hora de Inicio:</label>
             <input class="input-register" type="time"  name="hora_inicio" id="hora_inicio" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
-        </div><div class="div-labels">
+        </div>
+        <div class="div-labels">
         <label for="hora_final" class="label">Hora de Salida:</label>
             <input class="input-register" type="time"  name="hora_final" id="hora_final" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
         </div>
+        <div class ="div-labels">
+            <label for="tipo">Tipo de horario:</label>
+                <select class="input-register" type="text"  name="acceso" id="acceso" required placeholder="">
+                    <option value =""></option>
+                    <option value="recreo">Recreo</option>
+                    <option value="clase">Clase</option>
+                </select>
+        </div>
+
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
-    <button class="btn-Cerrar">Cerrar</button>
-    </div>
     </form>
+    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
+    </div>
 </dialog>
 </div>
 
@@ -326,5 +301,12 @@
     <script src="sideMenu.js"></script>
     <script src="/Register-Modal.js"></script>
     <script src="/Validaciones_register.js"></script>
+
+    <script>
+    document.getElementById('cerrar').addEventListener('click', function(e) {
+    e.preventDefault(); // Previene cualquier acción por defecto
+    location.reload(); // Refresca la página
+    });
+    </script>
     </body>
     </html>

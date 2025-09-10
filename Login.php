@@ -39,7 +39,7 @@
         </div>
 
             <div id="container-boton-inicio">   
-                <a href="index.html"><button id="boton-inicio" type="button">Volver al Inicio</button></a>
+                <a href="index.php"><button id="boton-inicio" type="button">Volver al Inicio</button></a>
             </div>
         </form>
             <div class="fondo-login">

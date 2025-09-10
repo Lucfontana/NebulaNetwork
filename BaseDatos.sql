@@ -1,5 +1,5 @@
 Create table cursos (
-    id_curso int primary key not null,
+    id_curso int AUTO_INCREMENT primary key not null,
     nombre varchar(50) not null,
     capacidad int not null,
     prerresquisitos varchar(200) not null,
@@ -8,12 +8,12 @@ Create table cursos (
 );
 
 create table asignaturas (
-    id_asignatura int primary key not null,
+    id_asignatura int AUTO_INCREMENT primary key not null,
     nombre varchar(50) not null
 );
 
 Create table recursos (
-    id_recurso int primary key not null,
+    id_recurso int AUTO_INCREMENT primary key not null,
     nombre varchar(50) not null,
     descripcion varchar(100) not null,
     estado ENUM('uso','libre','roto') not null,
@@ -22,13 +22,14 @@ Create table recursos (
 );
 
 create table horarios (
-    id_horario int primary key not null,
+    id_horario int AUTO_INCREMENT primary key not null,
     hora_inicio date not null,
-    hora_final date not null
+    hora_final date not null,
+    tipo ENUM('recreo', 'clase') not null
 );
 
 create table espacios_fisicos (
-    id_espacio int primary key not null,
+    id_espacio int AUTO_INCREMENT primary key not null,
     id_recurso int, 
     foreign key (id_recurso) references recursos(id_recurso),
     capacidad int not null,
@@ -37,14 +38,15 @@ create table espacios_fisicos (
 );
 
 create table superUsuario (
-    id_superusuario int primary key not null,
+    id_superusuario int AUTO_INCREMENT primary key not null,
     nombre varchar (50),
+    pass_superusuario varchar (50),
     apellido varchar(50),
     nivel_acceso ENUM('1', '2', '3')    
 );
 
 create table profesores (
-    ci_profesor int primary key not null,
+    ci_profesor int AUTO_INCREMENT primary key not null,
     nombre varchar(50) not null,
     apellido varchar(50) not null,
     email varchar(50) not null,
@@ -53,7 +55,7 @@ create table profesores (
 );
 
 create table profesor_dicta_asignatura (
-    id_dicta int primary key not null,
+    id_dicta int AUTO_INCREMENT primary key not null,
     ci_profesor int,
     id_asignatura int,
     foreign key (ci_profesor) references profesores(ci_profesor),
@@ -61,7 +63,7 @@ create table profesor_dicta_asignatura (
 );
 
 create table profesor_solicita_recurso(
-    id_solicita int primary key not null,
+    id_solicita int AUTO_INCREMENT primary key not null,
     ci_profesor int,
     id_recurso int,
     FOREIGN KEY (ci_profesor) references profesores(ci_profesor),
