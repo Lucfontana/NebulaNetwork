@@ -220,32 +220,32 @@
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div">
+    <form id="form-registro" class="registro-div" action="PRUEBA_BASE_DE_DATOS/cursos_func.php" method="POST">
     <h1>Registro de Cursos</h1><hr>
         <div class="div-labels">
-        <label for="name" class="label">Nombre:</label>
-            <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
+        <label for="name" class="label">Nombre:</label> 
+            <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="3"  required placeholder="Ingresa sin puntos ni guiones">
         </div>
         <div class="div-labels">
         <label for="capacity" class="label">Capacidad:</label>
-            <input class="input-register" type="number"  name="capacity" id="capacity" maxlength="20" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
+            <input class="input-register" type="number"  name="capacity" id="capacity" maxlength="3" minlength="1"  required placeholder="Ingresa sin puntos ni guiones">
         </div>
         <div class="div-labels">
         <label for="requisitos" class="label">Pre-Requisitos:</label>
-            <input class="input-register" type="text"  name="requisitos" id="requisitos" maxlength="20" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
+            <input class="input-register" type="text"  name="requisitos" id="requisitos" maxlength="60" minlength="1"  required placeholder="Ingresa los prerresquisitos">
         </div>
         <div class="div-labels">
         <label for="description" class="label">Descripción:</label>
-            <input class="input-register" type="text"  name="description" id="description" maxlength="150" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="text"  name="description" id="description" maxlength="150" minlength="8"  required placeholder="Ingresa descripcion">
         </div>
         <div class="div-labels">
         <label for="cupos" class="label">Cupos Disponibles:</label>
-            <input class="input-register" type="text"  name="cupos" id="cupos" maxlength="150" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="number"  name="cupos" id="cupos" maxlength="3" minlength="1"  required placeholder="Ingresa cupos">
         </div>
         <div class="div-botones-register">
-        <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+        <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarCursos"></input>
     </form>
-    <button class="btn-Cerrar">Cerrar</button>
+    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
     </div>
 </dialog>
 
