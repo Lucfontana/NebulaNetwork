@@ -162,8 +162,8 @@
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div">
-    <h1>Registro de Recursos</h1><hr>
+    <form id="form-registro" class="registro-div" action="PRUEBA_BASE_DE_DATOS/recursos_func.php" method="POST">
+    <h1>Registro de Recursos</h1><hr> 
        <div class="div-labels">
         <label for="name" class="label">Nombre:</label>
             <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
@@ -173,21 +173,24 @@
         </div><div class="div-labels">
         <label for="estado" class="label">Estado:</label>
             <select class="input-register" type="text"  name="estado" id="estado" maxlength="20" minlength="8"  required placeholder="">
-                <option value="">Uso</option>
-                <option value="">Libre</option>
-                <option value="">Roto</option>
+                <option value=""></option>
+                <option value="uso">Uso</option>
+                <option value="libre">Libre</option>
+                <option value="roto">Roto</option>
             </select>
-        </div><div class="div-labels">
+        </div>
+        <div class="div-labels">
         <label for="tipo" class="label">Tipo:</label>
             <select class="input-register" type="text"  name="tipo" id="tipo" maxlength="20" minlength="8"  required placeholder="">
-                <option value="">Interno</option>
-                <option value="">Externo</option>
+                <option value=""></option>
+                <option value="interno">Interno</option>
+                <option value="externo">Externo</option>
             </select>
-    <div class="div-botones-register">
-    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+        <div class="div-botones-register">
+            <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarRecurso"></input>
     </form>
-    <button class="btn-Cerrar">Cerrar</button>
-    </div>
+        <button class="btn-Cerrar" id="cerrar">Cerrar</button>
+        </div>
 </dialog>
 
 <dialog>
