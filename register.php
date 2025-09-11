@@ -93,7 +93,7 @@
 
 <div id="div-dialogs">
 <dialog>
-    <form id="form-registro" class="registro-div">
+    <form id="form-registro" class="registro-div" action="/PRUEBA_BASE_DE_DATOS/profesores_func.php" method="POST"> 
     <h1>Registro de Profesores</h1><hr>
         <div class="div-labels">
         <label for="CI" class="label">Cedula de Identidad:</label>
@@ -118,9 +118,9 @@
             <input class="input-register" type="text"  name="direc" id="direc" maxlength="30" minlength="8"  required placeholder="Ingresa dirección">
         </div>
     <div class="div-botones-register">
-    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registroProfesor"></input>
 </form>
-<button class="btn-Cerrar">Cerrar</button>
+<button class="btn-Cerrar" id="cerrar">Cerrar</button>
     </div>
 </dialog>
 
