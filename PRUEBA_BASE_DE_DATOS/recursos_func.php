@@ -11,9 +11,12 @@ if(isset($_POST['registrarRecurso'])){
     $estado = strip_tags(trim($_POST['estado']));
     $tipo = strip_tags(trim($_POST['tipo']));
 
+    //Recibe la FK del salon
+    $pertenece_a = (int)$_POST['pertenece'];
+
     $existe =consultar_si_existe_recurso($con, $nombre);
 
-    insert_datos_recursos($con, $existe, $nombre, $descripcion, $estado, $tipo);
+    insert_datos_recursos($con, $existe, $nombre, $descripcion, $estado, $tipo, $pertenece_a);
 }
 
 function consultar_si_existe_recurso($con, $nombre){
@@ -36,14 +39,14 @@ $result = $stmt->get_result();
     }
 }
 
-function insert_datos_recursos($con, $existe, $nombre, $descripcion, $estado, $tipo){
+function insert_datos_recursos($con, $existe, $nombre, $descripcion, $estado, $tipo, $pertenece_a){
     if ($existe == false){
-        // No incluir id_recurso - es AUTO_INCREMENT
-        $query_insertar = "INSERT INTO recursos (nombre, descripcion, estado, tipo) VALUES (?, ?, ?, ?)";
+        // No incluir id_recurso - es AUTO_INCREMENT (pero si la del espacio pq es la fk que recibe el formulario)
+        $query_insertar = "INSERT INTO recursos (id_espacio, nombre, descripcion, estado, tipo) VALUES (?, ?, ?, ?, ?)";
         $stmt = $con->prepare($query_insertar);
         
         // 4 parámetros, 4 tipos
-        $stmt->bind_param("ssss", $nombre, $descripcion, $estado, $tipo);
+        $stmt->bind_param("ssssi", $pertenece_a, $nombre, $descripcion, $estado, $tipo);
         
         if ($stmt->execute()) {
             echo "Insertado correctamente";

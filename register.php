@@ -1,6 +1,15 @@
 <?php
 
-// include('/PRUEBA_BASE_DE_DATOS/superusuarios_func.php');
+include('PRUEBA_BASE_DE_DATOS/conexion.php');
+
+$con = conectar_a_bd();
+$sql = "SELECT * FROM espacios_fisicos";
+
+$stmt = $con->prepare($sql);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
 
 ?>
 
@@ -179,6 +188,25 @@
                 <option value="roto">Roto</option>
             </select>
         </div>
+ 
+        <!-- que hace esto??
+
+        En resumen, agarra a todos los nombres de espacios fisicos que hay y los pone
+        como opciones. Si se selecciona x salon, se pasa su id como value asi se registra
+        la conexion en la BD  -->
+        <div class="div-labels">
+            <label for="pertenece" class="label">Pertenece a:</label>
+            <select name="pertenece" id="pertenece" type="text" class="input-register">
+                <option value=""></option>
+
+                <!-- ARREGLAR!! SI SE SELECCIONA GENERAL NO FUNCIONA!! -->
+                <option value="general">General</option>
+                <?php while ($row = mysqli_fetch_array($result)): ?>
+                    <option value="<?= $row['id_espacio']?>"><?= $row['nombre']?></option>
+                <?php endwhile; ?>
+            </select>
+        </div>
+
         <div class="div-labels">
         <label for="tipo" class="label">Tipo:</label>
             <select class="input-register" type="text"  name="tipo" id="tipo" maxlength="20" minlength="8"  required placeholder="">
@@ -194,28 +222,31 @@
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div">
-    <h1>Registro de Salones</h1><hr>
+    <form id="form-registro" class="registro-div" action="/PRUEBA_BASE_DE_DATOS/espacios_func.php" method="POST">
+    <h1>Registro de Espacios</h1><hr>
         <div class="div-labels">
         <label for="name" class="label">Nombre:</label>
             <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
         </div><div class="div-labels">
         <label for="capacity" class="label">Capacidad:</label>
-            <input class="input-register" type="number"  name="capacity" id="capacity" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="number"  name="capacity" id="capacity" maxlength="20" minlength="8"  required placeholder="Ingresa capacidad">
         </div><div class="div-labels">
         <label for="equip" class="label">Equipamiento:</label>
-            <input class="input-register" type="text"  name="equip" id="equip" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="text"  name="equip" id="equip" maxlength="100" minlength="3"  required placeholder="Ingresa equipamiento">
         </div><div class="div-labels">
         <label for="tipo" class="label">Tipo:</label>
             <select class="input-register" type="text"  name="tipo" id="tipo" maxlength="20" minlength="8"  required placeholder="">
-                <option value="">Interno</option>
-                <option value="">Externo</option>
+                <option value=""></option>
+                <option value="aula">Aula</option>
+                <option value="salon">Salón</option>
+                <option value="laboratorio">Laboratorio</option>
+                <option value="SUM">SUM</option>
             </select>
         </div>
     <div class="div-botones-register">
-    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarEspacio"></input>
     </form>
-    <button class="btn-Cerrar">Cerrar</button>
+    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
     </div>
 </dialog>
 

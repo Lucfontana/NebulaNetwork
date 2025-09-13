@@ -12,13 +12,23 @@ create table asignaturas (
     nombre varchar(50) not null
 );
 
+create table espacios_fisicos (
+    id_espacio int AUTO_INCREMENT primary key not null,
+    capacidad int not null,
+    equipamiento varchar (50) not null,
+    nombre varchar(50) not null,
+    tipo ENUM('aula', 'laboratorio', 'salon', 'SUM') not null
+);
+
+
 Create table recursos (
     id_recurso int AUTO_INCREMENT primary key not null,
+    id_espacio int,
+    foreign key (id_espacio) references espacios_fisicos(id_espacio),
     nombre varchar(50) not null,
     descripcion varchar(100) not null,
     estado ENUM('uso','libre','roto') not null,
     tipo ENUM('interno','externo') not null
-
 );
 
 create table horarios (
@@ -26,15 +36,6 @@ create table horarios (
     hora_inicio date not null,
     hora_final date not null,
     tipo ENUM('recreo', 'clase') not null
-);
-
-create table espacios_fisicos (
-    id_espacio int AUTO_INCREMENT primary key not null,
-    id_recurso int, 
-    foreign key (id_recurso) references recursos(id_recurso),
-    capacidad int not null,
-    equipamiento varchar (50) not null,
-    tipo ENUM('interno', 'externo') not null
 );
 
 create table superUsuario (

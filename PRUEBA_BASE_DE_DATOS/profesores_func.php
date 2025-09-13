@@ -1,16 +1,11 @@
 <?php
 
-//     email varchar(50) not null,
-//     fecha_nac date not null, nac direc
-//     direccion varchar(50) not null
-// );
-
 include('conexion.php');
 
 $con = conectar_a_bd(); 
 
 if (isset($_POST['registroProfesor'])){
-    //Se deberian primero declarar las variables crudas, pasarlas por las validaciones y despues sanitizarlas (creo).
+    //TO DO:Se deberian primero declarar las variables crudas, pasarlas por las validaciones y despues sanitizarlas (creo).
 
     //Trim es funcion de PHP, saca los espacios al inicio y final de una string
     //strip_tags tambien es funcion de PHP, borra todos los caracteres de php
@@ -54,16 +49,7 @@ $result = $stmt->get_result();
 
 }
 
-// create table profesores (
-//     ci_profesor int AUTO_INCREMENT primary key not null,
-//     pass_profesor varchar(50) not null,
-//     nombre varchar(50) not null,
-//     apellido varchar(50) not null,
-//     email varchar(50) not null,
-//     fecha_nac date not null,
-//     direccion varchar(50) not null
-// );
-
+//Se pasan los valores como parametros y se ingresan en la bd
 function insert_datos_profe($con, $existe, $ci, $password, $nombre, $apellido, $email, $fecha_nac, $direccion){
     if ($existe == false){
         $query_insertar = "INSERT INTO profesores (ci_profesor, pass_profesor, nombre, apellido, email, fecha_nac, direccion) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
