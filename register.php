@@ -1,3 +1,18 @@
+<?php
+
+include('PRUEBA_BASE_DE_DATOS/conexion.php');
+
+$con = conectar_a_bd();
+$sql = "SELECT * FROM espacios_fisicos";
+
+$stmt = $con->prepare($sql);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,7 +102,7 @@
 
 <div id="div-dialogs">
 <dialog>
-    <form id="form-registro" class="registro-div">
+    <form id="form-registro" class="registro-div" action="/PRUEBA_BASE_DE_DATOS/profesores_func.php" method="POST"> 
     <h1>Registro de Profesores</h1><hr>
         <div class="div-labels">
         <label for="CI" class="label">Cedula de Identidad:</label>
@@ -112,21 +127,26 @@
             <input class="input-register" type="text"  name="direc" id="direc" maxlength="30" minlength="8"  required placeholder="Ingresa dirección">
         </div>
     <div class="div-botones-register">
-    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registroProfesor"></input>
 </form>
-<button class="btn-Cerrar">Cerrar</button>
+<button class="btn-Cerrar" id="cerrar">Cerrar</button>
     </div>
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div">
+    <form id="form-registro" class="registro-div" action="/PRUEBA_BASE_DE_DATOS/superusuarios_func.php" method="POST">
     <h1>Registro de SuperUsuarios</h1><hr>
+        <?php if(isset($mensaje) && !empty($mensaje)): ?>
+            <div class="mensaje <?php echo $tipo_mensaje; ?>">
+                <?php echo $mensaje; ?>
+            </div>
+        <?php endif; ?>
         <div class="div-labels">
         <label for="CI" class="label">Cedula de Identidad:</label>
             <input class="input-register" type="number"  name="CI" id="CI" maxlength="8" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
         </div><div class="div-labels">
         <label for="contrasena" class="label">Contraseña:</label>
-            <input class="input-register" type="password" name="" id="contrasena" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
+            <input class="input-register" type="password" name="password" id="contrasena" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
         </div><div class="div-labels">
         <label for="name" class="label">Nombre:</label>
             <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
@@ -137,21 +157,22 @@
         <div class="div-labels">
         <label for="acceso" class="label">Nivel de Acceso:</label>
             <select class="input-register" type="text"  name="acceso" id="acceso" maxlength="20" minlength="8"  required placeholder="">
-                <option value="">1 - Adscripta</option>
-                <option value="">2 - Secretaria</option>
-                <option value="">3 - Administrador</option>
+                <option value =""></option>
+                <option value="1">1 - Adscripta</option>
+                <option value="2">2 - Secretaria</option>
+                <option value="3">3 - Administrador</option>
             </select>
         </div>
     <div class="div-botones-register">
-    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarSuperuser"></input>
     </form>
-    <button class="btn-Cerrar">Cerrar</button>
+    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
     </div>
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div">
-    <h1>Registro de Recursos</h1><hr>
+    <form id="form-registro" class="registro-div" action="PRUEBA_BASE_DE_DATOS/recursos_func.php" method="POST">
+    <h1>Registro de Recursos</h1><hr> 
        <div class="div-labels">
         <label for="name" class="label">Nombre:</label>
             <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
@@ -161,76 +182,101 @@
         </div><div class="div-labels">
         <label for="estado" class="label">Estado:</label>
             <select class="input-register" type="text"  name="estado" id="estado" maxlength="20" minlength="8"  required placeholder="">
-                <option value="">Uso</option>
-                <option value="">Libre</option>
-                <option value="">Roto</option>
+                <option value=""></option>
+                <option value="uso">Uso</option>
+                <option value="libre">Libre</option>
+                <option value="roto">Roto</option>
             </select>
-        </div><div class="div-labels">
+        </div>
+ 
+        <!-- que hace esto??
+
+        En resumen, agarra a todos los nombres de espacios fisicos que hay y los pone
+        como opciones. Si se selecciona x salon, se pasa su id como value asi se registra
+        la conexion en la BD  -->
+        <div class="div-labels">
+            <label for="pertenece" class="label">Pertenece a:</label>
+            <select name="pertenece" id="pertenece" type="text" class="input-register">
+                <option value=""></option>
+
+                <!-- ARREGLAR!! SI SE SELECCIONA GENERAL NO FUNCIONA!! -->
+                <option value="general">General</option>
+                <?php while ($row = mysqli_fetch_array($result)): ?>
+                    <option value="<?= $row['id_espacio']?>"><?= $row['nombre']?></option>
+                <?php endwhile; ?>
+            </select>
+        </div>
+
+        <div class="div-labels">
         <label for="tipo" class="label">Tipo:</label>
             <select class="input-register" type="text"  name="tipo" id="tipo" maxlength="20" minlength="8"  required placeholder="">
-                <option value="">Interno</option>
-                <option value="">Externo</option>
+                <option value=""></option>
+                <option value="interno">Interno</option>
+                <option value="externo">Externo</option>
             </select>
-    <div class="div-botones-register">
-    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+        <div class="div-botones-register">
+            <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarRecurso"></input>
     </form>
-    <button class="btn-Cerrar">Cerrar</button>
-    </div>
+        <button class="btn-Cerrar" id="cerrar">Cerrar</button>
+        </div>
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div">
-    <h1>Registro de Salones</h1><hr>
+    <form id="form-registro" class="registro-div" action="/PRUEBA_BASE_DE_DATOS/espacios_func.php" method="POST">
+    <h1>Registro de Espacios</h1><hr>
         <div class="div-labels">
         <label for="name" class="label">Nombre:</label>
             <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
         </div><div class="div-labels">
         <label for="capacity" class="label">Capacidad:</label>
-            <input class="input-register" type="number"  name="capacity" id="capacity" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="number"  name="capacity" id="capacity" maxlength="20" minlength="8"  required placeholder="Ingresa capacidad">
         </div><div class="div-labels">
         <label for="equip" class="label">Equipamiento:</label>
-            <input class="input-register" type="text"  name="equip" id="equip" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="text"  name="equip" id="equip" maxlength="100" minlength="3"  required placeholder="Ingresa equipamiento">
         </div><div class="div-labels">
         <label for="tipo" class="label">Tipo:</label>
             <select class="input-register" type="text"  name="tipo" id="tipo" maxlength="20" minlength="8"  required placeholder="">
-                <option value="">Interno</option>
-                <option value="">Externo</option>
+                <option value=""></option>
+                <option value="aula">Aula</option>
+                <option value="salon">Salón</option>
+                <option value="laboratorio">Laboratorio</option>
+                <option value="SUM">SUM</option>
             </select>
         </div>
     <div class="div-botones-register">
-    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarEspacio"></input>
     </form>
-    <button class="btn-Cerrar">Cerrar</button>
+    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
     </div>
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div">
+    <form id="form-registro" class="registro-div" action="PRUEBA_BASE_DE_DATOS/cursos_func.php" method="POST">
     <h1>Registro de Cursos</h1><hr>
         <div class="div-labels">
-        <label for="name" class="label">Nombre:</label>
-            <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
+        <label for="name" class="label">Nombre:</label> 
+            <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="3"  required placeholder="Ingresa sin puntos ni guiones">
         </div>
         <div class="div-labels">
         <label for="capacity" class="label">Capacidad:</label>
-            <input class="input-register" type="number"  name="capacity" id="capacity" maxlength="20" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
+            <input class="input-register" type="number"  name="capacity" id="capacity" maxlength="3" minlength="1"  required placeholder="Ingresa sin puntos ni guiones">
         </div>
         <div class="div-labels">
         <label for="requisitos" class="label">Pre-Requisitos:</label>
-            <input class="input-register" type="text"  name="requisitos" id="requisitos" maxlength="20" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
+            <input class="input-register" type="text"  name="requisitos" id="requisitos" maxlength="60" minlength="1"  required placeholder="Ingresa los prerresquisitos">
         </div>
         <div class="div-labels">
         <label for="description" class="label">Descripción:</label>
-            <input class="input-register" type="text"  name="description" id="description" maxlength="150" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="text"  name="description" id="description" maxlength="150" minlength="8"  required placeholder="Ingresa descripcion">
         </div>
         <div class="div-labels">
         <label for="cupos" class="label">Cupos Disponibles:</label>
-            <input class="input-register" type="text"  name="cupos" id="cupos" maxlength="150" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="number"  name="cupos" id="cupos" maxlength="3" minlength="1"  required placeholder="Ingresa cupos">
         </div>
         <div class="div-botones-register">
-        <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+        <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarCursos"></input>
     </form>
-    <button class="btn-Cerrar">Cerrar</button>
+    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
     </div>
 </dialog>
 
@@ -244,7 +290,7 @@
     <div class="div-botones-register">
     <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar Asignatura" name="registrarAsignatura"></input>
     </form>
-    <button class="btn-Cerrar">Cerrar</button>
+    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
     </div>
 </dialog>
 
@@ -254,14 +300,24 @@
         <div class="div-labels">
         <label for="hora_inicio" class="label">Hora de Inicio:</label>
             <input class="input-register" type="time"  name="hora_inicio" id="hora_inicio" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
-        </div><div class="div-labels">
+        </div>
+        <div class="div-labels">
         <label for="hora_final" class="label">Hora de Salida:</label>
             <input class="input-register" type="time"  name="hora_final" id="hora_final" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
         </div>
+        <div class ="div-labels">
+            <label for="tipo">Tipo de horario:</label>
+                <select class="input-register" type="text"  name="acceso" id="acceso" required placeholder="">
+                    <option value =""></option>
+                    <option value="recreo">Recreo</option>
+                    <option value="clase">Clase</option>
+                </select>
+        </div>
+
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
     </form>
-    <button class="btn-Cerrar">Cerrar</button>
+    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
     </div>
 </dialog>
 </div>
@@ -279,5 +335,12 @@
     <script src="sideMenu.js"></script>
     <script src="/Register-Modal.js"></script>
     <script src="/Validaciones_register.js"></script>
+
+    <script>
+    document.getElementById('cerrar').addEventListener('click', function(e) {
+    e.preventDefault(); // Previene cualquier acción por defecto
+    location.reload(); // Refresca la página
+    });
+    </script>
     </body>
     </html>

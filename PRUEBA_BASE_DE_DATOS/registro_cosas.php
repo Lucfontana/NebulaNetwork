@@ -1,5 +1,5 @@
 <?php
-
+$insercion_dateishons = null;
 require("conexion.php");
 
 $con = conectar_a_bd();
@@ -7,13 +7,17 @@ $con = conectar_a_bd();
 if (isset($_POST["registrarAsignatura"])){
     $nombreAsignatura = $_POST["nombreAsignatura"];
 
-    $existeAsignatura = consultar_existencia($con, $nombreAsignatura);
+    $dato_a_seleccionar = 'nombre';
+    $tabla_a_buscar = 'asignaturas';
 
-    insertar_datos($con, $nombreAsignatura, $existeAsignatura);
+    $existeAsignatura = consultar_existencia($con, $nombreAsignatura, $dato_a_seleccionar, $tabla_a_buscar);
+
+    $insercion_dateishons = insertar_datos($con, $nombreAsignatura, $existeAsignatura, $dato_a_seleccionar, $tabla_a_buscar);
+
 }
 
-function consultar_existencia($con, $elemento_a_buscar){
-    $result_existencia = mysqli_query($con, "SELECT nombre FROM asignaturas WHERE nombre = '$elemento_a_buscar'");
+function consultar_existencia($con, $elemento_a_buscar, $dato_a_seleccionar, $tabla_a_buscar){
+    $result_existencia = mysqli_query($con, "SELECT $dato_a_seleccionar FROM $tabla_a_buscar WHERE $dato_a_seleccionar = '$elemento_a_buscar'");
 
     if(mysqli_num_rows($result_existencia) > 0){
         return true;
@@ -24,23 +28,25 @@ function consultar_existencia($con, $elemento_a_buscar){
     }
 }
 
-function insertar_datos($con, $dato_a_insertar, $existeAsignatura){
+//$dato_a_insertar = "$dato1" . ", " . "$dato2" . ", " . "$dato3";
+
+function insertar_datos($con, $dato_a_insertar, $existeAsignatura, $dato_a_seleccionar, $tabla_a_buscar){
     if ($existeAsignatura == false){
-        $consulta_insertar = "INSERT INTO asignaturas (nombre) VALUES ('$dato_a_insertar')";
+        $consulta_insertar = "INSERT INTO $tabla_a_buscar ($dato_a_seleccionar) VALUES ('$dato_a_insertar')";
 
         if (mysqli_query($con, $consulta_insertar)){
-            $salida = consultar_datos($con);
+            $salida = consultar_datos($con, $tabla_a_buscar);
             echo $salida;
         } else {
             echo "Error: " . $consulta_insertar . "<br>" . mysqli_error($con);
         }
     } else {
-        echo "La asignatura ya existe";
+        echo "Su dato ya existe";
     }
 }
 
-function consultar_datos($con){
-    $consulta = "SELECT * FROM asignaturas";
+function consultar_datos($con, $tabla_a_buscar){
+    $consulta = "SELECT * FROM $tabla_a_buscar";
     $resultado = mysqli_query($con, $consulta);
 
     $salida = "";
@@ -57,5 +63,7 @@ function consultar_datos($con){
 }
 
 mysqli_close($con);
+
+    include 'mostrarIndfo.php';
 
 ?>
