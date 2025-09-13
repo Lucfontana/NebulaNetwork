@@ -674,7 +674,7 @@ td, th {
     width: 100%;
 }
 
-#boton-datos-eliminar {
+.boton-datos-eliminar {
     color: brown;
 }
 
@@ -716,6 +716,69 @@ td, th {
     transition: 0.5s;
 }
 
+/* Confirmacion de Eliminar */
+
+#overlay {
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center; 
+    align-items: center;
+  }
+
+  .confirmacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    background-color: aliceblue;
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .confirmacion > h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+
+  .confirmacion > p {
+    font-size: 20px;
+  }
+
+  #cancelar {
+    color: black;
+    background-color: rgb(182, 255, 182);
+  }
+
+  #confirmar {
+    color: black;
+    background-color: rgb(255, 166, 166);
+  }
+
+  #confirmar:hover {
+    scale: 1.05;
+    background-color: rgb(255, 166, 166);
+    transition: 1s;
+  }
+
+  #cancelar:hover {
+    scale: 1.05;
+    background-color: rgb(182, 255, 182);
+    transition: 1s;
+  }
+
+  .botones_confirmar {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    justify-content: space-evenly;
+  }
+
+  
 
 
 @media (width < 1000px) {
