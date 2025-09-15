@@ -280,7 +280,7 @@ $result = $stmt->get_result();
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div" action="..backend/functions/registro_cosas.php" method="POST">
+    <form id="form-registro" class="registro-div" action="../backend/functions/registro_cosas.php" method="POST">
     <h1>Registro de Asignaturas</h1><hr>
         <div class="div-labels">
         <label for="name" class="label">Nombre:</label>

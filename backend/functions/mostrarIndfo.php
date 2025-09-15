@@ -8,7 +8,7 @@
 </head>
 <body>
             <?php
-            include '../nav.php';
+            include '../../frontend/nav.php';
             ?>
 
             <?php if (isset($insercion_dateishons)): ?>

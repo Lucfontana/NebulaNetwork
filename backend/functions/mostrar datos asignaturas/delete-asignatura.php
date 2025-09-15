@@ -1,5 +1,5 @@
 <?php
-include_once ('../db/conexion.php');           
+include_once ('../../db/conexion.php');           
 
     $connect = conectar_a_bd();
 
@@ -10,6 +10,6 @@ include_once ('../db/conexion.php');
     $query = mysqli_query($connect, $sql);
 
     if ($query) {
-    Header("location: ../asignaturas.php");
+    Header("location: /frontend/asignaturas.php");
     }
 ?>

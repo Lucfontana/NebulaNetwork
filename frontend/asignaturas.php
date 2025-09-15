@@ -38,8 +38,8 @@ $query = mysqli_query($connect, $sql);
                     <tr class="mostrar-datos">
                         <th><?= $row['id_asignatura'] ?></th>
                         <th class="nombre"><?= $row['nombre'] ?></th>
-                        <th><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_asignatura'] ?>">Eliminar</a></th>
-                        <th><a class="boton-datos-editar botones-datos" href="/mostrar datos asignaturas/update-asignatura.php?id=<?= $row['id_asignatura'] ?>">Editar</a></th>
+                        <th><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?=$row['id_asignatura']?>">Eliminar</a></th>
+                        <th><a class="boton-datos-editar botones-datos" href="../backend/functions/mostrar datos asignaturas/update-asignatura.php?id=<?= $row['id_asignatura'] ?>">Editar</a></th>
                     </tr>
                 </tbody>
             <?php endwhile; ?>
@@ -52,13 +52,13 @@ $query = mysqli_query($connect, $sql);
             <p>Esta acción eliminará el registro de forma permanente.</p>
             <div class="botones_confirmar">
                 <button class="btn btn-cancelar" id="cancelar">Cancelar</button>
-                <button class="btn btn-confirmar" id="confirmar" href="/mostrar datos asignaturas/delete-asignatura.php?id=<?= $row['id_asignatura'] ?>" >Eliminar</button>
+                <button class="btn btn-confirmar" id="confirmar" href="/backend/functions/mostrar datos asignaturas/delete-asignatura.php?id=<?=$row['id_asignatura']?>" >Eliminar</button>
             </div>
         </div>
     </div>
 
     <div id="overley-edit">
-        <form action="../backend/functions/mostar datos asignatura/edit-asignatura.php" method="POST">
+        <form action="../backend/functions/mostar datos asignaturas/edit-asignatura.php" method="POST">
             <h1>Registro de Asignaturas</h1>
             <hr>
             <div class="div-labels">

@@ -1,6 +1,6 @@
 <?php
 $insercion_dateishons = null;
-include_once ('../db/conexion.php');;
+include_once ('../db/conexion.php');
 
 $con = conectar_a_bd();
 

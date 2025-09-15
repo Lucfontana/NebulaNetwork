@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Confirmar: redirigir a tu PHP de borrado
   btnConfirmar.addEventListener("click", () => {
     if (currentId) {
-      window.location.href = `/mostrar datos asignaturas/delete-asignatura.php?id=${currentId}`;
+      window.location.href = `/backend/functions/mostrar datos asignaturas/delete-asignatura.php?id=${currentId}`;
     }
   });
 });
