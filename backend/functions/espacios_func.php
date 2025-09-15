@@ -1,6 +1,6 @@
 <?php
 
-include('conexion.php');
+include_once ('../db/conexion.php');
 
 $con = conectar_a_bd();
 

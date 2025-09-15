@@ -1,5 +1,6 @@
 <?php
-include('../PRUEBA_BASE_DE_DATOS/conexion.php');
+
+include_once ('../db/conexion.php');
 
 $connect = conectar_a_bd();
 

@@ -1,6 +1,6 @@
 <?php
 
-include('PRUEBA_BASE_DE_DATOS/conexion.php');
+include_once('../backend/db/conexion.php');
 
 $con = conectar_a_bd();
 $sql = "SELECT * FROM espacios_fisicos";
@@ -23,8 +23,7 @@ $result = $stmt->get_result();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="register (temporal).css">
+<link rel="stylesheet" href="style/style.css">
 
 <body>
     <!-- trae las barras de navegacion (sidebar y superior) -->
@@ -102,7 +101,7 @@ $result = $stmt->get_result();
 
 <div id="div-dialogs">
 <dialog>
-    <form id="form-registro" class="registro-div" action="/PRUEBA_BASE_DE_DATOS/profesores_func.php" method="POST"> 
+    <form id="form-registro" class="registro-div" action="../backend/functions/profesores_func.php" method="POST"> 
     <h1>Registro de Profesores</h1><hr>
         <div class="div-labels">
         <label for="CI" class="label">Cedula de Identidad:</label>
@@ -134,7 +133,7 @@ $result = $stmt->get_result();
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div" action="/PRUEBA_BASE_DE_DATOS/superusuarios_func.php" method="POST">
+    <form id="form-registro" class="registro-div" action="../backend/functions/superusuarios_func.php" method="POST">
     <h1>Registro de SuperUsuarios</h1><hr>
         <?php if(isset($mensaje) && !empty($mensaje)): ?>
             <div class="mensaje <?php echo $tipo_mensaje; ?>">
@@ -171,7 +170,7 @@ $result = $stmt->get_result();
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div" action="PRUEBA_BASE_DE_DATOS/recursos_func.php" method="POST">
+    <form id="form-registro" class="registro-div" action="../backend/functions/recursos_func.php" method="POST">
     <h1>Registro de Recursos</h1><hr> 
        <div class="div-labels">
         <label for="name" class="label">Nombre:</label>
@@ -222,7 +221,7 @@ $result = $stmt->get_result();
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div" action="/PRUEBA_BASE_DE_DATOS/espacios_func.php" method="POST">
+    <form id="form-registro" class="registro-div" action="../backend/functions/espacios_func.php" method="POST">
     <h1>Registro de Espacios</h1><hr>
         <div class="div-labels">
         <label for="name" class="label">Nombre:</label>
@@ -251,7 +250,7 @@ $result = $stmt->get_result();
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div" action="PRUEBA_BASE_DE_DATOS/cursos_func.php" method="POST">
+    <form id="form-registro" class="registro-div" action="../backend/functions/cursos_func.php" method="POST">
     <h1>Registro de Cursos</h1><hr>
         <div class="div-labels">
         <label for="name" class="label">Nombre:</label> 
@@ -281,7 +280,7 @@ $result = $stmt->get_result();
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div" action="PRUEBA_BASE_DE_DATOS/registro_cosas.php" method="POST">
+    <form id="form-registro" class="registro-div" action="..backend/functions/registro_cosas.php" method="POST">
     <h1>Registro de Asignaturas</h1><hr>
         <div class="div-labels">
         <label for="name" class="label">Nombre:</label>
@@ -332,9 +331,9 @@ $result = $stmt->get_result();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
-    <script src="sideMenu.js"></script>
-    <script src="/Register-Modal.js"></script>
-    <script src="/Validaciones_register.js"></script>
+    <script src="js/sideMenu.js"></script>
+    <script src="js/Register-Modal.js"></script>
+    <script src="js/Validaciones_register.js"></script>
 
     <script>
     document.getElementById('cerrar').addEventListener('click', function(e) {

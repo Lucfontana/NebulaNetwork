@@ -1,5 +1,5 @@
 <?php
-include('PRUEBA_BASE_DE_DATOS/conexion.php');
+include_once('../backend/db/conexion.php');
 
 $connect = conectar_a_bd();
 $sql = "SELECT * FROM asignaturas";
@@ -18,9 +18,7 @@ $query = mysqli_query($connect, $sql);
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
 
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="register (temporal).css">
-<link rel="stylesheet" href="asignaturas.css">
+<link rel="stylesheet" href="style/style.css">
 
 <body>
     <!-- trae las barras de navegacion (sidebar y superior) -->
@@ -60,7 +58,7 @@ $query = mysqli_query($connect, $sql);
     </div>
 
     <div id="overley-edit">
-        <form action="edit-asignatura.php" method="POST">
+        <form action="../backend/functions/mostar datos asignatura/edit-asignatura.php" method="POST">
             <h1>Registro de Asignaturas</h1>
             <hr>
             <div class="div-labels">
@@ -80,8 +78,8 @@ $query = mysqli_query($connect, $sql);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
-    <script src="sideMenu.js"></script>
-    <script src="/Confirm-Delete.js"></script>
+    <script src="js/sideMenu.js"></script>
+    <script src="js/Confirm-Delete.js"></script>
 </body>
 
 </html>
