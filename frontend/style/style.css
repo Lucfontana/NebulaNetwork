@@ -27,7 +27,7 @@ a {
 
 /*NAVBAR DE BOOTSTRAP*/
 
-.sideButton{
+.sideButton {
     background-color: transparent;
     border: none;
     display: block;
@@ -40,25 +40,27 @@ a {
     transition: all ease .5s;
 }
 
-.sideMenu:hover{
+.sideMenu:hover {
     width: 25px;
     height: 25px;
     transition: all ease .5s;
 }
 
 .navbar-nav {
-  display: flex;
-  width: 98%;
-  justify-content: right;
+    display: flex;
+    width: 98%;
+    justify-content: right;
 }
 
 .navStyle {
     background-color: var(---navColor);
     padding: 10px 0 10px 0;
     font-size: 18px;
-    position: fixed; /*hace que la navbar se quede fija, esto junto al top*/
+    position: fixed;
+    /*hace que la navbar se quede fija, esto junto al top*/
     top: 0px;
-    z-index: 100; /*Navbar encima del aside*/
+    z-index: 100;
+    /*Navbar encima del aside*/
     color: white;
     margin: 0 0 0 0;
 }
@@ -70,20 +72,23 @@ a {
 
 
 
-.nav-link, .navbar-brand, .nav-item a{
-    color: white; 
+.nav-link,
+.navbar-brand,
+.nav-item a {
+    color: white;
     padding-left: 10px;
     transition: 1s;
 }
 
 .navbar-brand {
-    font-size: 30px; /*Tamaño del titulo (ITSP)*/
+    font-size: 30px;
+    /*Tamaño del titulo (ITSP)*/
     margin: 0 0 0 30px;
     justify-content: center;
     padding-left: 0px;
 }
 
-.container-fluid{
+.container-fluid {
     justify-content: space-around;
 }
 
@@ -117,7 +122,8 @@ a {
 
 /* Texto de Bienvenidos */
 .bienvenida-texto {
-    margin-bottom: 90px; /* Separación del bloque de los botones */
+    margin-bottom: 90px;
+    /* Separación del bloque de los botones */
 }
 
 /* Botones de Bienvenidos */
@@ -130,8 +136,10 @@ a {
 
 .btn-bienvenida {
     font-size: 22px;
-    width: 250px;       /* ancho consistente */
-    height: 120px;      /* alto consistente */
+    width: 250px;
+    /* ancho consistente */
+    height: 120px;
+    /* alto consistente */
     background-color: white;
     color: black;
     border: none;
@@ -157,10 +165,9 @@ a {
     padding-top: 80px;
 }
 
-.hdrBackground{
-    background-image: linear-gradient(
-        rgba(9, 4, 0, 0.1),
-        rgba(9, 4, 0, 1)),
+.hdrBackground {
+    background-image: linear-gradient(rgba(9, 4, 0, 0.1),
+            rgba(9, 4, 0, 1)),
         url(img/backgroundItsp.jpg);
     background-repeat: no-repeat;
     background-position: center center;
@@ -177,7 +184,7 @@ a {
     transition: var(---transitionSidebarExpanded);
 }
 
-.hdrBackground.activo{
+.hdrBackground.activo {
     width: calc(99vw - var(---marginAsideActivo) -2px);
     transition: var(---transitionSidebarExpanded);
     margin: 75px 0 0 var(---marginAsideActivo);
@@ -196,7 +203,7 @@ a {
 El se le añade la clase "activo" cuando se apreta el boton,
 el unico cambio que se le agrega es, cambiarle el margen de
 la izquierda porque el "aside" se agranda. */
-.contenido.activo{
+.contenido.activo {
     margin: 8px 0 0 var(---marginAsideActivo);
     transition: var(---transitionSidebarExpanded);
 }
@@ -219,13 +226,13 @@ la izquierda porque el "aside" se agranda. */
     background-color: var(---contentColor);
 }
 
-.section > img {
+.section>img {
     width: 90%;
     height: auto;
     padding: 40px;
 }
 
-.section > p {
+.section>p {
     padding: 20px;
 }
 
@@ -235,10 +242,12 @@ aside {
     display: block;
     padding: 50px 0 0 0;
     width: var(---marginAside);
-    height: 100vh; /* 100% del alto visible de la ventana */
+    height: 100vh;
+    /* 100% del alto visible de la ventana */
     background-color: var(---navColor);
     position: fixed;
-    grid-area: aside; /* si usás grid, lo podés mantener */
+    grid-area: aside;
+    /* si usás grid, lo podés mantener */
     transition: var(---transitionSidebarExpanded);
     /* border-style: outset;
     border-right-color: rgb(100, 133, 194);
@@ -249,7 +258,7 @@ aside {
 }
 
 /* Se aumenta el ancho de aside cuando se apreta el boton */
-aside.activo{
+aside.activo {
     width: var(---marginAsideActivo);
     transition: var(---transitionSidebarExpanded);
 }
@@ -259,20 +268,21 @@ aside>ul {
     display: flex;
     flex-direction: column;
     text-align: center;
-    list-style-type: none; /*Sacar los puntitos de la lista*/
+    list-style-type: none;
+    /*Sacar los puntitos de la lista*/
     padding: 0;
 }
 
 /* Va rotando si se muestran los iconos o el texto */
-.link-aside-text{
+.link-aside-text {
     display: none;
 }
 
-.link-aside-text.activo{
+.link-aside-text.activo {
     display: block;
 }
 
-.link-aside-images{
+.link-aside-images {
     display: block;
     margin: 35px 0;
 }
@@ -281,9 +291,10 @@ aside>ul {
     margin: 0 0 10vh 0;
 }
 
-.link-aside-images.activo{
+.link-aside-images.activo {
     display: none;
 }
+
 /*  */
 
 
@@ -306,7 +317,8 @@ aside ul li:not(:last-child) a::after {
     display: block;
     border-bottom: 1px solid white;
     justify-content: center;
-    margin-top: 2rem;  /* opcional */
+    margin-top: 2rem;
+    /* opcional */
 }
 
 /*------------------------ FOOTER ----------------------*/
@@ -323,7 +335,7 @@ aside ul li:not(:last-child) a::after {
     transition: var(---transitionSidebarExpanded);
 }
 
-.footer.activo{
+.footer.activo {
     margin: 0 0 0 var(---marginAsideActivo);
     transition: var(---transitionSidebarExpanded);
 }
@@ -332,8 +344,8 @@ aside ul li:not(:last-child) a::after {
 /* Login - CSS */
 
 .flex {
-  display: flex;
-} 
+    display: flex;
+}
 
 #form {
     display: flex;
@@ -350,7 +362,7 @@ aside ul li:not(:last-child) a::after {
     color: aliceblue;
     margin-top: 20px;
     border-radius: 10px;
-    padding:15px;
+    padding: 15px;
     font-size: 20px;
     background-color: #3c44aa;
     border-style: none;
@@ -410,7 +422,7 @@ aside ul li:not(:last-child) a::after {
 }
 
 #envFormulario:hover {
-    scale: 1.05 ;
+    scale: 1.05;
     background-color: rgb(56, 100, 138);
     transition: 1s;
 }
@@ -448,11 +460,12 @@ aside ul li:not(:last-child) a::after {
 .fondo-login::before {
     content: "";
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3); /* negro con 50% de opacidad */
+    background: rgba(0, 0, 0, 0.3);
+    /* negro con 50% de opacidad */
 }
 
 #boton-inicio {
@@ -487,25 +500,25 @@ aside ul li:not(:last-child) a::after {
     color: black;
     border-radius: 10px;
     border-style: outset;
-    border-color:  rgb(137, 151, 163);
+    border-color: rgb(137, 151, 163);
     border-width: 4px;
     transition: 1s;
 }
 
 .article-register:hover {
     background-color: rgb(224, 224, 224);
-    border-color:  rgb(137, 151, 163);
+    border-color: rgb(137, 151, 163);
     scale: 1.015;
     transition: 1s;
 }
 
-.article-register > div {
+.article-register>div {
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-.article-register > div > h1 {
+.article-register>div>h1 {
     width: 80%;
     font-size: 30px;
     padding: 20px;
@@ -555,7 +568,8 @@ dialog {
     transition: 1s;
 }
 
-.btn-Cerrar,.btn-enviar-registro  {
+.btn-Cerrar,
+.btn-enviar-registro {
     padding: 10px;
     margin: 20px;
     font-size: 20px;
@@ -565,7 +579,8 @@ dialog {
     transition: 1s;
 }
 
-.btn-Cerrar:hover, .btn-enviar-registro:hover {
+.btn-Cerrar:hover,
+.btn-enviar-registro:hover {
     scale: 1.05;
     background-color: rgb(32, 32, 214);
     transition: 1s;
@@ -591,9 +606,9 @@ hr {
     margin-top: 10px;
     border-radius: 15px;
     width: 60%;
-    padding:15px;
+    padding: 15px;
     font-size: 20px;
-    background-color:  var(---contentColor);
+    background-color: var(---contentColor);
     border-style: none;
 }
 
@@ -601,7 +616,7 @@ hr {
     color: rgb(26, 25, 25);
 }
 
-.registro-div > label {
+.registro-div>label {
     margin-left: 10px;
     font-size: 20px;
 }
@@ -613,7 +628,7 @@ hr {
     width: 100%;
 }
 
-.registro-div > .div-labels > label {
+.registro-div>.div-labels>label {
     width: 60%;
     align-self: left;
 }
@@ -636,12 +651,13 @@ hr {
     transition: var(---transitionSidebarExpanded);
 }
 
-#contenido-asignatura > h1 {
+#contenido-asignatura>h1 {
     font-size: 30px;
     margin: 20px;
 }
 
-td, th {
+td,
+th {
     padding: 15px;
 }
 
@@ -719,18 +735,18 @@ td, th {
 /* Confirmacion de Eliminar */
 
 #overlay {
-    display: none; 
-    position: fixed; 
-    top: 0; 
+    display: none;
+    position: fixed;
+    top: 0;
     left: 0;
-    width: 100%; 
+    width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.6);
-    justify-content: center; 
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
     align-items: center;
-  }
+}
 
-  .confirmacion {
+.confirmacion {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -738,66 +754,99 @@ td, th {
     background-color: aliceblue;
     padding: 20px;
     border-radius: 20px;
-  }
+}
 
-  .confirmacion > h2 {
+.confirmacion>h2 {
     font-size: 40px;
     margin-bottom: 10px;
-  }
+}
 
-  .confirmacion > p {
+.confirmacion>p {
     font-size: 20px;
-  }
+}
 
-  #cancelar {
+#cancelar {
     color: black;
     background-color: rgb(182, 255, 182);
-  }
+}
 
-  #confirmar {
+#confirmar {
     color: black;
     background-color: rgb(255, 166, 166);
-  }
+}
 
-  #confirmar:hover {
+#confirmar:hover {
     scale: 1.05;
     background-color: rgb(255, 166, 166);
     transition: 1s;
-  }
+}
 
-  #cancelar:hover {
+#cancelar:hover {
     scale: 1.05;
     background-color: rgb(182, 255, 182);
     transition: 1s;
-  }
+}
 
-  .botones_confirmar {
+.botones_confirmar {
     display: flex;
     align-items: center;
     width: 50%;
     justify-content: space-evenly;
-  }
+}
 
-  #overley-edit {
-    display: none; 
-    position: fixed; 
-    top: 0; 
+#overlay-edit {
+    display: none;
+    position: fixed;
+    top: 0;
     left: 0;
-    width: 100%; 
+    width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.6);
-    justify-content: center; 
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
     align-items: center;
-  }
+}
 
-  #overlay-edit > form {
+#overlay-edit>form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: aliceblue;
-    padding: 20px;
+    padding: 40px;
     border-radius: 10px;
-  }
+}
 
-  
+#actualizar {
+    padding: 10px;
+    border-style: none;
+    background-color: #ff6262;
+    color: #fff;
+    margin-top: 20px;
+    transition: 1s;
 
+}
+
+#actualizar:hover {
+    background-color: #e03535;
+    scale: 1.03;
+    transition: 1s;
+
+}
+
+#cancelarEdit {
+    padding: 10px;
+    border-style: none;
+    background-color: #6168d6;
+    color: #fff;
+    margin-top: 20px;
+    transition: 1s;
+}
+
+#cancelarEdit:hover {
+    background-color: #3942c4;
+    scale: 1.03;
+    transition: 1s;
+
+}
 
 @media (width < 1000px) {
 
@@ -808,25 +857,25 @@ td, th {
 
     /*Register*/
     #register-content {
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
     }
 
     .article-register {
-    width: 80%;
+        width: 80%;
     }
 
-    .registro-div > .div-labels > label {
-    width: 80%;
+    .registro-div>.div-labels>label {
+        width: 80%;
     }
 
     .input-register {
-    width: 80%;
+        width: 80%;
     }
 
     hr {
-    width: 80%;
+        width: 80%;
     }
 
 }
@@ -835,24 +884,26 @@ td, th {
 abajito cuando el ancho es menos de 700px */
 
 @media (width < 700px) {
-:root {
-    ---marginAsideActivo: 0px;
-}
+    :root {
+        ---marginAsideActivo: 0px;
+    }
 
     /* se le cambia el margen a 0 para que
     no se le agregue cuando el aside se acomoda */
-    .contenido, .contenido.activo {
+    .contenido,
+    .contenido.activo {
         margin: 0;
     }
 
     /* se deja de mostrar el boton pq el sidebar
     siempre está visible */
-    .sideButton{
+    .sideButton {
         display: none;
     }
 
     /* aside fijo al fondo de la pantalla */
-    aside, aside.activo{
+    aside,
+    aside.activo {
         position: fixed;
         bottom: 0;
         left: 0;
@@ -865,12 +916,14 @@ abajito cuando el ancho es menos de 700px */
         padding: 0;
     }
 
-    .link-aside-text, .link-aside-text.activo{
+    .link-aside-text,
+    .link-aside-text.activo {
         display: none;
     }
 
 
-    .link-aside-images, .link-aside-images.activo{
+    .link-aside-images,
+    .link-aside-images.activo {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
@@ -894,24 +947,26 @@ abajito cuando el ancho es menos de 700px */
         height: 24px;
     }
 
-    .footer, .footer.activo{
+    .footer,
+    .footer.activo {
         width: auto;
         padding: 20px 0 20px 0;
         margin: 0 0 40px 0;
     }
-    .hdrBackground{
+
+    .hdrBackground {
         height: calc(100vh - 75px - 50px);
         margin: 75px 0 0 0;
     }
 
     /* Registro */
-     #register-content {
-    flex-direction: column;
-    width: 100%;
+    #register-content {
+        flex-direction: column;
+        width: 100%;
     }
 
     .article-register {
-    width: 100%;
+        width: 100%;
     }
 
 }
@@ -956,7 +1011,7 @@ abajito cuando el ancho es menos de 700px */
     }
 
     .btn-bienvenida {
-        width: 90%;   
+        width: 90%;
         max-width: 280px;
         height: 80px;
         font-size: 16px;
@@ -967,16 +1022,16 @@ abajito cuando el ancho es menos de 700px */
 
 @media (width < 750px) {
     #form {
-    width: 100%;
-    height: 100vh;   
-    border-radius: 0; 
-  }
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+    }
 
-  #logo-fondo {
-    display: none;
-  }
+    #logo-fondo {
+        display: none;
+    }
 
-  .fondo-login::before {
-    display: none;
-}
+    .fondo-login::before {
+        display: none;
+    }
 }

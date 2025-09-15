@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("overlay");
   const btnCancelar = document.getElementById("cancelar");
   const btnConfirmar = document.getElementById("confirmar");
-  const overlayEdit = document.getElementById("overlay-edit");
+  const overlayEdit =  document.getElementById("overlay-edit");
+  const btnCancelarEdit = document.getElementById("cancelarEdit");
 
   let currentId = null;
 
@@ -27,11 +28,18 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = `/backend/functions/mostrar datos asignaturas/delete-asignatura.php?id=${currentId}`;
     }
   });
-});
-
 
   document.querySelectorAll(".boton-datos-editar").forEach(botonEditar => {
         botonEditar.addEventListener("click", (e) => {
-          
+           e.preventDefault();
+           overlayEdit.style.display = "flex";
         })
   })
+
+  btnCancelarEdit.addEventListener("click", () => {
+    overlayEdit.style.display = "none";
+  });
+});
+
+
+  

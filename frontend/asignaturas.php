@@ -38,8 +38,8 @@ $query = mysqli_query($connect, $sql);
                     <tr class="mostrar-datos">
                         <th><?= $row['id_asignatura'] ?></th>
                         <th class="nombre"><?= $row['nombre'] ?></th>
-                        <th><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?=$row['id_asignatura']?>">Eliminar</a></th>
-                        <th><a class="boton-datos-editar botones-datos" href="../backend/functions/mostrar datos asignaturas/update-asignatura.php?id=<?= $row['id_asignatura'] ?>">Editar</a></th>
+                        <th><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_asignatura'] ?>">Eliminar</a></th>
+                        <th><a class="boton-datos-editar botones-datos">Editar</a></th>
                     </tr>
                 </tbody>
             <?php endwhile; ?>
@@ -51,22 +51,38 @@ $query = mysqli_query($connect, $sql);
             <h2>¿Estás seguro?</h2>
             <p>Esta acción eliminará el registro de forma permanente.</p>
             <div class="botones_confirmar">
+                <button class="btn btn-confirmar" id="confirmar" href="/backend/functions/mostrar datos asignaturas/delete-asignatura.php?id=<?= $row['id_asignatura'] ?>">Eliminar</button>
                 <button class="btn btn-cancelar" id="cancelar">Cancelar</button>
-                <button class="btn btn-confirmar" id="confirmar" href="/backend/functions/mostrar datos asignaturas/delete-asignatura.php?id=<?=$row['id_asignatura']?>" >Eliminar</button>
             </div>
         </div>
     </div>
 
-    <div id="overley-edit">
-        <form action="../backend/functions/mostar datos asignaturas/edit-asignatura.php" method="POST">
+    <?php
+    include_once('../backend/db/conexion.php');
+    $connect = conectar_a_bd();
+    $id = $_GET['id'];
+
+    $sql = "SELECT * FROM asignaturas WHERE id_asignatura='$id'";
+    $query = mysqli_query($connect, $sql);
+    $row = mysqli_fetch_array($query)
+
+    ?>
+
+    <div id="overlay-edit" class="overlay-edit">
+        <form action="/backend/functions/mostar datos asignaturas/edit-asignatura.php" method="POST">
             <h1>Registro de Asignaturas</h1>
             <hr>
             <div class="div-labels">
                 <input class="input-register" type="hidden" name="id_asignatura" id="id" value="<?= $row['id_asignatura'] ?>">
             </div>
-            <label for="nombre" class="label">Nombre:</label>
-            <input type="text" name="nombre" id="name" maxlength="20" minlength="3" required placeholder="Ingresa nombre" value="<?= $row['nombre'] ?>">
-            <input type="submit" value="Actualizar Infomacion"></input>
+            <div>
+                <label for="nombre" class="label">Nombre:</label>
+                <input type="text" name="nombre" id="name" maxlength="20" minlength="3" required placeholder="Ingresa nombre" value="<?= $row['nombre'] ?>">
+            </div>
+            <div>
+                <input type="submit" value="Actualizar Infomacion" id="actualizar" href="../backend/functions/mostrar datos asignaturas/update-asignatura.php?id=<?= $row['id_asignatura'] ?>"></input>
+                <input type="button" value="Cancelar" id="cancelarEdit"></input>
+            </div>
         </form>
     </div>
 
