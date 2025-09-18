@@ -33,8 +33,8 @@ Create table recursos (
 
 create table horarios (
     id_horario int AUTO_INCREMENT primary key not null,
-    hora_inicio date not null,
-    hora_final date not null,
+    hora_inicio time not null,
+    hora_final time not null,
     tipo ENUM('recreo', 'clase') not null
 );
 
@@ -79,11 +79,18 @@ create table cumple (
     FOREIGN KEY (id_dicta) references profesor_dicta_asignatura(id_dicta)
 );
 
-create table ocupa (
+create table dicta_en_curso (
     id_dicta int,
     id_curso int,
     FOREIGN KEY (id_dicta) references profesor_dicta_asignatura(id_dicta),
     FOREIGN KEY (id_curso) references cursos(id_curso)
+);
+
+create table dicta_ocupa_espacio (
+    id_dicta int,
+    id_espacio int,
+    FOREIGN KEY (id_dicta) references profesor_dicta_asignatura(id_dicta),
+    FOREIGN KEY (id_espacio) references espacios_fisicos(id_espacio)
 );
 
 create table su_administra_horarios (

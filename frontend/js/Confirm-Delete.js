@@ -3,18 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnCancelar = document.getElementById("cancelar");
   const btnConfirmar = document.getElementById("confirmar");
   const overlayEdit = document.getElementById("overlay-edit");
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
   const btnCancelarEdit = document.getElementById("cancelarEdit");
   const btnActualizar = document.getElementById("actualizar");
 
   let editID = null;
-=======
-//
->>>>>>> Stashed changes
-=======
-//
->>>>>>> Stashed changes
   let currentId = null;
   let nombre = null;
   

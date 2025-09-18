@@ -4,12 +4,39 @@ include_once('../backend/db/conexion.php');
 
 $con = conectar_a_bd();
 $sql = "SELECT * FROM espacios_fisicos";
-
 $stmt = $con->prepare($sql);
-
 $stmt->execute();
-
 $result = $stmt->get_result();
+
+////////////////////////////////
+//Query de profesores
+$query_profesores = "SELECT * FROM profesores";
+$stmt = $con->prepare($query_profesores);
+$stmt->execute();
+$profesores_info = $stmt->get_result();
+
+////////////////////////////////
+//Query de asignaturas
+$query_asignaturas = "SELECT * FROM asignaturas";
+$stmt = $con->prepare($query_asignaturas);
+$stmt->execute();
+$asignaturas_info = $stmt->get_result();
+
+////////////////////////////////
+//Query de horas
+$query_horarios = "SELECT * FROM horarios";
+$stmt = $con->prepare($query_horarios);
+$stmt->execute();
+$horarios_info = $stmt->get_result();
+
+/////////////////////////////////
+//Query de cursos
+$query_cursos = "SELECT * FROM cursos";
+$stmt = $con->prepare($query_cursos);
+$stmt->execute();
+$cursos_info = $stmt->get_result();
+
+
 
 
 ?>
@@ -144,11 +171,7 @@ $result = $stmt->get_result();
 <dialog>
     <form id="form-registro" class="registro-div" action="../backend/functions/superusuarios_func.php" method="POST">
     <h1>Registro de SuperUsuarios</h1><hr>
-        <?php if(isset($mensaje) && !empty($mensaje)): ?>
-            <div class="mensaje <?php echo $tipo_mensaje; ?>">
-                <?php echo $mensaje; ?>
-            </div>
-        <?php endif; ?>
+
         <div class="div-labels">
         <label for="CI" class="label">Cedula de Identidad:</label>
             <input class="input-register" type="number"  name="CI" id="CI" maxlength="8" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
@@ -333,12 +356,12 @@ $result = $stmt->get_result();
     <form id="form-registro" class="registro-div" action="../backend/functions/superusuarios_func.php" method="POST">
     <h1>Registro de Dependencias</h1><hr>
         
-        <div class="div-labels">
+        <div class="div-labels">profesor_asignado asignatura_dada hora_inicio hora_final salon_ocupado, curso_dictado
             <label for="profesor_asignado" class="label">Profesor:</label>
             <select name="profesor_asignado" id="pertenece" type="text" class="input-register">
                 <option value=""></option>
-                <?php while ($row = mysqli_fetch_array($result)): ?>
-                    <option value="<?= $row['id_espacio']?>"><?= $row['nombre']?></option>
+                <?php while ($row = mysqli_fetch_array($profesores_info)): ?>
+                    <option value="<?= $row['ci_profesor']?>"><?= $row['nombre']?> <?= $row['apellido']?></option>
                 <?php endwhile; ?>
             </select>
         </div>
@@ -347,8 +370,8 @@ $result = $stmt->get_result();
             <label for="asignatura_dada" class="label">Asignatura a dictar:</label>
             <select name="asignatura_dada" id="pertenece" type="text" class="input-register">
                 <option value=""></option>
-                <?php while ($row = mysqli_fetch_array($result)): ?>
-                    <option value="<?= $row['id_espacio']?>"><?= $row['nombre']?></option>
+                <?php while ($row = mysqli_fetch_array($asignaturas_info)): ?>
+                    <option value="<?= $row['id_asignatura']?>"><?= $row['nombre']?></option>
                 <?php endwhile; ?>
             </select>
         </div>
@@ -357,8 +380,8 @@ $result = $stmt->get_result();
             <label for="hora_inicio" class="label">Hora de inicio:</label>
             <select name="hora_inicio" id="hora_inicio" type="text" class="input-register">
                 <option value=""></option>
-                <?php while ($row = mysqli_fetch_array($result)): ?>
-                    <option value="<?= $row['id_espacio']?>"><?= $row['nombre']?></option>
+                <?php while ($row = mysqli_fetch_array($horarios_info)): ?>
+                    <option value="<?= $row['id_horario']?>"><?= $row['hora_inicio']?></option>
                 <?php endwhile; ?>
             </select>
         </div>
@@ -367,8 +390,10 @@ $result = $stmt->get_result();
             <label for="hora_final" class="label">Hora final:</label>
             <select name="hora_final" id="hora_final" type="text" class="input-register">
                 <option value=""></option>
-                <?php while ($row = mysqli_fetch_array($result)): ?>
-                    <option value="<?= $row['id_espacio']?>"><?= $row['nombre']?></option>
+                <?php 
+                mysqli_data_seek($horarios_info, 0); //Reinicia el while para que empiece de cero otra vez (el anterior while lo dejo en el final)
+                while ($row = mysqli_fetch_array($horarios_info)): ?>
+                    <option value="<?= $row['id_horario']?>"><?= $row['hora_final']?></option>
                 <?php endwhile; ?>
             </select>
         </div>
@@ -377,14 +402,26 @@ $result = $stmt->get_result();
             <label for="salon_ocupado" class="label">Salon que ocupa:</label>
             <select name="salon_ocupado" id="salon_ocupado" type="text" class="input-register">
                 <option value=""></option>
-                <?php while ($row = mysqli_fetch_array($result)): ?>
+                <?php 
+                mysqli_data_seek($result, 0); //Reinicia el while para que empiece de cero otra vez (el anterior while que utilizo los recursos lo dejo en el final)
+                while ($row = mysqli_fetch_array($result)): ?>
                     <option value="<?= $row['id_espacio']?>"><?= $row['nombre']?></option>
                 <?php endwhile; ?>
             </select>
         </div>
 
+        <div class="div-labels">
+            <label for="curso_dictado" class="label">Curso al que se dicta:</label>
+            <select name="curso_dictado" id="salon_ocupado" type="text" class="input-register">
+                <option value=""></option>
+                <?php while ($row = mysqli_fetch_array($cursos_info)): ?>
+                    <option value="<?= $row['id_curso']?>"><?= $row['nombre']?></option>
+                <?php endwhile; ?>
+            </select>
+        </div>
+
     <div class="div-botones-register">
-    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarSuperuser"></input>
+    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarDependencia"></input>
     </form>
     <button class="btn-Cerrar" id="cerrar">Cerrar</button>
     </div>
