@@ -165,10 +165,21 @@ a {
     padding-top: 80px;
 }
 
+<<<<<<< Updated upstream
 .hdrBackground {
     background-image: linear-gradient(rgba(9, 4, 0, 0.1),
             rgba(9, 4, 0, 1)),
         url(img/backgroundItsp.jpg);
+=======
+.hdrBackground{
+    background-image: linear-gradient(
+        rgba(9, 4, 0, 0.1),
+        rgba(9, 4, 0, 1)),
+        url(../img/backgroundItsp.jpg);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;

@@ -11,6 +11,7 @@ $stmt->execute();
 
 $result = $stmt->get_result();
 
+
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +90,14 @@ $result = $stmt->get_result();
         <div class="article-register">
             <div>
                 <h1> Registro de Horarios</h1>
+            </div>
+            <button type="button" id="Salones-boton" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Abrir Registro
+            </button>
+        </div>
+                <div class="article-register">
+            <div>
+                <h1> Registro de Dependencias</h1>
             </div>
             <button type="button" id="Salones-boton" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Abrir Registro
@@ -294,7 +303,7 @@ $result = $stmt->get_result();
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div">
+    <form id="form-registro" class="registro-div" action="../backend/functions/horarios/horarios_api.php" method="post">
     <h1>Registro de Horarios</h1><hr>
         <div class="div-labels">
         <label for="hora_inicio" class="label">Hora de Inicio:</label>
@@ -314,7 +323,68 @@ $result = $stmt->get_result();
         </div>
 
     <div class="div-botones-register">
-    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"></input>
+    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registroHorario"></input>
+    </form>
+    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
+    </div>
+</dialog>
+
+<dialog>
+    <form id="form-registro" class="registro-div" action="../backend/functions/superusuarios_func.php" method="POST">
+    <h1>Registro de Dependencias</h1><hr>
+        
+        <div class="div-labels">
+            <label for="profesor_asignado" class="label">Profesor:</label>
+            <select name="profesor_asignado" id="pertenece" type="text" class="input-register">
+                <option value=""></option>
+                <?php while ($row = mysqli_fetch_array($result)): ?>
+                    <option value="<?= $row['id_espacio']?>"><?= $row['nombre']?></option>
+                <?php endwhile; ?>
+            </select>
+        </div>
+
+        <div class="div-labels">
+            <label for="asignatura_dada" class="label">Asignatura a dictar:</label>
+            <select name="asignatura_dada" id="pertenece" type="text" class="input-register">
+                <option value=""></option>
+                <?php while ($row = mysqli_fetch_array($result)): ?>
+                    <option value="<?= $row['id_espacio']?>"><?= $row['nombre']?></option>
+                <?php endwhile; ?>
+            </select>
+        </div>
+
+        <div class="div-labels">
+            <label for="hora_inicio" class="label">Hora de inicio:</label>
+            <select name="hora_inicio" id="hora_inicio" type="text" class="input-register">
+                <option value=""></option>
+                <?php while ($row = mysqli_fetch_array($result)): ?>
+                    <option value="<?= $row['id_espacio']?>"><?= $row['nombre']?></option>
+                <?php endwhile; ?>
+            </select>
+        </div>
+
+        <div class="div-labels">
+            <label for="hora_final" class="label">Hora final:</label>
+            <select name="hora_final" id="hora_final" type="text" class="input-register">
+                <option value=""></option>
+                <?php while ($row = mysqli_fetch_array($result)): ?>
+                    <option value="<?= $row['id_espacio']?>"><?= $row['nombre']?></option>
+                <?php endwhile; ?>
+            </select>
+        </div>
+
+        <div class="div-labels">
+            <label for="salon_ocupado" class="label">Salon que ocupa:</label>
+            <select name="salon_ocupado" id="salon_ocupado" type="text" class="input-register">
+                <option value=""></option>
+                <?php while ($row = mysqli_fetch_array($result)): ?>
+                    <option value="<?= $row['id_espacio']?>"><?= $row['nombre']?></option>
+                <?php endwhile; ?>
+            </select>
+        </div>
+
+    <div class="div-botones-register">
+    <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarSuperuser"></input>
     </form>
     <button class="btn-Cerrar" id="cerrar">Cerrar</button>
     </div>
