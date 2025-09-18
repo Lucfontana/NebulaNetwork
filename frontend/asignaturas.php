@@ -39,7 +39,7 @@ $query = mysqli_query($connect, $sql);
                         <th><?= $row['id_asignatura'] ?></th>
                         <th class="nombre"><?= $row['nombre'] ?></th>
                         <th><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_asignatura'] ?>">Eliminar</a></th>
-                        <th><a class="boton-datos-editar botones-datos">Editar</a></th>
+                        <th><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_asignatura'] ?>">Editar</a></th>
                     </tr>
                 </tbody>
             <?php endwhile; ?>
@@ -56,16 +56,8 @@ $query = mysqli_query($connect, $sql);
             </div>
         </div>
     </div>
-
     <?php
-    include_once('../backend/db/conexion.php');
-    $connect = conectar_a_bd();
-    $id = $_GET['id'];
-
-    $sql = "SELECT * FROM asignaturas WHERE id_asignatura='$id'";
-    $query = mysqli_query($connect, $sql);
-    $row = mysqli_fetch_array($query)
-
+        include_once('../backend/functions/mostrar datos asignaturas/update-asignatura.php')
     ?>
 
     <div id="overlay-edit" class="overlay-edit">
@@ -77,10 +69,10 @@ $query = mysqli_query($connect, $sql);
             </div>
             <div>
                 <label for="nombre" class="label">Nombre:</label>
-                <input type="text" name="nombre" id="name" maxlength="20" minlength="3" required placeholder="Ingresa nombre" value="<?= $row['nombre'] ?>">
+                <input type="text" name="nombre" id="name" maxlength="20" minlength="3" required placeholder="Ingresa nombre" value="<?=$row['nombre']?>">
             </div>
             <div>
-                <input type="submit" value="Actualizar Infomacion" id="actualizar" href="../backend/functions/mostrar datos asignaturas/update-asignatura.php?id=<?= $row['id_asignatura'] ?>"></input>
+                <input type="submit" value="Actualizar Infomacion" id="actualizar"></input> 
                 <input type="button" value="Cancelar" id="cancelarEdit"></input>
             </div>
         </form>
@@ -95,7 +87,7 @@ $query = mysqli_query($connect, $sql);
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
     <script src="js/sideMenu.js"></script>
-    <script src="js/Confirm-Delete.js"></script>
+    <script src="/frontend/js/Confirm-Delete.js"></script>
 </body>
 
 </html>
