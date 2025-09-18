@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let editID = null;
   let currentId = null;
+  let nombre = null;
+  
 
   // Abrir modal y guardar id
   document.querySelectorAll(".boton-datos-eliminar").forEach(boton => {
@@ -32,22 +34,23 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.querySelectorAll(".boton-datos-editar").forEach(botonEditar => {
-    botonEditar.addEventListener("click", (e) => {
-      e.preventDefault();
-      editID = botonEditar.dataset.id;;
+    botonEditar.addEventListener("click", (a) => {
+      a.preventDefault();
+
       overlayEdit.style.display = "flex";
+
+      editID = botonEditar.dataset.id;
+      nombre = botonEditar.dataset.nombre;
+
+      document.getElementById("id_edit").value = editID;
+      document.getElementById("name_edit").value = nombre;
+
     })
   })
 
   btnCancelarEdit.addEventListener("click", () => {
     overlayEdit.style.display = "none";
     editID = null;
-  });
-
-  btnActualizar.addEventListener("click", () => {
-   if (editID) {
-      window.location.href = `/backend/functions/mostrar datos asignaturas/update-asignatura.php?id=${currentId}`;
-    }
   });
 
 });

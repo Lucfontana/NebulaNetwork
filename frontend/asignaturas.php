@@ -39,7 +39,7 @@ $query = mysqli_query($connect, $sql);
                         <th><?= $row['id_asignatura'] ?></th>
                         <th class="nombre"><?= $row['nombre'] ?></th>
                         <th><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_asignatura'] ?>">Eliminar</a></th>
-                        <th><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_asignatura'] ?>">Editar</a></th>
+                        <th><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_asignatura'] ?>" data-nombre="<?= $row['nombre']?>">Editar</a></th>
                     </tr>
                 </tbody>
             <?php endwhile; ?>
@@ -56,20 +56,18 @@ $query = mysqli_query($connect, $sql);
             </div>
         </div>
     </div>
-    <?php
-        include_once('../backend/functions/mostrar datos asignaturas/update-asignatura.php')
-    ?>
+
 
     <div id="overlay-edit" class="overlay-edit">
-        <form action="/backend/functions/mostar datos asignaturas/edit-asignatura.php" method="POST">
+        <form action="\backend\functions\mostrar_dato_asignaturas\edit-asignatura.php" method="POST">
             <h1>Registro de Asignaturas</h1>
             <hr>
             <div class="div-labels">
-                <input class="input-register" type="hidden" name="id_asignatura" id="id" value="<?= $row['id_asignatura'] ?>">
+                <input class="input-register" type="hidden" name="id_asignatura" id="id_edit">
             </div>
             <div>
                 <label for="nombre" class="label">Nombre:</label>
-                <input type="text" name="nombre" id="name" maxlength="20" minlength="3" required placeholder="Ingresa nombre" value="<?=$row['nombre']?>">
+                <input type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
             </div>
             <div>
                 <input type="submit" value="Actualizar Infomacion" id="actualizar"></input> 

@@ -105,7 +105,7 @@ a {
 
 .nav-link:hover {
     color: rgb(238, 255, 0);
-    padding: 40px;
+    padding: 20px;
     transition: 1s;
 }
 
