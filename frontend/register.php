@@ -164,7 +164,13 @@ $cursos_info = $stmt->get_result();
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registroProfesor"></input>
 </form>
-<button class="btn-Cerrar" id="cerrar">Cerrar</button>
+
+<!-- 
+Se tiene que declarar el boton como de tipo "button" pq por defecto,
+los botones adentro de un formulario son de tipo submit, por lo tanto
+esto causaba que el formulario se enviara cuando necesitabamos cerrar 
+el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
+<button class="btn-Cerrar" type="button">Cerrar</button>
     </div>
 </dialog>
 
@@ -197,7 +203,7 @@ $cursos_info = $stmt->get_result();
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarSuperuser"></input>
     </form>
-    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
+    <button class="btn-Cerrar" type="button">Cerrar</button>
     </div>
 </dialog>
 
@@ -248,7 +254,7 @@ $cursos_info = $stmt->get_result();
         <div class="div-botones-register">
             <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarRecurso"></input>
     </form>
-        <button class="btn-Cerrar" id="cerrar">Cerrar</button>
+        <button class="btn-Cerrar" type="button">Cerrar</button>
         </div>
 </dialog>
 
@@ -277,7 +283,7 @@ $cursos_info = $stmt->get_result();
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarEspacio"></input>
     </form>
-    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
+    <button class="btn-Cerrar" type="button">Cerrar</button>
     </div>
 </dialog>
 
@@ -307,21 +313,21 @@ $cursos_info = $stmt->get_result();
         <div class="div-botones-register">
         <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarCursos"></input>
     </form>
-    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
+    <button class="btn-Cerrar" type="button">Cerrar</button>
     </div>
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div" action="../backend/functions/registro_cosas.php" method="POST">
+    <form id="form-registro" class="registro-div asignatura-form" action="../backend/functions/registro_cosas.php" method="POST">
     <h1>Registro de Asignaturas</h1><hr>
         <div class="div-labels">
         <label for="name" class="label">Nombre:</label>
-            <input class="input-register" type="text"  name="nombreAsignatura" id="name" maxlength="20" minlength="3"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="text"  name="nombreAsignatura" id="nombreAsignatura" maxlength="20" minlength="3"  required placeholder="Ingresa nombre">
         </div>
     <div class="div-botones-register">
     <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar Asignatura" name="registrarAsignatura"></input>
     </form>
-    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
+    <button class="btn-Cerrar" type="button">Cerrar</button>
     </div>
 </dialog>
 
@@ -347,16 +353,17 @@ $cursos_info = $stmt->get_result();
 
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registroHorario"></input>
-    </form>
-    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
+    <button class="btn-Cerrar" type="button">Cerrar</button>
     </div>
+    </form>
+
 </dialog>
 
 <dialog>
     <form id="form-registro" class="registro-div" action="../backend/functions/superusuarios_func.php" method="POST">
     <h1>Registro de Dependencias</h1><hr>
         
-        <div class="div-labels">profesor_asignado asignatura_dada hora_inicio hora_final salon_ocupado, curso_dictado
+        <div class="div-labels">
             <label for="profesor_asignado" class="label">Profesor:</label>
             <select name="profesor_asignado" id="pertenece" type="text" class="input-register">
                 <option value=""></option>
@@ -423,7 +430,7 @@ $cursos_info = $stmt->get_result();
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarDependencia"></input>
     </form>
-    <button class="btn-Cerrar" id="cerrar">Cerrar</button>
+    <button class="btn-Cerrar" type="button">Cerrar</button>
     </div>
 </dialog>
 </div>
@@ -434,19 +441,12 @@ $cursos_info = $stmt->get_result();
         <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
     </footer>
 
-    <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
     <script src="js/sideMenu.js"></script>
     <script src="js/Register-Modal.js"></script>
-    <script src="js/Validaciones_register.js"></script>
+    <script src="js/Validaciones-registro.js"></script>
 
-    <script>
-    document.getElementById('cerrar').addEventListener('click', function(e) {
-    e.preventDefault(); // Previene cualquier acción por defecto
-    location.reload(); // Refresca la página
-    });
-    </script>
     </body>
     </html>
