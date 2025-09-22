@@ -360,7 +360,7 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div" action="../backend/functions/superusuarios_func.php" method="POST">
+    <form id="form-registro" class="registro-div" action="../backend/functions/dependencias/dependencias_api.php" method="POST">
     <h1>Registro de Dependencias</h1><hr>
         
         <div class="div-labels">
