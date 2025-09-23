@@ -10,7 +10,7 @@
 </head>
 <body>
      <div class="flex">
-        <form id="form">
+        <form id="form" method="POST" action="../backend/login_usrs.php">
             <h2 id="titulo-login">Inicio de Sesión</h2>
         <div id="centro-form">
             <label for="CI" class="label">Cedula de Identidad:</label>
@@ -19,7 +19,7 @@
                 <input class="input-form" type="password" name="" id="contrasena" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
             
             <div id="botones-login">
-                <input  id="envFormulario" type="submit" value="Inicio de Sesión"></input>
+                <input id="envFormulario" type="submit" value="Inicio de Sesión" name="loginUsuario"></input>
             </div>
 
             <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">

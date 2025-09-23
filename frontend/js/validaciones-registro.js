@@ -29,6 +29,7 @@ formulario_asignaturas.addEventListener("submit", function(e) {
 
 //------------------VALIDACIONES-------------------//
 //-------------------------------------------------//
+//Nota: Las validaciones de CI ya estan creadas en el archivo de 'login.js', quedaria importar el archivo y las funciones
 
 //Verificar en el documento de Drive de "Tareas pendientes PROYECTO" las distintas funciones que hay para hacer
 
