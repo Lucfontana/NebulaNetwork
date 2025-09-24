@@ -41,14 +41,14 @@ create table horarios (
 create table superUsuario (
     id_superusuario int AUTO_INCREMENT primary key not null,
     nombre varchar (50) not null,
-    pass_superusuario varchar (50) not null,
+    pass_superusuario varchar (255) not null,
     apellido varchar(50) not null,
     nivel_acceso ENUM('1', '2', '3')    
 );
 
 create table profesores (
     ci_profesor int AUTO_INCREMENT primary key not null,
-    pass_profesor varchar(50) not null,
+    pass_profesor varchar(255) not null,
     nombre varchar(50) not null,
     apellido varchar(50) not null,
     email varchar(50) not null,

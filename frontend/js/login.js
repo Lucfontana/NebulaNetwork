@@ -4,7 +4,7 @@ const form = document.getElementById("form");
 let multiplicadorACadaUno = [2, 9, 8, 7, 6, 3, 4];
 
 form.addEventListener("submit", function(event) {
-event.preventDefault();
+
 
 const CI = Number(document.getElementById("CI").value);
 const contrasena = String(document.getElementById("contrasena").value);
@@ -14,14 +14,17 @@ const alerttext = document.getElementById("alert.text");
 if (!verificarCI(CI)) {
     alerttext.textContent = "La CI debe ser de 8 digitos, sin puntos, ni guiones.";
     alertdiv.style.visibility = "visible";
+    event.preventDefault();
     return
 }  else if (!tamanoPassword(contrasena)) {
     alerttext.textContent = "Contraseña debe tener entre 8 y 20 caracteres.";
     alertdiv.style.visibility = "visible";
+    event.preventDefault();
     return
 }  else if (!verificarExistenciaCI(CI, multiplicadorACadaUno)) {
     alerttext.textContent = "Su cedula de identidad no existe";
     alertdiv.style.visibility = "visible";
+    event.preventDefault();
 } else {
     alerttext.textContent = "Inicio de Sesión Correcto";
     alertdiv.style.visibility = "visible";

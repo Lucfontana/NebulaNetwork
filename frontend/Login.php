@@ -10,13 +10,13 @@
 </head>
 <body>
      <div class="flex">
-        <form id="form" method="POST" action="../backend/login_usrs.php">
+        <form id="form" method="POST" action="../backend/login/login_usrs.php">
             <h2 id="titulo-login">Inicio de Sesión</h2>
         <div id="centro-form">
             <label for="CI" class="label">Cedula de Identidad:</label>
                 <input class="input-form" type="number"  name="CI" id="CI" maxlength="8" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
             <label for="CI" class="label">Contraseña:</label>
-                <input class="input-form" type="password" name="" id="contrasena" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
+                <input class="input-form" type="password" name="contrasena" id="contrasena" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
             
             <div id="botones-login">
                 <input id="envFormulario" type="submit" value="Inicio de Sesión" name="loginUsuario"></input>

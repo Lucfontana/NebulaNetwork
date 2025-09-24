@@ -37,7 +37,11 @@ $stmt->execute();
 $cursos_info = $stmt->get_result();
 
 
+session_start();
 
+if($_SESSION['nivel_acceso'] == null){
+    header("Location: index.php");
+}
 
 ?>
 
