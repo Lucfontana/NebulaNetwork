@@ -17,7 +17,11 @@
  <div class="hdrBackground" id="hdrBackground">
     <!-- Texto de Bienvenidos -->
     <div class="bienvenida-texto">
+        <?php if (!isset($_SESSION['ci'])): ?>
         <h2>¡Bienvenidos!</h2>
+        <?php elseif (isset($_SESSION['ci'])): ?>
+        <h2>¡Bienvenido, <?= $_SESSION['nombre_usuario'];?>!</h2>
+        <?php endif; ?>
         <p>
             Bienvenido a la herramienta de gestión de institutos, donde podrás administrar la solicitud de recursos 
             al igual que administrar horarios de profesores.

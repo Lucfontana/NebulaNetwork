@@ -849,6 +849,38 @@ th {
 
 }
 
+/* Errores para mandarte a hacer el login */
+
+.error-body{
+    position: relative;
+    background-color: rgba(84, 80, 80, 0.453);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.error{
+    background-color: var(---navColor);
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 400px;
+}
+
+.error h1 {
+    padding: 0 0 10px;
+    margin: 5px;
+    text-align: center;
+    border-bottom: solid 3px black;
+}
+
+.error p {
+    padding: 10px 0;
+}
+
+.error #boton-inicio {
+    background-color: black;
+}
 @media (width < 1000px) {
 
     .section {

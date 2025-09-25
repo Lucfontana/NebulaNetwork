@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +59,11 @@
         </ul>
 
         <ul class="link-aside-images" id="link-aside-images">
+            <?php if (!isset($_SESSION['ci'])):?>
             <a href="Login.php"><li><img src="img/person-circle_white_no_bg.png" alt="" height="25px" width="25px"></li></a>
+            <?php elseif (isset($_SESSION['ci'])): ?>
+            <a href="../backend/login/logout.php"><li><img src="img/person-circle_white_no_bg.png" alt="" height="25px" width="25px"></li></a>
+            <?php endif; ?>
             <a href=""><li><img src="img/Iconos sidebar/calendario.png" alt="" height="25px" width="25px"></li></a>
             <a href=""><li><img src="img/Iconos sidebar/galeria.png" alt="" height="25px" width="25px"></li></a>
             <a href=""><li><img src="img/Iconos sidebar/Eventos.png" alt="" height="25px" width="25px"></li></a>
