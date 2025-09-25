@@ -25,7 +25,7 @@ $query = mysqli_query($connect, $sql);
     <?php include 'nav.php'; ?>
 
     <main>
-    <div id="contenido-asignatura">
+    <div id="contenido-mostrar-datos">
         <h1>Asignaturas</h1>
         <table id="datos">
             <tr>
@@ -36,7 +36,7 @@ $query = mysqli_query($connect, $sql);
             </tr>
             <?php while ($row = mysqli_fetch_array($query)): ?>
                     <tr class="mostrar-datos">
-                        <th><?= $row['id_asignatura'] ?></th>
+                        <th class="nombre"><?= $row['id_asignatura'] ?></th>
                         <th class="ultimo-dato"><?= $row['nombre'] ?></th>
                         <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_asignatura'] ?>">Eliminar</a></th>
                         <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_asignatura'] ?>" data-nombre="<?= $row['nombre']?>">Editar</a></th>
@@ -66,7 +66,7 @@ $query = mysqli_query($connect, $sql);
             </div>
             <div>
                 <label for="nombre" class="label">Nombre:</label>
-                <input type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
+                <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
             </div>
             <div>
                 <input type="submit" value="Actualizar Infomacion" id="actualizar"></input> 
@@ -85,7 +85,7 @@ $query = mysqli_query($connect, $sql);
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
     <script src="js/sideMenu.js"></script>
-    <script src="/frontend/js/Confirm-Delete.js"></script>
+    <script src="/frontend/js/confirm-asignatura.js"></script>
 </body>
 
 </html>

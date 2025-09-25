@@ -7,9 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnActualizar = document.getElementById("actualizar");
 
   let editID = null;
-  let currentId = null;
   let nombre = null;
-  
+  let apellido = null;
+  let email = null;
+  let fnac = null;
+  let direccion = null;
+
+  let currentId = null;
+
 
   // Abrir modal y guardar id
   document.querySelectorAll(".boton-datos-eliminar").forEach(boton => {
@@ -29,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Confirmar: redirigir a tu PHP de borrado
   btnConfirmar.addEventListener("click", () => {
     if (currentId) {
-      window.location.href = `/backend/functions/asignaturas/delete.php?id=${currentId}`;
+      window.location.href = `/backend/functions/Profesores/delete.php?id=${currentId}`;
     }
   });
 
@@ -41,10 +46,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       editID = botonEditar.dataset.id;
       nombre = botonEditar.dataset.nombre;
+      apellido = botonEditar.dataset.apellido;
+      email = botonEditar.dataset.email;
+      fnac = botonEditar.dataset.fnac;
+      direccion = botonEditar.dataset.direccion;
 
       document.getElementById("id_edit").value = editID;
       document.getElementById("name_edit").value = nombre;
-
+      document.getElementById("apellido_edit").value = apellido;
+      document.getElementById("email_edit").value = email;
+      document.getElementById("Fnac_edit").value = fnac;
+      document.getElementById("direccion_edit").value = direccion;
+      
     })
   })
 

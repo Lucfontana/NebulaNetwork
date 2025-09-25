@@ -24,7 +24,7 @@ $query = mysqli_query($connect, $sql);
     <!-- trae las barras de navegacion (sidebar y superior) -->
     <?php include 'nav.php'; ?>
     <main>
-        <div id="contenido-asignatura">
+        <div id="contenido-mostrar-datos">
             <h1>Cursos</h1>
             <table id="datos">
                 <tr>
@@ -37,7 +37,7 @@ $query = mysqli_query($connect, $sql);
                 </tr>
                 <?php while ($row = mysqli_fetch_array($query)): ?>
                     <tr class="mostrar-datos">
-                        <th><?= $row['id_curso'] ?></th>
+                        <th class="nombre"><?= $row['id_curso'] ?></th>
                         <th class="nombre"><?= $row['nombre'] ?></th>
                         <th class="nombre"><?= $row['capacidad'] ?></th>
                         <th class="ultimo-dato"><?= $row['cupo_disponible'] ?></th>
@@ -62,18 +62,18 @@ $query = mysqli_query($connect, $sql);
 
         <div id="overlay-edit" class="overlay-edit">
             <form action="\backend\functions\Cursos\edit.php" method="POST">
-                <h1>Registro de Asignaturas</h1>
+                <h1>Registro de Cursos</h1>
                 <hr>
                 <div class="div-labels">
                     <input class="input-register" type="hidden" name="id_curso" id="id_edit">
                 </div>
                 <div class="editar-edit">
                     <label for="nombre" class="label">Nombre:</label>
-                    <input type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa Nombre">
+                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa Nombre">
                     <label for="nombre" class="label">Capacidad:</label>
-                    <input type="text" name="capacidad" id="capacidad_edit" maxlength="20" minlength="3" required placeholder="Ingresa Capacidad">
+                    <input class="class-datos-editar" type="text" name="capacidad" id="capacidad_edit" maxlength="20" minlength="3" required placeholder="Ingresa Capacidad">
                     <label for="nombre" class="label">Cupos:</label>
-                    <input type="text" name="cupos" id="cupos_edit" maxlength="20" minlength="3" required placeholder="Ingresa Cupos Disponibles">
+                    <input class="class-datos-editar" type="text" name="cupos" id="cupos_edit" maxlength="20" minlength="3" required placeholder="Ingresa Cupos Disponibles">
                 </div>
                 <div>
                     <input type="submit" value="Actualizar Infomacion" id="actualizar"></input>
