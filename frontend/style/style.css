@@ -681,13 +681,38 @@ th {
 }
 
 .nombre {
+    width: auto;
+    text-align: left;
+    height: auto;
+}
+
+.ultimo-dato {
     width: 100%;
     text-align: left;
 }
 
 .nombre-titulo {
-    background-color: rgb(115, 192, 255);
     text-align: left;
+    background-color: rgb(115, 192, 255);
+    width: auto;
+}
+
+.boton-titulo {
+    text-align: center;
+    background-color: rgb(115, 192, 255);
+    margin: 0;
+    padding: 20px;
+}
+
+.boton-dato {
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+.titulo-ult{
+    text-align: left;
+    background-color: rgb(115, 192, 255);
     width: 100%;
 }
 
@@ -700,7 +725,7 @@ th {
 }
 
 .botones-datos {
-    text-align: right;
+    text-align: center;
     margin: 0;
     padding: 20px;
     transition: 1s;

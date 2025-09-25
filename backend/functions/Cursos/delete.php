@@ -5,11 +5,11 @@ include_once ('../../db/conexion.php');
     
     $id = $_GET['id'];
  
-    $sql = "DELETE FROM asignaturas WHERE id_asignatura='$id'";
+    $sql = "DELETE FROM cursos WHERE id_curso='$id'";
 
     $query = mysqli_query($connect, $sql);
 
     if ($query) {
-    Header("location: /frontend/asignaturas.php");
+    Header("location: /frontend/Cursos.php");
     }
 ?>

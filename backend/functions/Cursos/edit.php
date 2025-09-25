@@ -4,13 +4,16 @@ include_once ('../../db/conexion.php');
  
 $connect = conectar_a_bd();
 
-$id = $_POST['id_asignatura'];
+$id = $_POST['id_curso'];
 $name = $_POST['nombre'];
+$capacidad = $_POST['capacidad'];
+$cupos = $_POST['cupos'];
 
-$sql = "UPDATE asignaturas SET nombre='$name' WHERE id_asignatura='$id'";
+
+$sql = "UPDATE cursos SET nombre='$name', capacidad='$capacidad', cupo_disponible='$cupos' WHERE id_curso='$id'";
 $query = mysqli_query($connect, $sql);
 
 if ($query) {
-    Header("location: ../../../frontend/asignaturas.php");
+    Header("location: ../../../frontend/Cursos.php");
 }
 ?>
