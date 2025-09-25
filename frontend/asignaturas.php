@@ -29,19 +29,17 @@ $query = mysqli_query($connect, $sql);
         <table id="datos">
             <tr>
                 <th class="id">Id </th>
-                <th class="nombre-titulo">Nombre</th>
-                <th class="nombre-titulo"></th>
-                <th class="nombre-titulo"></th>
+                <th class="titulo-ult">Nombre</th>
+                <th class="boton-titulo">Borrar</th>
+                <th class="boton-titulo">Editar</th>
             </tr>
             <?php while ($row = mysqli_fetch_array($query)): ?>
-                <tbody>
                     <tr class="mostrar-datos">
                         <th><?= $row['id_asignatura'] ?></th>
-                        <th class="nombre"><?= $row['nombre'] ?></th>
-                        <th><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_asignatura'] ?>">Eliminar</a></th>
-                        <th><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_asignatura'] ?>" data-nombre="<?= $row['nombre']?>">Editar</a></th>
+                        <th class="ultimo-dato"><?= $row['nombre'] ?></th>
+                        <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_asignatura'] ?>">Eliminar</a></th>
+                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_asignatura'] ?>" data-nombre="<?= $row['nombre']?>">Editar</a></th>
                     </tr>
-                </tbody>
             <?php endwhile; ?>
         </table>
     </div>

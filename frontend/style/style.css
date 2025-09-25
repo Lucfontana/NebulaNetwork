@@ -657,7 +657,6 @@ hr {
     margin: 20px;
 }
 
-td,
 th {
     padding: 15px;
 }
@@ -700,16 +699,16 @@ th {
 .boton-titulo {
     text-align: center;
     background-color: rgb(115, 192, 255);
+    width: auto;
     margin: 0;
     padding: 20px;
 }
+
 
 .boton-dato {
-    text-align: center;
-    margin: 0;
-    padding: 20px;
+    width: 10%;
 }
-
+ 
 .titulo-ult{
     text-align: left;
     background-color: rgb(115, 192, 255);
