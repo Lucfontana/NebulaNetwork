@@ -24,6 +24,7 @@ $query = mysqli_query($connect, $sql);
     <!-- trae las barras de navegacion (sidebar y superior) -->
     <?php include 'nav.php'; ?>
 
+    <main>
     <div id="contenido-asignatura">
         <h1>Asignaturas</h1>
         <table id="datos">
@@ -73,6 +74,7 @@ $query = mysqli_query($connect, $sql);
             </div>
         </form>
     </div>
+    </main>
 
     <footer id="footer" class="footer">
         <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>

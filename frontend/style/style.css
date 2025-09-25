@@ -8,7 +8,6 @@
 }
 
 /*------------------------ GENERALIDADES ----------------------*/
-
 * {
     padding: 0;
     margin: 0;
@@ -18,11 +17,23 @@
 a {
     color: aliceblue;
     text-decoration: none;
-    text-decoration-color: none;
     transition: 1s;
     cursor: pointer;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* ocupa siempre el alto completo */
+}
+
+main {
+    flex: 1; /* ocupa todo el espacio disponible entre nav y footer */
+    display: flex;
+    justify-content: center; /* centra horizontal */
+    align-items: center;     /* centra vertical */
+    padding: 20px;
+}
 
 
 /*NAVBAR DE BOOTSTRAP*/
@@ -37,7 +48,6 @@ a {
     margin: 0 0 0 15px;
     width: 20px;
     height: 20px;
-    transition: all ease .5s;
 }
 
 .sideMenu:hover {
@@ -63,14 +73,14 @@ a {
     /*Navbar encima del aside*/
     color: white;
     margin: 0 0 0 0;
+    border-bottom-color: rgb(100, 133, 194);
+    background-image: linear-gradient(var(---gradientNav), var(---navColor));
 }
 
 #logo {
     width: 40px;
 
 }
-
-
 
 .nav-link,
 .navbar-brand,
@@ -91,17 +101,6 @@ a {
 .container-fluid {
     justify-content: space-around;
 }
-
-.navStyle {
-    /* border-style: outset;     */
-    border-bottom-color: rgb(100, 133, 194);
-    background-image: linear-gradient(var(---gradientNav), var(---navColor));
-    /* border-width: 3.5px;
-    border-top: none;
-    border-left: none;
-    border-right: none; */
-}
-
 
 .nav-link:hover {
     color: rgb(238, 255, 0);
@@ -344,6 +343,36 @@ aside ul li:not(:last-child) a::after {
 
 /* Login - CSS */
 
+#botones-login {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 50px;
+}
+
+.btn-login {
+    background-color: #3c44aa;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none; 
+    text-align: center;
+    transition: 0.3s ease;
+    min-width: 180px;
+    flex: 1 1 auto;     /* ✅ se adaptan al espacio disponible */
+}
+
+
+.btn-login:hover {
+    background-color: #2a3380;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+
 .flex {
     display: flex;
 }
@@ -354,7 +383,7 @@ aside ul li:not(:last-child) a::after {
     height: auto;
     flex-direction: column;
     padding: 20px;
-    font-size: 20px;
+    font-size: 18px;
     background-color: rgb(216, 229, 240);
     z-index: 1;
 }
@@ -364,13 +393,13 @@ aside ul li:not(:last-child) a::after {
     margin-top: 20px;
     border-radius: 10px;
     padding: 15px;
-    font-size: 20px;
-    background-color: #3c44aa;
+    font-size: 18px;
+    background-color: #969be4;
     border-style: none;
 }
 
 .input-form::placeholder {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 .contraseña {
@@ -378,10 +407,7 @@ aside ul li:not(:last-child) a::after {
     height: 80px;
 }
 
-#botones-login {
-    display: flex;
-    justify-content: space-evenly;
-}
+
 
 .label {
     margin-top: 40px;
@@ -641,16 +667,14 @@ hr {
 /* Mostrar Datos */
 
 #contenido-asignatura {
-    width: calc(99vw - var(---marginAside) -2px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    width: 100%;
+    max-width: 1000px; /* límite para que no se estire demasiado */
+    background: white; /* opcional */
+    border-radius: 10px; /* opcional */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* opcional */
     padding: 20px;
-    margin: 75px 0 0 var(---marginAside);
-    transition: var(---transitionSidebarExpanded);
 }
+
 
 #contenido-asignatura>h1 {
     font-size: 30px;
@@ -920,9 +944,27 @@ th {
     padding: 10px 0;
 }
 
-.error #boton-inicio {
-    background-color: black;
+.error a{
+    align-items: center;
+    
 }
+
+#boton-inicio {
+    display: block;
+    margin: 20px auto;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#boton-inicio:hover {
+    background-color: #2a3380;
+}
+
+
 @media (width < 1000px) {
 
     .section {
@@ -1108,5 +1150,33 @@ abajito cuando el ancho es menos de 700px */
 
     .fondo-login::before {
         display: none;
+    }
+}
+
+/*botones login responsive*/
+
+@media (max-width: 1100px) and (min-width: 751px) {
+    #botones-login {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-login {
+        width: 90%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 750px) {
+    #botones-login {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .btn-login {
+        flex: 1 1 auto;
+        min-width: 140px;
+        max-width: 200px;
     }
 }

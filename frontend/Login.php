@@ -18,9 +18,11 @@
             <label for="CI" class="label">Contraseña:</label>
                 <input class="input-form" type="password" name="contrasena" id="contrasena" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
             
-            <div id="botones-login">
-                <input id="envFormulario" type="submit" value="Inicio de Sesión" name="loginUsuario"></input>
-            </div>
+        <div id="botones-login">
+            <button type="submit" name="loginUsuario" class="btn-login">Iniciar Sesión</button>
+            <a href="index.php" class="btn-login">Volver al Inicio</a>
+        </div>
+
 
             <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -38,9 +40,6 @@
     </div>
         </div>
 
-            <div id="container-boton-inicio">   
-                <a href="index.php"><button id="boton-inicio" type="button">Volver al Inicio</button></a>
-            </div>
         </form>
             <div class="fondo-login">
                 <img id="logo-fondo" src="img/fondo-login.jpg" alt="">
