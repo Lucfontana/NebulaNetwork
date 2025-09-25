@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       document.getElementById("id_edit").value = editID;
       document.getElementById("name_edit").value = nombre;
-      document.getElementById("capacidad_edit").value = cupos;
-      document.getElementById("cupos_edit").value = capacidad;
+      document.getElementById("capacidad_edit").value = capacidad;
+      document.getElementById("cupos_edit").value = cupos;
     })
   })
 

@@ -67,13 +67,13 @@ $query = mysqli_query($connect, $sql);
             <div class="div-labels">
                 <input class="input-register" type="hidden" name="id_curso" id="id_edit">
             </div>
-            <div>
+            <div class="editar-edit">
                 <label for="nombre" class="label">Nombre:</label>
-                <input type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
+                <input type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa Nombre">
                 <label for="nombre" class="label">Capacidad:</label>
-                <input type="text" name="capacidad" id="capacidad_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
+                <input type="text" name="capacidad" id="capacidad_edit" maxlength="20" minlength="3" required placeholder="Ingresa Capacidad">
                 <label for="nombre" class="label">Cupos:</label>
-                <input type="text" name="cupos" id="cupos_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
+                <input type="text" name="cupos" id="cupos_edit" maxlength="20" minlength="3" required placeholder="Ingresa Cupos Disponibles">
             </div>
             <div>
                 <input type="submit" value="Actualizar Infomacion" id="actualizar"></input> 

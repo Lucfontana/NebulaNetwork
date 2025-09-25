@@ -819,6 +819,7 @@ th {
     justify-content: space-evenly;
 }
 
+/* Editar Datos */
 #overlay-edit {
     display: none;
     position: fixed;
@@ -838,6 +839,14 @@ th {
     background-color: aliceblue;
     padding: 40px;
     border-radius: 10px;
+} 
+
+.overlay-edit > form > div > label {
+    margin-top: 20px;
+}
+
+.overlay-edit > form > div > input {
+    padding: 5px;
 }
 
 #actualizar {
@@ -872,6 +881,15 @@ th {
     transition: 1s;
 
 }
+
+.editar-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+    
+
 
 /* Errores para mandarte a hacer el login */
 
