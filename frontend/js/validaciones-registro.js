@@ -41,7 +41,7 @@ function verificarString(nombre, tipoDato){
 
     //El regex son los caracteres que queremos verificar que nuestra string NO tenga.
     //Regex es una expresion que se marca con //, por eso ese caracter a veces esta repetido
-    let regex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    let regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; 
 
     if (nombre.length <= 2 || nombre.length >= 40) {
         alert("El " + tipoDato + " ingresado debe tener entre 2 y 40 caracteres");
@@ -51,10 +51,38 @@ function verificarString(nombre, tipoDato){
         //Le decimos al regex que comience desde el principio de su elemento a investigar
         //para evitar errores
         regex.lastIndex = 0; 
-        if (regex.test(nombre)){
+        if (!regex.test(nombre)){
         alert("El " + tipoDato + " ingresado no puede contener caracteres especiales");  
         return false;
     } 
     }
     return true; //Si esta todo bien, devuelve TRUE
+}
+
+
+let formulario_profesores = document.querySelector(".profesor-form");
+
+formulario_profesores.addEventListener("submit", function(e) {
+    let nombre_profesor = document.getElementById("nombreProfesor").value;
+    let apellido_profesor = document.getElementById("apellidoProfesor").value;
+    let ci_profesor = document.getElementById("ciProfesor").value;
+
+    if (!verificarString(nombre_profesor, "nombre")) {
+        e.preventDefault();
+    }
+    if (!verificarString(apellido_profesor, "apellido")) {
+        e.preventDefault();
+    }
+    if (!verificarCI(ci_profesor)) {
+        e.preventDefault();
+    }
+});
+
+function verificaremail(email) {
+    let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!regex.test(email)) {
+        alert("El email ingresado no es válido");
+        return false;
+    }
+    return true;
 }
