@@ -55,7 +55,7 @@ session_start();
 
             <li><a class="link-aside">Eventos</a></li>
 
-            <li><a class="link-aside">Notificaciones</a></li>
+            <li><a class="link-aside">Notifi- <br>caciones</a></li>
         </ul>
 
         <ul class="link-aside-images" id="link-aside-images">
