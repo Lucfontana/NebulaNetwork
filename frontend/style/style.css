@@ -667,7 +667,7 @@ hr {
 
 /* Mostrar Datos */
 
-#contenido-asignatura {
+#contenido-mostrar-datos {
     width: 100%;
     max-width: 1000px; /* límite para que no se estire demasiado */
     background: white; /* opcional */
@@ -686,7 +686,6 @@ th {
     padding: 15px;
 }
 
-
 .datos-mostrar {
     border-style: solid;
     border-color: black;
@@ -702,16 +701,19 @@ th {
 
 .id {
     background-color: aquamarine;
+    text-align: center;
 }
 
 .nombre {
     width: auto;
     text-align: left;
     height: auto;
+    font-size: 12px;
 }
 
 .ultimo-dato {
     width: 100%;
+    font-size: 12px;
     text-align: left;
 }
 
@@ -719,6 +721,7 @@ th {
     text-align: left;
     background-color: rgb(115, 192, 255);
     width: auto;
+    font-size: 15px;
 }
 
 .boton-titulo {
@@ -727,11 +730,13 @@ th {
     width: auto;
     margin: 0;
     padding: 20px;
+    font-size: 15px;
 }
 
 
 .boton-dato {
     width: 10%;
+    font-size: 12px;
 }
  
 .titulo-ult{
@@ -870,7 +875,8 @@ th {
     margin-top: 20px;
 }
 
-.overlay-edit > form > div > input {
+.class-datos-editar {
+    width: 50%;
     padding: 5px;
 }
 
