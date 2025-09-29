@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnActualizar = document.getElementById("actualizar");
 
   let editID = null;
+  let idespacio = null;
   let nombre = null;
   let tipo = null;
   let estado = null;
@@ -43,11 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
       overlayEdit.style.display = "flex";
 
       editID = botonEditar.dataset.id;
+      idespacio = botonEditar.dataset.espacio;
       nombre = botonEditar.dataset.nombre;
       tipo = botonEditar.dataset.tipo;
       estado = botonEditar.dataset.estado;
 
       document.getElementById("id_edit").value = editID;
+      document.getElementById("id_espacio_edit").value = idespacio;
       document.getElementById("name_edit").value = nombre;
       document.getElementById("tipo_edit").value = tipo;
       document.getElementById("estado_edit").value = estado;

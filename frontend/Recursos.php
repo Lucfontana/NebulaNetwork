@@ -36,7 +36,7 @@ $query = mysqli_query($connect, $sql);
                     <th class="boton-titulo">Borrar</th>
                     <th class="boton-titulo">Editar</th>
                 </tr>
-                <?php while ($row = mysqli_fetch_array($query) || $row): ?>
+                <?php while ($row = mysqli_fetch_array($query)): ?>
                     <tr class="mostrar-datos">
                         <th class="nombre"><?= $row['id_recurso'] ?></th>
                         <th class="nombre"><?= $row['id_espacio'] ?></th>
@@ -44,7 +44,7 @@ $query = mysqli_query($connect, $sql);
                         <th class="nombre"><?= $row['estado'] ?></th>
                         <th class="ultimo-dato"><?= $row['tipo'] ?></th>
                         <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_recurso'] ?>">Eliminar</a></th>
-                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_recurso'] ?>" data-nombre="<?= $row['nombre'] ?>" data-estado="<?= $row['estado'] ?>" data-tipo="<?= $row['tipo'] ?>">Editar</a></th>
+                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_recurso'] ?>" data-espacio="<?= $row['id_espacio'] ?>" data-nombre="<?= $row['nombre'] ?>" data-estado="<?= $row['estado'] ?>" data-tipo="<?= $row['tipo'] ?>">Editar</a></th>
                     </tr>
                 <?php endwhile; ?>
             </table>
@@ -68,6 +68,7 @@ $query = mysqli_query($connect, $sql);
                 <hr>
                 <div class="div-labels">
                     <input class="input-register" type="hidden" name="id_recurso" id="id_edit">
+                    <input class="input-register" type="hidden" name="id_espacio" id="id_espacio_edit">
                 </div>
                 <div class="editar-edit">
                     <label for="nombre" class="label">Nombre:</label>
