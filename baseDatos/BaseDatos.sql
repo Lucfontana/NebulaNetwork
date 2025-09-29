@@ -15,7 +15,6 @@ create table asignaturas (
 create table espacios_fisicos (
     id_espacio int AUTO_INCREMENT primary key not null,
     capacidad int not null,
-    equipamiento varchar (50) not null,
     nombre varchar(50) not null,
     tipo ENUM('aula', 'laboratorio', 'salon', 'SUM') not null
 );
@@ -26,7 +25,6 @@ Create table recursos (
     id_espacio int,
     foreign key (id_espacio) references espacios_fisicos(id_espacio),
     nombre varchar(50) not null,
-    descripcion varchar(100) not null,
     estado ENUM('uso','libre','roto') not null,
     tipo ENUM('interno','externo') not null
 );

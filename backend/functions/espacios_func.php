@@ -10,12 +10,11 @@ if (isset($_POST['registrarEspacio'])){
 
    $nombre = strip_tags(trim($_POST['name']));
    $capacity = (int)$_POST['capacity'];
-   $equipo = strip_tags(trim($_POST['equip']));
    $tipo = strip_tags(trim($_POST['tipo'])); 
 
    $existe = consultar_si_existe_espacio($con, $nombre);
 
-   insert_datos_espacios($con, $existe, $nombre, $capacity, $equipo, $tipo);
+   insert_datos_espacios($con, $existe, $nombre, $capacity, $tipo);
 }
 
 function consultar_si_existe_espacio($con, $nombre){
@@ -38,14 +37,14 @@ $result = $stmt->get_result();
     }
 }
 
-function insert_datos_espacios($con, $existe, $nombre, $capacity, $equipo, $tipo){
+function insert_datos_espacios($con, $existe, $nombre, $capacity, $tipo){
     if ($existe == false){
         // No incluir id_espacio - es AUTO_INCREMENT
-        $query_insertar = "INSERT INTO espacios_fisicos (nombre, capacidad, equipamiento, tipo) VALUES (?, ?, ?, ?)";
+        $query_insertar = "INSERT INTO espacios_fisicos (nombre, capacidad, tipo) VALUES ( ?, ?, ?)";
         $stmt = $con->prepare($query_insertar);
         
         // 4 parámetros, 4 tipos
-        $stmt->bind_param("siss", $nombre, $capacity, $equipo, $tipo);
+        $stmt->bind_param("sis", $nombre, $capacity, $tipo);
         
         if ($stmt->execute()) {
             echo "Insertado correctamente";

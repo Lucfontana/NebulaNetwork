@@ -111,9 +111,10 @@ function login($con, $ci_usuario, $password){
                 echo "Sesion iniciada correctamente como PROFESOR";
                 header("Location: ../../../frontend/index.php");
                 exit();
-            } else {
+            } else { //Si pa contrasena es incorrecta, devuelve mensaje de error
                 echo "Contraseña incorrecta";
             }
+            //Si el usuario no es un profesor, chequea que sea un superusuario y actua igual que el if de arriba
         } else if ($result_login_su->num_rows > 0){
             $fila_su = mysqli_fetch_assoc($result_login_su);
 
@@ -131,7 +132,7 @@ function login($con, $ci_usuario, $password){
                 echo "Contraseña incorrecta";
             }
         }
-    } else {
+    } else { //Si no es ni usuario ni profesor, muestra mensaje de que no existe
         echo "El usuario ingresado no existe";
     }
 }
