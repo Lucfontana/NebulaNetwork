@@ -137,29 +137,29 @@ session_start();
 
 <div id="div-dialogs">
 <dialog>
-    <form id="form-registro" class="registro-div" action="../backend/functions/profesores_func.php" method="POST"> 
+    <form id="form-registro" class="registro-div profesores-form" action="../backend/functions/profesores_func.php" method="POST"> 
     <h1>Registro de Profesores</h1><hr>
         <div class="div-labels">
         <label for="CI" class="label">Cedula de Identidad:</label>
-            <input class="input-register" type="number"  name="CI" id="CI" maxlength="8" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
+            <input class="input-register" type="number"  name="CI" id="ciProfesor" maxlength="8" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
         </div><div class="div-labels">
         <label for="contrasena" class="label">Contraseña:</label>
-            <input class="input-register" type="password" name="contrasena" id="contrasena" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
+            <input class="input-register" type="password" name="contrasena" id="contrasenaProfesor" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
         </div><div class="div-labels">
         <label for="name" class="label">Nombre:</label>
-            <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="text"  name="name" id="nombreProfesor" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
         </div><div class="div-labels">
         <label for="apellido" class="label">Apellido:</label>
-            <input class="input-register" type="text"  name="apellido" id="apellido" maxlength="20" minlength="8"  required placeholder="Ingresa apellido">
+            <input class="input-register" type="text"  name="apellido" id="apellidoProfesor" maxlength="20" minlength="8"  required placeholder="Ingresa apellido">
         </div><div class="div-labels">
         <label for="email" class="label">Email:</label>
-            <input class="input-register" type="email"  name="email" id="email" maxlength="30" minlength="8"  required placeholder="Ingresa Email">
+            <input class="input-register" type="email"  name="email" id="emailProfesor" maxlength="30" minlength="8"  required placeholder="Ingresa Email">
         </div><div class="div-labels">
         <label for="nac" class="label">Fecha Nacimiento:</label>
-            <input class="input-register" type="date"  name="nac" id="nac" maxlength="30" minlength="8"  required>
+            <input class="input-register" type="date"  name="nac" id="fechaNacimientoProfesor" maxlength="30" minlength="8"  required>
         </div><div class="div-labels">
          <label for="direc" class="label">Dirección:</label>
-            <input class="input-register" type="text"  name="direc" id="direc" maxlength="30" minlength="8"  required placeholder="Ingresa dirección">
+            <input class="input-register" type="text"  name="direc" id="direccionProfesor" maxlength="100" minlength="1 "  required placeholder="Ingresa dirección">
         </div>
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registroProfesor"></input>
@@ -175,22 +175,25 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div" action="../backend/functions/superusuarios_func.php" method="POST">
+    <form id="form-registro" class="registro-div superusuarios-form" action="../backend/functions/superusuarios_func.php" method="POST">
     <h1>Registro de SuperUsuarios</h1><hr>
 
         <div class="div-labels">
         <label for="CI" class="label">Cedula de Identidad:</label>
-            <input class="input-register" type="number"  name="CI" id="CI" maxlength="8" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
+            <input class="input-register" type="number"  name="ciSuperusuario" id="CI" maxlength="8" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
         </div><div class="div-labels">
         <label for="contrasena" class="label">Contraseña:</label>
-            <input class="input-register" type="password" name="password" id="contrasena" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
+            <input class="input-register" type="password" name="password" id="contrasenaSuperusuario" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
         </div><div class="div-labels">
         <label for="name" class="label">Nombre:</label>
-            <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="text"  name="name" id="nombreSuperusuario" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
         </div><div class="div-labels">
         <label for="apellido" class="label">Apellido:</label>
-            <input class="input-register" type="text"  name="apellido" id="apellido" maxlength="20" minlength="8"  required placeholder="Ingresa apellido">
+            <input class="input-register" type="text"  name="apellido" id="apellidoSuperusuario" maxlength="20" minlength="8"  required placeholder="Ingresa apellido">
         </div>
+        <label for="email" class="label">Email:</label>
+            <input class="input-register" type="email"  name="email" id="emailSuperusuario" maxlength="30" minlength="8"  required placeholder="Ingresa Email">
+        </div><div class="div-labels">
         <div class="div-labels">
         <label for="acceso" class="label">Nivel de Acceso:</label>
             <select class="input-register" type="text"  name="acceso" id="acceso" maxlength="20" minlength="8"  required placeholder="">
@@ -208,15 +211,15 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div" action="../backend/functions/recursos_func.php" method="POST">
+    <form id="form-registro" class="registro-div recursos-form" action="../backend/functions/recursos_func.php" method="POST">
     <h1>Registro de Recursos</h1><hr> 
        <div class="div-labels">
         <label for="name" class="label">Nombre:</label>
-            <input class="input-register" type="text"  name="name" id="name" maxlength="40" minlength="3"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="text"  name="name" id="nombreRecurso" maxlength="40" minlength="3"  required placeholder="Ingresa nombre">
         </div>
         <div class="div-labels">
         <label for="estado" class="label">Estado:</label>
-            <select class="input-register" type="text"  name="estado" id="estado" maxlength="20" minlength="8"  required placeholder="">
+            <select class="input-register" type="text"  name="estado" id="estadoRecurso" maxlength="20" minlength="8"  required placeholder="">
                 <option value=""></option>
                 <option value="uso">Uso</option>
                 <option value="libre">Libre</option>
@@ -257,20 +260,20 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div" action="../backend/functions/espacios_func.php" method="POST">
+    <form id="form-registro" class="registro-div espacios-form" action="../backend/functions/espacios_func.php" method="POST">
     <h1>Registro de Espacios</h1><hr>
         <div class="div-labels">
         <label for="name" class="label">Nombre:</label>
-            <input class="input-register" type="text"  name="name" id="name" maxlength="40" minlength="3"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="text"  name="name" id="nombreEspacio" maxlength="40" minlength="3"  required placeholder="Ingresa nombre">
         </div>
 
         <div class="div-labels">
             <label for="capacity" class="label">Capacidad:</label>
-            <input class="input-register" type="number"  name="capacity" id="capacity" maxlength="3" minlength="1"  required placeholder="Ingresa capacidad">
+            <input class="input-register" type="number"  name="capacity" id="capacidadEspacio" maxlength="3" minlength="1"  required placeholder="Ingresa capacidad">
         </div>
         <div class="div-labels">
         <label for="tipo" class="label">Tipo:</label>
-            <select class="input-register" type="text"  name="tipo" id="tipo" required placeholder="">
+            <select class="input-register" type="text"  name="tipo" id="tipoEspacio" required placeholder="">
                 <option value=""></option>
                 <option value="aula">Aula</option>
                 <option value="salon">Salón</option>
@@ -286,19 +289,15 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div" action="../backend/functions/cursos_func.php" method="POST">
+    <form id="form-registro" class="registro-div cursos-form" action="../backend/functions/cursos_func.php" method="POST">
     <h1>Registro de Cursos</h1><hr>
         <div class="div-labels">
         <label for="name" class="label">Nombre:</label> 
-            <input class="input-register" type="text"  name="name" id="name" maxlength="20" minlength="3"  required placeholder="Ingresa sin puntos ni guiones">
+            <input class="input-register" type="text"  name="name" id="nombreCurso" maxlength="20" minlength="3"  required placeholder="Ingresa sin puntos ni guiones">
         </div>
         <div class="div-labels">
         <label for="capacity" class="label">Capacidad:</label>
-            <input class="input-register" type="number"  name="capacity" id="capacity" maxlength="3" minlength="1"  required placeholder="Ingresa sin puntos ni guiones">
-        </div>
-        <div class="div-labels">
-        <label for="cupos" class="label">Cupos Disponibles:</label>
-            <input class="input-register" type="number"  name="cupos" id="cupos" maxlength="3" minlength="1"  required placeholder="Ingresa cupos">
+            <input class="input-register" type="number"  name="capacity" id="capacidadCurso" maxlength="3" minlength="1"  required placeholder="Ingresa sin puntos ni guiones">
         </div>
         <div class="div-botones-register">
         <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarCursos"></input>
@@ -322,19 +321,19 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div" action="../backend/functions/horarios/horarios_api.php" method="post">
+    <form id="form-registro" class="registro-div horarios-form" action="../backend/functions/horarios/horarios_api.php" method="post">
     <h1>Registro de Horarios</h1><hr>
         <div class="div-labels">
         <label for="hora_inicio" class="label">Hora de Inicio:</label>
-            <input class="input-register" type="time"  name="hora_inicio" id="hora_inicio" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="time"  name="hora_inicio" id="horaInicioHorario" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
         </div>
         <div class="div-labels">
         <label for="hora_final" class="label">Hora de Salida:</label>
-            <input class="input-register" type="time"  name="hora_final" id="hora_final" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="time"  name="hora_final" id="horaFinalHorario" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
         </div>
         <div class ="div-labels">
             <label for="tipo">Tipo de horario:</label>
-                <select class="input-register" type="text"  name="acceso" id="acceso" required placeholder="">
+                <select class="input-register" type="text"  name="tipo" id="tipoHorario" required placeholder="">
                     <option value =""></option>
                     <option value="recreo">Recreo</option>
                     <option value="clase">Clase</option>
@@ -350,7 +349,7 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div" action="../backend/functions/dependencias/dependencias_api.php" method="POST">
+    <form id="form-registro" class="registro-div dependencias-form" action="../backend/functions/dependencias/dependencias_api.php" method="POST">
     <h1>Registro de Dependencias</h1><hr>
         
         <div class="div-labels">

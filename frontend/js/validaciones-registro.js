@@ -60,19 +60,20 @@ function verificarString(nombre, tipoDato){
 }
 
 
-let formulario_profesores = document.querySelector(".profesor-form");
+let formulario_profesores = document.querySelector(".profesores-form");
 
 formulario_profesores.addEventListener("submit", function(e) {
     let ci_profesor = document.getElementById("ciProfesor").value;
+    let contrasena_profesor = document.getElementById("contrasenaProfesor").value;
     let nombre_profesor = document.getElementById("nombreProfesor").value;
     let apellido_profesor = document.getElementById("apellidoProfesor").value;
     let email_profesor = document.getElementById("emailProfesor").value;
     let fecha_nacimiento_profesor = document.getElementById("fechaNacimientoProfesor").value;
     let direccion_profesor = document.getElementById("direccionProfesor").value;
 
-    if (!verificarCI(ci_profesor)) {
-        e.preventDefault();
-    }
+    // if (!verificarCI(ci_profesor)) {
+    //     e.preventDefault();
+    // }
     if (!verificarString(nombre_profesor, "nombre")) {
         e.preventDefault();
     }
@@ -140,9 +141,10 @@ function verificarDireccion(direccion) {
 let formulario_superusuarios = document.querySelector(".superusuarios-form");
 formulario_superusuarios.addEventListener("submit", function(e) {
     let ci_superusuario = document.getElementById("ciSuperusuario").value;
+    let contrasena_superusuario = document.getElementById("contrasenaSuperusuario").value;
     let nombre_superusuario = document.getElementById("nombreSuperusuario").value;
     let apellido_superusuario = document.getElementById("apellidoSuperusuario").value;
-    //let email_superusuario = document.getElementById("emailSuperusuario").value;
+    let email_superusuario = document.getElementById("emailSuperusuario").value;
 
     if (!verificarCI(ci_superusuario)) {
         e.preventDefault();
@@ -158,6 +160,7 @@ formulario_superusuarios.addEventListener("submit", function(e) {
 let formulario_recursos = document.querySelector(".recursos-form");
 formulario_recursos.addEventListener("submit", function(e) {
     let nombre_recurso = document.getElementById("nombreRecurso").value;
+    let estado_recurso = document.getElementById("estadoRecurso").value;
 
     if (!verificarString(nombre_recurso, "nombre")) {
         e.preventDefault();
@@ -169,6 +172,7 @@ let formulario_espacios = document.querySelector(".espacios-form");
 formulario_espacios.addEventListener("submit", function(e) {
     let nombre_espacio = document.getElementById("nombreEspacio").value;
     let capacidad_espacio = document.getElementById("capacidadEspacio").value;
+    let tipo_espacio = document.getElementById("tipoEspacio").value;
 
     if (!verificarString(nombre_espacio, "nombre")) {
         e.preventDefault();
