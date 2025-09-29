@@ -52,9 +52,7 @@ session_start();
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
 <link rel="stylesheet" href="style/style.css">
-    <?php if (!isset($_SESSION['nivel_acceso'])):?>
-        <?php include_once('error.php')?>
-    <?php else:?>
+
 <body>
     <!-- trae las barras de navegacion (sidebar y superior) -->
     <?php include 'nav.php'; ?>
@@ -433,7 +431,6 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
         <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
     </footer>
 
-        <?php endif;?>
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
