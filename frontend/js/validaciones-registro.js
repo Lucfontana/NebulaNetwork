@@ -209,12 +209,20 @@ let formulario_horarios = document.querySelector(".horarios-form");
 formulario_horarios.addEventListener("submit", function(e) {
     let hora_inicio_horario = document.getElementById("horaInicioHorario").value;
     let hora_fin_horario = document.getElementById("horaFinHorario").value;
+    let tipo_horario = document.getElementById("tipoHorario").value; // clase o recreo
 
-    if (!verificarHora(hora_inicio_horario)) {
+    if (!verificarHora(hora_inicio_horario) || !verificarHora(hora_fin_horario)) {
         e.preventDefault();
+        return;
     }
-    if (!verificarHora(hora_fin_horario)) {
+    if (!validarHorario(tipo_horario, hora_inicio_horario, hora_fin_horario)) {
         e.preventDefault();
+        return;
+    }
+    if (haySolapamiento(hora_inicio_horario, hora_fin_horario, horariosExistentes)) {
+        alert("El horario se solapa con otra clase o recreo.");
+        e.preventDefault();
+        return;
     }
 });
 
@@ -227,9 +235,8 @@ function verificarHora(hora) {
     return true;
 }
 
-// Nueva función para validar el rango y duración
+// Validar rango y duración según tipo
 function validarHorario(tipo, horaInicio, horaFin) {
-    // Convertir a minutos desde las 00:00
     function aMinutos(hora) {
         let [h, m] = hora.split(':').map(Number);
         return h * 60 + m;
@@ -238,9 +245,8 @@ function validarHorario(tipo, horaInicio, horaFin) {
     let fin = aMinutos(horaFin);
 
     if (tipo === "clase") {
-        // Horario permitido: 07:00 a 17:00
         let minInicio = aMinutos("07:00");
-        let maxFin = aMinutos("17:0");
+        let maxFin = aMinutos("17:00");
         if (inicio < minInicio || fin > maxFin) {
             alert("Las clases deben estar entre 07:00 y 17:00");
             return false;
@@ -257,3 +263,33 @@ function validarHorario(tipo, horaInicio, horaFin) {
     }
     return true;
 }
+
+// Verificar solapamiento de horarios
+function haySolapamiento(nuevoInicio, nuevoFin, horariosExistentes) {
+    function aMinutos(hora) {
+        let [h, m] = hora.split(':').map(Number);
+        return h * 60 + m;
+    }
+    let inicioNuevo = aMinutos(nuevoInicio);
+    let finNuevo = aMinutos(nuevoFin);
+
+    for (let horario of horariosExistentes) {
+        let inicioExistente = aMinutos(horario.inicio);
+        let finExistente = aMinutos(horario.fin);
+        if (inicioNuevo < finExistente && finNuevo > inicioExistente) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Ejemplo de uso en el formulario de horarios
+let horariosExistentes = [
+    // {inicio: "07:00", fin: "07:45", tipo: "clase"},
+    // {inicio: "07:45", fin: "07:50", tipo: "recreo"}
+];
+
+let formulario_dependencias = document.querySelector(".dependencias-form");
+formulario_dependencias.addEventListener("submit", function(e) {
+    
+});
