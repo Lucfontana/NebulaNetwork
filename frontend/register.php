@@ -187,13 +187,16 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
         </div><div class="div-labels">
         <label for="name" class="label">Nombre:</label>
             <input class="input-register" type="text"  name="name" id="nombreSuperusuario" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
-        </div><div class="div-labels">
+        </div>
+        <div class="div-labels">
         <label for="apellido" class="label">Apellido:</label>
             <input class="input-register" type="text"  name="apellido" id="apellidoSuperusuario" maxlength="20" minlength="8"  required placeholder="Ingresa apellido">
         </div>
+        <div class="div-labels">
         <label for="email" class="label">Email:</label>
             <input class="input-register" type="email"  name="email" id="emailSuperusuario" maxlength="30" minlength="8"  required placeholder="Ingresa Email">
-        </div><div class="div-labels">
+        </div>
+        <div class="div-labels">
         <div class="div-labels">
         <label for="acceso" class="label">Nivel de Acceso:</label>
             <select class="input-register" type="text"  name="acceso" id="acceso" maxlength="20" minlength="8"  required placeholder="">
