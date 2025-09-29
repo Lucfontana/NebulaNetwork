@@ -162,7 +162,7 @@ formulario_recursos.addEventListener("submit", function(e) {
     let nombre_recurso = document.getElementById("nombreRecurso").value;
     let estado_recurso = document.getElementById("estadoRecurso").value;
 
-    if (!verificarString(nombre_recurso, "nombre")) {
+    if (!verificarNombreEspacio(nombre_recurso)) {
         e.preventDefault();
     }
 
@@ -174,13 +174,27 @@ formulario_espacios.addEventListener("submit", function(e) {
     let capacidad_espacio = document.getElementById("capacidadEspacio").value;
     let tipo_espacio = document.getElementById("tipoEspacio").value;
 
-    if (!verificarString(nombre_espacio, "nombre")) {
+    if (!verificarNombreEspacio(nombre_espacio)) {
         e.preventDefault();
     }
     if (!verificarCapacidad(capacidad_espacio)) {
         e.preventDefault();
     }
 });
+
+function verificarNombreEspacio(nombre) {
+    // Permite letras, números, espacios y tildes
+    let regex = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/;
+    if (nombre.length < 2 || nombre.length > 40) {
+        alert("El nombre del espacio debe tener entre 2 y 40 caracteres");
+        return false;
+    }
+    if (!regex.test(nombre)) {
+        alert("El nombre del espacio solo puede contener letras, números y espacios");
+        return false;
+    }
+    return true;
+}
 
 function verificarCapacidad(capacidad) {
     let regex = /^\d+$/;
