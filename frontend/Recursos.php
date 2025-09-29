@@ -3,9 +3,7 @@ include_once('../backend/db/conexion.php');
 
 $connect = conectar_a_bd();
 $sql = "SELECT * FROM recursos";
-$sql2 = "SELECT * FROM espacios_fisicos";
 
-$query2 = mysqli_query($connect, $sql2);
 $query = mysqli_query($connect, $sql);
 ?>
 
@@ -38,10 +36,10 @@ $query = mysqli_query($connect, $sql);
                     <th class="boton-titulo">Borrar</th>
                     <th class="boton-titulo">Editar</th>
                 </tr>
-                <?php while ($row = mysqli_fetch_array($query)): ?>
+                <?php while ($row = mysqli_fetch_array($query) || $row): ?>
                     <tr class="mostrar-datos">
                         <th class="nombre"><?= $row['id_recurso'] ?></th>
-                        <th class="nombre"><?= $row2['id_espacio'] ?></th>
+                        <th class="nombre"><?= $row['id_espacio'] ?></th>
                         <th class="nombre"><?= $row['nombre'] ?></th>
                         <th class="nombre"><?= $row['estado'] ?></th>
                         <th class="ultimo-dato"><?= $row['tipo'] ?></th>
@@ -105,7 +103,7 @@ $query = mysqli_query($connect, $sql);
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
     <script src="js/sideMenu.js"></script>
-    <script src="/frontend/js/confirm-cursos.js"></script>
+    <script src="/frontend/js/confirm-recursos.js"></script>
 </body>
 
 </html>
