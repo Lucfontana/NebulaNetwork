@@ -618,6 +618,10 @@ dialog {
     transition: 1s;
 }
 
+.swal-alto {
+    z-index: 10000 !important;
+}
+
 .registro-div {
     display: flex;
     align-items: center;
