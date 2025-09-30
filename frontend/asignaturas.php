@@ -75,7 +75,7 @@ session_start();
                 <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
             </div>
             <div>
-                <input type="submit" value="Actualizar Infomacion" id="actualizar"></input> 
+                <input type="submit" value="Actualizar Infomacion" class="actualizar" id="actualizar"></input> 
                 <input type="button" value="Cancelar" id="cancelarEdit"></input>
             </div>
         </form>

@@ -84,7 +84,7 @@ $query = mysqli_query($connect, $sql);
                     <input class="class-datos-editar" type="text" name="direccion" id="direccion_edit" maxlength="20" minlength="3" required placeholder="Ingresa direccion">
                 </div>
                 <div>
-                    <input type="submit" value="Actualizar Infomacion" id="actualizar"></input>
+                    <input type="submit" value="Actualizar Infomacion" class="actualizar" id="actualizar"></input>
                     <input type="button" value="Cancelar" id="cancelarEdit"></input>
                 </div>
             </form>

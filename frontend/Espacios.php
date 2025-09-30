@@ -86,7 +86,7 @@ $query = mysqli_query($connect, $sql);
                     </select>
                 </div>
                 <div>
-                    <input type="submit" value="Actualizar Infomacion" id="actualizar"></input>
+                    <input type="submit" value="Actualizar Infomacion" class="actualizar" id="actualizar"></input>
                     <input type="button" value="Cancelar" id="cancelarEdit"></input>
                 </div>
             </form>

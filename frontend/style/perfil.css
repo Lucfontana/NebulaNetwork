@@ -1,0 +1,137 @@
+body {
+    background-image: radial-gradient(#9195d8 0.9px, #d9d9f4 0.9px);
+    background-size: 18px 18px;
+}
+
+.body-perfil {
+    flex-direction: column;
+    justify-content: left;
+    align-items:start;
+    background-image: radial-gradient(hsl(0, 0%, 0%) 0.9px, #acacff 0.9px);
+    background-size: 18px 18px;
+    margin: 5%;
+    margin-top: 10%;
+    border-radius: 25px;
+    border-style: solid;
+    padding: 20px;
+    width: 90%;
+}
+
+.header-perfil {
+    display: flex;
+}
+
+.icono-perfil {
+}
+
+.bienvenida-perfil {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: #7e7ee2;
+    height: 80px;
+    padding: 10px;
+}
+
+.contenido-perfil{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-left: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+    color: black;
+    background-color: #7e7ee2;
+    padding: 20px;
+    width: 70%;
+}
+
+.editar-perfil {
+    height: 60px;
+    margin-top: 25px;
+    padding: 10px;
+    transition: 1s;
+}
+
+.editar-perfil:hover {
+    scale: 1.2;
+    cursor: pointer;
+    transition: 1s;
+}
+
+#editar-nombre {
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+
+}
+
+#dialog-change-name {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+#dialog-change-name>form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: aliceblue;
+    width: 50%;
+    padding: 40px;
+    border-radius: 10px;
+} 
+
+#dialog-change-name > form > div > label {
+    margin-top: 20px;
+}
+
+.btn-cambiar-nombre {
+    background-color: #7e7ee2;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    transition: 0.5s;
+}
+
+.btn-cambiar-nombre:hover {
+    background-color: #5c5ce0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.nombre-editar {
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: black;
+}       
+
+.icono-perfil {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    background: white;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: black
+}
+
+.change-nombre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}

@@ -875,7 +875,7 @@ th {
     border-radius: 10px;
 } 
 
-.overlay-edit > form > div > label {
+#overlay-edit > form > div > label {
     margin-top: 20px;
 }
 
@@ -884,7 +884,7 @@ th {
     padding: 5px;
 }
 
-#actualizar {
+.actualizar {
     padding: 10px;
     border-style: none;
     background-color: #ff6262;
@@ -894,7 +894,8 @@ th {
 
 }
 
-#actualizar:hover {
+
+.actualizar:hover {
     background-color: #e03535;
     scale: 1.03;
     transition: 1s;

@@ -75,7 +75,7 @@ $query = mysqli_query($connect, $sql);
                     <input class="class-datos-editar" type="text" name="cupos" id="cupos_edit" maxlength="20" minlength="3" required placeholder="Ingresa Cupos Disponibles">
                 </div>
                 <div>
-                    <input type="submit" value="Actualizar Infomacion" id="actualizar"></input>
+                    <input type="submit" value="Actualizar Infomacion" id="actualizar" class="actualizar"></input>
                     <input type="button" value="Cancelar" id="cancelarEdit"></input>
                 </div>
             </form>
