@@ -53,6 +53,10 @@ session_start();
 </head>
 <link rel="stylesheet" href="style/style.css">
 
+    <?php if (!isset($_SESSION['nivel_acceso'])):?>
+        <?php include_once('error.php')?>
+    <?php else:?>
+
 <body>
     <!-- trae las barras de navegacion (sidebar y superior) -->
     <?php include 'nav.php'; ?>
@@ -310,7 +314,7 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
 </dialog>
 
 <dialog>
-    <form id="form-registro" class="registro-div asignatura-form" action="../backend/functions/asignaturas/asignaturas_api.php" method="POST">
+    <form id="form-registro" class="registro-div asignatura-form">
     <h1>Registro de Asignaturas</h1><hr>
         <div class="div-labels">
         <label for="name" class="label">Nombre:</label>
@@ -432,7 +436,7 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
      <footer id="footer" class="footer">
         <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
     </footer>
-
+   <?php endif;?>
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"

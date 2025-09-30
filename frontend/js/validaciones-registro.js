@@ -10,22 +10,52 @@
                                     //no pq todos los formularios tienen la misma id y eso afectaria el
                                     //register-modal que hizo lautaro (CREO, si quieren prueben)
 let formulario_asignaturas = document.querySelector(".asignatura-form");
+                                                //Llama a la funcion validar_asignaturas
+formulario_asignaturas.addEventListener("submit", validar_asignaturas);
 
-formulario_asignaturas.addEventListener("submit", function(e) {
-    //Aca traes todos los valores del formulario, asignaturas solo tiene uno entonces se trae uno
+function validar_asignaturas(evento) {
+    
+    // Evita que se recargue la página
+    evento.preventDefault();
+
+    // Obtener el nombre de la asignatura (aca se llamarian a todos los datos)
     let nombre_asignatura = document.getElementById("nombreAsignatura").value;
 
-    //Aca, uno se fijaria que TODAS las funciones llamadas sean FALSE y previene el envio del formulario
-    //para que se muestre la alerta de error (en el caso de las asignaturas solo hay un campo, 
-    //por lo que se SOLO se verifica que el nombre sea correcto).
+    //se crea un objeto para tomar los valores del formulario (aca se pondrian todos los datos con .append)
+    const formData = new FormData();
+                    //id del campo      valor a pasarle
+    formData.append('nombreAsignatura', nombre_asignatura);
+    formData.append('registrarAsignatura', true);
 
-    //PERO, por ejemplo en profesores, deberias verificar la CI, la contrasena, nombre, apellido, etcetc y
-    //saber que todos son FALSE para que el formulario NO se envie
+    //Se llaman a todas las funciones de verificar
     if (!verificarString(nombre_asignatura, "nombre")){ // entre comillas ponemos "nombre" porque es lo que validamos, 
                                                         //Si verificaramos "apellido" ahi adentro iria apellido
-        e.preventDefault(); //Se previene el envio del formulario 
+        evento.preventDefault(); //Se previene el envio del formulario 
+        return;
     }
-});
+
+    // se le pasa al fetch el endpoint que genera la consulta de busqueda, se pone la direccion del php
+    fetch('../../backend/functions/asignaturas/asignaturas_api.php', {
+        method: 'POST',
+        body: formData
+    })
+
+    //se toma la respuesta y se devuelve en formato json
+    .then(response => response.json())
+    //la variable data se usa para recorrer el array asociativo del endpoint...
+    .then(data => {
+
+        //si el enpoint devuelve 1...
+        if (data.estado === 1) {
+            alert(`${data.mensaje}`);
+        } else {
+            alert(`${data.mensaje}`);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
 
 //------------------VALIDACIONES-------------------//
 //-------------------------------------------------//

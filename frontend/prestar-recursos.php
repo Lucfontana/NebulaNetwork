@@ -24,6 +24,8 @@ $recursos_info = $stmt->get_result();
 
 session_start();
 
+$sql = "SELECT * FROM recursos 
+        WHERE tipo = 'uso'";
 
 ?>
 
@@ -44,7 +46,7 @@ session_start();
     <!-- trae las barras de navegacion (sidebar y superior) -->
     <?php include 'nav.php'; ?>
 
-    <div id="contenido" class="contenido contenido-centrado">
+    <main id="contenido" class="contenido-centrado">
 
         <div id="register-content">
             <div class="article-register">
@@ -67,6 +69,33 @@ session_start();
         </div>
     </div>
 
+            <div id="contenido-mostrar-datos">
+            <h1>Espacios Fisicos</h1>
+            <table id="datos">
+                <tr>
+                    <th class="id">Id </th>
+                    <th class="nombre-titulo">Capacidad</th>
+                    <th class="nombre-titulo">Equipamiento</th>
+                    <th class="nombre-titulo">Nombre</th>
+                    <th class="titulo-ult">Tipo</th>
+                    <th class="boton-titulo">Borrar</th>
+                    <th class="boton-titulo">Editar</th>
+                </tr>
+                <?php while ($row = mysqli_fetch_array($sql)): ?>
+                    <tr class="mostrar-datos">
+                        <th class="nombre"><?= $row['id_espacio'] ?></th>
+                        <th class="nombre"><?= $row['capacidad'] ?></th>
+                        <th class="nombre"><?= $row['equipamiento'] ?></th>
+                        <th class="nombre"><?= $row['nombre'] ?></th>
+                        <th class="ultimo-dato"><?= $row['tipo'] ?></th>
+                        <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_espacio'] ?>">Eliminar</a></th>
+                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_espacio'] ?>" data-nombre="<?= $row['nombre'] ?>" data-capacidad="<?= $row['capacidad'] ?>" data-equip="<?= $row['equipamiento'] ?>" data-tipo="<?= $row['tipo'] ?>">Editar</a></th>
+                    </tr>
+                <?php endwhile; ?>
+            </table>
+        </div>
+    </main>
+    
 <!--    Inicio de Ventanas Emergentes    -->
 
 <div id="div-dialogs">
@@ -95,6 +124,7 @@ session_start();
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registroProfesor"></input>
 </form>
+
 
 <!-- 
 Se tiene que declarar el boton como de tipo "button" pq por defecto,
@@ -165,9 +195,9 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
     <?php include 'nav.php'; ?>
     <body>
         
-    
+            <br><br><br><br><br><br><br>
     <div class="contenido">
-        <p>HOLA, SOS UN PROFESOR!!</p>
+        <h1>HOLA, SOS UN PROFESOR!!</h1>
     </div>
 
     <footer id="footer" class="footer">
