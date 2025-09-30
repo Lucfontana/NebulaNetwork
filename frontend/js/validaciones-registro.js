@@ -40,8 +40,6 @@ function validar_asignaturas(evento) {
         body: formData
     })
 
-
-
     //se toma la respuesta y se devuelve en formato json
     .then(response => response.json())
     //la variable data se usa para recorrer el array asociativo del endpoint...
@@ -57,33 +55,6 @@ function validar_asignaturas(evento) {
     .catch(error => {
         console.error('Error:', error);
     });
-}
-
-//---------------FUNCIONES DE ALERTAS---------------//
-function alerta_success(mensaje, ventana_a_redirigir, tipo_dato){
-        Swal.fire({
-            title: "Exito!",
-            text: mensaje,
-            icon: "success",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#3085d6",
-            confirmButtonText: "Ver " + tipo_dato,
-            cancelButtonText: "OK"
-            }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = ventana_a_redirigir;
-            }
-        });
-}
-
-function alerta_fallo(mensaje){
-            Swal.fire({
-                title: "Ups...",
-                text: mensaje,
-                icon: "error"
-            });
-
 }
 
 //------------------VALIDACIONES-------------------//
@@ -370,3 +341,30 @@ let formulario_dependencias = document.querySelector(".dependencias-form");
 formulario_dependencias.addEventListener("submit", function(e) {
     
 });
+
+//---------------FUNCIONES DE ALERTAS---------------//
+function alerta_success(mensaje, ventana_a_redirigir, tipo_dato){
+        Swal.fire({
+            title: "Exito!",
+            text: mensaje,
+            icon: "success",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Ver " + tipo_dato,
+            cancelButtonText: "OK"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = ventana_a_redirigir;
+            }
+        });
+}
+
+function alerta_fallo(mensaje){
+            Swal.fire({
+                title: "Ups...",
+                text: mensaje,
+                icon: "error"
+            });
+
+}
