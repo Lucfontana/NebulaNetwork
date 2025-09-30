@@ -1,6 +1,8 @@
 <?php
 
-// session_start();
+//session_start();
+
+include_once 'functions.php';
 
 ?>
 
@@ -15,6 +17,7 @@
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
 <link rel="stylesheet" href="style/style.css">
+
 
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary navStyle">
@@ -31,13 +34,13 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">INFORMACIÓN</a>
+                        <a class="nav-link" href="#"><?= t("nav_info") ?></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">CURSOS</a>
+                        <a class="nav-link" href="#"><?= t("nav_courses") ?></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">DOCENTES</a>
+                        <a class="nav-link" href="#"><?= t("nav_teachers") ?></a>
                     </li>
                 </ul>
             </div>
@@ -47,15 +50,22 @@
 
     <aside id="aside">
         <ul class="link-aside-text" id="link-aside-text">
-            <li><a class="link-aside" href="Login.php">Mi cuenta</a></li>
+            <li><a class="link-aside" href="Login.php"><?= t("aside_account") ?></a></li>
 
-            <li><a class="link-aside">Horario</a></li>
+            <li><a class="link-aside"><?= t("aside_schedule") ?></a></li>
 
-            <li><a class="link-aside">Galeria</a></li>
+            <li><a class="link-aside"><?= t("aside_gallery") ?></a></li>
 
-            <li><a class="link-aside">Eventos</a></li>
+            <li><a class="link-aside"><?= t("aside_events") ?></a></li>
 
-            <li><a class="link-aside">Notifi- <br>caciones</a></li>
+            <li><a class="link-aside"><?= t("aside_notifications") ?></a></li>
+ 
+            <li><a class="link-aside" href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
+                <?= $lang === 'es' ? 'English' : 'Español' ?>
+            </a></li>
+       
+
+
         </ul>
 
         <ul class="link-aside-images" id="link-aside-images">
