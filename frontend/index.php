@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +38,7 @@
     <!-- Botones debajo -->
     <div class="bienvenida-botones">
         <a href="register.php"><button class="btn-bienvenida">Ingresar información</button></a>
-        <button class="btn-bienvenida">Cursos</button>
+        <a href="prestar-recursos.php"><button class="btn-bienvenida">Recursos</button></a>
         <button class="btn-bienvenida">Docentes</button>
     </div>
  </div>

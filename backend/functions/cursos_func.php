@@ -7,13 +7,10 @@ $con = conectar_a_bd();
 if(isset($_POST['registrarCursos'])){
     $nombre_curso = strip_tags(trim($_POST['name']));
     $capacidad = (int)$_POST['capacity'];
-    $prerequisitos = strip_tags(trim($_POST['requisitos']));
-    $descripcion = strip_tags(trim($_POST['description']));
-    $cupos = (int)$_POST['cupos'];
 
     $existe = consultar_si_existe_curso($con, $nombre_curso);
 
-    insert_datos_cursos($con, $existe, $nombre_curso, $capacidad, $prerequisitos, $descripcion, $cupos);
+    insert_datos_cursos($con, $existe, $nombre_curso, $capacidad);
 
 }
 function consultar_si_existe_curso($con, $nombre_curso){
@@ -37,11 +34,11 @@ $result = $stmt->get_result();
 }
 
 //Se pasan los valores como parametros y se ingresan en la bd
-function insert_datos_cursos($con, $existe, $nombre_curso, $capacidad, $prerequisitos, $descripcion, $cupos){
+function insert_datos_cursos($con, $existe, $nombre_curso, $capacidad){
     if ($existe == false){
-        $query_insertar = "INSERT INTO cursos (nombre, capacidad, prerresquisitos, descripcion, cupo_disponible) VALUES ( ?, ?, ?, ?, ?)";
+        $query_insertar = "INSERT INTO cursos (nombre, capacidad) VALUES (?, ?)";
         $stmt = $con->prepare($query_insertar);
-        $stmt->bind_param("sissi", $nombre_curso, $capacidad, $prerequisitos, $descripcion, $cupos);
+        $stmt->bind_param("si", $nombre_curso, $capacidad);
         $stmt->execute();
         echo "Insertado correctamente";
     } else {

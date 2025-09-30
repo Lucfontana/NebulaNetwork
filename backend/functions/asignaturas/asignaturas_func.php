@@ -23,16 +23,25 @@ $result = $stmt->get_result();
 }
 
 function insert_datos_asignatura($con, $existe, $nombre){
+    // Array para almacenar la respuesta
+    $respuesta_json = array();
+
+
     if ($existe == false){
         $query_insertar = "INSERT INTO asignaturas (nombre) VALUES (?)";
         $stmt = $con->prepare($query_insertar);
         $stmt->bind_param("s", $nombre);
         $stmt->execute();
-        header("Location: ../../../frontend/asignaturas.php");
-        echo "Insertado correctamente";
+
+        $respuesta_json['estado'] = 1;
+        $respuesta_json['mensaje'] = "Insertado correctamente";
+
     } else {
-        echo "Esta asignatura ya existe";
+        $respuesta_json['estado'] = 0;
+        $respuesta_json['mensaje'] = "Esta asignatura ya existe";
     }
+
+    return $respuesta_json;
 }
 
 

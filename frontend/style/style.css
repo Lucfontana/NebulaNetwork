@@ -33,6 +33,9 @@ main {
     justify-content: center; /* centra horizontal */
     align-items: center;     /* centra vertical */
     padding: 20px;
+    background-color: #d9d9f4;
+    background-image: radial-gradient(#9195d8 0.9px, #d9d9f4 0.9px);
+    background-size: 18px 18px;
 }
 
 
@@ -156,14 +159,6 @@ main {
     transform: scale(1.08);
 }
 
-#grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    grid-template-areas:
-        'aside contenido contenido contenido contenido';
-    padding-top: 80px;
-}
 
 .hdrBackground{
     background-image: linear-gradient(
@@ -198,7 +193,10 @@ main {
     padding: 30px;
     margin: 8px 0 0 var(---marginAside);
     transition: var(---transitionSidebarExpanded);
-}
+    background-color: #d9d9f4;
+    opacity: 1;
+    background-image: radial-gradient(#9195d8 0.9px, #d9d9f4 0.9px);
+    background-size: 18px 18px;}
 
 /* 
 El se le añade la clase "activo" cuando se apreta el boton,
@@ -207,6 +205,11 @@ la izquierda porque el "aside" se agranda. */
 .contenido.activo {
     margin: 8px 0 0 var(---marginAsideActivo);
     transition: var(---transitionSidebarExpanded);
+}
+
+.contenido-centrado{
+    display: flex;
+    justify-content: center;
 }
 
 .secciones {
@@ -531,6 +534,7 @@ aside ul li:not(:last-child) a::after {
     border-color: rgb(137, 151, 163);
     border-width: 4px;
     transition: 1s;
+    text-align: center;
 }
 
 .article-register:hover {
@@ -550,6 +554,7 @@ aside ul li:not(:last-child) a::after {
     width: 80%;
     font-size: 30px;
     padding: 20px;
+    
 }
 
 .img-register {
@@ -612,6 +617,10 @@ dialog {
     scale: 1.05;
     background-color: rgb(32, 32, 214);
     transition: 1s;
+}
+
+.swal-alto {
+    z-index: 10000 !important;
 }
 
 .registro-div {
@@ -926,15 +935,17 @@ th {
 
 .error-body{
     position: relative;
-    background-color: rgba(84, 80, 80, 0.453);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background-color: #d9d9f4;
+    background-image: radial-gradient(#9195d8 0.9px, #d9d9f4 0.9px);
+    background-size: 18px 18px;
 }
 
 .error{
-    background-color: var(---navColor);
+    background-color: var(---contentColor);
     padding: 30px;
     border-radius: 20px;
     max-width: 400px;
@@ -968,7 +979,7 @@ th {
 }
 
 #boton-inicio:hover {
-    background-color: #2a3380;
+    background-color: #0f133a;
 }
 
 
