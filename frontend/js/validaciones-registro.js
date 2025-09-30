@@ -47,9 +47,9 @@ function validar_asignaturas(evento) {
 
         //si el enpoint devuelve 1...
         if (data.estado === 1) {
-            alert(`${data.mensaje}`);
+            alerta_success(`${data.mensaje}`, "asignaturas.php", "asignaturas");
         } else {
-            alert(`${data.mensaje}`);
+            alerta_fallo(`${data.mensaje}`);
         }
     })
     .catch(error => {
@@ -74,7 +74,7 @@ function verificarString(nombre, tipoDato){
     let regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; 
 
     if (nombre.length <= 2 || nombre.length >= 40) {
-        alert("El " + tipoDato + " ingresado debe tener entre 2 y 40 caracteres");
+        alerta_fallo("El " + tipoDato + " ingresado debe tener entre 2 y 40 caracteres");
         return false; //Se devuelve false para que el formulario NO se envie y se muestre la alerta
     } else {
 
@@ -82,7 +82,7 @@ function verificarString(nombre, tipoDato){
         //para evitar errores
         regex.lastIndex = 0; 
         if (!regex.test(nombre)){
-        alert("El " + tipoDato + " ingresado no puede contener caracteres especiales");  
+        alerta_fallo("El " + tipoDato + " ingresado no puede contener caracteres especiales");
         return false;
     } 
     }
@@ -124,12 +124,12 @@ formulario_profesores.addEventListener("submit", function(e) {
 function verificarEmail(email) {
     let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!regex.test(email)) {
-        alert("El email ingresado no es válido");
+        alerta_fallo("El email ingresado no es válido");
         return false;
     }
 
     if (email.length < 5 || email.length > 50) {
-        alert("El email ingresado debe tener entre 5 y 50 caracteres");
+        alerta_fallo("El email ingresado debe tener entre 5 y 50 caracteres");
         return false;
     }
     return true;
@@ -138,7 +138,7 @@ function verificarEmail(email) {
 function verificarFechanacimiento(fecha) {
     let regex = /^\d{4}-\d{2}-\d{2}$/;
     if (!regex.test(fecha)) {
-        alert("La fecha de nacimiento ingresada no es válida");
+        alerta_fallo("La fecha de nacimiento ingresada no es válida");
         return false;
     }
 
@@ -152,7 +152,7 @@ function verificarFechanacimiento(fecha) {
     }
 
     if (edad < 18 || edad > 100) {
-        alert("La edad debe estar entre 18 y 100 años");
+        alerta_fallo("La edad debe estar entre 18 y 100 años");
         return false;
     }
 
@@ -162,7 +162,7 @@ function verificarFechanacimiento(fecha) {
 
 function verificarDireccion(direccion) {
     if (direccion.length < 5 || direccion.length > 100) {
-        alert("La dirección ingresada debe tener entre 5 y 100 caracteres");
+        alerta_fallo("La dirección ingresada debe tener entre 5 y 100 caracteres");
         return false;
     }
     return true;
@@ -216,11 +216,11 @@ function verificarNombreEspacio(nombre) {
     // Permite letras, números, espacios y tildes
     let regex = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/;
     if (nombre.length < 2 || nombre.length > 40) {
-        alert("El nombre del espacio debe tener entre 2 y 40 caracteres");
+        alerta_fallo("El nombre del espacio debe tener entre 2 y 40 caracteres");
         return false;
     }
     if (!regex.test(nombre)) {
-        alert("El nombre del espacio solo puede contener letras, números y espacios");
+        alerta_fallo("El nombre del espacio solo puede contener letras, números y espacios");
         return false;
     }
     return true;
@@ -229,12 +229,12 @@ function verificarNombreEspacio(nombre) {
 function verificarCapacidad(capacidad) {
     let regex = /^\d+$/;
     if (!regex.test(capacidad)) {
-        alert("La capacidad ingresada no es válida");
+        alerta_fallo("La capacidad ingresada no es válida");
         return false;
     }
 
     if (capacidad < 1 || capacidad > 40) {
-        alert("La capacidad debe estar entre 1 y 40");
+        alerta_fallo("La capacidad debe estar entre 1 y 40");
         return false;
     }
     return true;
@@ -277,7 +277,7 @@ formulario_horarios.addEventListener("submit", function(e) {
 function verificarHora(hora) {
     let regex = /^([01]\d|2[0-3]):([0-5]\d)$/;
     if (!regex.test(hora)) {
-        alert("La hora ingresada no es válida");
+        alerta_fallo("La hora ingresada no es válida");
         return false;
     }
     return true;
@@ -341,3 +341,30 @@ let formulario_dependencias = document.querySelector(".dependencias-form");
 formulario_dependencias.addEventListener("submit", function(e) {
     
 });
+
+//---------------FUNCIONES DE ALERTAS---------------//
+function alerta_success(mensaje, ventana_a_redirigir, tipo_dato){
+        Swal.fire({
+            title: "Exito!",
+            text: mensaje,
+            icon: "success",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Ver " + tipo_dato,
+            cancelButtonText: "OK"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = ventana_a_redirigir;
+            }
+        });
+}
+
+function alerta_fallo(mensaje){
+            Swal.fire({
+                title: "Ups...",
+                text: mensaje,
+                icon: "error"
+            });
+
+}

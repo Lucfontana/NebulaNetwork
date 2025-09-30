@@ -1,0 +1,38 @@
+{
+  "es": {
+    "welcome": "¡Bienvenidos!",
+    "welcome_user": "¡Bienvenido, {user}!",
+    "description": "Bienvenido a la herramienta de gestión de institutos, donde podrás administrar la solicitud de recursos al igual que administrar horarios de profesores.",
+    "btn_info": "Ingresar información",
+    "btn_resources": "Recursos",
+    "btn_teachers": "Docentes",
+    "footer": "2025 ITSP. Todos los derechos reservados",
+
+    "nav_info": "INFORMACIÓN",
+    "nav_courses": "CURSOS",
+    "nav_teachers": "DOCENTES",
+    "aside_account": "Mi cuenta",
+    "aside_schedule": "Horario",
+    "aside_gallery": "Galería",
+    "aside_events": "Eventos",
+    "aside_notifications": "Notificaciones"
+  },
+  "en": {
+    "welcome": "Welcome!",
+    "welcome_user": "Welcome, {user}!",
+    "description": "Welcome to the institute management tool, where you can manage resource requests as well as teacher schedules.",
+    "btn_info": "Enter Information",
+    "btn_resources": "Resources",
+    "btn_teachers": "Teachers",
+    "footer": "2025 ITSP. All rights reserved",
+    
+    "nav_info": "INFORMATION",
+    "nav_courses": "COURSES",
+    "nav_teachers": "TEACHERS",
+    "aside_account": "My account",
+    "aside_schedule": "Schedule",
+    "aside_gallery": "Gallery",
+    "aside_events": "Events",
+    "aside_notifications": "Notifications"
+  }
+}

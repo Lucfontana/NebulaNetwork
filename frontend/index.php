@@ -1,11 +1,12 @@
 <?php
 
-session_start();
+include_once 'functions.php';
+
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= $lang ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -24,22 +25,19 @@ session_start();
     <!-- Texto de Bienvenidos -->
     <div class="bienvenida-texto">
         <?php if (!isset($_SESSION['ci'])): ?>
-        <h2>¡Bienvenidos!</h2>
+        <h2><?= t("welcome") ?></h2>
         <?php elseif (isset($_SESSION['ci'])): ?>
-        <h2>¡Bienvenido, <?= $_SESSION['nombre_usuario'];?>!</h2>
+         <h2><?= t("welcome_user", $_SESSION['nombre_usuario']); ?></h2>
         <?php endif; ?>
-        <p>
-            Bienvenido a la herramienta de gestión de institutos, donde podrás administrar la solicitud de recursos 
-            al igual que administrar horarios de profesores.
-        </p>
+        <p><?= t("description") ?></p>
     </div>
 
     <!-- PARA HACER: Los botones no son responsive D: -->
     <!-- Botones debajo -->
     <div class="bienvenida-botones">
-        <a href="register.php"><button class="btn-bienvenida">Ingresar información</button></a>
-        <a href="prestar-recursos.php"><button class="btn-bienvenida">Recursos</button></a>
-        <button class="btn-bienvenida">Docentes</button>
+        <a href="register.php"><button class="btn-bienvenida"><?= t("btn_info") ?></button></a>
+        <a href="prestar-recursos.php"><button class="btn-bienvenida"><?= t("btn_resources") ?></button></a>
+        <button class="btn-bienvenida"><?= t("btn_teachers") ?></button>
     </div>
  </div>
 
@@ -48,7 +46,8 @@ session_start();
 
     </main> -->
      <footer id="footer" class="footer">
-        <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
+       <p> &copy; <b> <?= t("footer") ?> </b></p>
+
     </footer>
 
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
