@@ -340,7 +340,7 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
         </div>
         <div class ="div-labels">
             <label for="tipo">Tipo de horario:</label>
-                <select class="input-register" type="text"  name="tipo" id="tipoHorario" required placeholder="">
+                <select class="input-register" type="text"  name="tipo_horario" id="tipoHorario" required placeholder="">
                     <option value =""></option>
                     <option value="recreo">Recreo</option>  
                     <option value="clase">Clase</option>

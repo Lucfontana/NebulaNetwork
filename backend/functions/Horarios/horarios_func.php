@@ -25,11 +25,11 @@ function consultar_si_existe_horario($con, $hora_inicio) {
 }
 
 //Se pasan los valores como parametros y se ingresan en la bd
-function insert_datos_horas($con, $existe, $hora_inicio, $hora_final){
+function insert_datos_horas($con, $existe, $hora_inicio, $hora_final, $tipo_horario){
     if ($existe == false){
-        $query_insertar = "INSERT INTO horarios (hora_inicio, hora_final) VALUES (?, ?)";
+        $query_insertar = "INSERT INTO horarios (hora_inicio, hora_final, tipo) VALUES (?, ?, ?)";
         $stmt = $con->prepare($query_insertar);
-        $stmt->bind_param("ss", $hora_inicio, $hora_final);
+        $stmt->bind_param("sss", $hora_inicio, $hora_final, $tipo_horario);
         $stmt->execute();
         echo "Insertado correctamente";
     } else {
