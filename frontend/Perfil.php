@@ -35,26 +35,26 @@ session_start();
         </div>
         <div class="contenido-perfil">
             <div>
-                <?php if (!isset($_SESSION['nivel_acceso'])):?>
+                <?php if (!isset($_SESSION['nivel_acceso'])): ?>
                     <h2>Rango Profesor</h2>
-                <?php elseif ($_SESSION['nivel_acceso'] == "1"):?>
+                <?php elseif ($_SESSION['nivel_acceso'] == "1"): ?>
                     <h2>Rango Adscripta</h2>
-                <?php elseif ($_SESSION['nivel_acceso'] == "2"):?>
+                <?php elseif ($_SESSION['nivel_acceso'] == "2"): ?>
                     <h2>Rango Secretaria</h2>
-                <?php elseif ($_SESSION['nivel_acceso'] == "3"):?>
+                <?php elseif ($_SESSION['nivel_acceso'] == "3"): ?>
                     <h2>Rango Administrador</h2>
-                <?php endif;?>
+                <?php endif; ?>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex incidunt iure deserunt quia quam facilis eius quisquam laudantium mollitia facere, a molestias ea iste neque odio tenetur non possimus veniam.</p>
             </div>
             <div>
                 <h2>Contraseña</h2>
                 <p>************</p>
-                <button class="btn-cambiar-nombre">Cambiar contraseña</button>
+                <button id="change" class="btn-cambiar-nombre">Cambiar contraseña</button>
             </div>
         </div>
 
-        <div id="dialog-change-name">
-            <form action="\backend\functions\edit-name-user.php" method="POST">
+        <div id="dialog-change-name" class="dialog-change">
+            <form action="/backend/functions/edit-name-user.php" method="POST">
                 <h1>Cambia tu Nombre</h1>
                 <hr>
                 <div class="change-nombre">
@@ -65,22 +65,36 @@ session_start();
                     <input class="nombre-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa tu nuevo nombre">
                 </div>
                 <div>
-                     <?php if (!isset($_SESSION['nivel_acceso'])):?>
-                    <input type="submit" value="Actualizar Infomacion" class="actualizar" id="actualizar_profesor"></input>
-                <?php elseif ($_SESSION['nivel_acceso'] = "1"):?>
-                    <input type="submit" value="Actualizar Infomacion" class="actualizar" id="actualizar_adscripta"></input>
-                <?php elseif ($_SESSION['nivel_acceso'] = "2"):?>
-                    <input type="submit" value="Actualizar Infomacion" class="actualizar" id="actualizar_secretaria"></input>
-                <?php elseif ($_SESSION['nivel_acceso'] = "3"):?>
-                    <input type="submit" value="Actualizar Infomacion" class="actualizar" id="actualizar_administrador"></input>
-                <?php endif;?>
+                    <?php if (!isset($_SESSION['nivel_acceso'])): ?>
+                        <input type="submit" value="Actualizar Infomacion" class="actualizar" id="actualizar_profesor"></input>
+                    <?php elseif ($_SESSION['nivel_acceso'] = "1"): ?>
+                        <input type="submit" value="Actualizar Infomacion" class="actualizar" id="actualizar_adscripta"></input>
+                    <?php elseif ($_SESSION['nivel_acceso'] = "2"): ?>
+                        <input type="submit" value="Actualizar Infomacion" class="actualizar" id="actualizar_secretaria"></input>
+                    <?php elseif ($_SESSION['nivel_acceso'] = "3"): ?>
+                        <input type="submit" value="Actualizar Infomacion" class="actualizar" id="actualizar_administrador"></input>
+                    <?php endif; ?>
                     <input type="button" value="Cancelar" id="cancelarEdit"></input>
+                </div>
+            </form>
+        </div>
+
+        <div id="dialog-change-passwd" class="dialog-change">
+            <form action="/backend/functions/edit-name-user.php" method="POST">
+                <h1>Cambia tu contraseña</h1>
+                <div>
+                    <label for="passwd" class="label">Ingrese su contraseña actual:</label>
+                    <input class="nombre-editar" type="text" name="passwd" id="passwd" maxlength="20" minlength="3" required placeholder="Ingresa su contraseña actual">
+                </div>
+                <div>
+                    <label for="newpasswd" class="label">Ingrese su nueva contraseña:</label>
+                    <input class="nombre-editar" type="text" name="newpasswd" id="newpasswd" maxlength="20" minlength="3" required placeholder="Ingresa su nueva contraseña">
                 </div>
             </form>
         </div>
     </main>
 
-      <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
+    <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
