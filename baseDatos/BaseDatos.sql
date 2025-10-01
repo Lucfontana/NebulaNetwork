@@ -4,6 +4,11 @@ Create table cursos (
     capacidad int not null
 );
 
+create table orientacion (
+    id_orientacion int AUTO_INCREMENT primary key not null,
+    nombre varchar(50) not null
+);
+
 create table asignaturas (
     id_asignatura int AUTO_INCREMENT primary key not null,
     nombre varchar(50) not null
