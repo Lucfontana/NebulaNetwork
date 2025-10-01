@@ -153,10 +153,10 @@ session_start();
             <input class="input-register" type="password" name="contrasena" id="contrasenaProfesor" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
         </div><div class="div-labels">
         <label for="name" class="label">Nombre:</label>
-            <input class="input-register" type="text"  name="name" id="nombreProfesor" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="text"  name="name" id="nombreProfesor" maxlength="20" minlength="3"  required placeholder="Ingresa nombre">
         </div><div class="div-labels">
         <label for="apellido" class="label">Apellido:</label>
-            <input class="input-register" type="text"  name="apellido" id="apellidoProfesor" maxlength="20" minlength="8"  required placeholder="Ingresa apellido">
+            <input class="input-register" type="text"  name="apellido" id="apellidoProfesor" maxlength="20" minlength="3"  required placeholder="Ingresa apellido">
         </div><div class="div-labels">
         <label for="email" class="label">Email:</label>
             <input class="input-register" type="email"  name="email" id="emailProfesor" maxlength="30" minlength="8"  required placeholder="Ingresa Email">
@@ -192,11 +192,11 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
             <input class="input-register" type="password" name="password" id="contrasenaSuperusuario" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
         </div><div class="div-labels">
         <label for="name" class="label">Nombre:</label>
-            <input class="input-register" type="text"  name="name" id="nombreSuperusuario" maxlength="20" minlength="8"  required placeholder="Ingresa nombre">
+            <input class="input-register" type="text"  name="name" id="nombreSuperusuario" maxlength="20" minlength="3"  required placeholder="Ingresa nombre">
         </div>
         <div class="div-labels">
         <label for="apellido" class="label">Apellido:</label>
-            <input class="input-register" type="text"  name="apellido" id="apellidoSuperusuario" maxlength="20" minlength="8"  required placeholder="Ingresa apellido">
+            <input class="input-register" type="text"  name="apellido" id="apellidoSuperusuario" maxlength="20" minlength="3"  required placeholder="Ingresa apellido">
         </div>
         <div class="div-labels">
         <label for="email" class="label">Email:</label>

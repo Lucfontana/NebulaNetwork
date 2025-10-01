@@ -32,7 +32,7 @@ if (!verificarCI(CI)) {
 
 })
 
-function verificarCI (CI) {
+export function verificarCI (CI) {
    if (/^\d{8}$/.test(CI)) {
     return true;
    } else {
@@ -49,7 +49,7 @@ function tamanoPassword (contrasena) {
 }
 
 //Llama a las funciones para obtener; la CI dividida en elementos de un arreglo y el digito verificador
-function verificarExistenciaCI(CI, multiplicadorACadaUno){
+export function verificarExistenciaCI(CI, multiplicadorACadaUno){
 
     let digitos_CI_en_int = CIaArreglo(CI);
     let digitoVerif = mostrarDigVerificador(CI, multiplicadorACadaUno)
