@@ -147,7 +147,7 @@ session_start();
     <h1>Registro de Profesores</h1><hr>
         <div class="div-labels">
         <label for="CI" class="label">Cedula de Identidad:</label>
-            <input class="input-register" type="number"  name="CI" id="ciProfesor" maxlength="8" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
+            <input class="input-register" type="text"  name="CI" id="ciProfesor" maxlength="8" pattern="\d{8}" required placeholder="Ingresa sin puntos ni guiones">
         </div><div class="div-labels">
         <label for="contrasena" class="label">Contraseña:</label>
             <input class="input-register" type="password" name="contrasena" id="contrasenaProfesor" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
@@ -186,7 +186,7 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
 
         <div class="div-labels">
         <label for="CI" class="label">Cedula de Identidad:</label>
-            <input class="input-register" type="number"  name="CI" id="ciSuperusuario" maxlength="8"  required placeholder="Ingresa sin puntos ni guiones">
+            <input class="input-register" type="text"  name="CI" id="ciSuperusuario" maxlength="8" pattern="\d{8}" required placeholder="Ingresa sin puntos ni guiones">
         </div><div class="div-labels">
         <label for="contrasena" class="label">Contraseña:</label>
             <input class="input-register" type="password" name="password" id="contrasenaSuperusuario" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
