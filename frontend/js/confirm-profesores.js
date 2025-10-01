@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnConfirmar = document.getElementById("confirmar");
   const overlayEdit = document.getElementById("overlay-edit");
   const btnCancelarEdit = document.getElementById("cancelarEdit");
-  const btnActualizar = document.getElementById("actualizar");
 
   let editID = null;
   let nombre = null;
