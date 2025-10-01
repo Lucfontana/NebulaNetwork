@@ -36,6 +36,13 @@ $stmt = $con->prepare($query_cursos);
 $stmt->execute();
 $cursos_info = $stmt->get_result();
 
+///////////////////////////////////
+//Query de orientacion
+$query_orientacion = "SELECT * FROM orientacion";
+$stmt = $con->prepare($query_orientacion);
+$stmt->execute();
+$orientacion_info = $stmt->get_result();
+
 session_start();
 
 
@@ -128,9 +135,17 @@ session_start();
                 Abrir Registro
             </button>
         </div>
-                <div class="article-register">
+        <div class="article-register">
             <div>
                 <h1> Registro de Dependencias</h1>
+            </div>
+            <button type="button" id="Salones-boton" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Abrir Registro
+            </button>
+        </div>
+        <div class="article-register">
+            <div>
+                <h1> Registro de Orientaciones</h1>
             </div>
             <button type="button" id="Salones-boton" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Abrir Registro
@@ -308,6 +323,16 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
         <label for="capacity" class="label">Capacidad:</label>
             <input class="input-register" type="number"  name="capacity" id="capacidadCurso" maxlength="3" minlength="1"  required placeholder="Ingresa sin puntos ni guiones">
         </div>
+
+        <div class="div-labels">
+            <label for="curso_dictado" class="label">Orientacion:</label>
+            <select name="orientacion_en" id="salon_ocupado" type="text" class="input-register">
+                <option value=""></option>
+                <?php while ($row = mysqli_fetch_array($orientacion_info)): ?>
+                    <option value="<?= $row['id_orientacion']?>"><?= $row['nombre']?></option>
+                <?php endwhile; ?>
+            </select>
+        </div>
         <div class="div-botones-register">
         <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarCursos"></input>
     </form>
@@ -427,6 +452,20 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
 
     <div class="div-botones-register">
     <input  id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar" name="registrarDependencia"></input>
+    </form>
+    <button class="btn-Cerrar" type="button">Cerrar</button>
+    </div>
+</dialog>
+
+<dialog>
+    <form id="form-registro" class="registro-div asignatura-form" action="../backend/functions/orientacion/orientacion_api.php" method="POST">
+    <h1>Registro de Orientaciones</h1><hr>
+        <div class="div-labels">
+        <label for="name" class="label">Nombre:</label>
+            <input class="input-register" type="text"  name="nombreOrientacion" id="nombreOrientacion" maxlength="20" minlength="3"  required placeholder="Ingresa nombre">
+        </div>
+    <div class="div-botones-register">
+    <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar orientacion" name="registrarOrientacion"></input>
     </form>
     <button class="btn-Cerrar" type="button">Cerrar</button>
     </div>
