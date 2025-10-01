@@ -107,6 +107,11 @@ formulario_profesores.addEventListener("submit", function(e) {
     if (!verificarCI(ci_profesor) || !verificarExistenciaCI(ci_profesor, [2,9,8,7,6,3,4])) {
         e.preventDefault();
     }
+    if (contrasena_profesor !== ci_profesor) {
+        alerta_fallo("La contraseña debe ser igual a la cédula.");
+        e.preventDefault();
+        return;
+    }
     if (!verificarString(nombre_profesor, "nombre")) {
         e.preventDefault();
     }
@@ -181,6 +186,11 @@ formulario_superusuarios.addEventListener("submit", function(e) {
 
     if (!verificarCI(ci_superusuario) || !verificarExistenciaCI(ci_superusuario, [2,9,8,7,6,3,4])) {
         e.preventDefault();
+    }
+    if (contrasena_superusuario !== ci_superusuario) {
+        alerta_fallo("La contraseña debe ser igual a la cédula.");
+        e.preventDefault();
+        return;
     }
     if (!verificarString(nombre_superusuario, "nombre")) {
         e.preventDefault();
