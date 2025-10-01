@@ -4,6 +4,9 @@ include_once ('../db/conexion.php');
 
 $con = conectar_a_bd();
 
+// Indicar que la respuesta de este PHP es un JSON
+header('Content-Type: application/json');
+
 //Para comentarios, ir a superusuarios_func o profesores_func
 if(isset($_POST['registrarRecurso'])){
     $nombre = strip_tags(trim($_POST['name']));
@@ -15,7 +18,10 @@ if(isset($_POST['registrarRecurso'])){
 
     $existe =consultar_si_existe_recurso($con, $nombre);
 
-    insert_datos_recursos($con, $existe, $nombre, $estado, $tipo, $pertenece_a);
+    $insert_recursos = insert_datos_recursos($con, $existe, $nombre, $estado, $tipo, $pertenece_a);
+
+    //Se codifica el resultado de la insercion como json
+    echo json_encode($insert_recursos);
 }
 
 function consultar_si_existe_recurso($con, $nombre){
@@ -39,6 +45,9 @@ $result = $stmt->get_result();
 }
 
 function insert_datos_recursos($con, $existe, $nombre, $estado, $tipo, $pertenece_a){
+    // Array para almacenar la respuesta
+    $respuesta_json = array();
+
     if ($existe == false){
         // No incluir id_recurso - es AUTO_INCREMENT (pero si la del espacio pq es la fk que recibe el formulario)
         $query_insertar = "INSERT INTO recursos (id_espacio, nombre, estado, tipo) VALUES ( ?, ?, ?, ?)";
@@ -48,14 +57,22 @@ function insert_datos_recursos($con, $existe, $nombre, $estado, $tipo, $pertenec
         $stmt->bind_param("isss", $pertenece_a, $nombre, $estado, $tipo);
         
         if ($stmt->execute()) {
-            echo "Insertado correctamente";
+
+        $respuesta_json['estado'] = 1;
+        $respuesta_json['mensaje'] = "Insertado correctamente";
+        
         } else {
-            echo "Error al insertar: " . $stmt->error;
+
+        $respuesta_json['estado'] = 0;
+        $respuesta_json['mensaje'] = "Error al insertar: " . $stmt->error;
         }
         
     } else {
-        echo "Este recurso ya existe";
+        $respuesta_json['estado'] = 0;
+        $respuesta_json['mensaje'] = "Este recurso ya existe";
     }
+
+    return $respuesta_json;
 }
 
 ?>

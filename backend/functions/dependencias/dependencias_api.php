@@ -1,5 +1,8 @@
 <?php
 
+// Indicar que la respuesta de este PHP es un JSON
+header('Content-Type: application/json');
+
 include_once ('../../db/conexion.php');
 include_once ('dependencias_func.php');
 

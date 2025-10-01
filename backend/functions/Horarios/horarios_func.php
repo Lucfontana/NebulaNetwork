@@ -26,15 +26,23 @@ function consultar_si_existe_horario($con, $hora_inicio) {
 
 //Se pasan los valores como parametros y se ingresan en la bd
 function insert_datos_horas($con, $existe, $hora_inicio, $hora_final, $tipo_horario){
+    // Array para almacenar la respuesta
+    $respuesta_json = array();
+
     if ($existe == false){
         $query_insertar = "INSERT INTO horarios (hora_inicio, hora_final, tipo) VALUES (?, ?, ?)";
         $stmt = $con->prepare($query_insertar);
         $stmt->bind_param("sss", $hora_inicio, $hora_final, $tipo_horario);
         $stmt->execute();
-        echo "Insertado correctamente";
+
+        //Si es exitoso, se devuelve '1' junto al mensaje de exito
+        $respuesta_json['estado'] = 1;
+        $respuesta_json['mensaje'] = "Insertado correctamente";
     } else {
-        echo "Este horario ya existe";
+        $respuesta_json['estado'] = 0;
+        $respuesta_json['mensaje'] = "Este horario ya existe";
     }
+    return $respuesta_json;
 }
 
 ?>
