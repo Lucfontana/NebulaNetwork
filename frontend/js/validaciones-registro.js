@@ -1,6 +1,4 @@
-import { verificarCI } from './login.js';
-import { verificarExistenciaCI } from './login.js';
-
+import { verificarCI, verificarExistenciaCI, mostrarDigVerificador, CIaArreglo } from './validarCI.js';
 //-----FORMULARIOS-----//
 
 //Por cada formulario, se lo debe llamar (cuando se envia) y verificar que todos sus

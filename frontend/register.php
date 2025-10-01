@@ -447,7 +447,7 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
         crossorigin="anonymous"></script>
     <script src="js/sideMenu.js"></script>
     <script src="js/Register-Modal.js"></script>
-    <script src="js/Validaciones-registro.js"></script>
+    <script type= "module" src="js/validaciones-registro.js" defer></script>
 
     <!-- Sweet alerts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
