@@ -61,6 +61,8 @@ session_start();
     <!-- trae las barras de navegacion (sidebar y superior) -->
     <?php include 'nav.php'; ?>
 
+    <main>
+
     <div id="contenido" class="contenido">
 
     <div id="register-content">
@@ -430,6 +432,7 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
     </div>
 </dialog>
 </div>
+    </main>
 
 <!--    Cierre de Ventanas Emergentes    -->
     

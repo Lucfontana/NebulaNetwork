@@ -33,6 +33,9 @@ main {
     justify-content: center; /* centra horizontal */
     align-items: center;     /* centra vertical */
     padding: 20px;
+    background-color: #d9d9f4;
+    background-image: radial-gradient(#9195d8 0.9px, #d9d9f4 0.9px);
+    background-size: 18px 18px;
 }
 
 
@@ -119,6 +122,10 @@ main {
     align-items: center;
     justify-content: center;
     text-align: center;
+    background-color: #d9d9f4;
+    opacity: 1;
+    background-image: radial-gradient(#9195d8 0.9px, #d9d9f4 0.9px);
+    background-size: 18px 18px;
 }
 
 /* Texto de Bienvenidos */
@@ -199,6 +206,11 @@ main {
     padding: 30px;
     margin: 8px 0 0 var(---marginAside);
     transition: var(---transitionSidebarExpanded);
+}
+
+.contenido-centrado{
+    display: flex;
+    justify-content: center;
 }
 
 /* 
@@ -927,6 +939,9 @@ th {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background-color: #d9d9f4;
+    background-image: radial-gradient(#9195d8 0.9px, #d9d9f4 0.9px);
+    background-size: 18px 18px;
 }
 
 .error{

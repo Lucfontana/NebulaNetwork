@@ -1,6 +1,8 @@
 <?php
 // Inicia la sesión para guardar datos entre páginas, como el idioma seleccionado
+
 // session_start();
+
 
 // Determina el idioma a usar:
 // 1) Primero revisa si se pasa por la URL ($_GET['lang'])
