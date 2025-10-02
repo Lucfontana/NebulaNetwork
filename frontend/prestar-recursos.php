@@ -24,8 +24,7 @@ $recursos_info = $stmt->get_result();
 
 session_start();
 
-$sql = "SELECT * FROM recursos 
-        WHERE tipo = 'uso'";
+
 
 ?>
 
@@ -45,7 +44,7 @@ $sql = "SELECT * FROM recursos
 <body>
     <!-- trae las barras de navegacion (sidebar y superior) -->
     <?php include 'nav.php'; ?>
-
+<div>
     <main id="contenido" class="contenido-centrado">
 
         <div id="register-content">
@@ -69,31 +68,32 @@ $sql = "SELECT * FROM recursos
         </div>
     </div>
 
-            <div id="contenido-mostrar-datos">
-            <h1>Espacios Fisicos</h1>
+        <div id="contenido-mostrar-datos">
+            <h1>Recursos</h1>
             <table id="datos">
                 <tr>
                     <th class="id">Id </th>
-                    <th class="nombre-titulo">Capacidad</th>
-                    <th class="nombre-titulo">Equipamiento</th>
+                    <th class="nombre-titulo">Espacio Fisico</th>
                     <th class="nombre-titulo">Nombre</th>
+                    <th class="nombre-titulo">Estado</th>
                     <th class="titulo-ult">Tipo</th>
                     <th class="boton-titulo">Borrar</th>
                     <th class="boton-titulo">Editar</th>
                 </tr>
-                <?php while ($row = mysqli_fetch_array($sql)): ?>
+                <?php while ($row = mysqli_fetch_array($recursos_info)): ?>
                     <tr class="mostrar-datos">
+                        <th class="nombre"><?= $row['id_recurso'] ?></th>
                         <th class="nombre"><?= $row['id_espacio'] ?></th>
-                        <th class="nombre"><?= $row['capacidad'] ?></th>
-                        <th class="nombre"><?= $row['equipamiento'] ?></th>
                         <th class="nombre"><?= $row['nombre'] ?></th>
+                        <th class="nombre"><?= $row['estado'] ?></th>
                         <th class="ultimo-dato"><?= $row['tipo'] ?></th>
-                        <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_espacio'] ?>">Eliminar</a></th>
-                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_espacio'] ?>" data-nombre="<?= $row['nombre'] ?>" data-capacidad="<?= $row['capacidad'] ?>" data-equip="<?= $row['equipamiento'] ?>" data-tipo="<?= $row['tipo'] ?>">Editar</a></th>
+                        <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_recurso'] ?>">Eliminar</a></th>
+                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_recurso'] ?>" data-espacio="<?= $row['id_espacio'] ?>" data-nombre="<?= $row['nombre'] ?>" data-estado="<?= $row['estado'] ?>" data-tipo="<?= $row['tipo'] ?>">Editar</a></th>
                     </tr>
                 <?php endwhile; ?>
             </table>
         </div>
+
     </main>
     
 <!--    Inicio de Ventanas Emergentes    -->
@@ -165,7 +165,7 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
 
                 <!-- ARREGLAR!! SI SE SELECCIONA GENERAL NO FUNCIONA!! -->
                 <option value="general">General</option>
-                <?php while ($row = mysqli_fetch_array($result)): ?>
+                <?php while ($row = mysqli_fetch_array($sql)): ?>
                     <option value="<?= $row['id_espacio']?>"><?= $row['nombre']?></option>
                 <?php endwhile; ?>
             </select>
