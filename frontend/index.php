@@ -2,6 +2,8 @@
 
 include_once 'functions.php';
 
+session_start();
+
 ?>
 
 <!DOCTYPE html>

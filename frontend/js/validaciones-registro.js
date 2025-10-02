@@ -1,3 +1,4 @@
+import { verificarCI, verificarExistenciaCI, mostrarDigVerificador, CIaArreglo } from './validarCI.js';
 //-----FORMULARIOS-----//
 
 //Por cada formulario, se lo debe llamar (cuando se envia) y verificar que todos sus
@@ -101,9 +102,14 @@ formulario_profesores.addEventListener("submit", function(e) {
     let fecha_nacimiento_profesor = document.getElementById("fechaNacimientoProfesor").value;
     let direccion_profesor = document.getElementById("direccionProfesor").value;
 
-    // if (!verificarCI(ci_profesor)) {
-    //     e.preventDefault();
-    // }
+    if (!verificarCI(ci_profesor) || !verificarExistenciaCI(ci_profesor, [2,9,8,7,6,3,4])) {
+        e.preventDefault();
+    }
+    if (contrasena_profesor !== ci_profesor) {
+        alerta_fallo("La contraseña debe ser igual a la cédula.");
+        e.preventDefault();
+        return;
+    }
     if (!verificarString(nombre_profesor, "nombre")) {
         e.preventDefault();
     }
@@ -176,8 +182,13 @@ formulario_superusuarios.addEventListener("submit", function(e) {
     let apellido_superusuario = document.getElementById("apellidoSuperusuario").value;
     let email_superusuario = document.getElementById("emailSuperusuario").value;
 
-    if (!verificarCI(ci_superusuario)) {
+    if (!verificarCI(ci_superusuario) || !verificarExistenciaCI(ci_superusuario, [2,9,8,7,6,3,4])) {
         e.preventDefault();
+    }
+    if (contrasena_superusuario !== ci_superusuario) {
+        alerta_fallo("La contraseña debe ser igual a la cédula.");
+        e.preventDefault();
+        return;
     }
     if (!verificarString(nombre_superusuario, "nombre")) {
         e.preventDefault();

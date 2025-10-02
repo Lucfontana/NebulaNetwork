@@ -4,13 +4,19 @@ include_once ('../db/conexion.php');
 
 $con = conectar_a_bd();
 
+// Indicar que la respuesta de este PHP es un JSON
+header('Content-Type: application/json');
+
 if(isset($_POST['registrarCursos'])){
     $nombre_curso = strip_tags(trim($_POST['name']));
     $capacidad = (int)$_POST['capacity'];
 
     $existe = consultar_si_existe_curso($con, $nombre_curso);
 
-    insert_datos_cursos($con, $existe, $nombre_curso, $capacidad);
+    $insert_cursos = insert_datos_cursos($con, $existe, $nombre_curso, $capacidad);
+
+    //Se codifica el resultado de la insercion como json
+    echo json_encode($insert_cursos);
 
 }
 function consultar_si_existe_curso($con, $nombre_curso){
@@ -35,15 +41,25 @@ $result = $stmt->get_result();
 
 //Se pasan los valores como parametros y se ingresan en la bd
 function insert_datos_cursos($con, $existe, $nombre_curso, $capacidad){
+    // Array para almacenar la respuesta
+    $respuesta_json = array();
+    
     if ($existe == false){
         $query_insertar = "INSERT INTO cursos (nombre, capacidad) VALUES (?, ?)";
         $stmt = $con->prepare($query_insertar);
         $stmt->bind_param("si", $nombre_curso, $capacidad);
         $stmt->execute();
-        echo "Insertado correctamente";
+
+        $respuesta_json['estado'] = 1;
+        $respuesta_json['mensaje'] = "Insertado correctamente";
+
     } else {
-        echo "Este curso ya existe";
+
+        $respuesta_json['estado'] = 0;
+        $respuesta_json['mensaje'] = "Este curso ya existe";
     }
+
+    return $respuesta_json;
 
 }
 

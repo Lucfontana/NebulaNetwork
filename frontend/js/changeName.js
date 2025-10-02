@@ -1,30 +1,66 @@
-const changeName = document.getElementById('editar-nombre');
-const dialogChangeName = document.getElementById('dialog-change-name');
-const closeChangeName = document.getElementById('close-change-name');
-const btnCancelarEdit = document.getElementById("cancelarEdit");
+// Modal Change Password
+const changePasswd = document.getElementById('change-passwd');
+const dialogChangePasswd = document.getElementById('dialog-change-passwd');
+const closeChangePasswd = document.getElementById('cancelarEdit');
+const confirmarpasswd = document.getElementById('confirmarpasswd');
+const btnActualizar = document.getElementById("confirmar");
 
-changeName.addEventListener("click", function (a) {
+const mensaje = document.getElementById("mensajeContraseña");
+
+
+
+changePasswd.addEventListener("click", function (a) {
     a.preventDefault();
-
-    dialogChangeName.style.display = "flex";
-    dialogChangeName.style.transform = "translateY(5%)";
-    dialogChangeName.style.opacity = "1";
-    dialogChangeName.style.transition = "0.5s";
-
-    nombre = changeName.dataset.name;
-    document.getElementById("name_edit").value = nombre;
-
-
-})
-
- btnCancelarEdit.addEventListener("click", () => {
-    dialogChangeName.style.display = "none";
+    dialogChangePasswd.style.display = "flex";
+    dialogChangePasswd.style.opacity = "1";
+    dialogChangePasswd.style.transition = "0.5s";
 });
 
-const btnActualizarProfesor = document.getElementById("actualizar_profesor");
-const btnActualizarAdscripta = document.getElementById("actualizar_adscripta");
-const btnActualizarSecretaria = document.getElementById("actualizar_secretaria");
-const btnActualizarAdministrador = document.getElementById("actualizar_administrador");
+confirmarpasswd.addEventListener("click", (e) => {
+    const passwd = document.getElementById("passwd").value;
+    const newpasswd = document.getElementById("newpasswd").value;
+
+    if (passwd === "" || newpasswd === "") {
+        mensaje.textContent = "Por favor, complete todos los campos.";
+        e.preventDefault();
+        return;
+    } else if (passwd === newpasswd) {
+        mensaje.textContent = "La nueva contraseña debe ser diferente a la actual.";
+        e.preventDefault();
+        return;
+    } 
+
+});
+
+closeChangePasswd.addEventListener("click", () => {
+    dialogChangePasswd.style.display = "none";
+});
+
+document.getElementById("comprobarcontraseña").addEventListener("submit", async (e) => {
+    e.preventDefault(); // Evita recargar la página
+    
+  const form = e.target;
+  const fd = new FormData(form);
+
+  try {
+    const res = await fetch("../../backend/functions/edit-paswd-user.php", {
+      method: "POST",
+      body: fd,
+      credentials: "same-origin"
+    });
+
+    const data = await res.json();
+    mensaje.textContent = data.message;
+
+    if (data.success) {
+      // redirigir después de 1 segundo
+      setTimeout(() => window.location.href = "../frontend/Perfil.php", 1000);
+    }
+  } catch (err) {
+    console.error(err);
+    mensaje.textContent = "Error de conexión";
+  }
+});
 
 
 

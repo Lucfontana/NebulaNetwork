@@ -4,6 +4,9 @@ include_once ('../db/conexion.php');
 
 $con = conectar_a_bd(); 
 
+// Indicar que la respuesta de este PHP es un JSON
+header('Content-Type: application/json');
+
 if (isset($_POST['registroProfesor'])){
     //TO DO:Se deberian primero declarar las variables crudas, pasarlas por las validaciones y despues sanitizarlas (creo).
 
@@ -26,7 +29,9 @@ if (isset($_POST['registroProfesor'])){
     $existe = consultar_si_existe_usuario($con, $ci);
 
     //Insertar los datos
-    insert_datos_profe($con, $existe, $ci, $password, $nombre, $apellido, $email, $fecha_nac, $direccion);
+    $insert_profes = insert_datos_profe($con, $existe, $ci, $password, $nombre, $apellido, $email, $fecha_nac, $direccion);
+
+    echo json_encode($insert_profes);
     
 }
 function consultar_si_existe_usuario($con, $ci){
@@ -84,17 +89,29 @@ $result2 = $stmt2->get_result();
 
 //Se pasan los valores como parametros y se ingresan en la bd
 function insert_datos_profe($con, $existe, $ci, $password, $nombre, $apellido, $email, $fecha_nac, $direccion){
+    // Array para almacenar la respuesta
+    $respuesta_json = array();
+    
     if ($existe[0] == false && $existe[1] == false){
         $query_insertar = "INSERT INTO profesores (ci_profesor, pass_profesor, nombre, apellido, email, fecha_nac, direccion) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($query_insertar);
         $stmt->bind_param("issssss", $ci, $password, $nombre, $apellido, $email, $fecha_nac, $direccion);
         $stmt->execute();
-        echo "Insertado correctamente";
+
+        $respuesta_json['estado'] = 1;
+        $respuesta_json['mensaje'] = "Insertado correctamente";
+
     } else if ($existe[0] == true){
-        echo "Este profesor ya existe";
+        
+        $respuesta_json['estado'] = 0;
+        $respuesta_json['mensaje'] = "Este profesor ya existe";
     } else if ($existe[1] == true){
-        echo "Esta CI ya existe registrado como otro tipo de usuario";
+        
+        $respuesta_json['estado'] = 0;
+        $respuesta_json['mensaje'] = "Esta CI ya esta registrada como otro tipo de usuario";
     }
+
+    return $respuesta_json;
 
 }
 
