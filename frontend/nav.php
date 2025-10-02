@@ -46,36 +46,26 @@ include_once 'functions.php';
 
 
     <aside id="aside">
-        <ul class="link-aside-text" id="link-aside-text">
-            <li><a class="link-aside" href="Login.php"><?= t("aside_account") ?></a></li>
-
-            <li><a class="link-aside"><?= t("aside_schedule") ?></a></li>
-
-            <li><a class="link-aside"><?= t("aside_gallery") ?></a></li>
-
-            <li><a class="link-aside"><?= t("aside_events") ?></a></li>
-
-            <li><a class="link-aside"><?= t("aside_notifications") ?></a></li>
- 
-            <li><a class="link-aside" href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
-                <?= $lang === 'es' ? 'English' : 'Español' ?>
-            </a></li>
-       
-
-
-        </ul>
 
         <ul class="link-aside-images" id="link-aside-images">
             <?php if (!isset($_SESSION['ci'])):?>
             <a href="Login.php"><li><img src="img/person-circle_white_no_bg.png" alt="" height="25px" width="25px"></li></a>
             <?php elseif (isset($_SESSION['ci'])): ?>
-            <a id="logout"><li data-tooltip="Log-out"><img src="img/person-circle_white_no_bg.png" alt="" height="25px" width="25px"></li></a>
+            <a id="logout"><li data-tooltip="Log-out"><img src="img/person-circle_white_no_bg.png" alt="" ></li></a>
             <?php endif; ?>
-            <a href=""><li data-tooltip="Calendario"><img src="img/Iconos sidebar/calendario.png" alt="Calendario"  height="25px" width="25px"></li></a>
-            <a href=""><li data-tooltip="Galería"><img src="img/Iconos sidebar/galeria.png" alt="Galería"  height="25px" width="25px"></li></a>
-            <a href=""><li data-tooltip="Eventos"><img src="img/Iconos sidebar/Eventos.png" alt="Eventos"  height="25px" width="25px"></li></a>
-            <a href=""><li data-tooltip="Notificaciones"><img src="img/Iconos sidebar/notificacion.png" alt="Notificaciones"  height="25px" width="25px"></li></a> 
-             <a href=""><li data-tooltip="Configuraciones"><img src="img/Iconos sidebar/config.png.svg" alt="Configuraciones"  height="25px" width="25px"></li></a>         
+            <a href=""><li data-tooltip="Calendario"><img src="img/Iconos sidebar/calendario.png" alt="Calendario"></li></a>
+            <a href=""><li data-tooltip="Galería"><img src="img/Iconos sidebar/galeria.png" alt="Galería"></li></a>
+            <a href=""><li data-tooltip="Eventos"><img src="img/Iconos sidebar/Eventos.png" alt="Eventos"></li></a>
+            <a href=""><li data-tooltip="Notificaciones"><img src="img/Iconos sidebar/notificacion.png" alt="Notificaciones"></li></a> 
+           
+            <!-- Botón de idioma -->
+            <li class="settings-icon" data-tooltip="">
+                <img src="img/Iconos sidebar/config.png.svg"  alt="Configuraciones">
+                <div class="settings-menu">
+                <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">Cambiar idioma</a>
+                <a href="#modo-oscuro">Modo oscuro</a>
+            </div> </li>
+                    
         </ul>
     </aside>
 

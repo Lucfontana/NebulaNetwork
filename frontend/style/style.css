@@ -36,32 +36,11 @@ main {
 
 
 /*NAVBAR DE BOOTSTRAP*/
-
-.sideButton {
-    background-color: transparent;
-    border: none;
-    display: block;
-}
-
-.sideMenu {
-    margin: 0 0 0 15px;
-    width: 20px;
-    height: 20px;
-}
-
-.sideMenu:hover {
-    width: 25px;
-    height: 25px;
-    transition: all ease .5s;
-}
-
 .navbar-nav {
     display: flex;
     width: 98%;
     justify-content: right;
 }
-
-
 
 .navStyle {
     background-color: var(---navColor);
@@ -80,7 +59,6 @@ main {
 
 #logo {
     width: 40px;
-
 }
 
 .nav-link,
@@ -103,8 +81,6 @@ main {
 .container-fluid {
     justify-content: space-around;
 }
-
-
 
 /*------------------------ CONTENIDO DE LA PAGINA ----------------------*/
 
@@ -179,8 +155,6 @@ main {
     padding: 20px;
     margin: 75px 0 0 var(---marginAside);
 }
-
-
 .contenido {
     display: flex;
     flex-wrap: wrap;
@@ -192,7 +166,6 @@ main {
 El se le añade la clase "activo" cuando se apreta el boton,
 el unico cambio que se le agrega es, cambiarle el margen de
 la izquierda porque el "aside" se agranda. */
-
 
 .secciones {
     display: flex;
@@ -243,7 +216,6 @@ aside {
     border-bottom: none; */
 }
 
-
 aside>ul {
     height: 100%;
     display: flex;
@@ -255,17 +227,14 @@ aside>ul {
 }
 
 /* Va rotando si se muestran los iconos o el texto */
-.link-aside-text {
-    display: none;
-}
-
-.link-aside-text.activo {
-    display: block;
-}
 
 .link-aside-images li {
     position: relative;
     margin: 35px 0; 
+     margin: 20px 0;       /* mismo espacio vertical */
+    display: flex;        /* centra el ícono */
+    justify-content: center;
+    align-items: center;
 }
 
 /* Tooltip */
@@ -286,27 +255,67 @@ aside>ul {
 
 .link-aside-images li:hover::after {
     opacity: 1;
-    transform: translateY(-50%) translateX(0); /* Hace que cuando aparezcan se vea más dinámico */
+    transform: translateY(-50%) translateX(0);
     transition: 0.3s;
 }
 
+/* Todos los iconos del sidebar con mismo tamaño */
 .link-aside-images img {
-    filter: grayscale(100%) brightness(100%);
-    transition: 0.3s;
+    width: 28px; 
+    height: 28px; 
+    object-fit: contain; /* mantiene proporción dentro del cuadrado */
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+}
+
+/* Contenedor de los íconos */
+.link-aside-images {        
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* reparte los íconos arriba-abajo */
+    align-items: center;
+    height: 100%; /* ocupa todo el sidebar */
+    margin: 0;
+    padding: 30px 0;
+}
+
+.settings-menu {
+    display: none; /* por defecto está oculto */
+    position: absolute;
+    top: 50%;
+    left: 60px; 
+    transform: translateY(-50%);
+    padding: 5px 0;
+    border-radius: 5px;
+    font-size: 13px;
+    white-space: nowrap;
+    z-index: 10;
+    min-width: 100px;
+    background: rgba(50, 50, 50, 0.9);
+}
+
+/* estilos de los enlaces */
+.settings-menu a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.settings-menu a:hover {
+    background-color: black;
+    color: #fff;
+}
+
+/* Mostrar menú al hover del li */
+.settings-icon:hover .settings-menu {
+    display: block;
 }
 
 .link-aside-images img:hover {
-    filter: grayscale(100%) brightness(60%);
-}
-/*  */
-
-
-.link-aside {
-    display: block;
-    font-size: 15px;
-    padding: 20px;
-    padding-bottom: 10px;
-    transition: 1s;
+    filter: brightness(0) invert(0);
 }
 
 aside>ul>li>a:hover {
@@ -1029,22 +1038,7 @@ abajito cuando el ancho es menos de 700px */
         padding: 0;
     }
 
-    .link-aside-text,
-    .link-aside-text.activo {
-        display: none;
-    }
 
-
-    .link-aside-images,
-    .link-aside-images.activo {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%;
-        padding: 0;
-        margin: 0;
-    }
 
     /* estilo a cada imagen individual */
     .link-aside-images li {
