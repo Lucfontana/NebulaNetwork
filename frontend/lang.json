@@ -10,11 +10,15 @@
 
     "nav_info": "Manual de Usuarios",
     "nav_courses": "Sobre Nosotros",
+    
     "aside_account": "Mi cuenta",
-    "aside_schedule": "Horario",
+    "aside_schedule": "Calendario",
     "aside_gallery": "Galería",
     "aside_events": "Eventos",
-    "aside_notifications": "Notificaciones"
+    "aside_notifications": "Notificaciones",
+    "aside_logout": "Cerrar sesión",
+    "aside_darkmode": "Modo oscuro",
+    "aside_lang": "Cambiar idioma"
   },
   "en": {
     "welcome": "Welcome!",
@@ -25,13 +29,16 @@
     "btn_teachers": "Teachers",
     "footer": "2025 ITSP. All rights reserved",
     
-    "nav_info": "INFORMATION",
-    "nav_courses": "COURSES",
-    "nav_teachers": "TEACHERS",
+    "nav_info": "User Manual",
+    "nav_courses": "About Us",
+    
     "aside_account": "My account",
     "aside_schedule": "Schedule",
     "aside_gallery": "Gallery",
     "aside_events": "Events",
-    "aside_notifications": "Notifications"
+    "aside_notifications": "Notifications",
+    "aside_logout": "Log-out",
+    "aside_darkmode": "Dark mode",
+    "aside_lang": "Change language"
   }
 }

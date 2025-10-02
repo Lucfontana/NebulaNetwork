@@ -18,7 +18,6 @@ include_once 'functions.php';
 </head>
 <link rel="stylesheet" href="style/style.css">
 
-
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary navStyle">
         <div class="container-fluid navStyle">
@@ -44,7 +43,6 @@ include_once 'functions.php';
         </div>
     </nav>
 
-
     <aside id="aside">
 
         <ul class="link-aside-images" id="link-aside-images">
@@ -53,17 +51,17 @@ include_once 'functions.php';
             <?php elseif (isset($_SESSION['ci'])): ?>
             <a id="logout"><li data-tooltip="Log-out"><img src="img/person-circle_white_no_bg.png" alt="" ></li></a>
             <?php endif; ?>
-            <a href=""><li data-tooltip="Calendario"><img src="img/Iconos sidebar/calendario.png" alt="Calendario"></li></a>
-            <a href=""><li data-tooltip="Galería"><img src="img/Iconos sidebar/galeria.png" alt="Galería"></li></a>
-            <a href=""><li data-tooltip="Eventos"><img src="img/Iconos sidebar/Eventos.png" alt="Eventos"></li></a>
-            <a href=""><li data-tooltip="Notificaciones"><img src="img/Iconos sidebar/notificacion.png" alt="Notificaciones"></li></a> 
+            <a href=""><li data-tooltip="<?= t("aside_schedule") ?>"><img src="img/Iconos sidebar/calendario.png" alt="Calendario"></li></a>
+            <a href=""><li data-tooltip="<?= t("aside_gallery") ?>"><img src="img/Iconos sidebar/galeria.png" alt="Galería"></li></a>
+            <a href=""><li data-tooltip="<?= t("aside_events") ?>"><img src="img/Iconos sidebar/Eventos.png" alt="Eventos"></li></a>
+            <a href=""><li data-tooltip="<?= t("aside_notifications") ?>"><img src="img/Iconos sidebar/notificacion.png" alt="Notificaciones"></li></a> 
            
             <!-- Botón de idioma -->
-            <li class="settings-icon" data-tooltip="">
+            <li class="settings-icon">
                 <img src="img/Iconos sidebar/config.png.svg"  alt="Configuraciones">
                 <div class="settings-menu">
-                <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">Cambiar idioma</a>
-                <a href="#modo-oscuro">Modo oscuro</a>
+                <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>"><?= t("aside_lang") ?></a>
+                <a href="#modo-oscuro"><?= t("aside_darkmode") ?></a>
             </div> </li>
                     
         </ul>
