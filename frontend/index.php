@@ -2,7 +2,6 @@
 
 include_once 'functions.php';
 
-
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +31,6 @@ include_once 'functions.php';
         <p><?= t("description") ?></p>
     </div>
 
-    <!-- PARA HACER: Los botones no son responsive D: -->
     <!-- Botones debajo -->
     <div class="bienvenida-botones">
         <a href="register.php"><button class="btn-bienvenida"><?= t("btn_info") ?></button></a>
@@ -40,7 +38,6 @@ include_once 'functions.php';
         <button class="btn-bienvenida"><?= t("btn_teachers") ?></button>
     </div>
  </div>
-
 
     <!-- <main class="contenido" id="contenido">
 
@@ -56,8 +53,6 @@ include_once 'functions.php';
         crossorigin="anonymous"></script>
     <script src="js/sideMenu.js"></script>
 
-
 </body>
-   
 
 </html>

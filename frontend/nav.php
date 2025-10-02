@@ -22,9 +22,9 @@ include_once 'functions.php';
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary navStyle">
         <div class="container-fluid navStyle">
-            <button class="sideButton" id="sideButton">
+            <!--<button class="sideButton" id="sideButton">
                 <img src="img/box-arrow-right-white.svg" alt="menu" class="sideMenu">                
-            </button>
+            </button> !-->
             
             <a class="navbar-brand" href="index.php"><img id="logo" src="img/logo.png">ITSP</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -38,9 +38,6 @@ include_once 'functions.php';
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><?= t("nav_courses") ?></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><?= t("nav_teachers") ?></a>
                     </li>
                 </ul>
             </div>
@@ -72,12 +69,13 @@ include_once 'functions.php';
             <?php if (!isset($_SESSION['ci'])):?>
             <a href="Login.php"><li><img src="img/person-circle_white_no_bg.png" alt="" height="25px" width="25px"></li></a>
             <?php elseif (isset($_SESSION['ci'])): ?>
-            <a id="logout"><li><img src="img/person-circle_white_no_bg.png" alt="" height="25px" width="25px"></li></a>
+            <a id="logout"><li data-tooltip="Log-out"><img src="img/person-circle_white_no_bg.png" alt="" height="25px" width="25px"></li></a>
             <?php endif; ?>
-            <a href=""><li><img src="img/Iconos sidebar/calendario.png" alt="" height="25px" width="25px"></li></a>
-            <a href=""><li><img src="img/Iconos sidebar/galeria.png" alt="" height="25px" width="25px"></li></a>
-            <a href=""><li><img src="img/Iconos sidebar/Eventos.png" alt="" height="25px" width="25px"></li></a>
-            <a href=""><li><img src="img/Iconos sidebar/notificacion.png" alt="" height="25px" width="25px"></li></a>         
+            <a href=""><li data-tooltip="Calendario"><img src="img/Iconos sidebar/calendario.png" alt="Calendario"  height="25px" width="25px"></li></a>
+            <a href=""><li data-tooltip="Galería"><img src="img/Iconos sidebar/galeria.png" alt="Galería"  height="25px" width="25px"></li></a>
+            <a href=""><li data-tooltip="Eventos"><img src="img/Iconos sidebar/Eventos.png" alt="Eventos"  height="25px" width="25px"></li></a>
+            <a href=""><li data-tooltip="Notificaciones"><img src="img/Iconos sidebar/notificacion.png" alt="Notificaciones"  height="25px" width="25px"></li></a> 
+             <a href=""><li data-tooltip="Configuraciones"><img src="img/Iconos sidebar/config.png.svg" alt="Configuraciones"  height="25px" width="25px"></li></a>         
         </ul>
     </aside>
 
