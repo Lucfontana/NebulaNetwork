@@ -66,10 +66,19 @@ let ci_profesor = document.getElementById("ciProfesor");
 ci_profesor.addEventListener("input", function() {
     ci_profesor.value = ci_profesor.value.replace(/[^0-9]/g, '').slice(0, 8);
 });
+let contrasena_profesor = document.getElementById("contrasenaProfesor");
+contrasena_profesor.addEventListener("input", function() {
+    contrasena_profesor.value = contrasena_profesor.value.replace(/[^0-9]/g, '').slice(0, 8);
+});
 let ci_superusuario = document.getElementById("ciSuperusuario");
 ci_superusuario.addEventListener("input", function() {
     ci_superusuario.value = ci_superusuario.value.replace(/[^0-9]/g, '').slice(0, 8);
 });
+let contrasena_superusuario = document.getElementById("contrasenaSuperusuario");
+contrasena_superusuario.addEventListener("input", function() {
+    contrasena_superusuario.value = contrasena_superusuario.value.replace(/[^0-9]/g, '').slice(0, 8);
+});
+
 
 //Verificar en el documento de Drive de "Tareas pendientes PROYECTO" las distintas funciones que hay para hacer
 
@@ -78,9 +87,6 @@ let formulario_profesores = document.querySelector(".profesores-form");
 formulario_profesores.addEventListener("submit", function(e) {
     let ci_profesor = document.getElementById("ciProfesor").value;
     let contrasena_profesor = document.getElementById("contrasenaProfesor").value;
-    contrasena_profesor.addEventListener("input", function() {
-    contrasena_profesor.value = contrasena_profesor.value.replace(/[^0-9]/g, '').slice(0, 8);
-});
     let nombre_profesor = document.getElementById("nombreProfesor").value;
     let apellido_profesor = document.getElementById("apellidoProfesor").value;
     let email_profesor = document.getElementById("emailProfesor").value;
@@ -88,6 +94,7 @@ formulario_profesores.addEventListener("submit", function(e) {
     let direccion_profesor = document.getElementById("direccionProfesor").value;
 
     if (!verificarCI(ci_profesor) || !verificarExistenciaCI(ci_profesor, [2,9,8,7,6,3,4])) {
+        alerta_fallo("La cédula ingresada no es válida.");
         e.preventDefault();
     }
     if (contrasena_profesor !== ci_profesor) {
@@ -96,18 +103,23 @@ formulario_profesores.addEventListener("submit", function(e) {
         return;
     }
     if (!verificarString(nombre_profesor, "nombre")) {
+        alerta_fallo("El nombre ingresado no es válido.");
         e.preventDefault();
     }
     if (!verificarString(apellido_profesor, "apellido")) {
-        e.preventDefault(); 
+        alerta_fallo("El apellido ingresado no es válido.");
+        e.preventDefault();
     }
     if (!verificarEmail(email_profesor)) {
+        alerta_fallo("El email ingresado no es válido.");
         e.preventDefault();
     }
     if (!verificarFechanacimiento(fecha_nacimiento_profesor)) {
+        alerta_fallo("La fecha de nacimiento ingresada no es válida.");
         e.preventDefault();
     }
     if (!verificarDireccion(direccion_profesor)) {
+        alerta_fallo("La dirección ingresada no es válida.");
         e.preventDefault();
     }
 });
@@ -118,11 +130,6 @@ let formulario_superusuarios = document.querySelector(".superusuarios-form");
 formulario_superusuarios.addEventListener("submit", function(e) {
     let ci_superusuario = document.getElementById("ciSuperusuario").value;
     let contrasena_superusuario = document.getElementById("contrasenaSuperusuario").value;
-
-    contrasena_superusuario.addEventListener("input", function() {
-    contrasena_superusuario.value = contrasena_superusuario.value.replace(/[^0-9]/g, '').slice(0, 8);
-    });
-
     let nombre_superusuario = document.getElementById("nombreSuperusuario").value;
     let apellido_superusuario = document.getElementById("apellidoSuperusuario").value;
     let email_superusuario = document.getElementById("emailSuperusuario").value;
