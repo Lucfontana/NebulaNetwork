@@ -62,6 +62,15 @@ function validar_asignaturas(evento) {
 //-------------------------------------------------//
 //Nota: Las validaciones de CI ya estan creadas en el archivo de 'login.js', quedaria importar el archivo y las funciones
 
+let ci_profesor = document.getElementById("ciProfesor");
+ci_profesor.addEventListener("input", function() {
+    ci_profesor.value = ci_profesor.value.replace(/[^0-9]/g, '').slice(0, 8);
+});
+let ci_superusuario = document.getElementById("ciSuperusuario");
+ci_superusuario.addEventListener("input", function() {
+    ci_superusuario.value = ci_superusuario.value.replace(/[^0-9]/g, '').slice(0, 8);
+});
+
 //Verificar en el documento de Drive de "Tareas pendientes PROYECTO" las distintas funciones que hay para hacer
 
 let formulario_profesores = document.querySelector(".profesores-form");
@@ -69,6 +78,9 @@ let formulario_profesores = document.querySelector(".profesores-form");
 formulario_profesores.addEventListener("submit", function(e) {
     let ci_profesor = document.getElementById("ciProfesor").value;
     let contrasena_profesor = document.getElementById("contrasenaProfesor").value;
+    contrasena_profesor.addEventListener("input", function() {
+    contrasena_profesor.value = contrasena_profesor.value.replace(/[^0-9]/g, '').slice(0, 8);
+});
     let nombre_profesor = document.getElementById("nombreProfesor").value;
     let apellido_profesor = document.getElementById("apellidoProfesor").value;
     let email_profesor = document.getElementById("emailProfesor").value;
@@ -106,6 +118,11 @@ let formulario_superusuarios = document.querySelector(".superusuarios-form");
 formulario_superusuarios.addEventListener("submit", function(e) {
     let ci_superusuario = document.getElementById("ciSuperusuario").value;
     let contrasena_superusuario = document.getElementById("contrasenaSuperusuario").value;
+    
+    contrasena_superusuario.addEventListener("input", function() {
+    contrasena_superusuario.value = contrasena_superusuario.value.replace(/[^0-9]/g, '').slice(0, 8);
+    });
+
     let nombre_superusuario = document.getElementById("nombreSuperusuario").value;
     let apellido_superusuario = document.getElementById("apellidoSuperusuario").value;
     let email_superusuario = document.getElementById("emailSuperusuario").value;
@@ -123,6 +140,11 @@ formulario_superusuarios.addEventListener("submit", function(e) {
     }
     if (!verificarString(apellido_superusuario, "apellido")) {
         e.preventDefault();
+    }
+    if (!verificarEmail(email_superusuario)) {
+        alerta_fallo("El email ingresado no es válido");
+        e.preventDefault();
+        return;
     }
 });
 
@@ -227,7 +249,7 @@ function verificarString(nombre, tipoDato){
 }
 
 function verificarEmail(email) {
-    let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    let regex = /^[a-zA-Z0-9.]+@[a-zA-Z0-9.]+\.[a-zA-Z]{2,}$/;
     if (!regex.test(email)) {
         alerta_fallo("El email ingresado no es válido");
         return false;

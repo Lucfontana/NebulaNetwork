@@ -179,7 +179,7 @@ session_start();
                     <div class="div-labels">
                         <label for="contrasena" class="label">Contraseña:</label>
                         <input class="input-register" type="password" name="contrasena" id="contrasenaProfesor"
-                            maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
+                            maxlength="8" pattern="\d{8}" required placeholder="Ingrese Contraseña">
                     </div>
                     <div class="div-labels">
                         <label for="name" class="label">Nombre:</label>
@@ -234,7 +234,7 @@ session_start();
                 <div class="div-labels">
                     <label for="contrasena" class="label">Contraseña:</label>
                     <input class="input-register" type="password" name="password" id="contrasenaSuperusuario"
-                        maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
+                        maxlength="8" pattern="\d{8}" required placeholder="Ingrese Contraseña">
                 </div>
                 <div class="div-labels">
                     <label for="name" class="label">Nombre:</label>
