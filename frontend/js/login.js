@@ -40,4 +40,3 @@ function tamanoPassword (contrasena) {
         return true;
     }
 }
-

@@ -64,33 +64,6 @@ function validar_asignaturas(evento) {
 
 //Verificar en el documento de Drive de "Tareas pendientes PROYECTO" las distintas funciones que hay para hacer
 
-//Se hace la funcion del tipo de dato que queremos verificar, entre los parentesis
-//se toman como argumento las siguientes variables: nombre (la string a verificar) y
-//tipoDato (si el dato es un nombre, ese string seria 'nombre', si fuera apellido seria
-// 'apellido').
-function verificarString(nombre, tipoDato){
-
-    //El regex son los caracteres que queremos verificar que nuestra string NO tenga.
-    //Regex es una expresion que se marca con //, por eso ese caracter a veces esta repetido
-    let regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; 
-
-    if (nombre.length <= 2 || nombre.length >= 40) {
-        alerta_fallo("El " + tipoDato + " ingresado debe tener entre 2 y 40 caracteres");
-        return false; //Se devuelve false para que el formulario NO se envie y se muestre la alerta
-    } else {
-
-        //Le decimos al regex que comience desde el principio de su elemento a investigar
-        //para evitar errores
-        regex.lastIndex = 0; 
-        if (!regex.test(nombre)){
-        alerta_fallo("El " + tipoDato + " ingresado no puede contener caracteres especiales");
-        return false;
-    } 
-    }
-    return true; //Si esta todo bien, devuelve TRUE
-}
-
-
 let formulario_profesores = document.querySelector(".profesores-form");
 
 formulario_profesores.addEventListener("submit", function(e) {
@@ -127,52 +100,7 @@ formulario_profesores.addEventListener("submit", function(e) {
     }
 });
 
-function verificarEmail(email) {
-    let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!regex.test(email)) {
-        alerta_fallo("El email ingresado no es válido");
-        return false;
-    }
 
-    if (email.length < 5 || email.length > 50) {
-        alerta_fallo("El email ingresado debe tener entre 5 y 50 caracteres");
-        return false;
-    }
-    return true;
-}
-
-function verificarFechanacimiento(fecha) {
-    let regex = /^\d{4}-\d{2}-\d{2}$/;
-    if (!regex.test(fecha)) {
-        alerta_fallo("La fecha de nacimiento ingresada no es válida");
-        return false;
-    }
-
-    // Calcular edad
-    let fechaActual = new Date();
-    let nacimiento = new Date(fecha);
-    let edad = fechaActual.getFullYear() - nacimiento.getFullYear();
-    let m = fechaActual.getMonth() - nacimiento.getMonth();
-    if (m < 0 || (m === 0 && fechaActual.getDate() < nacimiento.getDate())) {
-        edad--;
-    }
-
-    if (edad < 18 || edad > 100) {
-        alerta_fallo("La edad debe estar entre 18 y 100 años");
-        return false;
-    }
-
-
-    return true;
-}
-
-function verificarDireccion(direccion) {
-    if (direccion.length < 5 || direccion.length > 100) {
-        alerta_fallo("La dirección ingresada debe tener entre 5 y 100 caracteres");
-        return false;
-    }
-    return true;
-}
 
 let formulario_superusuarios = document.querySelector(".superusuarios-form");
 formulario_superusuarios.addEventListener("submit", function(e) {
@@ -223,33 +151,7 @@ formulario_espacios.addEventListener("submit", function(e) {
     }
 });
 
-function verificarNombreEspacio(nombre) {
-    // Permite letras, números, espacios y tildes
-    let regex = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/;
-    if (nombre.length < 2 || nombre.length > 40) {
-        alerta_fallo("El nombre del espacio debe tener entre 2 y 40 caracteres");
-        return false;
-    }
-    if (!regex.test(nombre)) {
-        alerta_fallo("El nombre del espacio solo puede contener letras, números y espacios");
-        return false;
-    }
-    return true;
-}
 
-function verificarCapacidad(capacidad) {
-    let regex = /^\d+$/;
-    if (!regex.test(capacidad)) {
-        alerta_fallo("La capacidad ingresada no es válida");
-        return false;
-    }
-
-    if (capacidad < 1 || capacidad > 40) {
-        alerta_fallo("La capacidad debe estar entre 1 y 40");
-        return false;
-    }
-    return true;
-}
 
 let formulario_cursos = document.querySelector(".cursos-form");
 formulario_cursos.addEventListener("submit", function(e) {
@@ -284,6 +186,92 @@ formulario_horarios.addEventListener("submit", function(e) {
         return;
     }
 });
+
+
+
+// Ejemplo de uso en el formulario de horarios
+let horariosExistentes = [
+    // {inicio: "07:00", fin: "07:45", tipo: "clase"},
+    // {inicio: "07:45", fin: "07:50", tipo: "recreo"}
+];
+
+let formulario_dependencias = document.querySelector(".dependencias-form");
+formulario_dependencias.addEventListener("submit", function(e) {
+    
+});
+
+//Se hace la funcion del tipo de dato que queremos verificar, entre los parentesis
+//se toman como argumento las siguientes variables: nombre (la string a verificar) y
+//tipoDato (si el dato es un nombre, ese string seria 'nombre', si fuera apellido seria
+// 'apellido').
+function verificarString(nombre, tipoDato){
+
+    //El regex son los caracteres que queremos verificar que nuestra string NO tenga.
+    //Regex es una expresion que se marca con //, por eso ese caracter a veces esta repetido
+    let regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; 
+
+    if (nombre.length <= 2 || nombre.length >= 40) {
+        alerta_fallo("El " + tipoDato + " ingresado debe tener entre 2 y 40 caracteres");
+        return false; //Se devuelve false para que el formulario NO se envie y se muestre la alerta
+    } else {
+
+        //Le decimos al regex que comience desde el principio de su elemento a investigar
+        //para evitar errores
+        regex.lastIndex = 0; 
+        if (!regex.test(nombre)){
+        alerta_fallo("El " + tipoDato + " ingresado no puede contener caracteres especiales");
+        return false;
+    } 
+    }
+    return true; //Si esta todo bien, devuelve TRUE
+}
+
+function verificarEmail(email) {
+    let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!regex.test(email)) {
+        alerta_fallo("El email ingresado no es válido");
+        return false;
+    }
+
+    if (email.length < 5 || email.length > 50) {
+        alerta_fallo("El email ingresado debe tener entre 5 y 50 caracteres");
+        return false;
+    }
+    return true;
+}
+
+function verificarFechanacimiento(fecha) {
+    let regex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!regex.test(fecha)) {
+        alerta_fallo("La fecha de nacimiento ingresada no es válida");
+        return false;
+    }
+
+    // Calcular edad
+    let fechaActual = new Date();
+    let nacimiento = new Date(fecha);
+    let edad = fechaActual.getFullYear() - nacimiento.getFullYear();
+    let m = fechaActual.getMonth() - nacimiento.getMonth();
+    if (m < 0 || (m === 0 && fechaActual.getDate() < nacimiento.getDate())) {
+        edad--;
+    }
+
+    if (edad < 18 || edad > 100) {
+        alerta_fallo("La edad debe estar entre 18 y 100 años");
+        return false;
+    }
+
+
+    return true;
+}
+
+function verificarDireccion(direccion) {
+    if (direccion.length < 5 || direccion.length > 100) {
+        alerta_fallo("La dirección ingresada debe tener entre 5 y 100 caracteres");
+        return false;
+    }
+    return true;
+}
 
 function verificarHora(hora) {
     let regex = /^([01]\d|2[0-3]):([0-5]\d)$/;
@@ -342,17 +330,6 @@ function haySolapamiento(nuevoInicio, nuevoFin, horariosExistentes) {
     return false;
 }
 
-// Ejemplo de uso en el formulario de horarios
-let horariosExistentes = [
-    // {inicio: "07:00", fin: "07:45", tipo: "clase"},
-    // {inicio: "07:45", fin: "07:50", tipo: "recreo"}
-];
-
-let formulario_dependencias = document.querySelector(".dependencias-form");
-formulario_dependencias.addEventListener("submit", function(e) {
-    
-});
-
 //---------------FUNCIONES DE ALERTAS---------------//
 function alerta_success(mensaje, ventana_a_redirigir, tipo_dato){
         Swal.fire({
@@ -378,4 +355,32 @@ function alerta_fallo(mensaje){
                 icon: "error"
             });
 
+}
+
+function verificarNombreEspacio(nombre) {
+    // Permite letras, números, espacios y tildes
+    let regex = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/;
+    if (nombre.length < 2 || nombre.length > 40) {
+        alerta_fallo("El nombre del espacio debe tener entre 2 y 40 caracteres");
+        return false;
+    }
+    if (!regex.test(nombre)) {
+        alerta_fallo("El nombre del espacio solo puede contener letras, números y espacios");
+        return false;
+    }
+    return true;
+}
+
+function verificarCapacidad(capacidad) {
+    let regex = /^\d+$/;
+    if (!regex.test(capacidad)) {
+        alerta_fallo("La capacidad ingresada no es válida");
+        return false;
+    }
+
+    if (capacidad < 1 || capacidad > 40) {
+        alerta_fallo("La capacidad debe estar entre 1 y 40");
+        return false;
+    }
+    return true;
 }
