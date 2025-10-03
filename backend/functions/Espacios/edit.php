@@ -11,9 +11,9 @@ $equipment = $_POST['equip'];
 $type = $_POST['tipo'];
 
 
-$consulta = "UPDATE espacios_fisicos SET capacidad=?, equipamiento=? ,nombre=?, tipo=? WHERE id_espacio=?";
+$consulta = "UPDATE espacios_fisicos SET capacidad=? ,nombre=?, tipo=? WHERE id_espacio=?";
 $stmt = $con->prepare($consulta);
-$stmt->bind_param("issssi", $capacity, $equipment, $name, $type, $id);
+$stmt->bind_param("isssi", $capacity, $name, $type, $id);
 $stmt->execute();
 $result = $stmt->get_result();
 

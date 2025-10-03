@@ -30,7 +30,6 @@ $query = mysqli_query($connect, $sql);
                 <tr>
                     <th class="id">Id </th>
                     <th class="nombre-titulo">Capacidad</th>
-                    <th class="nombre-titulo">Equipamiento</th>
                     <th class="nombre-titulo">Nombre</th>
                     <th class="titulo-ult">Tipo</th>
                     <th class="boton-titulo">Borrar</th>
@@ -40,11 +39,10 @@ $query = mysqli_query($connect, $sql);
                     <tr class="mostrar-datos">
                         <th class="nombre"><?= $row['id_espacio'] ?></th>
                         <th class="nombre"><?= $row['capacidad'] ?></th>
-                        <th class="nombre"><?= $row['equipamiento'] ?></th>
                         <th class="nombre"><?= $row['nombre'] ?></th>
                         <th class="ultimo-dato"><?= $row['tipo'] ?></th>
                         <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_espacio'] ?>">Eliminar</a></th>
-                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_espacio'] ?>" data-nombre="<?= $row['nombre'] ?>" data-capacidad="<?= $row['capacidad'] ?>" data-equip="<?= $row['equipamiento'] ?>" data-tipo="<?= $row['tipo'] ?>">Editar</a></th>
+                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_espacio'] ?>" data-nombre="<?= $row['nombre'] ?>" data-capacidad="<?= $row['capacidad'] ?>" data-tipo="<?= $row['tipo'] ?>">Editar</a></th>
                     </tr>
                 <?php endwhile; ?>
             </table>
@@ -74,8 +72,6 @@ $query = mysqli_query($connect, $sql);
                     <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa Nombre">
                     <label for="capacidad" class="label">Capacidad:</label>
                     <input class="class-datos-editar" type="text" name="capacidad" id="capacidad_edit" maxlength="20" minlength="3" required placeholder="Ingresa Capacidad">
-                    <label for="equip" class="label">Equipamiento:</label>
-                    <input class="class-datos-editar" type="text" name="equip" id="equip_edit" maxlength="20" minlength="3" required placeholder="Ingresa Equipos">
                     <label for="tipo" class="label">Tipo:</label>
                     <select class="class-datos-editar" type="text" name="tipo" id="tipo_edit" maxlength="20" minlength="8" required placeholder="">
                         <option value=""></option>

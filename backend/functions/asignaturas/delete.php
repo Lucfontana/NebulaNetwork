@@ -5,7 +5,7 @@ include_once ('../../db/conexion.php');
     
     $id = $_GET['id'];
  
-    $consulta = "DELETE FROM asignaturas WHERE id_asignatura='$?";
+    $consulta = "DELETE FROM asignaturas WHERE id_asignatura=?";
     $stmt = $con->prepare($consulta);
     $stmt->bind_param("i", $id);
     $stmt->execute();
