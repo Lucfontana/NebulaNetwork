@@ -62,9 +62,9 @@ session_start();
                 <hr>
                 <div class="datos-change-passwd">
                     <label for="passwd" class="label">Ingrese su contraseña actual</label>
-                    <input class="dato-usuario-editar" type="password" name="passwd" id="passwd" maxlength="20" minlength="3" required placeholder="Ingresa su contraseña actual">
+                    <input class="dato-usuario-editar" type="password" name="passwd" id="passwd" maxlength="20" minlength="8" required placeholder="Ingresa su contraseña actual">
                     <label for="newpasswd" class="label">Ingrese su nueva contraseña</label>
-                    <input class="dato-usuario-editar" type="password" name="newpasswd" id="newpasswd" maxlength="20" minlength="3" required placeholder="Ingresa su nueva contraseña">
+                    <input class="dato-usuario-editar" type="password" name="newpasswd" id="newpasswd" maxlength="20" minlength="8" required placeholder="Ingresa su nueva contraseña">
                 </div>
                 <div>
                     <input type="submit" value="Actualizar Contraseña" class="actualizar" id="confirmarpasswd"></input>

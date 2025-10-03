@@ -13,8 +13,12 @@ $newpasswd = $_POST['newpasswd'];
 // Dependiendo del tipo de usuario
 if (!isset($_SESSION['nivel_acceso'])) {
     // Profesor
-    $sql = "SELECT pass_profesor FROM profesores WHERE ci_profesor='$ci'";
-    $result = mysqli_query($connect, $sql);
+
+    $consulta = "SELECT pass_profesor FROM profesores WHERE ci_profesor=?";
+    $stmt = $con->prepare($consulta);
+    $stmt->bind_param("i", $ci);
+    $stmt->execute();
+    $result = $stmt->get_result();
     $row = mysqli_fetch_assoc($result);
 
     if (!$row || !password_verify($currentpasswd, $row['pass_profesor'])) {
@@ -24,12 +28,20 @@ if (!isset($_SESSION['nivel_acceso'])) {
 
     // Nueva contraseña encriptada
     $hash = password_hash($newpasswd, PASSWORD_DEFAULT);
-    $sql = "UPDATE profesores SET pass_profesor='$hash' WHERE ci_profesor='$ci'";
+    $consultaUPDATE = "UPDATE profesores SET pass_profesor=? WHERE ci_profesor=?";
+    $stmt = $con->prepare($consultaUPDATE);
+    $stmt->bind_param("si", $hash, $ci);
+    $stmt->execute();
+
     $_SESSION['pass_profesor'] = $newpasswd;
 } else {
     // Superusuario
-    $sql = "SELECT pass_superusuario FROM superusuario WHERE id_superusuario='$ci'";
-    $result = mysqli_query($connect, $sql);
+
+    $consulta = "SELECT pass_superusuario FROM superusuario WHERE id_superusuario=?";
+    $stmt = $con->prepare($consulta);
+    $stmt->bind_param("i", $ci);
+    $stmt->execute();
+    $result = $stmt->get_result();
     $row = mysqli_fetch_assoc($result);
 
     if (!$row || !password_verify($currentpasswd, $row['pass_superusuario'])) {
@@ -38,14 +50,16 @@ if (!isset($_SESSION['nivel_acceso'])) {
     }
 
     $hash = password_hash($newpasswd, PASSWORD_DEFAULT);
-    $sql = "UPDATE superusuario SET pass_superusuario='$hash' WHERE id_superusuario='$ci'";
+    $consultaUPDATE = "UPDATE superusuario SET pass_superusuario=? WHERE id_superusuario=?";
+    $stmt = $con->prepare($consultaUPDATE);
+    $stmt->bind_param("si", $hash, $ci);
+    $stmt->execute();
     $_SESSION['pass_superusuario'] = $newpasswd;
 }
 
 // Ejecutar update
-if (mysqli_query($connect, $sql)) {
+if ($stmt->affected_rows > 0) {
     echo json_encode(["success" => true, "message" => "✅ Contraseña actualizada con éxito"]);
 } else {
     echo json_encode(["success" => false, "message" => "⚠️ Error al actualizar"]);
 }
-?>
