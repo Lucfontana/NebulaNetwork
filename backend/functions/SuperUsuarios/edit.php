@@ -9,10 +9,11 @@ $name = $_POST['nombre'];
 $apellido = $_POST['apellido'];
 $nivelacceso = $_POST['nivelacceso'];
 
-$sql = "UPDATE superusuario SET nombre='$name', apellido='$apellido', nivel_acceso='$nivelacceso' WHERE id_superusuario='$id'";
-$query = mysqli_query($connect, $sql);
+$consulta = "UPDATE superusuario SET nombre = ?, apellido = ?, nivel_acceso = ? WHERE id_superusuario=?"    ;
+$stmt = $con->prepare($consulta);
+$stmt->bind_param("ssii", $name, $apellido, $nivelacceso ,$id);
+$stmt->execute();
+$result = $stmt->get_result();
 
-if ($query) {
-    Header("location: ../../../frontend/SuperUsuarios.php");
-}
+Header("location: ../../../frontend/SuperUsuarios.php");
 ?>

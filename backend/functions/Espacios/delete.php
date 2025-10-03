@@ -5,11 +5,11 @@ include_once ('../../db/conexion.php');
     
     $id = $_GET['id'];
  
-    $sql = "DELETE FROM espacios_fisicos WHERE id_espacio='$id'";
+    $consulta = "DELETE FROM espacios_fisicos WHERE id_espacio=?";
+    $stmt = $con->prepare($consulta);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    $query = mysqli_query($connect, $sql);
-
-    if ($query) {
     Header("location: /frontend/Espacios.php");
-    }
 ?>

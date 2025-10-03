@@ -31,7 +31,6 @@ $query = mysqli_query($connect, $sql);
                     <th class="id">Id </th>
                     <th class="nombre-titulo">Nombre</th>
                     <th class="nombre-titulo">Capacidad</th>
-                    <th class="titulo-ult">Cupos Disponibles</th>
                     <th class="boton-titulo">Borrar</th>
                     <th class="boton-titulo">Editar</th>
                 </tr>
@@ -70,9 +69,7 @@ $query = mysqli_query($connect, $sql);
                     <label for="nombre" class="label">Nombre:</label>
                     <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa Nombre">
                     <label for="nombre" class="label">Capacidad:</label>
-                    <input class="class-datos-editar" type="text" name="capacidad" id="capacidad_edit" maxlength="20" minlength="3" required placeholder="Ingresa Capacidad">
-                    <label for="nombre" class="label">Cupos:</label>
-                    <input class="class-datos-editar" type="text" name="cupos" id="cupos_edit" maxlength="20" minlength="3" required placeholder="Ingresa Cupos Disponibles">
+                    <input class="class-datos-editar" type="number" name="capacidad" id="capacidad_edit" maxlength="3" minlength="1" required placeholder="Ingresa Capacidad">
                 </div>
                 <div>
                     <input type="submit" value="Actualizar Infomacion" id="actualizar" class="actualizar"></input>

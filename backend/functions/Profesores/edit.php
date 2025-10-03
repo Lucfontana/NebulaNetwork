@@ -11,8 +11,13 @@ $email = $_POST['email'];
 $fecha_nac = $_POST['fnac'];
 $direccion = $_POST['direccion'];
 
-$sql = "UPDATE profesores SET nombre='$name',apellido='$apellido',email='$email',fecha_nac='$fecha_nac',direccion='$direccion' WHERE ci_profesor='$ci'";
-$query = mysqli_query($connect, $sql);
+
+$consulta = "UPDATE profesores SET nombre = ?, apellido = ?, email = ?, fecha_nac = ?, direccion = ? WHERE ci_profesor=?";
+$stmt = $con->prepare($consulta);
+$stmt->bind_param("sssssi", $name, $apellido, $email, $fecha_nac, $direccion, $ci);
+$stmt->execute();
+$result = $stmt->get_result();
+
 
 if ($query) {
     Header("location: ../../../frontend/Profesores.php");

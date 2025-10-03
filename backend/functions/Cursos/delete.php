@@ -5,11 +5,12 @@ include_once ('../../db/conexion.php');
     
     $id = $_GET['id'];
  
-    $sql = "DELETE FROM cursos WHERE id_curso='$id'";
+    $consulta = "DELETE FROM cursos WHERE id_curso=?";
+    $stmt = $con->prepare($consulta);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    $query = mysqli_query($connect, $sql);
 
-    if ($query) {
-    Header("location: /frontend/Cursos.php");
-    }
+    Header("location: ../../../frontend/Cursos.php");
 ?>

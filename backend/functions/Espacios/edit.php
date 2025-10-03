@@ -11,10 +11,11 @@ $equipment = $_POST['equip'];
 $type = $_POST['tipo'];
 
 
-$sql = "UPDATE espacios_fisicos SET capacidad='$capacity', equipamiento='$equipment' ,nombre='$name', tipo='$type' WHERE id_espacio='$id'";
-$query = mysqli_query($connect, $sql);
+$consulta = "UPDATE espacios_fisicos SET capacidad=?, equipamiento=? ,nombre=?, tipo=? WHERE id_espacio=?";
+$stmt = $con->prepare($consulta);
+$stmt->bind_param("issssi", $capacity, $equipment, $name, $type, $id);
+$stmt->execute();
+$result = $stmt->get_result();
 
-if ($query) {
-    Header("location: ../../../frontend/Espacios.php");
-}
+Header("location: ../../../frontend/Espacios.php");
 ?>
