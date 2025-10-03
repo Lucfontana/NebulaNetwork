@@ -48,13 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
       nombre = botonEditar.dataset.nombre;
       tipo = botonEditar.dataset.tipo;
       capacidad = botonEditar.dataset.capacidad;
-      equipamiento = botonEditar.dataset.equip;
 
       document.getElementById("id_edit").value = editID;
       document.getElementById("name_edit").value = nombre;
       document.getElementById("capacidad_edit").value = capacidad;
       document.getElementById("tipo_edit").value = tipo;
-    document.getElementById("equip_edit").value = equipamiento;
     })
   })
 
