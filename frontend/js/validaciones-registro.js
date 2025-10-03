@@ -118,7 +118,7 @@ let formulario_superusuarios = document.querySelector(".superusuarios-form");
 formulario_superusuarios.addEventListener("submit", function(e) {
     let ci_superusuario = document.getElementById("ciSuperusuario").value;
     let contrasena_superusuario = document.getElementById("contrasenaSuperusuario").value;
-    
+
     contrasena_superusuario.addEventListener("input", function() {
     contrasena_superusuario.value = contrasena_superusuario.value.replace(/[^0-9]/g, '').slice(0, 8);
     });
@@ -153,7 +153,7 @@ formulario_recursos.addEventListener("submit", function(e) {
     let nombre_recurso = document.getElementById("nombreRecurso").value;
     let estado_recurso = document.getElementById("estadoRecurso").value;
 
-    if (!verificarNombreEspacio(nombre_recurso)) {
+    if (!verificarNombreEspecial(nombre_recurso)) {
         e.preventDefault();
     }
 
@@ -165,7 +165,7 @@ formulario_espacios.addEventListener("submit", function(e) {
     let capacidad_espacio = document.getElementById("capacidadEspacio").value;
     let tipo_espacio = document.getElementById("tipoEspacio").value;
 
-    if (!verificarNombreEspacio(nombre_espacio)) {
+    if (!verificarNombreEspecial(nombre_espacio)) {
         e.preventDefault();
     }
     if (!verificarCapacidad(capacidad_espacio)) {
@@ -180,7 +180,7 @@ formulario_cursos.addEventListener("submit", function(e) {
     let nombre_curso = document.getElementById("nombreCurso").value;
     let capacidad_curso = document.getElementById("capacidadCurso").value;
 
-    if (!verificarString(nombre_curso, "nombre")) {
+    if (!verificarNombreEspecial(nombre_curso)) {
         e.preventDefault();
     }
     if (!verificarCapacidad(capacidad_curso)) {
@@ -402,6 +402,20 @@ function verificarCapacidad(capacidad) {
 
     if (capacidad < 1 || capacidad > 40) {
         alerta_fallo("La capacidad debe estar entre 1 y 40");
+        return false;
+    }
+    return true;
+}
+
+function verificarNombreEspecial(nombre) {
+    // Permite letras, números, espacios, tildes, guiones y símbolo de grado
+    let regex = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s\-°]+$/;
+    if (nombre.length < 2 || nombre.length > 40) {
+        alerta_fallo("El nombre debe tener entre 2 y 40 caracteres");
+        return false;
+    }
+    if (!regex.test(nombre)) {
+        alerta_fallo("El nombre solo puede contener letras, números, espacios, guiones (-) y el símbolo °");
         return false;
     }
     return true;
