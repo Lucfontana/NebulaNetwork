@@ -7,13 +7,13 @@ $connect = conectar_a_bd();
 $id = $_POST['id_curso'];
 $name = $_POST['nombre'];
 $capacidad = $_POST['capacidad'];
-$cupos = $_POST['cupos'];
 
 
-$sql = "UPDATE cursos SET nombre='$name', capacidad='$capacidad', cupo_disponible='$cupos' WHERE id_curso='$id'";
-$query = mysqli_query($connect, $sql);
+$consulta = "UPDATE cursos SET nombre = ?, capacidad = ? WHERE id_curso=?";
+$stmt = $con->prepare($consulta);
+$stmt->bind_param("sii", $name, $capacidad ,$id);
+$stmt->execute();
+$result = $stmt->get_result();
 
-if ($query) {
-    Header("location: ../../../frontend/Cursos.php");
-}
+Header("location: ../../../frontend/Cursos.php");
 ?>

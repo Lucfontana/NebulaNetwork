@@ -10,10 +10,11 @@ $name = $_POST['nombre'];
 $estado = $_POST['estado'];
 $tipo = $_POST['tipo'];
 
-$sql = "UPDATE recursos SET id_espacio='$id_espacio', nombre='$name', descripcion='$name', tipo='$tipo', estado='$estado' WHERE id_recurso='$id'";
-$query = mysqli_query($connect, $sql);
+$consulta = "UPDATE reursos SET nombre = ?, descripcion = ?, tipo = ?, estado = ? WHERE id_recurso=?";
+$stmt = $con->prepare($consulta);
+$stmt->bind_param("ssssi", $name, $descripcion, $tipo, $estado, $id);
+$stmt->execute();
+$result = $stmt->get_result();
 
-if ($query) {
-    Header("location: ../../../frontend/Recursos.php");
-}
+Header("location: ../../../frontend/Recursos.php");
 ?>

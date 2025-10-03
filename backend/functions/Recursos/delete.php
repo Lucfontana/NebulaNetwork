@@ -5,11 +5,11 @@ include_once ('../../db/conexion.php');
     
     $id = $_GET['id'];
  
-    $sql = "DELETE FROM recursos WHERE id_recurso='$id'";
+    $consulta = "DELETE FROM recursos WHERE id_recurso=?";
+    $stmt = $con->prepare($consulta);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    $query = mysqli_query($connect, $sql);
-
-    if ($query) {
     Header("location: /frontend/Recursos.php");
-    }
 ?>
