@@ -531,6 +531,7 @@ aside>ul {
 
 .article-register {
     background-color: aliceblue;
+    min-width: 300px;
     width: 30%;
     text-align: center;
     margin-top: 50px;

@@ -36,7 +36,7 @@ session_start();
     <!-- Botones debajo -->
     <div class="bienvenida-botones">
         <a href="register.php"><button class="btn-bienvenida"><?= t("btn_info") ?></button></a>
-        <a href="prestar-recursos.php"><button class="btn-bienvenida"><?= t("btn_resources") ?></button></a>
+        <a href="respaldo_temp.php"><button class="btn-bienvenida"><?= t("btn_resources") ?></button></a>
         <button class="btn-bienvenida"><?= t("btn_teachers") ?></button>
     </div>
  </div>

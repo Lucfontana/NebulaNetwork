@@ -10,7 +10,7 @@ $profesores_info = $stmt->get_result();
 
 //////////////////////////////////
 //Query de recursos
-$query_recursos = "SELECT * FROM recursos";
+$query_recursos = "SELECT * FROM recursos WHERE estado != 'uso'";
 $stmt = $con->prepare($query_recursos);
 $stmt->execute();
 $recursos_info = $stmt->get_result();
@@ -27,15 +27,13 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Prestar recursos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
 <link rel="stylesheet" href="style/style.css">
 
-<?php if (!isset($_SESSION['nivel_acceso'])):?>
-<?php include_once('error.php')?>
-<?php else:?>
+<?php if (isset($_SESSION['nivel_acceso'])):?>
 
 <body>
     <!-- trae las barras de navegacion (sidebar y superior) -->
@@ -45,21 +43,11 @@ session_start();
             <div id="register-content">
                 <div class="article-register">
                     <div>
-                        <h1> Registro de Profesores</h1>
-                    </div>
-                    <button type="button" id="Profesores-boton" class="btn btn-primary" data-toggle="modal"
-                        data-target="#exampleModal">
-                        Abrir Registro
-                    </button>
-                </div>
-
-                <div class="article-register">
-                    <div>
-                        <h1> Registro de SuperUsuarios</h1>
+                        <h1> Prestar recursos</h1>
                     </div>
                     <button type="button" id="Adscriptas-boton" class="btn btn-primary" data-toggle="modal"
                         data-target="#exampleModal">
-                        Abrir Registro
+                        Prestar
                     </button>
                 </div>
 
@@ -70,64 +58,11 @@ session_start();
         <!--    Inicio de Ventanas Emergentes    -->
 
         <div id="div-dialogs">
-            <dialog>
-                <form id="form-registro" class="registro-div profesores-form"
-                    action="../backend/functions/profesores_func.php" method="POST">
-                    <h1>Registro de Profesores</h1>
-                    <hr>
-                    <div class="div-labels">
-                        <label for="CI" class="label">Cedula de Identidad:</label>
-                        <input class="input-register" type="text" name="CI" id="ciProfesor" maxlength="8"
-                            pattern="\d{8}" required placeholder="Ingresa sin puntos ni guiones">
-                    </div>
-                    <div class="div-labels">
-                        <label for="contrasena" class="label">Contraseña:</label>
-                        <input class="input-register" type="password" name="contrasena" id="contrasenaProfesor"
-                            maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
-                    </div>
-                    <div class="div-labels">
-                        <label for="name" class="label">Nombre:</label>
-                        <input class="input-register" type="text" name="name" id="nombreProfesor" maxlength="20"
-                            minlength="3" required placeholder="Ingresa nombre">
-                    </div>
-                    <div class="div-labels">
-                        <label for="apellido" class="label">Apellido:</label>
-                        <input class="input-register" type="text" name="apellido" id="apellidoProfesor" maxlength="20"
-                            minlength="3" required placeholder="Ingresa apellido">
-                    </div>
-                    <div class="div-labels">
-                        <label for="email" class="label">Email:</label>
-                        <input class="input-register" type="email" name="email" id="emailProfesor" maxlength="30"
-                            minlength="8" required placeholder="Ingresa Email">
-                    </div>
-                    <div class="div-labels">
-                        <label for="nac" class="label">Fecha Nacimiento:</label>
-                        <input class="input-register" type="date" name="nac" id="fechaNacimientoProfesor" maxlength="30"
-                            minlength="8" required>
-                    </div>
-                    <div class="div-labels">
-                        <label for="direc" class="label">Dirección:</label>
-                        <input class="input-register" type="text" name="direc" id="direccionProfesor" maxlength="100"
-                            minlength="1 " required placeholder="Ingresa dirección">
-                    </div>
-                    <div class="div-botones-register">
-                        <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
-                            name="registroProfesor"></input>
-                </form>
-
-                <!-- 
-Se tiene que declarar el boton como de tipo "button" pq por defecto,
-los botones adentro de un formulario son de tipo submit, por lo tanto
-esto causaba que el formulario se enviara cuando necesitabamos cerrar 
-el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
-                <button class="btn-Cerrar" type="button">Cerrar</button>
-        </div>
-        </dialog>
 
         <dialog>
             <form id="form-registro" class="registro-div superusuarios-form"
-                action="../backend/functions/superusuarios_func.php" method="POST">
-                <h1>Registro de SuperUsuarios</h1>
+                action="../backend/functions/Recursos/prestar-recursos/prestar_api.php" method="POST">
+                <h1>Prestar Recursos</h1>
                 <hr>
 
                 <div class="div-labels">
@@ -152,12 +87,13 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
                     
                     <div class="div-botones-register">
                         <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
-                            name="registrarSuperuser"></input>
+                            name="prestarRecurso"></input>
             </form>
             <button class="btn-Cerrar" type="button">Cerrar</button>
             </div>
         </dialog>
     </main>
+    <main>
 
             <div id="contenido-mostrar-datos">
             <h1>Recursos</h1>
@@ -173,9 +109,9 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
                 </tr>
 
                 
-                <?php
+                <?php 
                 mysqli_data_seek($recursos_info, 0);
-                 while ($row = mysqli_fetch_array($recursos_info)): ?>
+                while ($row = mysqli_fetch_array($recursos_info)): ?>
                     <tr class="mostrar-datos">
                         <th class="nombre"><?= $row['id_recurso'] ?></th>
                         <th class="nombre"><?= $row['id_espacio'] ?></th>
@@ -188,12 +124,17 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
                 <?php endwhile; ?>
             </table>
         </div>
+    </main>
 
     <!--    Cierre de Ventanas Emergentes    -->
 
     <footer id="footer" class="footer">
         <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
     </footer>
+    <?php elseif (isset($_SESSION['ci'])):?>
+        <p>HOLA SOY UN PROFESOR!!! PAGINA EN DESARROLLO</p>
+    <?php elseif (!isset($_SESSION['ci'])):?>
+        <?php include_once('error.php')?>
     <?php endif;?>
 
     <!-- Bootstrap -->

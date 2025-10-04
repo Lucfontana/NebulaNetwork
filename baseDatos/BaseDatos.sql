@@ -1,12 +1,14 @@
-Create table cursos (
-    id_curso int AUTO_INCREMENT primary key not null,
-    nombre varchar(50) not null,
-    capacidad int not null
-);
-
 create table orientacion (
     id_orientacion int AUTO_INCREMENT primary key not null,
     nombre varchar(50) not null
+);
+
+Create table cursos (
+    id_curso int AUTO_INCREMENT primary key not null,
+    id_orientacion int,
+    foreign key (id_orientacion) references orientacion(id_orientacion) ON DELETE CASCADE,
+    nombre varchar(50) not null,
+    capacidad int not null
 );
 
 create table asignaturas (
@@ -106,8 +108,8 @@ create table su_administra_recursos (
     id_solicita int,
     FOREIGN KEY (id_superusuario) references superUsuario(id_superusuario) ON DELETE CASCADE,
     FOREIGN KEY (id_solicita) references profesor_solicita_recurso(id_solicita) ON DELETE CASCADE,
-    hora_presta date not null,
-    hora_vuelta date not null
+    hora_presta datetime not null,
+    hora_vuelta datetime
 );
 
 create table su_administra_profesores (
