@@ -1,7 +1,7 @@
 <?php
 
-include_once ('../db/conexion.php');
-include_once('profesores_func.php');
+include_once ('../../db/conexion.php');
+include_once('../Profesores/profesores_func.php');
 
 // Indicar que la respuesta de este PHP es un JSON
 header('Content-Type: application/json');
@@ -52,6 +52,7 @@ function insert_datos_superuser($con, $existe, $ci, $password, $nombre, $apellid
         $respuesta_json['mensaje'] = "Este superusuario ya existe";
     }
 
+    return $respuesta_json;
 }
 
 ?>

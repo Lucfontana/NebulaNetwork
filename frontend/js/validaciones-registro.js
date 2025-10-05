@@ -84,7 +84,11 @@ contrasena_superusuario.addEventListener("input", function() {
 
 let formulario_profesores = document.querySelector(".profesores-form");
 
-formulario_profesores.addEventListener("submit", function(e) {
+formulario_profesores.addEventListener("submit", registrar_profesores)
+
+function registrar_profesores(e){
+    e.preventDefault();
+
     let ci_profesor = document.getElementById("ciProfesor").value;
     let contrasena_profesor = document.getElementById("contrasenaProfesor").value;
     let nombre_profesor = document.getElementById("nombreProfesor").value;
@@ -93,9 +97,21 @@ formulario_profesores.addEventListener("submit", function(e) {
     let fecha_nacimiento_profesor = document.getElementById("fechaNacimientoProfesor").value;
     let direccion_profesor = document.getElementById("direccionProfesor").value;
 
+    const form_profesor = new FormData();
+
+    form_profesor.append('CI', ci_profesor);
+    form_profesor.append('contrasena', contrasena_profesor);
+    form_profesor.append('name', nombre_profesor);
+    form_profesor.append('apellido', apellido_profesor);
+    form_profesor.append('email', email_profesor);
+    form_profesor.append('nac', fecha_nacimiento_profesor);
+    form_profesor.append('direc', direccion_profesor);
+    form_profesor.append('registroProfesor', true);
+
     if (!verificarCI(ci_profesor) || !verificarExistenciaCI(ci_profesor, [2,9,8,7,6,3,4])) {
         alerta_fallo("La cédula ingresada no es válida.");
         e.preventDefault();
+        return;
     }
     if (contrasena_profesor !== ci_profesor) {
         alerta_fallo("La contraseña debe ser igual a la cédula.");
@@ -105,55 +121,112 @@ formulario_profesores.addEventListener("submit", function(e) {
     if (!verificarString(nombre_profesor, "nombre")) {
         alerta_fallo("El nombre ingresado no es válido.");
         e.preventDefault();
+        return;
     }
     if (!verificarString(apellido_profesor, "apellido")) {
         alerta_fallo("El apellido ingresado no es válido.");
         e.preventDefault();
+        return;
     }
     if (!verificarEmail(email_profesor)) {
         alerta_fallo("El email ingresado no es válido.");
         e.preventDefault();
+        return;
     }
     if (!verificarFechanacimiento(fecha_nacimiento_profesor)) {
         alerta_fallo("La fecha de nacimiento ingresada no es válida.");
         e.preventDefault();
+        return;
     }
     if (!verificarDireccion(direccion_profesor)) {
         alerta_fallo("La dirección ingresada no es válida.");
         e.preventDefault();
+        return;
     }
-});
+
+    // se le pasa al fetch el endpoint que genera la consulta de busqueda, se pone la direccion del php
+    fetch('../../backend/functions/Profesores/profesores_func.php', {
+        method: 'POST',
+        body: form_profesor
+    })
+
+    //se toma la respuesta y se devuelve en formato json
+    .then(response => response.json())
+    //la variable data se usa para recorrer el array asociativo del endpoint...
+    .then(data => {
+
+        //si el enpoint devuelve 1...
+        if (data.estado === 1) {
+            alerta_success(`${data.mensaje}`, "Profesores.php", "profesor");
+        } else {
+            alerta_fallo(`${data.mensaje}`);
+        }
+    })
+};
 
 
 
 let formulario_superusuarios = document.querySelector(".superusuarios-form");
-formulario_superusuarios.addEventListener("submit", function(e) {
+formulario_superusuarios.addEventListener("submit", registrar_superusuario);
+
+function registrar_superusuario(e) {
+    e.preventDefault();
+
     let ci_superusuario = document.getElementById("ciSuperusuario").value;
     let contrasena_superusuario = document.getElementById("contrasenaSuperusuario").value;
     let nombre_superusuario = document.getElementById("nombreSuperusuario").value;
     let apellido_superusuario = document.getElementById("apellidoSuperusuario").value;
     let email_superusuario = document.getElementById("emailSuperusuario").value;
+    let acceso_superusuario = document.getElementById("acceso").value;
 
+    // ✅ Validaciones PRIMERO (antes de crear FormData)
     if (!verificarCI(ci_superusuario) || !verificarExistenciaCI(ci_superusuario, [2,9,8,7,6,3,4])) {
-        e.preventDefault();
+        alerta_fallo("La cédula ingresada no es válida."); // ✅ Agregado mensaje
+        return;
     }
     if (contrasena_superusuario !== ci_superusuario) {
         alerta_fallo("La contraseña debe ser igual a la cédula.");
-        e.preventDefault();
         return;
     }
     if (!verificarString(nombre_superusuario, "nombre")) {
-        e.preventDefault();
-    }
-    if (!verificarString(apellido_superusuario, "apellido")) {
-        e.preventDefault();
-    }
-    if (!verificarEmail(email_superusuario)) {
-        alerta_fallo("El email ingresado no es válido");
-        e.preventDefault();
+        alerta_fallo("El nombre ingresado no es válido."); // ✅ Agregado mensaje
         return;
     }
-});
+    if (!verificarString(apellido_superusuario, "apellido")) {
+        alerta_fallo("El apellido ingresado no es válido."); // ✅ Agregado mensaje
+        return;
+    }
+    if (!verificarEmail(email_superusuario)) {
+        alerta_fallo("El email ingresado no es válido.");
+        return;
+    }
+
+    // ✅ Crear FormData DESPUÉS de validar
+    const form_superusuario = new FormData();
+    form_superusuario.append('CI', ci_superusuario);
+    form_superusuario.append('password', contrasena_superusuario);
+    form_superusuario.append('name', nombre_superusuario);
+    form_superusuario.append('apellido', apellido_superusuario);
+    form_superusuario.append('acceso', acceso_superusuario);
+    form_superusuario.append('registrarSuperuser', true);
+
+    fetch('../../backend/functions/SuperUsuarios/superusuarios_func.php', {
+        method: 'POST',
+        body: form_superusuario
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.estado === 1) {
+            alerta_success(`${data.mensaje}`, "SuperUsuarios.php", "superusuario");
+        } else {
+            alerta_fallo(`${data.mensaje}`);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alerta_fallo("Error al conectar con el servidor.");
+    });
+}
 
 let formulario_recursos = document.querySelector(".recursos-form");
 formulario_recursos.addEventListener("submit", function(e) {
