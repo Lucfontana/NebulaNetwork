@@ -93,14 +93,13 @@ session_start();
         <div id="div-dialogs">
 
         <dialog>
-            <form id="form-registro" class="registro-div superusuarios-form"
-                action="../backend/functions/Recursos/prestar-recursos/prestar_api.php" method="POST">
+            <form id="form-registro" class="registro-div prestar-form">
                 <h1>Prestar Recursos</h1>
                 <hr>
 
                 <div class="div-labels">
                     <label for="profesor_asignado" class="label">Profesor a prestar:</label>
-                    <select name="profesor_asignado" id="pertenece" type="text" class="input-register" required>
+                    <select name="profesor_asignado" id="profesor_asignado" type="text" class="input-register" required>
                         <option value=""></option>
                         <?php while ($row = mysqli_fetch_array($profesores_info)): ?>
                             <option value="<?= $row['ci_profesor']?>"><?= $row['nombre']?> <?= $row['apellido']?></option>
@@ -110,7 +109,7 @@ session_start();
 
                 <div class="div-labels">
                     <label for="recurso_prestado" class="label">Recurso a prestar:</label>
-                    <select name="recurso_prestado" id="pertenece" type="text" class="input-register" required>
+                    <select name="recurso_prestado" id="recurso_prestado" type="text" class="input-register" required>
                         <option value=""></option>
                         <?php while ($row = mysqli_fetch_array($recursos_info)): ?>
                             <option value="<?= $row['id_recurso']?>"><?= $row['nombre']?></option>
@@ -203,7 +202,8 @@ session_start();
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
 
-    <script src="../../backend/functions/Recursos/prestar-recursos/procesar_devolucion.js"></script>
+    <script type="module" src="../../backend/functions/Recursos/prestar-recursos/prestar.js"></script>
+    <script type="module" src="../../backend/functions/Recursos/prestar-recursos/procesar_devolucion.js"></script>
     <script src="js/Register-Modal.js"></script>
 
     <!-- Sweet alerts -->
