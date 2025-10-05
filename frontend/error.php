@@ -9,7 +9,11 @@
 <body class="error-body">
     <div class="error">
         <h1>Error...</h1>
-        <p>No tienes permiso para acceder a esta pagina, necesitas iniciar sesión.</p>
+        <?php if (!isset($_SESSION['ci'])):?>
+            <p>No tienes permiso para acceder a esta pagina, necesitas iniciar sesión.</p>
+        <?php elseif(!isset($_SESSION['nivel_acceso'])):?>
+            <p>No tienes el rango suficiente para acceder a esta pagina, debes ser un Superusuario.</p>
+        <?php endif;?>
 
         <div class="botones-error">
             <a href="Login.php"><button id ="boton-inicio">Iniciar Sesion</button></a>
