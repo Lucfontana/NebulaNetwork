@@ -289,14 +289,6 @@ formulario_horarios.addEventListener("submit", function(e) {
     }
 });
 
-
-
-// Ejemplo de uso en el formulario de horarios
-let horariosExistentes = [
-    // {inicio: "07:00", fin: "07:45", tipo: "clase"},
-    // {inicio: "07:45", fin: "07:50", tipo: "recreo"}
-];
-
 let formulario_dependencias = document.querySelector(".dependencias-form");
 formulario_dependencias.addEventListener("submit", function(e) {
     
