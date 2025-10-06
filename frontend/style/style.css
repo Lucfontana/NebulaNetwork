@@ -1181,33 +1181,73 @@ abajito cuando el ancho es menos de 700px */
 
     /* aside fijo al fondo de la pantalla */
     aside,
-    aside.activo {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100vw;
-        height: 50px;
-        transition: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
+aside.activo {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row; /* íconos en fila */
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+}
+
+/* Ajuste de íconos */
+.link-aside-images {
+    display: flex;
+    flex-direction: row; /* horizontal */
+    height: auto;
+    justify-content: space-evenly;
+    width: 100vw;
+
+}
+
+.link-aside-images li {
+    margin: 0; /* eliminar márgenes verticales */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ocultar icono de configuración y mostrar idioma + modo oscuro */
+.settings-icon {
+    display: none;
+}
+
+  .link-aside-images li::after {
+        display: none !important;
+        content: none !important;
     }
 
+    /* Ocultar configuración */
+    .settings-icon {
+        display: none !important;
+    }
 
-
-    /* estilo a cada imagen individual */
-    .link-aside-images li {
-        margin: 0;
-        display: flex;
+    /* Mostrar íconos de idioma y modo oscuro */
+    .link-aside-images li.lang-icon,
+    .link-aside-images li.darkmode-icon {
+        display: flex !important;
         justify-content: center;
         align-items: center;
     }
 
-    /* tamaño para las imagenes */
-    .link-aside-images img {
-        width: 24px;
-        height: 24px;
+    /* Asegurar tamaño igual al resto */
+    .link-aside-images li.lang-icon img,
+    .link-aside-images li.darkmode-icon img {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+        transition: filter 0.3s ease;
+    }
+
+    /* Efecto hover como los demás */
+    .link-aside-images li.lang-icon img:hover,
+    .link-aside-images li.darkmode-icon img:hover {
+        filter: brightness(0) invert(0);
     }
 
     .footer,
