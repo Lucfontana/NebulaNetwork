@@ -78,7 +78,6 @@ include_once 'functions.php';
         <a href="#modo-oscuro"><?= t("aside_darkmode") ?></a>
     </div>
 </li>
-
                     
         </ul>
     </aside>
@@ -92,6 +91,5 @@ include_once 'functions.php';
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
-   
 
 </html>
