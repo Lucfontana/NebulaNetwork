@@ -1,10 +1,13 @@
+import { verificarNombreEspecial } from './validaciones-registro';
+import { verificarCapacidad } from './validaciones-registro';
+
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("overlay");
   const btnCancelar = document.getElementById("cancelar");
   const btnConfirmar = document.getElementById("confirmar");
   const overlayEdit = document.getElementById("overlay-edit");
   const btnCancelarEdit = document.getElementById("cancelarEdit");
-  const btnActualizar = document.getElementById("actualizar");
+
 
   let editID = null;
   let nombre = null;
@@ -13,7 +16,21 @@ document.addEventListener("DOMContentLoaded", () => {
   
   let currentId = null;
 
+  document.querySelectorAll(".actualizar").forEach(btnActu => {
+     btnActu.addEventListener("click", (e) => {
+      const nombreInput = document.getElementById("name_edit").value;
+      const capacidadInput = document.getElementById("capacidad_edit").value;
 
+      if (!verificarNombreEspecial(nombreInput)) {
+        e.preventDefault();
+      }
+      if (!verificarCapacidad(capacidadInput)) {
+        e.preventDefault();
+      }
+    })
+  })
+
+     
   // Abrir modal y guardar id
   document.querySelectorAll(".boton-datos-eliminar").forEach(boton => {
     boton.addEventListener("click", (e) => {
@@ -51,6 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("name_edit").value = nombre;
       document.getElementById("capacidad_edit").value = capacidad;
       document.getElementById("cupos_edit").value = cupos;
+
+      
     })
   })
 
