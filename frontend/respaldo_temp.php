@@ -51,6 +51,24 @@ $query_unida = "SELECT
 
 session_start();
 
+if (!isset($_SESSION['acceso'])){
+    $ci_profesor = (int)$_SESSION['ci'];
+}
+
+$query = "SELECT 
+    r.nombre as nombre_recurso,
+    sar.hora_presta,
+    sar.hora_vuelta
+    FROM profesor_solicita_recurso psr
+    INNER JOIN recursos r ON psr.id_recurso = r.id_recurso
+    INNER JOIN su_administra_recursos sar ON psr.id_solicita = sar.id_solicita
+    WHERE psr.ci_profesor = ? AND sar.hora_vuelta is null
+    ORDER BY sar.hora_presta DESC";
+
+$stmt = $con->prepare($query);
+$stmt->bind_param("i", $ci_profesor);
+$stmt->execute();
+$prestamos_info2 = $stmt->get_result();
 
 ?>
 
@@ -192,7 +210,46 @@ session_start();
         <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
     </footer>
     <?php elseif (isset($_SESSION['ci'])):?>
-        <p>HOLA SOY UN PROFESOR!!! PAGINA EN DESARROLLO</p>
+        <?php include_once('nav.php') ?>
+        <main>
+            <div id="contenido-mostrar-datos">
+            <table id="datos">
+    <tr>
+        <th class="nombre-titulo">Recurso</th>
+        <th class="nombre-titulo">Hora Prestado</th>
+        <th class="titulo-ult">Hora Devolución</th>
+    </tr>
+
+    <?php 
+    if (mysqli_num_rows($prestamos_info2) > 0) {
+        while ($row = mysqli_fetch_array($prestamos_info2)): 
+    ?>
+        <tr class="mostrar-datos">
+            <th class="nombre"><?= $row['nombre_recurso'] ?></th>
+            <th class="nombre">
+                <?= date('d/m/Y H:i:s', strtotime($row['hora_presta'])) ?>
+            </th>
+            <th class="ultimo-dato">
+                <?php if ($row['hora_vuelta']): ?>
+                    <?= date('d/m/Y H:i:s', strtotime($row['hora_vuelta'])) ?>
+                <?php else: ?>
+                    <span style="color: orange;">Sin devolver</span>
+                <?php endif; ?>
+            </th>
+        </tr>
+    <?php 
+        endwhile;
+    } else {
+        echo '<tr><td colspan="3" style="text-align:center;">No tienes préstamos registrados</td></tr>';
+    }
+    ?>
+</table>
+</div>
+        </main>
+    <footer id="footer" class="footer">
+        <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
+    </footer>
+
     <?php elseif (!isset($_SESSION['ci'])):?>
         <?php include_once('error.php')?>
     <?php endif;?>

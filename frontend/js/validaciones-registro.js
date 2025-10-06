@@ -179,7 +179,7 @@ function registrar_superusuario(e) {
     let email_superusuario = document.getElementById("emailSuperusuario").value;
     let acceso_superusuario = document.getElementById("acceso").value;
 
-    // ✅ Validaciones PRIMERO (antes de crear FormData)
+
     if (!verificarCI(ci_superusuario) || !verificarExistenciaCI(ci_superusuario, [2,9,8,7,6,3,4])) {
         alerta_fallo("La cédula ingresada no es válida."); // ✅ Agregado mensaje
         return;
