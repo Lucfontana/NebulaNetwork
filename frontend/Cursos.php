@@ -81,7 +81,7 @@ $query = mysqli_query($connect, $sql);
             </div>
 
             <div class="buttons-modal">
-                <input type="submit" value="Actualizar Información" class="btn-primary" id="actualizar"></input>
+                <input type="submit" value="Actualizar Información" class="btn-primary actualizar" id="actualizar"></input>
                 <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit"></input>
             </div>
         </form>
@@ -98,7 +98,7 @@ $query = mysqli_query($connect, $sql);
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
     <script src="js/sideMenu.js"></script>
-    <script src="/frontend/js/confirm-cursos.js"></script>
+    <script type="moudle" src="/frontend/js/confirm-cursos.js"></script>
 </body>
 
 </html>

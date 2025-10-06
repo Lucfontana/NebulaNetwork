@@ -228,44 +228,124 @@ function registrar_superusuario(e) {
 }
 
 let formulario_recursos = document.querySelector(".recursos-form");
-formulario_recursos.addEventListener("submit", function(e) {
+formulario_recursos.addEventListener("submit", registrar_recurso);
+
+function registrar_recurso(e) {
+    e.preventDefault();
+
     let nombre_recurso = document.getElementById("nombreRecurso").value;
     let estado_recurso = document.getElementById("estadoRecurso").value;
+    let tipo_recurso = document.getElementById("tipo").value;
+    let pertenece_a = document.getElementById("pertenece_a_espacio").value;
 
     if (!verificarNombreEspecial(nombre_recurso)) {
-        e.preventDefault();
+        alerta_fallo("El nombre del recurso no es válido.");
+        return;
     }
 
-});
+    const form_recurso = new FormData();
+    form_recurso.append('name', nombre_recurso);
+    form_recurso.append('estado', estado_recurso);
+    form_recurso.append('tipo', tipo_recurso);
+    form_recurso.append('pertenece', pertenece_a);
+    form_recurso.append('registrarRecurso', true);
+
+    fetch('../../backend/functions/Recursos/recursos_func.php', {
+        method: 'POST',
+        body: form_recurso
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.estado === 1) {
+            alerta_success(`${data.mensaje}`, "Recursos.php", "recurso");
+        } else {
+            alerta_fallo(`${data.mensaje}`);
+        }
+    })
+}
 
 let formulario_espacios = document.querySelector(".espacios-form");
-formulario_espacios.addEventListener("submit", function(e) {
+formulario_espacios.addEventListener("submit", registrar_espacio);
+
+function registrar_espacio(e) {
+    e.preventDefault();
+
     let nombre_espacio = document.getElementById("nombreEspacio").value;
     let capacidad_espacio = document.getElementById("capacidadEspacio").value;
     let tipo_espacio = document.getElementById("tipoEspacio").value;
 
     if (!verificarNombreEspecial(nombre_espacio)) {
-        e.preventDefault();
+        alerta_fallo("El nombre del espacio no es válido.");
+        return;
     }
     if (!verificarCapacidad(capacidad_espacio)) {
-        e.preventDefault();
+        alerta_fallo("La capacidad ingresada no es válida.");
+        return;
     }
-});
 
+    const form_espacio = new FormData();
+    form_espacio.append('name', nombre_espacio);
+    form_espacio.append('capacity', capacidad_espacio);
+    form_espacio.append('tipo', tipo_espacio);
+    form_espacio.append('registrarEspacio', true);
 
+    fetch('../../backend/functions/Espacios/espacios_func.php', {
+        method: 'POST',
+        body: form_espacio
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.estado === 1) {
+            alerta_success(`${data.mensaje}`, "Espacios.php", "espacio");
+        } else {
+            alerta_fallo(`${data.mensaje}`);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alerta_fallo("Error al conectar con el servidor.");
+    });
+}
 
 let formulario_cursos = document.querySelector(".cursos-form");
-formulario_cursos.addEventListener("submit", function(e) {
+formulario_cursos.addEventListener("submit", registrar_curso);
+
+function registrar_curso(e) {
+    e.preventDefault();
+
     let nombre_curso = document.getElementById("nombreCurso").value;
     let capacidad_curso = document.getElementById("capacidadCurso").value;
+    let orientacion_curso = document.getElementById("salon_ocupado").value;
 
     if (!verificarNombreEspecial(nombre_curso)) {
-        e.preventDefault();
+        alerta_fallo("El nombre del curso no es válido.");
+        return;
     }
     if (!verificarCapacidad(capacidad_curso)) {
-        e.preventDefault();
+        alerta_fallo("La capacidad ingresada no es válida.");
+        return;
     }
-});
+
+    const form_curso = new FormData();
+    form_curso.append('name', nombre_curso);
+    form_curso.append('capacity', capacidad_curso);
+    form_curso.append('orientacion_en', orientacion_curso);
+    form_curso.append('registrarCursos', true);
+
+    fetch('../../backend/functions/Cursos/cursos_func.php', {
+        method: 'POST',
+        body: form_curso
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.estado === 1) {
+            alerta_success(`${data.mensaje}`, "Cursos.php", "curso");
+        } else {
+            alerta_fallo(`${data.mensaje}`);
+        }
+    })
+
+}
 
 let formulario_horarios = document.querySelector(".horarios-form");
 formulario_horarios.addEventListener("submit", function(e) {
@@ -292,6 +372,41 @@ let formulario_dependencias = document.querySelector(".dependencias-form");
 formulario_dependencias.addEventListener("submit", function(e) {
     
 });
+
+let formulario_orientaciones = document.querySelector(".orientacion-form");
+formulario_orientaciones.addEventListener("submit", registrar_orientacion);
+
+function registrar_orientacion(e) {
+    e.preventDefault();
+
+    let nombre_orientacion = document.getElementById("nombreOrientacion").value;
+
+    if (!verificarNombreEspecial(nombre_orientacion)) {
+        alerta_fallo("El nombre de la orientación no es válido.");
+        return;
+    }
+
+    const form_orientacion = new FormData();
+    form_orientacion.append('nombreOrientacion', nombre_orientacion);
+    form_orientacion.append('registrarOrientacion', true);
+
+    fetch('../../backend/functions/orientacion/orientacion_api.php', {
+        method: 'POST',
+        body: form_orientacion
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.estado === 1) {
+            alerta_success(`${data.mensaje}`, "Orientaciones.php", "orientacion");
+        } else {
+            alerta_fallo(`${data.mensaje}`);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alerta_fallo("Error al conectar con el servidor.");
+    });
+}
 
 //Se hace la funcion del tipo de dato que queremos verificar, entre los parentesis
 //se toman como argumento las siguientes variables: nombre (la string a verificar) y
