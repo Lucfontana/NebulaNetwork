@@ -17,9 +17,6 @@ $stmt = $con->prepare($consulta);
 $stmt->bind_param("sssssi", $name, $apellido, $email, $fecha_nac, $direccion, $ci);
 $stmt->execute();
 $result = $stmt->get_result();
+Header("location: ../../../frontend/Profesores.php");
 
-
-if ($query) {
-    Header("location: ../../../frontend/Profesores.php");
-}
 ?>

@@ -59,24 +59,34 @@ $query = mysqli_query($connect, $sql);
 
 
         <div id="overlay-edit" class="overlay-edit">
-            <form action="\backend\functions\Cursos\edit.php" method="POST">
-                <h1>Registro de Cursos</h1>
-                <hr>
-                <div class="div-labels">
-                    <input class="input-register" type="hidden" name="id_curso" id="id_edit">
-                </div>
-                <div class="editar-edit">
-                    <label for="nombre" class="label">Nombre:</label>
-                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa Nombre">
-                    <label for="nombre" class="label">Capacidad:</label>
-                    <input class="class-datos-editar" type="number" name="capacidad" id="capacidad_edit" maxlength="3" minlength="1" required placeholder="Ingresa Capacidad">
-                </div>
+    <div class="popup">
+        <h1>Registro de Cursos</h1>
+        <form action="\backend\functions\Cursos\edit.php" method="POST">
+            <div class="div-labels">
+                <input class="input-register" type="hidden" name="id_curso" id="id_edit">
+            </div>
+
+            <div class="input-group">
+                <label for="nombre">Nombre:</label>
                 <div>
-                    <input type="submit" value="Actualizar Infomacion" id="actualizar" class="actualizar"></input>
-                    <input type="button" value="Cancelar" id="cancelarEdit"></input>
+                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <div class="input-group">
+                <label for="capacidad">Capacidad:</label>
+                <div>
+                    <input class="class-datos-editar" type="number" name="capacidad" id="capacidad_edit" maxlength="3" minlength="1" required placeholder="Ingresa capacidad">
+                </div>
+            </div>
+
+            <div class="buttons-modal">
+                <input type="submit" value="Actualizar Información" class="btn-primary" id="actualizar"></input>
+                <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit"></input>
+            </div>
+        </form>
+    </div>
+</div>
     </main>
 
     <footer id="footer" class="footer">

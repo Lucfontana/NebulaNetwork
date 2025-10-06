@@ -65,29 +65,54 @@ $query = mysqli_query($connect, $sql);
 
 
         <div id="overlay-edit" class="overlay-edit">
-            <form action="\backend\functions\Profesores\edit.php" method="POST">
+            <div class="popup">
                 <h1>Registro de Profesores</h1>
-                <hr>
-                <div class="div-labels">
-                    <input class="input-register" type="hidden" name="ci_profesor" id="id_edit">
-                </div>
-                <div class="editar-edit">
-                    <label for="nombre" class="label">Nombre:</label>
-                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa Nombre">
-                    <label for="apellido" class="label">Apellido:</label>
-                    <input class="class-datos-editar" type="text" name="apellido" id="apellido_edit" maxlength="20" minlength="3" required placeholder="Ingresa apellido">
-                    <label for="email" class="label">Email:</label>
-                    <input class="class-datos-editar" type="email" name="email" id="email_edit" maxlength="20" minlength="3" required placeholder="Ingresa email">
-                    <label for="fnac" class="label">Fecha de Nacimiento:</label>
-                    <input class="class-datos-editar" type="date" name="fnac" id="Fnac_edit" maxlength="20" minlength="3" required placeholder="Ingresa fehca de nacimiento">
-                    <label for="nombre" class="label">Direccion:</label>
-                    <input class="class-datos-editar" type="text" name="direccion" id="direccion_edit" maxlength="20" minlength="3" required placeholder="Ingresa direccion">
-                </div>
-                <div>
-                    <input type="submit" value="Actualizar Infomacion" class="actualizar" id="actualizar"></input>
-                    <input type="button" value="Cancelar" id="cancelarEdit"></input>
-                </div>
-            </form>
+                <form action="\backend\functions\Profesores\edit.php" method="POST">
+                    <div class="div-labels">
+                        <input class="input-register" type="hidden" name="ci_profesor" id="id_edit">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="nombre">Nombre:</label>
+                        <div>
+                            <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="apellido">Apellido:</label>
+                        <div>
+                            <input class="class-datos-editar" type="text" name="apellido" id="apellido_edit" maxlength="20" minlength="3" required placeholder="Ingresa apellido">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">Email:</label>
+                        <div>
+                            <input class="class-datos-editar" type="email" name="email" id="email_edit" maxlength="40" minlength="5" required placeholder="Ingresa email">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="fnac">Fecha de Nacimiento:</label>
+                        <div>
+                            <input class="class-datos-editar" type="date" name="fnac" id="fnac_edit" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="direccion">Dirección:</label>
+                        <div>
+                            <input class="class-datos-editar" type="text" name="direccion" id="direccion_edit" maxlength="50" minlength="3" required placeholder="Ingresa dirección">
+                        </div>
+                    </div>
+
+                    <div class="buttons-modal">
+                        <input type="submit" value="Actualizar Información" class="btn-primary" id="actualizar"></input>
+                        <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit"></input>
+                    </div>
+                </form>
+            </div>
         </div>
     </main>
 

@@ -54,23 +54,30 @@ session_start();
         </div>
 
         <div id="dialog-change-passwd" class="overlay-edit">
-            <form action="/backend/functions/edit-paswd-user.php" method="POST" id="comprobarcontraseña">
+            <div class="popup">
                 <h1>Cambia tu contraseña</h1>
-                <hr>
-                <div class="datos-change-passwd">
-                    <label for="passwd" class="label">Ingrese su contraseña actual</label>
-                    <input class="dato-usuario-editar" type="password" name="passwd" id="passwd" maxlength="20" minlength="8" required placeholder="Ingresa su contraseña actual">
-                    <label for="newpasswd" class="label">Ingrese su nueva contraseña</label>
-                    <input class="dato-usuario-editar" type="password" name="newpasswd" id="newpasswd" maxlength="20" minlength="8" required placeholder="Ingresa su nueva contraseña">
-                </div>
-                <div>
-                    <input type="submit" value="Actualizar Contraseña" class="actualizar" id="confirmarpasswd"></input>
-                    <input type="button" value="Cancelar" id="cancelarEdit"></input>
-                </div>
-                    <p id="mensajeContraseña"></p>
-            </form>
-        </div>
+                <p class="subtext">Por seguridad, ingresa tu contraseña actual y una nueva.</p>
+                <form action="/backend/functions/edit-paswd-user.php" method="POST" id="comprobarcontraseña">
+                    <div class="input-group">
+                        <label for="passwd">Ingrese su contraseña actual</label>
+                        <div>
+                            <input type="password" name="passwd" id="passwd" maxlength="20" minlength="8" required placeholder="Ingresa su contraseña actual">
+                        </div>
+                    </div>
 
+                    <div class="input-group">
+                        <label for="newpasswd">Ingrese su nueva contraseña</label>
+                        <div>
+                            <input type="password" name="newpasswd" id="newpasswd" maxlength="20" minlength="8" required placeholder="Ingresa su nueva contraseña">
+                        </div>
+                    </div>
+                    <div class="buttons-modal">
+                        <input type="submit" value="Actualizar Contraseña" id="confirmarpasswd" class="btn-primary"></input>
+                        <input type="button" value="Cancelar" id="cancelarEdit" class="btn-secondary"></input>
+                    </div>
+                </form>
+            </div>
+        </div>
     </main>
 
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->

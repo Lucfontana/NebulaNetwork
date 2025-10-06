@@ -63,36 +63,51 @@ $query = mysqli_query($connect, $sql);
 
 
         <div id="overlay-edit" class="overlay-edit">
-            <form action="\backend\functions\Recursos\edit.php" method="POST">
-                <h1>Registro de Recursos</h1>
-                <hr>
-                <div class="div-labels">
-                    <input class="input-register" type="hidden" name="id_recurso" id="id_edit">
-                    <input class="input-register" type="hidden" name="id_espacio" id="id_espacio_edit">
+    <div class="popup">
+        <h1>Registro de Recursos</h1>
+        <form action="\backend\functions\Recursos\edit.php" method="POST">
+            <div class="div-labels">
+                <input class="input-register" type="hidden" name="id_recurso" id="id_edit">
+                <input class="input-register" type="hidden" name="id_espacio" id="id_espacio_edit">
+            </div>
+
+            <div class="input-group">
+                <label for="nombre">Nombre:</label>
+                <div>
+                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
                 </div>
-                <div class="editar-edit">
-                    <label for="nombre" class="label">Nombre:</label>
-                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa Nombre">
-                    <label for="estado" class="label">Estado:</label>
-                    <select class="class-datos-editar" type="text" name="estado" id="estado_edit" maxlength="20" minlength="8" required placeholder="">
+            </div>
+
+            <div class="input-group">
+                <label for="estado">Estado:</label>
+                <div>
+                    <select class="class-datos-editar" name="estado" id="estado_edit" required>
                         <option value=""></option>
                         <option value="uso">Uso</option>
                         <option value="libre">Libre</option>
                         <option value="roto">Roto</option>
                     </select>
-                    <label for="tipo" class="label">Tipo:</label>
-                    <select class="class-datos-editar" type="text" name="tipo" id="tipo_edit" maxlength="20" minlength="8" required placeholder="">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="tipo">Tipo:</label>
+                <div>
+                    <select class="class-datos-editar" name="tipo" id="tipo_edit" required>
                         <option value=""></option>
                         <option value="interno">Interno</option>
                         <option value="externo">Externo</option>
                     </select>
                 </div>
-                <div>
-                    <input type="submit" value="Actualizar Infomacion" class="actualizar" id="actualizar"></input>
-                    <input type="button" value="Cancelar" id="cancelarEdit"></input>
-                </div>
-            </form>
-        </div>
+            </div>
+
+            <div class="buttons-modal">
+                <input type="submit" value="Actualizar Información" class="btn-primary" id="actualizar"></input>
+                <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit"></input>
+            </div>
+        </form>
+    </div>
+</div>
     </main>
 
     <footer id="footer" class="footer">
