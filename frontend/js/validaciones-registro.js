@@ -181,7 +181,7 @@ function registrar_superusuario(e) {
 
 
     if (!verificarCI(ci_superusuario) || !verificarExistenciaCI(ci_superusuario, [2,9,8,7,6,3,4])) {
-        alerta_fallo("La cédula ingresada no es válida."); // ✅ Agregado mensaje
+        alerta_fallo("La cédula ingresada no es válida."); 
         return;
     }
     if (contrasena_superusuario !== ci_superusuario) {
@@ -189,11 +189,11 @@ function registrar_superusuario(e) {
         return;
     }
     if (!verificarString(nombre_superusuario, "nombre")) {
-        alerta_fallo("El nombre ingresado no es válido."); // ✅ Agregado mensaje
+        alerta_fallo("El nombre ingresado no es válido."); 
         return;
     }
     if (!verificarString(apellido_superusuario, "apellido")) {
-        alerta_fallo("El apellido ingresado no es válido."); // ✅ Agregado mensaje
+        alerta_fallo("El apellido ingresado no es válido.");
         return;
     }
     if (!verificarEmail(email_superusuario)) {
@@ -201,7 +201,6 @@ function registrar_superusuario(e) {
         return;
     }
 
-    // ✅ Crear FormData DESPUÉS de validar
     const form_superusuario = new FormData();
     form_superusuario.append('CI', ci_superusuario);
     form_superusuario.append('password', contrasena_superusuario);

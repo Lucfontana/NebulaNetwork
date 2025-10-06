@@ -19,3 +19,16 @@ Swal.fire({
     location.reload(); // Se ejecuta después de cerrar
 });
 }
+
+export function sw_redirect(mensaje, direccion){
+Swal.fire({
+    title: "¡Éxito!",
+    text: mensaje + ', reiniciando pagina...',
+    icon: "success",
+    timer: 1500, // Se cierra automáticamente en 1,5 segundos
+    timerProgressBar: true, // Muestra barra de progreso
+    showConfirmButton: false // Oculta el botón
+}).then(() => {
+    window.location.href = direccion;
+});
+}
