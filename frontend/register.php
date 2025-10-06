@@ -269,8 +269,7 @@ session_start();
         </dialog>
 
         <dialog>
-            <form id="form-registro" class="registro-div recursos-form" action="../backend/functions/recursos_func.php"
-                method="POST">
+            <form id="form-registro" class="registro-div recursos-form">
                 <h1>Registro de Recursos</h1>
                 <hr>
                 <div class="div-labels">
@@ -296,7 +295,7 @@ session_start();
         la conexion en la BD  -->
                 <div class="div-labels">
                     <label for="pertenece" class="label">Pertenece a:</label>
-                    <select name="pertenece" id="pertenece" type="text" class="input-register">
+                    <select name="pertenece" id="pertenece_a_espacio" type="text" class="input-register">
                         <option value=""></option>
 
                         <!-- ARREGLAR!! SI SE SELECCIONA GENERAL NO FUNCIONA!! -->
@@ -326,8 +325,7 @@ session_start();
         </dialog>
 
         <dialog>
-            <form id="form-registro" class="registro-div espacios-form" action="../backend/functions/espacios_func.php"
-                method="POST">
+            <form id="form-registro" class="registro-div espacios-form">
                 <h1>Registro de Espacios</h1>
                 <hr>
                 <div class="div-labels">
@@ -537,8 +535,7 @@ session_start();
         </dialog>
 
         <dialog>
-            <form id="form-registro" class="registro-div asignatura-form"
-                action="../backend/functions/orientacion/orientacion_api.php" method="POST">
+            <form id="form-registro" class="registro-div orientacion-form">
                 <h1>Registro de Orientaciones</h1>
                 <hr>
                 <div class="div-labels">
