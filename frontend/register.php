@@ -77,7 +77,7 @@ session_start();
                     <div>
                         <h1> Registro de Profesores</h1>
                     </div>
-                    <button type="button" id="Profesores-boton" class="btn btn-primary" data-toggle="modal"
+                    <button type="button" id="Profesores-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
                         Abrir Registro
                     </button>
@@ -85,9 +85,9 @@ session_start();
 
                 <div class="article-register">
                     <div>
-                        <h1> Registro de SuperUsuarios</h1>
+                        <h1> Registro de <span>SuperUsuarios</span></h1>
                     </div>
-                    <button type="button" id="Adscriptas-boton" class="btn btn-primary" data-toggle="modal"
+                    <button type="button" id="Adscriptas-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
                         Abrir Registro
                     </button>
@@ -97,7 +97,7 @@ session_start();
                     <div>
                         <h1> Registro de Recursos</h1>
                     </div>
-                    <button type="button" id="Recursos-boton" class="btn btn-primary" data-toggle="modal"
+                    <button type="button" id="Recursos-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
                         Abrir Registro
                     </button>
@@ -107,7 +107,7 @@ session_start();
                     <div>
                         <h1> Registro de Espacios</h1>
                     </div>
-                    <button type="button" id="Salones-boton" class="btn btn-primary" data-toggle="modal"
+                    <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
                         Abrir Registro
                     </button>
@@ -117,7 +117,7 @@ session_start();
                     <div>
                         <h1> Registro de Cursos</h1>
                     </div>
-                    <button type="button" id="Salones-boton" class="btn btn-primary" data-toggle="modal"
+                    <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
                         Abrir Registro
                     </button>
@@ -127,7 +127,7 @@ session_start();
                     <div>
                         <h1> Registro de Asignaturas</h1>
                     </div>
-                    <button type="button" id="Salones-boton" class="btn btn-primary" data-toggle="modal"
+                    <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
                         Abrir Registro
                     </button>
@@ -137,7 +137,7 @@ session_start();
                     <div>
                         <h1> Registro de Horarios</h1>
                     </div>
-                    <button type="button" id="Salones-boton" class="btn btn-primary" data-toggle="modal"
+                    <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
                         Abrir Registro
                     </button>
@@ -146,7 +146,7 @@ session_start();
                     <div>
                         <h1> Registro de Dependencias</h1>
                     </div>
-                    <button type="button" id="Salones-boton" class="btn btn-primary" data-toggle="modal"
+                    <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
                         Abrir Registro
                     </button>
@@ -155,7 +155,7 @@ session_start();
                     <div>
                         <h1> Registro de Orientaciones</h1>
                     </div>
-                    <button type="button" id="Salones-boton" class="btn btn-primary" data-toggle="modal"
+                    <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
                         Abrir Registro
                     </button>

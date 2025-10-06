@@ -134,6 +134,7 @@ main {
     align-items: center;
     justify-content: center;
     text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,1);
 }
 
 .btn-bienvenida:hover {
@@ -549,24 +550,14 @@ aside>ul {
 /* Registro */
 
 .article-register {
-    background-color: aliceblue;
+    background-color:white;
     min-width: 300px;
     width: 30%;
     text-align: center;
     margin-top: 50px;
     color: black;
     border-radius: 10px;
-    border-style: outset;
-    border-color: rgb(137, 151, 163);
-    border-width: 4px;
-    transition: 1s;
-}
-
-.article-register:hover {
-    background-color: rgb(224, 224, 224);
-    border-color: rgb(137, 151, 163);
-    scale: 1.015;
-    transition: 1s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .article-register>div {
@@ -577,7 +568,7 @@ aside>ul {
 
 .article-register>div>h1 {
     width: 80%;
-    font-size: 30px;
+    font-size: 29px;
     padding: 20px;
 }
 
@@ -590,18 +581,28 @@ aside>ul {
 }
 
 .btn {
-    font-size: 20px;
+    font-size: 18px;
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 10px;
-    transition: 1s;
+    background-color: #333;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
 }
 
 .btn:hover {
-    scale: 1.015;
-    background-color: rgb(47, 47, 209);
-    transition: 1s;
+    background-color: #6d6d6d;
+    color: white;
 }
+
+.article-register h1 span {
+  color: var(--color);
+}
+
 
 #register-content {
     display: flex;
