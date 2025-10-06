@@ -37,7 +37,6 @@ main {
     background-size: 18px 18px;
 }
 
-
 /*NAVBAR DE BOOTSTRAP*/
 .navbar-nav {
     display: flex;
@@ -46,7 +45,6 @@ main {
 }
 
 .navStyle {
-    
     padding: 10px 0 10px 0;
     font-size: 18px;
     position: fixed;
@@ -56,8 +54,7 @@ main {
     /*Navbar encima del aside*/
     color: white;
     margin: 0 0 0 0;
-    border-bottom-color: rgb(100, 133, 194);
-    background-image: linear-gradient(var(---gradientNav), var(---navColor));
+    background-color: #333;;
 }
 
 #logo {
@@ -69,7 +66,14 @@ main {
 .nav-item a {
     color: white;
     padding-left: 10px;
-    transition: 1s;
+}
+
+.nav-link:hover {
+    color: #6d6d6d;
+}
+
+.navbar-brand:hover {
+    color: #6d6d6d;
 }
 
 .navbar-brand {
@@ -133,7 +137,7 @@ main {
 }
 
 .btn-bienvenida:hover {
-    transform: scale(1.08);
+    background-color: #999999;
 }
 
 #grid {
@@ -216,7 +220,7 @@ aside {
     width: var(---marginAside);
     height: 100vh;
     /* 100% del alto visible de la ventana */
-    background-color: var(---navColor);
+   background-color: #333;
     position: fixed;
     grid-area: aside;
     /* si usás grid, lo podés mantener */
@@ -242,7 +246,7 @@ aside>ul {
 .link-aside-images li {
     position: relative;
     margin: 35px 0; 
-     margin: 20px 0;       /* mismo espacio vertical */
+    margin: 20px 0;       /* mismo espacio vertical */
     display: flex;        /* centra el ícono */
     justify-content: center;
     align-items: center;
@@ -281,7 +285,7 @@ aside>ul {
 }
 
 .link-aside-images img:hover {
-    filter: brightness(0) invert(0);
+     filter: brightness(0) invert(43%);
 }
 
 /* Contenedor de los íconos */
