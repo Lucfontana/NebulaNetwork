@@ -51,6 +51,7 @@ function insertar_profesor_solicita_recurso($con, $existe_profesor, $existe_recu
         $stmt = $con->prepare($query_insertar);
         $stmt->bind_param("ss", $profesor, $recurso);
         $stmt->execute();
+        // $con->insert_id;
 
         //Trae la id de solicita y la devuelve
         $traer_id = "SELECT id_solicita FROM profesor_solicita_recurso WHERE (id_recurso) = (?) AND (ci_profesor) = (?)";

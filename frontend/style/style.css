@@ -46,7 +46,7 @@ main {
 }
 
 .navStyle {
-    background-color: var(---navColor);
+    
     padding: 10px 0 10px 0;
     font-size: 18px;
     position: fixed;
@@ -162,6 +162,7 @@ main {
     padding: 20px;
     margin: 75px 0 0 var(---marginAside);
 }
+
 .contenido {
     display: flex;
     flex-wrap: wrap;
@@ -279,6 +280,10 @@ aside>ul {
     transition: filter 0.3s ease;
 }
 
+.link-aside-images img:hover {
+    filter: brightness(0) invert(0);
+}
+
 /* Contenedor de los íconos */
 .link-aside-images {        
     display: flex;
@@ -331,10 +336,7 @@ aside>ul {
 .settings-menu a:hover {
     background-color: black;
     color: #fff;
-}
-
-.link-aside-images img:hover {
-    filter: brightness(0) invert(0);
+    transition: 0,1s;
 }
 
 /*------------------------ FOOTER ----------------------*/
@@ -370,18 +372,36 @@ aside>ul {
     cursor: pointer;
     text-decoration: none; 
     text-align: center;
-    transition: 0.3s ease;
     min-width: 180px;
-    flex: 1 1 auto;     /* ✅ se adaptan al espacio disponible */
+    flex: 1 1 auto;     /* se adaptan al espacio disponible */
 }
-
 
 .btn-login:hover {
     background-color: #2a3380;
-    transform: scale(1.05);
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+.flecha-volver {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 32px;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 10;
+    width: 50px;               /* ancho del círculo */
+    height: 50px;
+    align-items: center;
+    justify-content: center;  
+    display: flex;  
+}
+
+.flecha-volver:hover {
+    color: #2a3380;
+    background-color: rgba(0, 0, 0, 0.2); /* sombra de fondo ligera */
+    border-radius: 100%;                  /* forma redondeada */
+}
 
 .flex {
     display: flex;
@@ -416,8 +436,6 @@ aside>ul {
     width: 30%;
     height: 80px;
 }
-
-
 
 .label {
     margin-top: 40px;
@@ -485,7 +503,6 @@ aside>ul {
     align-self: center;
 }
 
-
 #logo-fondo {
     display: block;
     width: auto;
@@ -524,8 +541,6 @@ aside>ul {
     background-color: rgb(47, 54, 150);
     transition: 1s;
 }
-
-
 
 /* Registro */
 
@@ -593,7 +608,6 @@ aside>ul {
 }
 
 /* -------------- dialog de Registro -------------- */
-
 
 dialog {
     padding: 20px;
@@ -676,7 +690,6 @@ hr {
 
 /* Mostrar Datos */
 
-
 #contenido-mostrar-datos {
     width: 100%;
     max-width: 1000px; /* límite para que no se estire demasiado */
@@ -686,7 +699,6 @@ hr {
     padding: 20px;
 }
 
-
 #contenido-asignatura>h1 {
     font-size: 30px;
     margin: 20px;
@@ -695,7 +707,6 @@ hr {
 th {
     padding: 15px;
 }
-
 
 .datos-mostrar {
     border-style: solid;
@@ -738,7 +749,6 @@ th {
     margin: 0;
     padding: 20px;
 }
-
 
 .boton-dato {
     width: 10%;
@@ -899,7 +909,6 @@ th {
 
 }
 
-
 #confirmarpasswd:hover {
     background-color: #df1b1b;
     transition: 1s;
@@ -928,7 +937,6 @@ th {
     width: 100%;
 }
     
-
 /* Pagina de Perfil */
 .body-perfil {
     background-image: radial-gradient(#9195d8 0.9px, #d9d9f4 0.9px);
@@ -1181,7 +1189,7 @@ abajito cuando el ancho es menos de 700px */
 
     /* aside fijo al fondo de la pantalla */
     aside,
-aside.activo {
+ aside.activo {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -1212,9 +1220,9 @@ aside.activo {
 }
 
 /* Ocultar icono de configuración y mostrar idioma + modo oscuro */
-.settings-icon {
-    display: none;
-}
+  .settings-icon {
+       display: none;
+    }
 
   .link-aside-images li::after {
         display: none !important;

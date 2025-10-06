@@ -1,5 +1,8 @@
 <?php
 
+// Indicar que la respuesta de este PHP es un JSON
+header('Content-Type: application/json');
+
 //Se inlcuye la conexion a bd y se la declara como variable para usarla en las funciones
 include_once('../db/conexion.php');
 $con = conectar_a_bd();
@@ -12,7 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $ci_usuario = (int)$_POST["CI"];
         $password = $_POST['contrasena'];
 
-        login($con, $ci_usuario, $password);
+        $login = login($con, $ci_usuario, $password);
+        echo json_encode($login);
     }
 }
 
@@ -49,6 +53,7 @@ function traer_datos_usuario($con, $ci_usuario)
             'ci' => $row_prof['ci_profesor'],
             'nombre' => $row_prof['nombre'],
             'apellido' => $row_prof['apellido'],
+            'pass_profesor'=> $row_prof['pass_profesor'],
             'email' => $row_prof['email'],
             'fecha_nac' => $row_prof['fecha_nac'],
             'direccion' => $row_prof['direccion']
@@ -58,6 +63,7 @@ function traer_datos_usuario($con, $ci_usuario)
     } else if ($result_su->num_rows > 0) {
         return [
             'ci' => $row_su['id_superusuario'],
+            'pass_superusuario' => $row_su['pass_superusuario'], 
             'nombre' => $row_su['nombre'],
             'apellido' => $row_su['apellido'],
             'nivel_acceso' => $row_su['nivel_acceso']
@@ -110,11 +116,12 @@ function login($con, $ci_usuario, $password)
 
 
                 //Redirecciona al index
-                echo "Sesion iniciada correctamente como PROFESOR";
-                header("Location: ../../../frontend/index.php");
+                $respuesta_json['estado'] = 1;
+                $respuesta_json['mensaje'] = "Sesion iniciada correctamente como PROFESOR";
                 exit();
             } else { //Si pa contrasena es incorrecta, devuelve mensaje de error
-                echo "Contraseña incorrecta";
+                $respuesta_json['estado'] = 0;
+                $respuesta_json['mensaje'] = "Contraseña incorrecta";
             }
             //Si el usuario no es un profesor, chequea que sea un superusuario y actua igual que el if de arriba
         } else if ($result_login_su->num_rows > 0) {
@@ -129,13 +136,16 @@ function login($con, $ci_usuario, $password)
                 $_SESSION['apellido'] = $datos_usuario['apellido'];
                 $_SESSION['nivel_acceso'] = $datos_usuario['nivel_acceso'];
 
-                echo "Sesion iniciada correctamente como SUPERUSUARIO";
-                header("Location: ../../../frontend/index.php");
+                $respuesta_json['estado'] = 1;
+                $respuesta_json['mensaje'] = "Sesion iniciada correctamente como SUPERUSUARIO";                
             } else {
-                echo "Contraseña incorrecta";
+                $respuesta_json['estado'] = 0;
+                $respuesta_json['mensaje'] = "Contraseña incorrecta";
             }
         }
     } else { //Si no es ni usuario ni profesor, muestra mensaje de que no existe
-        echo "El usuario ingresado no existe";
+        $respuesta_json['estado'] = 0;
+        $respuesta_json['mensaje'] = "El usuario ingresado no existe";
     }
+    return $respuesta_json;
 }
