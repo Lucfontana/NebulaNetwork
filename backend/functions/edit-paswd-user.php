@@ -22,7 +22,7 @@ if (!isset($_SESSION['nivel_acceso'])) {
     $row = mysqli_fetch_assoc($result);
 
     if (!$row || !password_verify($currentpasswd, $row['pass_profesor'])) {
-        echo json_encode(["success" => false, "message" => "❌ Contraseña actual incorrecta"]);
+        echo json_encode(["success" => false, "message" => "Contraseña actual incorrecta"]);
         exit;
     }
 
@@ -45,7 +45,7 @@ if (!isset($_SESSION['nivel_acceso'])) {
     $row = mysqli_fetch_assoc($result);
 
     if (!$row || !password_verify($currentpasswd, $row['pass_superusuario'])) {
-        echo json_encode(["success" => false, "message" => "❌ Contraseña actual incorrecta"]);
+        echo json_encode(["success" => false, "message" => "Contraseña actual incorrecta"]);
         exit;
     }
 
@@ -59,7 +59,7 @@ if (!isset($_SESSION['nivel_acceso'])) {
 
 // Ejecutar update
 if ($stmt->affected_rows > 0) {
-    echo json_encode(["success" => true, "message" => "✅ Contraseña actualizada con éxito"]);
+    echo json_encode(["success" => true, "message" => "Contraseña actualizada con éxito"]);
 } else {
-    echo json_encode(["success" => false, "message" => "⚠️ Error al actualizar"]);
+    echo json_encode(["success" => false, "message" => "Error al actualizar"]);
 }

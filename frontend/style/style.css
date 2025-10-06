@@ -855,8 +855,12 @@ th {
 }
 
 /* Editar Datos */
+
 #overlay-edit {
     display: none;
+}
+
+.overlay-edit {
     position: fixed;
     top: 0;
     left: 0;
@@ -867,16 +871,17 @@ th {
     align-items: center;
 }
 
-#overlay-edit>form {
+.overlay-edit>form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: aliceblue;
+    background-color: rgb(255, 255, 255);
+    box-shadow: #000000 0px 10px 10px 0px;
     padding: 40px;
     border-radius: 10px;
 } 
 
-#overlay-edit > form > div > label {
+.overlay-edit > form > div > label {
     margin-top: 20px;
 }
 
@@ -884,10 +889,10 @@ th {
     padding: 5px;
 }
 
-.actualizar {
+#confirmarpasswd {
     padding: 10px;
     border-style: none;
-    background-color: #ff6262;
+    background-color: #e03535;
     color: #fff;
     margin-top: 20px;
     transition: 1s;
@@ -895,9 +900,8 @@ th {
 }
 
 
-.actualizar:hover {
-    background-color: #e03535;
-    scale: 1.03;
+#confirmarpasswd:hover {
+    background-color: #df1b1b;
     transition: 1s;
 
 }
@@ -905,15 +909,14 @@ th {
 #cancelarEdit {
     padding: 10px;
     border-style: none;
-    background-color: #6168d6;
+    background-color: #3942c4;
     color: #fff;
     margin-top: 20px;
     transition: 1s;
 }
 
 #cancelarEdit:hover {
-    background-color: #3942c4;
-    scale: 1.03;
+    background-color: #242fc4;
     transition: 1s;
 
 }
@@ -1002,32 +1005,6 @@ th {
 
 #dialog-change-passwd {
     display: none;
-}
-
-.dialog-change {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.dialog-change>form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: aliceblue;
-    width: 50%;
-    padding: 40px;
-    border-radius: 10px;
-} 
-
-#dialog-change> form > div > label {
-    margin-top: 20px;
 }
 
 #change-passwd {
