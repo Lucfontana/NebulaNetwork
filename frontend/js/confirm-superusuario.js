@@ -1,3 +1,5 @@
+import { verificarString, verificarEmail, alerta_success_update, alerta_fallo } from './prueba.js';
+
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("overlay");
   const btnCancelar = document.getElementById("cancelar");
@@ -52,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("name_edit").value = nombre;
       document.getElementById("apellido_edit").value = apellido;
       document.getElementById("nivel_edit").value = nivel;
+      document.getElementById("email_edit").value = botonEditar.dataset.email;
       
     })
   })
@@ -65,14 +68,18 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault(); // Evita el submit normal
       
     let nombreInput = document.getElementById("name_edit").value;
-    let capacidadInput = document.getElementById("capacidad_edit").value;
-
+    let apellidoInput =  document.getElementById("apellido_edit").value;
+    let emailInput =  document.getElementById("email_edit").value;
+    
     // Validaciones
-    if (!verificarNombreEspecial(nombreInput)) {
-      return;
+    if (!verificarString(nombreInput, "nombre")) {
+        return;
     }
-    if (!verificarCapacidad(capacidadInput)) {
-      return;
+    if (!verificarString(apellidoInput, "apellido")) {
+        return;
+    }
+    if (!verificarEmail(emailInput)) {
+        return;
     }
 
     // Si pasa las validaciones, envía el formulario

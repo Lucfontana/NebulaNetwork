@@ -16,7 +16,7 @@ $stmt->bind_param("issi", $capacity, $name, $type, $id);
 $stmt->execute();
 
 if ($stmt->affected_rows > 0) {
-    echo json_encode(["success" => true, "message" => "Curso editado correctamente"]);
+    echo json_encode(["success" => true, "message" => "Espacio editado correctamente"]);
 } else {
     echo json_encode(["success" => false, "message" => "Error al actualizar"]);
 }

@@ -31,7 +31,8 @@ $query = mysqli_query($connect, $sql);
                     <th class="id">ID </th>
                     <th class="nombre-titulo">Nombre</th>
                     <th class="nombre-titulo">Apellido</th>
-                    <th class="titulo-ult">Nivel de Acceso</th>
+                    <th class="nombre-titulo">Nivel de Acceso</th>
+                    <th class="titulo-ult">Email</th>
                     <th class="boton-titulo">Borrar</th>
                     <th class="boton-titulo">Editar</th>
                 </tr>
@@ -40,9 +41,10 @@ $query = mysqli_query($connect, $sql);
                         <th class="nombre"><?= $row['id_superusuario'] ?></th>
                         <th class="nombre"><?= $row['nombre'] ?></th>
                         <th class="nombre"><?= $row['apellido'] ?></th>
-                        <th class="ultimo-dato"><?= $row['nivel_acceso'] ?></th>
+                        <th class="nombre"><?= $row['nivel_acceso'] ?></th>
+                        <th class="ultimo-dato"><?= $row['email_superusuario'] ?></th>
                         <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_superusuario'] ?>">Eliminar</a></th>
-                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_superusuario'] ?>" data-nombre="<?= $row['nombre'] ?>" data-apellido="<?= $row['apellido'] ?>" data-nivel="<?= $row['nivel_acceso'] ?>">Editar</a></th>
+                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_superusuario'] ?>" data-nombre="<?= $row['nombre'] ?>" data-apellido="<?= $row['apellido'] ?>" data-nivel="<?= $row['nivel_acceso'] ?>" data-email="<?= $row['email_superusuario'] ?>">Editar</a></th>
                     </tr>
                 <?php endwhile; ?>
             </table>
@@ -93,7 +95,12 @@ $query = mysqli_query($connect, $sql);
                             </select>
                         </div>
                     </div>
-
+                        <div class="input-group">
+                            <label for="email"></label>
+                            <div>
+                                <input type="email" class="class-datos-editar" name="email" id="email_edit" required>
+                            </div>
+                        </div>
                     <div class="buttons-modal">
                         <input type="submit" value="Actualizar Información" class="btn-primary" id="actualizar"></input>
                         <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit"></input>

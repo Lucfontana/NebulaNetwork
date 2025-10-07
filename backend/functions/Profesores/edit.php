@@ -18,7 +18,7 @@ $stmt->bind_param("sssssi", $name, $apellido, $email, $fecha_nac, $direccion, $c
 $stmt->execute();
 
 if ($stmt->affected_rows > 0) {
-    echo json_encode(["success" => true, "message" => "Curso editado correctamente"]);
+    echo json_encode(["success" => true, "message" => "Profesor editado correctamente"]);
 } else {
     echo json_encode(["success" => false, "message" => "Error al actualizar"]);
 }

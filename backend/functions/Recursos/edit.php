@@ -16,7 +16,7 @@ $stmt->bind_param("sssi", $name, $tipo, $estado, $id);
 $stmt->execute();
 
 if ($stmt->affected_rows > 0) {
-    echo json_encode(["success" => true, "message" => "Curso editado correctamente"]);
+    echo json_encode(["success" => true, "message" => "Recurso editado correctamente"]);
 } else {
     echo json_encode(["success" => false, "message" => "Error al actualizar"]);
 }

@@ -1,3 +1,5 @@
+import { verificarString, verificarEmail,verificarFechanacimiento, verificarDireccion, alerta_success_update, alerta_fallo } from './prueba.js';
+
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("overlay");
   const btnCancelar = document.getElementById("cancelar");
@@ -54,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("name_edit").value = nombre;
       document.getElementById("apellido_edit").value = apellido;
       document.getElementById("email_edit").value = email;
-      document.getElementById("Fnac_edit").value = fnac;
+      document.getElementById("fnac_edit").value = fnac;
       document.getElementById("direccion_edit").value = direccion;
       
     })
@@ -69,15 +71,34 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault(); // Evita el submit normal
       
     let nombreInput = document.getElementById("name_edit").value;
-    let capacidadInput = document.getElementById("capacidad_edit").value;
+    let apellidoInput = document.getElementById("apellido_edit").value;
+    let emailInput = document.getElementById("email_edit").value;
+    let fnacInput = document.getElementById("fnac_edit").value;
+    let direccionInput = document.getElementById("direccion_edit").value;
+   
+    
 
     // Validaciones
-    if (!verificarNombreEspecial(nombreInput)) {
-      return;
-    }
-    if (!verificarCapacidad(capacidadInput)) {
-      return;
-    }
+        if (!verificarString(nombreInput, "nombre")) {
+            e.preventDefault();
+            return;
+        }
+        if (!verificarString(apellidoInput, "apellido")) {
+            e.preventDefault();
+            return;
+        }
+        if (!verificarEmail(emailInput)) {
+            e.preventDefault();
+            return;
+        }
+        if (!verificarFechanacimiento(fnacInput)) {
+            e.preventDefault();
+            return;
+        }
+        if (!verificarDireccion(direccionInput)) {
+            e.preventDefault();
+            return;
+        }
 
     // Si pasa las validaciones, envía el formulario
     const form = e.target;

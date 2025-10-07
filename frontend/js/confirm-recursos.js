@@ -1,3 +1,5 @@
+import { verificarNombreEspecial, alerta_success_update, alerta_fallo } from './prueba.js';
+
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("overlay");
   const btnCancelar = document.getElementById("cancelar");
@@ -66,15 +68,14 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault(); // Evita el submit normal
       
     let nombreInput = document.getElementById("name_edit").value;
-    let capacidadInput = document.getElementById("capacidad_edit").value;
+
+    if (!verificarNombreEspecial(nombreInput)) {
+        return;
+    }
+    
 
     // Validaciones
-    if (!verificarNombreEspecial(nombreInput)) {
-      return;
-    }
-    if (!verificarCapacidad(capacidadInput)) {
-      return;
-    }
+    
 
     // Si pasa las validaciones, envía el formulario
     const form = e.target;

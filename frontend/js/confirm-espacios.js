@@ -1,4 +1,4 @@
-import {  } from './prueba.js';
+import { verificarNombreEspecial, verificarCapacidad, alerta_success_update, alerta_fallo } from './prueba.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("overlay");
