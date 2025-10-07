@@ -53,8 +53,8 @@ $query = mysqli_query($connect, $sql);
                 <h2>¿Estás seguro?</h2>
                 <p>Esta acción eliminará el registro de forma permanente.</p>
                 <div class="botones_confirmar">
-                    <button class="btn btn-confirmar" id="confirmar">Eliminar</button>
-                    <button class="btn btn-cancelar" id="cancelar">Cancelar</button>
+                    <button class="btn-primary" id="confirmar">Eliminar</button>
+                    <button class="btn-secondary" id="cancelar">Cancelar</button>
                 </div>
             </div>
         </div>

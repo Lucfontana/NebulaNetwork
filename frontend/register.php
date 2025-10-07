@@ -167,6 +167,7 @@ session_start();
 
         <div id="div-dialogs">
             <dialog>
+                <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
                 <form id="form-registro" class="registro-div profesores-form">
                     <h1>Registro de Profesores</h1>
                     <hr>
@@ -215,11 +216,11 @@ session_start();
                     los botones adentro de un formulario son de tipo submit, por lo tanto
                     esto causaba que el formulario se enviara cuando necesitabamos cerrar 
                     el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
-                <button class="btn-Cerrar" type="button">Cerrar</button>
         </div>
         </dialog>
 
         <dialog>
+            <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
             <form id="form-registro" class="registro-div superusuarios-form">
                 <h1>Registro de SuperUsuarios</h1>
                 <hr>
@@ -264,11 +265,11 @@ session_start();
                         <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
                             name="registrarSuperuser"></input>
             </form>
-            <button class="btn-Cerrar" type="button">Cerrar</button>
             </div>
         </dialog>
 
         <dialog>
+            <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
             <form id="form-registro" class="registro-div recursos-form">
                 <h1>Registro de Recursos</h1>
                 <hr>
@@ -320,11 +321,11 @@ session_start();
                         <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
                             name="registrarRecurso"></input>
             </form>
-            <button class="btn-Cerrar" type="button">Cerrar</button>
             </div>
         </dialog>
 
         <dialog>
+            <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
             <form id="form-registro" class="registro-div espacios-form">
                 <h1>Registro de Espacios</h1>
                 <hr>
@@ -353,11 +354,11 @@ session_start();
                     <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
                         name="registrarEspacio"></input>
             </form>
-            <button class="btn-Cerrar" type="button">Cerrar</button>
             </div>
         </dialog>
 
         <dialog>
+            <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
             <form id="form-registro" class="registro-div cursos-form" action="../backend/functions/cursos_func.php"
                 method="POST">
                 <h1>Registro de Cursos</h1>
@@ -388,11 +389,11 @@ session_start();
                     <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
                         name="registrarCursos"></input>
             </form>
-            <button class="btn-Cerrar" type="button">Cerrar</button>
             </div>
         </dialog>
 
         <dialog>
+            <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
             <form id="form-registro" class="registro-div asignatura-form">
                 <h1>Registro de Asignaturas</h1>
                 <hr>
@@ -405,11 +406,11 @@ session_start();
                     <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar Asignatura"
                         name="registrarAsignatura"></input>
             </form>
-            <button class="btn-Cerrar" type="button">Cerrar</button>
             </div>
         </dialog>
 
         <dialog>
+            <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
             <form id="form-registro" class="registro-div horarios-form"
                 action="../backend/functions/horarios/horarios_api.php" method="post">
                 <h1>Registro de Horarios</h1>
@@ -437,13 +438,12 @@ session_start();
                 <div class="div-botones-register">
                     <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
                         name="registroHorario"></input>
-                    <button class="btn-Cerrar" type="button">Cerrar</button>
                 </div>
             </form>
-
         </dialog>
 
         <dialog>
+            <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
             <form id="form-registro" class="registro-div dependencias-form"
                 action="../backend/functions/dependencias/dependencias_api.php" method="POST">
                 <h1>Registro de Dependencias</h1>
@@ -530,11 +530,11 @@ session_start();
                     <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
                         name="registrarDependencia"></input>
             </form>
-            <button class="btn-Cerrar" type="button">Cerrar</button>
             </div>
         </dialog>
 
         <dialog>
+            <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
             <form id="form-registro" class="registro-div orientacion-form">
                 <h1>Registro de Orientaciones</h1>
                 <hr>
@@ -547,7 +547,6 @@ session_start();
                     <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar orientacion"
                         name="registrarOrientacion"></input>
             </form>
-            <button class="btn-Cerrar" type="button">Cerrar</button>
             </div>
         </dialog>
         </div>

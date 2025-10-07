@@ -37,7 +37,7 @@ session_start();
                     <tr>
                         <th class="id">Id </th>
                         <th class="titulo-ult">Nombre</th>
-                        <th class="boton-titulo">Borrar</th>
+                        <th class="boton-titulo">Eliminar</th>
                         <th class="boton-titulo">Editar</th>
                     </tr>
                     <?php while ($row = mysqli_fetch_array($query)): ?>

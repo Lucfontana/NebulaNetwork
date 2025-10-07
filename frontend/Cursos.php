@@ -31,7 +31,7 @@ $query = mysqli_query($connect, $sql);
                     <th class="id">Id </th>
                     <th class="nombre-titulo">Nombre</th>
                     <th class="nombre-titulo">Capacidad</th>
-                    <th class="boton-titulo">Borrar</th>
+                    <th class="boton-titulo">Eliminar</th>
                     <th class="boton-titulo">Editar</th>
                 </tr>
                 <?php while ($row = mysqli_fetch_array($query)): ?>

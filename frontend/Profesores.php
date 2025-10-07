@@ -34,7 +34,7 @@ $query = mysqli_query($connect, $sql);
                     <th class="nombre-titulo">Email</th>
                     <th class="nombre-titulo">F.Nac</th>
                     <th class="titulo-ult">Direccion</th>
-                    <th class="boton-titulo">Borrar</th>
+                    <th class="boton-titulo">Eliminar</th>
                     <th class="boton-titulo">Editar</th>
                 </tr>
                 <?php while ($row = mysqli_fetch_array($query)): ?>

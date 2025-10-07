@@ -23,14 +23,18 @@ a {
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* ocupa siempre el alto completo */
+    min-height: 100vh;
+    /* ocupa siempre el alto completo */
 }
 
 main {
-    flex: 1; /* ocupa todo el espacio disponible entre nav y footer */
+    flex: 1;
+    /* ocupa todo el espacio disponible entre nav y footer */
     display: flex;
-    justify-content: center; /* centra horizontal */
-    align-items: center;     /* centra vertical */
+    justify-content: center;
+    /* centra horizontal */
+    align-items: center;
+    /* centra vertical */
     padding: 20px;
     background-color: #d9d9f4;
     background-image: radial-gradient(#9195d8 0.9px, #d9d9f4 0.9px);
@@ -54,7 +58,8 @@ main {
     /*Navbar encima del aside*/
     color: white;
     margin: 0 0 0 0;
-    background-color: #333;;
+    background-color: #333;
+    ;
 }
 
 #logo {
@@ -79,8 +84,9 @@ main {
 .navbar-brand {
     font-size: 30px;
     /*Tamaño del titulo (ITSP)*/
-     margin: 0;
-   padding-left: 10px; /* un poquito de separación del borde */
+    margin: 0;
+    padding-left: 10px;
+    /* un poquito de separación del borde */
     display: flex;
     align-items: center;
 }
@@ -134,7 +140,7 @@ main {
     align-items: center;
     justify-content: center;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
 }
 
 .btn-bienvenida:hover {
@@ -150,10 +156,9 @@ main {
     padding-top: 80px;
 }
 
-.hdrBackground{
-    background-image: linear-gradient(
-        rgba(9, 4, 0, 0.1),
-        rgba(9, 4, 0, 1)),
+.hdrBackground {
+    background-image: linear-gradient(rgba(9, 4, 0, 0.1),
+            rgba(9, 4, 0, 1)),
         url(../img/backgroundItsp.jpg);
     background-repeat: no-repeat;
     background-position: center center;
@@ -175,7 +180,7 @@ main {
     padding: 30px;
 }
 
-.contenido-centrado{
+.contenido-centrado {
     display: flex;
     justify-content: center;
 }
@@ -221,7 +226,7 @@ aside {
     width: var(---marginAside);
     height: 100vh;
     /* 100% del alto visible de la ventana */
-   background-color: #333;
+    background-color: #333;
     position: fixed;
     grid-area: aside;
     /* si usás grid, lo podés mantener */
@@ -246,9 +251,11 @@ aside>ul {
 
 .link-aside-images li {
     position: relative;
-    margin: 35px 0; 
-    margin: 20px 0;       /* mismo espacio vertical */
-    display: flex;        /* centra el ícono */
+    margin: 35px 0;
+    margin: 20px 0;
+    /* mismo espacio vertical */
+    display: flex;
+    /* centra el ícono */
     justify-content: center;
     align-items: center;
 }
@@ -273,29 +280,33 @@ aside>ul {
 
 .link-aside-images li:hover::after {
     opacity: 1;
-    transform: translateY(-50%) translateX(0); /* vuelve a su lugar */
+    transform: translateY(-50%) translateX(0);
+    /* vuelve a su lugar */
 }
 
 /* Todos los iconos del sidebar con mismo tamaño */
 .link-aside-images img {
-    width: 28px; 
-    height: 28px; 
-    object-fit: contain; /* mantiene proporción dentro del cuadrado */
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    /* mantiene proporción dentro del cuadrado */
     filter: brightness(0) invert(1);
     transition: filter 0.3s ease;
 }
 
 .link-aside-images img:hover {
-     filter: brightness(0) invert(43%);
+    filter: brightness(0) invert(43%);
 }
 
 /* Contenedor de los íconos */
-.link-aside-images {        
+.link-aside-images {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* reparte los íconos arriba-abajo */
+    justify-content: space-between;
+    /* reparte los íconos arriba-abajo */
     align-items: center;
-    height: 100%; /* ocupa todo el sidebar */
+    height: 100%;
+    /* ocupa todo el sidebar */
     margin: 0;
     padding: 30px 0;
 }
@@ -305,19 +316,21 @@ aside>ul {
     position: absolute;
     top: 50%;
     left: 60px;
-    transform: translateY(-50%) translateX(-10px); /* desplazado igual que los otros tooltips */
+    transform: translateY(-50%) translateX(-10px);
+    /* desplazado igual que los otros tooltips */
     flex-direction: column;
     align-items: flex-start;
     padding: 4px 0;
     min-width: 150px;
-    background: rgba(50,50,50,0.9);
+    background: rgba(50, 50, 50, 0.9);
     border-radius: 5px;
     z-index: 10;
     font-size: 13px;
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s, transform 0.3s; /* animación */
+    transition: opacity 0.3s, transform 0.3s;
+    /* animación */
 }
 
 /* Al hacer hover en el icono de configuración */
@@ -328,11 +341,11 @@ aside>ul {
 }
 
 .settings-menu a {
-    display: block;        
-    width: 100%;             
-    box-sizing: border-box;   
-    padding: 8px 12px;        
-    text-align: left;       
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    text-align: left;
     color: #fff;
     text-decoration: none;
     border-radius: 3px;
@@ -341,7 +354,7 @@ aside>ul {
 .settings-menu a:hover {
     background-color: black;
     color: #fff;
-    transition: 0,1s;
+    transition: 0, 1s;
 }
 
 /*------------------------ FOOTER ----------------------*/
@@ -375,15 +388,16 @@ aside>ul {
     font-size: 18px;
     border-radius: 8px;
     cursor: pointer;
-    text-decoration: none; 
+    text-decoration: none;
     text-align: center;
     min-width: 180px;
-    flex: 1 1 auto;     /* se adaptan al espacio disponible */
+    flex: 1 1 auto;
+    /* se adaptan al espacio disponible */
 }
 
 .btn-login:hover {
     background-color: #2a3380;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .flecha-volver {
@@ -395,17 +409,20 @@ aside>ul {
     text-decoration: none;
     font-weight: bold;
     z-index: 10;
-    width: 50px;               /* ancho del círculo */
+    width: 50px;
+    /* ancho del círculo */
     height: 50px;
     align-items: center;
-    justify-content: center;  
-    display: flex;  
+    justify-content: center;
+    display: flex;
 }
 
 .flecha-volver:hover {
     color: #2a3380;
-    background-color: rgba(0, 0, 0, 0.2); /* sombra de fondo ligera */
-    border-radius: 100%;                  /* forma redondeada */
+    background-color: rgba(0, 0, 0, 0.2);
+    /* sombra de fondo ligera */
+    border-radius: 100%;
+    /* forma redondeada */
 }
 
 .flex {
@@ -550,14 +567,14 @@ aside>ul {
 /* Registro */
 
 .article-register {
-    background-color:white;
+    background-color: white;
     min-width: 300px;
     width: 30%;
     text-align: center;
     margin-top: 50px;
     color: black;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .article-register>div {
@@ -600,7 +617,7 @@ aside>ul {
 }
 
 .article-register h1 span {
-  color: var(--color);
+    color: var(--color);
 }
 
 
@@ -624,21 +641,28 @@ dialog {
     transition: 1s;
 }
 
-.btn-Cerrar,
+.btn-Cerrar {
+    position: sticky;
+    background-color: transparent;
+    float: right;
+    margin-right: 20px;
+    border-style: none;
+}
+
+
 .btn-enviar-registro {
     padding: 10px;
     margin: 20px;
     font-size: 20px;
     border: none;
-    background-color: rgb(54, 54, 241);
+    background-color: rgb(34, 34, 34);
     color: aliceblue;
     transition: 1s;
 }
 
-.btn-Cerrar:hover,
 .btn-enviar-registro:hover {
     scale: 1.05;
-    background-color: rgb(32, 32, 214);
+    background-color: rgb(13, 13, 17);
     transition: 1s;
 }
 
@@ -652,24 +676,29 @@ dialog {
 }
 
 hr {
-    color: blue;
+    color: rgb(0, 0, 0);
     border-width: 5px;
     width: 60%;
 }
 
 .input-register {
-    color: black;
+    color: white;
     margin-top: 10px;
     border-radius: 15px;
     width: 60%;
     padding: 15px;
     font-size: 20px;
-    background-color: var(---contentColor);
+    background-color: #3b3b3b;
     border-style: none;
 }
 
+.input-register:focus {
+    outline: none;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
 .input-register::placeholder {
-    color: rgb(26, 25, 25);
+    color: rgb(255, 255, 255);
 }
 
 .registro-div>label {
@@ -693,14 +722,24 @@ hr {
     display: flex;
 }
 
+.cruz-register {
+    width: 25px;
+    height: 25px;
+    position: sticky;
+}
+
 /* Mostrar Datos */
 
 #contenido-mostrar-datos {
     width: 100%;
-    max-width: 1000px; /* límite para que no se estire demasiado */
-    background: white; /* opcional */
-    border-radius: 10px; /* opcional */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* opcional */
+    max-width: 1000px;
+    /* límite para que no se estire demasiado */
+    background: white;
+    /* opcional */
+    border-radius: 10px;
+    /* opcional */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* opcional */
     padding: 20px;
 }
 
@@ -727,7 +766,8 @@ th {
 }
 
 .id {
-    background-color: aquamarine;
+    background-color: rgb(26, 26, 26);
+    color: white;
 }
 
 .nombre {
@@ -743,25 +783,30 @@ th {
 
 .nombre-titulo {
     text-align: left;
-    background-color: rgb(115, 192, 255);
+    background-color: rgb(58, 58, 58);
+    color: white;
     width: auto;
 }
 
 .boton-titulo {
     text-align: center;
-    background-color: rgb(115, 192, 255);
+    background-color: rgb(58, 58, 58);
+    color: white;
     width: auto;
     margin: 0;
     padding: 20px;
 }
 
 .boton-dato {
-    width: 10%;
+    width: auto;
+    text-align: center;
+    margin: 0;
 }
- 
-.titulo-ult{
+
+.titulo-ult {
     text-align: left;
-    background-color: rgb(115, 192, 255);
+    background-color: rgb(58, 58, 58);
+    color: white;
     width: 100%;
 }
 
@@ -776,7 +821,7 @@ th {
 .botones-datos {
     text-align: center;
     margin: 0;
-    padding: 20px;
+    padding: 18px;
     transition: 1s;
 }
 
@@ -812,23 +857,27 @@ th {
 #overlay {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    inset: 0;
+    background: rgba(0, 35, 90, 0.55);
+    backdrop-filter: blur(6px);
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 .confirmacion {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
-    background-color: aliceblue;
-    padding: 20px;
+    background-color: white;
     border-radius: 20px;
+    padding: 35px 40px;
+    width: 600px;
+    border-style: solid;
+    color: #003366;
+    box-shadow: 0 10px 30px rgba(0, 60, 130, 0.3);
+    max-height: 80vh;
+    animation: aparecer 0.4s ease;
 }
 
 .confirmacion>h2 {
@@ -838,28 +887,6 @@ th {
 
 .confirmacion>p {
     font-size: 20px;
-}
-
-#cancelar {
-    color: black;
-    background-color: rgb(182, 255, 182);
-}
-
-#confirmar {
-    color: black;
-    background-color: rgb(255, 166, 166);
-}
-
-#confirmar:hover {
-    scale: 1.05;
-    background-color: rgb(255, 166, 166);
-    transition: 1s;
-}
-
-#cancelar:hover {
-    scale: 1.05;
-    background-color: rgb(182, 255, 182);
-    transition: 1s;
 }
 
 .botones_confirmar {
@@ -894,9 +921,12 @@ th {
     border-style: solid;
     color: #003366;
     box-shadow: 0 10px 30px rgba(0, 60, 130, 0.3);
-    max-height: 80vh; /* altura máxima: 80% del alto visible de la ventana */
-    overflow-y: auto; /* activa la barra de scroll vertical si el contenido se pasa */
-    overflow-x: hidden; /* evita que aparezca una barra horizontal */
+    max-height: 80vh;
+    /* altura máxima: 80% del alto visible de la ventana */
+    overflow-y: auto;
+    /* activa la barra de scroll vertical si el contenido se pasa */
+    overflow-x: hidden;
+    /* evita que aparezca una barra horizontal */
     animation: aparecer 0.4s ease;
 }
 
@@ -928,7 +958,8 @@ th {
     color: #003366;
 }
 
-.input-group > div > input, select {
+.input-group>div>input,
+select {
     width: 100%;
     padding: 10px 12px;
     border: 1px solid #a7c7ff;
@@ -939,7 +970,7 @@ th {
     transition: border-color 0.2s ease;
 }
 
-.input-group > input:focus {
+.input-group>input:focus {
     border-color: #5b9bff;
     outline: none;
     box-shadow: 0 0 4px rgba(91, 155, 255, 0.5);
@@ -967,7 +998,7 @@ th {
 }
 
 .btn-secondary {
-    background: #e0ecff;
+    background: #cdddf7;
     color: #004a9f;
     border: 1px solid #a7c7ff;
     padding: 10px 20px;
@@ -977,7 +1008,7 @@ th {
 }
 
 .btn-secondary:hover {
-    background: #cfe3ff;
+    background: #b0caf0;
 }
 
 
@@ -1060,7 +1091,7 @@ th {
 
 /* Errores para mandarte a hacer el login */
 
-.error-body{
+.error-body {
     position: relative;
     background-color: rgba(84, 80, 80, 0.453);
     display: flex;
@@ -1072,7 +1103,7 @@ th {
     background-size: 18px 18px;
 }
 
-.error{
+.error {
     background-color: var(---navColor);
     padding: 30px;
     border-radius: 20px;
@@ -1090,9 +1121,9 @@ th {
     padding: 10px 0;
 }
 
-.error a{
+.error a {
     align-items: center;
-    
+
 }
 
 #boton-inicio {
@@ -1166,42 +1197,45 @@ abajito cuando el ancho es menos de 700px */
 
     /* aside fijo al fondo de la pantalla */
     aside,
- aside.activo {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    display: flex;
-    flex-direction: row; /* íconos en fila */
-    justify-content: space-around;
-    align-items: center;
-    padding: 0;
-}
-
-/* Ajuste de íconos */
-.link-aside-images {
-    display: flex;
-    flex-direction: row; /* horizontal */
-    height: auto;
-    justify-content: space-evenly;
-    width: 100vw;
-
-}
-
-.link-aside-images li {
-    margin: 0; /* eliminar márgenes verticales */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Ocultar icono de configuración y mostrar idioma + modo oscuro */
-  .settings-icon {
-       display: none;
+    aside.activo {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        /* íconos en fila */
+        justify-content: space-around;
+        align-items: center;
+        padding: 0;
     }
 
-  .link-aside-images li::after {
+    /* Ajuste de íconos */
+    .link-aside-images {
+        display: flex;
+        flex-direction: row;
+        /* horizontal */
+        height: auto;
+        justify-content: space-evenly;
+        width: 100vw;
+
+    }
+
+    .link-aside-images li {
+        margin: 0;
+        /* eliminar márgenes verticales */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Ocultar icono de configuración y mostrar idioma + modo oscuro */
+    .settings-icon {
+        display: none;
+    }
+
+    .link-aside-images li::after {
         display: none !important;
         content: none !important;
     }
