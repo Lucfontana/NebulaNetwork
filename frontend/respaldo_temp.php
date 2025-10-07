@@ -86,7 +86,7 @@ $prestamos_info2 = $stmt->get_result();
 
 <?php if (isset($_SESSION['nivel_acceso'])):?>
 
-<body>
+<body id="body-register">
     <!-- trae las barras de navegacion (sidebar y superior) -->
     <?php include 'nav.php'; ?>
 
@@ -111,6 +111,7 @@ $prestamos_info2 = $stmt->get_result();
         <div id="div-dialogs">
 
         <dialog>
+            <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
             <form id="form-registro" class="registro-div prestar-form">
                 <h1>Prestar Recursos</h1>
                 <hr>
@@ -139,7 +140,6 @@ $prestamos_info2 = $stmt->get_result();
                         <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
                             name="prestarRecurso"></input>
             </form>
-            <button class="btn-Cerrar" type="button">Cerrar</button>
             </div>
         </dialog>
     </main>

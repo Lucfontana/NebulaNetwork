@@ -38,7 +38,7 @@ closeConfirm.forEach((confirmCerrar, index) => {
     dialogs[index].style.transform = "translateY(-50%)";
     dialogs[index].style.opacity = "0";
     dialogs[index].style.transition = "0.5s";
-
+    body.style.overflow = "visible"; // Evita el desplazamiento del fondo
 
     setTimeout(() => {
       dialogs[index].close(); // Cierra el dialog correspondiente
