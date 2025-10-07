@@ -62,8 +62,15 @@ main {
     ;
 }
 
-#navbarText.show {
-    
+#navbarcontent {
+    display: none;
+    justify-content: right;
+    width: 100%;
+}
+
+
+#navbar-content.show {
+    display: flex;
 }
 
 #logo {
