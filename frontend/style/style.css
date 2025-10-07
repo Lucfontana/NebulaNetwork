@@ -623,7 +623,9 @@ aside>ul {
 .article-register h1 span {
     color: var(--color);
 }
-
+.article-register {
+  --color: #4db8ff; /* acá definís la variable */
+}
 
 #register-content {
     display: flex;

@@ -75,7 +75,7 @@ session_start();
             <div id="register-content">
                 <div class="article-register">
                     <div>
-                        <h1> Registro de Profesores</h1>
+                        <h1> Registro de <span>Profesores</span></h1>
                     </div>
                     <button type="button" id="Profesores-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
@@ -95,7 +95,7 @@ session_start();
 
                 <div class="article-register">
                     <div>
-                        <h1> Registro de Recursos</h1>
+                        <h1> Registro de <span>Recursos</span></h1>
                     </div>
                     <button type="button" id="Recursos-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
@@ -105,7 +105,7 @@ session_start();
 
                 <div class="article-register">
                     <div>
-                        <h1> Registro de Espacios</h1>
+                        <h1> Registro de <span>Espacios</span></h1>
                     </div>
                     <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
@@ -115,7 +115,7 @@ session_start();
 
                 <div class="article-register">
                     <div>
-                        <h1> Registro de Cursos</h1>
+                        <h1> Registro de <span>Cursos</span></h1>
                     </div>
                     <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
@@ -125,7 +125,7 @@ session_start();
 
                 <div class="article-register">
                     <div>
-                        <h1> Registro de Asignaturas</h1>
+                        <h1> Registro de <span>Asignaturas</span></h1>
                     </div>
                     <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
@@ -135,7 +135,7 @@ session_start();
 
                 <div class="article-register">
                     <div>
-                        <h1> Registro de Horarios</h1>
+                        <h1> Registro de <span>Horarios</span></h1>
                     </div>
                     <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
@@ -144,7 +144,7 @@ session_start();
                 </div>
                 <div class="article-register">
                     <div>
-                        <h1> Registro de Dependencias</h1>
+                        <h1> Registro de <span>Dependencias</span></h1>
                     </div>
                     <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
@@ -153,7 +153,7 @@ session_start();
                 </div>
                 <div class="article-register">
                     <div>
-                        <h1> Registro de Orientaciones</h1>
+                        <h1> Registro de <span>Orientaciones</span></h1>
                     </div>
                     <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                         data-target="#exampleModal">
