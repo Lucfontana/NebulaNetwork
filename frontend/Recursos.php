@@ -65,7 +65,7 @@ $query = mysqli_query($connect, $sql);
         <div id="overlay-edit" class="overlay-edit">
     <div class="popup">
         <h1>Registro de Recursos</h1>
-        <form action="\backend\functions\Recursos\edit.php" method="POST">
+        <form action="\backend\functions\Recursos\edit.php" method="POST" id="form-update">
             <div class="div-labels">
                 <input class="input-register" type="hidden" name="id_recurso" id="id_edit">
                 <input class="input-register" type="hidden" name="id_espacio" id="id_espacio_edit">
@@ -119,7 +119,8 @@ $query = mysqli_query($connect, $sql);
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
     <script src="js/sideMenu.js"></script>
-    <script src="/frontend/js/confirm-recursos.js"></script>
+    <script type="module" src="/frontend/js/confirm-recursos.js"></script>
+    <script type="module" src="/frontend/js/prueba.js"></script>
 </body>
 
 </html>

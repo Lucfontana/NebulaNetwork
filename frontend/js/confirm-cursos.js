@@ -1,5 +1,4 @@
-import { verificarNombreEspecial } from './validaciones-registro';
-import { verificarCapacidad } from './validaciones-registro';
+import { verificarNombreEspecial, verificarCapacidad, alerta_success_update, alerta_fallo } from './prueba.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("overlay");
@@ -8,30 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const overlayEdit = document.getElementById("overlay-edit");
   const btnCancelarEdit = document.getElementById("cancelarEdit");
 
-
   let editID = null;
   let nombre = null;
-  let cupos = null;
   let capacidad = null;
-  
   let currentId = null;
 
-  document.querySelectorAll(".actualizar").forEach(btnActu => {
-     btnActu.addEventListener("click", (e) => {
-      const nombreInput = document.getElementById("name_edit").value;
-      const capacidadInput = document.getElementById("capacidad_edit").value;
-
-      if (!verificarNombreEspecial(nombreInput)) {
-        e.preventDefault();
-      }
-      if (!verificarCapacidad(capacidadInput)) {
-        e.preventDefault();
-      }
-    })
-  })
-
-     
-  // Abrir modal y guardar id
+  // Abrir modal eliminar
   document.querySelectorAll(".boton-datos-eliminar").forEach(boton => {
     boton.addEventListener("click", (e) => {
       e.preventDefault();
@@ -40,36 +21,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Cancelar
   btnCancelar.addEventListener("click", () => {
     overlay.style.display = "none";
     currentId = null;
   });
 
-  // Confirmar: redirigir a tu PHP de borrado
   btnConfirmar.addEventListener("click", () => {
     if (currentId) {
       window.location.href = `/backend/functions/Cursos/delete.php?id=${currentId}`;
     }
   });
 
+  // Abrir modal editar
   document.querySelectorAll(".boton-datos-editar").forEach(botonEditar => {
     botonEditar.addEventListener("click", (a) => {
       a.preventDefault();
-
       overlayEdit.style.display = "flex";
 
       editID = botonEditar.dataset.id;
       nombre = botonEditar.dataset.nombre;
-      cupos = botonEditar.dataset.cupo;
       capacidad = botonEditar.dataset.capacidad;
 
       document.getElementById("id_edit").value = editID;
       document.getElementById("name_edit").value = nombre;
       document.getElementById("capacidad_edit").value = capacidad;
-      document.getElementById("cupos_edit").value = cupos;
-
-      
     })
   })
 
@@ -78,6 +53,43 @@ document.addEventListener("DOMContentLoaded", () => {
     editID = null;
   });
 
+  document.getElementById("form-update").addEventListener("submit", async (e) => {
+    e.preventDefault(); // Evita el submit normal
+      
+    let nombreInput = document.getElementById("name_edit").value;
+    let capacidadInput = document.getElementById("capacidad_edit").value;
+
+    // Validaciones
+    if (!verificarNombreEspecial(nombreInput)) {
+      return;
+    }
+    if (!verificarCapacidad(capacidadInput)) {
+      return;
+    }
+
+    // Si pasa las validaciones, envía el formulario
+    const form = e.target;
+    const fd = new FormData(form);
+
+    try {
+      const res = await fetch("/backend/functions/Cursos/edit.php", {
+        method: "POST",
+        body: fd,
+        credentials: "same-origin"
+      });
+
+      const data = await res.json();
+      let mensaje = data.message;
+
+      if (data.success) {
+        alerta_success_update(mensaje, "/frontend/Cursos.php");
+      } else {
+        alerta_fallo(mensaje);
+      }
+    } catch (err) {
+      console.error(err);
+      alerta_fallo("Error de conexión");
+    }
+  });
+
 });
-
-

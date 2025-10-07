@@ -66,7 +66,7 @@ session_start();
             <div id="overlay-edit" class="overlay-edit">
                 <div class="popup">
                     <h1>Registro de Asignaturas</h1>
-                    <form action="\backend\functions\asignaturas\edit.php" method="POST">
+                    <form action="\backend\functions\asignaturas\edit.php" method="POST" id="form-update">
                         <div class="div-labels">
                             <input class="input-register" type="hidden" name="id_asignatura" id="id_edit">
                         </div>
@@ -96,7 +96,8 @@ session_start();
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
     <script src="js/sideMenu.js"></script>
-    <script src="/frontend/js/confirm-asignatura.js"></script>
+    <script type="module"  src="/frontend/js/confirm-asignatura.js"></script>
+    <script type="module" src="/frontend/js/prueba.js"></script>
     </body>
 
 </html>

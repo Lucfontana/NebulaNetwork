@@ -61,6 +61,44 @@ document.addEventListener("DOMContentLoaded", () => {
     editID = null;
   });
 
+  document.getElementById("form-update").addEventListener("submit", async (e) => {
+    e.preventDefault(); // Evita el submit normal
+      
+    let nombreInput = document.getElementById("name_edit").value;
+    let capacidadInput = document.getElementById("capacidad_edit").value;
+
+    // Validaciones
+    if (!verificarNombreEspecial(nombreInput)) {
+      return;
+    }
+    if (!verificarCapacidad(capacidadInput)) {
+      return;
+    }
+
+    // Si pasa las validaciones, envía el formulario
+    const form = e.target;
+    const fd = new FormData(form);
+
+    try {
+      const res = await fetch("/backend/functions/SuperUsuarios/edit.php", {
+        method: "POST",
+        body: fd,
+        credentials: "same-origin"
+      });
+
+      const data = await res.json();
+      let mensaje = data.message;
+
+      if (data.success) {
+        alerta_success_update(mensaje, "/frontend/SuperUsuarios.php");
+      } else {
+        alerta_fallo(mensaje);
+      }
+    } catch (err) {
+      console.error(err);
+      alerta_fallo("Error de conexión");
+    }
+  });
 });
 
 

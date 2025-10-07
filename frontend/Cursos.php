@@ -40,7 +40,7 @@ $query = mysqli_query($connect, $sql);
                         <th class="nombre"><?= $row['nombre'] ?></th>
                         <th class="ultimo-dato"><?= $row['capacidad'] ?></th>
                         <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_curso'] ?>">Eliminar</a></th>
-                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_curso'] ?>" data-nombre="<?= $row['nombre'] ?>" data-capacidad="<?= $row['capacidad']?>">Editar</a></th>
+                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_curso'] ?>" data-nombre="<?= $row['nombre'] ?>" data-capacidad="<?= $row['capacidad'] ?>">Editar</a></th>
                     </tr>
                 <?php endwhile; ?>
             </table>
@@ -59,34 +59,34 @@ $query = mysqli_query($connect, $sql);
 
 
         <div id="overlay-edit" class="overlay-edit">
-    <div class="popup">
-        <h1>Registro de Cursos</h1>
-        <form action="\backend\functions\Cursos\edit.php" method="POST">
-            <div class="div-labels">
-                <input class="input-register" type="hidden" name="id_curso" id="id_edit">
-            </div>
+            <div class="popup">
+                <h1>Edición de Cursos</h1>
+                <form action="/backend/functions/Cursos/edit.php" method="POST" id="form-update">
+                    <div class="div-labels">
+                        <input class="input-register" type="hidden" name="id_curso" id="id_edit">
+                    </div>
 
-            <div class="input-group">
-                <label for="nombre">Nombre:</label>
-                <div>
-                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
-                </div>
-            </div>
+                    <div class="input-group">
+                        <label for="nombre">Nombre:</label>
+                        <div>
+                            <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
+                        </div>
+                    </div>
 
-            <div class="input-group">
-                <label for="capacidad">Capacidad:</label>
-                <div>
-                    <input class="class-datos-editar" type="number" name="capacidad" id="capacidad_edit" maxlength="3" minlength="1" required placeholder="Ingresa capacidad">
-                </div>
-            </div>
+                    <div class="input-group">
+                        <label for="capacidad">Capacidad:</label>
+                        <div>
+                            <input class="class-datos-editar" type="number" name="capacidad" id="capacidad_edit" maxlength="3" minlength="1" required placeholder="Ingresa capacidad">
+                        </div>
+                    </div>
 
-            <div class="buttons-modal">
-                <input type="submit" value="Actualizar Información" class="btn-primary actualizar" id="actualizar"></input>
-                <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit"></input>
+                    <div class="buttons-modal">
+                        <input type="submit" value="Actualizar Información" class="btn-primary actualizar" id="actualizar"></input>
+                        <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit"></input>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-</div>
+        </div>
     </main>
 
     <footer id="footer" class="footer">
@@ -97,8 +97,8 @@ $query = mysqli_query($connect, $sql);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
-    <script src="js/sideMenu.js"></script>
-    <script type="moudle" src="/frontend/js/confirm-cursos.js"></script>
+    <script type="module" src="/frontend/js/confirm-cursos.js"></script>
+    <script type="module" src="/frontend/js/prueba.js"></script>
 </body>
 
 </html>

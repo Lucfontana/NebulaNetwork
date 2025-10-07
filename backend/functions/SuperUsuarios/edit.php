@@ -13,7 +13,10 @@ $consulta = "UPDATE superusuario SET nombre = ?, apellido = ?, nivel_acceso = ? 
 $stmt = $con->prepare($consulta);
 $stmt->bind_param("ssii", $name, $apellido, $nivelacceso ,$id);
 $stmt->execute();
-$result = $stmt->get_result();
 
-Header("location: ../../../frontend/SuperUsuarios.php");
+if ($stmt->affected_rows > 0) {
+    echo json_encode(["success" => true, "message" => "Curso editado correctamente"]);
+} else {
+    echo json_encode(["success" => false, "message" => "Error al actualizar"]);
+}
 ?>

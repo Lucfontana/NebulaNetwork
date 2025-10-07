@@ -14,7 +14,10 @@ $consulta = "UPDATE recursos SET nombre = ?, tipo = ?, estado = ? WHERE id_recur
 $stmt = $con->prepare($consulta);
 $stmt->bind_param("sssi", $name, $tipo, $estado, $id);
 $stmt->execute();
-$result = $stmt->get_result();
 
-Header("location: ../../../frontend/Recursos.php");
+if ($stmt->affected_rows > 0) {
+    echo json_encode(["success" => true, "message" => "Curso editado correctamente"]);
+} else {
+    echo json_encode(["success" => false, "message" => "Error al actualizar"]);
+}
 ?>

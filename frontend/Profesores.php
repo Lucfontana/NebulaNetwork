@@ -67,7 +67,7 @@ $query = mysqli_query($connect, $sql);
         <div id="overlay-edit" class="overlay-edit">
             <div class="popup">
                 <h1>Registro de Profesores</h1>
-                <form action="\backend\functions\Profesores\edit.php" method="POST">
+                <form action="\backend\functions\Profesores\edit.php" method="POST" id="form-update">
                     <div class="div-labels">
                         <input class="input-register" type="hidden" name="ci_profesor" id="id_edit">
                     </div>
@@ -125,7 +125,8 @@ $query = mysqli_query($connect, $sql);
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
     <script src="js/sideMenu.js"></script>
-    <script src="/frontend/js/confirm-profesores.js"></script>
+    <script type="module" src="/frontend/js/confirm-profesores.js"></script>
+    <script type="module" src="/frontend/js/prueba.js"></script>
 </body>
 
 </html>
