@@ -64,7 +64,7 @@ session_start();
     <?php include_once('error.php')?>
 <?php else:?>
 
-<body>
+<body id="body-register">
     <!-- trae las barras de navegacion (sidebar y superior) -->
     <?php include 'nav.php'; ?>
 

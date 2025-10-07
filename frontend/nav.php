@@ -19,7 +19,7 @@ include_once 'functions.php';
 <link rel="stylesheet" href="style/style.css">
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary navStyle">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navStyle" id="nav">
         <div class="container-fluid navStyle">
             <!--<button class="sideButton" id="sideButton">
                 <img src="img/box-arrow-right-white.svg" alt="menu" class="sideMenu">                
@@ -89,6 +89,7 @@ include_once 'functions.php';
     
         <!-- Sweet alerts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/navbar-menu.js"></script>
 
 </body>
 

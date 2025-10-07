@@ -642,11 +642,17 @@ dialog {
 }
 
 .btn-Cerrar {
-    position: sticky;
+    position: fixed;
     background-color: transparent;
     float: right;
     margin-right: 20px;
     border-style: none;
+}
+
+.cruz-register {
+    width: 25px;
+    height: 25px;
+    position: fixed;
 }
 
 
@@ -722,11 +728,6 @@ hr {
     display: flex;
 }
 
-.cruz-register {
-    width: 25px;
-    height: 25px;
-    position: sticky;
-}
 
 /* Mostrar Datos */
 
