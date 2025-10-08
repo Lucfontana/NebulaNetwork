@@ -100,6 +100,7 @@ session_start();
 
 <div id="div-dialogs">
 <dialog>
+    <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
     <form id="form-registro" class="registro-div profesores-form" action="../backend/functions/profesores_func.php" method="POST"> 
     <h1>Prestar recursos</h1><hr>
         <div class="div-labels">
@@ -131,7 +132,6 @@ Se tiene que declarar el boton como de tipo "button" pq por defecto,
 los botones adentro de un formulario son de tipo submit, por lo tanto
 esto causaba que el formulario se enviara cuando necesitabamos cerrar 
 el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
-<button class="btn-Cerrar" type="button">Cerrar</button>
     </div>
 </dialog>
 
