@@ -431,8 +431,7 @@ session_start();
                 <div class="overlay" id="overlay">
                     <div class="dialogs">
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div horarios-form"
-                            action="../backend/functions/horarios/horarios_api.php" method="post">
+                        <form id="form-registro" class="registro-div horarios-form">
                             <h1>Registro de Horarios</h1>
                             <hr>
                             <div class="div-labels">
