@@ -411,8 +411,7 @@ session_start();
 
         <dialog>
             <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-            <form id="form-registro" class="registro-div horarios-form"
-                action="../backend/functions/horarios/horarios_api.php" method="post">
+            <form id="form-registro" class="registro-div horarios-form">
                 <h1>Registro de Horarios</h1>
                 <hr>
                 <div class="div-labels">
@@ -425,16 +424,6 @@ session_start();
                     <input class="input-register" type="time" name="hora_final" id="horaFinalHorario" maxlength="20"
                         minlength="8" required placeholder="Ingresa nombre">
                 </div>
-                <div class="div-labels">
-                    <label for="tipo">Tipo de horario:</label>
-                    <select class="input-register" type="text" name="tipo_horario" id="tipoHorario" required
-                        placeholder="">
-                        <option value=""></option>
-                        <option value="recreo">Recreo</option>
-                        <option value="clase">Clase</option>
-                    </select>
-                </div>
-
                 <div class="div-botones-register">
                     <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
                         name="registroHorario"></input>

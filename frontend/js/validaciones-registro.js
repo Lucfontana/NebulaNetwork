@@ -348,25 +348,49 @@ function registrar_curso(e) {
 }
 
 let formulario_horarios = document.querySelector(".horarios-form");
-formulario_horarios.addEventListener("submit", function (e) {
+formulario_horarios.addEventListener("submit", registrar_horario);
+
+function registrar_horario(e) {
+    e.preventDefault();
+
     let hora_inicio_horario = document.getElementById("horaInicioHorario").value;
-    let hora_fin_horario = document.getElementById("horaFinHorario").value;
-    let tipo_horario = document.getElementById("tipoHorario").value; // clase o recreo
+    let hora_fin_horario = document.getElementById("horaFinalHorario").value;
 
     if (!verificarHora(hora_inicio_horario) || !verificarHora(hora_fin_horario)) {
-        e.preventDefault();
+        alerta_fallo("Las horas ingresadas no son válidas.");
         return;
     }
-    if (!validarHorario(tipo_horario, hora_inicio_horario, hora_fin_horario)) {
-        e.preventDefault();
-        return;
-    }
-    if (haySolapamiento(hora_inicio_horario, hora_fin_horario, horariosExistentes)) {
-        alert("El horario se solapa con otra clase o recreo.");
-        e.preventDefault();
-        return;
-    }
-});
+    // if (!validarHorario(tipo_horario, hora_inicio_horario, hora_fin_horario)) {
+    //     alerta_fallo("El horario no es válido.");
+    //     return;
+    // }
+    // if (haySolapamiento(hora_inicio_horario, hora_fin_horario, horariosExistentes)) {
+    //     alerta_fallo("El horario se solapa con otra clase o recreo.");
+    //     return;
+    // }
+
+    const form_horario = new FormData();
+    form_horario.append('hora_inicio', hora_inicio_horario);
+    form_horario.append('hora_final', hora_fin_horario);
+    form_horario.append('registroHorario', true);
+
+    fetch('../backend/functions/horarios/horarios_api.php', {
+        method: 'POST',
+        body: form_horario
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.estado === '1') {
+                alerta_success(`${data.mensaje}`, "Horarios.php", "horario");
+            } else {
+                alerta_fallo(`${data.mensaje}`);
+            }
+        })
+        .catch(error => {
+            alerta_fallo("Error al procesar la solicitud.");
+            console.error('Error:', error);
+        });
+}
 
 let formulario_dependencias = document.querySelector(".dependencias-form");
 formulario_dependencias.addEventListener("submit", function (e) {
