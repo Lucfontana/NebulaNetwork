@@ -86,7 +86,7 @@ $prestamos_info2 = $stmt->get_result();
 
 <?php if (isset($_SESSION['nivel_acceso'])):?>
 
-<body>
+<body id="body-register">
     <!-- trae las barras de navegacion (sidebar y superior) -->
     <?php include 'nav.php'; ?>
 
@@ -255,10 +255,6 @@ $prestamos_info2 = $stmt->get_result();
     <?php endif;?>
 
     <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-        crossorigin="anonymous"></script>
-
     <script type="module" src="../../backend/functions/Recursos/prestar-recursos/prestar.js"></script>
     <script type="module" src="../../backend/functions/Recursos/prestar-recursos/procesar_devolucion.js"></script>
     <script src="js/Register-Modal.js"></script>

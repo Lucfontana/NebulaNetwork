@@ -28,7 +28,7 @@ include_once 'functions.php';
             <a class="navbar-brand" href="index.php"><img id="logo" src="img/logo.png">ITSP</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon" id="desplegar"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -89,7 +89,6 @@ include_once 'functions.php';
     
         <!-- Sweet alerts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="js/navbar-menu.js"></script>
 
 </body>
 
