@@ -627,11 +627,25 @@ aside>ul {
     color: white;
 }
 
-.article-register h1 span {
-    color: var(--color);
+/* Primer grupo (elementos 1, 2 y 3) */
+.article-register:nth-child(-n + 3) {
+  --color:  #da9768;
 }
-.article-register {
-  --color: #4db8ff; /* acá definís la variable */
+
+/* Segundo grupo (elementos 4, 5 y 6) */
+.article-register:nth-child(n + 4):nth-child(-n + 6) {
+  --color:#2E8B92; 
+}
+
+/* Tercer grupo (elementos 7, 8 y 9) */
+.article-register:nth-child(n + 7):nth-child(-n + 9) {
+  --color:  #73b382;
+ 
+}
+
+/* Aplica el color al texto dentro del span */
+.article-register h1 span {
+  color: var(--color);
 }
 
 #register-content {
@@ -680,7 +694,6 @@ dialog {
 }
 
 .btn-enviar-registro:hover {
-    scale: 1.05;
     background-color: rgb(13, 13, 17);
     transition: 1s;
 }
@@ -997,7 +1010,7 @@ select {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #4a90e2, #007bff);
+   background-color: rgb(34, 34, 34);
     border: none;
     color: #fff;
     padding: 10px 20px;
@@ -1008,7 +1021,7 @@ select {
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #007bff, #0056b3);
+     background-color: #6d6d6d;
 }
 
 .btn-secondary {
