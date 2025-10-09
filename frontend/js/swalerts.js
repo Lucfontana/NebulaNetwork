@@ -1,3 +1,5 @@
+import { borrar_todos_horarios } from './validaciones-registro.js';
+
 export function alerta_fallo(mensaje){
     Swal.fire({
         title: "Ups...",
@@ -31,4 +33,24 @@ Swal.fire({
 }).then(() => {
     window.location.href = direccion;
 });
+}
+
+export function sw_warning(mensaje){
+    Swal.fire({
+        title: "¡Alerta!",
+        html: mensaje,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Borrar horarios y crear nuevos",
+        cancelButtonText: "Continuar con los horarios actuales",
+        customClass: {
+            confirmButton: 'eliminar_horarios'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+                borrar_todos_horarios();
+        }
+    });
 }
