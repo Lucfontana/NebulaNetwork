@@ -10,10 +10,12 @@ const body = document.getElementById("body-register");
 botones.forEach((boton, index) => {
   boton.addEventListener("click", function () {
     overlays[index].style.display = "flex"; // Muestra el overlay
-    overlays[index].style.opacity = "1";
-    overlays[index].style.transition = "0.5s";
     body.style.overflow = "hidden"; // Evita el desplazamiento del fondo
-    
+
+    setTimeout(() => {
+      overlays[index].style.opacity = "1";
+      overlays[index].style.transition = "0.5s";
+    }, 1)
   });
 })
 
@@ -24,7 +26,7 @@ closeBoton.forEach((botonCerrar, index) => {
     body.style.overflow = "visible"; // Evita el desplazamiento del fondo
 
     setTimeout(() => {
-        overlays[index].style.display = "none";
+      overlays[index].style.display = "none";
     }, 500)
   });
 });
