@@ -578,6 +578,7 @@ session_start();
 
     <script src="js/Register-Modal.js"></script>
     <script type="module" src="js/validaciones-registro.js" defer></script>
+    <script type="module" src="js/swalerts.js"></script>
 
     <!-- Sweet alerts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

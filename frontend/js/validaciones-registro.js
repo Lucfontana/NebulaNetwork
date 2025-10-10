@@ -1,4 +1,5 @@
 import { verificarCI, verificarExistenciaCI, mostrarDigVerificador, CIaArreglo } from './validarCI.js';
+import { sw_warning } from './swalerts.js';
 //-----FORMULARIOS-----//
 
 //Por cada formulario, se lo debe llamar (cuando se envia) y verificar que todos sus
@@ -382,14 +383,36 @@ function registrar_horario(e) {
         .then(data => {
             if (data.estado === '1') {
                 alerta_success(`${data.mensaje}`, "Horarios.php", "horario");
-            } else {
+            } else if (data.estado === '0'){
                 alerta_fallo(`${data.mensaje}`);
+            } else {
+                sw_warning(`${data.mensaje}`);
             }
         })
         .catch(error => {
             alerta_fallo("Error al procesar la solicitud.");
             console.error('Error:', error);
         });
+}
+
+let borrar_horarios = document.querySelector('.eliminar_horarios');
+borrar_horarios.addEventListener("click", borrar_todos_horarios);
+
+export function borrar_todos_horarios(){
+
+    const form_eliminar_horarios = new FormData();
+    form_eliminar_horarios.append('eliminarTodosHorarios', true);
+
+    fetch('../../backend/functions/horarios/horarios_api.php', {
+        method: 'POST',
+        body: form_eliminar_horarios
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.estado === '1'){
+                alerta_success(`${data.mensaje}`, "horarios.php", "horario");
+            }
+        })
 }
 
 let formulario_dependencias = document.querySelector(".dependencias-form");
