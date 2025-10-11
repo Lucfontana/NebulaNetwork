@@ -576,7 +576,6 @@ session_start();
 
     <!-- Bootstrap -->
 
-    <script src="js/Register-Modal.js"></script>
     <script type="module" src="js/validaciones-registro.js" defer></script>
     <script type="module" src="js/swalerts.js"></script>
 

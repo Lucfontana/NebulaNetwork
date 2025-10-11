@@ -65,6 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("name_edit").value = nombre;
       document.getElementById("tipo_edit").value = tipo;
       document.getElementById("estado_edit").value = estado;
+
+      setTimeout(() => {
+       overlayEdit.style.opacity = "1";
+       overlayEdit.style.transition = "0.5s";
+    }, 1)
     })
   })
 

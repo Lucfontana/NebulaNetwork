@@ -14,7 +14,6 @@ $consulta = "UPDATE espacios_fisicos SET capacidad=? ,nombre=?, tipo=? WHERE id_
 $stmt = $con->prepare($consulta);
 $stmt->bind_param("issi", $capacity, $name, $type, $id);
 $stmt->execute();
-$stmt->close();
 
 
 if ($stmt->affected_rows > 0) {
@@ -22,4 +21,5 @@ if ($stmt->affected_rows > 0) {
 } else {
     echo json_encode(["success" => false, "message" => "Error al actualizar"]);
 }
+$stmt->close();
 ?>

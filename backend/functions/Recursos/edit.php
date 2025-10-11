@@ -14,11 +14,12 @@ $consulta = "UPDATE recursos SET nombre = ?, tipo = ?, estado = ? WHERE id_recur
 $stmt = $con->prepare($consulta);
 $stmt->bind_param("sssi", $name, $tipo, $estado, $id);
 $stmt->execute();
-$stmt->close();
 
 if ($stmt->affected_rows > 0) {
     echo json_encode(["success" => true, "message" => "Recurso editado correctamente"]);
 } else {
     echo json_encode(["success" => false, "message" => "Error al actualizar"]);
 }
+$stmt->close();
+
 ?>
