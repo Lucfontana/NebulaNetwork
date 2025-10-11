@@ -879,7 +879,7 @@ th {
 
 /* Confirmacion de Eliminar */
 
-#overlay {
+.overlay {
     display: none;
     position: fixed;
     inset: 0;
@@ -926,6 +926,7 @@ th {
 
 #overlay-edit {
     display: none;
+    opacity: 0;
 }
 
 .overlay-edit {

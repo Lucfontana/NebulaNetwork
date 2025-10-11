@@ -167,10 +167,10 @@ session_start();
 
             <div id="div-dialogs">
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div profesores-form">
+                        <form class="registro-div profesores-form">
                             <h1>Registro de Profesores</h1>
                             <hr>
                             <div class="div-labels">
@@ -209,7 +209,7 @@ session_start();
                                     minlength="1 " required placeholder="Ingresa dirección">
                             </div>
                             <div class="div-botones-register">
-                                <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
+                                <input class="btn-enviar-registro" type="submit" value="Registrar"
                                     name="registroProfesor"></input>
                             </div>
 
@@ -223,10 +223,10 @@ session_start();
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div superusuarios-form">
+                        <form class="registro-div superusuarios-form">
                             <h1>Registro de SuperUsuarios</h1>
                             <hr>
 
@@ -267,7 +267,7 @@ session_start();
                                     </select>
                                 </div>
                                 <div class="div-botones-register">
-                                    <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
+                                    <input class="btn-enviar-registro" type="submit" value="Registrar"
                                         name="registrarSuperuser"></input>
                                 </div>
                             </div>
@@ -275,10 +275,10 @@ session_start();
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div recursos-form">
+                        <form class="registro-div recursos-form">
                             <h1>Registro de Recursos</h1>
                             <hr>
                             <div class="div-labels">
@@ -326,7 +326,7 @@ session_start();
                                     <option value="externo">Externo</option>
                                 </select>
                                 <div class="div-botones-register">
-                                    <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
+                                    <input class="btn-enviar-registro" type="submit" value="Registrar"
                                         name="registrarRecurso"></input>
                                 </div>
                             </div>
@@ -334,10 +334,10 @@ session_start();
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div espacios-form">
+                        <form class="registro-div espacios-form">
                             <h1>Registro de Espacios</h1>
                             <hr>
                             <div class="div-labels">
@@ -362,7 +362,7 @@ session_start();
                                 </select>
                             </div>
                             <div class="div-botones-register">
-                                <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
+                                <input class="btn-enviar-registro" type="submit" value="Registrar"
                                     name="registrarEspacio"></input>
                             </div>
 
@@ -370,10 +370,10 @@ session_start();
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div cursos-form" action="../backend/functions/cursos_func.php"
+                        <form class="registro-div cursos-form" action="../backend/functions/cursos_func.php"
                             method="POST">
                             <h1>Registro de Cursos</h1>
                             <hr>
@@ -400,7 +400,7 @@ session_start();
                                 </select>
                             </div>
                             <div class="div-botones-register">
-                                <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
+                                <input class="btn-enviar-registro" type="submit" value="Registrar"
                                     name="registrarCursos"></input>
                             </div>
 
@@ -408,10 +408,10 @@ session_start();
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div asignatura-form">
+                        <form class="registro-div asignatura-form">
                             <h1>Registro de Asignaturas</h1>
                             <hr>
                             <div class="div-labels">
@@ -420,7 +420,7 @@ session_start();
                                     maxlength="20" minlength="3" required placeholder="Ingresa nombre">
                             </div>
                             <div class="div-botones-register">
-                                <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar Asignatura"
+                                <input class="btn-enviar-registro" type="submit" value="Registrar Asignatura"
                                     name="registrarAsignatura"></input>
                             </div>
 
@@ -428,10 +428,10 @@ session_start();
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div horarios-form">
+                        <form class="registro-div horarios-form">
                             <h1>Registro de Horarios</h1>
                             <hr>
                             <div class="div-labels">
@@ -445,17 +445,17 @@ session_start();
                                     minlength="8" required placeholder="Ingresa nombre">
                             </div>
                             <div class="div-botones-register">
-                                <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
+                                <input class="btn-enviar-registro" type="submit" value="Registrar"
                                     name="registroHorario"></input>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div dependencias-form"
+                        <form class="registro-div dependencias-form"
                             action="../backend/functions/dependencias/dependencias_api.php" method="POST">
                             <h1>Registro de Dependencias</h1>
                             <hr>
@@ -538,17 +538,17 @@ session_start();
                             </div>
 
                             <div class="div-botones-register">
-                                <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
+                                <input class="btn-enviar-registro" type="submit" value="Registrar"
                                     name="registrarDependencia"></input>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div orientacion-form">
+                        <form class="registro-div orientacion-form">
                             <h1>Registro de Orientaciones</h1>
                             <hr>
                             <div class="div-labels">
@@ -557,7 +557,7 @@ session_start();
                                     maxlength="20" minlength="3" required placeholder="Ingresa nombre">
                             </div>
                             <div class="div-botones-register">
-                                <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar orientacion"
+                                <input class="btn-enviar-registro" type="submit" value="Registrar orientacion"
                                     name="registrarOrientacion"></input>
                             </div>
 

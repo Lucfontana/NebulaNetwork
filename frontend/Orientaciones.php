@@ -2,7 +2,7 @@
 include_once('../backend/db/conexion.php');
 
 $connect = conectar_a_bd();
-$sql = "SELECT * FROM asignaturas";
+$sql = "SELECT * FROM orientacion";
 
 $query = mysqli_query($connect, $sql);
 
@@ -15,7 +15,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asignaturas</title>
+    <title>Orientaciones</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
@@ -32,7 +32,7 @@ session_start();
 
         <main>
             <div id="contenido-mostrar-datos">
-                <h1>Asignaturas</h1>
+                <h1>Orientaciones</h1>
                 <table id="datos">
                     <tr>
                         <th class="id">Id </th>
@@ -42,10 +42,10 @@ session_start();
                     </tr>
                     <?php while ($row = mysqli_fetch_array($query)): ?>
                         <tr class="mostrar-datos">
-                            <th class="nombre"><?= $row['id_asignatura'] ?></th>
+                            <th class="nombre"><?= $row['id_orientacion'] ?></th>
                             <th class="ultimo-dato"><?= $row['nombre'] ?></th>
-                            <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_asignatura'] ?>">Eliminar</a></th>
-                            <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_asignatura'] ?>" data-nombre="<?= $row['nombre'] ?>">Editar</a></th>
+                            <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_orientacion'] ?>">Eliminar</a></th>
+                            <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_orientacion'] ?>" data-nombre="<?= $row['nombre'] ?>">Editar</a></th>
                         </tr>
                     <?php endwhile; ?>
                 </table>
@@ -56,7 +56,7 @@ session_start();
                     <h2>¿Estás seguro?</h2>
                     <p>Esta acción eliminará el registro de forma permanente.</p>
                     <div class="botones_confirmar">
-                        <button class="btn btn-confirmar" id="confirmar" href="backend/functions/asignaturas/delete.php?id=<?= $row['id_asignatura'] ?>">Eliminar</button>
+                        <button class="btn btn-confirmar" id="confirmar" href="backend/functions/Orientaciones/delete.php?id=<?= $row['id_asignatura'] ?>">Eliminar</button>
                         <button class="btn btn-cancelar" id="cancelar">Cancelar</button>
                     </div>
                 </div>
@@ -65,10 +65,10 @@ session_start();
 
             <div id="overlay-edit" class="overlay-edit">
                 <div class="popup">
-                    <h1>Modificación de Asignatura</h1>
-                    <form action="\backend\functions\asignaturas\edit.php" method="POST" id="form-update">
+                    <h1>Modificación de Orientación</h1>
+                    <form action="\backend\functions\Orientaciones\edit.php" method="POST" id="form-update">
                         <div class="div-labels">
-                            <input class="input-register" type="hidden" name="id_asignatura" id="id_edit">
+                            <input class="input-register" type="hidden" name="id_orientacion" id="id_edit">
                         </div>
                         <div class="input-group">
                             <label for="nombre">Nombre:</label>
@@ -92,7 +92,7 @@ session_start();
     <?php endif; ?>
 
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
-    <script type="module"  src="/frontend/js/confirm-asignatura.js"></script>
+    <script type="module"  src="/frontend/js/confirm-orientacion.js"></script>
     <script type="module" src="/frontend/js/prueba.js"></script>
     </body>
 
