@@ -14,6 +14,7 @@ $consulta = "UPDATE superusuario SET nombre = ?, apellido = ?, nivel_acceso = ?,
 $stmt = $con->prepare($consulta);
 $stmt->bind_param("ssisi", $name, $apellido, $nivelacceso, $email ,$id);
 $stmt->execute();
+$stmt->close();
 
 if ($stmt->affected_rows > 0) {
     echo json_encode(["success" => true, "message" => "SuperUsuario editado correctamente"]);

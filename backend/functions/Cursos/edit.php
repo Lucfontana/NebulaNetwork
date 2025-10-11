@@ -12,6 +12,7 @@ $consulta = "UPDATE cursos SET nombre = ?, capacidad = ? WHERE id_curso=?";
 $stmt = $connect->prepare($consulta);
 $stmt->bind_param("sii", $name, $capacidad ,$id);
 $stmt->execute();
+$stmt->close();
 
 if ($stmt->affected_rows > 0) {
     echo json_encode(["success" => true, "message" => "Curso editado correctamente"]);

@@ -11,6 +11,7 @@ $consulta = "UPDATE asignaturas SET nombre=? WHERE id_asignatura=?";
 $stmt = $con->prepare($consulta);
 $stmt->bind_param("si", $name ,$id);
 $stmt->execute();
+$stmt->close();
 
 if ($stmt->affected_rows > 0) {
     echo json_encode(["success" => true, "message" => "Asignatura editado correctamente"]);

@@ -18,14 +18,17 @@ session_start();
 <body class="body-perfil">
     <?php include 'nav.php'; ?>
 
-    <main class="main-perfil">
+    <div class="main-perfil">
+        <div class="header-banner"></div>
         <div class="header-perfil">
-            <div>
+            <div id="icono-perfil-div">
                 <img class="icono-perfil" src="/frontend/img/Imagenes Luca/calendario.png" alt="Icono de usuario">
+                <button id="edit-perfil">✏️</button>
             </div>
             <div class="bienvenida-perfil">
                 <?php if (isset($_SESSION['ci'])): ?>
-                    <h2>¡Bienvenido, <?= $_SESSION['nombre_usuario']; ?>!</h2>
+                    <h2><?= $_SESSION['nombre_usuario']; ?> <?= $_SESSION['apellido']; ?></h2>
+                    <p>CI: <?= $_SESSION['ci']; ?></p>
                 <?php endif; ?>
             </div>
 
@@ -47,8 +50,6 @@ session_start();
                 <?php endif; ?>
             </div>
             <div>
-                <h2>Contraseña</h2>
-                <p>************</p>
                 <button id="change-passwd">Cambiar contraseña</button>
             </div>
         </div>
@@ -59,14 +60,14 @@ session_start();
                 <p class="subtext">Por seguridad, ingresa tu contraseña actual y una nueva.</p>
                 <form action="/backend/functions/edit-paswd-user.php" method="POST" id="comprobarcontraseña">
                     <div class="input-group">
-                        <label for="passwd">Ingrese su contraseña actual</label>
+                        <label for="passwd">Ingresa tu contraseña actual</label>
                         <div>
                             <input type="password" name="passwd" id="passwd" maxlength="20" minlength="8" required placeholder="Ingresa su contraseña actual">
                         </div>
                     </div>
 
                     <div class="input-group">
-                        <label for="newpasswd">Ingrese su nueva contraseña</label>
+                        <label for="newpasswd">Ingresa tu nueva contraseña</label>
                         <div>
                             <input type="password" name="newpasswd" id="newpasswd" maxlength="20" minlength="8" required placeholder="Ingresa su nueva contraseña">
                         </div>
@@ -78,7 +79,7 @@ session_start();
                 </form>
             </div>
         </div>
-    </main>
+    </div>
 
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
     <script src="/frontend/js/changeName.js"></script>

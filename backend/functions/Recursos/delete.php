@@ -9,7 +9,6 @@ include_once ('../../db/conexion.php');
     $stmt = $con->prepare($consulta);
     $stmt->bind_param("i", $id);
     $stmt->execute();
-    $result = $stmt->get_result();
-
+    $stmt->close();
     Header("location: /frontend/Recursos.php");
 ?>
