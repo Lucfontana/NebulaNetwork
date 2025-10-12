@@ -64,6 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("apellido_edit").value = apellido;
       document.getElementById("nivel_edit").value = nivel;
       document.getElementById("email_edit").value = botonEditar.dataset.email;
+
+      setTimeout(() => {
+       overlayEdit.style.opacity = "1";
+       overlayEdit.style.transition = "0.5s";
+    }, 1)
       
     })
   })

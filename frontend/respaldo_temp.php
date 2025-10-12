@@ -147,44 +147,38 @@ $prestamos_info2 = $stmt->get_result();
         <main>
 
             <div id="contenido-mostrar-datos">
-                <h1>Recursos</h1>
+                <h1>Préstamos de Recursos</h1>
 
-                <table id="datos">
-                    <tr>
-                        <th class="id">Id Solicitud</th>
-                        <th class="nombre-titulo">Persona que Pidió</th>
-                        <th class="nombre-titulo">Recurso Prestado</th>
-                        <th class="nombre-titulo">Administrador que Prestó</th>
-                        <th class="nombre-titulo">Hora Prestado</th>
-                        <th class="titulo-ult">Hora Devolución</th>
-                        <th class="boton-titulo">Estado</th>
-                    </tr>
+                <div class="datos-grid prestamos-grid">
+                    <!-- Cabecera -->
+                    <div class="grid-header prestamos-header">
+                        <div class="grid-cell id">ID</div>
+                        <div class="grid-cell nombre-titulo">Persona que Pidió</div>
+                        <div class="grid-cell nombre-titulo">Recurso Prestado</div>
+                        <div class="grid-cell nombre-titulo">Administrador que Prestó</div>
+                        <div class="grid-cell nombre-titulo">Hora Prestado</div>
+                        <div class="grid-cell titulo-ult">Hora Devolución</div>
+                        <div class="grid-cell boton-titulo">Estado</div>
+                    </div>
 
+                    <!-- Filas de datos -->
                     <?php
                     if (mysqli_num_rows($prestamos_info) > 0) {
                         while ($row = mysqli_fetch_array($prestamos_info)):
                     ?>
-                            <tr class="mostrar-datos">
-                                <th class="nombre"><?= $row['id_solicita'] ?></th>
-                                <th class="nombre">
-                                    <?= $row['nombre_profesor'] . ' ' . $row['apellido_profesor'] ?>
+                            <div class="grid-row prestamos-row mostrar-datos">
+                                <div class="grid-cell"><?= $row['id_solicita'] ?></div>
+                                <div class="grid-cell">
+                                    <?= $row['nombre_profesor'] . ' ' . $row['apellido_profesor']?>
                                     <br><small>(CI: <?= $row['ci_profesor'] ?>)</small>
-                                </th>
-                                <th class="nombre">
-                                    <?= $row['nombre_recurso'] ?>
-                                </th>
-                                <th class="nombre">
-                                    <?= $row['nombre_su'] . ' ' . $row['apellido_su'] ?>
-                                </th>
-                                <th class="nombre">
-                                    <?= date('d/m/Y H:i:s', strtotime(($row['hora_presta']))) ?>
-                                </th>
-                                <th class="ultimo-dato">
-                                    <?= $row['hora_vuelta'] ? date('d/m/Y H:i', strtotime($row['hora_vuelta'])) : 'Pendiente' ?>
-                                </th>
-                                <th class="boton-dato">
+                                </div>
+                                <div class="grid-cell"><?= $row['nombre_recurso'] ?></div>
+                                <div class="grid-cell"><?= $row['nombre_su'] . ' ' . $row['apellido_su'] ?></div>
+                                <div class="grid-cell"><?= date('d/m/Y H:i:s', strtotime($row['hora_presta'])) ?></div>
+                                <div class="grid-cell"><?= $row['hora_vuelta'] ? date('d/m/Y H:i', strtotime($row['hora_vuelta'])) : 'Pendiente' ?></div>
+                                <div class="grid-cell">
                                     <?php if ($row['hora_vuelta']): ?>
-                                        <span style="color: green; margin-left: 20px;"> Devuelto</span>
+                                        <span style="color: green; margin-left: 20px;">Devuelto</span>
                                     <?php else: ?>
                                         <a class="boton-datos-editar botones-datos btn-devolver"
                                             data-id="<?= $row['id_solicita'] ?>"
@@ -193,15 +187,15 @@ $prestamos_info2 = $stmt->get_result();
                                             Devolver
                                         </a>
                                     <?php endif; ?>
-                                </th>
-                            </tr>
+                                </div>
+                            </div>
                     <?php
                         endwhile;
                     } else {
-                        echo '<tr><td colspan="7" style="text-align:center;">No hay préstamos registrados</td></tr>';
+                        echo '<div class="grid-row" style="text-align:center;"><div class="grid-cell" style="grid-column: 1 / -1;">No hay préstamos registrados</div></div>';
                     }
                     ?>
-                </table>
+                </div>
             </div>
         </main>
 

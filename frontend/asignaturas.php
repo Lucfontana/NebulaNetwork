@@ -33,22 +33,38 @@ session_start();
         <main>
             <div id="contenido-mostrar-datos">
                 <h1>Asignaturas</h1>
-                <table id="datos">
-                    <tr>
-                        <th class="id">Id </th>
-                        <th class="titulo-ult">Nombre</th>
-                        <th class="boton-titulo">Eliminar</th>
-                        <th class="boton-titulo">Editar</th>
-                    </tr>
+
+                <div class="datos-grid asignaturas-grid">
+                    <!-- Cabecera -->
+                    <div class="grid-header asignaturas-header">
+                        <div class="grid-cell id">ID</div>
+                        <div class="grid-cell nombre-titulo">Nombre</div>
+                        <div class="grid-cell boton-titulo">Eliminar</div>
+                        <div class="grid-cell boton-titulo">Editar</div>
+                    </div>
+
+                    <!-- Filas de datos -->
                     <?php while ($row = mysqli_fetch_array($query)): ?>
-                        <tr class="mostrar-datos">
-                            <th class="nombre"><?= $row['id_asignatura'] ?></th>
-                            <th class="ultimo-dato"><?= $row['nombre'] ?></th>
-                            <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_asignatura'] ?>">Eliminar</a></th>
-                            <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_asignatura'] ?>" data-nombre="<?= $row['nombre'] ?>">Editar</a></th>
-                        </tr>
+                        <div class="grid-row asignaturas-row mostrar-datos">
+                            <div class="grid-cell"><?= $row['id_asignatura'] ?></div>
+                            <div class="grid-cell"><?= $row['nombre'] ?></div>
+                            <div class="grid-cell">
+                                <a href="#"
+                                    class="boton-datos-eliminar botones-datos"
+                                    data-id="<?= $row['id_asignatura'] ?>">
+                                    Eliminar
+                                </a>
+                            </div>
+                            <div class="grid-cell">
+                                <a class="boton-datos-editar botones-datos"
+                                    data-id="<?= $row['id_asignatura'] ?>"
+                                    data-nombre="<?= $row['nombre'] ?>">
+                                    Editar
+                                </a>
+                            </div>
+                        </div>
                     <?php endwhile; ?>
-                </table>
+                </div>
             </div>
 
             <div class="overlay" id="overlay">
@@ -72,11 +88,11 @@ session_start();
                         </div>
                         <div class="input-group">
                             <label for="nombre">Nombre:</label>
-                        <div>
-                            <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
+                            <div>
+                                <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
+                            </div>
                         </div>
-                        </div>
-                         <div class="buttons-modal">
+                        <div class="buttons-modal">
                             <input type="submit" value="Actualizar Infomacion" class="btn-primary" id="actualizar"></input>
                             <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit"></input>
                         </div>
@@ -92,7 +108,7 @@ session_start();
     <?php endif; ?>
 
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
-    <script type="module"  src="/frontend/js/confirm-asignatura.js"></script>
+    <script type="module" src="/frontend/js/confirm-asignatura.js"></script>
     <script type="module" src="/frontend/js/prueba.js"></script>
     </body>
 
