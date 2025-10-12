@@ -17,7 +17,7 @@ session_start();
 
 <body class="body-perfil">
     <?php include 'nav.php'; ?>
-
+<div id="perfil-principal">
     <div class="main-perfil">
         <div class="header-banner"></div>
         <div class="header-perfil">
@@ -80,6 +80,7 @@ session_start();
             </div>
         </div>
     </div>
+</div>
 
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
     <script src="/frontend/js/changeName.js"></script>
