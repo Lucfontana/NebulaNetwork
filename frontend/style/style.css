@@ -58,7 +58,7 @@ main {
     /*Navbar encima del aside*/
     color: white;
     margin: 0 0 0 0;
-    background-color: #333;
+    background-color: #2b2b2b;
     ;
 }
 
@@ -108,21 +108,28 @@ main {
 /*------------------------ CONTENIDO DE LA PAGINA ----------------------*/
 
 /* Contenedor principal en columna para texto y botones */
+
 .hdrBackground {
+    background-image: linear-gradient(rgba(9, 4, 0, 0.6),
+            rgba(9, 4, 0, 0.6)),
+        url(../img/backgroundItsp.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: calc(100vh - 75px);
     display: flex;
-    flex-direction: column;
     align-items: center;
+    color: white;
     justify-content: center;
     text-align: center;
-    background-color: #d9d9f4;
-    opacity: 1;
-    background-image: radial-gradient(#9195d8 0.9px, #d9d9f4 0.9px);
-    background-size: 18px 18px;
+    padding: 20px;
+    margin: 75px 0 0 var(---marginAside);
+    flex-direction: column;
 }
 
 /* Texto de Bienvenidos */
 .bienvenida-texto {
-    margin-bottom: 90px;
+    margin-bottom: 2.5rem;
     /* Separación del bloque de los botones */
 }
 
@@ -140,8 +147,8 @@ main {
     /* ancho consistente */
     height: 120px;
     /* alto consistente */
-    background-color: white;
-    color: black;
+    background-color: #2b2a2a;
+    color: rgb(248, 248, 248);
     border: none;
     border-radius: 10px;
     font-weight: bold;
@@ -154,7 +161,7 @@ main {
 }
 
 .btn-bienvenida:hover {
-    background-color: #999999;
+    background-color: #3c3b3b;
 }
 
 #grid {
@@ -164,23 +171,6 @@ main {
     grid-template-areas:
         'aside contenido contenido contenido contenido';
     padding-top: 80px;
-}
-
-.hdrBackground {
-    background-image: linear-gradient(rgba(9, 4, 0, 0.1),
-            rgba(9, 4, 0, 1)),
-        url(../img/backgroundItsp.jpg);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    height: calc(100vh - 75px);
-    display: flex;
-    align-items: center;
-    color: white;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-    margin: 75px 0 0 var(---marginAside);
 }
 
 .contenido {
@@ -236,7 +226,7 @@ aside {
     width: var(---marginAside);
     height: 100vh;
     /* 100% del alto visible de la ventana */
-    background-color: #333;
+    background-color: #1e1e1e;
     position: fixed;
     grid-area: aside;
     /* si usás grid, lo podés mantener */

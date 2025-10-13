@@ -4,7 +4,7 @@ include_once('../../db/conexion.php');
 $con = conectar_a_bd();
 
 //Registra toda la dependencia
-function registrar_dependencia_completa($con, $ci_profesor, $id_asignatura, $horarios, $id_espacio, $id_curso) {
+function registrar_dependencia_completa($con, $ci_profesor, $id_asignatura, $horarios, $id_espacio, $id_curso, $dia_dictado) {
     $respuesta_json = array();
     $error = false;
     $mensaje_error = "";
@@ -132,14 +132,14 @@ function registrar_dependencia_completa($con, $ci_profesor, $id_asignatura, $hor
         $query_verificar_horario = "SELECT h.id_horario, h.hora_inicio, h.hora_final FROM cumple c
                                     INNER JOIN profesor_dicta_asignatura pda ON c.id_dicta = pda.id_dicta
                                     INNER JOIN horarios h ON c.id_horario = h.id_horario
-                                    WHERE pda.ci_profesor = ? AND h.id_horario = ?";
+                                    WHERE pda.ci_profesor = ? AND h.id_horario = ? AND c.dia = ?";
         
         //Se prepara la consulta para verificar los horarios
         $stmt_verificar = $con->prepare($query_verificar_horario);
         
         //Para cada elemento del arreglo de horarios que existe, se verifica que el profesor no este ocupado
         foreach ($horarios as $id_horario) {
-            $stmt_verificar->bind_param("ii", $ci_profesor, $id_horario);
+            $stmt_verificar->bind_param("iis", $ci_profesor, $id_horario, $dia_dictado);
             $stmt_verificar->execute();
             $resultado_verificar = $stmt_verificar->get_result();
             
@@ -157,7 +157,7 @@ function registrar_dependencia_completa($con, $ci_profesor, $id_asignatura, $hor
         if (count($horarios_ocupados) > 0) {
             $error = true;
                                                                                 //Implode separa al array con comas
-            $mensaje_error = "El profesor ya tiene clases en estos horarios: " . implode(", ", $horarios_ocupados);
+            $mensaje_error = "El profesor en el dia " . $dia_dictado . " ya tiene clases en estos horarios: " . implode(", ", $horarios_ocupados);
         }
     }
     
@@ -169,14 +169,14 @@ function registrar_dependencia_completa($con, $ci_profesor, $id_asignatura, $hor
         $query_verificar_salon = "SELECT h.id_horario, h.hora_inicio, h.hora_final FROM cumple c
                                   INNER JOIN dicta_ocupa_espacio doe ON c.id_dicta = doe.id_dicta
                                   INNER JOIN horarios h ON c.id_horario = h.id_horario
-                                  WHERE doe.id_espacio = ? AND h.id_horario = ?";
+                                  WHERE doe.id_espacio = ? AND h.id_horario = ? AND c.dia = ?";
         
         //Se prepara la consulta
         $stmt_verificar_salon = $con->prepare($query_verificar_salon);
         
         //Se van recorriendo los horarios, para ver si en algunos de esos el salon esta ocupado
         foreach ($horarios as $id_horario) {
-            $stmt_verificar_salon->bind_param("ii", $id_espacio, $id_horario);
+            $stmt_verificar_salon->bind_param("iis", $id_espacio, $id_horario, $dia_dictado);
             $stmt_verificar_salon->execute();
             $resultado_verificar_salon = $stmt_verificar_salon->get_result();
             
@@ -189,20 +189,54 @@ function registrar_dependencia_completa($con, $ci_profesor, $id_asignatura, $hor
         
         if (count($horarios_salon_ocupado) > 0) {
             $error = true;
-            $mensaje_error = "El salón ya está ocupado en estos horarios: " . implode(", ", $horarios_salon_ocupado);
+            $mensaje_error = "El salón en el dia " . $dia_dictado . " ya está ocupado en estos horarios: " . implode(", ", $horarios_salon_ocupado);
         }
     }
+
+    //Paso 4.5: Verificar que el curso no este ocupado a la hora que se quiere dictar
+if (!$error) {
+    $horarios_curso_ocupado = array();
+
+    $query_verificar_curso = "SELECT h.id_horario, h.hora_inicio, h.hora_final FROM cumple c
+                            INNER JOIN dicta_en_curso denc ON c.id_dicta = denc.id_dicta
+                            INNER JOIN horarios h ON c.id_horario = h.id_horario
+                            WHERE denc.id_curso = ? AND h.id_horario = ? AND c.dia = ?";
+
+    $stmt_verificar_curso = $con->prepare($query_verificar_curso);
+    
+    // AGREGAR ESTA VERIFICACIÓN PARA VER EL ERROR REAL
+    if ($stmt_verificar_curso === false) {
+        die("Error en la query SQL: " . $con->error);
+    }
+
+    foreach ($horarios as $id_horario) {
+        $stmt_verificar_curso->bind_param("iis", $id_curso, $id_horario, $dia_dictado);
+        $stmt_verificar_curso->execute();
+        $resultado_verificar_curso = $stmt_verificar_curso->get_result();
+        
+        if ($resultado_verificar_curso->num_rows > 0) {
+            $horario_info = $resultado_verificar_curso->fetch_assoc();
+            $horarios_curso_ocupado[] = $horario_info['hora_inicio'] . ' - ' . $horario_info['hora_final'];
+        }
+    }
+    $stmt_verificar_curso->close();
+    
+    if (count($horarios_curso_ocupado) > 0) {
+        $error = true;
+        $mensaje_error = "El curso en el dia " . $dia_dictado . " ya está ocupado en estos horarios: " . implode(", ", $horarios_curso_ocupado);
+    }
+}
     
     //  PASO 5: Insertar los horarios en tabla cumple (m estoy cansando de comentar)
     $horarios_insertados = 0;
 
     if (!$error) {
-        $query_insert_cumple = "INSERT INTO cumple (id_horario, id_dicta) VALUES (?, ?)";
+        $query_insert_cumple = "INSERT INTO cumple (id_horario, id_dicta, dia) VALUES (?, ?, ?)";
         $stmt_cumple = $con->prepare($query_insert_cumple);
         
         //Para cada uno de los horarios que hay, se van metiendo registros en la BD
         foreach ($horarios as $id_horario) {
-            $stmt_cumple->bind_param("ii", $id_horario, $id_dicta);
+            $stmt_cumple->bind_param("iis", $id_horario, $id_dicta, $dia_dictado);
             
             if ($stmt_cumple->execute()) {
                 $horarios_insertados++;

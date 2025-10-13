@@ -78,6 +78,7 @@ create table profesor_solicita_recurso(
 create table cumple (
     id_horario int,
     id_dicta int,
+    dia ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes'),
     FOREIGN KEY (id_horario) references horarios(id_horario) ON DELETE CASCADE,
     FOREIGN KEY (id_dicta) references profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE
 );
