@@ -311,6 +311,52 @@ aside>ul {
     padding: 30px 0;
 }
 
+/* Estado inicial: oculto */
+.settings-menu {
+    position: absolute;
+    top: 50%;
+    left: 60px;
+    transform: translateY(-50%) translateX(-10px);
+    /* desplazado igual que los otros tooltips */
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4px 0;
+    min-width: 150px;
+    background: rgba(50, 50, 50, 0.9);
+    border-radius: 5px;
+    z-index: 10;
+    font-size: 13px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, transform 0.3s;
+    /* animación */
+}
+
+/* Al hacer hover en el icono de configuración */
+.settings-icon:hover .settings-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
+}
+
+.settings-menu a {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    text-align: left;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.settings-menu a:hover {
+    background-color: black;
+    color: #fff;
+    transition: 0, 1s;
+}
+
 
 /*------------------------ FOOTER ----------------------*/
 .footer {

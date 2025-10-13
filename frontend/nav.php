@@ -64,18 +64,18 @@ include_once 'functions.php';
             </a>
 
            <!-- Botón de idioma -->
-<li class="lang-icon" data-tooltip="<?= t("aside_lang") ?>">
-    <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
-        <img src="img/Iconos sidebar/translate.png" alt="Idioma">
-    </a>
-</li>
+          <li class="lang-icon" data-tooltip="<?= t("aside_lang") ?>">
+           <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
+             <img src="img/Iconos sidebar/translate.png" alt="Idioma">
+           </a>
+        </li>
 
-<!-- Botón de modo oscuro -->
-<li class="darkmode-icon" data-tooltip="<?= t("aside_darkmode") ?>">
-    <a href="#modo-oscuro">
-        <img src="img/Iconos sidebar/moon.png" alt="Modo Oscuro">
-    </a>
-</li>
+       <!-- Botón de modo oscuro -->
+        <li class="darkmode-icon" data-tooltip="<?= t("aside_darkmode") ?>">
+       <a href="#modo-oscuro">
+         <img src="img/Iconos sidebar/moon.png" alt="Modo Oscuro">
+       </a>
+        </li>
 
 
         </ul>
