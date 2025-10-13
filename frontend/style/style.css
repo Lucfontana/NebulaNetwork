@@ -117,8 +117,6 @@ main {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    backdrop-filter: blur(10px); /* Desenfoque de 10 píxeles */
-    -webkit-backdrop-filter: blur(10px); /* Para navegadores Safari */
     height: calc(100vh - 75px);
     display: flex;
     align-items: center;
@@ -174,22 +172,6 @@ main {
     grid-template-areas:
         'aside contenido contenido contenido contenido';
     padding-top: 80px;
-}
-
-.hdrBackground {
-    background-image: linear-gradient(rgba(9, 4, 0, 0.6),
-            rgba(9, 4, 0, 0.6)),
-        url(../img/backgroundItsp.jpg);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    color: white;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-    margin: 75px 0 0 var(---marginAside);
 }
 
 .contenido {
