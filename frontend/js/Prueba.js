@@ -216,4 +216,3 @@ export function alerta_success_update(mensaje, ventana_a_redirigir) {
     });
 }
 
-

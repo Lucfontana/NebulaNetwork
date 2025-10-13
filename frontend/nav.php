@@ -19,6 +19,12 @@ include_once 'functions.php';
 <link rel="stylesheet" href="style/style.css">
 
 <body>
+    <?php if (!isset($_SESSION['ci'])): ?>
+        <div id="session-status" style="display: none;">1</div>
+    <?php elseif (isset($_SESSION['ci'])): ?>
+        <div id="session-status" style="display: none;">2</div>
+    <?php endif; ?>
+
     <nav class="navbar navbar-expand-lg bg-body-tertiary navStyle" id="nav">
         <div class="container-fluid navStyle">
             <!--<button class="sideButton" id="sideButton">
@@ -62,21 +68,38 @@ include_once 'functions.php';
             <a href="">
                 <li data-tooltip="<?= t("aside_schedule") ?>"><img src="img/Iconos sidebar/calendario.png" alt="Calendario"></li>
             </a>
+            <a href="">
+                <li data-tooltip="<?= t("aside_gallery") ?>"><img src="img/Iconos sidebar/galeria.png" alt="Galería"></li>
+            </a>
+            <a href="">
+                <li data-tooltip="<?= t("aside_events") ?>"><img src="img/Iconos sidebar/Eventos.png" alt="Eventos"></li>
+            </a>
+            <a href="">
+                <li data-tooltip="<?= t("aside_notifications") ?>"><img src="img/Iconos sidebar/notificacion.png" alt="Notificaciones"></li>
+            </a>
 
-           <!-- Botón de idioma -->
-          <li class="lang-icon" data-tooltip="<?= t("aside_lang") ?>">
-           <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
-             <img src="img/Iconos sidebar/translate.png" alt="Idioma">
-           </a>
-        </li>
+            <!-- Botón de idioma (solo visible en móvil) -->
+            <li class="lang-icon" style="display:none;" data-tooltip="<?= t("aside_lang") ?>">
+                <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
+                    <img src="img/Iconos sidebar/translate.png" alt="Idioma">
+                </a>
+            </li>
 
-       <!-- Botón de modo oscuro -->
-        <li class="darkmode-icon" data-tooltip="<?= t("aside_darkmode") ?>">
-       <a href="#modo-oscuro">
-         <img src="img/Iconos sidebar/moon.png" alt="Modo Oscuro">
-       </a>
-        </li>
+            <!-- Botón de modo oscuro (solo visible en móvil) -->
+            <li class="darkmode-icon" style="display:none;" data-tooltip="<?= t("aside_darkmode") ?>">
+                <a href="#modo-oscuro">
+                    <img src="img/Iconos sidebar/moon.png" alt="Modo Oscuro">
+                </a>
+            </li>
 
+            <!-- Icono de configuración (visible en escritorio, oculto en móvil) -->
+            <li class="settings-icon">
+                <img src="img/Iconos sidebar/config.png.svg" alt="Configuraciones">
+                <div class="settings-menu">
+                    <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>"><?= t("aside_lang") ?></a>
+                    <a href="#modo-oscuro"><?= t("aside_darkmode") ?></a>
+                </div>
+            </li>
 
         </ul>
     </aside>
@@ -89,7 +112,8 @@ include_once 'functions.php';
     <!-- Sweet alerts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/login-expirate.js"></script>
-
+    <script type="module" src="js/swalerts.js"></script>
+    <script type="module" src="js/prueba.js"></script>
 </body>
 
 </html>
