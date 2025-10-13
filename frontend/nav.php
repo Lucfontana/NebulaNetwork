@@ -62,38 +62,21 @@ include_once 'functions.php';
             <a href="">
                 <li data-tooltip="<?= t("aside_schedule") ?>"><img src="img/Iconos sidebar/calendario.png" alt="Calendario"></li>
             </a>
-            <a href="">
-                <li data-tooltip="<?= t("aside_gallery") ?>"><img src="img/Iconos sidebar/galeria.png" alt="Galería"></li>
-            </a>
-            <a href="">
-                <li data-tooltip="<?= t("aside_events") ?>"><img src="img/Iconos sidebar/Eventos.png" alt="Eventos"></li>
-            </a>
-            <a href="">
-                <li data-tooltip="<?= t("aside_notifications") ?>"><img src="img/Iconos sidebar/notificacion.png" alt="Notificaciones"></li>
-            </a>
 
-            <!-- Botón de idioma (solo visible en móvil) -->
-            <li class="lang-icon" style="display:none;" data-tooltip="<?= t("aside_lang") ?>">
-                <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
-                    <img src="img/Iconos sidebar/translate.png" alt="Idioma">
-                </a>
-            </li>
+           <!-- Botón de idioma -->
+<li class="lang-icon" data-tooltip="<?= t("aside_lang") ?>">
+    <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
+        <img src="img/Iconos sidebar/translate.png" alt="Idioma">
+    </a>
+</li>
 
-            <!-- Botón de modo oscuro (solo visible en móvil) -->
-            <li class="darkmode-icon" style="display:none;" data-tooltip="<?= t("aside_darkmode") ?>">
-                <a href="#modo-oscuro">
-                    <img src="img/Iconos sidebar/moon.png" alt="Modo Oscuro">
-                </a>
-            </li>
+<!-- Botón de modo oscuro -->
+<li class="darkmode-icon" data-tooltip="<?= t("aside_darkmode") ?>">
+    <a href="#modo-oscuro">
+        <img src="img/Iconos sidebar/moon.png" alt="Modo Oscuro">
+    </a>
+</li>
 
-            <!-- Icono de configuración (visible en escritorio, oculto en móvil) -->
-            <li class="settings-icon">
-                <img src="img/Iconos sidebar/config.png.svg" alt="Configuraciones">
-                <div class="settings-menu">
-                    <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>"><?= t("aside_lang") ?></a>
-                    <a href="#modo-oscuro"><?= t("aside_darkmode") ?></a>
-                </div>
-            </li>
 
         </ul>
     </aside>

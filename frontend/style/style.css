@@ -68,7 +68,6 @@ main {
     width: 100%;
 }
 
-
 #navbar-content.show {
     display: flex;
 }
@@ -322,51 +321,6 @@ aside>ul {
     padding: 30px 0;
 }
 
-/* Estado inicial: oculto */
-.settings-menu {
-    position: absolute;
-    top: 50%;
-    left: 60px;
-    transform: translateY(-50%) translateX(-10px);
-    /* desplazado igual que los otros tooltips */
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 4px 0;
-    min-width: 150px;
-    background: rgba(50, 50, 50, 0.9);
-    border-radius: 5px;
-    z-index: 10;
-    font-size: 13px;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, transform 0.3s;
-    /* animación */
-}
-
-/* Al hacer hover en el icono de configuración */
-.settings-icon:hover .settings-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(-50%) translateX(0);
-}
-
-.settings-menu a {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 8px 12px;
-    text-align: left;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 3px;
-}
-
-.settings-menu a:hover {
-    background-color: black;
-    color: #fff;
-    transition: 0, 1s;
-}
 
 /*------------------------ FOOTER ----------------------*/
 .footer {
@@ -1391,6 +1345,7 @@ select {
 
 }
 
+
 /* media query para que el sidebar se vaya para
 abajito cuando el ancho es menos de 700px */
 
@@ -1447,25 +1402,15 @@ abajito cuando el ancho es menos de 700px */
         align-items: center;
     }
 
-    /* Ocultar icono de configuración y mostrar idioma + modo oscuro */
-    .settings-icon {
-        display: none;
-    }
-
     .link-aside-images li::after {
         display: none !important;
         content: none !important;
     }
 
-    /* Ocultar configuración */
-    .settings-icon {
-        display: none !important;
-    }
-
     /* Mostrar íconos de idioma y modo oscuro */
     .link-aside-images li.lang-icon,
     .link-aside-images li.darkmode-icon {
-        display: flex !important;
+        display: flex ;
         justify-content: center;
         align-items: center;
     }
@@ -1483,7 +1428,7 @@ abajito cuando el ancho es menos de 700px */
     /* Efecto hover como los demás */
     .link-aside-images li.lang-icon img:hover,
     .link-aside-images li.darkmode-icon img:hover {
-        filter: brightness(0) invert(0);
+       filter: brightness(0) invert(43%);
     }
 
     .footer,
