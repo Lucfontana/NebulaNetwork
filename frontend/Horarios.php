@@ -3,8 +3,13 @@ include_once('../backend/db/conexion.php');
 
 $connect = conectar_a_bd();
 $sql = "SELECT * FROM horarios";
-
 $query = mysqli_query($connect, $sql);
+
+$sql2 = "SELECT * FROM cursos";
+$query2 = mysqli_query($connect, $sql2);
+
+$sql3 = "SELECT * FROM espacios_fisicos";
+$query3 = mysqli_query($connect, $sql3);
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +31,32 @@ $query = mysqli_query($connect, $sql);
     <main>
         <div id="contenido-mostrar-datos">
             <h1>Horarios</h1>
+            <div class="filtros">
+                <label for="horario-select">Seleccionar Horario:</label>
+                <select id="select-horarios" name="horario-select">
+                    <option value="1">Cursos</option>
+                    <option value="2">Salones</option>
+                </select>
+                <div id="div-salones" style="display: none;">
+                    <label for="Salones" id="select-salones">Seleccionar Salon:</label>
+                    <select name="salones" id="salones-select">
+                        <option value="1"></option>
+                        <?php while ($row3 = mysqli_fetch_array($query3)): ?>
+                            <option value="<?= $row3['id_espacio'] ?>"><?= $row3['nombre'] ?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+
+                <div id="div-curso" style="display: block;">
+                    <label for="Cursos" id="select-cursos">Seleccionar Curso:</label>
+                    <select name="Cursos" id="cursos-select">
+                        <option value="1"></option>
+                        <?php while ($row2 = mysqli_fetch_array($query2)): ?>
+                            <option value="<?= $row2['id_curso'] ?>"><?= $row2['nombre'] ?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+            </div>
             <div class="datos-header">
                 <div class="datos-row">
                     <div class="horas-titulo">Horas</div>
@@ -59,6 +90,7 @@ $query = mysqli_query($connect, $sql);
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
     <script type="module" src="/frontend/js/confirm-espacios.js"></script>
     <script type="module" src="/frontend/js/prueba.js"></script>
+    <script src="/backend/functions/Horarios/select-horarios.js"></script>
 </body>
 
 </html>
