@@ -6,14 +6,28 @@ const form = document.getElementById("form");
 // arreglo a utilizarse para el algoritmo de la CI
 let multiplicadorACadaUno = [2, 9, 8, 7, 6, 3, 4];
 
+const cedulaInput = document.getElementById("CI");
+const contrasenaInput = document.getElementById("contrasena");
+
+if (cedulaInput && contrasenaInput){
+    cedulaInput.addEventListener("input", function () {
+        CI.value = CI.value.replace(/[^0-9]/g, '').slice(0, 8); 
+});
+}
+
 form.addEventListener("submit", function(event) {
 
 event.preventDefault();
 
-const CI = Number(document.getElementById("CI").value);
+const cedulaInput = document.getElementById("CI");
+const contrasenaInput = document.getElementById("contrasena");
+
+const CI = String(document.getElementById("CI").value);
 const contrasena = String(document.getElementById("contrasena").value);
 const alertdiv = document.getElementById("alert");
 const alerttext = document.getElementById("alert.text");
+
+
 
 if (!verificarCI(CI)) {
     alerta_fallo("La CI debe ser de 8 digitos, sin puntos, ni guiones.");
@@ -51,7 +65,6 @@ if (!verificarCI(CI)) {
         }
     })
 }
-
 })
 function tamanoPassword (contrasena) {
     if ( contrasena.length < 8 || contrasena.length > 20) {

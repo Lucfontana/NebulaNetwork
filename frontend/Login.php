@@ -14,7 +14,7 @@
             <h2 id="titulo-login">Inicio de Sesión</h2>
         <div id="centro-form">
             <label for="CI" class="label">Cedula de Identidad:</label>
-                <input class="input-form" type="number"  name="CI" id="CI" maxlength="8" minlength="8"  required placeholder="Ingresa sin puntos ni guiones">
+                <input class="input-form" type="text"  name="CI" id="CI" maxlength="8" minlength="8" pattern="\d{8}" required placeholder="Ingresa sin puntos ni guiones">
             <label for="CI" class="label">Contraseña:</label>
                 <input class="input-form" type="password" name="contrasena" id="contrasena" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
             

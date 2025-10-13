@@ -65,7 +65,7 @@ include_once 'functions.php';
                     </div>
                 </li>
             <?php endif; ?>
-            <a href="">
+            <a href="./Horarios.php">
                 <li data-tooltip="<?= t("aside_schedule") ?>"><img src="img/Iconos sidebar/calendario.png" alt="Calendario"></li>
             </a>
             <a href="">

@@ -10,6 +10,8 @@ $query2 = mysqli_query($connect, $sql2);
 
 $sql3 = "SELECT * FROM espacios_fisicos";
 $query3 = mysqli_query($connect, $sql3);
+
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -21,9 +23,12 @@ $query3 = mysqli_query($connect, $sql3);
     <title>Horarios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
-<link rel="stylesheet" href="style/style.css">
+<?php if (!isset($_SESSION['nivel_acceso'])): ?>
+    <?php include_once('error.php') ?>
+<?php else: ?>
 
 <body>
     <!-- trae las barras de navegacion (sidebar y superior) -->
@@ -86,7 +91,7 @@ $query3 = mysqli_query($connect, $sql3);
     <footer id="footer" class="footer">
         <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
     </footer>
-
+    <?php endif; ?>
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
     <script type="module" src="/frontend/js/confirm-espacios.js"></script>
     <script type="module" src="/frontend/js/prueba.js"></script>
