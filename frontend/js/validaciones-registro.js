@@ -1,4 +1,5 @@
 import { verificarCI, verificarExistenciaCI, mostrarDigVerificador, CIaArreglo } from './validarCI.js';
+import { sw_warning } from './swalerts.js';
 //-----FORMULARIOS-----//
 
 //Por cada formulario, se lo debe llamar (cuando se envia) y verificar que todos sus
@@ -382,14 +383,25 @@ function registrar_horario(e) {
         .then(data => {
             if (data.estado === '1') {
                 alerta_success(`${data.mensaje}`, "Horarios.php", "horario");
-            } else {
+            } else if (data.estado === '0'){
                 alerta_fallo(`${data.mensaje}`);
+            } else {
+                sw_warning(`${data.mensaje}`, "asasas");
             }
         })
         .catch(error => {
             alerta_fallo("Error al procesar la solicitud.");
             console.error('Error:', error);
         });
+}
+
+let borrar_horarios = document.querySelector('.eliminar_horarios');
+borrar_horarios.addEventListener("click", borrar_todos_horarios);
+
+function borrar_todos_horarios(e){
+    e.preventDefault();
+
+    
 }
 
 let formulario_dependencias = document.querySelector(".dependencias-form");
