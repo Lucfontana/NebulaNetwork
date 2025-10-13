@@ -492,6 +492,20 @@ session_start();
                                     <?php endwhile; ?>
                                 </select>
                             </div>
+
+                            <div class="div-labels">
+                                <label for="dia" class="label">En el dia:</label>
+                                <select class="input-register" type="text" name="dia_dictado" id="dia_dictado" required
+                                    placeholder="Ingrese el dia">
+                                    <option value=""></option>
+                                    <option value="lunes">Lunes</option>
+                                    <option value="martes">Martes</option>
+                                    <option value="miercoles">Mierccoles</option>
+                                    <option value="jueves">Jueves</option>
+                                    <option value="viernes">Viernes</option>
+                                </select>
+                            </div>        
+
                             <div class="div-labels">
                                 <label for="capacity" class="label">Horas que dicta:</label>
                                 <input class="input-register" type="number" id="crear_campos"

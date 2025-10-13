@@ -27,10 +27,13 @@ async function crear_campos(){
             return;
         }
 
-        
+                        //El await es una PROMESA, le dice que haga fetch al archivo pero mientras hace eso, que siga
+                        //ejecutando todo lo otro (para que la pagina no se quede estatica mientras se hace fetch).
         const respuesta = await fetch("../../backend/functions/dependencias/obtener_horarios.php");
         const data = await respuesta.json();
 
+
+        //Si data.estado (viene del PHP) es distinto a 1 o no esta con valor, tira error
         if (!data.estado || data.estado !== '1') {
             alerta_fallo("Error al cargar horarios: " + data.mensaje);
             return;
@@ -38,28 +41,36 @@ async function crear_campos(){
 
         let horarios = data.horarios;
         
-        if (!horarios || horarios.length === 0) {
+        //Si no hay horarios, o la respuesta esta vacia, hay alerta de que no hay hroarios
+        if (!horarios || horarios.length === '0') {
             alerta_fallo("No hay horarios disponibles");
             return;
         }
 
+        //Cada vez que cambia el valor del input, se vacia el contenido del contenedor
         contenedor.innerHTML = '';
 
+        //Se ejecuta un for segun la cantidad_campos
         for (let i = 1; i <= cantidad_campos; i++){
+
+            //Se crea el contenedor donde estan todos los div, que  se le da la clase div-labels
             let campoDiv = document.createElement('div');
             campoDiv.className = 'div-labels';
 
+            //Se crean los label, con el contenido, el atributo y el nombre de clase
             let label = document.createElement('label');
             label.textContent = `Hora de la clase ${i}:`;
             label.setAttribute('for', `hora_clase`);
             label.className = 'label';
 
+            //Se crean los select, pasandoles el name como un arreglo y con sus distintas cosas
             let select = document.createElement('select');
             select.className = 'input-register';
             select.id = `hora_profesor_da_clase${i}`;
             select.name = 'hora_profesor_da_clase[]';
             select.required = true;
 
+            //La opcion predeterminada es vacia, y no te deja seleccionarla cuando desplegas el select
             let opcionPredeterminada = document.createElement("option");
             opcionPredeterminada.value = '';
             opcionPredeterminada.textContent = 'Selecciona una opción';
@@ -91,6 +102,7 @@ async function registrar_dependencia(e){
     let asignatura_dictada = document.getElementById("asignatura_dada").value;
     let salon_ocupado = document.getElementById("salon_a_ocupar").value;
     let curso_dictado = document.getElementById("curso_dictado").value;
+    let dia_dictado = document.getElementById("dia_dictado").value;
     
     // Obtener todos los selects de horarios
     let selects_horarios = document.getElementsByName("hora_profesor_da_clase[]");
@@ -106,15 +118,6 @@ async function registrar_dependencia(e){
         alerta_fallo("Debes seleccionar al menos un horario");
         return;
     }
-    
-    // Debug: ver qué valores se están enviando
-    console.log("Valores a enviar:", {
-        profesor_asignado,
-        asignatura_dictada,
-        salon_ocupado,
-        curso_dictado,
-        horas_dictadas
-    });
 
     const form_dependencia = new FormData();
     form_dependencia.append('profesor_asignado', profesor_asignado);
@@ -127,6 +130,7 @@ async function registrar_dependencia(e){
     
     form_dependencia.append('salon_ocupado', salon_ocupado);
     form_dependencia.append('curso_dictado', curso_dictado);
+    form_dependencia.append('dia_dictado', dia_dictado)
     form_dependencia.append('registrarDependencia', true);
 
 

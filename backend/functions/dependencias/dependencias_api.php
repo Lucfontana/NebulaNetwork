@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registrarDependencia'
     $id_espacio = (int)$_POST['salon_ocupado'];
     $id_curso = (int)$_POST['curso_dictado'];
     $horarios = $_POST['hora_profesor_da_clase']; // Array
+    $dia_dictado = trim(strip_tags($_POST['dia_dictado']));
     
     // Llamar a la función principal
     $resultado = registrar_dependencia_completa(
@@ -24,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registrarDependencia'
         $id_asignatura, 
         $horarios, 
         $id_espacio, 
-        $id_curso
+        $id_curso,
+        $dia_dictado
     );
     
     echo json_encode($resultado);
