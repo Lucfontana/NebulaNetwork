@@ -22,13 +22,22 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       currentId = boton.dataset.id;
       overlay.style.display = "flex";
+
+      setTimeout(() => {
+       overlay.style.opacity = "1";
+       overlay.style.transition = "0.5s";
+    }, 1)
     });
   });
 
   // Cancelar
   btnCancelar.addEventListener("click", () => {
-    overlay.style.display = "none";
+    overlay.style.opacity = "0";
+    overlay.style.transition = "0.5s";
     currentId = null;
+    setTimeout(() => {
+       overlay.style.display = "none"; 
+    }, 500)
   });
 
   // Confirmar: redirigir a tu PHP de borrado
@@ -55,13 +64,22 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("apellido_edit").value = apellido;
       document.getElementById("nivel_edit").value = nivel;
       document.getElementById("email_edit").value = botonEditar.dataset.email;
+
+      setTimeout(() => {
+       overlayEdit.style.opacity = "1";
+       overlayEdit.style.transition = "0.5s";
+    }, 1)
       
     })
   })
 
   btnCancelarEdit.addEventListener("click", () => {
-    overlayEdit.style.display = "none";
+    overlayEdit.style.opacity = "0";
+    overlayEdit.style.transition = "0.5s";
     editID = null;
+    setTimeout(() => {
+       overlayEdit.style.display = "none";
+    }, 500)
   });
 
   document.getElementById("form-update").addEventListener("submit", async (e) => {

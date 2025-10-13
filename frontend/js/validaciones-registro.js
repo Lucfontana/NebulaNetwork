@@ -1,4 +1,5 @@
 import { verificarCI, verificarExistenciaCI, mostrarDigVerificador, CIaArreglo } from './validarCI.js';
+import { sw_warning } from './swalerts.js';
 //-----FORMULARIOS-----//
 
 //Por cada formulario, se lo debe llamar (cuando se envia) y verificar que todos sus
@@ -11,8 +12,12 @@ import { verificarCI, verificarExistenciaCI, mostrarDigVerificador, CIaArreglo }
 //no pq todos los formularios tienen la misma id y eso afectaria el
 //register-modal que hizo lautaro (CREO, si quieren prueben)
 let formulario_asignaturas = document.querySelector(".asignatura-form");
-//Llama a la funcion validar_asignaturas
-formulario_asignaturas.addEventListener("submit", validar_asignaturas);
+
+//Llama a la funcion validar_asignaturas si existe el formulario
+if (formulario_asignaturas){
+    formulario_asignaturas.addEventListener("submit", validar_asignaturas);
+}
+
 
 function validar_asignaturas(evento) {
 
@@ -63,28 +68,36 @@ function validar_asignaturas(evento) {
 //Nota: Las validaciones de CI ya estan creadas en el archivo de 'login.js', quedaria importar el archivo y las funciones
 
 let ci_profesor = document.getElementById("ciProfesor");
-ci_profesor.addEventListener("input", function () {
-    ci_profesor.value = ci_profesor.value.replace(/[^0-9]/g, '').slice(0, 8);
-});
 let contrasena_profesor = document.getElementById("contrasenaProfesor");
-contrasena_profesor.addEventListener("input", function () {
-    contrasena_profesor.value = contrasena_profesor.value.replace(/[^0-9]/g, '').slice(0, 8);
-});
 let ci_superusuario = document.getElementById("ciSuperusuario");
-ci_superusuario.addEventListener("input", function () {
-    ci_superusuario.value = ci_superusuario.value.replace(/[^0-9]/g, '').slice(0, 8);
-});
 let contrasena_superusuario = document.getElementById("contrasenaSuperusuario");
-contrasena_superusuario.addEventListener("input", function () {
-    contrasena_superusuario.value = contrasena_superusuario.value.replace(/[^0-9]/g, '').slice(0, 8);
-});
+if (ci_profesor && contrasena_profesor && ci_superusuario && contrasena_superusuario){
+    ci_profesor.addEventListener("input", function () {
+        ci_profesor.value = ci_profesor.value.replace(/[^0-9]/g, '').slice(0, 8);
+    });
+
+    contrasena_profesor.addEventListener("input", function () {
+        contrasena_profesor.value = contrasena_profesor.value.replace(/[^0-9]/g, '').slice(0, 8);
+    });
+    
+    ci_superusuario.addEventListener("input", function () {
+        ci_superusuario.value = ci_superusuario.value.replace(/[^0-9]/g, '').slice(0, 8);
+    });
+    
+    contrasena_superusuario.addEventListener("input", function () {
+        contrasena_superusuario.value = contrasena_superusuario.value.replace(/[^0-9]/g, '').slice(0, 8);
+    });
+}
 
 
 //Verificar en el documento de Drive de "Tareas pendientes PROYECTO" las distintas funciones que hay para hacer
 
 let formulario_profesores = document.querySelector(".profesores-form");
 
-formulario_profesores.addEventListener("submit", registrar_profesores)
+if (formulario_profesores){
+    formulario_profesores.addEventListener("submit", registrar_profesores);
+}
+
 
 function registrar_profesores(e) {
     e.preventDefault();
@@ -167,7 +180,11 @@ function registrar_profesores(e) {
 
 
 let formulario_superusuarios = document.querySelector(".superusuarios-form");
-formulario_superusuarios.addEventListener("submit", registrar_superusuario);
+
+if(formulario_superusuarios){
+    formulario_superusuarios.addEventListener("submit", registrar_superusuario);
+}
+
 
 function registrar_superusuario(e) {
     e.preventDefault();
@@ -228,7 +245,10 @@ function registrar_superusuario(e) {
 }
 
 let formulario_recursos = document.querySelector(".recursos-form");
+
+if (formulario_recursos){
 formulario_recursos.addEventListener("submit", registrar_recurso);
+}
 
 function registrar_recurso(e) {
     e.preventDefault();
@@ -265,7 +285,10 @@ function registrar_recurso(e) {
 }
 
 let formulario_espacios = document.querySelector(".espacios-form");
+
+if (formulario_espacios){
 formulario_espacios.addEventListener("submit", registrar_espacio);
+}
 
 function registrar_espacio(e) {
     e.preventDefault();
@@ -308,7 +331,10 @@ function registrar_espacio(e) {
 }
 
 let formulario_cursos = document.querySelector(".cursos-form");
+
+if (formulario_cursos){
 formulario_cursos.addEventListener("submit", registrar_curso);
+}
 
 function registrar_curso(e) {
     e.preventDefault();
@@ -348,33 +374,85 @@ function registrar_curso(e) {
 }
 
 let formulario_horarios = document.querySelector(".horarios-form");
-formulario_horarios.addEventListener("submit", function (e) {
+
+if (formulario_horarios){
+formulario_horarios.addEventListener("submit", registrar_horario);
+}
+
+function registrar_horario(e) {
+    e.preventDefault();
+
     let hora_inicio_horario = document.getElementById("horaInicioHorario").value;
-    let hora_fin_horario = document.getElementById("horaFinHorario").value;
-    let tipo_horario = document.getElementById("tipoHorario").value; // clase o recreo
+    let hora_fin_horario = document.getElementById("horaFinalHorario").value;
 
     if (!verificarHora(hora_inicio_horario) || !verificarHora(hora_fin_horario)) {
-        e.preventDefault();
+        alerta_fallo("Las horas ingresadas no son válidas.");
         return;
     }
-    if (!validarHorario(tipo_horario, hora_inicio_horario, hora_fin_horario)) {
-        e.preventDefault();
-        return;
-    }
-    if (haySolapamiento(hora_inicio_horario, hora_fin_horario, horariosExistentes)) {
-        alert("El horario se solapa con otra clase o recreo.");
-        e.preventDefault();
-        return;
-    }
-});
+    // if (!validarHorario(tipo_horario, hora_inicio_horario, hora_fin_horario)) {
+    //     alerta_fallo("El horario no es válido.");
+    //     return;
+    // }
+    // if (haySolapamiento(hora_inicio_horario, hora_fin_horario, horariosExistentes)) {
+    //     alerta_fallo("El horario se solapa con otra clase o recreo.");
+    //     return;
+    // }
+
+    const form_horario = new FormData();
+    form_horario.append('hora_inicio', hora_inicio_horario);
+    form_horario.append('hora_final', hora_fin_horario);
+    form_horario.append('registroHorario', true);
+
+    fetch('../backend/functions/horarios/horarios_api.php', {
+        method: 'POST',
+        body: form_horario
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.estado === '1') {
+                alerta_success(`${data.mensaje}`, "Horarios.php", "horario");
+            } else if (data.estado === '0'){
+                alerta_fallo(`${data.mensaje}`);
+            } else {
+                sw_warning(`${data.mensaje}`);
+            }
+        })
+        .catch(error => {
+            alerta_fallo("Error al procesar la solicitud.");
+            console.error('Error:', error);
+        });
+}
+
+
+export function borrar_todos_horarios(){
+
+    const form_eliminar_horarios = new FormData();
+    form_eliminar_horarios.append('eliminarTodosHorarios', true);
+
+    fetch('../../backend/functions/horarios/horarios_api.php', {
+        method: 'POST',
+        body: form_eliminar_horarios
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.estado === '1'){
+                alerta_success(`${data.mensaje}`, "horarios.php", "horario");
+            }
+        })
+}
 
 let formulario_dependencias = document.querySelector(".dependencias-form");
-formulario_dependencias.addEventListener("submit", function (e) {
 
+if (formulario_dependencias){
+formulario_dependencias.addEventListener("submit", function (e) {
 });
+}
 
 let formulario_orientaciones = document.querySelector(".orientacion-form");
+
+if (formulario_orientaciones){
 formulario_orientaciones.addEventListener("submit", registrar_orientacion);
+}
 
 function registrar_orientacion(e) {
     e.preventDefault();

@@ -5,11 +5,11 @@ include_once ('../../db/conexion.php');
     
     $id = $_GET['id'];
  
-
-    $consulta = "DELETE FROM profesores WHERE ci_profesor=?";
+    $consulta = "DELETE FROM orientacion WHERE id_oriencacion=?";
     $stmt = $con->prepare($consulta);
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $stmt->close();
-    Header("location: /frontend/Profesores.php");
+
+    Header("location: ../../../frontend/Orientaciones.php");
 ?>
