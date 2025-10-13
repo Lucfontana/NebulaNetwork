@@ -26,30 +26,50 @@ $query = mysqli_query($connect, $sql);
     <main>
         <div id="contenido-mostrar-datos">
             <h1>Profesores</h1>
-            <table id="datos">
-                <tr>
-                    <th class="id">CI </th>
-                    <th class="nombre-titulo">Nombre</th>
-                    <th class="nombre-titulo">Apellido</th>
-                    <th class="nombre-titulo">Email</th>
-                    <th class="nombre-titulo">F.Nac</th>
-                    <th class="titulo-ult">Direccion</th>
-                    <th class="boton-titulo">Eliminar</th>
-                    <th class="boton-titulo">Editar</th>
-                </tr>
+
+            <div class="datos-grid profesores-grid">
+                <!-- Cabecera -->
+                <div class="grid-header profesores-header">
+                    <div class="grid-cell id">CI</div>
+                    <div class="grid-cell nombre-titulo">Nombre</div>
+                    <div class="grid-cell nombre-titulo">Apellido</div>
+                    <div class="grid-cell nombre-titulo">Email</div>
+                    <div class="grid-cell nombre-titulo">F. Nac</div>
+                    <div class="grid-cell nombre-titulo">Dirección</div>
+                    <div class="grid-cell boton-titulo">Eliminar</div>
+                    <div class="grid-cell boton-titulo">Editar</div>
+                </div>
+
+                <!-- Filas de datos -->
                 <?php while ($row = mysqli_fetch_array($query)): ?>
-                    <tr class="mostrar-datos">
-                        <th class="nombre"><?= $row['ci_profesor'] ?></th>
-                        <th class="nombre"><?= $row['nombre'] ?></th>
-                        <th class="nombre"><?= $row['apellido'] ?></th>
-                        <th class="nombre"><?= $row['email'] ?></th>
-                        <th class="nombre"><?= $row['fecha_nac'] ?></th>
-                        <th class="ultimo-dato"><?= $row['direccion'] ?></th>
-                        <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['ci_profesor'] ?>">Eliminar</a></th>
-                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['ci_profesor'] ?>" data-nombre="<?= $row['nombre'] ?>" data-apellido="<?= $row['apellido'] ?>" data-email="<?= $row['email'] ?>" data-fnac="<?= $row['fecha_nac'] ?>" data-direccion="<?= $row['direccion'] ?>">Editar</a></th>
-                    </tr>
+                    <div class="grid-row profesores-row mostrar-datos">
+                        <div class="grid-cell"><?= $row['ci_profesor'] ?></div>
+                        <div class="grid-cell"><?= $row['nombre'] ?></div>
+                        <div class="grid-cell"><?= $row['apellido'] ?></div>
+                        <div class="grid-cell"><?= $row['email'] ?></div>
+                        <div class="grid-cell"><?= $row['fecha_nac'] ?></div>
+                        <div class="grid-cell"><?= $row['direccion'] ?></div>
+                        <div class="grid-cell">
+                            <a href="#"
+                                class="boton-datos-eliminar botones-datos"
+                                data-id="<?= $row['ci_profesor'] ?>">
+                                Eliminar
+                            </a>
+                        </div>
+                        <div class="grid-cell">
+                            <a class="boton-datos-editar botones-datos"
+                                data-id="<?= $row['ci_profesor'] ?>"
+                                data-nombre="<?= $row['nombre'] ?>"
+                                data-apellido="<?= $row['apellido'] ?>"
+                                data-email="<?= $row['email'] ?>"
+                                data-fnac="<?= $row['fecha_nac'] ?>"
+                                data-direccion="<?= $row['direccion'] ?>">
+                                Editar
+                            </a>
+                        </div>
+                    </div>
                 <?php endwhile; ?>
-            </table>
+            </div>
         </div>
 
         <div class="overlay" id="overlay">
@@ -66,7 +86,7 @@ $query = mysqli_query($connect, $sql);
 
         <div id="overlay-edit" class="overlay-edit">
             <div class="popup">
-                <h1>Registro de Profesores</h1>
+                <h1>Modificación de Profesor</h1>
                 <form action="\backend\functions\Profesores\edit.php" method="POST" id="form-update">
                     <div class="div-labels">
                         <input class="input-register" type="hidden" name="ci_profesor" id="id_edit">

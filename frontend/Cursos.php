@@ -26,24 +26,40 @@ $query = mysqli_query($connect, $sql);
     <main>
         <div id="contenido-mostrar-datos">
             <h1>Cursos</h1>
-            <table id="datos">
-                <tr>
-                    <th class="id">Id </th>
-                    <th class="nombre-titulo">Nombre</th>
-                    <th class="nombre-titulo">Capacidad</th>
-                    <th class="boton-titulo">Eliminar</th>
-                    <th class="boton-titulo">Editar</th>
-                </tr>
+
+            <div class="datos-grid">
+                <!-- Cabecera -->
+                <div class="grid-header">
+                    <div class="grid-cell id">Id</div>
+                    <div class="grid-cell nombre-titulo">Nombre</div>
+                    <div class="grid-cell nombre-titulo">Capacidad</div>
+                    <div class="grid-cell boton-titulo">Eliminar</div>
+                    <div class="grid-cell boton-titulo">Editar</div>
+                </div>
+
+                <!-- Datos -->
                 <?php while ($row = mysqli_fetch_array($query)): ?>
-                    <tr class="mostrar-datos">
-                        <th class="nombre"><?= $row['id_curso'] ?></th>
-                        <th class="nombre"><?= $row['nombre'] ?></th>
-                        <th class="ultimo-dato"><?= $row['capacidad'] ?></th>
-                        <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_curso'] ?>">Eliminar</a></th>
-                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_curso'] ?>" data-nombre="<?= $row['nombre'] ?>" data-capacidad="<?= $row['capacidad'] ?>">Editar</a></th>
-                    </tr>
+                    <div class="grid-row mostrar-datos">
+                        <div class="grid-cell"><?= $row['id_curso'] ?></div>
+                        <div class="grid-cell"><?= $row['nombre'] ?></div>
+                        <div class="grid-cell ultimo-dato"><?= $row['capacidad'] ?></div>
+                        <div class="grid-cell">
+                            <a href="#" class="boton-datos-eliminar botones-datos"
+                                data-id="<?= $row['id_curso'] ?>">
+                                Eliminar
+                            </a>
+                        </div>
+                        <div class="grid-cell boton-dato">
+                            <a class="boton-datos-editar botones-datos"
+                                data-id="<?= $row['id_curso'] ?>"
+                                data-nombre="<?= $row['nombre'] ?>"
+                                data-capacidad="<?= $row['capacidad'] ?>">
+                                Editar
+                            </a>
+                        </div>
+                    </div>
                 <?php endwhile; ?>
-            </table>
+            </div>
         </div>
 
         <div class="overlay" id="overlay">
@@ -60,7 +76,7 @@ $query = mysqli_query($connect, $sql);
 
         <div id="overlay-edit" class="overlay-edit">
             <div class="popup">
-                <h1>Edición de Cursos</h1>
+                <h1>Modificación de Curso</h1>
                 <form action="/backend/functions/Cursos/edit.php" method="POST" id="form-update">
                     <div class="div-labels">
                         <input class="input-register" type="hidden" name="id_curso" id="id_edit">

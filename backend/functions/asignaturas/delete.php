@@ -10,6 +10,8 @@ include_once ('../../db/conexion.php');
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
+    $stmt->close();
+
 
     Header("location: ../../../frontend/asignaturas.php");
 ?>

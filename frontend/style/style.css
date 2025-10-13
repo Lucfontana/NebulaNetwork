@@ -756,7 +756,8 @@ hr {
 
 #contenido-mostrar-datos {
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
+    margin-left: 20px;
     /* límite para que no se estire demasiado */
     background: white;
     /* opcional */
@@ -768,121 +769,230 @@ hr {
     margin-top: 80px;
 }
 
-#contenido-asignatura>h1 {
-    font-size: 30px;
-    margin: 20px;
-}
-
-th {
-    padding: 15px;
-}
-
-.datos-mostrar {
-    border-style: solid;
-    border-color: black;
-}
-
-#datos {
-    display: flex;
-    flex-direction: column;
-    border-style: solid;
-    border-color: black;
-    width: 100%;
-}
-
-.id {
-    background-color: rgb(26, 26, 26);
-    color: white;
-}
-
-.nombre {
-    width: auto;
-    text-align: left;
-    height: auto;
-}
-
-.ultimo-dato {
-    width: 100%;
-    text-align: left;
-}
-
-.nombre-titulo {
-    text-align: left;
-    background-color: rgb(58, 58, 58);
-    color: white;
-    width: auto;
-}
-
-.boton-titulo {
-    text-align: center;
-    background-color: rgb(58, 58, 58);
-    color: white;
-    width: auto;
-    margin: 0;
+/* Contenedor principal */
+#contenido-mostrar-datos {
     padding: 20px;
 }
 
-.boton-dato {
-    width: auto;
-    text-align: center;
-    margin: 0;
+#contenido-mostrar-datos h1 {
+    margin-bottom: 20px;
+    color: #2c3e50;
 }
 
-.titulo-ult {
-    text-align: left;
-    background-color: rgb(58, 58, 58);
+/* Grid container */
+.datos-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: #ecf0f1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabecera general */
+.grid-header,
+.datos-header {
+    background: #2c3e50;
     color: white;
+    font-weight: 600;
+}
+.grid-row ,
+.grid-header {
+    display: grid;
+    grid-template-columns: 80px 1fr 150px 120px 120px;
+}
+
+.datos-header {
+    border-radius: 8px 8px 0 0;
+}
+
+
+
+/* Filas de datos */
+.grid-row {
+    background: white;
+    transition: background 0.3s;
+}
+
+.grid-row:hover,
+.datos-body .datos-row:hover {
+    background: #f8f9fa;
+}
+
+/* Celdas */
+.grid-cell {
+    padding: 15px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #ecf0f1;
+}
+
+.grid-cell:last-child {
+    border-right: none;
+}
+
+/* Estructura específica para la tabla de Profesores */
+.profesores-grid .grid-header,
+.profesores-grid .grid-row {
+    display: grid;
+    grid-template-columns: 100px 130px 130px 225px 130px 200px 120px 120px;
+    /* Ajuste equilibrado de columnas */
+}
+
+.grid-header {
+    background: #2c3e50;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Estructura específica para la tabla de SuperUsuario */
+.superusuario-grid .grid-header,
+.superusuario-grid .grid-row {
+    display: grid;
+    grid-template-columns: 100px 150px 150px 160px 1.3fr 120px 120px;
+    /* Ajuste balanceado entre identificadores, texto y botones */
+}
+
+/* Estructura específica para la tabla de Espacios Físicos */
+.espacios-grid .grid-header,
+.espacios-grid .grid-row {
+    display: grid;
+    grid-template-columns: 80px 120px 1fr 150px 120px 120px;
+    /* Ajuste balanceado: ID pequeño, nombre flexible */
+}
+
+/* Estilo específico para Orientaciones */
+.orientaciones-grid .grid-header,
+.orientaciones-grid .grid-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 120px 120px;
+    /* ID pequeño, Nombre flexible, botones fijos */
+}
+
+/* Estilo específico para Recursos */
+.recursos-grid .grid-header,
+.recursos-grid .grid-row {
+    display: grid;
+    grid-template-columns: 80px 120px 1fr 120px 120px 120px 120px;
+    /* ID angosto, Espacio fijo, Nombre flexible, Estado y Tipo fijos, botones fijos */
+}
+
+/* Estilo específico para Préstamos de Recursos */
+.prestamos-grid .grid-header,
+.prestamos-grid .grid-row {
+    display: grid;
+    grid-template-columns: 80px 250px 170px 180px 180px 180px 120px;
+    /* ID angosto, Persona más ancha, Recurso, Admin, Hora Prestado/Devolución, Estado */
+}
+
+/* Estructura específica para la tabla de Asignaturas */
+.asignaturas-grid .grid-header,
+.asignaturas-grid .grid-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 120px 120px;
+    /* Equilibrado: ID estrecho, nombre flexible, botones fijos */
+}
+
+/* Datos Horarios */
+.titulo-tabla {
+    display: flex;
     width: 100%;
 }
 
+.horas-tabla {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    flex-direction: column;
+    font-size: 20px;
+    width: 20%;
+}
+
+.datos-row {
+    display: grid;
+    grid-template-columns: 200px repeat(5, 1fr);
+    gap: 1px;
+    background: #ecf0f1;
+}
+
+.datos-header .datos-row > div {
+    padding: 15px;
+    font-weight: 600;
+    text-align: center;
+    background: #2c3e50;
+}
+
+.datos-body .datos-row {
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.datos-body .datos-row > div {
+    padding: 10px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.horas-titulo,
+.horas-dato {
+    font-weight: 600;
+    background: #34495e !important;
+    color: white;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.dia-dato {
+    min-height: 80px;
+    border: 1px solid #ecf0f1;
+}
+
+/* Botones de acción */
+.botones-datos {
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+    cursor: pointer;
+    display: inline-block;
+    white-space: nowrap;
+}
+
 .boton-datos-eliminar {
-    color: brown;
+    background: #e74c3c;
+    color: white;
+}
+
+.boton-datos-eliminar:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
 }
 
 .boton-datos-editar {
-    color: blue;
+    background: #3498db;
+    color: white;
 }
 
-.botones-datos {
-    text-align: center;
-    margin: 0;
-    padding: 18px;
-    transition: 1s;
+.boton-datos-editar:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
 }
-
-.botones-datos:hover {
-    background-color: rgb(158, 158, 158);
-    transition: 1s;
-}
-
-#boton-datos-editar:hover {
-    color: rgb(15, 15, 151);
-    cursor: pointer;
-    transition: 1s;
-}
-
-#boton-datos-eliminar:hover {
-    color: rgb(167, 26, 26);
-    cursor: pointer;
-    transition: 1s;
-}
-
-.mostrar-datos {
-    background-color: aliceblue;
-    transition: 0.5s;
-}
-
-.mostrar-datos:hover {
-    background-color: rgb(204, 204, 204);
-    transition: 0.5s;
-}
-
 /* Confirmacion de Eliminar */
 
-#overlay {
+.overlay {
     display: none;
     position: fixed;
     inset: 0;
+    opacity: 0;
     background: rgba(10, 10, 10, 0.55);
     backdrop-filter: blur(6px);
     justify-content: center;
@@ -925,12 +1035,13 @@ th {
 
 #overlay-edit {
     display: none;
+    opacity: 0;
 }
 
 .overlay-edit {
     position: fixed;
     inset: 0;
-    background: rgba(0, 35, 90, 0.55);
+    background: rgba(10, 10, 10, 0.55);
     backdrop-filter: blur(6px);
     display: flex;
     justify-content: center;
@@ -1043,44 +1154,70 @@ select {
     background-size: 18px 18px;
 }
 
+#perfil-principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-bottom: 40px;
+    margin-left: 50px;
+}
+
 .main-perfil {
     flex-direction: column;
     justify-content: left;
     align-items: start;
-    background-image: radial-gradient(hsl(0, 0%, 0%) 0.9px, #acacff 0.9px);
-    background-size: 18px 18px;
+    background-color: #363636;
+    color: white;
     margin: 5%;
     margin-top: 8%;
     border-radius: 25px;
     border-style: solid;
-    padding: 20px;
-    width: 90%;
+    padding: 0;
+    width: 80%;
 }
 
 .header-perfil {
     display: flex;
+    padding: 0 0px 40px;
+    margin-top: -80px;
+}
+
+.header-banner {
+    height: 100px;
+    border-radius: 20px 20px 0 0;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #3498db 100%);
 }
 
 .bienvenida-perfil {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: left;
     margin-top: 20px;
-    margin-left: 10px;
     border-radius: 10px;
-    background-color: #7e7ee2;
     height: 80px;
     padding: 10px;
+}
+
+.bienvenida-perfil > h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.bienvenida-perfil > p {
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .contenido-perfil {
     display: flex;
     flex-direction: column;
     align-items: left;
-    margin-left: 10px;
-    margin-top: 20px;
+    margin: 20px;
+    margin-top: 0px;
     border-radius: 10px;
-    color: black;
-    background-color: #7e7ee2;
+    color: rgb(255, 255, 255);
     padding: 20px;
     width: 70%;
 }
@@ -1090,7 +1227,7 @@ select {
 }
 
 #change-passwd {
-    background-color: #5959b6;
+    background-color: #34495e;
     padding: 15px;
     font-size: 20px;
     border: none;
@@ -1104,6 +1241,11 @@ select {
     transition: 0.5s;
 }
 
+#icono-perfil-div {
+    margin-left: 20px;
+    position: relative;
+}
+
 .icono-perfil {
     width: 100px;
     height: 100px;
@@ -1112,6 +1254,27 @@ select {
     border-radius: 50%;
     border-style: solid;
     border-color: black
+}
+
+#edit-perfil {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: #686868;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(37, 36, 36, 0.2);
+    transition: all 0.3s;
+}
+
+#edit-perfil:hover {
+    background: #3498db;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+    transform: scale(1.05);
 }
 
 /* Errores para mandarte a hacer el login */

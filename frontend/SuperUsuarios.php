@@ -26,28 +26,47 @@ $query = mysqli_query($connect, $sql);
     <main>
         <div id="contenido-mostrar-datos">
             <h1>SuperUsuario</h1>
-            <table id="datos">
-                <tr>
-                    <th class="id">ID </th>
-                    <th class="nombre-titulo">Nombre</th>
-                    <th class="nombre-titulo">Apellido</th>
-                    <th class="nombre-titulo">Nivel de Acceso</th>
-                    <th class="titulo-ult">Email</th>
-                    <th class="boton-titulo">Borrar</th>
-                    <th class="boton-titulo">Editar</th>
-                </tr>
+
+            <div class="datos-grid superusuario-grid">
+                <!-- Cabecera -->
+                <div class="grid-header superusuario-header">
+                    <div class="grid-cell id">CI</div>
+                    <div class="grid-cell nombre-titulo">Nombre</div>
+                    <div class="grid-cell nombre-titulo">Apellido</div>
+                    <div class="grid-cell nombre-titulo">Nivel de Acceso</div>
+                    <div class="grid-cell nombre-titulo">Email</div>
+                    <div class="grid-cell boton-titulo">Eliminar</div>
+                    <div class="grid-cell boton-titulo">Editar</div>
+                </div>
+
+                <!-- Filas de datos -->
                 <?php while ($row = mysqli_fetch_array($query)): ?>
-                    <tr class="mostrar-datos">
-                        <th class="nombre"><?= $row['id_superusuario'] ?></th>
-                        <th class="nombre"><?= $row['nombre'] ?></th>
-                        <th class="nombre"><?= $row['apellido'] ?></th>
-                        <th class="nombre"><?= $row['nivel_acceso'] ?></th>
-                        <th class="ultimo-dato"><?= $row['email_superusuario'] ?></th>
-                        <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_superusuario'] ?>">Eliminar</a></th>
-                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_superusuario'] ?>" data-nombre="<?= $row['nombre'] ?>" data-apellido="<?= $row['apellido'] ?>" data-nivel="<?= $row['nivel_acceso'] ?>" data-email="<?= $row['email_superusuario'] ?>">Editar</a></th>
-                    </tr>
+                    <div class="grid-row superusuario-row mostrar-datos">
+                        <div class="grid-cell"><?= $row['id_superusuario'] ?></div>
+                        <div class="grid-cell"><?= $row['nombre'] ?></div>
+                        <div class="grid-cell"><?= $row['apellido'] ?></div>
+                        <div class="grid-cell"><?= $row['nivel_acceso'] ?></div>
+                        <div class="grid-cell"><?= $row['email_superusuario'] ?></div>
+                        <div class="grid-cell">
+                            <a href="#"
+                                class="boton-datos-eliminar botones-datos"
+                                data-id="<?= $row['id_superusuario'] ?>">
+                                Eliminar
+                            </a>
+                        </div>
+                        <div class="grid-cell">
+                            <a class="boton-datos-editar botones-datos"
+                                data-id="<?= $row['id_superusuario'] ?>"
+                                data-nombre="<?= $row['nombre'] ?>"
+                                data-apellido="<?= $row['apellido'] ?>"
+                                data-nivel="<?= $row['nivel_acceso'] ?>"
+                                data-email="<?= $row['email_superusuario'] ?>">
+                                Editar
+                            </a>
+                        </div>
+                    </div>
                 <?php endwhile; ?>
-            </table>
+            </div>
         </div>
 
         <div class="overlay" id="overlay">
@@ -64,7 +83,7 @@ $query = mysqli_query($connect, $sql);
 
         <div id="overlay-edit" class="overlay-edit">
             <div class="popup">
-                <h1>Registro de SuperUsuarios</h1>
+                <h1>Modificación de Super Usuario</h1>
                 <form action="\backend\functions\SuperUsuarios\edit.php" method="POST" id="form-update">
                     <div class="div-labels">
                         <input class="input-register" type="hidden" name="id_superusuario" id="id_edit">
@@ -95,12 +114,12 @@ $query = mysqli_query($connect, $sql);
                             </select>
                         </div>
                     </div>
-                        <div class="input-group">
-                            <label for="email"></label>
-                            <div>
-                                <input type="email" class="class-datos-editar" name="email" id="email_edit" required>
-                            </div>
+                    <div class="input-group">
+                        <label for="email"></label>
+                        <div>
+                            <input type="email" class="class-datos-editar" name="email" id="email_edit" required>
                         </div>
+                    </div>
                     <div class="buttons-modal">
                         <input type="submit" value="Actualizar Información" class="btn-primary" id="actualizar"></input>
                         <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit"></input>

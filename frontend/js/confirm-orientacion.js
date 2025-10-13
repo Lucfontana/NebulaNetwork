@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Confirmar: redirigir a tu PHP de borrado
   btnConfirmar.addEventListener("click", () => {
     if (currentId) {
-      window.location.href = `/backend/functions/asignaturas/delete.php?id=${currentId}`;
+      window.location.href = `/backend/functions/Orientaciones/delete.php?id=${currentId}`;
     }
   });
 
@@ -58,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
        overlayEdit.style.opacity = "1";
        overlayEdit.style.transition = "0.5s";
     }, 1)
-
     })
   })
 
@@ -87,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const fd = new FormData(form);
   
       try {
-        const res = await fetch("/backend/functions/asignaturas/edit.php", {
+        const res = await fetch("/backend/functions/Orientaciones/edit.php", {
           method: "POST",
           body: fd,
           credentials: "same-origin"
@@ -97,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let mensaje = data.message;
   
         if (data.success) {
-          alerta_success_update(mensaje, "/frontend/asignaturas.php");
+          alerta_success_update(mensaje, "/frontend/Orientaciones.php");
         } else {
           alerta_fallo(mensaje);
         }

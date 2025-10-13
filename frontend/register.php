@@ -167,10 +167,11 @@ session_start();
 
             <div id="div-dialogs">
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
-                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div profesores-form">
+                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                                alt=""></button>
+                        <form class="registro-div profesores-form">
                             <h1>Registro de Profesores</h1>
                             <hr>
                             <div class="div-labels">
@@ -190,8 +191,8 @@ session_start();
                             </div>
                             <div class="div-labels">
                                 <label for="apellido" class="label">Apellido:</label>
-                                <input class="input-register" type="text" name="apellido" id="apellidoProfesor" maxlength="20"
-                                    minlength="3" required placeholder="Ingresa apellido">
+                                <input class="input-register" type="text" name="apellido" id="apellidoProfesor"
+                                    maxlength="20" minlength="3" required placeholder="Ingresa apellido">
                             </div>
                             <div class="div-labels">
                                 <label for="email" class="label">Email:</label>
@@ -200,16 +201,16 @@ session_start();
                             </div>
                             <div class="div-labels">
                                 <label for="nac" class="label">Fecha Nacimiento:</label>
-                                <input class="input-register" type="date" name="nac" id="fechaNacimientoProfesor" maxlength="30"
-                                    minlength="8" required>
+                                <input class="input-register" type="date" name="nac" id="fechaNacimientoProfesor"
+                                    maxlength="30" minlength="8" required>
                             </div>
                             <div class="div-labels">
                                 <label for="direc" class="label">Dirección:</label>
-                                <input class="input-register" type="text" name="direc" id="direccionProfesor" maxlength="100"
-                                    minlength="1 " required placeholder="Ingresa dirección">
+                                <input class="input-register" type="text" name="direc" id="direccionProfesor"
+                                    maxlength="100" minlength="1 " required placeholder="Ingresa dirección">
                             </div>
                             <div class="div-botones-register">
-                                <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
+                                <input class="btn-enviar-registro" type="submit" value="Registrar"
                                     name="registroProfesor"></input>
                             </div>
 
@@ -223,10 +224,11 @@ session_start();
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
-                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div superusuarios-form">
+                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                                alt=""></button>
+                        <form class="registro-div superusuarios-form">
                             <h1>Registro de SuperUsuarios</h1>
                             <hr>
 
@@ -247,13 +249,13 @@ session_start();
                             </div>
                             <div class="div-labels">
                                 <label for="apellido" class="label">Apellido:</label>
-                                <input class="input-register" type="text" name="apellido" id="apellidoSuperusuario" maxlength="20"
-                                    minlength="3" required placeholder="Ingresa apellido">
+                                <input class="input-register" type="text" name="apellido" id="apellidoSuperusuario"
+                                    maxlength="20" minlength="3" required placeholder="Ingresa apellido">
                             </div>
                             <div class="div-labels">
                                 <label for="email" class="label">Email:</label>
-                                <input class="input-register" type="email" name="email" id="emailSuperusuario" maxlength="30"
-                                    minlength="8" required placeholder="Ingresa Email">
+                                <input class="input-register" type="email" name="email" id="emailSuperusuario"
+                                    maxlength="30" minlength="8" required placeholder="Ingresa Email">
                             </div>
                             <div class="div-labels">
                                 <div class="div-labels">
@@ -267,7 +269,7 @@ session_start();
                                     </select>
                                 </div>
                                 <div class="div-botones-register">
-                                    <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
+                                    <input class="btn-enviar-registro" type="submit" value="Registrar"
                                         name="registrarSuperuser"></input>
                                 </div>
                             </div>
@@ -275,10 +277,11 @@ session_start();
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
-                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div recursos-form">
+                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                                alt=""></button>
+                        <form class="registro-div recursos-form">
                             <h1>Registro de Recursos</h1>
                             <hr>
                             <div class="div-labels">
@@ -319,14 +322,14 @@ session_start();
 
                             <div class="div-labels">
                                 <label for="tipo" class="label">Tipo:</label>
-                                <select class="input-register" type="text" name="tipo" id="tipo" maxlength="20" minlength="8"
-                                    required placeholder="">
+                                <select class="input-register" type="text" name="tipo" id="tipo" maxlength="20"
+                                    minlength="8" required placeholder="">
                                     <option value=""></option>
                                     <option value="interno">Interno</option>
                                     <option value="externo">Externo</option>
                                 </select>
                                 <div class="div-botones-register">
-                                    <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
+                                    <input class="btn-enviar-registro" type="submit" value="Registrar"
                                         name="registrarRecurso"></input>
                                 </div>
                             </div>
@@ -334,10 +337,11 @@ session_start();
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
-                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div espacios-form">
+                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                                alt=""></button>
+                        <form class="registro-div espacios-form">
                             <h1>Registro de Espacios</h1>
                             <hr>
                             <div class="div-labels">
@@ -348,12 +352,13 @@ session_start();
 
                             <div class="div-labels">
                                 <label for="capacity" class="label">Capacidad:</label>
-                                <input class="input-register" type="number" name="capacity" id="capacidadEspacio" maxlength="3"
-                                    minlength="1" required placeholder="Ingresa capacidad">
+                                <input class="input-register" type="number" name="capacity" id="capacidadEspacio"
+                                    maxlength="3" minlength="1" required placeholder="Ingresa capacidad">
                             </div>
                             <div class="div-labels">
                                 <label for="tipo" class="label">Tipo:</label>
-                                <select class="input-register" type="text" name="tipo" id="tipoEspacio" required placeholder="">
+                                <select class="input-register" type="text" name="tipo" id="tipoEspacio" required
+                                    placeholder="">
                                     <option value=""></option>
                                     <option value="aula">Aula</option>
                                     <option value="salon">Salón</option>
@@ -362,7 +367,7 @@ session_start();
                                 </select>
                             </div>
                             <div class="div-botones-register">
-                                <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
+                                <input class="btn-enviar-registro" type="submit" value="Registrar"
                                     name="registrarEspacio"></input>
                             </div>
 
@@ -370,22 +375,22 @@ session_start();
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
-                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div cursos-form" action="../backend/functions/cursos_func.php"
-                            method="POST">
+                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                                alt=""></button>
+                        <form class="registro-div cursos-form" action="../backend/functions/cursos_func.php" method="POST">
                             <h1>Registro de Cursos</h1>
                             <hr>
                             <div class="div-labels">
                                 <label for="name" class="label">Nombre:</label>
-                                <input class="input-register" type="text" name="name" id="nombreCurso" maxlength="20" minlength="3"
-                                    required placeholder="Ingresa sin puntos ni guiones">
+                                <input class="input-register" type="text" name="name" id="nombreCurso" maxlength="20"
+                                    minlength="3" required placeholder="Ingresa sin puntos ni guiones">
                             </div>
                             <div class="div-labels">
                                 <label for="capacity" class="label">Capacidad:</label>
-                                <input class="input-register" type="number" name="capacity" id="capacidadCurso" maxlength="3"
-                                    minlength="1" required placeholder="Ingresa sin puntos ni guiones">
+                                <input class="input-register" type="number" name="capacity" id="capacidadCurso"
+                                    maxlength="3" minlength="1" required placeholder="Ingresa sin puntos ni guiones">
                             </div>
 
                             <div class="div-labels">
@@ -400,7 +405,7 @@ session_start();
                                 </select>
                             </div>
                             <div class="div-botones-register">
-                                <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
+                                <input class="btn-enviar-registro" type="submit" value="Registrar"
                                     name="registrarCursos"></input>
                             </div>
 
@@ -408,10 +413,11 @@ session_start();
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
-                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div asignatura-form">
+                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                                alt=""></button>
+                        <form class="registro-div asignatura-form">
                             <h1>Registro de Asignaturas</h1>
                             <hr>
                             <div class="div-labels">
@@ -420,7 +426,7 @@ session_start();
                                     maxlength="20" minlength="3" required placeholder="Ingresa nombre">
                             </div>
                             <div class="div-botones-register">
-                                <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar Asignatura"
+                                <input class="btn-enviar-registro" type="submit" value="Registrar Asignatura"
                                     name="registrarAsignatura"></input>
                             </div>
 
@@ -428,41 +434,43 @@ session_start();
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
-                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div horarios-form">
+                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                                alt=""></button>
+                        <form class="registro-div horarios-form">
                             <h1>Registro de Horarios</h1>
                             <hr>
                             <div class="div-labels">
                                 <label for="hora_inicio" class="label">Hora de Inicio:</label>
-                                <input class="input-register" type="time" name="hora_inicio" id="horaInicioHorario" maxlength="20"
-                                    minlength="8" required placeholder="Ingresa nombre">
+                                <input class="input-register" type="time" name="hora_inicio" id="horaInicioHorario"
+                                    maxlength="20" minlength="8" required placeholder="Ingresa nombre">
                             </div>
                             <div class="div-labels">
                                 <label for="hora_final" class="label">Hora de Salida:</label>
-                                <input class="input-register" type="time" name="hora_final" id="horaFinalHorario" maxlength="20"
-                                    minlength="8" required placeholder="Ingresa nombre">
+                                <input class="input-register" type="time" name="hora_final" id="horaFinalHorario"
+                                    maxlength="20" minlength="8" required placeholder="Ingresa nombre">
                             </div>
                             <div class="div-botones-register">
-                                <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
+                                <input class="btn-enviar-registro" type="submit" value="Registrar"
                                     name="registroHorario"></input>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
-                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div dependencias-form"
+                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                                alt=""></button>
+                        <form class="registro-div dependencias-form"
                             action="../backend/functions/dependencias/dependencias_api.php" method="POST">
                             <h1>Registro de Dependencias</h1>
                             <hr>
 
                             <div class="div-labels">
                                 <label for="profesor_asignado" class="label">Profesor:</label>
-                                <select name="profesor_asignado" id="pertenece" type="text" class="input-register">
+                                <select name="profesor_asignado" id="profesor_asignado" type="text" class="input-register">
                                     <option value=""></option>
                                     <?php while ($row = mysqli_fetch_array($profesores_info)): ?>
                                         <option value="<?= $row['ci_profesor'] ?>">
@@ -475,7 +483,7 @@ session_start();
 
                             <div class="div-labels">
                                 <label for="asignatura_dada" class="label">Asignatura a dictar:</label>
-                                <select name="asignatura_dada" id="pertenece" type="text" class="input-register">
+                                <select name="asignatura_dada" id="asignatura_dada" type="text" class="input-register">
                                     <option value=""></option>
                                     <?php while ($row = mysqli_fetch_array($asignaturas_info)): ?>
                                         <option value="<?= $row['id_asignatura'] ?>">
@@ -484,36 +492,17 @@ session_start();
                                     <?php endwhile; ?>
                                 </select>
                             </div>
-
                             <div class="div-labels">
-                                <label for="hora_inicio" class="label">Hora de inicio:</label>
-                                <select name="hora_inicio" id="hora_inicio" type="text" class="input-register">
-                                    <option value=""></option>
-                                    <?php while ($row = mysqli_fetch_array($horarios_info)): ?>
-                                        <option value="<?= $row['id_horario'] ?>">
-                                            <?= $row['hora_inicio'] ?>
-                                        </option>
-                                    <?php endwhile; ?>
-                                </select>
+                                <label for="capacity" class="label">Horas que dicta:</label>
+                                <input class="input-register" type="number" id="crear_campos"
+                                    maxlength="3" minlength="1" required>
                             </div>
 
-                            <div class="div-labels">
-                                <label for="hora_final" class="label">Hora final:</label>
-                                <select name="hora_final" id="hora_final" type="text" class="input-register">
-                                    <option value=""></option>
-                                    <?php
-                                    mysqli_data_seek($horarios_info, 0); //Reinicia el while para que empiece de cero otra vez (el anterior while lo dejo en el final)
-                                    while ($row = mysqli_fetch_array($horarios_info)): ?>
-                                        <option value="<?= $row['id_horario'] ?>">
-                                            <?= $row['hora_final'] ?>
-                                        </option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </div>
+                            <div id="campos-dinamicos"></div>
 
                             <div class="div-labels">
                                 <label for="salon_ocupado" class="label">Salon que ocupa:</label>
-                                <select name="salon_ocupado" id="salon_ocupado" type="text" class="input-register">
+                                <select name="salon_ocupado" id="salon_a_ocupar" type="text" class="input-register" required>
                                     <option value=""></option>
                                     <?php
                                     mysqli_data_seek($result, 0); //Reinicia el while para que empiece de cero otra vez (el anterior while que utilizo los recursos lo dejo en el final)
@@ -527,7 +516,7 @@ session_start();
 
                             <div class="div-labels">
                                 <label for="curso_dictado" class="label">Curso al que se dicta:</label>
-                                <select name="curso_dictado" id="salon_ocupado" type="text" class="input-register">
+                                <select name="curso_dictado" id="curso_dictado" type="text" class="input-register">
                                     <option value=""></option>
                                     <?php while ($row = mysqli_fetch_array($cursos_info)): ?>
                                         <option value="<?= $row['id_curso'] ?>">
@@ -538,17 +527,18 @@ session_start();
                             </div>
 
                             <div class="div-botones-register">
-                                <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
+                                <input class="btn-enviar-registro" type="submit" value="Registrar"
                                     name="registrarDependencia"></input>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <div class="overlay" id="overlay">
+                <div class="overlay">
                     <div class="dialogs">
-                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
-                        <form id="form-registro" class="registro-div orientacion-form">
+                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                                alt=""></button>
+                        <form class="registro-div orientacion-form">
                             <h1>Registro de Orientaciones</h1>
                             <hr>
                             <div class="div-labels">
@@ -557,7 +547,7 @@ session_start();
                                     maxlength="20" minlength="3" required placeholder="Ingresa nombre">
                             </div>
                             <div class="div-botones-register">
-                                <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar orientacion"
+                                <input class="btn-enviar-registro" type="submit" value="Registrar orientacion"
                                     name="registrarOrientacion"></input>
                             </div>
 
@@ -575,13 +565,13 @@ session_start();
     <?php endif; ?>
 
     <!-- Bootstrap -->
-
-    <script src="js/Register-Modal.js"></script>
+    <script type="module" src="../backend/functions/dependencias/crear_campos.js"></script>
     <script type="module" src="js/validaciones-registro.js" defer></script>
+    <script type="module" src="js/swalerts.js"></script>
 
     <!-- Sweet alerts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/frontend/js/Register-Modal.js"></script>
-    </body>
+</body>
 
 </html>

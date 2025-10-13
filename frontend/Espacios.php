@@ -25,27 +25,45 @@ $query = mysqli_query($connect, $sql);
     <?php include 'nav.php'; ?>
     <main>
         <div id="contenido-mostrar-datos">
-            <h1>Espacios Fisicos</h1>
-            <table id="datos">
-                <tr>
-                    <th class="id">Id </th>
-                    <th class="nombre-titulo">Capacidad</th>
-                    <th class="nombre-titulo">Nombre</th>
-                    <th class="titulo-ult">Tipo</th>
-                    <th class="boton-titulo">Borrar</th>
-                    <th class="boton-titulo">Editar</th>
-                </tr>
+            <h1>Espacios Físicos</h1>
+
+            <div class="datos-grid espacios-grid">
+                <!-- Cabecera -->
+                <div class="grid-header espacios-header">
+                    <div class="grid-cell id">ID</div>
+                    <div class="grid-cell nombre-titulo">Capacidad</div>
+                    <div class="grid-cell nombre-titulo">Nombre</div>
+                    <div class="grid-cell nombre-titulo">Tipo</div>
+                    <div class="grid-cell boton-titulo">Eliminar</div>
+                    <div class="grid-cell boton-titulo">Editar</div>
+                </div>
+
+                <!-- Filas de datos -->
                 <?php while ($row = mysqli_fetch_array($query)): ?>
-                    <tr class="mostrar-datos">
-                        <th class="nombre"><?= $row['id_espacio'] ?></th>
-                        <th class="nombre"><?= $row['capacidad'] ?></th>
-                        <th class="nombre"><?= $row['nombre'] ?></th>
-                        <th class="ultimo-dato"><?= $row['tipo'] ?></th>
-                        <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_espacio'] ?>">Eliminar</a></th>
-                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_espacio'] ?>" data-nombre="<?= $row['nombre'] ?>" data-capacidad="<?= $row['capacidad'] ?>" data-tipo="<?= $row['tipo'] ?>">Editar</a></th>
-                    </tr>
+                    <div class="grid-row espacios-row mostrar-datos">
+                        <div class="grid-cell"><?= $row['id_espacio'] ?></div>
+                        <div class="grid-cell"><?= $row['capacidad'] ?></div>
+                        <div class="grid-cell"><?= $row['nombre'] ?></div>
+                        <div class="grid-cell"><?= $row['tipo'] ?></div>
+                        <div class="grid-cell">
+                            <a href="#"
+                                class="boton-datos-eliminar botones-datos"
+                                data-id="<?= $row['id_espacio'] ?>">
+                                Eliminar
+                            </a>
+                        </div>
+                        <div class="grid-cell">
+                            <a class="boton-datos-editar botones-datos"
+                                data-id="<?= $row['id_espacio'] ?>"
+                                data-nombre="<?= $row['nombre'] ?>"
+                                data-capacidad="<?= $row['capacidad'] ?>"
+                                data-tipo="<?= $row['tipo'] ?>">
+                                Editar
+                            </a>
+                        </div>
+                    </div>
                 <?php endwhile; ?>
-            </table>
+            </div>
         </div>
 
         <div class="overlay" id="overlay">
@@ -61,47 +79,47 @@ $query = mysqli_query($connect, $sql);
 
 
         <div id="overlay-edit" class="overlay-edit">
-    <div class="popup">
-        <h1>Registro de Espacios Físicos</h1>
-        <form action="\backend\functions\Espacios\edit.php" method="POST" id="form-update">
-            <div class="div-labels">
-                <input class="input-register" type="hidden" name="id_espacio" id="id_edit">
-            </div>
+            <div class="popup">
+                <h1>Modificación de Espacio</h1>
+                <form action="\backend\functions\Espacios\edit.php" method="POST" id="form-update">
+                    <div class="div-labels">
+                        <input class="input-register" type="hidden" name="id_espacio" id="id_edit">
+                    </div>
 
-            <div class="input-group">
-                <label for="nombre">Nombre:</label>
-                <div>
-                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
-                </div>
-            </div>
+                    <div class="input-group">
+                        <label for="nombre">Nombre:</label>
+                        <div>
+                            <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
+                        </div>
+                    </div>
 
-            <div class="input-group">
-                <label for="capacidad">Capacidad:</label>
-                <div>
-                    <input class="class-datos-editar" type="text" name="capacidad" id="capacidad_edit" maxlength="20" minlength="1" required placeholder="Ingresa capacidad">
-                </div>
-            </div>
+                    <div class="input-group">
+                        <label for="capacidad">Capacidad:</label>
+                        <div>
+                            <input class="class-datos-editar" type="text" name="capacidad" id="capacidad_edit" maxlength="20" minlength="1" required placeholder="Ingresa capacidad">
+                        </div>
+                    </div>
 
-            <div class="input-group">
-                <label for="tipo">Tipo:</label>
-                <div>
-                    <select class="class-datos-editar" name="tipo" id="tipo_edit" required>
-                        <option value=""></option>
-                        <option value="aula">Aula</option>
-                        <option value="salon">Salón</option>
-                        <option value="laboratorio">Laboratorio</option>
-                        <option value="SUM">SUM</option>
-                    </select>
-                </div>
-            </div>
+                    <div class="input-group">
+                        <label for="tipo">Tipo:</label>
+                        <div>
+                            <select class="class-datos-editar" name="tipo" id="tipo_edit" required>
+                                <option value=""></option>
+                                <option value="aula">Aula</option>
+                                <option value="salon">Salón</option>
+                                <option value="laboratorio">Laboratorio</option>
+                                <option value="SUM">SUM</option>
+                            </select>
+                        </div>
+                    </div>
 
-            <div class="buttons-modal">
-                <input type="submit" value="Actualizar Información" class="btn-primary" id="actualizar"></input>
-                <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit"></input>
+                    <div class="buttons-modal">
+                        <input type="submit" value="Actualizar Información" class="btn-primary" id="actualizar"></input>
+                        <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit"></input>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-</div>
+        </div>
     </main>
 
     <footer id="footer" class="footer">
