@@ -12,7 +12,7 @@ export function alerta_fallo(mensaje){
 export function sw_exito(mensaje){
 Swal.fire({
     title: "¡Éxito!",
-    text: mensaje + ', reiniciando pagina...',
+    text: mensaje + ', redirigiendo...',
     icon: "success",
     timer: 1500, // Se cierra automáticamente en 1,5 segundos
     timerProgressBar: true, // Muestra barra de progreso
