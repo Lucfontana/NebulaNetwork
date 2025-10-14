@@ -328,6 +328,9 @@ session_start();
                                     <!-- ARREGLAR!! SI SE SELECCIONA GENERAL NO FUNCIONA!! -->
                                     <option value="general"><?= t("option_general") ?></option>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
