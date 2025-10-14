@@ -1,5 +1,6 @@
 <?php
 
+include_once 'functions.php';
 include_once('../backend/db/conexion.php');
 
 $con = conectar_a_bd();
@@ -46,6 +47,7 @@ $orientacion_info = $stmt->get_result();
 session_start();
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +56,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title><?= t("title") ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
@@ -75,89 +77,89 @@ session_start();
                 <div id="register-content">
                     <div class="article-register">
                         <div>
-                            <h1> Registro de <span>Profesores</span></h1>
+                            <h1><?= t("header_teachers") ?></h1>
                         </div>
                         <button type="button" id="Profesores-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                            Abrir Registro
+                            <?= t("btn_open_register") ?>
                         </button>
                     </div>
 
                     <div class="article-register">
                         <div>
-                            <h1> Registro de <span>SuperUsuarios</span></h1>
+                            <h1><?= t( "header_superusers") ?></h1>
                         </div>
                         <button type="button" id="Adscriptas-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                            Abrir Registro
+                             <?= t("btn_open_register") ?>
                         </button>
                     </div>
 
                     <div class="article-register">
                         <div>
-                            <h1> Registro de <span>Recursos</span></h1>
+                            <h1><?= t("header_resources") ?></h1>
                         </div>
                         <button type="button" id="Recursos-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                            Abrir Registro
+                             <?= t("btn_open_register") ?>
                         </button>
                     </div>
 
                     <div class="article-register">
                         <div>
-                            <h1> Registro de <span>Espacios</span></h1>
+                            <h1><?= t("header_spaces") ?></h1>
                         </div>
                         <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                            Abrir Registro
+                             <?= t("btn_open_register") ?>
                         </button>
                     </div>
 
                     <div class="article-register">
                         <div>
-                            <h1> Registro de <span>Cursos</span></h1>
+                            <h1><?= t("header_courses") ?></h1>
                         </div>
                         <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                            Abrir Registro
+                             <?= t("btn_open_register") ?>
                         </button>
                     </div>
 
                     <div class="article-register">
                         <div>
-                            <h1> Registro de <span>Asignaturas</span></h1>
+                            <h1><?= t("header_subjects") ?></h1>
                         </div>
                         <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                            Abrir Registro
+                            <?= t("btn_open_register") ?>
                         </button>
                     </div>
 
                     <div class="article-register">
                         <div>
-                            <h1> Registro de <span>Horarios</span></h1>
+                            <h1><?= t("header_schedules") ?></h1>
                         </div>
                         <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                            Abrir Registro
+                             <?= t("btn_open_register") ?>
                         </button>
                     </div>
                     <div class="article-register">
                         <div>
-                            <h1> Registro de <span>Dependencias</span></h1>
+                            <h1><?= t("header_dependencies") ?></h1>
                         </div>
                         <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                            Abrir Registro
+                             <?= t("btn_open_register") ?>
                         </button>
                     </div>
                     <div class="article-register">
                         <div>
-                            <h1> Registro de <span>Orientaciones</span></h1>
+                            <h1><?= t("header_orientations") ?></h1>
                         </div>
                         <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                            Abrir Registro
+                             <?= t("btn_open_register") ?>
                         </button>
                     </div>
                 </div>
@@ -172,40 +174,40 @@ session_start();
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
                                 alt=""></button>
                         <form class="registro-div profesores-form">
-                            <h1>Registro de Profesores</h1>
+                            <h1><?= t("header_teachers") ?></h1>
                             <hr>
                             <div class="div-labels">
-                                <label for="CI" class="label">Cedula de Identidad:</label>
+                                <label for="CI" class="label"><?= t("label_ci") ?></label>
                                 <input class="input-register" type="text" name="CI" id="ciProfesor" maxlength="8"
                                     pattern="\d{8}" required placeholder="Ingresa sin puntos ni guiones">
                             </div>
                             <div class="div-labels">
-                                <label for="contrasena" class="label">Contraseña:</label>
+                                <label for="contrasena" class="label"><?= t("label_password") ?></label>
                                 <input class="input-register" type="password" name="contrasena" id="contrasenaProfesor"
                                     maxlength="8" pattern="\d{8}" required placeholder="Ingrese Contraseña">
                             </div>
                             <div class="div-labels">
-                                <label for="name" class="label">Nombre:</label>
+                                <label for="name" class="label"><?= t("label_name") ?></label>
                                 <input class="input-register" type="text" name="name" id="nombreProfesor" maxlength="20"
                                     minlength="3" required placeholder="Ingresa nombre">
                             </div>
                             <div class="div-labels">
-                                <label for="apellido" class="label">Apellido:</label>
+                                <label for="apellido" class="label"><?= t("label_lastname") ?></label>
                                 <input class="input-register" type="text" name="apellido" id="apellidoProfesor"
                                     maxlength="20" minlength="3" required placeholder="Ingresa apellido">
                             </div>
                             <div class="div-labels">
-                                <label for="email" class="label">Email:</label>
+                                <label for="email" class="label"><?= t("label_email") ?></label>
                                 <input class="input-register" type="email" name="email" id="emailProfesor" maxlength="30"
                                     minlength="8" required placeholder="Ingresa Email">
                             </div>
                             <div class="div-labels">
-                                <label for="nac" class="label">Fecha Nacimiento:</label>
+                                <label for="nac" class="label"><?= t("label_birth") ?></label>
                                 <input class="input-register" type="date" name="nac" id="fechaNacimientoProfesor"
                                     maxlength="30" minlength="8" required>
                             </div>
                             <div class="div-labels">
-                                <label for="direc" class="label">Dirección:</label>
+                                <label for="direc" class="label"><?= t("label_address") ?></label>
                                 <input class="input-register" type="text" name="direc" id="direccionProfesor"
                                     maxlength="100" minlength="1 " required placeholder="Ingresa dirección">
                             </div>
@@ -229,35 +231,36 @@ session_start();
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
                                 alt=""></button>
                         <form class="registro-div superusuarios-form">
-                            <h1>Registro de SuperUsuarios</h1>
+                            <h1><?= t("header_superusers") ?></h1>
                             <hr>
 
                             <div class="div-labels">
-                                <label for="CI" class="label">Cedula de Identidad:</label>
+                                <label for="CI" class="label"><?= t("label_ci") ?></label>
                                 <input class="input-register" type="text" name="CI" id="ciSuperusuario" maxlength="8"
                                     pattern="\d{8}" required placeholder="Ingresa sin puntos ni guiones">
                             </div>
                             <div class="div-labels">
-                                <label for="contrasena" class="label">Contraseña:</label>
+                                <label for="contrasena" class="label"><?= t("label_password") ?></label>
                                 <input class="input-register" type="password" name="password" id="contrasenaSuperusuario"
                                     maxlength="8" pattern="\d{8}" required placeholder="Ingrese Contraseña">
                             </div>
                             <div class="div-labels">
-                                <label for="name" class="label">Nombre:</label>
+                                <label for="name" class="label"><?= t("label_name") ?></label>
                                 <input class="input-register" type="text" name="name" id="nombreSuperusuario" maxlength="20"
                                     minlength="3" required placeholder="Ingresa nombre">
                             </div>
                             <div class="div-labels">
-                                <label for="apellido" class="label">Apellido:</label>
+                                <label for="apellido" class="label"><?= t("label_lastname") ?></label>
                                 <input class="input-register" type="text" name="apellido" id="apellidoSuperusuario"
                                     maxlength="20" minlength="3" required placeholder="Ingresa apellido">
                             </div>
                             <div class="div-labels">
-                                <label for="email" class="label">Email:</label>
+                                <label for="email" class="label"><?= t("label_email") ?></label>
                                 <input class="input-register" type="email" name="email" id="emailSuperusuario"
                                     maxlength="30" minlength="8" required placeholder="Ingresa Email">
                             </div>
                             <div class="div-labels">
+<<<<<<< Updated upstream
                                 <label for="acceso" class="label">Nivel de Acceso:</label>
                                 <select class="input-register" type="text" name="acceso" id="acceso" maxlength="20"
                                     minlength="8" required placeholder="">
@@ -266,6 +269,17 @@ session_start();
                                     <option value="2">2 - Secretaria</option>
                                     <option value="3">3 - Administrador</option>
                                 </select>
+=======
+                                <div class="div-labels">
+                                    <label for="acceso" class="label"><?= t("label_access_level") ?></label>
+                                    <select class="input-register" type="text" name="acceso" id="acceso" maxlength="20"
+                                        minlength="8" required placeholder="">
+                                        <option value=""></option>
+                                        <option value="1"><?= t("option_access_1") ?></option>
+                                        <option value="2"><?= t("option_access_2") ?></option>
+                                        <option value="3"><?= t("option_access_3") ?></option>
+                                    </select>
+>>>>>>> Stashed changes
                                 </div>
                                 <div class="div-botones-register">
                                     <input class="btn-enviar-registro" type="submit" value="Registrar"
@@ -281,21 +295,21 @@ session_start();
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
                                 alt=""></button>
                         <form class="registro-div recursos-form">
-                            <h1>Registro de Recursos</h1>
+                            <h1><?= t("header_resources") ?></h1>
                             <hr>
                             <div class="div-labels">
-                                <label for="name" class="label">Nombre:</label>
+                                <label for="name" class="label"><?= t("label_name") ?></label>
                                 <input class="input-register" type="text" name="name" id="nombreRecurso" maxlength="40"
                                     minlength="3" required placeholder="Ingresa nombre">
                             </div>
                             <div class="div-labels">
-                                <label for="estado" class="label">Estado:</label>
+                                <label for="estado" class="label"><?= t("label_state") ?></label>
                                 <select class="input-register" type="text" name="estado" id="estadoRecurso" maxlength="20"
                                     minlength="8" required placeholder="">
                                     <option value=""></option>
-                                    <option value="uso">Uso</option>
-                                    <option value="libre">Libre</option>
-                                    <option value="roto">Roto</option>
+                                    <option value="uso"><?= t("option_use") ?></option>
+                                    <option value="libre"><?= t("option_free") ?></option>
+                                    <option value="roto"><?= t("option_broken") ?></option>
                                 </select>
                             </div>
 
@@ -305,9 +319,15 @@ session_start();
         como opciones. Si se selecciona x salon, se pasa su id como value asi se registra
         la conexion en la BD  -->
                             <div class="div-labels">
-                                <label for="pertenece" class="label">Pertenece a:</label>
+                                <label for="pertenece" class="label"><?= t("label_belongs_to") ?></label>
                                 <select name="pertenece" id="pertenece_a_espacio" type="text" class="input-register">
                                     <option value=""></option>
+<<<<<<< Updated upstream
+=======
+
+                                    <!-- ARREGLAR!! SI SE SELECCIONA GENERAL NO FUNCIONA!! -->
+                                    <option value="general"><?= t("option_general") ?></option>
+>>>>>>> Stashed changes
                                     <?php while ($row = mysqli_fetch_array($result)): ?>
                                         <option value="<?= $row['id_espacio'] ?>">
                                             <?= $row['nombre'] ?>
@@ -317,12 +337,12 @@ session_start();
                             </div>
 
                             <div class="div-labels">
-                                <label for="tipo" class="label">Tipo:</label>
+                                <label for="tipo" class="label"><?= t("label_type") ?></label>
                                 <select class="input-register" type="text" name="tipo" id="tipo" maxlength="20"
                                     minlength="8" required placeholder="">
                                     <option value=""></option>
-                                    <option value="interno">Interno</option>
-                                    <option value="externo">Externo</option>
+                                    <option value="interno"><?= t("option_internal") ?></option>
+                                    <option value="externo"><?= t("option_external") ?></option>
                                 </select>
                                 <div class="div-botones-register">
                                     <input class="btn-enviar-registro" type="submit" value="Registrar"
@@ -338,7 +358,7 @@ session_start();
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
                                 alt=""></button>
                         <form class="registro-div espacios-form">
-                            <h1>Registro de Espacios</h1>
+                            <h1><?= t("header_spaces") ?></h1>
                             <hr>
                             <div class="div-labels">
                                 <label for="name" class="label">Nombre:</label>
