@@ -5,6 +5,7 @@ $connect = conectar_a_bd();
 $sql = "SELECT * FROM profesores";
 
 $query = mysqli_query($connect, $sql);
+session_start();
 ?>
 
 <!DOCTYPE html>
