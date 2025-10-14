@@ -29,6 +29,7 @@ if ($cursosql > 0) {
                     e.nombre AS nombre_espacio,
                     h.hora_inicio,
                     h.hora_final,
+                    h.tipo,
                     c.nombre AS nombre_curso,
                     cu.dia
                 FROM cumple cu
@@ -41,6 +42,7 @@ if ($cursosql > 0) {
                 INNER JOIN espacios_fisicos e ON doe.id_espacio = e.id_espacio
                 WHERE cu.dia = '$dia'
                   AND c.id_curso = $cursosql
+                  AND h.tipo = 'clase'
                 ORDER BY h.hora_inicio ASC";
 
         $resultado = mysqli_query($connect, $sql);
@@ -59,6 +61,7 @@ elseif ($espaciossql > 0) {
                     e.nombre AS nombre_espacio,
                     h.hora_inicio,
                     h.hora_final,
+                    h.tipo,
                     c.nombre AS nombre_curso,
                     cu.dia
                 FROM cumple cu
@@ -71,6 +74,7 @@ elseif ($espaciossql > 0) {
                 INNER JOIN espacios_fisicos e ON doe.id_espacio = e.id_espacio
                 WHERE cu.dia = '$dia'
                   AND e.id_espacio = $espaciossql
+                  AND h.tipo = 'clase'
                 ORDER BY h.hora_inicio ASC";
 
         $resultado = mysqli_query($connect, $sql);
@@ -135,7 +139,7 @@ else {
                         <div class="dias">Viernes</div>
                     </div>
                 </div>
-                <?php if(isset($_GET{'curso_id'})): ?>
+                <?php if(isset($_GET['curso_id'])): ?>
                 <div class="datos-body"> <?php while ($row = mysqli_fetch_array($query)): ?> <div class="datos-row mostrar-datos">
                             <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
                             <?php foreach ($dias as $dia): ?>
@@ -155,7 +159,7 @@ else {
                                 ?>
                             <?php endforeach; ?>
                         </div> <?php endwhile; ?> </div>
-                <?php elseif(isset($_GET{'espacio_id'})): ?>
+                <?php elseif(isset($_GET['espacio_id'])): ?>
                  <div class="datos-body"> <?php while ($row = mysqli_fetch_array($query)): ?> <div class="datos-row mostrar-datos">
                             <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
                             <?php foreach ($dias as $dia): ?>

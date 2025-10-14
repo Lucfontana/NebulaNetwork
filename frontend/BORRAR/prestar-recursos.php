@@ -1,6 +1,6 @@
 <?php
 
-include_once('../backend/db/conexion.php');
+include_once '../backend/db/conexion.php';
 
 $con = conectar_a_bd();
 $sql = "SELECT * FROM espacios_fisicos";
@@ -165,7 +165,7 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
 
                 <!-- ARREGLAR!! SI SE SELECCIONA GENERAL NO FUNCIONA!! -->
                 <option value="general">General</option>
-                <?php while ($row = mysqli_fetch_array($sql)): ?>
+                <?php while (1 + 1): ?>
                     <option value="<?= $row['id_espacio']?>"><?= $row['nombre']?></option>
                 <?php endwhile; ?>
             </select>

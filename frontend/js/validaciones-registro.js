@@ -623,14 +623,16 @@ function alerta_success(mensaje, ventana_a_redirigir, tipo_dato) {
         title: "Exito!",
         text: mensaje,
         icon: "success",
-        showCancelButton: true,
+        showDenyButton: true,
         confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#3085d6",
+        denyButtonColor: "#3085d6",
         confirmButtonText: "Ver " + tipo_dato,
-        cancelButtonText: "OK"
+        denyButtonText: "Aceptar"
     }).then((result) => {
         if (result.isConfirmed) {
             window.location.href = ventana_a_redirigir;
+        } else if (result.isDenied){
+            location.reload();
         }
     });
 }
