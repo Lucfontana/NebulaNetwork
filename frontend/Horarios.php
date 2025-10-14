@@ -44,13 +44,12 @@ if ($cursosql > 0) {
                 ORDER BY h.hora_inicio ASC";
 
         $resultado = mysqli_query($connect, $sql);
-        // Inicializar el arreglo para el día actual
         $materias_por_dia[$dia] = [];
         while ($fila = mysqli_fetch_assoc($resultado)) {
-            // Agregar la fila al arreglo del día correspondiente
             $materias_por_dia[$dia][] = $fila;
         }
     }
+
 }
 // Si se seleccionó un espacio físico (salón, laboratorio, etc.)
 elseif ($espaciossql > 0) {
@@ -75,10 +74,8 @@ elseif ($espaciossql > 0) {
                 ORDER BY h.hora_inicio ASC";
 
         $resultado = mysqli_query($connect, $sql);
-        // Inicializar el arreglo para el día actual
         $materias_por_dia[$dia] = [];
         while ($fila = mysqli_fetch_assoc($resultado)) {
-            // Agregar la fila al arreglo del día correspondiente
             $materias_por_dia[$dia][] = $fila;
         }
     }
@@ -100,7 +97,6 @@ else {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="style/style.css">
 </head> <?php if (!isset($_SESSION['nivel_acceso'])): ?> <?php include_once('error.php') ?> <?php else: ?>
-
     <body> <!-- trae las barras de navegacion (sidebar y superior) --> <?php include 'nav.php'; ?> <main>
             <div id="contenido-mostrar-datos">
                 <h1>Horarios</h1>
@@ -108,137 +104,79 @@ else {
                         <option value="1">Cursos</option>
                         <option value="2">Salones</option>
                     </select>
-                    <!-- Contenedor del selector de salones (oculto por defecto) -->
                     <div id="div-salones" style="display: none;">
-
-                        <!-- Etiqueta del selector de salones -->
                         <label for="Salones" id="select-salones">Seleccionar Salon:</label>
-
-                        <!-- Menú desplegable para seleccionar un salón -->
                         <select name="salones" id="salones-select" onchange="cambiarEspacio(this.value)">
-                            <!-- Opción inicial por defecto -->
-                            <option value="0">Seleccione un salón</option>
-
-                            <!-- Reinicia el puntero del resultado de la consulta $query3 al inicio -->
-                            <?php mysqli_data_seek($query3, 0); ?>
-
-                            <!-- Bucle que recorre cada fila de la consulta de salones -->
-                            <?php while ($row3 = mysqli_fetch_array($query3)): ?>
-                                <!-- Crea una opción por cada salón obtenido -->
-                                <option value="<?= $row3['id_espacio'] ?>"
-                                    <?= (isset($_GET['espacio_id']) && $_GET['espacio_id'] == $row3['id_espacio']) ? 'selected' : '' ?>>
-                                    <?= $row3['nombre'] ?>
-                                </option>
-                            <?php endwhile; ?>
-                        </select>
+                        <option value="0">Seleccione un salón</option>
+                        <?php mysqli_data_seek($query3, 0); ?>
+                        <?php while ($row3 = mysqli_fetch_array($query3)): ?>
+                            <option value="<?= $row3['id_espacio'] ?>" <?= (isset($_GET['espacio_id']) && $_GET['espacio_id'] == $row3['id_espacio']) ? 'selected' : '' ?>><?= $row3['nombre'] ?></option>
+                        <?php endwhile; ?>
+                    </select>
                     </div>
-
-                    <!-- Contenedor del selector de cursos (visible por defecto) -->
                     <div id="div-curso" style="display: block;">
-
-                        <!-- Etiqueta del selector de cursos -->
                         <label for="Cursos" id="select-cursos">Seleccionar Curso:</label>
-
-                        <!-- Menú desplegable para seleccionar un curso -->
                         <select name="Cursos" id="cursos-select" onchange="cambiarCurso(this.value)">
-                            <!-- Opción inicial por defecto -->
                             <option value="0">Seleccione un curso</option>
-
-                            <!-- Reinicia el puntero del resultado de la consulta $query2 al inicio -->
                             <?php mysqli_data_seek($query2, 0); ?>
-
-                            <!-- Bucle que recorre cada fila de la consulta de cursos -->
                             <?php while ($row2 = mysqli_fetch_array($query2)): ?>
-                                <!-- Crea una opción por cada curso obtenido -->
-                                <option value="<?= $row2['id_curso'] ?>"
-                                    <?= (isset($_GET['curso_id']) && $_GET['curso_id'] == $row2['id_curso']) ? 'selected' : '' ?>>
-                                    <?= $row2['nombre'] ?>
-                                </option>
+                                <option value="<?= $row2['id_curso'] ?>" <?= (isset($_GET['curso_id']) && $_GET['curso_id'] == $row2['id_curso']) ? 'selected' : '' ?>><?= $row2['nombre'] ?></option>
                             <?php endwhile; ?>
                         </select>
                     </div>
-
-                    <!-- Cabecera de la tabla de horarios -->
-                    <div class="datos-header">
-                        <div class="datos-row">
-                            <div class="horas-titulo">Horas</div>
-                            <div class="dias">Lunes</div>
-                            <div class="dias">Martes</div>
-                            <div class="dias">Miércoles</div>
-                            <div class="dias">Jueves</div>
-                            <div class="dias">Viernes</div>
-                        </div>
+                </div>
+                <div class="datos-header">
+                    <div class="datos-row">
+                        <div class="horas-titulo">Horas</div>
+                        <div class="dias">Lunes</div>
+                        <div class="dias">Martes</div>
+                        <div class="dias">Miércoles</div>
+                        <div class="dias">Jueves</div>
+                        <div class="dias">Viernes</div>
                     </div>
-
-                    <!-- Si el parámetro GET 'curso_id' está definido, muestra el horario por curso -->
-                    <?php if (isset($_GET{'curso_id'})): ?>
-                        <div class="datos-body">
-                            <!-- Recorre las filas de horarios (consulta principal $query) -->
-                            <?php while ($row = mysqli_fetch_array($query)): ?>
-                                <div class="datos-row mostrar-datos">
-                                    <!-- Muestra la franja horaria -->
-                                    <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
-
-                                    <!-- Recorre cada día de la semana -->
-                                    <?php foreach ($dias as $dia): ?>
-                                        <?php
-                                        $mostro = false; // bandera para verificar si se mostró alguna materia en esa hora
-                                        // Recorre las materias del día actual
-                                        foreach ($materias_por_dia[$dia] as $m) {
-                                        // Si la hora coincide con la fila actual, muestra la materia
+                </div>
+                <?php if(isset($_GET{'curso_id'})): ?>
+                <div class="datos-body"> <?php while ($row = mysqli_fetch_array($query)): ?> <div class="datos-row mostrar-datos">
+                            <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
+                            <?php foreach ($dias as $dia): ?>
+                                <?php
+                                    $mostro = false;
+                                    foreach ($materias_por_dia[$dia] as $m) {
                                         if ($m['hora_inicio'] == $row['hora_inicio']) {
-                                            echo "<div class='dia-dato'>
-                                            <strong>{$m['nombre_asignatura']}</strong>
-                                            </div>";
+                                                echo "<div class='dia-dato'>
+                                                <strong>{$m['nombre_asignatura']}</strong>
+                                              </div>";
                                             $mostro = true;
                                         }
                                     }
-
-                                    // Si no hay materia para esa hora, muestra un guion
                                     if (!$mostro) {
                                         echo "<div class='dia-dato'><em>---</em></div>";
                                     }
-                                        ?>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endwhile; ?>
-                        </div>
-                    <!-- Si el parámetro GET 'espacio_id' está definido, muestra el horario por salón -->
-                    <?php elseif (isset($_GET{'espacio_id'})): ?>
-                        <div class="datos-body">
-                            <!-- Recorre las filas de horarios -->
-                            <?php while ($row = mysqli_fetch_array($query)): ?>
-                                <div class="datos-row mostrar-datos">
-                                    <!-- Muestra la franja horaria -->
-                                    <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
-
-                                    <!-- Recorre cada día de la semana -->
-                                    <?php foreach ($dias as $dia): ?>
-                                    <?php
-                                    $mostro = false; // bandera para saber si se mostró algo en ese día y hora
-                                    // Recorre las materias del día actual
+                                ?>
+                            <?php endforeach; ?>
+                        </div> <?php endwhile; ?> </div>
+                <?php elseif(isset($_GET{'espacio_id'})): ?>
+                 <div class="datos-body"> <?php while ($row = mysqli_fetch_array($query)): ?> <div class="datos-row mostrar-datos">
+                            <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
+                            <?php foreach ($dias as $dia): ?>
+                                <?php
+                                    $mostro = false;
                                     foreach ($materias_por_dia[$dia] as $m) {
                                         if ($m['hora_inicio'] == $row['hora_inicio']) {
-                                        // Muestra el nombre del espacio en esa hora
-                                        echo "<div class='dia-dato'>
-                                        <strong>{$m['nombre_espacio']}</strong>
-                                        </div>";
-                                        $mostro = true;
+                                                echo "<div class='dia-dato'>
+                                                <strong>{$m['nombre_espacio']}</strong>
+                                              </div>";
+                                            $mostro = true;
                                         }
                                     }
-
-                                    // Si no hay coincidencia, muestra un guion
                                     if (!$mostro) {
                                         echo "<div class='dia-dato'><em>---</em></div>";
                                     }
-                                        ?>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endwhile; ?>
-                        </div>
-
-                    <?php endif; ?>
-                </div>
+                                ?>
+                            <?php endforeach; ?>
+                        </div> <?php endwhile; ?> </div>
+                <?php endif; ?>
+            </div>
         </main>
         <footer id="footer" class="footer">
             <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
@@ -266,8 +204,14 @@ else {
 
         function cambiarEspacio(idEspacio) {
 
+            // Verifica que el idCurso exista y que no sea igual a "0"
+            // (Por ejemplo, "0" podría representar la opción "Seleccionar curso" en un <select>)
             if (idEspacio && idEspacio !== "0") {
-                window.location.href = "?espacio_id=" + idEspacio;
+
+                // Si la condición se cumple, redirige al usuario a la misma página
+                // pero agregando el parámetro 'curso_id' en la URL.
+                // Esto permite que el backend o PHP filtre los datos según el curso seleccionado.
+                window.location.href = "?espacio_id=" + idEspacio ;
             }
         }
     </script>
