@@ -51,7 +51,7 @@ $prestamos_info = $stmt->get_result();
 
 session_start();
 
-if (!isset($_SESSION['acceso'])) {
+if (!isset($_SESSION['acceso']) && isset($_SESSION['ci'])) {
     $ci_profesor = (int)$_SESSION['ci'];
 }
 
@@ -208,37 +208,41 @@ $prestamos_info2 = $stmt->get_result();
         <?php include_once('nav.php') ?>
         <main>
             <div id="contenido-mostrar-datos">
-                <table id="datos">
-                    <tr>
-                        <th class="nombre-titulo">Recurso</th>
-                        <th class="nombre-titulo">Hora Prestado</th>
-                        <th class="titulo-ult">Hora Devolución</th>
-                    </tr>
+                <h1>Préstamos de Recursos</h1>
 
+                <div class="datos-grid prestamos-grid">
+                    <!-- Cabecera -->
+                    <div class="grid-header prestamos-header">
+                        <div class="grid-cell nombre-titulo">Recurso</div>
+                        <div class="grid-cell nombre-titulo">Hora Prestado</div>
+                        <div class="grid-cell titulo-ult">Hora Devolución</div>
+                    </div>
+
+                    <!-- Filas de datos -->
                     <?php
                     if (mysqli_num_rows($prestamos_info2) > 0) {
                         while ($row = mysqli_fetch_array($prestamos_info2)):
                     ?>
-                            <tr class="mostrar-datos">
-                                <th class="nombre"><?= $row['nombre_recurso'] ?></th>
-                                <th class="nombre">
+                            <div class="grid-row prestamos-row mostrar-datos">
+                                <div class="grid-cell"><?= $row['nombre_recurso'] ?></div>
+                                <div class="grid-cell">
                                     <?= date('d/m/Y H:i:s', strtotime($row['hora_presta'])) ?>
-                                </th>
-                                <th class="ultimo-dato">
+                                </div>
+                                <div class="grid-cell">
                                     <?php if ($row['hora_vuelta']): ?>
                                         <?= date('d/m/Y H:i:s', strtotime($row['hora_vuelta'])) ?>
                                     <?php else: ?>
                                         <span style="color: orange;">Sin devolver</span>
                                     <?php endif; ?>
-                                </th>
-                            </tr>
+                                </div>
+                            </div>
                     <?php
                         endwhile;
                     } else {
-                        echo '<tr><td colspan="3" style="text-align:center;">No tienes préstamos registrados</td></tr>';
+                        echo '<div class="grid-row" style="text-align:center;"><div class="grid-cell" style="grid-column: 1 / -1;">No tienes préstamos registrados</div></div>';
                     }
                     ?>
-                </table>
+                </div>
             </div>
         </main>
         <footer id="footer" class="footer">
