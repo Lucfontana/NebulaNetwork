@@ -258,15 +258,14 @@ session_start();
                                     maxlength="30" minlength="8" required placeholder="Ingresa Email">
                             </div>
                             <div class="div-labels">
-                                <div class="div-labels">
-                                    <label for="acceso" class="label">Nivel de Acceso:</label>
-                                    <select class="input-register" type="text" name="acceso" id="acceso" maxlength="20"
-                                        minlength="8" required placeholder="">
-                                        <option value=""></option>
-                                        <option value="1">1 - Adscripta</option>
-                                        <option value="2">2 - Secretaria</option>
-                                        <option value="3">3 - Administrador</option>
-                                    </select>
+                                <label for="acceso" class="label">Nivel de Acceso:</label>
+                                <select class="input-register" type="text" name="acceso" id="acceso" maxlength="20"
+                                    minlength="8" required placeholder="">
+                                    <option value=""></option>
+                                    <option value="1">1 - Adscripta</option>
+                                    <option value="2">2 - Secretaria</option>
+                                    <option value="3">3 - Administrador</option>
+                                </select>
                                 </div>
                                 <div class="div-botones-register">
                                     <input class="btn-enviar-registro" type="submit" value="Registrar"
@@ -309,9 +308,6 @@ session_start();
                                 <label for="pertenece" class="label">Pertenece a:</label>
                                 <select name="pertenece" id="pertenece_a_espacio" type="text" class="input-register">
                                     <option value=""></option>
-
-                                    <!-- ARREGLAR!! SI SE SELECCIONA GENERAL NO FUNCIONA!! -->
-                                    <option value="general">General</option>
                                     <?php while ($row = mysqli_fetch_array($result)): ?>
                                         <option value="<?= $row['id_espacio'] ?>">
                                             <?= $row['nombre'] ?>

@@ -15,9 +15,12 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 $horarios = array();
+
+//Se hace que los horarios pasen a ser un array asociativo
 while($row = $result->fetch_assoc()){
     $horarios[] = $row;
 }
+
 
 if (count($horarios) > 0){
     $respuesta_json["horarios"] = $horarios;

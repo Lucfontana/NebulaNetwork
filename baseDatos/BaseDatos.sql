@@ -136,6 +136,7 @@ INSERT INTO asignaturas (nombre) VALUES
 ('Lengua Española');
 
 INSERT INTO espacios_fisicos (capacidad, nombre, tipo) VALUES
+(35, 'General', 'Aula'),
 (35, 'Aula 101', 'aula'),
 (25, 'Laboratorio de Química', 'laboratorio');
 

@@ -203,11 +203,7 @@ if (!$error) {
                             WHERE denc.id_curso = ? AND h.id_horario = ? AND c.dia = ?";
 
     $stmt_verificar_curso = $con->prepare($query_verificar_curso);
-    
-    // AGREGAR ESTA VERIFICACIÓN PARA VER EL ERROR REAL
-    if ($stmt_verificar_curso === false) {
-        die("Error en la query SQL: " . $con->error);
-    }
+
 
     foreach ($horarios as $id_horario) {
         $stmt_verificar_curso->bind_param("iis", $id_curso, $id_horario, $dia_dictado);

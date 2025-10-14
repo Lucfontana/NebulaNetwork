@@ -224,6 +224,7 @@ function registrar_superusuario(e) {
     form_superusuario.append('name', nombre_superusuario);
     form_superusuario.append('apellido', apellido_superusuario);
     form_superusuario.append('acceso', acceso_superusuario);
+    form_superusuario.append('email', email_superusuario)
     form_superusuario.append('registrarSuperuser', true);
 
     fetch('../../backend/functions/SuperUsuarios/superusuarios_func.php', {

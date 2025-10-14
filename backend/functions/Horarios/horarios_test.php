@@ -37,6 +37,9 @@ function registrarHorarios($horaInicio, $horaFinal, $conexion, $existe) {
         // Convertir las horas a objetos DateTime
         
         $inicio = new DateTime($horaInicio);
+
+        $hora_inicio = (int)$inicio->format('H');
+
         $final = new DateTime($horaFinal);
 
         
@@ -44,6 +47,12 @@ function registrarHorarios($horaInicio, $horaFinal, $conexion, $existe) {
         if ($inicio >= $final) {
             $respuesta_json['estado'] = '0';
             $respuesta_json['mensaje'] = 'La hora de inicio debe ser menor que la hora final';    
+            return $respuesta_json;
+        }
+
+        if ($hora_inicio <= 6){
+            $respuesta_json['estado'] = '0';
+            $respuesta_json['mensaje'] = 'La hora de inicio debe ser despues de las 6';    
             return $respuesta_json;
         }
 
