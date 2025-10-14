@@ -327,6 +327,9 @@ session_start();
 
                                     <!-- ARREGLAR!! SI SE SELECCIONA GENERAL NO FUNCIONA!! -->
                                     <option value="general"><?= t("option_general") ?></option>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                                     <?php while ($row = mysqli_fetch_array($result)): ?>
                                         <option value="<?= $row['id_espacio'] ?>">

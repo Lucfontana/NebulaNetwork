@@ -106,6 +106,9 @@ include_once 'functions.php';
         <img src="img/Iconos sidebar/moon.png" alt="Modo Oscuro">
     </a>
 </li>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
             <!-- Icono de configuración (visible en escritorio, oculto en móvil) -->
