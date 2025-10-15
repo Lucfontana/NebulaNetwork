@@ -179,27 +179,27 @@ session_start();
                             <div class="div-labels">
                                 <label for="CI" class="label"><?= t("label_ci") ?></label>
                                 <input class="input-register" type="text" name="CI" id="ciProfesor" maxlength="8"
-                                    pattern="\d{8}" required placeholder="Ingresa sin puntos ni guiones">
+                                    pattern="\d{8}" required placeholder="<?= t("placeholder_ci") ?>">
                             </div>
                             <div class="div-labels">
                                 <label for="contrasena" class="label"><?= t("label_password") ?></label>
                                 <input class="input-register" type="password" name="contrasena" id="contrasenaProfesor"
-                                    maxlength="8" pattern="\d{8}" required placeholder="Ingrese Contraseña">
+                                    maxlength="8" pattern="\d{8}" required placeholder="<?= t("placeholder_password") ?>">
                             </div>
                             <div class="div-labels">
                                 <label for="name" class="label"><?= t("label_name") ?></label>
                                 <input class="input-register" type="text" name="name" id="nombreProfesor" maxlength="20"
-                                    minlength="3" required placeholder="Ingresa nombre">
+                                    minlength="3" required placeholder="<?= t("placeholder_name") ?>">
                             </div>
                             <div class="div-labels">
                                 <label for="apellido" class="label"><?= t("label_lastname") ?></label>
                                 <input class="input-register" type="text" name="apellido" id="apellidoProfesor"
-                                    maxlength="20" minlength="3" required placeholder="Ingresa apellido">
+                                    maxlength="20" minlength="3" required placeholder="<?= t("placeholder_lastname") ?>">
                             </div>
                             <div class="div-labels">
                                 <label for="email" class="label"><?= t("label_email") ?></label>
                                 <input class="input-register" type="email" name="email" id="emailProfesor" maxlength="30"
-                                    minlength="8" required placeholder="Ingresa Email">
+                                    minlength="8" required placeholder="<?= t("placeholder_email") ?>">
                             </div>
                             <div class="div-labels">
                                 <label for="nac" class="label"><?= t("label_birth") ?></label>
@@ -209,7 +209,7 @@ session_start();
                             <div class="div-labels">
                                 <label for="direc" class="label"><?= t("label_address") ?></label>
                                 <input class="input-register" type="text" name="direc" id="direccionProfesor"
-                                    maxlength="100" minlength="1 " required placeholder="Ingresa dirección">
+                                    maxlength="100" minlength="1 " required placeholder="<?= t("placeholder_address") ?>">
                             </div>
                             <div class="div-botones-register">
                                 <input class="btn-enviar-registro" type="submit" value="Registrar"
@@ -222,7 +222,7 @@ session_start();
                     Se tiene que declarar el boton como de tipo "button" pq por defecto,
                     los botones adentro de un formulario son de tipo submit, por lo tanto
                     esto causaba que el formulario se enviara cuando necesitabamos cerrar 
-                    el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
+                    el modal. Esta explicacion sirve para todos los botones de cerrar que hay-->
                     </div>
                 </div>
 
@@ -237,27 +237,27 @@ session_start();
                             <div class="div-labels">
                                 <label for="CI" class="label"><?= t("label_ci") ?></label>
                                 <input class="input-register" type="text" name="CI" id="ciSuperusuario" maxlength="8"
-                                    pattern="\d{8}" required placeholder="Ingresa sin puntos ni guiones">
+                                    pattern="\d{8}" required placeholder="<?= t("placeholder_ci") ?>">
                             </div>
                             <div class="div-labels">
                                 <label for="contrasena" class="label"><?= t("label_password") ?></label>
                                 <input class="input-register" type="password" name="password" id="contrasenaSuperusuario"
-                                    maxlength="8" pattern="\d{8}" required placeholder="Ingrese Contraseña">
+                                    maxlength="8" pattern="\d{8}" required placeholder="<?= t("placeholder_password") ?>">
                             </div>
                             <div class="div-labels">
                                 <label for="name" class="label"><?= t("label_name") ?></label>
                                 <input class="input-register" type="text" name="name" id="nombreSuperusuario" maxlength="20"
-                                    minlength="3" required placeholder="Ingresa nombre">
+                                    minlength="3" required placeholder="<?= t("placeholder_name") ?>">
                             </div>
                             <div class="div-labels">
                                 <label for="apellido" class="label"><?= t("label_lastname") ?></label>
                                 <input class="input-register" type="text" name="apellido" id="apellidoSuperusuario"
-                                    maxlength="20" minlength="3" required placeholder="Ingresa apellido">
+                                    maxlength="20" minlength="3" required placeholder="<?= t("placeholder_lastname") ?>">
                             </div>
                             <div class="div-labels">
                                 <label for="email" class="label"><?= t("label_email") ?></label>
                                 <input class="input-register" type="email" name="email" id="emailSuperusuario"
-                                    maxlength="30" minlength="8" required placeholder="Ingresa Email">
+                                    maxlength="30" minlength="8" required placeholder="<?= t("placeholder_email") ?>">
                             </div>
                             <div class="div-labels">
                                 <div class="div-labels">
@@ -289,7 +289,7 @@ session_start();
                             <div class="div-labels">
                                 <label for="name" class="label"><?= t("label_name") ?></label>
                                 <input class="input-register" type="text" name="name" id="nombreRecurso" maxlength="40"
-                                    minlength="3" required placeholder="Ingresa nombre">
+                                    minlength="3" required placeholder="<?= t("placeholder_name") ?>">
                             </div>
                             <div class="div-labels">
                                 <label for="estado" class="label"><?= t("label_state") ?></label>
@@ -350,25 +350,25 @@ session_start();
                             <h1><?= t("header_spaces") ?></h1>
                             <hr>
                             <div class="div-labels">
-                                <label for="name" class="label">Nombre:</label>
+                                <label for="name" class="label"><?= t("label_name") ?></label>
                                 <input class="input-register" type="text" name="name" id="nombreEspacio" maxlength="40"
-                                    minlength="3" required placeholder="Ingresa nombre">
+                                    minlength="3" required placeholder="<?= t("placeholder_name") ?>">
                             </div>
 
                             <div class="div-labels">
-                                <label for="capacity" class="label">Capacidad:</label>
+                                <label for="capacity" class="label"><?= t("label_capacity") ?></label>
                                 <input class="input-register" type="number" name="capacity" id="capacidadEspacio"
-                                    maxlength="3" minlength="1" required placeholder="Ingresa capacidad">
+                                    maxlength="3" minlength="1" required placeholder="<?= t("placeholder_capacity") ?>">
                             </div>
                             <div class="div-labels">
-                                <label for="tipo" class="label">Tipo:</label>
+                                <label for="tipo" class="label"><?= t("label_type") ?></label>
                                 <select class="input-register" type="text" name="tipo" id="tipoEspacio" required
                                     placeholder="">
                                     <option value=""></option>
-                                    <option value="aula">Aula</option>
-                                    <option value="salon">Salón</option>
-                                    <option value="laboratorio">Laboratorio</option>
-                                    <option value="SUM">SUM</option>
+                                    <option value="aula"><?= t("option_aula") ?></option>
+                                    <option value="salon"><?= t("option_salon") ?></option>
+                                    <option value="laboratorio"><?= t("option_lab") ?></option>
+                                    <option value="SUM"><?= t("option_sum") ?></option>
                                 </select>
                             </div>
                             <div class="div-botones-register">
@@ -385,21 +385,21 @@ session_start();
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
                                 alt=""></button>
                         <form class="registro-div cursos-form" action="../backend/functions/cursos_func.php" method="POST">
-                            <h1>Registro de Cursos</h1>
+                            <h1><?= t("header_courses") ?></h1>
                             <hr>
                             <div class="div-labels">
-                                <label for="name" class="label">Nombre:</label>
+                                <label for="name" class="label"><?= t("label_name") ?></label>
                                 <input class="input-register" type="text" name="name" id="nombreCurso" maxlength="20"
-                                    minlength="3" required placeholder="Ingresa sin puntos ni guiones">
+                                    minlength="3" required placeholder="<?= t("placeholder_name") ?>">
                             </div>
                             <div class="div-labels">
-                                <label for="capacity" class="label">Capacidad:</label>
+                                <label for="capacity" class="label"><?= t("label_capacity") ?></label>
                                 <input class="input-register" type="number" name="capacity" id="capacidadCurso"
-                                    maxlength="3" minlength="1" required placeholder="Ingresa sin puntos ni guiones">
+                                    maxlength="3" minlength="1" required placeholder="<?= t("placeholder_capacity") ?>">
                             </div>
 
                             <div class="div-labels">
-                                <label for="curso_dictado" class="label">Orientacion:</label>
+                                <label for="curso_dictado" class="label"><?= t("label_orientation") ?></label>
                                 <select name="orientacion_en" id="salon_ocupado" type="text" class="input-register">
                                     <option value=""></option>
                                     <?php while ($row = mysqli_fetch_array($orientacion_info)): ?>
@@ -423,12 +423,12 @@ session_start();
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
                                 alt=""></button>
                         <form class="registro-div asignatura-form">
-                            <h1>Registro de Asignaturas</h1>
+                            <h1><?= t("header_subjects") ?></h1>
                             <hr>
                             <div class="div-labels">
-                                <label for="name" class="label">Nombre:</label>
+                                <label for="name" class="label"><?= t("label_name") ?></label>
                                 <input class="input-register" type="text" name="nombreAsignatura" id="nombreAsignatura"
-                                    maxlength="20" minlength="3" required placeholder="Ingresa nombre">
+                                    maxlength="20" minlength="3" required placeholder="<?= t("placeholder_name") ?>">
                             </div>
                             <div class="div-botones-register">
                                 <input class="btn-enviar-registro" type="submit" value="Registrar Asignatura"
@@ -444,17 +444,17 @@ session_start();
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
                                 alt=""></button>
                         <form class="registro-div horarios-form">
-                            <h1>Registro de Horarios</h1>
+                            <h1><?= t("header_schedules") ?></h1>
                             <hr>
                             <div class="div-labels">
-                                <label for="hora_inicio" class="label">Hora de Inicio:</label>
+                                <label for="hora_inicio" class="label"><?= t("label_start_time") ?></label>
                                 <input class="input-register" type="time" name="hora_inicio" id="horaInicioHorario"
-                                    maxlength="20" minlength="8" required placeholder="Ingresa nombre">
+                                    maxlength="20" minlength="8" required placeholder="<?= t("placeholder_start_time") ?>">
                             </div>
                             <div class="div-labels">
-                                <label for="hora_final" class="label">Hora de Salida:</label>
+                                <label for="hora_final" class="label"><?= t("label_end_time") ?></label>
                                 <input class="input-register" type="time" name="hora_final" id="horaFinalHorario"
-                                    maxlength="20" minlength="8" required placeholder="Ingresa nombre">
+                                    maxlength="20" minlength="8" required placeholder="<?= t("placeholder_end_time") ?>">
                             </div>
                             <div class="div-botones-register">
                                 <input class="btn-enviar-registro" type="submit" value="Registrar"
@@ -470,11 +470,11 @@ session_start();
                                 alt=""></button>
                         <form class="registro-div dependencias-form"
                             action="../backend/functions/dependencias/dependencias_api.php" method="POST">
-                            <h1>Registro de Dependencias</h1>
+                            <h1><?= t("header_dependencies") ?></h1>
                             <hr>
 
                             <div class="div-labels">
-                                <label for="profesor_asignado" class="label">Profesor:</label>
+                                <label for="profesor_asignado" class="label"><?= t("label_teacher") ?></label>
                                 <select name="profesor_asignado" id="profesor_asignado" type="text" class="input-register">
                                     <option value=""></option>
                                     <?php while ($row = mysqli_fetch_array($profesores_info)): ?>
@@ -487,7 +487,7 @@ session_start();
                             </div>
 
                             <div class="div-labels">
-                                <label for="asignatura_dada" class="label">Asignatura a dictar:</label>
+                                <label for="asignatura_dada" class="label"><?= t("label_subject_taught") ?></label>
                                 <select name="asignatura_dada" id="asignatura_dada" type="text" class="input-register">
                                     <option value=""></option>
                                     <?php while ($row = mysqli_fetch_array($asignaturas_info)): ?>
@@ -499,20 +499,20 @@ session_start();
                             </div>
 
                             <div class="div-labels">
-                                <label for="dia" class="label">En el dia:</label>
+                                <label for="dia" class="label"><?= t("label_day") ?></label>
                                 <select class="input-register" type="text" name="dia_dictado" id="dia_dictado" required
-                                    placeholder="Ingrese el dia">
+                                    placeholder="<?= t("placeholder_day") ?>">
                                     <option value=""></option>
-                                    <option value="lunes">Lunes</option>
-                                    <option value="martes">Martes</option>
-                                    <option value="miercoles">Mierccoles</option>
-                                    <option value="jueves">Jueves</option>
-                                    <option value="viernes">Viernes</option>
+                                    <option value="lunes"><?= t("option_monday") ?></option>
+                                    <option value="martes"><?= t("option_tuesday") ?></option>
+                                    <option value="miercoles"><?= t("option_wednesday") ?></option>
+                                    <option value="jueves"><?= t("option_thursday") ?></option>
+                                    <option value="viernes"><?= t("option_friday") ?></option>
                                 </select>
                             </div>        
 
                             <div class="div-labels">
-                                <label for="capacity" class="label">Horas que dicta:</label>
+                                <label for="capacity" class="label"><?= t("label_hours_taught") ?></label>
                                 <input class="input-register" type="number" id="crear_campos"
                                     maxlength="3" minlength="1" required>
                             </div>
@@ -520,7 +520,7 @@ session_start();
                             <div id="campos-dinamicos"></div>
 
                             <div class="div-labels">
-                                <label for="salon_ocupado" class="label">Salon que ocupa:</label>
+                                <label for="salon_ocupado" class="label"><?= t("label_room_used") ?></label>
                                 <select name="salon_ocupado" id="salon_a_ocupar" type="text" class="input-register" required>
                                     <option value=""></option>
                                     <?php
@@ -534,7 +534,7 @@ session_start();
                             </div>
 
                             <div class="div-labels">
-                                <label for="curso_dictado" class="label">Curso al que se dicta:</label>
+                                <label for="curso_dictado" class="label"><?= t("label_course_taught") ?></label>
                                 <select name="curso_dictado" id="curso_dictado" type="text" class="input-register">
                                     <option value=""></option>
                                     <?php while ($row = mysqli_fetch_array($cursos_info)): ?>
@@ -558,12 +558,12 @@ session_start();
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
                                 alt=""></button>
                         <form class="registro-div orientacion-form">
-                            <h1>Registro de Orientaciones</h1>
+                            <h1><?= t("header_orientations") ?></h1>
                             <hr>
                             <div class="div-labels">
-                                <label for="name" class="label">Nombre:</label>
+                                <label for="name" class="label"><?= t("label_name") ?></label>
                                 <input class="input-register" type="text" name="nombreOrientacion" id="nombreOrientacion"
-                                    maxlength="20" minlength="3" required placeholder="Ingresa nombre">
+                                    maxlength="20" minlength="3" required placeholder="<?= t("placeholder_name") ?>">
                             </div>
                             <div class="div-botones-register">
                                 <input class="btn-enviar-registro" type="submit" value="Registrar orientacion"
@@ -579,7 +579,7 @@ session_start();
         <!--    Cierre de Ventanas Emergentes    -->
 
         <footer id="footer" class="footer">
-            <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
+            <p> &copy; <b><?= t("footer") ?></b></p>
         </footer>
     <?php endif; ?>
 
