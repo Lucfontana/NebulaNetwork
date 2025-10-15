@@ -396,5 +396,3 @@ else {
         }
     </script>
     </body>
-
-</html>

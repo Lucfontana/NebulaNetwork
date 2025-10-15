@@ -253,5 +253,3 @@ $prestamos_info2 = $stmt->get_result();
     <!-- Sweet alerts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>
-
-</html>

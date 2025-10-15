@@ -98,5 +98,3 @@ session_start();
     <script type="module" src="/frontend/js/confirm-orientacion.js"></script>
     <script type="module" src="/frontend/js/prueba.js"></script>
     </body>
-
-</html>

@@ -131,5 +131,3 @@ session_start();
     <script type="module" src="/frontend/js/confirm-superusuario.js"></script>
     <script type="module" src="/frontend/js/prueba.js"></script>
 </body>
-
-</html>

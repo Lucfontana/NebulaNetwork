@@ -74,5 +74,3 @@ session_start();
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
     <script src="/frontend/js/changeName.js"></script>
 </body>
-
-</html>
