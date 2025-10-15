@@ -189,6 +189,7 @@ else {
                     </div>
                 </div>
                 <?php if (isset($_GET['curso_id'])): ?>
+                    <?php mysqli_data_seek($query, 0); // Reset del puntero ?>
                     <div class="datos-body"> <?php while ($row = mysqli_fetch_array($query)): ?>
                             <div class="datos-row mostrar-datos">
                                 <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
@@ -211,6 +212,7 @@ else {
                             </div> <?php endwhile; ?>
                     </div>
                 <?php elseif (isset($_GET['espacio_id'])): ?>
+                    <?php mysqli_data_seek($query, 0); // Reset del puntero ?>
                     <div class="datos-body"> <?php while ($row = mysqli_fetch_array($query)): ?>
                             <div class="datos-row mostrar-datos">
                                 <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>

@@ -24,6 +24,11 @@ function borrar_horarios($con){
         $stmt = $con->prepare($consulta);
         $stmt->execute();
 
+        //Se tiene que eliminar todo lo relacionado a "dicta" tambien
+        $eliminar_dicta = "DELETE FROM profesor_dicta_asignatura";
+        $stmt2 = $con->prepare($eliminar_dicta);
+        $stmt2->execute();
+
         $respuesta_json['estado'] = '1';
         $respuesta_json['mensaje'] = 'Horarios eliminados exitosamente';    
 
