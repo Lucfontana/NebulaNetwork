@@ -61,7 +61,7 @@ session_start();
                     <h2>¿Estás seguro?</h2>
                     <p>Esta acción eliminará el registro de forma permanente.</p>
                     <div class="botones_confirmar">
-                        <button class="btn btn-confirmar" id="confirmar" href="backend/functions/Orientaciones/delete.php?id=<?= $row['id_asignatura'] ?>">Eliminar</button>
+                        <button class="btn btn-confirmar" id="confirmar" href="backend/functions/orientacion/delete.php?id=<?= $row['id_asignatura'] ?>">Eliminar</button>
                         <button class="btn btn-cancelar" id="cancelar">Cancelar</button>
                     </div>
                 </div>
