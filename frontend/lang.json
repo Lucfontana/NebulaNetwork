@@ -1,6 +1,5 @@
 {
   "es": {
-    //INDEX//
     "welcome": "¡Bienvenidos!",
     "welcome_user": "¡Te damos la bienvenida, {user}!",
     "description": "Esta es la herramienta de gestión de institutos, donde podrás administrar la solicitud de recursos al igual que administrar horarios de profesores.",
@@ -9,11 +8,9 @@
     "btn_teachers": "Horarios",
 
 
-    //FOOTER//
     "footer": "2025 ITSP. Todos los derechos reservados",
 
 
-    //NAVBAR//
     "nav_info": "Manual de Usuarios",
     "nav_courses": "Sobre Nosotros",
     
@@ -27,7 +24,6 @@
     "aside_lang": "Cambiar idioma",
 
 
-    //REGISTRO//
     "title": "Registro",
 
     "header_teachers": "Registro de <span>Profesores</span>",
@@ -105,18 +101,15 @@
     "placeholder_hours": "Ingresa cantidad de horas",
     "placeholder_course": "Selecciona un curso",
 
-    //ERROR//
     "error_not_logged_in": "No tienes permiso para acceder a esta página, necesitas iniciar sesión.",
     "error_insufficient_access": "No tienes el rango suficiente para acceder a esta página, debes ser un Superusuario.",
     "btn_login": "Iniciar sesión",
     "btn_home": "Volver al inicio",  
 
-
-    ///PRESTAR RECURSOS//
      "title_lend_resources": "Prestar recursos",
      "label_teacherlend": "Profesor a prestar:",
      "label_resource": "Recurso a prestar:",
-     //boton registrer//
+
      "table_header_person": "Persona que Pidió",
      "table_header_resource": "Recurso Prestado",
      "table_header_admin": "Administrador que Prestó",
@@ -129,12 +122,11 @@
      "status_not_returned": "Sin devolver",
 
      "msg_no_loans": "No hay préstamos registrados",
-     "msg_no_user_loans": "No tienes préstamos registrados",
-
+     "msg_no_user_loans": "No tienes préstamos registrados"
 
   },
   "en": {
-    //INDEX//
+
     "welcome": "Welcome!",
     "welcome_user": "Welcome, {user}!",
     "description": "This the institute management tool, where you can manage resource requests as well as teacher schedules.",
@@ -143,11 +135,9 @@
     "btn_teachers": "Schedules",
 
 
-    //FOOTER//
     "footer": "2025 ITSP. All rights reserved",
 
     
-    //NAVBAR//
     "nav_info": "User Manual",
     "nav_courses": "About Us",
 
@@ -158,7 +148,6 @@
     "aside_lang": "Change language",
 
 
-    //REGISTER//
     "title": "Register",
     "header_teachers": "<span>Teacher</span> Registration",
     "header_superusers": "<span>Superuser</span> Registration",
@@ -236,18 +225,16 @@
     "placeholder_course": "Select a course",
     
     
-    //ERROR//
     "error_not_logged_in": "You do not have permission to access this page, you need to log in.",
     "error_insufficient_access": "You do not have sufficient access to view this page, you must be a Superuser.",
     "btn_login": "Log in",
     "btn_home": "Back to home",
 
 
-    //LEND RESOURCES//
     "title_lend_resources": "Lend Resources",
     "label_teacherlend": "Teacher to lend:",
     "label_resource": "Resource to lend:",
-    //BOTON REGITRER
+
     "table_header_person": "Requester",
     "table_header_resource": "Resource",
     "table_header_admin": "Admin",
@@ -260,7 +247,7 @@
     "status_not_returned": "Not returned",
 
     "msg_no_loans": "No loans registered",
-    "msg_no_user_loans": "You have no registered loans",
+    "msg_no_user_loans": "You have no registered loans"
 
   }
 }
