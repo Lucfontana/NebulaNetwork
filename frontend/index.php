@@ -25,9 +25,9 @@ session_start();
 
     <!-- Botones debajo -->
     <div class="bienvenida-botones">
-        <a href="register.php"><button class="btn-bienvenida"><?= t("btn_info") ?></button></a>
-        <a href="respaldo_temp.php"><button class="btn-bienvenida"><?= t("btn_resources") ?></button></a>
-        <a href="Horarios.php"><button class="btn-bienvenida"><?= t("btn_teachers") ?></button></a>
+        <a href="register.php"><button class="btn-bienvenida" id ="btn-bienvenida"><?= t("btn_info") ?></button></a>
+        <a href="respaldo_temp.php"><button class="btn-bienvenida" id ="btn-bienvenida"><?= t("btn_resources") ?></button></a>
+        <a href="Horarios.php"><button class="btn-bienvenida" id ="btn-bienvenida"><?= t("btn_teachers") ?></button></a>
     </div>
  </div>
 
@@ -38,6 +38,8 @@ session_start();
        <p> &copy; <b> <?= t("footer") ?> </b></p>
 
     </footer>
+
+    <script src="js/darkmode.js"></script>
 
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
 
