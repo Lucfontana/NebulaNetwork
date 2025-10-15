@@ -958,6 +958,11 @@ hr {
     border: 1px solid #ecf0f1;
 }
 
+.dia-dato-recreo{
+    min-height: 30px;
+    border: 1px solid #ecf0f1; 
+}
+
 .filtros {
     display: flex;
     align-items: center;

@@ -68,15 +68,6 @@ include_once 'functions.php';
             <a href="./Horarios.php">
                 <li data-tooltip="<?= t("aside_schedule") ?>"><img src="img/Iconos sidebar/calendario.png" alt="Calendario"></li>
             </a>
-            <a href="">
-                <li data-tooltip="<?= t("aside_gallery") ?>"><img src="img/Iconos sidebar/galeria.png" alt="Galería"></li>
-            </a>
-            <a href="">
-                <li data-tooltip="<?= t("aside_events") ?>"><img src="img/Iconos sidebar/Eventos.png" alt="Eventos"></li>
-            </a>
-            <a href="">
-                <li data-tooltip="<?= t("aside_notifications") ?>"><img src="img/Iconos sidebar/notificacion.png" alt="Notificaciones"></li>
-            </a>
 
             <!-- Botón de idioma (solo visible en móvil) -->
             <li class="lang-icon" style="display:none;" data-tooltip="<?= t("aside_lang") ?>">

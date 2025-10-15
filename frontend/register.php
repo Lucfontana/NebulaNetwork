@@ -312,9 +312,11 @@ session_start();
                                 <select name="pertenece" id="pertenece_a_espacio" type="text" class="input-register">
                                     <option value=""></option>
 
-
                                     <!-- ARREGLAR!! SI SE SELECCIONA GENERAL NO FUNCIONA!! -->
                                     <option value="general"><?= t("option_general") ?></option>
+
+                                    <!-- ARREGLAR!! SI SE SELECCIONA GENERAL NO FUNCIONA!! -->
+
                                     <?php while ($row = mysqli_fetch_array($result)): ?>
                                         <option value="<?= $row['id_espacio'] ?>">
                                             <?= $row['nombre'] ?>
