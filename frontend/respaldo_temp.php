@@ -86,7 +86,7 @@ $prestamos_info2 = $stmt->get_result();
             <div id="register-content">
                 <div class="article-register">
                     <div>
-                        <h1> Prestar recursos</h1>
+                        <h1><?= t("table_header_person") ?></h1>
                     </div>
                     <button type="button" id="Adscriptas-boton" class="btn btn-primary" data-toggle="modal"
                         data-target="#exampleModal">
@@ -106,11 +106,11 @@ $prestamos_info2 = $stmt->get_result();
                     <div class="dialogs">
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
                         <form id="form-registro" class="registro-div prestar-form">
-                            <h1>Prestar Recursos</h1>
+                            <h1><?= t("table_header_person") ?></h1>
                             <hr>
 
                             <div class="div-labels">
-                                <label for="profesor_asignado" class="label">Profesor a prestar:</label>
+                                <label for="profesor_asignado" class="label"><?= t("label_teacherlend") ?></label>
                                 <select name="profesor_asignado" id="profesor_asignado" type="text" class="input-register" required>
                                     <option value=""></option>
                                     <?php while ($row = mysqli_fetch_array($profesores_info)): ?>
@@ -120,7 +120,7 @@ $prestamos_info2 = $stmt->get_result();
                             </div>
 
                             <div class="div-labels">
-                                <label for="recurso_prestado" class="label">Recurso a prestar:</label>
+                                <label for="recurso_prestado" class="label"><?= t("label_resource") ?></label>
                                 <select name="recurso_prestado" id="recurso_prestado" type="text" class="input-register" required>
                                     <option value=""></option>
                                     <?php while ($row = mysqli_fetch_array($recursos_info)): ?>
@@ -139,18 +139,18 @@ $prestamos_info2 = $stmt->get_result();
         <main>
 
             <div id="contenido-mostrar-datos">
-                <h1>Préstamos de Recursos</h1>
+                <h1><?= t("title_lend_resources") ?></h1>
 
                 <div class="datos-grid prestamos-grid">
                     <!-- Cabecera -->
                     <div class="grid-header prestamos-header">
                         <div class="grid-cell id">ID</div>
-                        <div class="grid-cell nombre-titulo">Persona que Pidió</div>
-                        <div class="grid-cell nombre-titulo">Recurso Prestado</div>
-                        <div class="grid-cell nombre-titulo">Administrador que Prestó</div>
-                        <div class="grid-cell nombre-titulo">Hora Prestado</div>
-                        <div class="grid-cell titulo-ult">Hora Devolución</div>
-                        <div class="grid-cell boton-titulo">Estado</div>
+                        <div class="grid-cell nombre-titulo"><?= t("table_header_person") ?></div>
+                        <div class="grid-cell nombre-titulo"><?= t("table_header_resource") ?></div>
+                        <div class="grid-cell nombre-titulo"><?= t("table_header_admin") ?></div>
+                        <div class="grid-cell nombre-titulo"><?= t("table_header_start_time") ?></div>
+                        <div class="grid-cell titulo-ult"><?= t("table_header_end_time") ?></div>
+                        <div class="grid-cell boton-titulo"><?= t("table_header_status") ?></div>
                     </div>
 
                     <!-- Filas de datos -->

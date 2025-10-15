@@ -280,8 +280,6 @@ else {
                             </div> <?php endwhile; ?>
                     </div>
                 <?php elseif (isset($_GET['espacio_id'])): ?>
-                    <?php mysqli_data_seek($query, 0); // Reset del puntero 
-                    ?>
                     <div class="datos-body"> <?php while ($row = mysqli_fetch_array($query)): ?>
                             <div class="datos-row mostrar-datos">
                                 <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
@@ -314,10 +312,45 @@ else {
 
         <!-- VISTA DEL PROFESOR -->
     <?php else: ?>
-        <body>
+
+        <body id="body-register">
+            <?php include 'nav.php'; ?>
+
             <main>
                 <div id="contenido-mostrar-datos">
                     <h1>Mis horarios</h1>
+
+                    <button type="button" id="Profesores-boton" class="btn" data-toggle="modal" data-target="#exampleModal">
+                        Registrar inasistencia
+                    </button>
+
+
+                    <div id="div-dialogs">
+                        <div class="overlay">
+                            <div class="dialogs" id="dialogs">
+                                <button class="btn-Cerrar" type="button"><img class="cruz-register"
+                                        src="/frontend/img/cruz.png" alt=""></button>
+                                <form class="registro-div inasistencia-form">
+                                    <h1>Registrar inasistencia</h1>
+                                    <hr>
+                                    <div class="div-labels">
+                                        <label for="dia" class="label">En el dia:</label>
+                                        <select class="input-register" type="text" name="dia_falta" id="dia_falta"
+                                            required placeholder="Ingrese el dia">
+                                            <option value=""></option>
+                                            <option value="lunes">Lunes</option>
+                                            <option value="martes">Martes</option>
+                                            <option value="miercoles">Miercoles</option>
+                                            <option value="jueves">Jueves</option>
+                                            <option value="viernes">Viernes</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="datos-header">
                         <div class="datos-row">
                             <div class="horas-titulo">Horas</div>
@@ -361,11 +394,10 @@ else {
             </main>
         </body>
     <?php endif; ?> <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
-    <script type="module" src="/frontend/js/confirm-espacios.js"></script>
     <script type="module" src="/frontend/js/prueba.js"></script>
-    <script src="/backend/functions/Horarios/select-horarios.js"></script>
     <script src="./js/horarios-lunes.js"></script>
-
+    <script src="js/Register-Modal.js"></script>
+    <script type='module' src="../backend/functions/Profesores/inasistencia/marcar_inasistencia.js"></script>
     <script>
         // Función que se ejecuta cuando el usuario selecciona un curso
         // Recibe como parámetro el identificador del curso (idCurso)

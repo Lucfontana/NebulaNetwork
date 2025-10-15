@@ -1,13 +1,19 @@
 {
   "es": {
+    //INDEX//
     "welcome": "¡Bienvenidos!",
-    "welcome_user": "¡Bienvenido, {user}!",
-    "description": "Bienvenido a la herramienta de gestión de institutos, donde podrás administrar la solicitud de recursos al igual que administrar horarios de profesores.",
+    "welcome_user": "¡Te damos la bienvenida, {user}!",
+    "description": "Esta es la herramienta de gestión de institutos, donde podrás administrar la solicitud de recursos al igual que administrar horarios de profesores.",
     "btn_info": "Ingresar información",
     "btn_resources": "Recursos",
     "btn_teachers": "Horarios",
+
+
+    //FOOTER//
     "footer": "2025 ITSP. Todos los derechos reservados",
 
+
+    //NAVBAR//
     "nav_info": "Manual de Usuarios",
     "nav_courses": "Sobre Nosotros",
     
@@ -20,6 +26,8 @@
     "aside_darkmode": "Modo oscuro",
     "aside_lang": "Cambiar idioma",
 
+
+    //REGISTRO//
     "title": "Registro",
 
     "header_teachers": "Registro de <span>Profesores</span>",
@@ -31,7 +39,6 @@
     "header_schedules": "Registro de <span>Horarios</span>",
     "header_dependencies": "Registro de <span>Dependencias</span>",
     "header_orientations": "Registro de <span>Orientaciones</span>",
-
 
     "btn_open_register": "Abrir Registro",
     "btn_register": "Registrar",
@@ -78,26 +85,80 @@
     "option_friday": "Viernes",
     "option_access_1": "1 - Adscripta",
     "option_access_2": "2 - Secretaría",
-    "option_access_3": "3 - Administrador"
+    "option_access_3": "3 - Administrador",
+
+    "placeholder_ci": "Ingresa sin puntos ni guiones",
+    "placeholder_password": "Ingrese contraseña",
+    "placeholder_name": "Ingresa nombre",
+    "placeholder_lastname": "Ingresa apellido",
+    "placeholder_email": "Ingresa email",
+    "placeholder_address": "Ingresa dirección",
+    "placeholder_capacity": "Ingresa capacidad",
+    "placeholder_start_time": "Hora de inicio",
+    "placeholder_end_time": "Hora de finalización",
+    "placeholder_orientation": "Selecciona una orientación",
+    "placeholder_select": "Selecciona una opción",
+    "placeholder_room": "Selecciona un salón",
+    "placeholder_general": "General",
+    "placeholder_type": "Selecciona un tipo",
+    "placeholder_day": "Selecciona un día",
+    "placeholder_hours": "Ingresa cantidad de horas",
+    "placeholder_course": "Selecciona un curso",
+
+    //ERROR//
+    "error_not_logged_in": "No tienes permiso para acceder a esta página, necesitas iniciar sesión.",
+    "error_insufficient_access": "No tienes el rango suficiente para acceder a esta página, debes ser un Superusuario.",
+    "btn_login": "Iniciar sesión",
+    "btn_home": "Volver al inicio",  
+
+
+    ///PRESTAR RECURSOS//
+     "title_lend_resources": "Prestar recursos",
+     "label_teacherlend": "Profesor a prestar:",
+     "label_resource": "Recurso a prestar:",
+     //boton registrer//
+     "table_header_person": "Persona que Pidió",
+     "table_header_resource": "Recurso Prestado",
+     "table_header_admin": "Administrador que Prestó",
+     "table_header_start_time": "Hora Prestado",
+     "table_header_end_time": "Hora Devolución",
+
+     "table_header_status": "Estado",
+     "status_returned": "Devuelto",
+     "status_pending": "Pendiente",
+     "status_not_returned": "Sin devolver",
+
+     "msg_no_loans": "No hay préstamos registrados",
+     "msg_no_user_loans": "No tienes préstamos registrados",
+
+
   },
   "en": {
+    //INDEX//
     "welcome": "Welcome!",
     "welcome_user": "Welcome, {user}!",
-    "description": "Welcome to the institute management tool, where you can manage resource requests as well as teacher schedules.",
+    "description": "This the institute management tool, where you can manage resource requests as well as teacher schedules.",
     "btn_info": "Enter Information",
     "btn_resources": "Resources",
     "btn_teachers": "Schedules",
+
+
+    //FOOTER//
     "footer": "2025 ITSP. All rights reserved",
+
     
+    //NAVBAR//
     "nav_info": "User Manual",
     "nav_courses": "About Us",
-    
+
     "aside_account": "My account",
     "aside_schedule": "Schedule",
     "aside_logout": "Log-out",
     "aside_darkmode": "Dark mode",
     "aside_lang": "Change language",
 
+
+    //REGISTER//
     "title": "Register",
     "header_teachers": "<span>Teacher</span> Registration",
     "header_superusers": "<span>Superuser</span> Registration",
@@ -121,11 +182,9 @@
     "label_email": "Email:",
     "label_birth": "Date of Birth:",
     "label_address": "Address:",
-
     "label_capacity": "Capacity:",
     "label_type": "Type:",
     "label_state": "Status:",
-    
     "label_belongs_to": "Belongs to:",
     "label_access_level": "Access Level:",
     "label_orientation": "Orientation:",
@@ -140,15 +199,13 @@
 
     "option_empty": "",
     "option_general": "General",
-
     "option_use": "In Use",
     "option_free": "Free",
     "option_broken": "Broken",
-
     "option_internal": "Internal",
     "option_external": "External",
-    "option_aula": "Classroom",
-    "option_salon": "Hall",
+    "option_aula": "Computer lab",
+    "option_salon": "Classroom",
     "option_lab": "Laboratory",
     "option_sum": "Multipurpose Room",
     "option_monday": "Monday",
@@ -158,6 +215,52 @@
     "option_friday": "Friday",
     "option_access_1": "1 - Assistant",
     "option_access_2": "2 - Secretary",
-    "option_access_3": "3 - Administrator"
+    "option_access_3": "3 - Administrator",
+
+    "placeholder_ci": "Enter without dots or dashes",
+    "placeholder_password": "Enter password",
+    "placeholder_name": "Enter name",
+    "placeholder_lastname": "Enter last name",
+    "placeholder_email": "Enter email",
+    "placeholder_address": "Enter address",
+    "placeholder_capacity": "Enter capacity",
+    "placeholder_start_time": "Start time",
+    "placeholder_end_time": "End time",
+    "placeholder_orientation": "Select an orientation",
+    "placeholder_select": "Select an option",
+    "placeholder_room": "Select a room",
+    "placeholder_general": "General",
+    "placeholder_type": "Select a type",
+    "placeholder_day": "Select a day",
+    "placeholder_hours": "Enter number of hours",
+    "placeholder_course": "Select a course",
+    
+    
+    //ERROR//
+    "error_not_logged_in": "You do not have permission to access this page, you need to log in.",
+    "error_insufficient_access": "You do not have sufficient access to view this page, you must be a Superuser.",
+    "btn_login": "Log in",
+    "btn_home": "Back to home",
+
+
+    //LEND RESOURCES//
+    "title_lend_resources": "Lend Resources",
+    "label_teacherlend": "Teacher to lend:",
+    "label_resource": "Resource to lend:",
+    //BOTON REGITRER
+    "table_header_person": "Requester",
+    "table_header_resource": "Resource",
+    "table_header_admin": "Admin",
+    "table_header_start_time": "Lent At",
+    "table_header_end_time": "Returned At",
+    "table_header_status": "Status",
+
+    "status_returned": "Returned",
+    "status_pending": "Pending",
+    "status_not_returned": "Not returned",
+
+    "msg_no_loans": "No loans registered",
+    "msg_no_user_loans": "You have no registered loans",
+
   }
 }

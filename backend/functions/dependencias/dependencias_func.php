@@ -225,14 +225,15 @@ if (!$error) {
     
     //  PASO 5: Insertar los horarios en tabla cumple (m estoy cansando de comentar)
     $horarios_insertados = 0;
+    $asistencia = 1;
 
     if (!$error) {
-        $query_insert_cumple = "INSERT INTO cumple (id_horario, id_dicta, dia) VALUES (?, ?, ?)";
+        $query_insert_cumple = "INSERT INTO cumple (id_horario, id_dicta, dia, asistencia) VALUES (?, ?, ?, ?)";
         $stmt_cumple = $con->prepare($query_insert_cumple);
         
         //Para cada uno de los horarios que hay, se van metiendo registros en la BD
         foreach ($horarios as $id_horario) {
-            $stmt_cumple->bind_param("iis", $id_horario, $id_dicta, $dia_dictado);
+            $stmt_cumple->bind_param("iisi", $id_horario, $id_dicta, $dia_dictado, $asistencia);
             
             if ($stmt_cumple->execute()) {
                 $horarios_insertados++;
