@@ -186,8 +186,11 @@ session_start();
                             </div>
                             <div class="div-labels">
                                 <label for="contrasena" class="label"><?= t("label_password") ?></label>
+                                <div class="contenedor-password-register">
                                 <input class="input-register" type="password" name="contrasena" id="contrasenaProfesor"
                                     maxlength="8" pattern="\d{8}" required placeholder="Ingrese Contraseña">
+                                <i class="far fa-eye fa-eye-slash togglePassword"></i>
+                                </div>
                             </div>
                             <div class="div-labels">
                                 <label for="name" class="label"><?= t("label_name") ?></label>
@@ -244,8 +247,11 @@ session_start();
                             </div>
                             <div class="div-labels">
                                 <label for="contrasena" class="label"><?= t("label_password") ?></label>
+                            <div class="contenedor-password-register">
                                 <input class="input-register" type="password" name="password" id="contrasenaSuperusuario"
                                     maxlength="8" pattern="\d{8}" required placeholder="Ingrese Contraseña">
+                                <i class="far fa-eye fa-eye-slash togglePassword"></i>
+                            </div>
                             </div>
                             <div class="div-labels">
                                 <label for="name" class="label"><?= t("label_name") ?></label>
@@ -594,4 +600,5 @@ session_start();
     <!-- Sweet alerts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/frontend/js/Register-Modal.js"></script>
+    <script src="./js/togglepasswd.js"></script>
 </body>

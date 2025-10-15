@@ -50,15 +50,17 @@ session_start();
                 <form action="/backend/functions/edit-paswd-user.php" method="POST" id="comprobarcontraseña">
                     <div class="input-group">
                         <label for="passwd">Ingresa tu contraseña actual</label>
-                        <div>
+                        <div class="contenedor-password">
                             <input type="password" name="passwd" id="passwd" maxlength="20" minlength="8" required placeholder="Ingresa su contraseña actual">
+                            <i class="far fa-eye fa-eye-slash togglePassword"></i>
                         </div>
                     </div>
 
                     <div class="input-group">
                         <label for="newpasswd">Ingresa tu nueva contraseña</label>
-                        <div>
+                        <div class="contenedor-password">
                             <input type="password" name="newpasswd" id="newpasswd" maxlength="20" minlength="8" required placeholder="Ingresa su nueva contraseña">
+                            <i class="far fa-eye fa-eye-slash togglePassword"></i>
                         </div>
                     </div>
                     <div class="buttons-modal">
@@ -73,4 +75,5 @@ session_start();
 
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
     <script src="/frontend/js/changeName.js"></script>
+    <script src="./js/togglepasswd.js"></script>
 </body>

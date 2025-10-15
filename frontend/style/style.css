@@ -425,6 +425,24 @@ aside>ul {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.contenedor-password {
+    display: flex;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.togglePassword {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    cursor: pointer;
+}
+
+
 .flecha-volver {
     position: absolute;
     top: 10px;
@@ -470,6 +488,7 @@ aside>ul {
     margin-top: 20px;
     border-radius: 10px;
     padding: 15px;
+    width: 100%;
     font-size: 18px;
     background-color: #969be4;
     border-style: none;
@@ -641,6 +660,23 @@ aside>ul {
     color: white;
 }
 
+.contenedor-password-register {
+    display: flex;
+    position: relative;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-password-register > input {
+    width: 100%;
+}
+
+.contenedor-password-register > i {
+    color: white;
+}
+
+
 /* Primer grupo (elementos 1, 2 y 3) */
 .article-register:nth-child(-n + 3) {
   --color:  #da9768;
@@ -742,14 +778,28 @@ hr {
 
 .input-register {
     color: white;
-    margin-top: 10px;
+    margin-top: 20px;
     border-radius: 15px;
     width: 60%;
     padding: 15px;
-    font-size: 20px;
+    font-size: 18px;
     background-color: #3b3b3b;
     border-style: none;
 }
+
+
+
+.input-form {
+    color: aliceblue;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+    font-size: 18px;
+    background-color: #969be4;
+    border-style: none;
+}
+
 
 .input-register:focus {
     outline: none;
@@ -1140,6 +1190,10 @@ hr {
     margin-right: 6px;
     font-size: 0.9em;
     color: #003366;
+}
+
+.input-group > .contenedor-password > .togglePassword {
+    top: 15px;
 }
 
 .input-group>div>input,

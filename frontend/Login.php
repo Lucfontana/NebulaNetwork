@@ -6,6 +6,7 @@
     <title>Log-in</title>
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
@@ -16,9 +17,11 @@
             <label for="CI" class="label">Cedula de Identidad:</label>
                 <input class="input-form" type="text"  name="CI" id="CI" maxlength="8" minlength="8" pattern="\d{8}" required placeholder="Ingresa sin puntos ni guiones">
             <label for="CI" class="label">Contraseña:</label>
+                <div class="contenedor-password">
                 <input class="input-form" type="password" name="contrasena" id="contrasena" maxlength="20" minlength="8" required placeholder="Ingrese Contraseña">
-            
-        <div id="botones-login">
+                <i class="far fa-eye fa-eye-slash togglePassword"></i>
+                </div>
+            <div id="botones-login">
             <button type="submit" name="loginUsuario" class="btn-login">Iniciar Sesión</button>
         </div>
 
@@ -54,5 +57,6 @@
 
      <!-- Sweet alerts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/togglepasswd.js"></script>
 </body>
 </html>
