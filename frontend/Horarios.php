@@ -2,13 +2,9 @@
 //seleccionamos los horarios para desplegarlos en forma ascendente
 $connect = conectar_a_bd();
 $sql = "SELECT * FROM horarios WHERE tipo = 'clase'";
-<<<<<<< Updated upstream
 $stmt = $con->prepare($sql);
 $stmt->execute();
 $query = $stmt->get_result();
-=======
-$query = mysqli_query($connect, $sql);
->>>>>>> Stashed changes
 //seleccionamos los cursos para el select
 $sql2 = "SELECT * FROM cursos";
 $stmt = $con->prepare($sql2);
@@ -284,11 +280,6 @@ else {
                             </div> <?php endwhile; ?>
                     </div>
                 <?php elseif (isset($_GET['espacio_id'])): ?>
-<<<<<<< Updated upstream
-                    <?php mysqli_data_seek($query, 0); // Reset del puntero 
-                    ?>
-=======
->>>>>>> Stashed changes
                     <div class="datos-body"> <?php while ($row = mysqli_fetch_array($query)): ?>
                             <div class="datos-row mostrar-datos">
                                 <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
@@ -321,14 +312,10 @@ else {
 
         <!-- VISTA DEL PROFESOR -->
     <?php else: ?>
-<<<<<<< Updated upstream
-        <body>
-=======
 
         <body id="body-register">
             <?php include 'nav.php'; ?>
 
->>>>>>> Stashed changes
             <main>
                 <div id="contenido-mostrar-datos">
                     <h1>Mis horarios</h1>
