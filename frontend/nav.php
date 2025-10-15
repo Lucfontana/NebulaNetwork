@@ -12,7 +12,6 @@ include_once 'functions.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
@@ -91,7 +90,7 @@ include_once 'functions.php';
 </li>
 
 <!-- Botón de modo oscuro -->
-<li class="darkmode-icon" data-tooltip="<?= t("aside_darkmode") ?>">
+<li id="darkmode-icon" data-tooltip="<?= t("aside_darkmode") ?>">
     <a href="#modo-oscuro">
         <img src="img/Iconos sidebar/moon.png" alt="Modo Oscuro">
     </a>
@@ -114,6 +113,7 @@ include_once 'functions.php';
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
     <script src="js/confirm-logout.js"></script>
+    <!-- <script src="js/darkmode.js"></script> -->
 
     <!-- Sweet alerts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

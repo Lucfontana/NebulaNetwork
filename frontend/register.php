@@ -9,6 +9,12 @@ $stmt = $con->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();
 
+// Query espacios sin el espacio general
+$sql = "SELECT * FROM espacios_fisicos WHERE nombre != 'general'";
+$stmt = $con->prepare($sql);
+$stmt->execute();
+$espacios_sin_general = $stmt->get_result();
+
 ////////////////////////////////
 //Query de profesores
 $query_profesores = "SELECT * FROM profesores";
@@ -49,9 +55,6 @@ session_start();
 
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -524,8 +527,8 @@ session_start();
                                 <select name="salon_ocupado" id="salon_a_ocupar" type="text" class="input-register" required>
                                     <option value=""></option>
                                     <?php
-                                    mysqli_data_seek($result, 0); //Reinicia el while para que empiece de cero otra vez (el anterior while que utilizo los recursos lo dejo en el final)
-                                    while ($row = mysqli_fetch_array($result)): ?>
+                                    mysqli_data_seek($espacios_sin_general, 0); //Reinicia el while para que empiece de cero otra vez (el anterior while que utilizo los recursos lo dejo en el final)
+                                    while ($row = mysqli_fetch_array($espacios_sin_general)): ?>
                                         <option value="<?= $row['id_espacio'] ?>">
                                             <?= $row['nombre'] ?>
                                         </option>
@@ -592,5 +595,3 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/frontend/js/Register-Modal.js"></script>
 </body>
-
-</html>

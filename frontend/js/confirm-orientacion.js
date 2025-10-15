@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Confirmar: redirigir a tu PHP de borrado
   btnConfirmar.addEventListener("click", () => {
     if (currentId) {
-      window.location.href = `/backend/functions/Orientaciones/delete.php?id=${currentId}`;
+      window.location.href = `/backend/functions/orientacion/delete.php?id=${currentId}`;
     }
   });
 
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const fd = new FormData(form);
   
       try {
-        const res = await fetch("/backend/functions/Orientaciones/edit.php", {
+        const res = await fetch("/backend/functions/orientacion/edit.php", {
           method: "POST",
           body: fd,
           credentials: "same-origin"
