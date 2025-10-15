@@ -91,7 +91,7 @@ include_once 'functions.php';
 </li>
 
 <!-- Botón de modo oscuro -->
-<li class="darkmode-icon" data-tooltip="<?= t("aside_darkmode") ?>">
+<li id="darkmode-icon" data-tooltip="<?= t("aside_darkmode") ?>">
     <a href="#modo-oscuro">
         <img src="img/Iconos sidebar/moon.png" alt="Modo Oscuro">
     </a>
@@ -114,6 +114,7 @@ include_once 'functions.php';
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
     <script src="js/confirm-logout.js"></script>
+    <!-- <script src="js/darkmode.js"></script> -->
 
     <!-- Sweet alerts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
