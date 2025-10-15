@@ -78,7 +78,6 @@ include_once 'functions.php';
                 <li data-tooltip="<?= t("aside_notifications") ?>"><img src="img/Iconos sidebar/notificacion.png" alt="Notificaciones"></li>
             </a>
 
-<<<<<<< Updated upstream
             <!-- Botón de idioma (solo visible en móvil) -->
             <li class="lang-icon" style="display:none;" data-tooltip="<?= t("aside_lang") ?>">
                 <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
@@ -92,7 +91,7 @@ include_once 'functions.php';
                     <img src="img/Iconos sidebar/moon.png" alt="Modo Oscuro">
                 </a>
             </li>
-=======
+
            <!-- Botón de idioma -->
 <li class="lang-icon" data-tooltip="<?= t("aside_lang") ?>">
     <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
@@ -106,13 +105,7 @@ include_once 'functions.php';
         <img src="img/Iconos sidebar/moon.png" alt="Modo Oscuro">
     </a>
 </li>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 
             <!-- Icono de configuración (visible en escritorio, oculto en móvil) -->
             <li class="settings-icon">

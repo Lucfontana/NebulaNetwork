@@ -260,16 +260,6 @@ session_start();
                                     maxlength="30" minlength="8" required placeholder="Ingresa Email">
                             </div>
                             <div class="div-labels">
-<<<<<<< Updated upstream
-                                <label for="acceso" class="label">Nivel de Acceso:</label>
-                                <select class="input-register" type="text" name="acceso" id="acceso" maxlength="20"
-                                    minlength="8" required placeholder="">
-                                    <option value=""></option>
-                                    <option value="1">1 - Adscripta</option>
-                                    <option value="2">2 - Secretaria</option>
-                                    <option value="3">3 - Administrador</option>
-                                </select>
-=======
                                 <div class="div-labels">
                                     <label for="acceso" class="label"><?= t("label_access_level") ?></label>
                                     <select class="input-register" type="text" name="acceso" id="acceso" maxlength="20"
@@ -279,7 +269,6 @@ session_start();
                                         <option value="2"><?= t("option_access_2") ?></option>
                                         <option value="3"><?= t("option_access_3") ?></option>
                                     </select>
->>>>>>> Stashed changes
                                 </div>
                                 <div class="div-botones-register">
                                     <input class="btn-enviar-registro" type="submit" value="Registrar"
@@ -322,18 +311,10 @@ session_start();
                                 <label for="pertenece" class="label"><?= t("label_belongs_to") ?></label>
                                 <select name="pertenece" id="pertenece_a_espacio" type="text" class="input-register">
                                     <option value=""></option>
-<<<<<<< Updated upstream
-=======
+
 
                                     <!-- ARREGLAR!! SI SE SELECCIONA GENERAL NO FUNCIONA!! -->
                                     <option value="general"><?= t("option_general") ?></option>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
                                     <?php while ($row = mysqli_fetch_array($result)): ?>
                                         <option value="<?= $row['id_espacio'] ?>">
                                             <?= $row['nombre'] ?>
