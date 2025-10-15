@@ -11,10 +11,21 @@ $sql3 = "SELECT * FROM espacios_fisicos";
 $query3 = mysqli_query($connect, $sql3);
 session_start();
 
+$sql_profesores = "SELECT * FROM profesores";
+
+
+
 
 // Verificar si se ha enviado un ID de curso o de espacio a través de GET
 $cursosql = isset($_GET['curso_id']) ? intval($_GET['curso_id']) : 0;
 $espaciossql = isset($_GET['espacio_id']) ? intval($_GET['espacio_id']) : 0;
+
+if (!isset($_SESSION['nivel_acceso']) && isset($_SESSION['ci'])) {
+    $_GET['ci_profe'] = $_SESSION['ci'];
+}
+
+$professql = isset($_GET['ci_profe']) ? intval($_GET['ci_profe']) : 0;
+
 
 // Arreglo con los días de la semana
 $dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'];
@@ -77,6 +88,35 @@ elseif ($espaciossql > 0) {
                   AND e.id_espacio = $espaciossql
                   AND h.tipo = 'clase'
                 ORDER BY h.hora_inicio ASC";
+
+        $resultado = mysqli_query($connect, $sql);
+        $materias_por_dia[$dia] = [];
+        while ($fila = mysqli_fetch_assoc($resultado)) {
+            $materias_por_dia[$dia][] = $fila;
+        }
+    }
+
+    //DE ESTA QUERY DESPUES SE PUEDE SACAR: NOMBRE CURSO, NOMBRE ESPACIO
+} elseif ($professql > 0) {
+    foreach ($dias as $dia) {
+        $sql = "SELECT 
+                a.nombre AS nombre_asignatura,
+                e.nombre AS nombre_espacio,
+                h.hora_inicio, h.hora_final,
+                c.nombre AS nombre_curso,
+                cu.dia
+            FROM cumple cu
+            INNER JOIN profesor_dicta_asignatura pda ON cu.id_dicta = pda.id_dicta
+            INNER JOIN asignaturas a ON pda.id_asignatura = a.id_asignatura
+            INNER JOIN dicta_en_curso dc ON pda.id_dicta = dc.id_dicta
+            INNER JOIN cursos c ON dc.id_curso = c.id_curso
+            INNER JOIN horarios h ON cu.id_horario = h.id_horario
+            INNER JOIN dicta_ocupa_espacio doe ON cu.id_dicta = doe.id_dicta
+            INNER JOIN espacios_fisicos e ON doe.id_espacio = e.id_espacio
+            INNER JOIN profesores p ON p.ci_profesor = pda.ci_profesor
+            WHERE cu.dia = '$dia'
+                AND p.ci_profesor = $professql
+            ORDER BY h.hora_inicio ASC";
 
         $resultado = mysqli_query($connect, $sql);
         $materias_por_dia[$dia] = [];
@@ -200,18 +240,56 @@ else {
         </footer>
 
 
-    <?php else:?>
+        <!-- VISTA DEL PROFESOR -->
+    <?php else: ?>
+
         <body>
-            
             <?php include 'nav.php'; ?>
 
             <main>
                 <div id="contenido-mostrar-datos">
+                    <h1>Mis horarios</h1>
+                    <div class="datos-header">
+                        <div class="datos-row">
+                            <div class="horas-titulo">Horas</div>
+                            <div class="dias">Lunes</div>
+                            <div class="dias">Martes</div>
+                            <div class="dias">Miércoles</div>
+                            <div class="dias">Jueves</div>
+                            <div class="dias">Viernes</div>
+                        </div>
+                    </div>
 
+                    <div class="datos-body">
+                        <?php mysqli_data_seek($query, 0); // Reset del puntero ?>
+                        <?php while ($row = mysqli_fetch_array($query)): ?>
+                            <div class="datos-row mostrar-datos">
+                                <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
+                                <?php foreach ($dias as $dia): ?>
+                                    <?php
+                                    $mostro = false;
+                                    foreach ($materias_por_dia[$dia] as $m) {
+                                        if ($m['hora_inicio'] == $row['hora_inicio']) {
+                                            echo "<div class='dia-dato'>
+                                                <small>Curso: {$m['nombre_curso']} </small>
+                                              </div>";
+                                            $mostro = true;
+                                            break; // Solo mostrar una vez por horario
+                                        }
+                                    }
+                                    if (!$mostro && $row['tipo'] == 'recreo') {
+                                        echo "<div class='dia-dato-recreo'><em>Recreo</em></div>";
+                                    } else if (!$mostro){
+                                        echo "<div class='dia-dato'><em>---</em></div>";
+                                    }
+                                    ?>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endwhile; ?>
+                    </div>
                 </div>
-            </main>            
+            </main>
         </body>
-
     <?php endif; ?> <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
     <script type="module" src="/frontend/js/confirm-espacios.js"></script>
     <script type="module" src="/frontend/js/prueba.js"></script>
