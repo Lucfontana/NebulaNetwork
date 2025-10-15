@@ -155,8 +155,7 @@ else {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
+
 <title>Horarios</title>
 <?php include 'nav.php'; ?>
 <?php if (!isset($_SESSION['ci'])): ?>

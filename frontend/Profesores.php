@@ -8,8 +8,6 @@ $query = mysqli_query($connect, $sql);
 session_start();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 <title>Profesores</title>
 <?php include 'nav.php'; ?>
 

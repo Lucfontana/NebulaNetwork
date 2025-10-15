@@ -8,8 +8,6 @@ $query = mysqli_query($connect, $sql);
 session_start();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 <title>Cursos</title>
  <!-- trae las barras de navegacion (sidebar y superior) -->
 <?php include 'nav.php'; ?>

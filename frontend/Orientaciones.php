@@ -9,8 +9,6 @@ $query = mysqli_query($connect, $sql);
 session_start();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 <title>Orientaciones</title>
 <?php include 'nav.php'; ?>
 

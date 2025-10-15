@@ -6,8 +6,6 @@ session_start();
 
 ?>
 
-<!DOCTYPE html>
-<html lang="<?= $lang ?>">
 <title>Index</title>
 <?php include 'nav.php'; ?>
 

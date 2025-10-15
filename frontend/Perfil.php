@@ -2,9 +2,6 @@
 session_start();
 ?>
 
-
-<!DOCTYPE html>
-<html lang="en">
 <title>Perfil</title>
 <?php include 'nav.php'; ?>
 

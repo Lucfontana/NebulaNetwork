@@ -72,8 +72,6 @@ $prestamos_info2 = $stmt->get_result();
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 <title>Prestar Recursos</title>
 <?php include 'nav.php'; ?>
 <link rel="stylesheet" href="style/style.css">

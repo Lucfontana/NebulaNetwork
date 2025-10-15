@@ -9,8 +9,6 @@ $query = mysqli_query($connect, $sql);
 session_start();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 <title>Asignaturas</title>
 <!-- trae las barras de navegacion (sidebar y superior) -->
 <?php include 'nav.php'; ?>
