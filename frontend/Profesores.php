@@ -72,7 +72,7 @@ $query = mysqli_query($connect, $sql);
     <div id="overlay-edit-profesor" class="overlay-edit">
         <div class="popup">
             <h1>Modificación de Profesor</h1>
-            <form action="\backend\functions\Profesores\edit.php" method="POST" id="form-update">
+            <form action="/backend/functions/Profesores/edit.php" method="POST" id="form-update-profesores">
                 <div class="div-labels">
                     <input class="input-register" type="hidden" name="ci_profesor" id="id_edit_profesor">
                 </div>

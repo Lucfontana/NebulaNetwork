@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnConfirmar = document.getElementById("confirmar-super");
   const overlayEdit = document.getElementById("overlay-edit-super");
   const btnCancelarEdit = document.getElementById("cancelarEdit-super");
-  const btnActualizar = document.getElementById("actualizar");
 
   let editID = null;
   let nombre = null;
@@ -82,12 +81,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 500)
   });
 
-  document.getElementById("form-update").addEventListener("submit", async (e) => {
+  document.getElementById("form-update-super").addEventListener("submit", async (e) => {
     e.preventDefault(); // Evita el submit normal
       
-    let nombreInput = document.getElementById("name_edit").value;
-    let apellidoInput =  document.getElementById("apellido_edit").value;
-    let emailInput =  document.getElementById("email_edit").value;
+    let nombreInput = document.getElementById("name_edit_super").value;
+    let apellidoInput =  document.getElementById("apellido_edit_super").value;
+    let emailInput =  document.getElementById("email_edit_super").value;
     
     // Validaciones
     if (!verificarString(nombreInput, "nombre")) {

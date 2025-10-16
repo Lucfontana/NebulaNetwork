@@ -68,7 +68,7 @@ $query = mysqli_query($connect, $sql);
         <div id="overlay-edit-super" class="overlay-edit">
             <div class="popup">
                 <h1>Modificación de Super Usuario</h1>
-                <form action="\backend\functions\SuperUsuarios\edit.php" method="POST" id="form-update">
+                <form action="/backend/functions/SuperUsuarios/edit.php" method="POST" id="form-update-super">
                     <div class="div-labels">
                         <input class="input-register" type="hidden" name="id_superusuario" id="id_edit_super">
                     </div>

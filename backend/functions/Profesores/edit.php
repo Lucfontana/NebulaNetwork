@@ -1,8 +1,9 @@
 <?php
-
 include_once ('../../db/conexion.php');
- 
-$connect = conectar_a_bd();
+
+header('Content-Type: application/json'); // Muy importante
+
+$con = conectar_a_bd(); // usa $con, no $connect
 
 $ci = $_POST['ci_profesor'];
 $name = $_POST['nombre'];
@@ -11,8 +12,7 @@ $email = $_POST['email'];
 $fecha_nac = $_POST['fnac'];
 $direccion = $_POST['direccion'];
 
-
-$consulta = "UPDATE profesores SET nombre = ?, apellido = ?, email = ?, fecha_nac = ?, direccion = ? WHERE ci_profesor=?";
+$consulta = "UPDATE profesores SET nombre = ?, apellido = ?, email = ?, fecha_nac = ?, direccion = ? WHERE ci_profesor = ?";
 $stmt = $con->prepare($consulta);
 $stmt->bind_param("sssssi", $name, $apellido, $email, $fecha_nac, $direccion, $ci);
 $stmt->execute();
@@ -22,6 +22,6 @@ if ($stmt->affected_rows > 0) {
 } else {
     echo json_encode(["success" => false, "message" => "Error al actualizar"]);
 }
-$stmt->close();
 
-?>
+$stmt->close();
+$con->close();

@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 500)
   });
 
-  document.getElementById("form-update").addEventListener("submit", async (e) => {
+  document.getElementById("form-update-recurso").addEventListener("submit", async (e) => {
     e.preventDefault(); // Evita el submit normal
       
     let nombreInput = document.getElementById("name_edit_recurso").value;

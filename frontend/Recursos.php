@@ -69,7 +69,7 @@ $query = mysqli_query($connect, $sql);
     <div id="overlay-edit-recurso" class="overlay-edit">
         <div class="popup">
             <h1>Modificación de Recurso</h1>
-            <form action="/backend/functions/Recursos/edit.php" method="POST" id="form-update">
+            <form action="/backend/functions/Recursos/edit.php" method="POST" id="form-update-recurso">
                 <div class="div-labels">
                     <input class="input-register" type="hidden" name="id_recurso" id="id_edit_recurso">
                     <input class="input-register" type="hidden" name="id_espacio" id="id_espacio_edit">

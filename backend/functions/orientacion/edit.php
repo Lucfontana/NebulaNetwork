@@ -19,5 +19,4 @@ if ($stmt->affected_rows > 0) {
     echo json_encode(["success" => false, "message" => "Error al actualizar"]);
 }
 $stmt->close();
-
 ?>

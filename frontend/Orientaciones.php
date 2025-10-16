@@ -61,7 +61,7 @@ $query = mysqli_query($connect, $sql);
     <div id="overlay-edit-orientacion" class="overlay-edit">
         <div class="popup">
             <h1>Modificación de Orientación</h1>
-            <form action="\backend\functions\Orientaciones\edit.php" method="POST" id="form-update">
+            <form action="\backend\functions\Orientaciones\edit.php" method="POST" id="form-update-orientacion">
                 <div class="div-labels">
                     <input class="input-register" type="hidden" name="id_orientacion" id="id_edit_orientacion">
                 </div>
