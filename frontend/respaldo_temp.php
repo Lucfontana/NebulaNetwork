@@ -118,7 +118,7 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
                                 <div class="grid-cell"><?= $row['hora_vuelta'] ? date('d/m/Y H:i', strtotime($row['hora_vuelta'])) : 'Pendiente' ?></div>
                                 <div class="grid-cell">
                                     <?php if ($row['hora_vuelta']): ?>
-                                        <span style="color: green; margin-left: 20px;">Devuelto</span>
+                                        <span style="color: green; margin-left: 20px;"><?= t("status_returned") ?></span>
                                     <?php else: ?>
                                         <a class="boton-datos-editar botones-datos btn-devolver"
                                             data-id="<?= $row['id_solicita'] ?>"
@@ -142,7 +142,7 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
         <!--    Cierre de Ventanas Emergentes    -->
 
         <footer id="footer" class="footer">
-            <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
+            <p> &copy; <b><?= t("footer") ?></b></p>
         </footer>
     <?php elseif (isset($_SESSION['ci'])): ?>
         <?php include_once('nav.php') ?>
@@ -153,9 +153,9 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
                 <div class="datos-grid prestamos-grid">
                     <!-- Cabecera -->
                     <div class="grid-header prestamos-header">
-                        <div class="grid-cell nombre-titulo">Recurso</div>
-                        <div class="grid-cell nombre-titulo">Hora Prestado</div>
-                        <div class="grid-cell titulo-ult">Hora Devolución</div>
+                        <div class="grid-cell nombre-titulo"><?= t("table_header_resource") ?></div>
+                        <div class="grid-cell nombre-titulo"><?= t("table_header_start_time") ?></div>
+                        <div class="grid-cell titulo-ult"><?= t("table_header_end_time") ?></div>
                     </div>
 
                     <!-- Filas de datos -->
@@ -172,7 +172,7 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
                                     <?php if ($row['hora_vuelta']): ?>
                                         <?= date('d/m/Y H:i:s', strtotime($row['hora_vuelta'])) ?>
                                     <?php else: ?>
-                                        <span style="color: orange;">Sin devolver</span>
+                                        <span style="color: orange;"><?= t("status_not_returned") ?></span>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -186,7 +186,7 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
             </div>
         </main>
         <footer id="footer" class="footer">
-            <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
+            <p> &copy; <b><?= t("footer") ?></b></p>
         </footer>
 
     <?php elseif (!isset($_SESSION['ci'])): ?>
