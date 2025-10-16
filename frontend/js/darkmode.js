@@ -1,8 +1,8 @@
 const btnBienvenida = document.getElementsByClassName("btn-bienvenida");
-const elementos = document.querySelectorAll('.nav-link, .navbar-brand, .nav-item a, .navStyle');
+const elementos = document.querySelectorAll('.nav-link, .navbar-brand, .nav-item a, .navStyle, .nav-link.darkmode:hover, .navbar-brand.darkmode:hover, .navbar-toggler-icon');
 const navstyle = document.getElementById('nav');
 const aside = document.querySelector('aside');
-const darkmodeIcon = document.querySelector('#darkmode-icon'); // ✅ corregido
+const darkmodeIcon = document.querySelector('#darkmode-icon');
 
 darkmodeIcon.addEventListener('click', () => {
     console.log('Dark mode activado'); // Verifica que el evento se dispare

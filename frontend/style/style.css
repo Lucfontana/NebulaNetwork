@@ -58,7 +58,7 @@ main {
     /*Navbar encima del aside*/
     color: #2b2b2b;
     margin: 0 0 0 0;
-    background-color: #e4e4e4;
+    background-color: #E0E3EB;
     transition: all 0.5s ease;
     
 }
@@ -86,7 +86,7 @@ main {
 .nav-link,
 .navbar-brand,
 .nav-item a {
-    color: #2b2b2b;
+    color: #2F4C97;
     padding-left: 10px;
 }
 
@@ -95,10 +95,18 @@ main {
 }
 
 .nav-link:hover {
+    color: #233A78;
+}
+
+.nav-link.darkmode:hover {
     color: #6d6d6d;
 }
 
 .navbar-brand:hover {
+    color: #233A78;
+}
+
+.navbar-brand.darkmode:hover {
     color: #6d6d6d;
 }
 
@@ -158,8 +166,8 @@ main {
     /* ancho consistente */
     height: 120px;
     /* alto consistente */
-    background-color: #fff;
-    color: #000000;
+    background-color: #2F4C97;
+    color: #ffffff;
     border: none;
     border-radius: 10px;
     font-weight: bold;
@@ -177,7 +185,7 @@ main {
 }
 
 .btn-bienvenida:hover {
-    background-color: #b9b9b9;
+    background-color: #233A78;
 }
 
 .btn-bienvenida.darkmode:hover {
@@ -246,7 +254,7 @@ aside {
     width: var(---marginAside);
     height: 100vh;
     /* 100% del alto visible de la ventana */
-    background-color: #bdbdbd;
+    background-color: #E9EEF6;
     position: fixed;
     grid-area: aside;
     /* si usás grid, lo podés mantener */
@@ -261,6 +269,22 @@ aside {
 
 aside.darkmode {
     background-color: #1e1e1e;
+}
+
+.navbar-toggler-icon {
+    filter: brightness(1.2) saturate(0.9);
+}
+
+.navbar-toggler-icon.darkmode {
+    filter: brightness(0) invert(1);
+}
+
+.navbar-toggler-icon:hover {
+    filter: brightness(0.8) saturate(43%);
+}
+
+.navbar-toggler-icon.darkmode:hover {
+    filter: brightness(0) invert(43%);
 }
 
 aside>ul {
@@ -314,12 +338,20 @@ aside>ul {
     height: 28px;
     object-fit: contain;
     /* mantiene proporción dentro del cuadrado */
-    filter: brightness(0) invert(1);
+    filter: brightness(1.2) saturate(0.9);
     transition: filter 0.3s ease;
 }
 
+.link-aside-images img.darkmode {
+    filter: brightness(0) invert(1);
+}
+
 .link-aside-images img:hover {
-    filter: brightness(0) invert(43%);
+    filter: brightness(0.8) saturate(43%);
+}
+
+.link-aside-images img.darkmode:hover {
+    filter: brightness(0s) invert(43%);
 }
 
 /* Contenedor de los íconos */
