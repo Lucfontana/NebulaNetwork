@@ -1,16 +1,4 @@
 <?php
-include_once('../backend/db/conexion.php');
-include_once 'functions.php';
-$connect = conectar_a_bd();
-$sql = "SELECT * FROM asignaturas";
-
-$query = mysqli_query($connect, $sql);
-
-$mostrarinofrmacion = isset($_GET['informacion']) ? intval($_GET['informacion']) : 0;
-
-if ($mostrarinofrmacion = 0) {
-}
-
 session_start();
 ?>
 
@@ -21,99 +9,63 @@ session_start();
 
     <?php include 'nav.php'; ?>
 
-
-
     <body>
         <main>
             <div id="contenido-mostrar-datos">
-                <h1>Asignaturas</h1>
-                <div class="filtros"> <label for="horario-select">Seleccione Dato a Mostrar: :</label> 
-                <select name="salones" class="salones-select" id="salones-select" onchange="cambiarEspacio(this.value)">
-                    <option value="0">Seleccione Dato</option>
-                    <option value="1">Asignaturas</option>
-                    <option value="2">C</option>
-                    <option value="3">Seleccione Datos a Mostrar</option>
-                    <option value="4">Seleccione Datos a Mostrar</option>
-                    <option value="5">Seleccione Datos a Mostrar</option>
-                    <option value="6">Seleccione Datos a Mostrar</option>
-                    <option value="7">Seleccione Datos a Mostrar</option>
-                </select>
+                <h1 id="titulo-mostrar-informacion">Mostrar Información</h1>
+                <div class="filtros"> <label for="horario-select">Seleccione Dato a Mostrar:</label>
+                    <select name="informacion" class="salones-select" id="informacion-change" onchange="cambiarDato(this.value)">
+                        <option value="0">Seleccione Dato</option>
+                        <option value="asignatura">Asignaturas</option>
+                        <option value="cursos">Cursos</option>
+                        <option value="espacios">Espacios Fisicos</option>
+                        <option value="orientaciones">Orientaciones</option>
+                        <option value="profesores">Profesores</option>
+                        <option value="recursos">Recursos</option>
+                        <option value="superusuarios">Super Usuarios</option>
+                    </select>
+                </div>
+                <div data-seccion="asignatura" class="seccion-oculta">
+                    <?php include_once("./asignaturas.php") ?>
                 </div>
 
-                <div class="datos-grid asignaturas-grid">
-                    <!-- Cabecera -->
-                    <div class="grid-header asignaturas-header">
-                        <div class="grid-cell id">ID</div>
-                        <div class="grid-cell nombre-titulo">Nombre</div>
-                        <div class="grid-cell boton-titulo">Eliminar</div>
-                        <div class="grid-cell boton-titulo">Editar</div>
-                    </div>
-
-                    <!-- Filas de datos -->
-                    <?php while ($row = mysqli_fetch_array($query)): ?>
-                        <div class="grid-row asignaturas-row mostrar-datos">
-                            <div class="grid-cell"><?= $row['id_asignatura'] ?></div>
-                            <div class="grid-cell"><?= $row['nombre'] ?></div>
-                            <div class="grid-cell">
-                                <a href="#"
-                                    class="boton-datos-eliminar botones-datos"
-                                    data-id="<?= $row['id_asignatura'] ?>">
-                                    Eliminar
-                                </a>
-                            </div>
-                            <div class="grid-cell">
-                                <a class="boton-datos-editar botones-datos"
-                                    data-id="<?= $row['id_asignatura'] ?>"
-                                    data-nombre="<?= $row['nombre'] ?>">
-                                    Editar
-                                </a>
-                            </div>
-                        </div>
-                    <?php endwhile; ?>
+                <div data-seccion="cursos" class="seccion-oculta">
+                    <?php include_once("./Cursos.php") ?>
                 </div>
-            </div>
 
-            <div class="overlay" id="overlay">
-                <div class="confirmacion">
-                    <h2>¿Estás seguro?</h2>
-                    <p>Esta acción eliminará el registro de forma permanente.</p>
-                    <div class="botones_confirmar">
-                        <button class="btn btn-confirmar" id="confirmar" href="backend/functions/asignaturas/delete.php?id=<?= $row['id_asignatura'] ?>">Eliminar</button>
-                        <button class="btn btn-cancelar" id="cancelar">Cancelar</button>
-                    </div>
+                <div data-seccion="espacios" class="seccion-oculta">
+                    <?php include_once("./Espacios.php") ?>
                 </div>
-            </div>
 
-
-            <div id="overlay-edit" class="overlay-edit">
-                <div class="popup">
-                    <h1>Modificación de Asignatura</h1>
-                    <form action="\backend\functions\asignaturas\edit.php" method="POST" id="form-update">
-                        <div class="div-labels">
-                            <input class="input-register" type="hidden" name="id_asignatura" id="id_edit">
-                        </div>
-                        <div class="input-group">
-                            <label for="nombre">Nombre:</label>
-                            <div>
-                                <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
-                            </div>
-                        </div>
-                        <div class="buttons-modal">
-                            <input type="submit" value="Actualizar Infomacion" class="btn-primary" id="actualizar"></input>
-                            <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit"></input>
-                        </div>
-                    </form>
+                <div data-seccion="orientaciones" class="seccion-oculta">
+                    <?php include_once("./Orientaciones.php") ?>
                 </div>
-            </div>
+
+                <div data-seccion="profesores" class="seccion-oculta">
+                    <?php include_once("./Profesores.php") ?>
+                </div>
+
+                <div data-seccion="recursos" class="seccion-oculta">
+                    <?php include_once("./Recursos.php") ?>
+                </div>
+
+                <div data-seccion="superusuarios" class="seccion-oculta">
+                    <?php include_once("./SuperUsuarios.php") ?>
+                </div>
         </main>
 
         <footer id="footer" class="footer">
-            <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
+            <p> &copy; <b> <?= t("footer") ?> </b></p>
+
         </footer>
 
     <?php endif; ?>
 
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
     <script type="module" src="/frontend/js/confirm-asignatura.js"></script>
+    <script type="module" src="/frontend/js/confirm-cursos.js"></script>
+    <script type="module" src="/frontend/js/confirm-espacios.js"></script>
+    <script type="module" src="/frontend/js/confirm-orientacion.js"></script>
     <script type="module" src="/frontend/js/prueba.js"></script>
+    <script src="./js/Mostrar-informacion-general.js"></script>
     </body>

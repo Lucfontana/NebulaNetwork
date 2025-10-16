@@ -11,5 +11,5 @@ include_once ('../../db/conexion.php');
     $stmt->execute();
     $stmt->close();
 
-    Header("location: ../../../frontend/Orientaciones.php");
+    Header("location: ../../../frontend/Mostrar_informacion.php");
 ?>

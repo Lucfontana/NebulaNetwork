@@ -5,19 +5,12 @@ $connect = conectar_a_bd();
 $sql = "SELECT * FROM recursos";
 
 $query = mysqli_query($connect, $sql);
-session_start();
 ?>
-
-<title>Recursos</title>
 
 <?php if (!isset($_SESSION['nivel_acceso'])): ?>
     <?php include_once('error.php') ?>
 <?php else: ?>
-<?php include 'nav.php'; ?>
 
-<body>
-    <main>
-        <div id="contenido-mostrar-datos">
             <h1>Recursos</h1>
 
             <div class="datos-grid recursos-grid">
@@ -60,7 +53,6 @@ session_start();
                     </div>
                 <?php endwhile; ?>
             </div>
-        </div>
 
         <div class="overlay" id="overlay">
             <div class="confirmacion">
@@ -120,13 +112,4 @@ session_start();
                 </form>
             </div>
         </div>
-    </main>
-
-    <footer id="footer" class="footer">
-        <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
-    </footer>
     <?php endif; ?>
-    <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
-    <script type="module" src="/frontend/js/confirm-recursos.js"></script>
-    <script type="module" src="/frontend/js/prueba.js"></script>
-</body>

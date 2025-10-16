@@ -11,5 +11,5 @@ include_once ('../../db/conexion.php');
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $stmt->close();
-    Header("location: /frontend/Profesores.php");
+    Header("location: ../../../frontend/Mostrar_informacion.php");
 ?>

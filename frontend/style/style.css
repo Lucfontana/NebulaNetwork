@@ -866,6 +866,17 @@ hr {
 
 /* Mostrar Datos */
 
+.seccion-oculta {
+    display: none;
+}
+
+.class-datos-editar {
+    padding: 10px;
+    border-color: #2980b9;
+    border-radius: 10px;
+    background-color: #b9c0ff;
+}
+
 #contenido-mostrar-datos {
     width: 100%;
     max-width: 1200px;
@@ -1082,6 +1093,11 @@ hr {
     font-size: 14px;
 }
 
+#informacion-change {
+    width: 200px;
+    font-size: 14px;
+}
+
 /* Botones de acción */
 .botones-datos {
     padding: 8px 16px;
@@ -1162,6 +1178,11 @@ hr {
 }
 
 /* Editar Datos */
+
+#overlay-edit-asignatura, #overlay-edit-curso, #overlay-edit-espacio, #overlay-edit-orientacion {
+    display: none;
+    opacity: 0;
+}
 
 #overlay-edit {
     display: none;

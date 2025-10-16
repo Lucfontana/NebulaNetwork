@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let mensaje = data.message;
 
       if (data.success) {
-        alerta_success_update(mensaje, "/frontend/SuperUsuarios.php");
+        alerta_success_update(mensaje, "/frontend/Mostrar_informacion.php");
       } else {
         alerta_fallo(mensaje);
       }

@@ -5,23 +5,13 @@ $connect = conectar_a_bd();
 $sql = "SELECT * FROM superusuario";
 
 $query = mysqli_query($connect, $sql);
-session_start();
 ?>
 
-<title>Super Usuarios</title>
 
 <?php if (!isset($_SESSION['nivel_acceso'])): ?>
     <?php include_once('error.php') ?>
 <?php else: ?>
-<?php include 'nav.php'; ?>
-
-<body>
-    <!-- trae las barras de navegacion (sidebar y superior) -->
-    <?php include 'nav.php'; ?>
-    <main>
-        <div id="contenido-mostrar-datos">
-            <h1>SuperUsuario</h1>
-
+            <h1>Super Usuarios</h1>
             <div class="datos-grid superusuario-grid">
                 <!-- Cabecera -->
                 <div class="grid-header superusuario-header">
@@ -62,7 +52,6 @@ session_start();
                     </div>
                 <?php endwhile; ?>
             </div>
-        </div>
 
         <div class="overlay" id="overlay">
             <div class="confirmacion">
@@ -122,13 +111,4 @@ session_start();
                 </form>
             </div>
         </div>
-    </main>
-
-    <footer id="footer" class="footer">
-        <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
-    </footer>
     <?php endif; ?>
-    <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
-    <script type="module" src="/frontend/js/confirm-superusuario.js"></script>
-    <script type="module" src="/frontend/js/prueba.js"></script>
-</body>

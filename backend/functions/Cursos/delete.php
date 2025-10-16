@@ -12,5 +12,5 @@ include_once ('../../db/conexion.php');
     $stmt->close();
 
 
-    Header("location: ../../../frontend/Cursos.php");
+    Header("location: ../../../frontend/Mostrar_informacion.php");
 ?>

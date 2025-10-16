@@ -11,4 +11,5 @@ $stmt->bind_param("i", $id);
 $stmt->execute();
 $stmt->close();
 
-Header("location: ../../../frontend/Espacios.php");
+Header("location: ../../../frontend/Mostrar_informacion.php");
+?>

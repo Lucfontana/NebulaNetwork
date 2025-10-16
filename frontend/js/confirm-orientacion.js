@@ -1,10 +1,10 @@
 import { verificarString, alerta_success_update, alerta_fallo } from './prueba.js';
 document.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.getElementById("overlay");
-  const btnCancelar = document.getElementById("cancelar");
-  const btnConfirmar = document.getElementById("confirmar");
-  const overlayEdit = document.getElementById("overlay-edit");
-  const btnCancelarEdit = document.getElementById("cancelarEdit");
+  const overlay = document.getElementById("overlay-orientacion");
+  const btnCancelar = document.getElementById("cancelar-orientacion");
+  const btnConfirmar = document.getElementById("confirmar-orientacion");
+  const overlayEdit = document.getElementById("overlay-edit-orientacion");
+  const btnCancelarEdit = document.getElementById("cancelarEdit-orientacion");
   
   let editID = null;
   let currentId = null;
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
 
   // Abrir modal y guardar id
-  document.querySelectorAll(".boton-datos-eliminar").forEach(boton => {
+  document.querySelectorAll(".boton-eliminar-orientacion").forEach(boton => {
     boton.addEventListener("click", (e) => {
       e.preventDefault();
       currentId = boton.dataset.id;
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  document.querySelectorAll(".boton-datos-editar").forEach(botonEditar => {
+  document.querySelectorAll(".boton-editar-orientacion").forEach(botonEditar => {
     botonEditar.addEventListener("click", (a) => {
       a.preventDefault();
 
@@ -51,8 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
       editID = botonEditar.dataset.id;
       nombre = botonEditar.dataset.nombre;
 
-      document.getElementById("id_edit").value = editID;
-      document.getElementById("name_edit").value = nombre;
+      document.getElementById("id_edit_orientacion").value = editID;
+      document.getElementById("name_edit_orientacion").value = nombre;
 
       setTimeout(() => {
        overlayEdit.style.opacity = "1";
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("form-update").addEventListener("submit", async (e) => {
       e.preventDefault(); // Evita el submit normal
         
-      let nombreInput = document.getElementById("name_edit").value;
+      let nombreInput = document.getElementById("name_edit_orientacion").value;
   
       // Validaciones
       if (!verificarString(nombreInput, "Nombre")) {
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let mensaje = data.message;
   
         if (data.success) {
-          alerta_success_update(mensaje, "/frontend/Orientaciones.php");
+          alerta_success_update(mensaje, "/frontend/Mostrar_informacion.php");
         } else {
           alerta_fallo(mensaje);
         }
