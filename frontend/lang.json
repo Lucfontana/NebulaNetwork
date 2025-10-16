@@ -107,26 +107,47 @@
 
 
     
-     "title_lend_resources": "Prestar recursos",
-     "label_teacherlend": "Profesor a prestar:",
-     "label_resource": "Recurso a prestar:",
+    "title_lend_resources": "Prestar recursos",
+    "label_teacherlend": "Profesor a prestar:",
+    "label_resource": "Recurso a prestar:",
      
-     "table_header_person": "Persona que Pidió",
-     "table_header_resource": "Recurso Prestado",
-     "table_header_admin": "Administrador que Prestó",
-     "table_header_start_time": "Hora Prestado",
-     "table_header_end_time": "Hora Devolución",
+    "table_header_person": "Persona que Pidió",
+    "table_header_resource": "Recurso Prestado",
+    "table_header_admin": "Administrador que Prestó",
+    "table_header_start_time": "Hora Prestado",
+    "table_header_end_time": "Hora Devolución",
 
-     "table_header_status": "Estado",
-     "status_returned": "Devuelto",
-     "status_pending": "Pendiente",
-     "status_not_returned": "Sin devolver",
+    "table_header_status": "Estado",
+    "status_returned": "Devuelto",
+    "status_pending": "Pendiente",
+    "status_not_returned": "Sin devolver",
 
-     "msg_no_loans": "No hay préstamos registrados",
-     "msg_no_user_loans": "No tienes préstamos registrados",
+    "msg_no_loans": "No hay préstamos registrados",
+    "msg_no_user_loans": "No tienes préstamos registrados",
 
 
-     "footer": "2025 ITSP. Todos los derechos reservados"
+
+    "title_schedules": "Horarios",
+    "title_my_schedules": "Mis horarios",
+    "label_select_schedule": "Seleccionar Horario:",
+    "label_select_course": "Seleccionar Curso:",
+    "label_select_classroom": "Seleccionar Salón:",
+    "option_select_course": "Seleccione un curso",
+    "option_select_classroom": "Seleccione un salón",
+    "label_hours": "Horas",
+    "day_monday": "Lunes",
+    "day_tuesday": "Martes",
+    "day_wednesday": "Miércoles",
+    "day_thursday": "Jueves",
+    "day_friday": "Viernes",
+    "msg_no_data": "---",
+    "msg_break": "Recreo",
+    "btn_register_absence": "Registrar inasistencia",
+    "modal_title_absence": "Registrar inasistencia",
+    "label_day_absence": "En el día:",
+
+
+    "footer": "2025 ITSP. Todos los derechos reservados"
   },
   "en": {
     
@@ -250,6 +271,27 @@
 
     "msg_no_loans": "No loans registered",
     "msg_no_user_loans": "You have no registered loans",
+
+
+
+    "title_schedules": "Schedules",
+    "title_my_schedules": "My schedules",
+    "label_select_schedule": "Select Schedule:",
+    "label_select_course": "Select Course:",
+    "label_select_classroom": "Select Classroom:",
+    "option_select_course": "Select a course",
+    "option_select_classroom": "Select a classroom",
+    "label_hours": "Hours",
+    "day_monday": "Monday",
+    "day_tuesday": "Tuesday",
+    "day_wednesday": "Wednesday",
+    "day_thursday": "Thursday",
+    "day_friday": "Friday",
+    "msg_no_data": "---",
+    "msg_break": "Break",
+    "btn_register_absence": "Register absence",
+    "modal_title_absence": "Register absence",
+    "label_day_absence": "On the day:",
     
 
     "footer": "2025 ITSP. All rights reserved"
