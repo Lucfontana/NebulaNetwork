@@ -6,6 +6,12 @@ $sql = "SELECT * FROM asignaturas";
 
 $query = mysqli_query($connect, $sql);
 
+$mostrarinofrmacion = isset($_GET['informacion']) ? intval($_GET['informacion']) : 0;
+
+if ($mostrarinofrmacion = 0) {
+
+}
+
 session_start();
 ?>
 

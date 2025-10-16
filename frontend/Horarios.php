@@ -122,7 +122,7 @@ else {
                 <div class="filtros"> 
                     <div id="div-curso" style="display: block;">
                         <label for="Cursos" id="select-cursos">Seleccionar Curso:</label>
-                        <select name="Cursos" id="cursos-select" onchange="cambiarCurso(this.value)">
+                        <select name="Cursos" class="cursos-select" onchange="cambiarCurso(this.value)">
                             <option value="0">Seleccione un curso</option>
                             <?php mysqli_data_seek($query2, 0); ?>
                             <?php while ($row2 = mysqli_fetch_array($query2)): ?>
@@ -174,14 +174,14 @@ else {
         <main>
             <div id="contenido-mostrar-datos">
                 <h1>Horarios</h1>
-                <div class="filtros"> <label for="horario-select">Seleccionar Horario:</label> <select id="select-horarios"
-                        name="horario-select">
+                <div class="filtros"> <label for="horario-select">Seleccionar Horario:</label> 
+                    <select id="select-horarios" name="horario-select">
                         <option value="1">Cursos</option>
                         <option value="2">Salones</option>
                     </select>
                     <div id="div-salones" style="display: none;">
                         <label for="Salones" id="select-salones">Seleccionar Salon:</label>
-                        <select name="salones" id="salones-select" onchange="cambiarEspacio(this.value)">
+                        <select name="salones" class="salones-select" id="salones-select" onchange="cambiarEspacio(this.value)">
                             <option value="0">Seleccione un salón</option>
                             <?php mysqli_data_seek($query3, 0); ?>
                             <?php while ($row3 = mysqli_fetch_array($query3)): ?>
@@ -192,7 +192,7 @@ else {
                     </div>
                     <div id="div-curso" style="display: block;">
                         <label for="Cursos" id="select-cursos">Seleccionar Curso:</label>
-                        <select name="Cursos" id="cursos-select" onchange="cambiarCurso(this.value)">
+                        <select name="Cursos" class="cursos-select" id="cursos-select" onchange="cambiarCurso(this.value)">
                             <option value="0">Seleccione un curso</option>
                             <?php mysqli_data_seek($query2, 0); ?>
                             <?php while ($row2 = mysqli_fetch_array($query2)): ?>
@@ -354,6 +354,7 @@ else {
     <script src="./js/horarios-lunes.js"></script>
     <script src="js/Register-Modal.js"></script>
     <script type='module' src="../backend/functions/Profesores/inasistencia/marcar_inasistencia.js"></script>
+    <script src="js/horarios-lunes.js"></script>
     <script>
         // Función que se ejecuta cuando el usuario selecciona un curso
         // Recibe como parámetro el identificador del curso (idCurso)
