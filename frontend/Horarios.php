@@ -112,18 +112,18 @@ else {
 }
 ?>
 
-<title>Horarios</title>
+<title><?= t("title_schedules") ?></title>
 <?php include 'nav.php'; ?>
 <?php if (!isset($_SESSION['ci'])): ?>
     <body>
         <main>
             <div id="contenido-mostrar-datos">
-                <h1>Horarios</h1>
+                <h1><?= t("title_schedules") ?></h1>
                 <div class="filtros"> 
                     <div id="div-curso" style="display: block;">
-                        <label for="Cursos" id="select-cursos">Seleccionar Curso:</label>
+                        <label for="Cursos" id="select-cursos"><?= t("label_select_course") ?></label>
                         <select name="Cursos" id="cursos-select" onchange="cambiarCurso(this.value)">
-                            <option value="0">Seleccione un curso</option>
+                            <option value="0"><?= t("option_select_course") ?></option>
                             <?php mysqli_data_seek($query2, 0); ?>
                             <?php while ($row2 = mysqli_fetch_array($query2)): ?>
                                 <option value="<?= $row2['id_curso'] ?>" <?= (isset($_GET['curso_id']) && $_GET['curso_id'] == $row2['id_curso']) ? 'selected' : '' ?>><?= $row2['nombre'] ?></option>
@@ -133,12 +133,12 @@ else {
                 </div>
                 <div class="datos-header">
                     <div class="datos-row">
-                        <div class="horas-titulo">Horas</div>
-                        <div class="dias">Lunes</div>
-                        <div class="dias">Martes</div>
-                        <div class="dias">Miércoles</div>
-                        <div class="dias">Jueves</div>
-                        <div class="dias">Viernes</div>
+                        <div class="horas-titulo"><?= t("label_hours") ?></div>
+                        <div class="dias"><?= t("day_monday") ?></div>
+                        <div class="dias"><?= t("day_tuesday") ?></div>
+                        <div class="dias"><?= t("day_wednesday") ?></div>
+                        <div class="dias"><?= t("day_thursday") ?></div>
+                        <div class="dias"><?= t("day_friday") ?></div>
                     </div>
                 </div>
                 <?php if (isset($_GET['curso_id'])): ?>
@@ -173,16 +173,16 @@ else {
     <body>
         <main>
             <div id="contenido-mostrar-datos">
-                <h1>Horarios</h1>
-                <div class="filtros"> <label for="horario-select">Seleccionar Horario:</label> <select id="select-horarios"
+                <h1><?= t("title_schedules") ?></h1>
+                <div class="filtros"> <label for="horario-select"><?= t("label_select_schedule") ?></label> <select id="select-horarios"
                         name="horario-select">
-                        <option value="1">Cursos</option>
-                        <option value="2">Salones</option>
+                        <option value="1"><?= t("label_select_course") ?></option>
+                        <option value="2"><?= t("label_select_classroom") ?></option>
                     </select>
                     <div id="div-salones" style="display: none;">
-                        <label for="Salones" id="select-salones">Seleccionar Salon:</label>
+                        <label for="Salones" id="select-salones"><?= t("label_select_classroom") ?></label>
                         <select name="salones" id="salones-select" onchange="cambiarEspacio(this.value)">
-                            <option value="0">Seleccione un salón</option>
+                            <option value="0"><?= t("option_select_classroom") ?></option>
                             <?php mysqli_data_seek($query3, 0); ?>
                             <?php while ($row3 = mysqli_fetch_array($query3)): ?>
                                 <option value="<?= $row3['id_espacio'] ?>" <?= (isset($_GET['espacio_id']) && $_GET['espacio_id'] == $row3['id_espacio']) ? 'selected' : '' ?>><?= $row3['nombre'] ?>
@@ -191,9 +191,9 @@ else {
                         </select>
                     </div>
                     <div id="div-curso" style="display: block;">
-                        <label for="Cursos" id="select-cursos">Seleccionar Curso:</label>
+                        <label for="Cursos" id="select-cursos"><?= t("label_select_course") ?></label>
                         <select name="Cursos" id="cursos-select" onchange="cambiarCurso(this.value)">
-                            <option value="0">Seleccione un curso</option>
+                            <option value="0"><?= t("option_select_course") ?></option>
                             <?php mysqli_data_seek($query2, 0); ?>
                             <?php while ($row2 = mysqli_fetch_array($query2)): ?>
                                 <option value="<?= $row2['id_curso'] ?>" <?= (isset($_GET['curso_id']) && $_GET['curso_id'] == $row2['id_curso']) ? 'selected' : '' ?>><?= $row2['nombre'] ?></option>
@@ -203,12 +203,12 @@ else {
                 </div>
                 <div class="datos-header">
                     <div class="datos-row">
-                        <div class="horas-titulo">Horas</div>
-                        <div class="dias">Lunes</div>
-                        <div class="dias">Martes</div>
-                        <div class="dias">Miércoles</div>
-                        <div class="dias">Jueves</div>
-                        <div class="dias">Viernes</div>
+                        <div class="horas-titulo"><?= t("label_hours") ?></div>
+                        <div class="dias"><?= t("day_monday") ?></div>
+                        <div class="dias"><?= t("day_tuesday") ?></div>
+                        <div class="dias"><?= t("day_wednesday") ?></div>
+                        <div class="dias"><?= t("day_thursday") ?></div>
+                        <div class="dias"><?= t("day_friday") ?></div>
                     </div>
                 </div>
                 <?php if (isset($_GET['curso_id'])): ?>
@@ -262,7 +262,7 @@ else {
         </main>
     </body>
         <footer id="footer" class="footer">
-            <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
+            <p> &copy; <b><?= t("footer") ?></b></p>
         </footer>
 
 
@@ -274,10 +274,10 @@ else {
 
             <main>
                 <div id="contenido-mostrar-datos">
-                    <h1>Mis horarios</h1>
+                    <h1><?= t("title_my_schedules") ?></h1>
 
                     <button type="button" id="Profesores-boton" class="btn" data-toggle="modal" data-target="#exampleModal">
-                        Registrar inasistencia
+                       <?= t("btn_register_absence") ?>
                     </button>
 
 
@@ -287,18 +287,18 @@ else {
                                 <button class="btn-Cerrar" type="button"><img class="cruz-register"
                                         src="/frontend/img/cruz.png" alt=""></button>
                                 <form class="registro-div inasistencia-form">
-                                    <h1>Registrar inasistencia</h1>
+                                    <h1><?= t("btn_register_absence") ?></h1>
                                     <hr>
                                     <div class="div-labels">
-                                        <label for="dia" class="label">En el dia:</label>
+                                        <label for="dia" class="label"><?= t("label_day_absence") ?></label>
                                         <select class="input-register" type="text" name="dia_falta" id="dia_falta"
                                             required placeholder="Ingrese el dia">
                                             <option value=""></option>
-                                            <option value="lunes">Lunes</option>
-                                            <option value="martes">Martes</option>
-                                            <option value="miercoles">Miercoles</option>
-                                            <option value="jueves">Jueves</option>
-                                            <option value="viernes">Viernes</option>
+                                            <option value="lunes"><?= t("day_monday") ?></option>
+                                            <option value="martes"><?= t("day_tuesday") ?></option>
+                                            <option value="miercoles"><?= t("day_wednesday") ?></option>
+                                            <option value="jueves"><?= t("day_thursday") ?></option>
+                                            <option value="viernes"><?= t("day_friday") ?></option>
                                         </select>
                                     </div>
                                 </form>
@@ -309,12 +309,12 @@ else {
 
                     <div class="datos-header">
                         <div class="datos-row">
-                            <div class="horas-titulo">Horas</div>
-                            <div class="dias">Lunes</div>
-                            <div class="dias">Martes</div>
-                            <div class="dias">Miércoles</div>
-                            <div class="dias">Jueves</div>
-                            <div class="dias">Viernes</div>
+                            <div class="horas-titulo"><?= t("label_hours") ?></div>
+                            <div class="dias"><?= t("day_monday") ?></div>
+                            <div class="dias"><?= t("day_tuesday") ?></div>
+                            <div class="dias"><?= t("day_wednesday") ?></div>
+                            <div class="dias"><?= t("day_thursday") ?></div>
+                            <div class="dias"><?= t("day_friday") ?></div>
                         </div>
                     </div>
 

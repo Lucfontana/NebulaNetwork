@@ -478,11 +478,11 @@ session_start();
                                 <select class="input-register" type="text" name="dia_dictado" id="dia_dictado" required
                                     placeholder="<?= t("placeholder_day") ?>">
                                     <option value=""></option>
-                                    <option value="lunes"><?= t("option_monday") ?></option>
-                                    <option value="martes"><?= t("option_tuesday") ?></option>
-                                    <option value="miercoles"><?= t("option_wednesday") ?></option>
-                                    <option value="jueves"><?= t("option_thursday") ?></option>
-                                    <option value="viernes"><?= t("option_friday") ?></option>
+                                    <option value="lunes"><?= t("day_monday") ?></option>
+                                    <option value="martes"><?= t("day_tuesday") ?></option>
+                                    <option value="miercoles"><?= t("day_wednesday") ?></option>
+                                    <option value="jueves"><?= t("day_thursday") ?></option>
+                                    <option value="viernes"><?= t("day_friday") ?></option>
                                 </select>
                             </div>        
 

@@ -72,11 +72,7 @@
     "option_salon": "Salón",
     "option_lab": "Laboratorio",
     "option_sum": "SUM",
-    "option_monday": "Lunes",
-    "option_tuesday": "Martes",
-    "option_wednesday": "Miércoles",
-    "option_thursday": "Jueves",
-    "option_friday": "Viernes",
+
     "option_access_1": "1 - Adscripta",
     "option_access_2": "2 - Secretaría",
     "option_access_3": "3 - Administrador",
@@ -218,11 +214,7 @@
     "option_salon": "Classroom",
     "option_lab": "Laboratory",
     "option_sum": "Multipurpose Room",
-    "option_monday": "Monday",
-    "option_tuesday": "Tuesday",
-    "option_wednesday": "Wednesday",
-    "option_thursday": "Thursday",
-    "option_friday": "Friday",
+    
     "option_access_1": "1 - Assistant",
     "option_access_2": "2 - Secretary",
     "option_access_3": "3 - Administrator",
@@ -279,6 +271,7 @@
     "label_select_schedule": "Select Schedule:",
     "label_select_course": "Select Course:",
     "label_select_classroom": "Select Classroom:",
+
     "option_select_course": "Select a course",
     "option_select_classroom": "Select a classroom",
     "label_hours": "Hours",
@@ -290,7 +283,6 @@
     "msg_no_data": "---",
     "msg_break": "Break",
     "btn_register_absence": "Register absence",
-    "modal_title_absence": "Register absence",
     "label_day_absence": "On the day:",
     
 
