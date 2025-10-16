@@ -2,57 +2,23 @@
 
 include_once 'functions.php';
 include_once('../backend/db/conexion.php');
+include_once('../backend/queries.php');
 
-$con = conectar_a_bd();
-$sql = "SELECT * FROM espacios_fisicos";
-$stmt = $con->prepare($sql);
-$stmt->execute();
-$result = $stmt->get_result();
+$result = query_espaciosfisicos($con);
 
-// Query espacios sin el espacio general
-$sql = "SELECT * FROM espacios_fisicos WHERE nombre != 'general'";
-$stmt = $con->prepare($sql);
-$stmt->execute();
-$espacios_sin_general = $stmt->get_result();
+$espacios_sin_general = query_espacios_sin_general($con);
 
-////////////////////////////////
-//Query de profesores
-$query_profesores = "SELECT * FROM profesores";
-$stmt = $con->prepare($query_profesores);
-$stmt->execute();
-$profesores_info = $stmt->get_result();
+$profesores_info = query_profesores($con);
 
-////////////////////////////////
-//Query de asignaturas
-$query_asignaturas = "SELECT * FROM asignaturas";
-$stmt = $con->prepare($query_asignaturas);
-$stmt->execute();
-$asignaturas_info = $stmt->get_result();
+$asignaturas_info = query_asignaturas($con);
 
-////////////////////////////////
-//Query de horas
-$query_horarios = "SELECT * FROM horarios";
-$stmt = $con->prepare($query_horarios);
-$stmt->execute();
-$horarios_info = $stmt->get_result();
+$horarios_info = query_horarios($con);
 
-/////////////////////////////////
-//Query de cursos
-$query_cursos = "SELECT * FROM cursos";
-$stmt = $con->prepare($query_cursos);
-$stmt->execute();
-$cursos_info = $stmt->get_result();
+$cursos_info = query_cursos($con);
 
-///////////////////////////////////
-//Query de orientacion
-$query_orientacion = "SELECT * FROM orientacion";
-$stmt = $con->prepare($query_orientacion);
-$stmt->execute();
-$orientacion_info = $stmt->get_result();
+$orientacion_info = query_orientacion($con);
 
 session_start();
-
-
 
 ?>
 

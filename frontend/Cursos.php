@@ -9,13 +9,12 @@ session_start();
 ?>
 
 <title>Cursos</title>
- <!-- trae las barras de navegacion (sidebar y superior) -->
-<?php include 'nav.php'; ?>
 
 <?php if (!isset($_SESSION['nivel_acceso'])): ?>
     <?php include_once('error.php') ?>
 <?php else: ?>
 
+<?php include 'nav.php'; ?>
 <body>
     <main>
         <div id="contenido-mostrar-datos">

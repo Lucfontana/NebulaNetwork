@@ -9,11 +9,13 @@ session_start();
 ?>
 
 <title>Profesores</title>
-<?php include 'nav.php'; ?>
 
 <?php if (!isset($_SESSION['nivel_acceso'])): ?>
     <?php include_once('error.php') ?>
 <?php else: ?>
+
+<?php include 'nav.php'; ?>
+
 
 <body>
     <main>
