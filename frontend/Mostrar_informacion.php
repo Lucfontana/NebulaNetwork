@@ -9,7 +9,6 @@ $query = mysqli_query($connect, $sql);
 $mostrarinofrmacion = isset($_GET['informacion']) ? intval($_GET['informacion']) : 0;
 
 if ($mostrarinofrmacion = 0) {
-
 }
 
 session_start();
@@ -20,12 +19,26 @@ session_start();
     <?php include_once('error.php') ?>
 <?php else: ?>
 
-<?php include 'nav.php'; ?>
+    <?php include 'nav.php'; ?>
+
+
 
     <body>
         <main>
             <div id="contenido-mostrar-datos">
                 <h1>Asignaturas</h1>
+                <div class="filtros"> <label for="horario-select">Seleccione Dato a Mostrar: :</label> 
+                <select name="salones" class="salones-select" id="salones-select" onchange="cambiarEspacio(this.value)">
+                    <option value="0">Seleccione Dato</option>
+                    <option value="1">Asignaturas</option>
+                    <option value="2">C</option>
+                    <option value="3">Seleccione Datos a Mostrar</option>
+                    <option value="4">Seleccione Datos a Mostrar</option>
+                    <option value="5">Seleccione Datos a Mostrar</option>
+                    <option value="6">Seleccione Datos a Mostrar</option>
+                    <option value="7">Seleccione Datos a Mostrar</option>
+                </select>
+                </div>
 
                 <div class="datos-grid asignaturas-grid">
                     <!-- Cabecera -->
@@ -104,4 +117,3 @@ session_start();
     <script type="module" src="/frontend/js/confirm-asignatura.js"></script>
     <script type="module" src="/frontend/js/prueba.js"></script>
     </body>
-
