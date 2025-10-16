@@ -9,10 +9,6 @@
     "btn_teachers": "Horarios",
 
 
-    "footer": "2025 ITSP. Todos los derechos reservados",
-
-
-    
     "nav_info": "Manual de Usuarios",
     "nav_courses": "Sobre Nosotros",
     
@@ -127,9 +123,10 @@
      "status_not_returned": "Sin devolver",
 
      "msg_no_loans": "No hay préstamos registrados",
-     "msg_no_user_loans": "No tienes préstamos registrados"
+     "msg_no_user_loans": "No tienes préstamos registrados",
 
 
+     "footer": "2025 ITSP. Todos los derechos reservados"
   },
   "en": {
     
@@ -139,11 +136,6 @@
     "btn_info": "Enter Information",
     "btn_resources": "Resources",
     "btn_teachers": "Schedules",
-
-
-    
-    "footer": "2025 ITSP. All rights reserved",
-
     
     
     "nav_info": "User Manual",
@@ -154,7 +146,6 @@
     "aside_logout": "Log-out",
     "aside_darkmode": "Dark mode",
     "aside_lang": "Change language",
-
 
     
     "title": "Register",
@@ -258,7 +249,10 @@
     "status_not_returned": "Not returned",
 
     "msg_no_loans": "No loans registered",
-    "msg_no_user_loans": "You have no registered loans"
+    "msg_no_user_loans": "You have no registered loans",
+    
+
+    "footer": "2025 ITSP. All rights reserved"
 
   }
 }
