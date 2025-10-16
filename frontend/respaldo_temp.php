@@ -1,53 +1,14 @@
 <?php
 
 include_once('../backend/db/conexion.php');
+include_once('../backend/queries.php');
 $con = conectar_a_bd();
-////////////////////////////////
-//Query de profesores
-$query_profesores = "SELECT * FROM profesores";
-$stmt = $con->prepare($query_profesores);
-$stmt->execute();
-$profesores_info = $stmt->get_result();
 
-//////////////////////////////////
-//Query de recursos
-$query_recursos = "SELECT * FROM recursos WHERE estado != 'uso'";
-$stmt = $con->prepare($query_recursos);
-$stmt->execute();
-$recursos_info = $stmt->get_result();
+$profesores_info = query_profesores($con);
 
-//////////////////////////////////
-// Consulta SQL para obtener la información de préstamos
-$query_unida = "SELECT 
--- SAR es el apodo de la tabla su_administra_recursos, 
--- le dice que traiga id_solicita, hora presta y vuelta de esa tabla
-    sar.id_solicita, sar.hora_presta, sar.hora_vuelta, 
+$recursos_info = query_recursos($con);
 
--- p es el apodo de profesores.
--- trae datos con apodos (por ejemplo, nombre 
--- lo trae como nombre_profesor)
-    p.nombre AS nombre_profesor, p.apellido AS apellido_profesor, p.ci_profesor, 
--- r = apodo de tabla RECURSOS
-    r.nombre AS nombre_recurso, r.id_recurso, r.estado AS estado_recurso,
-
--- su = apodo de tabla SUPERUSUARIO
-    su.nombre AS nombre_su, su.apellido AS apellido_su, su.id_superusuario
-
--- Junta tablas que tienen datos en comun, diciendo que el origen es su_administra_usuarios y tiene apodo de 'sar'
--- Nosotros esto lo haciamos con WHERE el anio pasado, pero queda mas legible con INNER JOIN
-    FROM su_administra_recursos sar
-    INNER JOIN profesor_solicita_recurso psr ON sar.id_solicita = psr.id_solicita
-    INNER JOIN profesores p ON psr.ci_profesor = p.ci_profesor
-    INNER JOIN recursos r ON psr.id_recurso = r.id_recurso
-    INNER JOIN superUsuario su ON sar.id_superusuario = su.id_superusuario
-
--- Se ordena como descendiente para que los mas nuevos aparezcan primero
-    ORDER BY sar.hora_presta DESC";
-
-//Se ejecuta la query y se trae el resultado
-$stmt = $con->prepare($query_unida);
-$stmt->execute();
-$prestamos_info = $stmt->get_result();
+$prestamos_info = query_prestamos($con);
 
 session_start();
 
@@ -55,20 +16,7 @@ if (!isset($_SESSION['acceso']) && isset($_SESSION['ci'])) {
     $ci_profesor = (int)$_SESSION['ci'];
 }
 
-$query = "SELECT 
-    r.nombre as nombre_recurso,
-    sar.hora_presta,
-    sar.hora_vuelta
-    FROM profesor_solicita_recurso psr
-    INNER JOIN recursos r ON psr.id_recurso = r.id_recurso
-    INNER JOIN su_administra_recursos sar ON psr.id_solicita = sar.id_solicita
-    WHERE psr.ci_profesor = ? AND sar.hora_vuelta is null
-    ORDER BY sar.hora_presta DESC";
-
-$stmt = $con->prepare($query);
-$stmt->bind_param("i", $ci_profesor);
-$stmt->execute();
-$prestamos_info2 = $stmt->get_result();
+$prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
 
 ?>
 

@@ -1,20 +1,16 @@
-<?php include_once('../backend/db/conexion.php');
+<?php 
+include_once('../backend/db/conexion.php');
+include_once('../backend/queries.php');
+
 //seleccionamos los horarios para desplegarlos en forma ascendente
 $connect = conectar_a_bd();
-$sql = "SELECT * FROM horarios WHERE tipo = 'clase'";
-$stmt = $con->prepare($sql);
-$stmt->execute();
-$query = $stmt->get_result();
-//seleccionamos los cursos para el select
-$sql2 = "SELECT * FROM cursos";
-$stmt = $con->prepare($sql2);
-$stmt->execute();
-$query2 = $stmt->get_result();
+
+$query = query_horarios($con);
+
+$query2 = query_cursos($con);
+
 //seleccionamos los salones para el select
-$sql3 = "SELECT * FROM espacios_fisicos WHERE nombre != 'general'";
-$stmt = $con->prepare($sql3);
-$stmt->execute();
-$query3 = $stmt->get_result();
+$query3 = query_espacios_sin_general($con);
 session_start();
 
 // Verificar si se ha enviado un ID de curso o de espacio a través de GET
@@ -36,52 +32,12 @@ $materias_por_dia = [];
 
 
 //muestra todas las horas que hay en la bd sin repetirse y dependiendo del curso
-$sql4 = "SELECT DISTINCT
-                    h.hora_inicio,
-                    h.hora_final
-                FROM cumple cu
-                INNER JOIN profesor_dicta_asignatura pda ON cu.id_dicta = pda.id_dicta
-                INNER JOIN asignaturas a ON pda.id_asignatura = a.id_asignatura
-                INNER JOIN dicta_en_curso dc ON pda.id_dicta = dc.id_dicta
-                INNER JOIN cursos c ON dc.id_curso = c.id_curso
-                INNER JOIN horarios h ON cu.id_horario = h.id_horario
-                INNER JOIN dicta_ocupa_espacio doe ON cu.id_dicta = doe.id_dicta
-                INNER JOIN espacios_fisicos e ON doe.id_espacio = e.id_espacio
-                WHERE c.id_curso = $cursosql
-                  AND h.tipo = 'clase'
-                ORDER BY h.hora_inicio ASC";
-$stmt = $con->prepare($sql4);
-$stmt->execute();
-$query4 = $stmt->get_result();;
+$query4 = query_horas_curso($con, $cursosql);
 
 // Si se seleccionó un curso
 if ($cursosql > 0) {
     foreach ($dias as $dia) {
-        $sql = "SELECT 
-                    a.nombre AS nombre_asignatura,
-                    e.nombre AS nombre_espacio,
-                    h.hora_inicio,
-                    h.hora_final,
-                    h.tipo,
-                    c.nombre AS nombre_curso,
-                    cu.dia
-                FROM cumple cu
-                INNER JOIN profesor_dicta_asignatura pda ON cu.id_dicta = pda.id_dicta
-                INNER JOIN asignaturas a ON pda.id_asignatura = a.id_asignatura
-                INNER JOIN dicta_en_curso dc ON pda.id_dicta = dc.id_dicta
-                INNER JOIN cursos c ON dc.id_curso = c.id_curso
-                INNER JOIN horarios h ON cu.id_horario = h.id_horario
-                INNER JOIN dicta_ocupa_espacio doe ON cu.id_dicta = doe.id_dicta
-                INNER JOIN espacios_fisicos e ON doe.id_espacio = e.id_espacio
-                WHERE cu.dia = '$dia'
-                  AND c.id_curso = $cursosql
-                  AND h.tipo = 'clase'
-                ORDER BY h.hora_inicio ASC";
-
-
-        $stmt = $con->prepare($sql);
-        $stmt->execute();
-        $resultado = $stmt->get_result();
+        $resultado = query_horas_dia_curso($con, $dia, $cursosql);
         $materias_por_dia[$dia] = [];
         while ($fila = mysqli_fetch_assoc($resultado)) {
             $materias_por_dia[$dia][] = $fila;
