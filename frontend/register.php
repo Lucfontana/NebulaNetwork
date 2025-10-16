@@ -190,6 +190,7 @@ session_start();
                                 <input class="input-register" type="password" name="contrasena" id="contrasenaProfesor"
                                      maxlength="8" pattern="\d{8}" required placeholder="<?= t("placeholder_password") ?>">
                                 <i class="far fa-eye fa-eye-slash togglePassword"></i>
+                                </div>
                             </div>
                             <div class="div-labels">
                                 <label for="name" class="label"><?= t("label_name") ?></label>
@@ -251,6 +252,7 @@ session_start();
                                     maxlength="8" pattern="\d{8}" required placeholder="<?= t("placeholder_password") ?>">
                                 <i class="far fa-eye fa-eye-slash togglePassword"></i>
                             </div>
+</div>
                             <div class="div-labels">
                                 <label for="name" class="label"><?= t("label_name") ?></label>
                                 <input class="input-register" type="text" name="name" id="nombreSuperusuario" maxlength="20"
