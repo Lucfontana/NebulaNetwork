@@ -21,10 +21,10 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
 ?>
 
 <title>Prestar Recursos</title>
-<?php include 'nav.php'; ?>
 <link rel="stylesheet" href="style/style.css">
 
 <?php if (isset($_SESSION['nivel_acceso'])): ?>
+<?php include 'nav.php'; ?>
 
     <body id="body-register">
         <!-- trae las barras de navegacion (sidebar y superior) -->
