@@ -1179,15 +1179,11 @@ hr {
 
 /* Editar Datos */
 
-#overlay-edit-asignatura, #overlay-edit-curso, #overlay-edit-espacio, #overlay-edit-orientacion {
+#overlay-edit-asignatura, #overlay-edit-curso, #overlay-edit-espacio, #overlay-edit-orientacion, #overlay-edit-profesor, #overlay-edit-recurso, #overlay-edit-super {
     display: none;
     opacity: 0;
 }
 
-#overlay-edit {
-    display: none;
-    opacity: 0;
-}
 
 .overlay-edit {
     position: fixed;

@@ -1,11 +1,11 @@
 <?php
 session_start();
 ?>
-
-<title>Mostrar Información</title>
 <?php if (!isset($_SESSION['nivel_acceso'])): ?>
     <?php include_once('error.php') ?>
 <?php else: ?>
+<title>Mostrar Información</title>
+
 
     <?php include 'nav.php'; ?>
 
@@ -52,6 +52,7 @@ session_start();
                 <div data-seccion="superusuarios" class="seccion-oculta">
                     <?php include_once("./SuperUsuarios.php") ?>
                 </div>
+            </div>
         </main>
 
         <footer id="footer" class="footer">
@@ -66,6 +67,10 @@ session_start();
     <script type="module" src="/frontend/js/confirm-cursos.js"></script>
     <script type="module" src="/frontend/js/confirm-espacios.js"></script>
     <script type="module" src="/frontend/js/confirm-orientacion.js"></script>
+    <script type="module" src="/frontend/js/confirm-profesores.js"></script>
+    <script type="module" src="/frontend/js/confirm-recursos.js"></script>
+    <script type="module" src="/frontend/js/confirm-superusuario.js"></script>
+
     <script type="module" src="/frontend/js/prueba.js"></script>
     <script src="./js/Mostrar-informacion-general.js"></script>
     </body>

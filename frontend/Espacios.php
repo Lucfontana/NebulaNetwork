@@ -72,14 +72,14 @@ $query = mysqli_query($connect, $sql);
 
                 <div class="input-group">
                     <label for="name_edit_espacio">Nombre:</label>
-                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit_espacio" 
-                           maxlength="20" minlength="3" required placeholder="Ingresa nombre">
+                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit_espacio"
+                        maxlength="20" minlength="3" required placeholder="Ingresa nombre">
                 </div>
 
                 <div class="input-group">
                     <label for="capacidad_edit_espacio">Capacidad:</label>
-                    <input class="class-datos-editar" type="text" name="capacidad" id="capacidad_edit_espacio" 
-                           maxlength="20" minlength="1" required placeholder="Ingresa capacidad">
+                    <input class="class-datos-editar" type="text" name="capacidad" id="capacidad_edit_espacio"
+                        maxlength="20" minlength="1" required placeholder="Ingresa capacidad">
                 </div>
 
                 <div class="input-group">

@@ -1,12 +1,11 @@
 import { verificarNombreEspecial, alerta_success_update, alerta_fallo } from './prueba.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.getElementById("overlay");
-  const btnCancelar = document.getElementById("cancelar");
-  const btnConfirmar = document.getElementById("confirmar");
-  const overlayEdit = document.getElementById("overlay-edit");
-  const btnCancelarEdit = document.getElementById("cancelarEdit");
-  const btnActualizar = document.getElementById("actualizar");
+  const overlay = document.getElementById("overlay-recurso");
+  const btnCancelar = document.getElementById("cancelar-recurso");
+  const btnConfirmar = document.getElementById("confirmar-recurso");
+  const overlayEdit = document.getElementById("overlay-edit-recurso");
+  const btnCancelarEdit = document.getElementById("cancelarEdit-recurso");
 
   let editID = null;
   let idespacio = null;
@@ -18,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // Abrir modal y guardar id
-  document.querySelectorAll(".boton-datos-eliminar").forEach(boton => {
+  document.querySelectorAll(".boton-eliminar-recurso").forEach(boton => {
     boton.addEventListener("click", (e) => {
       e.preventDefault();
       currentId = boton.dataset.id;
@@ -48,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  document.querySelectorAll(".boton-datos-editar").forEach(botonEditar => {
+  document.querySelectorAll(".boton-editar-recurso").forEach(botonEditar => {
     botonEditar.addEventListener("click", (a) => {
       a.preventDefault();
 
@@ -60,11 +59,11 @@ document.addEventListener("DOMContentLoaded", () => {
       tipo = botonEditar.dataset.tipo;
       estado = botonEditar.dataset.estado;
 
-      document.getElementById("id_edit").value = editID;
+      document.getElementById("id_edit_recurso").value = editID;
       document.getElementById("id_espacio_edit").value = idespacio;
-      document.getElementById("name_edit").value = nombre;
-      document.getElementById("tipo_edit").value = tipo;
-      document.getElementById("estado_edit").value = estado;
+      document.getElementById("name_edit_recurso").value = nombre;
+      document.getElementById("tipo_edit_recurso").value = tipo;
+      document.getElementById("estado_edit_recurso").value = estado;
 
       setTimeout(() => {
        overlayEdit.style.opacity = "1";
@@ -85,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("form-update").addEventListener("submit", async (e) => {
     e.preventDefault(); // Evita el submit normal
       
-    let nombreInput = document.getElementById("name_edit").value;
+    let nombreInput = document.getElementById("name_edit_recurso").value;
 
     if (!verificarNombreEspecial(nombreInput)) {
         return;

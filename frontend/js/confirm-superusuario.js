@@ -1,11 +1,11 @@
 import { verificarString, verificarEmail, alerta_success_update, alerta_fallo } from './prueba.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.getElementById("overlay");
-  const btnCancelar = document.getElementById("cancelar");
-  const btnConfirmar = document.getElementById("confirmar");
-  const overlayEdit = document.getElementById("overlay-edit");
-  const btnCancelarEdit = document.getElementById("cancelarEdit");
+  const overlay = document.getElementById("overlay-super");
+  const btnCancelar = document.getElementById("cancelar-super");
+  const btnConfirmar = document.getElementById("confirmar-super");
+  const overlayEdit = document.getElementById("overlay-edit-super");
+  const btnCancelarEdit = document.getElementById("cancelarEdit-super");
   const btnActualizar = document.getElementById("actualizar");
 
   let editID = null;
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // Abrir modal y guardar id
-  document.querySelectorAll(".boton-datos-eliminar").forEach(boton => {
+  document.querySelectorAll(".boton-eliminar-super").forEach(boton => {
     boton.addEventListener("click", (e) => {
       e.preventDefault();
       currentId = boton.dataset.id;
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  document.querySelectorAll(".boton-datos-editar").forEach(botonEditar => {
+  document.querySelectorAll(".boton-editar-super").forEach(botonEditar => {
     botonEditar.addEventListener("click", (a) => {
       a.preventDefault();
 
@@ -59,11 +59,11 @@ document.addEventListener("DOMContentLoaded", () => {
       nivel = botonEditar.dataset.nivel;
       
 
-      document.getElementById("id_edit").value = editID;
-      document.getElementById("name_edit").value = nombre;
-      document.getElementById("apellido_edit").value = apellido;
-      document.getElementById("nivel_edit").value = nivel;
-      document.getElementById("email_edit").value = botonEditar.dataset.email;
+      document.getElementById("id_edit_super").value = editID;
+      document.getElementById("name_edit_super").value = nombre;
+      document.getElementById("apellido_edit_super").value = apellido;
+      document.getElementById("nivel_edit_super").value = nivel;
+      document.getElementById("email_edit_super").value = botonEditar.dataset.email;
 
       setTimeout(() => {
        overlayEdit.style.opacity = "1";
