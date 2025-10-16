@@ -3,6 +3,9 @@ session_start();
 ?>
 
 <title>Perfil</title>
+<?php if (!isset($_SESSION['ci'])): ?>
+    <?php include_once('error.php') ?>
+<?php else: ?>
 <?php include 'nav.php'; ?>
 
 <body class="body-perfil">
@@ -77,3 +80,4 @@ session_start();
     <script src="/frontend/js/changeName.js"></script>
     <script src="./js/togglepasswd.js"></script>
 </body>
+<?php endif; ?>
