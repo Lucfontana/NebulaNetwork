@@ -870,6 +870,10 @@ hr {
     display: none;
 }
 
+#horas_falta{
+    visibility: hidden;
+}
+
 .class-datos-editar {
     padding: 10px;
     border-color: #2980b9;

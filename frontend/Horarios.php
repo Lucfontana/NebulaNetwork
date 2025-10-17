@@ -1,5 +1,6 @@
 <?php 
 include_once('../backend/db/conexion.php');
+include_once('functions.php');
 include_once('../backend/queries.php');
 
 //seleccionamos los horarios para desplegarlos en forma ascendente
@@ -289,18 +290,21 @@ else {
                                 <form class="registro-div inasistencia-form">
                                     <h1><?= t("btn_register_absence") ?></h1>
                                     <hr>
+
                                     <div class="div-labels">
-                                        <label for="dia" class="label"><?= t("label_day_absence") ?></label>
-                                        <select class="input-register" type="text" name="dia_falta" id="dia_falta"
-                                            required placeholder="Ingrese el dia">
-                                            <option value=""></option>
-                                            <option value="lunes"><?= t("day_monday") ?></option>
-                                            <option value="martes"><?= t("day_tuesday") ?></option>
-                                            <option value="miercoles"><?= t("day_wednesday") ?></option>
-                                            <option value="jueves"><?= t("day_thursday") ?></option>
-                                            <option value="viernes"><?= t("day_friday") ?></option>
-                                        </select>
+                                        <label for="dia" class="label">En el dia:</label>
+                                            <input type="date" name="dia_falta" id="dia_falta" class="input-register" required>                                            
                                     </div>
+
+                                    <div class="div-labels" id="horas_falta">
+                                        <label for="nose" class="label">Cantidad de horas a faltar:</label>
+                                            <input type="number" id="cantidad_horas_falta" class="input-register" required>                                            
+                                    </div>
+
+                                    <div class="div-labels" id="horas_clase_profe"></div>
+
+                                    <div id="campos-dinamicos"></div>
+                                    
                                 </form>
                             </div>
                         </div>

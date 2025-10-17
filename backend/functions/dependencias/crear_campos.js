@@ -4,8 +4,13 @@ let campos_a_crear = document.getElementById("crear_campos");
 let formulario_dependencias = document.querySelector(".dependencias-form");
 
 //Cuando el usuario INGRESA un numero (input), se crean los campos
-campos_a_crear.addEventListener("input", crear_campos);
-formulario_dependencias.addEventListener("submit", registrar_dependencia);
+
+//Si existen los campos, se ejecuta
+if(campos_a_crear) campos_a_crear.addEventListener("input", crear_campos)
+
+if(formulario_dependencias) formulario_dependencias.addEventListener("submit", registrar_dependencia)
+
+
 
 //Funcion asincronica, se usa para ejecutar el codigo mientras se hace las peticiones
 //Y que el codigo no se detenga una vez llegue a las peticiones (fetch). Es lo mismo que habiamos
@@ -50,48 +55,48 @@ async function crear_campos(){
         //Cada vez que cambia el valor del input, se vacia el contenido del contenedor
         contenedor.innerHTML = '';
 
-        //Se ejecuta un for segun la cantidad_campos
-        for (let i = 1; i <= cantidad_campos; i++){
+        crear_selects_horarios(contenedor, horarios, cantidad_campos);
 
-            //Se crea el contenedor donde estan todos los div, que  se le da la clase div-labels
-            let campoDiv = document.createElement('div');
-            campoDiv.className = 'div-labels';
-
-            //Se crean los label, con el contenido, el atributo y el nombre de clase
-            let label = document.createElement('label');
-            label.textContent = `Hora de la clase ${i}:`;
-            label.setAttribute('for', `hora_clase`);
-            label.className = 'label';
-
-            //Se crean los select, pasandoles el name como un arreglo y con sus distintas cosas
-            let select = document.createElement('select');
-            select.className = 'input-register';
-            select.id = `hora_profesor_da_clase${i}`;
-            select.name = 'hora_profesor_da_clase[]';
-            select.required = true;
-
-            //La opcion predeterminada es vacia, y no te deja seleccionarla cuando desplegas el select
-            let opcionPredeterminada = document.createElement("option");
-            opcionPredeterminada.value = '';
-            opcionPredeterminada.textContent = 'Selecciona una opción';
-            opcionPredeterminada.disabled = true;
-            opcionPredeterminada.selected = true;
-            select.appendChild(opcionPredeterminada);
-
-            horarios.forEach(horario => {
-                let opcion = document.createElement("option");
-                opcion.value = horario.id_horario;
-                opcion.textContent = `${horario.hora_inicio} - ${horario.hora_final}`;
-                select.appendChild(opcion);
-            });
-
-            campoDiv.appendChild(label);
-            campoDiv.appendChild(select);
-            contenedor.appendChild(campoDiv);
-        }
     } catch (error) {
         console.error('Error completo:', error);
         alerta_fallo('Error al cargar los horarios');
+    }
+}
+
+export function crear_selects_horarios(contenedor, horarios, cantidad_campos) {
+    console.log("creando campos");
+    for (let i = 1; i <= cantidad_campos; i++) {
+        let campoDiv = document.createElement('div');
+        campoDiv.className = 'div-labels';
+
+        let label = document.createElement('label');
+        label.textContent = `Hora de la clase ${i}:`;
+        label.setAttribute('for', `hora_clase`);
+        label.className = 'label';
+
+        let select = document.createElement('select');
+        select.className = 'input-register';
+        select.id = `hora_profesor_da_clase${i}`;
+        select.name = 'hora_profesor_da_clase[]';
+        select.required = true;
+
+        let opcionPredeterminada = document.createElement("option");
+        opcionPredeterminada.value = '';
+        opcionPredeterminada.textContent = 'Selecciona una opción';
+        opcionPredeterminada.disabled = true;
+        opcionPredeterminada.selected = true;
+        select.appendChild(opcionPredeterminada);
+
+        horarios.forEach(horario => {
+            let opcion = document.createElement("option");
+            opcion.value = horario.id_horario;
+            opcion.textContent = `${horario.hora_inicio} - ${horario.hora_final}`;
+            select.appendChild(opcion);
+        });
+
+        campoDiv.appendChild(label);
+        campoDiv.appendChild(select);
+        contenedor.appendChild(campoDiv);
     }
 }
 

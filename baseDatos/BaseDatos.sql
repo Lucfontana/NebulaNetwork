@@ -67,6 +67,16 @@ create table profesor_dicta_asignatura (
     foreign key (id_asignatura) references asignaturas(id_asignatura) ON DELETE CASCADE
 );
 
+CREATE TABLE inasistencia (
+    id_inasistencia INT AUTO_INCREMENT PRIMARY KEY,
+    fecha_inasistencia DATE NOT NULL,
+    ci_profesor INT,
+    id_horario INT,
+    FOREIGN KEY (ci_profesor) REFERENCES profesores(ci_profesor) ON DELETE CASCADE,
+    FOREIGN KEY (id_horario) REFERENCES horarios(id_horario)
+);
+
+
 create table profesor_solicita_recurso(
     id_solicita int AUTO_INCREMENT primary key not null,
     ci_profesor int,
