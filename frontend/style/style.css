@@ -60,7 +60,7 @@ main {
     margin: 0 0 0 0;
     background-color: #E0E3EB;
     transition: all 0.5s ease;
-    
+
 }
 
 .navStyle.darkmode {
@@ -90,7 +90,9 @@ main {
     padding-left: 10px;
 }
 
-.nav-link.darkmode, .navbar-brand.darkmode, .nav-item a.darkmode {
+.nav-link.darkmode,
+.navbar-brand.darkmode,
+.nav-item a.darkmode {
     color: #fff;
 }
 
@@ -700,35 +702,36 @@ aside>ul {
     align-items: center;
 }
 
-.contenedor-password-register > input {
+.contenedor-password-register>input {
     width: 100%;
 }
 
-.contenedor-password-register > i {
+.contenedor-password-register>i {
     color: white;
 }
 
 
 /* Primer grupo (elementos 1, 2 y 3) */
 .article-register:nth-child(-n + 3) {
-  --color:  #da9768;
+    --color: #da9768;
 }
 
 /* Segundo grupo (elementos 4, 5 y 6) */
 .article-register:nth-child(n + 4):nth-child(-n + 6) {
-  --color:#2E8B92; 
+    --color: #2E8B92;
 }
 
 /* Tercer grupo (elementos 7, 8 y 9) */
 .article-register:nth-child(n + 7):nth-child(-n + 9) {
-  --color:  #73b382;
- 
+    --color: #73b382;
+
 }
 
 /* Aplica el color al texto dentro del span */
 .article-register h1 span {
-  color: var(--color);
+    color: var(--color);
 }
+
 .article-register {
     --color: #4db8ff;
     /* acá definís la variable */
@@ -863,14 +866,19 @@ hr {
     display: flex;
 }
 
+/* Mostrar Datos Celular */
+.flex-mostrar-datos {
+    display: none;
+}
 
 /* Mostrar Datos */
 
 .seccion-oculta {
     display: none;
+    flex-direction: column;
 }
 
-#horas_falta{
+#horas_falta {
     visibility: hidden;
 }
 
@@ -924,7 +932,8 @@ hr {
     color: white;
     font-weight: 600;
 }
-.grid-row ,
+
+.grid-row,
 .grid-header {
     display: grid;
     grid-template-columns: 80px 1fr 150px 120px 120px;
@@ -1047,7 +1056,7 @@ hr {
     background: #ecf0f1;
 }
 
-.datos-header .datos-row > div {
+.datos-header .datos-row>div {
     padding: 15px;
     font-weight: 600;
     text-align: center;
@@ -1058,7 +1067,7 @@ hr {
     border-bottom: 1px solid #ecf0f1;
 }
 
-.datos-body .datos-row > div {
+.datos-body .datos-row>div {
     padding: 10px;
     background: white;
     display: flex;
@@ -1079,9 +1088,9 @@ hr {
     border: 1px solid #ecf0f1;
 }
 
-.dia-dato-recreo{
+.dia-dato-recreo {
     min-height: 30px;
-    border: 1px solid #ecf0f1; 
+    border: 1px solid #ecf0f1;
 }
 
 .filtros {
@@ -1092,7 +1101,9 @@ hr {
     gap: 20px;
 }
 
-#select-horarios, #salones-select, #cursos-select {
+#select-horarios,
+#salones-select,
+#cursos-select {
     width: 200px;
     font-size: 14px;
 }
@@ -1136,6 +1147,7 @@ hr {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
 }
+
 /* Confirmacion de Eliminar */
 
 .overlay {
@@ -1183,7 +1195,13 @@ hr {
 
 /* Editar Datos */
 
-#overlay-edit-asignatura, #overlay-edit-curso, #overlay-edit-espacio, #overlay-edit-orientacion, #overlay-edit-profesor, #overlay-edit-recurso, #overlay-edit-super {
+#overlay-edit-asignatura,
+#overlay-edit-curso,
+#overlay-edit-espacio,
+#overlay-edit-orientacion,
+#overlay-edit-profesor,
+#overlay-edit-recurso,
+#overlay-edit-super {
     display: none;
     opacity: 0;
 }
@@ -1245,7 +1263,7 @@ hr {
     color: #003366;
 }
 
-.input-group > .contenedor-password > .togglePassword {
+.input-group>.contenedor-password>.togglePassword {
     top: 15px;
 }
 
@@ -1274,7 +1292,7 @@ select {
 }
 
 .btn-primary {
-   background-color: rgb(34, 34, 34);
+    background-color: rgb(34, 34, 34);
     border: none;
     color: #fff;
     padding: 10px 20px;
@@ -1285,7 +1303,7 @@ select {
 }
 
 .btn-primary:hover {
-     background-color: #6d6d6d;
+    background-color: #6d6d6d;
 }
 
 .btn-secondary {
@@ -1354,12 +1372,12 @@ select {
     padding: 10px;
 }
 
-.bienvenida-perfil > h2 {
+.bienvenida-perfil>h2 {
     font-size: 30px;
     font-weight: bold;
 }
 
-.bienvenida-perfil > p {
+.bienvenida-perfil>p {
     margin-top: 10px;
     font-size: 22px;
     font-weight: bold;
@@ -1582,7 +1600,7 @@ abajito cuando el ancho es menos de 700px */
     /* Mostrar íconos de idioma y modo oscuro */
     .link-aside-images li.lang-icon,
     .link-aside-images li.darkmode-icon {
-        display: flex ;
+        display: flex;
         justify-content: center;
         align-items: center;
     }
@@ -1600,7 +1618,7 @@ abajito cuando el ancho es menos de 700px */
     /* Efecto hover como los demás */
     .link-aside-images li.lang-icon img:hover,
     .link-aside-images li.darkmode-icon img:hover {
-       filter: brightness(0) invert(43%);
+        filter: brightness(0) invert(43%);
     }
 
     .footer,
@@ -1655,6 +1673,68 @@ abajito cuando el ancho es menos de 700px */
         width: 180px;
         height: 90px;
         font-size: 18px;
+    }
+
+    .datos-tabla-flex {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .flex-header {
+        background: #2c3e50;
+        color: white;
+        font-weight: 600;
+        width: 100%;
+    }
+
+    .flex-mostrar-datos {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+    }
+
+
+    .datos-header-celu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .grid-cell {
+        width: 100%;
+    }
+
+    #contenido-mostrar-datos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .seccion-oculta {
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .informacion-escondida {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .mostrar-informacion-oculta {
+        background-color: transparent;
+        border: none;
+    }
+
+    .datos-grid {
+        display: none;
     }
 }
 

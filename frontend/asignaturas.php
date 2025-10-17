@@ -10,6 +10,7 @@ $query = mysqli_query($connect, $sql);
     <?php include_once('error.php') ?>
 <?php else: ?>
     <h1>Asignaturas</h1>
+    <!-- Vista para PC -->
     <div class="datos-grid asignaturas-grid">
         <div class="grid-header asignaturas-header">
             <div class="grid-cell id">ID</div>
@@ -17,6 +18,7 @@ $query = mysqli_query($connect, $sql);
             <div class="grid-cell boton-titulo">Eliminar</div>
             <div class="grid-cell boton-titulo">Editar</div>
         </div>
+
 
         <?php while ($row = mysqli_fetch_array($query)): ?>
             <div class="grid-row asignaturas-row mostrar-datos">
@@ -42,6 +44,40 @@ $query = mysqli_query($connect, $sql);
         <?php endwhile; ?>
     </div>
 
+    <!-- Vista para celular -->
+    <?php mysqli_data_seek($query, 0); ?>
+    <div class="flex-mostrar-datos">
+        <?php while ($row = mysqli_fetch_array($query)): ?>
+            <div class="datos-header-celu">
+                <div class="datos-tabla-flex">
+                    <div class="nombre-titulo grid-cell flex-header"><?= $row['nombre'] ?> <button class="mostrar-informacion-oculta">🔽</button></div>
+                </div>
+                <div class="informacion-escondida">
+                    <div class="datos-tabla-flex">
+                        <div class="grid-cell">ID: <?= $row['id_asignatura'] ?></div>
+                    </div>
+
+                    <div class="grid-cell">
+                        <!-- Clase específica para asignaturas -->
+                        <a href="#"
+                            class="boton-datos-eliminar boton-eliminar-asignatura botones-datos"
+                            data-id="<?= $row['id_asignatura'] ?>">
+                            Eliminar
+                        </a>
+                    </div>
+                    <div class="grid-cell">
+                        <!-- Clase específica para asignaturas -->
+                        <a class="boton-datos-editar boton-editar-asignatura botones-datos"
+                            data-id="<?= $row['id_asignatura'] ?>"
+                            data-nombre="<?= $row['nombre'] ?>">
+                            Editar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php endwhile; ?>
+    </div>
+
     <!-- ID ÚNICO para asignaturas -->
     <div class="overlay" id="overlay-asignatura">
         <div class="confirmacion">
@@ -60,13 +96,13 @@ $query = mysqli_query($connect, $sql);
             <h1>Modificación de Asignatura</h1>
             <form action="\backend\functions\asignaturas\edit.php" method="POST" id="form-update-asignatura">
                 <input type="hidden" name="id_asignatura" id="id_edit_asignatura">
-                
+
                 <div class="input-group">
                     <label for="name_edit_asignatura">Nombre:</label>
-                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit_asignatura" 
-                           maxlength="20" minlength="3" required placeholder="Ingresa nombre">
+                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit_asignatura"
+                        maxlength="20" minlength="3" required placeholder="Ingresa nombre">
                 </div>
-                
+
                 <div class="buttons-modal">
                     <input type="submit" value="Actualizar Información" class="btn-primary">
                     <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit-asignatura">

@@ -9,6 +9,8 @@ $query = mysqli_query($connect, $sql);
     <?php include_once('error.php') ?>
 <?php else: ?>
     <h1>Cursos</h1>
+
+    <!-- Vista para computadora -->
     <div class="datos-grid">
         <div class="grid-header">
             <div class="grid-cell id">Id</div>
@@ -24,14 +26,13 @@ $query = mysqli_query($connect, $sql);
                 <div class="grid-cell"><?= $row['nombre'] ?></div>
                 <div class="grid-cell ultimo-dato"><?= $row['capacidad'] ?></div>
                 <div class="grid-cell">
-                    <!-- ✅ Clase específica para cursos -->
-                    <a href="#" class="boton-datos-eliminar boton-eliminar-curso botones-datos"
+                    <a href="#"
+                        class="boton-datos-eliminar boton-eliminar-curso botones-datos"
                         data-id="<?= $row['id_curso'] ?>">
                         Eliminar
                     </a>
                 </div>
                 <div class="grid-cell boton-dato">
-                    <!-- ✅ Clase específica para cursos -->
                     <a class="boton-datos-editar boton-editar-curso botones-datos"
                         data-id="<?= $row['id_curso'] ?>"
                         data-nombre="<?= $row['nombre'] ?>"
@@ -43,7 +44,46 @@ $query = mysqli_query($connect, $sql);
         <?php endwhile; ?>
     </div>
 
-    <!-- ✅ ID ÚNICO para cursos -->
+    <!-- Vista para celular -->
+    <?php mysqli_data_seek($query, 0); ?>
+    <div class="flex-mostrar-datos">
+        <?php while ($row = mysqli_fetch_array($query)): ?>
+            <div class="datos-header-celu">
+                <div class="datos-tabla-flex">
+                    <div class="nombre-titulo grid-cell flex-header">
+                        <?= $row['nombre'] ?> 
+                        <button class="mostrar-informacion-oculta">🔽</button>
+                    </div>
+                </div>
+                <div class="informacion-escondida">
+                    <div class="datos-tabla-flex">
+                        <div class="grid-cell">ID: <?= $row['id_curso'] ?></div>
+                    </div>
+                    <div class="datos-tabla-flex">
+                        <div class="grid-cell">Capacidad: <?= $row['capacidad'] ?></div>
+                    </div>
+
+                    <div class="grid-cell">
+                        <a href="#"
+                            class="boton-datos-eliminar boton-eliminar-curso botones-datos"
+                            data-id="<?= $row['id_curso'] ?>">
+                            Eliminar
+                        </a>
+                    </div>
+                    <div class="grid-cell">
+                        <a class="boton-datos-editar boton-editar-curso botones-datos"
+                            data-id="<?= $row['id_curso'] ?>"
+                            data-nombre="<?= $row['nombre'] ?>"
+                            data-capacidad="<?= $row['capacidad'] ?>">
+                            Editar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php endwhile; ?>
+    </div>
+
+    <!-- ID ÚNICO para cursos -->
     <div class="overlay" id="overlay-curso">
         <div class="confirmacion">
             <h2>¿Estás seguro?</h2>

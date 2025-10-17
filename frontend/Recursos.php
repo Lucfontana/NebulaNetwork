@@ -1,9 +1,8 @@
 <?php
 include_once('../backend/db/conexion.php');
-
+include_once 'functions.php';
 $connect = conectar_a_bd();
 $sql = "SELECT * FROM recursos";
-
 $query = mysqli_query($connect, $sql);
 ?>
 
@@ -13,8 +12,8 @@ $query = mysqli_query($connect, $sql);
 
     <h1>Recursos</h1>
 
+    <!-- Vista para PC -->
     <div class="datos-grid recursos-grid">
-        <!-- Cabecera -->
         <div class="grid-header recursos-header">
             <div class="grid-cell id">ID</div>
             <div class="grid-cell nombre-titulo">Espacio Físico</div>
@@ -25,7 +24,6 @@ $query = mysqli_query($connect, $sql);
             <div class="grid-cell boton-titulo">Editar</div>
         </div>
 
-        <!-- Filas de datos -->
         <?php while ($row = mysqli_fetch_array($query)): ?>
             <div class="grid-row recursos-row mostrar-datos">
                 <div class="grid-cell"><?= $row['id_recurso'] ?></div>
@@ -54,6 +52,55 @@ $query = mysqli_query($connect, $sql);
         <?php endwhile; ?>
     </div>
 
+    <!-- Vista para celular -->
+    <?php mysqli_data_seek($query, 0); ?>
+    <div class="flex-mostrar-datos">
+        <?php while ($row = mysqli_fetch_array($query)): ?>
+            <div class="datos-header-celu">
+                <div class="datos-tabla-flex">
+                    <div class="nombre-titulo grid-cell flex-header">
+                        <?= $row['nombre'] ?> 
+                        <button class="mostrar-informacion-oculta">🔽</button>
+                    </div>
+                </div>
+
+                <div class="informacion-escondida">
+                    <div class="datos-tabla-flex">
+                        <div class="grid-cell">ID: <?= $row['id_recurso'] ?></div>
+                    </div>
+                    <div class="datos-tabla-flex">
+                        <div class="grid-cell">Espacio Físico: <?= $row['id_espacio'] ?></div>
+                    </div>
+                    <div class="datos-tabla-flex">
+                        <div class="grid-cell">Estado: <?= $row['estado'] ?></div>
+                    </div>
+                    <div class="datos-tabla-flex">
+                        <div class="grid-cell">Tipo: <?= $row['tipo'] ?></div>
+                    </div>
+
+                    <div class="grid-cell">
+                        <a href="#"
+                            class="boton-datos-eliminar boton-eliminar-recurso botones-datos"
+                            data-id="<?= $row['id_recurso'] ?>">
+                            Eliminar
+                        </a>
+                    </div>
+                    <div class="grid-cell">
+                        <a class="boton-datos-editar boton-editar-recurso botones-datos"
+                            data-id="<?= $row['id_recurso'] ?>"
+                            data-espacio="<?= $row['id_espacio'] ?>"
+                            data-nombre="<?= $row['nombre'] ?>"
+                            data-estado="<?= $row['estado'] ?>"
+                            data-tipo="<?= $row['tipo'] ?>">
+                            Editar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php endwhile; ?>
+    </div>
+
+    <!-- Overlay de confirmación -->
     <div class="overlay" id="overlay-recurso">
         <div class="confirmacion">
             <h2>¿Estás seguro?</h2>
@@ -65,7 +112,7 @@ $query = mysqli_query($connect, $sql);
         </div>
     </div>
 
-
+    <!-- Popup de edición -->
     <div id="overlay-edit-recurso" class="overlay-edit">
         <div class="popup">
             <h1>Modificación de Recurso</h1>
@@ -77,39 +124,35 @@ $query = mysqli_query($connect, $sql);
 
                 <div class="input-group">
                     <label for="nombre">Nombre:</label>
-                    <div>
-                        <input class="class-datos-editar" type="text" name="nombre" id="name_edit_recurso" maxlength="20" minlength="3" required placeholder="Ingresa nombre">
-                    </div>
+                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit_recurso"
+                        maxlength="20" minlength="3" required placeholder="Ingresa nombre">
                 </div>
 
                 <div class="input-group">
                     <label for="estado">Estado:</label>
-                    <div>
-                        <select class="class-datos-editar" name="estado" id="estado_edit_recurso" required>
-                            <option value=""></option>
-                            <option value="uso">Uso</option>
-                            <option value="libre">Libre</option>
-                            <option value="roto">Roto</option>
-                        </select>
-                    </div>
+                    <select class="class-datos-editar" name="estado" id="estado_edit_recurso" required>
+                        <option value=""></option>
+                        <option value="uso">Uso</option>
+                        <option value="libre">Libre</option>
+                        <option value="roto">Roto</option>
+                    </select>
                 </div>
 
                 <div class="input-group">
                     <label for="tipo">Tipo:</label>
-                    <div>
-                        <select class="class-datos-editar" name="tipo" id="tipo_edit_recurso" required>
-                            <option value=""></option>
-                            <option value="interno">Interno</option>
-                            <option value="externo">Externo</option>
-                        </select>
-                    </div>
+                    <select class="class-datos-editar" name="tipo" id="tipo_edit_recurso" required>
+                        <option value=""></option>
+                        <option value="interno">Interno</option>
+                        <option value="externo">Externo</option>
+                    </select>
                 </div>
 
                 <div class="buttons-modal">
-                    <input type="submit" value="Actualizar Información" class="btn-primary" id="actualizar-recurso"></input>
-                    <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit-recurso"></input>
+                    <input type="submit" value="Actualizar Información" class="btn-primary" id="actualizar-recurso">
+                    <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit-recurso">
                 </div>
             </form>
         </div>
     </div>
+
 <?php endif; ?>
