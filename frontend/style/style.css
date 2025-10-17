@@ -963,7 +963,7 @@ hr {
     text-align: center;
     align-items: center;
     justify-content: center;
-    border-right: 1px solid #ecf0f1;
+    border: 1px solid #ecf0f1;
 }
 
 .grid-cell:last-child {
