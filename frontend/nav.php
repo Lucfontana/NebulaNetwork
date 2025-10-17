@@ -47,45 +47,49 @@ include_once 'functions.php';
     </nav>
 
     <aside id="aside">
+        <ul class="link-aside-images" id="link-aside-images">
 
-        <ul  class="link-aside-images" id="link-aside-images">
-
-            <!-- Botón de inición sesiada -->
-            <?php if (!isset($_SESSION['ci'])): ?>
-                <a href="Login.php">
-                    <li data-tooltip="Login"><img src="img/person-circle_white_no_bg.png" alt="Login" height="25px" width="25px"></li>
-                </a>
-             <?php elseif (isset($_SESSION['ci'])): ?>
-                <li class="settings-icon">
-                    <img src="img/person-circle_white_no_bg.png" alt="Configuraciones">
-                    <div class="settings-menu">
-                        <a href="/frontend/Perfil.php"><?= t("Pefil") ?></a>
-                        <a id="logout" href="#modo-oscuro"><?= t("Cerrar Sesión") ?></a>
-                    </div>
-                </li>
-            <?php endif; ?>
-
-            <!-- Botón de horario -->
-            <a href="./Horarios.php">
-                <li data-tooltip="<?= t("aside_schedule") ?>"><img src="img/Iconos sidebar/calendario.png" alt="Calendario"></li>
+        <!-- Login / Perfil -->
+        <li class="aside-item">
+        <?php if (!isset($_SESSION['ci'])): ?>
+            <a href="Login.php" data-tooltip="Loginperson-circle_white_no_bg">
+            <img src="img/Iconos sidebar/person-circle.svg" alt="Login" width="25" height="25" class="icono">
             </a>
+        <?php else: ?>
+            <div class="settings-icon" data-tooltip="Perfil">
+            <img src="img/Iconos sidebar/person-circle.svg" alt="Configuraciones" width="25" height="25" class="icono">
+            <div class="settings-menu">
+                <a href="/frontend/Perfil.php"><?= t("Perfil") ?></a>
+                <a id="logout" href="#logout"><?= t("Cerrar Sesión") ?></a>
+            </div>
+            </div>
+        <?php endif; ?>
+        </li>
 
-           <!-- Botón de idioma -->
-          <li class="lang-icon" data-tooltip="<?= t("aside_lang") ?>">
-              <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
-             <img src="img/Iconos sidebar/translate.png" alt="Idioma">
-              </a>
-            </li>
+        <!-- Horarios -->
+        <li class="aside-item" data-tooltip="<?= t('aside_schedule') ?>">
+        <a href="./Horarios.php">
+            <img src="img/Iconos sidebar/calendar4-week.svg" alt="Calendario" width="25" height="25" class="icono">
+        </a>
+        </li>
 
-           <!-- Botón de modo oscuro -->
-           <li id="darkmode-icon" data-tooltip="<?= t("aside_darkmode") ?>">
-             <a href="#modo-oscuro">
-                <img src="img/Iconos sidebar/moon.png" alt="Modo Oscuro">
-             </a>
-           </li>
+        <!-- Idioma -->
+        <li class="aside-item lang-icon" data-tooltip="<?= t('aside_lang') ?>">
+        <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
+            <img src="img/Iconos sidebar/translate.svg" alt="Idioma" width="25" height="25" class="icono">
+        </a>
+        </li>
+
+        <!-- Modo oscuro -->
+        <li class="aside-item" id="darkmode-icon" data-tooltip="<?= t('aside_darkmode') ?>">
+        <a href="#modo-oscuro">
+            <img src="img/Iconos sidebar/moon.svg" alt="Modo oscuro" width="25" height="25" class="icono">
+        </a>
+        </li>
 
         </ul>
- </aside>
+    </aside>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
