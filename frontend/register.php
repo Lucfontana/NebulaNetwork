@@ -56,11 +56,11 @@ session_start();
 
                     <div class="article-register">
                         <div>
-                            <h1><?= t( "header_superusers") ?></h1>
+                            <h1><?= t("header_superusers") ?></h1>
                         </div>
                         <button type="button" id="Adscriptas-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                             <?= t("btn_open_register") ?>
+                            <?= t("btn_open_register") ?>
                         </button>
                     </div>
 
@@ -70,7 +70,7 @@ session_start();
                         </div>
                         <button type="button" id="Recursos-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                             <?= t("btn_open_register") ?>
+                            <?= t("btn_open_register") ?>
                         </button>
                     </div>
 
@@ -80,7 +80,7 @@ session_start();
                         </div>
                         <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                             <?= t("btn_open_register") ?>
+                            <?= t("btn_open_register") ?>
                         </button>
                     </div>
 
@@ -90,7 +90,7 @@ session_start();
                         </div>
                         <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                             <?= t("btn_open_register") ?>
+                            <?= t("btn_open_register") ?>
                         </button>
                     </div>
 
@@ -110,7 +110,7 @@ session_start();
                         </div>
                         <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                             <?= t("btn_open_register") ?>
+                            <?= t("btn_open_register") ?>
                         </button>
                     </div>
                     <div class="article-register">
@@ -119,7 +119,7 @@ session_start();
                         </div>
                         <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                             <?= t("btn_open_register") ?>
+                            <?= t("btn_open_register") ?>
                         </button>
                     </div>
                     <div class="article-register">
@@ -128,7 +128,7 @@ session_start();
                         </div>
                         <button type="button" id="Salones-boton" class="btn" data-toggle="modal"
                             data-target="#exampleModal">
-                             <?= t("btn_open_register") ?>
+                            <?= t("btn_open_register") ?>
                         </button>
                     </div>
                 </div>
@@ -153,9 +153,9 @@ session_start();
                             <div class="div-labels">
                                 <label for="contrasena" class="label"><?= t("label_password") ?></label>
                                 <div class="contenedor-password-register">
-                                <input class="input-register" type="password" name="contrasena" id="contrasenaProfesor"
-                                     maxlength="8" pattern="\d{8}" required placeholder="<?= t("placeholder_password") ?>">
-                                <i class="far fa-eye fa-eye-slash togglePassword"></i>
+                                    <input class="input-register" type="password" name="contrasena" id="contrasenaProfesor"
+                                        maxlength="8" pattern="\d{8}" required placeholder="<?= t("placeholder_password") ?>">
+                                    <i class="far fa-eye fa-eye-slash togglePassword"></i>
                                 </div>
                             </div>
                             <div class="div-labels">
@@ -213,12 +213,12 @@ session_start();
                             </div>
                             <div class="div-labels">
                                 <label for="contrasena" class="label"><?= t("label_password") ?></label>
-                            <div class="contenedor-password-register">
-                                <input class="input-register" type="password" name="password" id="contrasenaSuperusuario"
-                                    maxlength="8" pattern="\d{8}" required placeholder="<?= t("placeholder_password") ?>">
-                                <i class="far fa-eye fa-eye-slash togglePassword"></i>
+                                <div class="contenedor-password-register">
+                                    <input class="input-register" type="password" name="password" id="contrasenaSuperusuario"
+                                        maxlength="8" pattern="\d{8}" required placeholder="<?= t("placeholder_password") ?>">
+                                    <i class="far fa-eye fa-eye-slash togglePassword"></i>
+                                </div>
                             </div>
-</div>
                             <div class="div-labels">
                                 <label for="name" class="label"><?= t("label_name") ?></label>
                                 <input class="input-register" type="text" name="name" id="nombreSuperusuario" maxlength="20"
@@ -484,7 +484,7 @@ session_start();
                                     <option value="jueves"><?= t("day_thursday") ?></option>
                                     <option value="viernes"><?= t("day_friday") ?></option>
                                 </select>
-                            </div>        
+                            </div>
 
                             <div class="div-labels">
                                 <label for="capacity" class="label"><?= t("label_hours_taught") ?></label>
@@ -567,4 +567,4 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/frontend/js/Register-Modal.js"></script>
     <script src="./js/togglepasswd.js"></script>
-</body>
+    </body>

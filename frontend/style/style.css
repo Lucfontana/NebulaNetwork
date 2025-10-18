@@ -1398,6 +1398,10 @@ select {
         width: 80%;
     }
 
+    .contenedor-password-register {
+        width: 80%;
+    }
+
     hr {
         width: 80%;
     }
@@ -1493,6 +1497,41 @@ abajito cuando el ancho es menos de 700px */
 
     .article-register {
         width: 100%;
+    }
+
+    .main-perfil {
+        width: 100%;
+        margin-top: 100px;
+    }
+
+    #perfil-principal {
+        margin: 0;
+    }
+
+    .header-perfil {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .contenido-perfil {
+        width: 100%;
+        margin: 0;
+        padding: 30px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .popup {
+        margin: 20px;
+    }
+
+    .buttons-modal {
+        flex-direction: column;
+        gap: 10px;
     }
 
 }
