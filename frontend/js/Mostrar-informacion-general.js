@@ -1,18 +1,25 @@
 const titulo = document.getElementById("titulo-mostrar-informacion");
 const botonMostrar = document.querySelectorAll(".mostrar-informacion-oculta");
 const informacionEscondida = document.querySelectorAll(".informacion-escondida");
+const botonGuardar = document.querySelectorAll(".icono-guardar-informacion");
 
 botonMostrar.forEach((mostrar, index) => {
-    mostrar.addEventListener("click", function() {
-        if (informacionEscondida[index].style.display == "flex") {
-            informacionEscondida[index].style.display = "none"
-        } else {
-            informacionEscondida[index].style.display = "flex"
-        }
-    })
+    mostrar.addEventListener("click", function () {
+        informacionEscondida[index].style.display = "flex";
+        mostrar.style.display = "none";
+        botonGuardar[index].style.display = "flex";
+    });
 });
 
-document.getElementById('informacion-change').addEventListener('change', function() {
+botonGuardar.forEach((guardar, index) => {
+    guardar.addEventListener("click", function () {
+        informacionEscondida[index].style.display = "none";
+        guardar.style.display = "none";
+        botonMostrar[index].style.display = "flex";
+    });
+});
+
+document.getElementById('informacion-change').addEventListener('change', function () {
     titulo.style.display = "none";
     document.querySelectorAll('.seccion-oculta').forEach(seccion => {
         seccion.style.display = 'none';
@@ -30,7 +37,7 @@ document.getElementById('informacion-change').addEventListener('change', functio
 });
 
 // Ocultar todo al cargar
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.seccion-oculta').forEach(seccion => {
         seccion.style.display = 'none';
     });

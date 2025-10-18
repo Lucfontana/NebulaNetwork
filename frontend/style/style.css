@@ -1652,8 +1652,16 @@ abajito cuando el ancho es menos de 700px */
     }
 
     .mostrar-informacion-oculta {
-        background-color: transparent;
-        border: none;
+        margin-left: 5px;
+        cursor: pointer;
+        transition: 1s;
+    }
+
+    .icono-guardar-informacion {
+        display: none;
+        margin-left: 5px;
+        cursor: pointer;
+        transition: 1s;
     }
 
     .datos-grid {
