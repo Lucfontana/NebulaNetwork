@@ -3,6 +3,7 @@ const elementos = document.querySelectorAll('.nav-link, .navbar-brand, .nav-item
 const navstyle = document.getElementById('nav');
 const aside = document.querySelector('aside');
 const darkmodeIcon = document.querySelector('#darkmode-icon');
+const footer = document.querySelector('footer');
 
 darkmodeIcon.addEventListener('click', () => {
     console.log('Dark mode activado'); // Verifica que el evento se dispare
@@ -14,4 +15,5 @@ darkmodeIcon.addEventListener('click', () => {
     });
     navstyle.classList.toggle('darkmode');
     aside.classList.toggle('darkmode');
+    footer.classList.toggle('darkmode');
 });

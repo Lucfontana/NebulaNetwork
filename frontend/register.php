@@ -184,7 +184,7 @@ session_start();
                                     maxlength="100" minlength="1 " required placeholder="<?= t("placeholder_address") ?>">
                             </div>
                             <div class="div-botones-register">
-                                <input class="btn-enviar-registro" type="submit" value="Registrar"
+                                <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
                                     name="registroProfesor"></input>
                             </div>
 
@@ -235,18 +235,18 @@ session_start();
                                     maxlength="30" minlength="8" required placeholder="<?= t("placeholder_email") ?>">
                             </div>
                             <div class="div-labels">
-                                <div class="div-labels">
-                                    <label for="acceso" class="label"><?= t("label_access_level") ?></label>
-                                    <select class="input-register" type="text" name="acceso" id="acceso" maxlength="20"
-                                        minlength="8" required placeholder="">
-                                        <option value=""></option>
-                                        <option value="1"><?= t("option_access_1") ?></option>
-                                        <option value="2"><?= t("option_access_2") ?></option>
-                                        <option value="3"><?= t("option_access_3") ?></option>
-                                    </select>
-                                </div>
+                                
+                                <label for="acceso" class="label"><?= t("label_access_level") ?></label>
+                                <select class="input-register" type="text" name="acceso" id="acceso" maxlength="20"
+                                    minlength="8" required placeholder="">
+                                    <option value=""></option>
+                                    <option value="1"><?= t("option_access_1") ?></option>
+                                    <option value="2"><?= t("option_access_2") ?></option>
+                                    <option value="3"><?= t("option_access_3") ?></option>
+                                </select>
+                                
                                 <div class="div-botones-register">
-                                    <input class="btn-enviar-registro" type="submit" value="Registrar"
+                                    <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
                                         name="registrarSuperuser"></input>
                                 </div>
                             </div>
@@ -309,7 +309,7 @@ session_start();
                                     <option value="externo"><?= t("option_external") ?></option>
                                 </select>
                                 <div class="div-botones-register">
-                                    <input class="btn-enviar-registro" type="submit" value="Registrar"
+                                    <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
                                         name="registrarRecurso"></input>
                                 </div>
                             </div>
@@ -347,7 +347,7 @@ session_start();
                                 </select>
                             </div>
                             <div class="div-botones-register">
-                                <input class="btn-enviar-registro" type="submit" value="Registrar"
+                                <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
                                     name="registrarEspacio"></input>
                             </div>
 
@@ -385,7 +385,7 @@ session_start();
                                 </select>
                             </div>
                             <div class="div-botones-register">
-                                <input class="btn-enviar-registro" type="submit" value="Registrar"
+                                <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
                                     name="registrarCursos"></input>
                             </div>
 
@@ -406,7 +406,7 @@ session_start();
                                     maxlength="20" minlength="3" required placeholder="<?= t("placeholder_name") ?>">
                             </div>
                             <div class="div-botones-register">
-                                <input class="btn-enviar-registro" type="submit" value="Registrar Asignatura"
+                                <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register_subject") ?>"
                                     name="registrarAsignatura"></input>
                             </div>
 
@@ -432,7 +432,7 @@ session_start();
                                     maxlength="20" minlength="8" required placeholder="<?= t("placeholder_end_time") ?>">
                             </div>
                             <div class="div-botones-register">
-                                <input class="btn-enviar-registro" type="submit" value="Registrar"
+                                <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
                                     name="registroHorario"></input>
                             </div>
                         </form>
@@ -521,7 +521,7 @@ session_start();
                             </div>
 
                             <div class="div-botones-register">
-                                <input class="btn-enviar-registro" type="submit" value="Registrar"
+                                <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
                                     name="registrarDependencia"></input>
                             </div>
                         </form>
@@ -541,7 +541,7 @@ session_start();
                                     maxlength="20" minlength="3" required placeholder="<?= t("placeholder_name") ?>">
                             </div>
                             <div class="div-botones-register">
-                                <input class="btn-enviar-registro" type="submit" value="Registrar orientacion"
+                                <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register_orientation") ?>"
                                     name="registrarOrientacion"></input>
                             </div>
 
