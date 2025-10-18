@@ -25,11 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registrarFalta'])){
         $dia_faltar
     );
 
-    // AGREGAR DEBUG A LA RESPUESTA
-    $resultado['debug_fecha_recibida'] = $dia_faltar;
-    $resultado['debug_tipo_fecha'] = gettype($dia_faltar);
-    $resultado['debug_post_completo'] = $_POST;
-
     echo json_encode($resultado);
 
     $con->close();

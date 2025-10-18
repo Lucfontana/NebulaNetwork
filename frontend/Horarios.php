@@ -298,7 +298,7 @@ else {
 
                                     <div class="div-labels" id="horas_falta">
                                         <label for="nose" class="label">Cantidad de horas a faltar:</label>
-                                            <input type="number" name = "cantidad_horas_falta" id="cantidad_horas_falta" class="input-register" required>                                            
+                                            <input type="number" name ="cantidad_horas_falta" id="cantidad_horas_falta" class="input-register" required>                                            
                                     </div>
 
                                     <div class="div-labels" id="horas_clase_profe"></div>

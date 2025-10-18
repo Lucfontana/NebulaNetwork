@@ -3,6 +3,8 @@
 include_once("../../../db/conexion.php");
 include_once("../../../queries.php");
 
+date_default_timezone_set('America/Montevideo');
+
 $con = conectar_a_bd();
 
 function registrar_falta_completa($con, $ci_profesor, $horarios, $dia, $fecha_inasistencia) {
@@ -12,6 +14,26 @@ function registrar_falta_completa($con, $ci_profesor, $horarios, $dia, $fecha_in
 
     $con->begin_transaction();
 
+    //Obtiene la fecha actual
+    $fecha_actual = new DateTime();
+
+    //La pasa a un formato de anio mes dia
+    $fecha_actual->format("Y-m-d");
+
+    //Se hace lo mismo con la fecha de inasistencia, pero se lo pasa a un objeto "DateTime" para poder hacer la comparacion
+    $fecha_inasistencia_datetime = new DateTime($fecha_inasistencia);
+    $fecha_inasistencia_datetime->format("Y-m-d");
+
+
+    //Verificacion 1: Verifica que la fecha ingresada por el usuario no sea anterior a la fecha actual
+    if (!$error){
+        if ($fecha_inasistencia_datetime < $fecha_actual){
+            $error = true;
+            $mensaje_error = "Tienes que elegir un dia proximo al actual";
+        }
+    }
+    
+    //Paso 1: Verifica que el profesor realmente exista
     if (!$error){
         $result = query_profesor_especifico($con, $ci_profesor);
 
@@ -22,6 +44,77 @@ function registrar_falta_completa($con, $ci_profesor, $horarios, $dia, $fecha_in
             $mensaje_error = "El profesor no existe";
         }
     }
+
+    //Paso 1.5: Antes de registrar la inasistencia, se verifica que la hora ingresada no 
+    //estuviera previamente registrada como una hora en la que se iba a faltar
+
+    if (!$error){
+        $horarios_validos = array();
+        $horarios_con_falta = array();
+
+        $query_verificar_falta = "SELECT * from inasistencia i
+                                 INNER JOIN horarios h on h.id_horario = i.id_horario
+                                  WHERE i.fecha_inasistencia = ? AND i.id_horario = ? AND i.ci_profesor = ?";
+
+        $stmt_inasistencias = $con->prepare($query_verificar_falta);
+
+        foreach ($horarios as $id_horario){
+            $stmt_inasistencias->bind_param("sii", $fecha_inasistencia, $id_horario, $ci_profesor);
+            $stmt_inasistencias->execute();
+            $resultado_verificar_inasistencia = $stmt_inasistencias->get_result();
+            $horario_info = $resultado_verificar_inasistencia->fetch_assoc();
+
+            if ($resultado_verificar_inasistencia->num_rows == 0){
+                $horarios_validos[] = $horario_info;
+            }
+            else {
+                $horarios_con_falta[] = $horario_info['hora_inicio'] . '-' . $horario_info['hora_final'];
+            }
+
+
+        // Si hay horarios donde el profesor no tiene clase, mostrar error
+        if (count($horarios_con_falta) > 0) {
+            $error = true;
+            $mensaje_error = "El profesor ya tiene faltas registradas en los siguientes horarios: " . implode(", ", $horarios_con_falta);
+        }
+        }
+
+        $stmt_inasistencias->close();
+    }
+
+    //Paso 1.7: Verificar que las horas no esten repetidas
+
+if (!$error) {
+    // array_count_values() cuenta cuántas veces aparece cada valor en el array
+    // Si $horarios = [1, 2, 1, 3], entonces $horarios_contados = [1 => 2, 2 => 1, 3 => 1]
+    // Esto significa: el horario 1 aparece 2 veces, el 2 aparece 1 vez, el 3 aparece 1 vez
+    $horarios_contados = array_count_values($horarios);
+    
+    // Array para guardar los IDs de horarios que están duplicados
+    $horarios_duplicados = array();
+    
+    // Recorrer el array de horarios contados
+    // $id_horario es la clave (el ID del horario)
+    // $cantidad es el valor (cuántas veces aparece ese ID)
+    foreach ($horarios_contados as $id_horario => $cantidad) {
+        // Si un horario aparece más de una vez, es un duplicado
+        if ($cantidad > 1) {
+            // Agregamos ese ID al array de duplicados
+            $horarios_duplicados[] = $id_horario;
+        }
+    }
+    
+    // Si hay al menos un horario duplicado en el array
+    if (count($horarios_duplicados) > 0) {
+        // Marcamos que hay error para detener el proceso
+        $error = true;
+        
+        // Creamos un mensaje de error personalizado
+        $mensaje_error = "No puedes seleccionar el mismo horario más de una vez";
+    }
+}
+
+
 
     //Paso 2: Verificar que en las horas ingresadas por el usuario, el profesor realmente tenga clases
 
