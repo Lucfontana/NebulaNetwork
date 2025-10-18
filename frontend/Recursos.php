@@ -9,9 +9,9 @@ $query = mysqli_query($connect, $sql);
 <?php if (!isset($_SESSION['nivel_acceso'])): ?>
     <?php include_once('error.php') ?>
 <?php else: ?>
-
+    <div class="div-mostrar-datos">
     <h1>Recursos</h1>
-
+    </div>
     <!-- Vista para PC -->
     <div class="datos-grid recursos-grid">
         <div class="grid-header recursos-header">

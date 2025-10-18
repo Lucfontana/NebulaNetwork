@@ -49,7 +49,7 @@ main {
     font-size: 18px;
     position: fixed; /*hace que la navbar se quede fija, esto junto al top*/
     top: 0px;
-    z-index: 100; /*Navbar encima del aside*/
+    z-index: 999; /*Navbar encima del aside*/
     color: #2b2b2b;
     margin: 0 0 0 0;
     background-color: #E0E3EB;
@@ -800,6 +800,13 @@ hr {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* opcional */
     padding: 20px;
     margin-top: 80px;
+}
+
+.div-mostrar-datos {
+    background: white; /* opcional */
+    width: 100%;
+    height: auto;
+    z-index: 900;
 }
 
 /* Contenedor principal */
@@ -1602,6 +1609,7 @@ abajito cuando el ancho es menos de 700px */
         display: flex;
         flex-direction: column;
         width: 100%;
+        z-index: 1000;
     }
 
     .flex-header {
@@ -1623,7 +1631,6 @@ abajito cuando el ancho es menos de 700px */
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-top: 20px;
         width: 100%;
     }
 
@@ -1647,6 +1654,8 @@ abajito cuando el ancho es menos de 700px */
 
     .informacion-escondida {
         display: none;
+        transform: translateY(-50%);
+        opacity: 0;
         flex-direction: column;
         width: 100%;
     }
@@ -1666,6 +1675,10 @@ abajito cuando el ancho es menos de 700px */
 
     .datos-grid {
         display: none;
+    }
+
+    .div-mostrar-datos {
+        text-align: center;
     }
 }
 

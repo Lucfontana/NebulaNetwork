@@ -6,16 +6,29 @@ const botonGuardar = document.querySelectorAll(".icono-guardar-informacion");
 botonMostrar.forEach((mostrar, index) => {
     mostrar.addEventListener("click", function () {
         informacionEscondida[index].style.display = "flex";
+        informacionEscondida[index].style.transition = "1s";
         mostrar.style.display = "none";
         botonGuardar[index].style.display = "flex";
+
+        setTimeout(() => {
+            informacionEscondida[index].style.transform = "translateY(0%)";
+            informacionEscondida[index].style.opacity = "1";
+            informacionEscondida[index].style.transition = "0.5s";
+        }, 0.1)
     });
 });
 
 botonGuardar.forEach((guardar, index) => {
     guardar.addEventListener("click", function () {
-        informacionEscondida[index].style.display = "none";
-        guardar.style.display = "none";
+        informacionEscondida[index].style.transform = "translateY(-100%)";
+        informacionEscondida[index].style.opacity = "0";
+        informacionEscondida[index].style.transition = "0.5s";
+     guardar.style.display = "none";
         botonMostrar[index].style.display = "flex";
+
+        setTimeout(() => {
+            informacionEscondida[index].style.display = "none";
+        }, 500)
     });
 });
 

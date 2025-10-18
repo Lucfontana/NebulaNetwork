@@ -4,7 +4,7 @@ session_start();
 <?php if (!isset($_SESSION['nivel_acceso'])): ?>
     <?php include_once('error.php') ?>
 <?php else: ?>
-<title>Mostrar Información</title>
+    <title>Mostrar Información</title>
 
 
     <?php include 'nav.php'; ?>
@@ -12,18 +12,20 @@ session_start();
     <body>
         <main>
             <div id="contenido-mostrar-datos">
-                <h1 id="titulo-mostrar-informacion">Mostrar Información</h1>
-                <div class="filtros"> <label for="horario-select">Seleccione Dato a Mostrar:</label>
-                    <select name="informacion" class="salones-select" id="informacion-change" onchange="cambiarDato(this.value)">
-                        <option value="0">Seleccione Dato</option>
-                        <option value="asignatura">Asignaturas</option>
-                        <option value="cursos">Cursos</option>
-                        <option value="espacios">Espacios Fisicos</option>
-                        <option value="orientaciones">Orientaciones</option>
-                        <option value="profesores">Profesores</option>
-                        <option value="recursos">Recursos</option>
-                        <option value="superusuarios">Super Usuarios</option>
-                    </select>
+                <div class="div-mostrar-datos">
+                    <h1 id="titulo-mostrar-informacion">Mostrar Información</h1>
+                    <div class="filtros"> <label for="horario-select">Seleccione Dato a Mostrar:</label>
+                        <select name="informacion" class="salones-select" id="informacion-change" onchange="cambiarDato(this.value)">
+                            <option value="0">Seleccione Dato</option>
+                            <option value="asignatura">Asignaturas</option>
+                            <option value="cursos">Cursos</option>
+                            <option value="espacios">Espacios Fisicos</option>
+                            <option value="orientaciones">Orientaciones</option>
+                            <option value="profesores">Profesores</option>
+                            <option value="recursos">Recursos</option>
+                            <option value="superusuarios">Super Usuarios</option>
+                        </select>
+                    </div>
                 </div>
                 <div data-seccion="asignatura" class="seccion-oculta">
                     <?php include_once("./asignaturas.php") ?>

@@ -8,8 +8,9 @@ $query = mysqli_query($connect, $sql);
 <?php if (!isset($_SESSION['nivel_acceso'])): ?>
     <?php include_once('error.php') ?>
 <?php else: ?>
+    <div class="div-mostrar-datos">
     <h1>Cursos</h1>
-
+    </div>
     <!-- Vista para computadora -->
     <div class="datos-grid">
         <div class="grid-header">
@@ -51,7 +52,7 @@ $query = mysqli_query($connect, $sql);
             <div class="datos-header-celu">
                 <div class="datos-tabla-flex">
                     <div class="nombre-titulo grid-cell flex-header">
-                        <?= $row['nombre'] ?> 
+                        <?= $row['nombre'] ?>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill mostrar-informacion-oculta" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
                         </svg>
@@ -109,14 +110,14 @@ $query = mysqli_query($connect, $sql);
 
                 <div class="input-group">
                     <label for="name_edit_curso">Nombre:</label>
-                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit_curso" 
-                           maxlength="20" minlength="3" required placeholder="Ingresa nombre">
+                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit_curso"
+                        maxlength="20" minlength="3" required placeholder="Ingresa nombre">
                 </div>
 
                 <div class="input-group">
                     <label for="capacidad_edit_curso">Capacidad:</label>
-                    <input class="class-datos-editar" type="number" name="capacidad" id="capacidad_edit_curso" 
-                           maxlength="3" minlength="1" required placeholder="Ingresa capacidad">
+                    <input class="class-datos-editar" type="number" name="capacidad" id="capacidad_edit_curso"
+                        maxlength="3" minlength="1" required placeholder="Ingresa capacidad">
                 </div>
 
                 <div class="buttons-modal">
