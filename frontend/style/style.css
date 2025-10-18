@@ -23,18 +23,14 @@ a {
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    /* ocupa siempre el alto completo */
+    min-height: 100vh; /* ocupa siempre el alto completo */
 }
 
 main {
-    flex: 1;
-    /* ocupa todo el espacio disponible entre nav y footer */
+    flex: 1; /* ocupa todo el espacio disponible entre nav y footer */
     display: flex;
-    justify-content: center;
-    /* centra horizontal */
-    align-items: center;
-    /* centra vertical */
+    justify-content: center; /* centra horizontal */
+    align-items: center; /* centra vertical */
     padding: 20px;
     background-color: #57575b;
     background-image: radial-gradient(#404043 0.9px, #6a6a70 0.9px);
@@ -51,11 +47,9 @@ main {
 .navStyle {
     padding: 10px 0 10px 0;
     font-size: 18px;
-    position: fixed;
-    /*hace que la navbar se quede fija, esto junto al top*/
+    position: fixed; /*hace que la navbar se quede fija, esto junto al top*/
     top: 0px;
-    z-index: 100;
-    /*Navbar encima del aside*/
+    z-index: 100; /*Navbar encima del aside*/
     color: #2b2b2b;
     margin: 0 0 0 0;
     background-color: #E0E3EB;
@@ -135,11 +129,9 @@ main {
 }
 
 .navbar-brand {
-    font-size: 30px;
-    /*Tamaño del titulo (ITSP)*/
+    font-size: 30px; /*Tamaño del titulo (ITSP)*/
     margin: 0;
-    padding-left: 10px;
-    /* un poquito de separación del borde */
+    padding-left: 10px; /* un poquito de separación del borde */
     display: flex;
     align-items: center;
 }
@@ -172,8 +164,7 @@ main {
 
 /* Texto de Bienvenidos */
 .bienvenida-texto {
-    margin-bottom: 2.5rem;
-    /* Separación del bloque de los botones */
+    margin-bottom: 2.5rem; /* Separación del bloque de los botones */
 }
 
 /* Botones de Bienvenidos */
@@ -186,10 +177,8 @@ main {
 
 .btn-bienvenida {
     font-size: 22px;
-    width: 250px;
-    /* ancho consistente */
-    height: 120px;
-    /* alto consistente */
+    width: 250px; /* ancho consistente */
+    height: 120px; /* alto consistente */
     background-color: #2F4C97;
     color: #ffffff;
     border: none;
@@ -234,8 +223,7 @@ aside {
     display: block;
     padding: 50px 0 0 0;
     width: var(---marginAside);
-    height: 100vh;
-    /* 100% del alto visible de la ventana */
+    height: 100vh; /* 100% del alto visible de la ventana */
     background-color: #E9EEF6;
     position: fixed;
     transition: all 0.5s ease;
@@ -251,18 +239,15 @@ aside>ul {
     display: flex;
     flex-direction: column;
     text-align: center;
-    list-style-type: none;
-    /*Sacar los puntitos de la lista*/
+    list-style-type: none; /*Sacar los puntitos de la lista*/
     padding: 0;
 }
 
 .link-aside-images li {
     position: relative;
     margin: 35px 0;
-    margin: 20px 0;
-    /* mismo espacio vertical */
-    display: flex;
-    /* centra el ícono */
+    margin: 20px 0; /* mismo espacio vertical */
+    display: flex; /* centra el ícono */
     justify-content: center;
     align-items: center;
 }
@@ -287,8 +272,7 @@ aside>ul {
 
 .link-aside-images li:hover::after {
     opacity: 1;
-    transform: translateY(-50%) translateX(0);
-    /* vuelve a su lugar */
+    transform: translateY(-50%) translateX(0); /* vuelve a su lugar */
 }
 
 /* Todos los iconos del sidebar con mismo tamaño */
@@ -303,11 +287,9 @@ aside>ul {
 .link-aside-images {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    /* reparte los íconos arriba-abajo */
+    justify-content: space-between; /* reparte los íconos arriba-abajo */
     align-items: center;
-    height: 100%;
-    /* ocupa todo el sidebar */
+    height: 100%; /* ocupa todo el sidebar */
     margin: 0;
     padding: 30px 0;
 }
@@ -317,8 +299,7 @@ aside>ul {
     position: absolute;
     top: 50%;
     left: 60px;
-    transform: translateY(-50%) translateX(-10px);
-    /* desplazado igual que los otros tooltips */
+    transform: translateY(-50%) translateX(-10px); /* desplazado igual que los otros tooltips */
     flex-direction: column;
     align-items: flex-start;
     padding: 4px 0;
@@ -330,8 +311,7 @@ aside>ul {
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s, transform 0.5s;
-    /* animación */
+    transition: opacity 0.3s, transform 0.5s; /* animación */
 }
 
 /* Al hacer hover en el icono de configuración */
@@ -393,8 +373,7 @@ aside>ul {
     text-decoration: none;
     text-align: center;
     min-width: 180px;
-    flex: 1 1 auto;
-    /* se adaptan al espacio disponible */
+    flex: 1 1 auto; /* se adaptan al espacio disponible */
 }
 
 .btn-login:hover {
@@ -427,8 +406,7 @@ aside>ul {
     text-decoration: none;
     font-weight: bold;
     z-index: 10;
-    width: 50px;
-    /* ancho del círculo */
+    width: 50px; /* ancho del círculo */
     height: 50px;
     align-items: center;
     justify-content: center;
@@ -437,10 +415,8 @@ aside>ul {
 
 .flecha-volver:hover {
     color: #2a3380;
-    background-color: rgba(0, 0, 0, 0.2);
-    /* sombra de fondo ligera */
-    border-radius: 100%;
-    /* forma redondeada */
+    background-color: rgba(0, 0, 0, 0.2); /* sombra de fondo ligera */
+    border-radius: 100%; /* forma redondeada */
 }
 
 .flex,
@@ -561,8 +537,7 @@ aside>ul {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    /* negro con 50% de opacidad */
+    background: rgba(0, 0, 0, 0.3); /* negro con 30% de opacidad */
 }
 
 #boton-inicio {
@@ -696,12 +671,9 @@ aside>ul {
     border-style: solid;
     color: #303030;
     box-shadow: 0 10px 30px rgba(0, 60, 130, 0.3);
-    max-height: 80vh;
-    /* altura máxima: 80% del alto visible de la ventana */
-    overflow-y: auto;
-    /* activa la barra de scroll vertical si el contenido se pasa */
-    overflow-x: hidden;
-    /* evita que aparezca una barra horizontal */
+    max-height: 80vh; /* altura máxima: 80% del alto visible de la ventana */
+    overflow-y: auto; /* activa la barra de scroll vertical si el contenido se pasa */
+    overflow-x: hidden; /* evita que aparezca una barra horizontal */
     animation: aparecer 0.4s ease;
 }
 
@@ -822,14 +794,10 @@ hr {
 #contenido-mostrar-datos {
     width: 100%;
     max-width: 1200px;
-    margin: 40px;
-    /* límite para que no se estire demasiado */
-    background: white;
-    /* opcional */
-    border-radius: 10px;
-    /* opcional */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    /* opcional */
+    margin: 40px; /* límite para que no se estire demasiado */
+    background: white; /* opcional */
+    border-radius: 10px; /* opcional */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* opcional */
     padding: 20px;
     margin-top: 80px;
 }
@@ -902,8 +870,7 @@ hr {
 .profesores-grid .grid-header,
 .profesores-grid .grid-row {
     display: grid;
-    grid-template-columns: 100px 130px 130px 225px 130px 200px 120px 120px;
-    /* Ajuste equilibrado de columnas */
+    grid-template-columns: 100px 130px 130px 225px 130px 200px 120px 120px; /* Ajuste equilibrado de columnas */
 }
 
 .grid-header {
@@ -917,48 +884,42 @@ hr {
 .superusuario-grid .grid-header,
 .superusuario-grid .grid-row {
     display: grid;
-    grid-template-columns: 100px 150px 150px 160px 1.3fr 120px 120px;
-    /* Ajuste balanceado entre identificadores, texto y botones */
+    grid-template-columns: 100px 150px 150px 160px 1.3fr 120px 120px; /* Ajuste balanceado entre identificadores, texto y botones */
 }
 
 /* Estructura específica para la tabla de Espacios Físicos */
 .espacios-grid .grid-header,
 .espacios-grid .grid-row {
     display: grid;
-    grid-template-columns: 80px 120px 1fr 150px 120px 120px;
-    /* Ajuste balanceado: ID pequeño, nombre flexible */
+    grid-template-columns: 80px 120px 1fr 150px 120px 120px; /* Ajuste balanceado: ID pequeño, nombre flexible */
 }
 
 /* Estilo específico para Orientaciones */
 .orientaciones-grid .grid-header,
 .orientaciones-grid .grid-row {
     display: grid;
-    grid-template-columns: 80px 1fr 120px 120px;
-    /* ID pequeño, Nombre flexible, botones fijos */
+    grid-template-columns: 80px 1fr 120px 120px; /* ID pequeño, Nombre flexible, botones fijos */
 }
 
 /* Estilo específico para Recursos */
 .recursos-grid .grid-header,
 .recursos-grid .grid-row {
     display: grid;
-    grid-template-columns: 80px 120px 1fr 120px 120px 120px 120px;
-    /* ID angosto, Espacio fijo, Nombre flexible, Estado y Tipo fijos, botones fijos */
+    grid-template-columns: 80px 120px 1fr 120px 120px 120px 120px; /* ID angosto, Espacio fijo, Nombre flexible, Estado y Tipo fijos, botones fijos */
 }
 
 /* Estilo específico para Préstamos de Recursos */
 .prestamos-grid .grid-header,
 .prestamos-grid .grid-row {
     display: grid;
-    grid-template-columns: 80px 250px 170px 180px 180px 180px 120px;
-    /* ID angosto, Persona más ancha, Recurso, Admin, Hora Prestado/Devolución, Estado */
+    grid-template-columns: 80px 250px 170px 180px 180px 180px 120px; /* ID angosto, Persona más ancha, Recurso, Admin, Hora Prestado/Devolución, Estado */
 }
 
 /* Estructura específica para la tabla de Asignaturas */
 .asignaturas-grid .grid-header,
 .asignaturas-grid .grid-row {
     display: grid;
-    grid-template-columns: 100px 1fr 120px 120px;
-    /* Equilibrado: ID estrecho, nombre flexible, botones fijos */
+    grid-template-columns: 100px 1fr 120px 120px; /* Equilibrado: ID estrecho, nombre flexible, botones fijos */
 }
 
 /* Datos Horarios */
@@ -1151,12 +1112,9 @@ hr {
     border-style: solid;
     color: #003366;
     box-shadow: 0 10px 30px rgba(0, 60, 130, 0.3);
-    max-height: 80vh;
-    /* altura máxima: 80% del alto visible de la ventana */
-    overflow-y: auto;
-    /* activa la barra de scroll vertical si el contenido se pasa */
-    overflow-x: hidden;
-    /* evita que aparezca una barra horizontal */
+    max-height: 80vh; /* altura máxima: 80% del alto visible de la ventana */
+    overflow-y: auto; /* activa la barra de scroll vertical si el contenido se pasa */
+    overflow-x: hidden; /* evita que aparezca una barra horizontal */
     animation: aparecer 0.4s ease;
 }
 
@@ -1482,8 +1440,7 @@ abajito cuando el ancho es menos de 700px */
         width: 100%;
         height: 50px;
         display: flex;
-        flex-direction: row;
-        /* íconos en fila */
+        flex-direction: row; /* íconos en fila */
         justify-content: space-around;
         align-items: center;
         padding: 0;
@@ -1492,8 +1449,7 @@ abajito cuando el ancho es menos de 700px */
     /* Ajuste de íconos */
     .link-aside-images {
         display: flex;
-        flex-direction: row;
-        /* horizontal */
+        flex-direction: row; /* horizontal */
         height: auto;
         justify-content: space-evenly;
         width: 100vw;
@@ -1501,8 +1457,7 @@ abajito cuando el ancho es menos de 700px */
     }
 
     .link-aside-images li {
-        margin: 0;
-        /* eliminar márgenes verticales */
+        margin: 0; /* eliminar márgenes verticales */
         display: flex;
         justify-content: center;
         align-items: center;
