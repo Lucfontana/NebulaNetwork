@@ -1,5 +1,6 @@
 <?php
 include_once("../../../db/conexion.php");
+include_once("../../../queries.php");
 
 session_start();
 ob_clean();
@@ -14,21 +15,6 @@ $ci_profesor = isset($_SESSION['ci']) ? intval($_SESSION['ci']) : 0;
 $horarios = array();
 
 $dia_semana_seleccionado = isset($_POST['fecha']) ? intval($_POST['fecha']) : -1;
-
-function saber_dia_seleccionado($dia_semana_seleccionado) {
-    // echo "Esto recibe la funcion: " . $dia_semana_seleccionado;
-    $dias = array(
-        0 => 'lunes',
-        1 => 'martes',
-        2 => 'miercoles',
-        3 => 'jueves',
-        4 => 'viernes'
-    );
-
-    $devuelto = isset($dias[$dia_semana_seleccionado]) ? $dias[$dia_semana_seleccionado] : null;
-    // echo "Esto devuelve la funcion: " . $devuelto;
-    return $devuelto;
-}
 
 $dia = saber_dia_seleccionado($dia_semana_seleccionado);
 // echo "Esto es lo que vale el dia: " . $dia;

@@ -134,27 +134,29 @@ async function registrar_falta(e){
     dia_semana_seleccionada = dia_semana_seleccionada - 1;
 
 
-    // Obtiene TODOS los elementos <select> que tengan name="hora_profesor_da_clase[]"
+    //Obtiene TODOS los elementos <select> que tengan name="hora_profesor_da_clase[]"
     let horas_faltar = document.getElementsByName("hora_profesor_da_clase[]");
     
-    // Array vacío donde guardaremos solo los horarios que el usuario seleccionó
+    //Array vacio donde guardamos solo los horarios que el usuario selecciono
     let horas_faltadas = [];
     
-    // Recorremos cada select
+    //Recorremos cada select
     for(let select of horas_faltar) {
-        // Si el select tiene un valor (el usuario seleccionó algo)
+        // Si el select tiene un valor (el usuario selecciono algo)
         if(select.value) {
-            // Agregamos ese valor al array
-            // Ejemplo: si value="15", se agrega 15 al array
+            //Agregamos ese valor al array
+            //Ejemplo: si value="15", se agrega 15 al array
             horas_faltadas.push(select.value);
         }
     }
     
+    //Si el usuario no eligio nada, le sale alerta (por las dudas, ya que los select tienen 'required')
     if(horas_faltadas.length === 0) {
         alerta_fallo("Debes seleccionar al menos un horario");
         return;
     }
 
+    //Se crea el formulario y se pasan sus valores para cada campo que existe
     const form_falta = new FormData();
     form_falta.append("dia_falta", dia_faltar);
 
@@ -165,6 +167,7 @@ async function registrar_falta(e){
     form_falta.append("dia_semana_seleccionada", dia_semana_seleccionada);
     form_falta.append("registrarFalta", true);
 
+    //Se hace fetch al php que maneja el formulario (para que se hagan las inserciones)
     let respuesta = await fetch("../../backend/functions/Profesores/inasistencia/reg_inasistencia_api.php", 
         {
             method: "POST",
@@ -174,6 +177,7 @@ async function registrar_falta(e){
 
     let data = await respuesta.json();
 
+    //Si el estado es 1 quiere decir que todo salio bien. Si no, quiere decir que hay error
     if (data.estado === 1){
         sw_exito(`${data.mensaje}`);
     } else {

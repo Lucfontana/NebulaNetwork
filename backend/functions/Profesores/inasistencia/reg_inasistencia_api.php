@@ -10,6 +10,7 @@ $con = conectar_a_bd();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registrarFalta'])){
 
+    //Se traen los valores que fueron enviados por marcar_inasistencia.js
     $ci_profesor = $_SESSION['ci'];
     $dia_faltar = $_POST['dia_falta'];
     $horas_faltar = $_POST['hora_profesor_da_clase'];
