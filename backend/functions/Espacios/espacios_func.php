@@ -1,6 +1,6 @@
 <?php
 
-include_once ('../db/conexion.php');
+include_once ('../../db/conexion.php');
 
 $con = conectar_a_bd();
 
@@ -18,7 +18,7 @@ if (isset($_POST['registrarEspacio'])){
 
    $insert_espacio = insert_datos_espacios($con, $existe, $nombre, $capacity, $tipo);
 
-   json_encode($insert_espacio);
+   echo json_encode($insert_espacio);
 }
 
 function consultar_si_existe_espacio($con, $nombre){

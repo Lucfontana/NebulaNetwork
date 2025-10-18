@@ -1,12 +1,13 @@
 {
   "es": {
+  
     "welcome": "¡Bienvenidos!",
-    "welcome_user": "¡Bienvenido, {user}!",
-    "description": "Bienvenido a la herramienta de gestión de institutos, donde podrás administrar la solicitud de recursos al igual que administrar horarios de profesores.",
+    "welcome_user": "¡Te damos la bienvenida, {user}!",
+    "description": "Esta es la herramienta de gestión de institutos, donde podrás administrar la solicitud de recursos al igual que administrar horarios de profesores.",
     "btn_info": "Ingresar información",
     "btn_resources": "Recursos",
-    "btn_teachers": "Docentes",
-    "footer": "2025 ITSP. Todos los derechos reservados",
+    "btn_teachers": "Horarios",
+
 
     "nav_info": "Manual de Usuarios",
     "nav_courses": "Sobre Nosotros",
@@ -18,27 +19,274 @@
     "aside_notifications": "Notificaciones",
     "aside_logout": "Cerrar sesión",
     "aside_darkmode": "Modo oscuro",
-    "aside_lang": "Cambiar idioma"
+    "aside_lang": "Cambiar idioma",
+
+
+    "title": "Registro",
+
+    "header_teachers": "Registro de <span>Profesores</span>",
+    "header_superusers": "Registro de <span>SuperUsuarios</span>",
+    "header_resources": "Registro de <span>Recursos</span>",
+    "header_spaces": "Registro de <span>Espacios</span>",
+    "header_courses": "Registro de <span>Cursos</span>",
+    "header_subjects": "Registro de <span>Asignaturas</span>",
+    "header_schedules": "Registro de <span>Horarios</span>",
+    "header_dependencies": "Registro de <span>Dependencias</span>",
+    "header_orientations": "Registro de <span>Orientaciones</span>",
+
+    "btn_open_register": "Abrir Registro",
+    "btn_register": "Registrar",
+    "btn_register_subject": "Registrar Asignatura",
+    "btn_register_orientation": "Registrar orientación",
+
+    "label_ci": "Cédula de Identidad:",
+    "label_password": "Contraseña:",
+    "label_name": "Nombre:",
+    "label_lastname": "Apellido:",
+    "label_email": "Correo electrónico:",
+    "label_birth": "Fecha de nacimiento:",
+    "label_address": "Dirección:",
+    "label_capacity": "Capacidad:",
+    "label_type": "Tipo:",
+    "label_state": "Estado:",
+    "label_belongs_to": "Pertenece a:",
+    "label_access_level": "Nivel de acceso:",
+    "label_orientation": "Orientación:",
+    "label_start_time": "Hora de inicio:",
+    "label_end_time": "Hora de salida:",
+    "label_teacher": "Profesor:",
+    "label_subject_taught": "Asignatura a dictar:",
+    "label_day": "Día:",
+    "label_hours_taught": "Horas que dicta:",
+    "label_room_used": "Salón que ocupa:",
+    "label_course_taught": "Curso al que se dicta:",
+
+    "option_empty": "",
+    "option_general": "General",
+    "option_use": "Uso",
+    "option_free": "Libre",
+    "option_broken": "Roto",
+    "option_internal": "Interno",
+    "option_external": "Externo",
+    "option_aula": "Aula",
+    "option_salon": "Salón",
+    "option_lab": "Laboratorio",
+    "option_sum": "SUM",
+
+    "option_access_1": "1 - Adscripta",
+    "option_access_2": "2 - Secretaría",
+    "option_access_3": "3 - Administrador",
+
+    "placeholder_ci": "Ingresa sin puntos ni guiones",
+    "placeholder_password": "Ingrese contraseña",
+    "placeholder_name": "Ingresa nombre",
+    "placeholder_lastname": "Ingresa apellido",
+    "placeholder_email": "Ingresa email",
+    "placeholder_address": "Ingresa dirección",
+    "placeholder_capacity": "Ingresa capacidad",
+    "placeholder_start_time": "Hora de inicio",
+    "placeholder_end_time": "Hora de finalización",
+    "placeholder_orientation": "Selecciona una orientación",
+    "placeholder_select": "Selecciona una opción",
+    "placeholder_room": "Selecciona un salón",
+    "placeholder_general": "General",
+    "placeholder_type": "Selecciona un tipo",
+    "placeholder_day": "Selecciona un día",
+    "placeholder_hours": "Ingresa cantidad de horas",
+    "placeholder_course": "Selecciona un curso",
+
+    
+    "error_not_logged_in": "No tienes permiso para acceder a esta página, necesitas iniciar sesión.",
+    "error_insufficient_access": "No tienes el rango suficiente para acceder a esta página, debes ser un Superusuario.",
+    "btn_login": "Iniciar sesión",
+    "btn_home": "Volver al inicio",  
+
+
+    
+    "title_lend_resources": "Prestar recursos",
+    "label_teacherlend": "Profesor a prestar:",
+    "label_resource": "Recurso a prestar:",
+     
+    "table_header_person": "Persona que Pidió",
+    "table_header_resource": "Recurso Prestado",
+    "table_header_admin": "Administrador que Prestó",
+    "table_header_start_time": "Hora Prestado",
+    "table_header_end_time": "Hora Devolución",
+
+    "table_header_status": "Estado",
+    "status_returned": "Devuelto",
+    "status_pending": "Pendiente",
+    "status_not_returned": "Sin devolver",
+
+    "msg_no_loans": "No hay préstamos registrados",
+    "msg_no_user_loans": "No tienes préstamos registrados",
+
+
+
+    "title_schedules": "Horarios",
+    "title_my_schedules": "Mis horarios",
+    "label_select_schedule": "Seleccionar Horario:",
+    "label_select_course": "Seleccionar Curso:",
+    "label_select_classroom": "Seleccionar Salón:",
+    "option_select_course": "Seleccione un curso",
+    "option_select_classroom": "Seleccione un salón",
+    "label_hours": "Horas",
+    "day_monday": "Lunes",
+    "day_tuesday": "Martes",
+    "day_wednesday": "Miércoles",
+    "day_thursday": "Jueves",
+    "day_friday": "Viernes",
+    "msg_no_data": "---",
+    "msg_break": "Recreo",
+    "btn_register_absence": "Registrar inasistencia",
+    "modal_title_absence": "Registrar inasistencia",
+    "label_day_absence": "En el día:",
+
+
+    "footer": "2025 ITSP. Todos los derechos reservados"
   },
   "en": {
+    
     "welcome": "Welcome!",
     "welcome_user": "Welcome, {user}!",
-    "description": "Welcome to the institute management tool, where you can manage resource requests as well as teacher schedules.",
+    "description": "This the institute management tool, where you can manage resource requests as well as teacher schedules.",
     "btn_info": "Enter Information",
     "btn_resources": "Resources",
-    "btn_teachers": "Teachers",
-    "footer": "2025 ITSP. All rights reserved",
+    "btn_teachers": "Schedules",
+    
     
     "nav_info": "User Manual",
     "nav_courses": "About Us",
-    
+
     "aside_account": "My account",
     "aside_schedule": "Schedule",
-    "aside_gallery": "Gallery",
-    "aside_events": "Events",
-    "aside_notifications": "Notifications",
     "aside_logout": "Log-out",
     "aside_darkmode": "Dark mode",
-    "aside_lang": "Change language"
+    "aside_lang": "Change language",
+
+    
+    "title": "Register",
+    "header_teachers": "<span>Teacher</span> Registration",
+    "header_superusers": "<span>Superuser</span> Registration",
+    "header_resources": "<span>Resources</span> Registration",
+    "header_spaces": "<span>Spaces</span> Registration",
+    "header_courses": "<span>Courses</span> Registration",
+    "header_subjects": "<span>Subjects</span> Registration",
+    "header_schedules": "<span>Schedules</span> Registration",
+    "header_dependencies": "<span>Dependencies</span> Registration",
+    "header_orientations": "<span>Orientations</span> Registration",
+
+    "btn_open_register": "Open Register",
+    "btn_register": "Register",
+    "btn_register_subject": "Register Subject",
+    "btn_register_orientation": "Register Orientation",
+
+    "label_ci": "ID Card:",
+    "label_password": "Password:",
+    "label_name": "Name:",
+    "label_lastname": "Last Name:",
+    "label_email": "Email:",
+    "label_birth": "Date of Birth:",
+    "label_address": "Address:",
+    "label_capacity": "Capacity:",
+    "label_type": "Type:",
+    "label_state": "Status:",
+    "label_belongs_to": "Belongs to:",
+    "label_access_level": "Access Level:",
+    "label_orientation": "Orientation:",
+    "label_start_time": "Start Time:",
+    "label_end_time": "End Time:",
+    "label_teacher": "Teacher:",
+    "label_subject_taught": "Subject to Teach:",
+    "label_day": "Day:",
+    "label_hours_taught": "Hours Taught:",
+    "label_room_used": "Room Used:",
+    "label_course_taught": "Course Taught To:",
+
+    "option_empty": "",
+    "option_general": "General",
+    "option_use": "In Use",
+    "option_free": "Free",
+    "option_broken": "Broken",
+    "option_internal": "Internal",
+    "option_external": "External",
+    "option_aula": "Computer lab",
+    "option_salon": "Classroom",
+    "option_lab": "Laboratory",
+    "option_sum": "Multipurpose Room",
+    
+    "option_access_1": "1 - Assistant",
+    "option_access_2": "2 - Secretary",
+    "option_access_3": "3 - Administrator",
+
+    "placeholder_ci": "Enter without dots or dashes",
+    "placeholder_password": "Enter password",
+    "placeholder_name": "Enter name",
+    "placeholder_lastname": "Enter last name",
+    "placeholder_email": "Enter email",
+    "placeholder_address": "Enter address",
+    "placeholder_capacity": "Enter capacity",
+    "placeholder_start_time": "Start time",
+    "placeholder_end_time": "End time",
+    "placeholder_orientation": "Select an orientation",
+    "placeholder_select": "Select an option",
+    "placeholder_room": "Select a room",
+    "placeholder_general": "General",
+    "placeholder_type": "Select a type",
+    "placeholder_day": "Select a day",
+    "placeholder_hours": "Enter number of hours",
+    "placeholder_course": "Select a course",
+    
+    
+  
+    "error_not_logged_in": "You do not have permission to access this page, you need to log in.",
+    "error_insufficient_access": "You do not have sufficient access to view this page, you must be a Superuser.",
+    "btn_login": "Log in",
+    "btn_home": "Back to home",
+
+
+   
+    "title_lend_resources": "Lend Resources",
+    "label_teacherlend": "Teacher to lend:",
+    "label_resource": "Resource to lend:",
+
+    "table_header_person": "Requester",
+    "table_header_resource": "Resource",
+    "table_header_admin": "Admin",
+    "table_header_start_time": "Lent At",
+    "table_header_end_time": "Returned At",
+    "table_header_status": "Status",
+
+    "status_returned": "Returned",
+    "status_pending": "Pending",
+    "status_not_returned": "Not returned",
+
+    "msg_no_loans": "No loans registered",
+    "msg_no_user_loans": "You have no registered loans",
+
+
+
+    "title_schedules": "Schedules",
+    "title_my_schedules": "My schedules",
+    "label_select_schedule": "Select Schedule:",
+    "label_select_course": "Select Course:",
+    "label_select_classroom": "Select Classroom:",
+
+    "option_select_course": "Select a course",
+    "option_select_classroom": "Select a classroom",
+    "label_hours": "Hours",
+    "day_monday": "Monday",
+    "day_tuesday": "Tuesday",
+    "day_wednesday": "Wednesday",
+    "day_thursday": "Thursday",
+    "day_friday": "Friday",
+    "msg_no_data": "---",
+    "msg_break": "Break",
+    "btn_register_absence": "Register absence",
+    "label_day_absence": "On the day:",
+    
+
+    "footer": "2025 ITSP. All rights reserved"
+
   }
 }

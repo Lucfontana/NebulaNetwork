@@ -1,9 +1,11 @@
+import { verificarString, verificarEmail,verificarFechanacimiento, verificarDireccion, alerta_success_update, alerta_fallo } from './prueba.js';
+
 document.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.getElementById("overlay");
-  const btnCancelar = document.getElementById("cancelar");
-  const btnConfirmar = document.getElementById("confirmar");
-  const overlayEdit = document.getElementById("overlay-edit");
-  const btnCancelarEdit = document.getElementById("cancelarEdit");
+  const overlay = document.getElementById("overlay-profesor");
+  const btnCancelar = document.getElementById("cancelar-profesor");
+  const btnConfirmar = document.getElementById("confirmar-profesor");
+  const overlayEdit = document.getElementById("overlay-edit-profesor");
+  const btnCancelarEdit = document.getElementById("cancelarEdit-profesor");
 
   let editID = null;
   let nombre = null;
@@ -16,18 +18,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // Abrir modal y guardar id
-  document.querySelectorAll(".boton-datos-eliminar").forEach(boton => {
+  document.querySelectorAll(".boton-eliminar-profesor").forEach(boton => {
     boton.addEventListener("click", (e) => {
       e.preventDefault();
       currentId = boton.dataset.id;
       overlay.style.display = "flex";
+
+      setTimeout(() => {
+       overlay.style.opacity = "1";
+       overlay.style.transition = "0.5s";
+    }, 1)
     });
   });
 
   // Cancelar
   btnCancelar.addEventListener("click", () => {
-    overlay.style.display = "none";
+    overlay.style.opacity = "0";
+    overlay.style.transition = "0.5s";
     currentId = null;
+    setTimeout(() => {
+       overlay.style.display = "none"; 
+    }, 500)
   });
 
   // Confirmar: redirigir a tu PHP de borrado
@@ -37,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  document.querySelectorAll(".boton-datos-editar").forEach(botonEditar => {
+  document.querySelectorAll(".boton-editar-profesor").forEach(botonEditar => {
     botonEditar.addEventListener("click", (a) => {
       a.preventDefault();
 
@@ -50,21 +61,86 @@ document.addEventListener("DOMContentLoaded", () => {
       fnac = botonEditar.dataset.fnac;
       direccion = botonEditar.dataset.direccion;
 
-      document.getElementById("id_edit").value = editID;
-      document.getElementById("name_edit").value = nombre;
-      document.getElementById("apellido_edit").value = apellido;
-      document.getElementById("email_edit").value = email;
-      document.getElementById("Fnac_edit").value = fnac;
-      document.getElementById("direccion_edit").value = direccion;
+      document.getElementById("id_edit_profesor").value = editID;
+      document.getElementById("name_edit_profesor").value = nombre;
+      document.getElementById("apellido_edit_profesor").value = apellido;
+      document.getElementById("email_edit_profesor").value = email;
+      document.getElementById("fnac_edit_profesor").value = fnac;
+      document.getElementById("direccion_edit_profesor").value = direccion;
       
+      setTimeout(() => {
+       overlayEdit.style.opacity = "1";
+       overlayEdit.style.transition = "0.5s";
+    }, 1)
     })
   })
 
   btnCancelarEdit.addEventListener("click", () => {
-    overlayEdit.style.display = "none";
+    overlayEdit.style.opacity = "0";
+    overlayEdit.style.transition = "0.5s";
     editID = null;
+    setTimeout(() => {
+       overlayEdit.style.display = "none";
+    }, 500)
   });
 
+  document.getElementById("form-update-profesores").addEventListener("submit", async (e) => {
+    e.preventDefault(); // Evita el submit normal
+      
+    let nombreInput = document.getElementById("name_edit_profesor").value;
+    let apellidoInput = document.getElementById("apellido_edit_profesor").value;
+    let emailInput = document.getElementById("email_edit_profesor").value;
+    let fnacInput = document.getElementById("fnac_edit_profesor").value;
+    let direccionInput = document.getElementById("direccion_edit_profesor").value;
+   
+    
+
+    // Validaciones
+        if (!verificarString(nombreInput, "nombre")) {
+            e.preventDefault();
+            return;
+        }
+        if (!verificarString(apellidoInput, "apellido")) {
+            e.preventDefault();
+            return;
+        }
+        if (!verificarEmail(emailInput)) {
+            e.preventDefault();
+            return;
+        }
+        if (!verificarFechanacimiento(fnacInput)) {
+            e.preventDefault();
+            return;
+        }
+        if (!verificarDireccion(direccionInput)) {
+            e.preventDefault();
+            return;
+        }
+
+    // Si pasa las validaciones, envía el formulario
+    const form = e.target;
+    const fd = new FormData(form);
+
+    try {
+      const res = await fetch("/backend/functions/Profesores/edit.php", {
+        method: "POST",
+        body: fd,
+        credentials: "same-origin"
+      });
+
+      const data = await res.json();
+      let mensaje = data.message;
+
+      if (data.success) {
+        alerta_success_update(mensaje, "/frontend/Mostrar_informacion.php");
+      } else {
+        alerta_fallo(mensaje);
+      }
+    } catch (err) {
+      console.error(err);
+      alerta_fallo("Error de conexión");
+    }
+  });
 });
 
 

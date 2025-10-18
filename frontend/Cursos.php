@@ -1,94 +1,124 @@
 <?php
 include_once('../backend/db/conexion.php');
-
 $connect = conectar_a_bd();
 $sql = "SELECT * FROM cursos";
-
 $query = mysqli_query($connect, $sql);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<?php if (!isset($_SESSION['nivel_acceso'])): ?>
+    <?php include_once('error.php') ?>
+<?php else: ?>
+    <h1>Cursos</h1>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-</head>
-
-<link rel="stylesheet" href="style/style.css">
-
-<body>
-    <!-- trae las barras de navegacion (sidebar y superior) -->
-    <?php include 'nav.php'; ?>
-    <main>
-        <div id="contenido-mostrar-datos">
-            <h1>Cursos</h1>
-            <table id="datos">
-                <tr>
-                    <th class="id">Id </th>
-                    <th class="nombre-titulo">Nombre</th>
-                    <th class="nombre-titulo">Capacidad</th>
-                    <th class="boton-titulo">Borrar</th>
-                    <th class="boton-titulo">Editar</th>
-                </tr>
-                <?php while ($row = mysqli_fetch_array($query)): ?>
-                    <tr class="mostrar-datos">
-                        <th class="nombre"><?= $row['id_curso'] ?></th>
-                        <th class="nombre"><?= $row['nombre'] ?></th>
-                        <th class="ultimo-dato"><?= $row['capacidad'] ?></th>
-                        <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_curso'] ?>">Eliminar</a></th>
-                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_curso'] ?>" data-nombre="<?= $row['nombre'] ?>" data-capacidad="<?= $row['capacidad']?>">Editar</a></th>
-                    </tr>
-                <?php endwhile; ?>
-            </table>
+    <!-- Vista para computadora -->
+    <div class="datos-grid">
+        <div class="grid-header">
+            <div class="grid-cell id">Id</div>
+            <div class="grid-cell nombre-titulo">Nombre</div>
+            <div class="grid-cell nombre-titulo">Capacidad</div>
+            <div class="grid-cell boton-titulo">Eliminar</div>
+            <div class="grid-cell boton-titulo">Editar</div>
         </div>
 
-        <div class="overlay" id="overlay">
-            <div class="confirmacion">
-                <h2>¿Estás seguro?</h2>
-                <p>Esta acción eliminará el registro de forma permanente.</p>
-                <div class="botones_confirmar">
-                    <button class="btn btn-confirmar" id="confirmar" href="backend/functions/Cursos/delete.php?id=<?= $row['id_curso'] ?>">Eliminar</button>
-                    <button class="btn btn-cancelar" id="cancelar">Cancelar</button>
+        <?php while ($row = mysqli_fetch_array($query)): ?>
+            <div class="grid-row mostrar-datos">
+                <div class="grid-cell"><?= $row['id_curso'] ?></div>
+                <div class="grid-cell"><?= $row['nombre'] ?></div>
+                <div class="grid-cell ultimo-dato"><?= $row['capacidad'] ?></div>
+                <div class="grid-cell">
+                    <a href="#"
+                        class="boton-datos-eliminar boton-eliminar-curso botones-datos"
+                        data-id="<?= $row['id_curso'] ?>">
+                        Eliminar
+                    </a>
+                </div>
+                <div class="grid-cell boton-dato">
+                    <a class="boton-datos-editar boton-editar-curso botones-datos"
+                        data-id="<?= $row['id_curso'] ?>"
+                        data-nombre="<?= $row['nombre'] ?>"
+                        data-capacidad="<?= $row['capacidad'] ?>">
+                        Editar
+                    </a>
                 </div>
             </div>
+        <?php endwhile; ?>
+    </div>
+
+    <!-- Vista para celular -->
+    <?php mysqli_data_seek($query, 0); ?>
+    <div class="flex-mostrar-datos">
+        <?php while ($row = mysqli_fetch_array($query)): ?>
+            <div class="datos-header-celu">
+                <div class="datos-tabla-flex">
+                    <div class="nombre-titulo grid-cell flex-header">
+                        <?= $row['nombre'] ?> 
+                        <button class="mostrar-informacion-oculta">🔽</button>
+                    </div>
+                </div>
+                <div class="informacion-escondida">
+                    <div class="datos-tabla-flex">
+                        <div class="grid-cell">ID: <?= $row['id_curso'] ?></div>
+                    </div>
+                    <div class="datos-tabla-flex">
+                        <div class="grid-cell">Capacidad: <?= $row['capacidad'] ?></div>
+                    </div>
+
+                    <div class="grid-cell">
+                        <a href="#"
+                            class="boton-datos-eliminar boton-eliminar-curso botones-datos"
+                            data-id="<?= $row['id_curso'] ?>">
+                            Eliminar
+                        </a>
+                    </div>
+                    <div class="grid-cell">
+                        <a class="boton-datos-editar boton-editar-curso botones-datos"
+                            data-id="<?= $row['id_curso'] ?>"
+                            data-nombre="<?= $row['nombre'] ?>"
+                            data-capacidad="<?= $row['capacidad'] ?>">
+                            Editar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php endwhile; ?>
+    </div>
+
+    <!-- ID ÚNICO para cursos -->
+    <div class="overlay" id="overlay-curso">
+        <div class="confirmacion">
+            <h2>¿Estás seguro?</h2>
+            <p>Esta acción eliminará el curso de forma permanente.</p>
+            <div class="botones_confirmar">
+                <button class="btn btn-confirmar" id="confirmar-curso">Eliminar</button>
+                <button class="btn btn-cancelar" id="cancelar-curso">Cancelar</button>
+            </div>
         </div>
+    </div>
 
+    <!-- ID ÚNICO para editar curso -->
+    <div id="overlay-edit-curso" class="overlay-edit">
+        <div class="popup">
+            <h1>Modificación de Curso</h1>
+            <form action="/backend/functions/Cursos/edit.php" method="POST" id="form-update-curso">
+                <input type="hidden" name="id_curso" id="id_edit_curso">
 
-        <div id="overlay-edit" class="overlay-edit">
-            <form action="\backend\functions\Cursos\edit.php" method="POST">
-                <h1>Registro de Cursos</h1>
-                <hr>
-                <div class="div-labels">
-                    <input class="input-register" type="hidden" name="id_curso" id="id_edit">
+                <div class="input-group">
+                    <label for="name_edit_curso">Nombre:</label>
+                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit_curso" 
+                           maxlength="20" minlength="3" required placeholder="Ingresa nombre">
                 </div>
-                <div class="editar-edit">
-                    <label for="nombre" class="label">Nombre:</label>
-                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa Nombre">
-                    <label for="nombre" class="label">Capacidad:</label>
-                    <input class="class-datos-editar" type="number" name="capacidad" id="capacidad_edit" maxlength="3" minlength="1" required placeholder="Ingresa Capacidad">
+
+                <div class="input-group">
+                    <label for="capacidad_edit_curso">Capacidad:</label>
+                    <input class="class-datos-editar" type="number" name="capacidad" id="capacidad_edit_curso" 
+                           maxlength="3" minlength="1" required placeholder="Ingresa capacidad">
                 </div>
-                <div>
-                    <input type="submit" value="Actualizar Infomacion" id="actualizar" class="actualizar"></input>
-                    <input type="button" value="Cancelar" id="cancelarEdit"></input>
+
+                <div class="buttons-modal">
+                    <input type="submit" value="Actualizar Información" class="btn-primary">
+                    <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit-curso">
                 </div>
             </form>
         </div>
-    </main>
-
-    <footer id="footer" class="footer">
-        <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
-    </footer>
-
-    <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-        crossorigin="anonymous"></script>
-    <script src="js/sideMenu.js"></script>
-    <script src="/frontend/js/confirm-cursos.js"></script>
-</body>
-
-</html>
+    </div>
+<?php endif; ?>

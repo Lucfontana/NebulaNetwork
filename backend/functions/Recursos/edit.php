@@ -10,11 +10,16 @@ $name = $_POST['nombre'];
 $estado = $_POST['estado'];
 $tipo = $_POST['tipo'];
 
-$consulta = "UPDATE reursos SET nombre = ?, descripcion = ?, tipo = ?, estado = ? WHERE id_recurso=?";
+$consulta = "UPDATE recursos SET nombre = ?, tipo = ?, estado = ? WHERE id_recurso=?";
 $stmt = $con->prepare($consulta);
-$stmt->bind_param("ssssi", $name, $descripcion, $tipo, $estado, $id);
+$stmt->bind_param("sssi", $name, $tipo, $estado, $id);
 $stmt->execute();
-$result = $stmt->get_result();
 
-Header("location: ../../../frontend/Recursos.php");
+if ($stmt->affected_rows > 0) {
+    echo json_encode(["success" => true, "message" => "Recurso editado correctamente"]);
+} else {
+    echo json_encode(["success" => false, "message" => "Error al actualizar"]);
+}
+$stmt->close();
+
 ?>

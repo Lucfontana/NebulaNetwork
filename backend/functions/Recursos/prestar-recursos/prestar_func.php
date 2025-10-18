@@ -51,9 +51,11 @@ function insertar_profesor_solicita_recurso($con, $existe_profesor, $existe_recu
         $stmt = $con->prepare($query_insertar);
         $stmt->bind_param("ss", $profesor, $recurso);
         $stmt->execute();
+        // $con->insert_id;
 
         //Trae la id de solicita y la devuelve
-        $traer_id = "SELECT id_solicita FROM profesor_solicita_recurso WHERE (id_recurso) = (?) AND (ci_profesor) = (?)";
+        //Se ordena de forma descendente para traer la ultima id ingresada
+        $traer_id = "SELECT id_solicita FROM profesor_solicita_recurso WHERE (id_recurso) = (?) AND (ci_profesor) = (?) ORDER BY id_solicita DESC";
         $stmt = $con->prepare($traer_id);
         $stmt->bind_param("ii", $recurso, $profesor);
         $stmt->execute();

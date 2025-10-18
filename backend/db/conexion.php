@@ -17,5 +17,3 @@ return $conexion;
 }
 
 $con = conectar_a_bd();
-
-?>

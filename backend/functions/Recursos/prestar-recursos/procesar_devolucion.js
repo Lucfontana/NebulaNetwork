@@ -1,5 +1,4 @@
-// import {}
-
+import { alerta_fallo, sw_exito } from '../../../../frontend/js/swalerts.js';
 // Espera a que el documento esté completamente cargado
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -54,22 +53,9 @@ function hacer_devolucion(idSolicita, idRecurso){
                     sw_exito(data.message);
                 } else {
                     // Si hubo error, muestra el mensaje de error
-                    alert('Error: ' + data.message);
+                    alerta_fallo(data.message);
                 }
             })
 
 }
 
-function sw_exito(mensaje){
-Swal.fire({
-    title: "¡Éxito!",
-    text: mensaje + ', reiniciando pagina...',
-    icon: "success",
-    timer: 1500, // Se cierra automáticamente en 1,5 segundos
-    timerProgressBar: true, // Muestra barra de progreso
-    showConfirmButton: false // Oculta el botón
-}).then(() => {
-    location.reload(); // Se ejecuta después de cerrar
-});
-
-}
