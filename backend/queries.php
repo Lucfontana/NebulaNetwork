@@ -23,6 +23,16 @@ function query_profesores($con){
     return $stmt->get_result();
 }
 
+function query_profesor_especifico($con, $ci_profesor){
+    $query_verificar_prof = "SELECT ci_profesor FROM profesores WHERE ci_profesor = ?";
+    $stmt = $con->prepare($query_verificar_prof);
+    $stmt->bind_param("i", $ci_profesor);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    $stmt->close();
+    return $resultado;
+}
+
 function query_asignaturas($con){
     $query_asignaturas = "SELECT * FROM asignaturas";
     $stmt = $con->prepare($query_asignaturas);
@@ -158,3 +168,19 @@ function query_prestamos_profesores($con, $ci_profesor){
     return $stmt->get_result();
 }
 
+
+
+
+//FUNCIONES VARIADAS
+function saber_dia_seleccionado($dia_semana_seleccionado) {
+    $dias = array(
+        0 => 'lunes',
+        1 => 'martes',
+        2 => 'miercoles',
+        3 => 'jueves',
+        4 => 'viernes'
+    );
+
+    $devuelto = isset($dias[$dia_semana_seleccionado]) ? $dias[$dia_semana_seleccionado] : null;
+    return $devuelto;
+}

@@ -1,7 +1,9 @@
 const logout = document.getElementById("logout");
 localStorage.setItem("logout-event", Date.now());
 
+if(logout){
 logout.addEventListener("click", confirmar_logout);
+}
 
 function confirmar_logout() {
     Swal.fire({

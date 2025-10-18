@@ -1,5 +1,6 @@
 <?php
 include_once('../../db/conexion.php');
+include_once('../../queries.php');
 
 $con = conectar_a_bd();
 
@@ -20,11 +21,9 @@ function registrar_dependencia_completa($con, $ci_profesor, $id_asignatura, $hor
     //Paso 1.a: Verificar que existan los profesores, se pasa como ? lo que ingreso el usuario
     //A lo largo de todo el codigo, antes de hacer algo se va a verificar que no hayan problemas (que error siga siendo false)
     if (!$error) {
-        $query_verificar_prof = "SELECT ci_profesor FROM profesores WHERE ci_profesor = ?";
-        $stmt = $con->prepare($query_verificar_prof);
-        $stmt->bind_param("i", $ci_profesor);
-        $stmt->execute();
-        $result = $stmt->get_result();
+
+        //query que proviene de queries.php
+        $result = query_profesor_especifico($con, $ci_profesor);
         
         //Si no hay coincidencias, quiere decir que no existe el profesor ingresado, por lo que se marca
         //error y el mensaje de error, este funcionamiento tienen todas las validaciones de existencia
@@ -32,7 +31,6 @@ function registrar_dependencia_completa($con, $ci_profesor, $id_asignatura, $hor
             $error = true;
             $mensaje_error = "El profesor no existe";
         }
-        $stmt->close();
     }
     
     // Paso 1.b: Verificar que existan las asignaturas
@@ -225,15 +223,14 @@ if (!$error) {
     
     //  PASO 5: Insertar los horarios en tabla cumple (m estoy cansando de comentar)
     $horarios_insertados = 0;
-    $asistencia = 1;
 
     if (!$error) {
-        $query_insert_cumple = "INSERT INTO cumple (id_horario, id_dicta, dia, asistencia) VALUES (?, ?, ?, ?)";
+        $query_insert_cumple = "INSERT INTO cumple (id_horario, id_dicta, dia) VALUES (?, ?, ?)";
         $stmt_cumple = $con->prepare($query_insert_cumple);
         
         //Para cada uno de los horarios que hay, se van metiendo registros en la BD
         foreach ($horarios as $id_horario) {
-            $stmt_cumple->bind_param("iisi", $id_horario, $id_dicta, $dia_dictado, $asistencia);
+            $stmt_cumple->bind_param("iis", $id_horario, $id_dicta, $dia_dictado);
             
             if ($stmt_cumple->execute()) {
                 $horarios_insertados++;
