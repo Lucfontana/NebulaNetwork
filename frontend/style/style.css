@@ -60,7 +60,7 @@ main {
     margin: 0 0 0 0;
     background-color: #E0E3EB;
     transition: all 0.5s ease;
-    
+
 }
 
 .navStyle.darkmode {
@@ -86,7 +86,9 @@ main {
     padding-left: 10px;
 }
 
-.nav-link.darkmode, .navbar-brand.darkmode, .nav-item a.darkmode {
+.nav-link.darkmode,
+.navbar-brand.darkmode,
+.nav-item a.darkmode {
     color: #fff;
 }
 
@@ -106,12 +108,12 @@ main {
     color: #6d6d6d;
 }
 
-.icono  {
+.icono {
     filter: invert(15%);
     transition: filter 0.5s ease;
 }
 
-.darkmode .icono  {
+.darkmode .icono {
     filter: invert(100%);
 }
 
@@ -124,12 +126,12 @@ main {
     transition: filter 0.5s ease;
 }
 
-.navbar-toggler-icon.darkmode{
-    filter: invert(1)  brightness(2);
+.navbar-toggler-icon.darkmode {
+    filter: invert(1) brightness(2);
 }
 
-.navbar-toggler-icon.darkmode :hover{
-    filter: invert(1)  brightness(2);
+.navbar-toggler-icon.darkmode :hover {
+    filter: invert(1) brightness(2);
 }
 
 .navbar-brand {
@@ -184,8 +186,10 @@ main {
 
 .btn-bienvenida {
     font-size: 22px;
-    width: 250px; /* ancho consistente */
-    height: 120px; /* alto consistente */
+    width: 250px;
+    /* ancho consistente */
+    height: 120px;
+    /* alto consistente */
     background-color: #2F4C97;
     color: #ffffff;
     border: none;
@@ -230,7 +234,8 @@ aside {
     display: block;
     padding: 50px 0 0 0;
     width: var(---marginAside);
-    height: 100vh; /* 100% del alto visible de la ventana */
+    height: 100vh;
+    /* 100% del alto visible de la ventana */
     background-color: #E9EEF6;
     position: fixed;
     transition: all 0.5s ease;
@@ -246,7 +251,8 @@ aside>ul {
     display: flex;
     flex-direction: column;
     text-align: center;
-    list-style-type: none; /*Sacar los puntitos de la lista*/
+    list-style-type: none;
+    /*Sacar los puntitos de la lista*/
     padding: 0;
 }
 
@@ -281,7 +287,8 @@ aside>ul {
 
 .link-aside-images li:hover::after {
     opacity: 1;
-    transform: translateY(-50%) translateX(0); /* vuelve a su lugar */
+    transform: translateY(-50%) translateX(0);
+    /* vuelve a su lugar */
 }
 
 /* Todos los iconos del sidebar con mismo tamaño */
@@ -296,9 +303,11 @@ aside>ul {
 .link-aside-images {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* reparte los íconos arriba-abajo */
+    justify-content: space-between;
+    /* reparte los íconos arriba-abajo */
     align-items: center;
-    height: 100%; /* ocupa todo el sidebar */
+    height: 100%;
+    /* ocupa todo el sidebar */
     margin: 0;
     padding: 30px 0;
 }
@@ -308,7 +317,8 @@ aside>ul {
     position: absolute;
     top: 50%;
     left: 60px;
-    transform: translateY(-50%) translateX(-10px);   /* desplazado igual que los otros tooltips */
+    transform: translateY(-50%) translateX(-10px);
+    /* desplazado igual que los otros tooltips */
     flex-direction: column;
     align-items: flex-start;
     padding: 4px 0;
@@ -320,7 +330,8 @@ aside>ul {
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s, transform 0.5s;    /* animación */
+    transition: opacity 0.3s, transform 0.5s;
+    /* animación */
 }
 
 /* Al hacer hover en el icono de configuración */
@@ -382,7 +393,8 @@ aside>ul {
     text-decoration: none;
     text-align: center;
     min-width: 180px;
-    flex: 1 1 auto;    /* se adaptan al espacio disponible */
+    flex: 1 1 auto;
+    /* se adaptan al espacio disponible */
 }
 
 .btn-login:hover {
@@ -415,7 +427,8 @@ aside>ul {
     text-decoration: none;
     font-weight: bold;
     z-index: 10;
-    width: 50px;    /* ancho del círculo */
+    width: 50px;
+    /* ancho del círculo */
     height: 50px;
     align-items: center;
     justify-content: center;
@@ -424,11 +437,15 @@ aside>ul {
 
 .flecha-volver:hover {
     color: #2a3380;
-    background-color: rgba(0, 0, 0, 0.2);    /* sombra de fondo ligera */
-    border-radius: 100%;    /* forma redondeada */
+    background-color: rgba(0, 0, 0, 0.2);
+    /* sombra de fondo ligera */
+    border-radius: 100%;
+    /* forma redondeada */
 }
 
-.flex, #navbar-content.show, .div-botones-register {
+.flex,
+#navbar-content.show,
+.div-botones-register {
     display: flex;
 }
 
@@ -544,7 +561,8 @@ aside>ul {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);    /* negro con 50% de opacidad */
+    background: rgba(0, 0, 0, 0.3);
+    /* negro con 50% de opacidad */
 }
 
 #boton-inicio {
@@ -626,33 +644,33 @@ aside>ul {
     align-items: center;
 }
 
-.contenedor-password-register > input {
+.contenedor-password-register>input {
     width: 100%;
 }
 
-.contenedor-password-register > i {
+.contenedor-password-register>i {
     color: white;
 }
 
 
 /* Primer grupo (elementos 1, 2 y 3) */
 .article-register:nth-child(-n + 3) {
-  --color:  #da9768;
+    --color: #da9768;
 }
 
 /* Segundo grupo (elementos 4, 5 y 6) */
 .article-register:nth-child(n + 4):nth-child(-n + 6) {
-  --color:#2E8B92; 
+    --color: #2E8B92;
 }
 
 /* Tercer grupo (elementos 7, 8 y 9) */
 .article-register:nth-child(n + 7):nth-child(-n + 9) {
-  --color:  #73b382;
+    --color: #73b382;
 }
 
 /* Aplica el color al texto dentro del span */
 .article-register h1 span {
-  color: var(--color);
+    color: var(--color);
 }
 
 .article-register {
@@ -678,9 +696,12 @@ aside>ul {
     border-style: solid;
     color: #303030;
     box-shadow: 0 10px 30px rgba(0, 60, 130, 0.3);
-    max-height: 80vh; /* altura máxima: 80% del alto visible de la ventana */
-    overflow-y: auto;    /* activa la barra de scroll vertical si el contenido se pasa */
-    overflow-x: hidden;  /* evita que aparezca una barra horizontal */
+    max-height: 80vh;
+    /* altura máxima: 80% del alto visible de la ventana */
+    overflow-y: auto;
+    /* activa la barra de scroll vertical si el contenido se pasa */
+    overflow-x: hidden;
+    /* evita que aparezca una barra horizontal */
     animation: aparecer 0.4s ease;
 }
 
@@ -777,11 +798,17 @@ hr {
 }
 
 /* Mostrar Datos */
-.seccion-oculta, #dialog-change-passwd, .flex-mostrar-datos {
+.seccion-oculta,
+#dialog-change-passwd,
+.flex-mostrar-datos {
     display: none;
 }
 
-#horas_falta{
+.seccion-oculta {
+    flex-direction: column;
+}
+
+#horas_falta {
     visibility: hidden;
 }
 
@@ -795,10 +822,14 @@ hr {
 #contenido-mostrar-datos {
     width: 100%;
     max-width: 1200px;
-    margin-left: 20px;    /* límite para que no se estire demasiado */
-    background: white;    /* opcional */
-    border-radius: 10px;    /* opcional */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);    /* opcional */
+    margin: 40px;
+    /* límite para que no se estire demasiado */
+    background: white;
+    /* opcional */
+    border-radius: 10px;
+    /* opcional */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* opcional */
     padding: 20px;
     margin-top: 80px;
 }
@@ -831,7 +862,8 @@ hr {
     color: white;
     font-weight: 600;
 }
-.grid-row ,
+
+.grid-row,
 .grid-header {
     display: grid;
     grid-template-columns: 80px 1fr 150px 120px 120px;
@@ -870,7 +902,8 @@ hr {
 .profesores-grid .grid-header,
 .profesores-grid .grid-row {
     display: grid;
-    grid-template-columns: 100px 130px 130px 225px 130px 200px 120px 120px; /* Ajuste equilibrado de columnas */
+    grid-template-columns: 100px 130px 130px 225px 130px 200px 120px 120px;
+    /* Ajuste equilibrado de columnas */
 }
 
 .grid-header {
@@ -884,42 +917,48 @@ hr {
 .superusuario-grid .grid-header,
 .superusuario-grid .grid-row {
     display: grid;
-    grid-template-columns: 100px 150px 150px 160px 1.3fr 120px 120px; /* Ajuste balanceado entre identificadores, texto y botones */
+    grid-template-columns: 100px 150px 150px 160px 1.3fr 120px 120px;
+    /* Ajuste balanceado entre identificadores, texto y botones */
 }
 
 /* Estructura específica para la tabla de Espacios Físicos */
 .espacios-grid .grid-header,
 .espacios-grid .grid-row {
     display: grid;
-    grid-template-columns: 80px 120px 1fr 150px 120px 120px; /* Ajuste balanceado: ID pequeño, nombre flexible */
+    grid-template-columns: 80px 120px 1fr 150px 120px 120px;
+    /* Ajuste balanceado: ID pequeño, nombre flexible */
 }
 
 /* Estilo específico para Orientaciones */
 .orientaciones-grid .grid-header,
 .orientaciones-grid .grid-row {
     display: grid;
-    grid-template-columns: 80px 1fr 120px 120px; /* ID pequeño, Nombre flexible, botones fijos */
+    grid-template-columns: 80px 1fr 120px 120px;
+    /* ID pequeño, Nombre flexible, botones fijos */
 }
 
 /* Estilo específico para Recursos */
 .recursos-grid .grid-header,
 .recursos-grid .grid-row {
     display: grid;
-    grid-template-columns: 80px 120px 1fr 120px 120px 120px 120px; /* ID angosto, Espacio fijo, Nombre flexible, Estado y Tipo fijos, botones fijos */
+    grid-template-columns: 80px 120px 1fr 120px 120px 120px 120px;
+    /* ID angosto, Espacio fijo, Nombre flexible, Estado y Tipo fijos, botones fijos */
 }
 
 /* Estilo específico para Préstamos de Recursos */
 .prestamos-grid .grid-header,
 .prestamos-grid .grid-row {
     display: grid;
-    grid-template-columns: 80px 250px 170px 180px 180px 180px 120px; /* ID angosto, Persona más ancha, Recurso, Admin, Hora Prestado/Devolución, Estado */
+    grid-template-columns: 80px 250px 170px 180px 180px 180px 120px;
+    /* ID angosto, Persona más ancha, Recurso, Admin, Hora Prestado/Devolución, Estado */
 }
 
 /* Estructura específica para la tabla de Asignaturas */
 .asignaturas-grid .grid-header,
 .asignaturas-grid .grid-row {
     display: grid;
-    grid-template-columns: 100px 1fr 120px 120px; /* Equilibrado: ID estrecho, nombre flexible, botones fijos */
+    grid-template-columns: 100px 1fr 120px 120px;
+    /* Equilibrado: ID estrecho, nombre flexible, botones fijos */
 }
 
 /* Datos Horarios */
@@ -945,7 +984,7 @@ hr {
     background: #ecf0f1;
 }
 
-.datos-header .datos-row > div {
+.datos-header .datos-row>div {
     padding: 15px;
     font-weight: 600;
     text-align: center;
@@ -956,7 +995,7 @@ hr {
     border-bottom: 1px solid #ecf0f1;
 }
 
-.datos-body .datos-row > div {
+.datos-body .datos-row>div {
     padding: 10px;
     background: white;
     display: flex;
@@ -977,9 +1016,9 @@ hr {
     border: 1px solid #ecf0f1;
 }
 
-.dia-dato-recreo{
+.dia-dato-recreo {
     min-height: 30px;
-    border: 1px solid #ecf0f1; 
+    border: 1px solid #ecf0f1;
 }
 
 .filtros {
@@ -990,7 +1029,9 @@ hr {
     gap: 20px;
 }
 
-#select-horarios, #salones-select, #cursos-select {
+#select-horarios,
+#salones-select,
+#cursos-select {
     width: 200px;
     font-size: 14px;
 }
@@ -1080,7 +1121,13 @@ hr {
 }
 
 /* Editar Datos */
-#overlay-edit-asignatura, #overlay-edit-curso, #overlay-edit-espacio, #overlay-edit-orientacion, #overlay-edit-profesor, #overlay-edit-recurso, #overlay-edit-super {
+#overlay-edit-asignatura,
+#overlay-edit-curso,
+#overlay-edit-espacio,
+#overlay-edit-orientacion,
+#overlay-edit-profesor,
+#overlay-edit-recurso,
+#overlay-edit-super {
     display: none;
     opacity: 0;
 }
@@ -1104,9 +1151,12 @@ hr {
     border-style: solid;
     color: #003366;
     box-shadow: 0 10px 30px rgba(0, 60, 130, 0.3);
-    max-height: 80vh; /* altura máxima: 80% del alto visible de la ventana */
-    overflow-y: auto;    /* activa la barra de scroll vertical si el contenido se pasa */
-    overflow-x: hidden;    /* evita que aparezca una barra horizontal */
+    max-height: 80vh;
+    /* altura máxima: 80% del alto visible de la ventana */
+    overflow-y: auto;
+    /* activa la barra de scroll vertical si el contenido se pasa */
+    overflow-x: hidden;
+    /* evita que aparezca una barra horizontal */
     animation: aparecer 0.4s ease;
 }
 
@@ -1138,7 +1188,7 @@ hr {
     color: #003366;
 }
 
-.input-group > .contenedor-password > .togglePassword {
+.input-group>.contenedor-password>.togglePassword {
     top: 15px;
 }
 
@@ -1178,7 +1228,7 @@ select {
 }
 
 .btn-primary:hover {
-     background-color: #6d6d6d;
+    background-color: #6d6d6d;
 }
 
 .btn-secondary {
@@ -1217,7 +1267,7 @@ select {
     background-color: #363636;
     color: white;
     margin: 5%;
-    margin-top: 8%;
+    margin-top: 100px;
     border-radius: 25px;
     border-style: solid;
     padding: 0;
@@ -1246,12 +1296,12 @@ select {
     padding: 10px;
 }
 
-.bienvenida-perfil > h2 {
+.bienvenida-perfil>h2 {
     font-size: 30px;
     font-weight: bold;
 }
 
-.bienvenida-perfil > p {
+.bienvenida-perfil>p {
     margin-top: 10px;
     font-size: 22px;
     font-weight: bold;
@@ -1398,10 +1448,13 @@ select {
         width: 80%;
     }
 
-    hr {
+    .contenedor-password-register {
         width: 80%;
     }
 
+    hr {
+        width: 80%;
+    }
 }
 
 /* media query para que el sidebar se vaya para
@@ -1439,7 +1492,8 @@ abajito cuando el ancho es menos de 700px */
     /* Ajuste de íconos */
     .link-aside-images {
         display: flex;
-        flex-direction: row;  /* horizontal */
+        flex-direction: row;
+        /* horizontal */
         height: auto;
         justify-content: space-evenly;
         width: 100vw;
@@ -1447,7 +1501,8 @@ abajito cuando el ancho es menos de 700px */
     }
 
     .link-aside-images li {
-        margin: 0;    /* eliminar márgenes verticales */
+        margin: 0;
+        /* eliminar márgenes verticales */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1526,7 +1581,69 @@ abajito cuando el ancho es menos de 700px */
         font-size: 18px;
     }
 
-       .datos-tabla-flex {
+}
+
+/* Pantallas chicas */
+@media (max-width: 480px) {
+    .bienvenida-botones {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn-bienvenida {
+        width: 90%;
+        max-width: 280px;
+        height: 80px;
+        font-size: 16px;
+    }
+}
+
+/* Login responsive */
+@media (width < 1000px) {
+    #form {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    #logo-fondo,
+    .fondo-login::before {
+        display: none;
+    }
+}
+
+/*botones login responsive*/
+@media (max-width: 1100px) and (min-width: 751px) {
+    #botones-login {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-login {
+        width: 90%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 750px) {
+    #botones-login {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .btn-login {
+        flex: 1 1 auto;
+        min-width: 140px;
+        max-width: 200px;
+    }
+}
+
+/* Mostrar Información responsive */
+@media (max-width: 1100px) {
+
+    .datos-tabla-flex {
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -1589,58 +1706,48 @@ abajito cuando el ancho es menos de 700px */
     }
 }
 
-/* Pantallas chicas */
-@media (max-width: 480px) {
-    .bienvenida-botones {
+/* Responsive Perfil */
+@media (max-width: 1100px) {
+    .main-perfil {
+        width: 100%;
+        margin: 100px;
+    }
+
+    #perfil-principal {
+        margin: 0;
+    }
+
+    .header-perfil {
         flex-direction: column;
+        width: 100%;
         align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .contenido-perfil {
+        width: 100%;
+        margin: 0;
+        padding: 30px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .popup {
+        margin: 20px;
+    }
+
+    .buttons-modal {
+        flex-direction: column;
         gap: 10px;
     }
-
-    .btn-bienvenida {
-        width: 90%;
-        max-width: 280px;
-        height: 80px;
-        font-size: 16px;
-    }
 }
 
-/* Login responsive */
-@media (width < 750px) {
-    #form {
-        width: 100%;
-        height: 100vh;
-        border-radius: 0;
+@media (max-width: 700px) {
+    .main-perfil {
+        margin: 30px;
+        margin-top: 100px;
     }
 
-    #logo-fondo, .fondo-login::before {
-        display: none;
-    }
-}
-
-/*botones login responsive*/
-@media (max-width: 1100px) and (min-width: 751px) {
-    #botones-login {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .btn-login {
-        width: 90%;
-        max-width: 300px;
-    }
-}
-
-@media (max-width: 750px) {
-    #botones-login {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .btn-login {
-        flex: 1 1 auto;
-        min-width: 140px;
-        max-width: 200px;
-    }
 }
