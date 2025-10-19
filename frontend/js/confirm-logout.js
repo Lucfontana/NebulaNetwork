@@ -16,6 +16,8 @@ function confirmar_logout() {
         confirmButtonText: "Cerrar sesión",
         cancelButtonText: "No"
     }).then((result) => {
-        window.location.href = "../backend/login/logout.php";
+        if (result.isConfirmed) {
+            window.location.href = "../backend/login/logout.php";
+        }
     });
 }
