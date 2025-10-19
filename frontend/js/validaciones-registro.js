@@ -53,7 +53,7 @@ function validar_asignaturas(evento) {
 
             //si el enpoint devuelve 1...
             if (data.estado === 1) {
-                alerta_success(`${data.mensaje}`, "asignaturas.php", "asignaturas");
+                alerta_success(`${data.mensaje}`, "Mostrar_informacion.php", "asignaturas");
             } else {
                 alerta_fallo(`${data.mensaje}`);
             }
@@ -170,7 +170,7 @@ function registrar_profesores(e) {
 
             //si el enpoint devuelve 1...
             if (data.estado === 1) {
-                alerta_success(`${data.mensaje}`, "Profesores.php", "profesor");
+                alerta_success(`${data.mensaje}`, "Mostrar_informacion.php", "profesor");
             } else {
                 alerta_fallo(`${data.mensaje}`);
             }
@@ -234,7 +234,7 @@ function registrar_superusuario(e) {
         .then(response => response.json())
         .then(data => {
             if (data.estado === 1) {
-                alerta_success(`${data.mensaje}`, "SuperUsuarios.php", "superusuario");
+                alerta_success(`${data.mensaje}`, "Mostrar_informacion.php", "superusuario");
             } else {
                 alerta_fallo(`${data.mensaje}`);
             }
@@ -278,7 +278,7 @@ function registrar_recurso(e) {
         .then(response => response.json())
         .then(data => {
             if (data.estado === 1) {
-                alerta_success(`${data.mensaje}`, "Recursos.php", "recurso");
+                alerta_success(`${data.mensaje}`, "Mostrar_informacion.php", "recurso");
             } else {
                 alerta_fallo(`${data.mensaje}`);
             }
@@ -320,7 +320,7 @@ function registrar_espacio(e) {
         .then(response => response.json())
         .then(data => {
             if (data.estado === 1) {
-                alerta_success(`${data.mensaje}`, "Espacios.php", "espacio");
+                alerta_success(`${data.mensaje}`, "Mostrar_informacion.php", "espacio");
             } else {
                 alerta_fallo(`${data.mensaje}`);
             }
@@ -366,7 +366,7 @@ function registrar_curso(e) {
         .then(response => response.json())
         .then(data => {
             if (data.estado === 1) {
-                alerta_success(`${data.mensaje}`, "Cursos.php", "curso");
+                alerta_success(`${data.mensaje}`, "Mostrar_informacion.php", "curso");
             } else {
                 alerta_fallo(`${data.mensaje}`);
             }
@@ -476,7 +476,7 @@ function registrar_orientacion(e) {
         .then(response => response.json())
         .then(data => {
             if (data.estado === 1) {
-                alerta_success(`${data.mensaje}`, "Orientaciones.php", "orientacion");
+                alerta_success(`${data.mensaje}`, "Mostrar_informacion.php", "orientacion");
             } else {
                 alerta_fallo(`${data.mensaje}`);
             }
