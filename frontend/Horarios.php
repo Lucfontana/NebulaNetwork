@@ -2,6 +2,7 @@
 include_once('../backend/db/conexion.php');
 include_once('functions.php');
 include_once('../backend/queries.php');
+include_once('../backend/helpers.php');
 
 //seleccionamos los horarios para desplegarlos en forma ascendente
 $connect = conectar_a_bd();
@@ -14,7 +15,7 @@ $query2 = query_cursos($con);
 $query3 = query_espacios_sin_general($con);
 session_start();
 
-// Verificar si se ha enviado un ID de curso o de espacio a través de GET
+// Verificar si se envio un ID de curso o de espacio a traves de GET
 $cursosql = isset($_GET['curso_id']) ? intval($_GET['curso_id']) : 0;
 $espaciossql = isset($_GET['espacio_id']) ? intval($_GET['espacio_id']) : 0;
 
@@ -24,85 +25,90 @@ if (!isset($_SESSION['nivel_acceso']) && isset($_SESSION['ci'])) {
 
 $professql = isset($_GET['ci_profe']) ? intval($_GET['ci_profe']) : 0;
 
+// SOLO PARA TESTING - Comentar en producción
+$fecha_test = '2025-10-30'; // Miércoles - Si quieren testear, cambien la fecha esta
+$base_time = strtotime($fecha_test);
+
+// Para uso actual usar esto (comentar las lineas de arriba):
+// $base_time = time();
+
+// Calcular inicio y fin de la semana actual (Lunes a Viernes)
+$inicio_semana_str = date('Y-m-d', strtotime('monday this week', $base_time));
+$fin_semana_str = date('Y-m-d', strtotime('friday this week', $base_time));
 
 // Arreglo con los días de la semana
 $dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'];
 
+// Mapeo de días en español a fechas específicas de esta semana
+$dias_a_fechas = [
+    'lunes' => date('Y-m-d', strtotime('monday this week', $base_time)),
+    'martes' => date('Y-m-d', strtotime('tuesday this week', $base_time)),
+    'miercoles' => date('Y-m-d', strtotime('wednesday this week', $base_time)),
+    'jueves' => date('Y-m-d', strtotime('thursday this week', $base_time)),
+    'viernes' => date('Y-m-d', strtotime('friday this week', $base_time))
+];
+
 // Arreglo para almacenar las materias por día
 $materias_por_dia = [];
 
+// Consulta para obtener inasistencias de la semana actual
+$resultado_inasistencias = query_inasistencias_esta_semana($con, $inicio_semana_str, $fin_semana_str);
 
-//muestra todas las horas que hay en la bd sin repetirse y dependiendo del curso
+// Crear un arreglo para búsqueda rápida de inasistencias
+// Función auxiliar para procesar resultados y agregar información de inasistencias
+
+// Código principal simplificado
+
+//Cada inasistencia se guarda en una llave unica (como una PK) y se guarda 
+//en booleano (Si hay inasistencia, es true, si no, false)
+$inasistencias = [];
+while ($inasist = mysqli_fetch_assoc($resultado_inasistencias)) {
+    $fecha = $inasist['fecha_inasistencia'];
+    $ci = $inasist['ci_profesor'];
+    $horario = $inasist['id_horario'];
+    $key = "{$fecha}_{$ci}_{$horario}";
+    $inasistencias[$key] = true;
+}
+
+//se aniade "tiene_inasistencia" como un "atributo" del resultado de la consulta.
+//Si llega a haber una llave igual a la de las inasistencias, se marca la inasistencia como true
+// 
+function procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias) {
+    $materias = [];
+    while ($fila = mysqli_fetch_assoc($resultado)) {
+        //Se agarra la fecha de la semana actual (segun un dia) y se crea una "llave"
+        $fecha_dia = $dias_a_fechas[$dia];
+        $ci_prof = $fila['ci_profesor'] ?? 0;
+        $id_hor = $fila['id_horario'] ?? 0;
+        $key_inasist = "{$fecha_dia}_{$ci_prof}_{$id_hor}"; //2025-10-10_26197140_1
+        $fila['tiene_inasistencia'] = isset($inasistencias[$key_inasist]); //booleano, devuelve true si hay coincidencia,si no false
+        
+        $materias[] = $fila;
+    }
+    return $materias;
+}
+
 $query4 = query_horas_curso($con, $cursosql);
 
 // Si se seleccionó un curso
 if ($cursosql > 0) {
     foreach ($dias as $dia) {
         $resultado = query_horas_dia_curso($con, $dia, $cursosql);
-        $materias_por_dia[$dia] = [];
-        while ($fila = mysqli_fetch_assoc($resultado)) {
-            $materias_por_dia[$dia][] = $fila;
-        }
+        $materias_por_dia[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
     }
 }
-// Si se seleccionó un espacio físico (salón, laboratorio, etc.)
+// Si se seleccionó un espacio físico
 elseif ($espaciossql > 0) {
     foreach ($dias as $dia) {
-        $sql = "SELECT 
-                    a.nombre AS nombre_asignatura,
-                    e.nombre AS nombre_espacio,
-                    h.hora_inicio,
-                    h.hora_final,
-                    h.tipo,
-                    c.nombre AS nombre_curso,
-                    cu.dia
-                FROM cumple cu
-                INNER JOIN profesor_dicta_asignatura pda ON cu.id_dicta = pda.id_dicta
-                INNER JOIN asignaturas a ON pda.id_asignatura = a.id_asignatura
-                INNER JOIN dicta_en_curso dc ON pda.id_dicta = dc.id_dicta
-                INNER JOIN cursos c ON dc.id_curso = c.id_curso
-                INNER JOIN horarios h ON cu.id_horario = h.id_horario
-                INNER JOIN dicta_ocupa_espacio doe ON cu.id_dicta = doe.id_dicta
-                INNER JOIN espacios_fisicos e ON doe.id_espacio = e.id_espacio
-                WHERE cu.dia = '$dia'
-                  AND e.id_espacio = $espaciossql
-                  AND h.tipo = 'clase'
-                ORDER BY h.hora_inicio ASC";
-
-        $resultado = mysqli_query($connect, $sql);
-        $materias_por_dia[$dia] = [];
-        while ($fila = mysqli_fetch_assoc($resultado)) {
-            $materias_por_dia[$dia][] = $fila;
-        }
+        $resultado = query_espacios_por_dia($con, $dia, $espaciossql);
+        $materias_por_dia[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
     }
-
-    //DE ESTA QUERY DESPUES SE PUEDE SACAR: NOMBRE CURSO, NOMBRE ESPACIO
-} elseif ($professql > 0) {
+}
+// Si se seleccionó un profesor
+elseif ($professql > 0) {
     foreach ($dias as $dia) {
-        $sql = "SELECT 
-                a.nombre AS nombre_asignatura,
-                e.nombre AS nombre_espacio,
-                h.hora_inicio, h.hora_final,
-                c.nombre AS nombre_curso,
-                cu.dia
-            FROM cumple cu
-            INNER JOIN profesor_dicta_asignatura pda ON cu.id_dicta = pda.id_dicta
-            INNER JOIN asignaturas a ON pda.id_asignatura = a.id_asignatura
-            INNER JOIN dicta_en_curso dc ON pda.id_dicta = dc.id_dicta
-            INNER JOIN cursos c ON dc.id_curso = c.id_curso
-            INNER JOIN horarios h ON cu.id_horario = h.id_horario
-            INNER JOIN dicta_ocupa_espacio doe ON cu.id_dicta = doe.id_dicta
-            INNER JOIN espacios_fisicos e ON doe.id_espacio = e.id_espacio
-            INNER JOIN profesores p ON p.ci_profesor = pda.ci_profesor
-            WHERE cu.dia = '$dia'
-                AND p.ci_profesor = $professql
-            ORDER BY h.hora_inicio ASC";
-
-        $resultado = mysqli_query($connect, $sql);
-        $materias_por_dia[$dia] = [];
-        while ($fila = mysqli_fetch_assoc($resultado)) {
-            $materias_por_dia[$dia][] = $fila;
-        }
+        $resultado = query_horarios_profe_pordia($con, $dia, $professql);
+        $materias_por_dia[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
     }
 }
 // Si no se seleccionó nada (primera carga de la página)
@@ -115,6 +121,7 @@ else {
 
 <title><?= t("title_schedules") ?></title>
 <?php include 'nav.php'; ?>
+
 <?php if (!isset($_SESSION['ci'])): ?>
     <body>
         <main>
@@ -132,41 +139,16 @@ else {
                         </select>
                     </div>
                 </div>
-                <div class="datos-header">
-                    <div class="datos-row">
-                        <div class="horas-titulo"><?= t("label_hours") ?></div>
-                        <div class="dias"><?= t("day_monday") ?></div>
-                        <div class="dias"><?= t("day_tuesday") ?></div>
-                        <div class="dias"><?= t("day_wednesday") ?></div>
-                        <div class="dias"><?= t("day_thursday") ?></div>
-                        <div class="dias"><?= t("day_friday") ?></div>
-                    </div>
-                </div>
+
+                <?php echo cabecera_horarios()?>
+
                 <?php if (isset($_GET['curso_id'])): ?>
                     <?php mysqli_data_seek($query4, 0); // Reset del puntero 
+                    echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura");
                     ?>
-                    <div class="datos-body"> <?php while ($row = mysqli_fetch_array($query4)): ?>
-                            <div class="datos-row mostrar-datos">
-                                <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
-                                <?php foreach ($dias as $dia): ?>
-                                    <?php
-                                                        $mostro = false;
-                                                        foreach ($materias_por_dia[$dia] as $m) {
-                                                            if ($m['hora_inicio'] == $row['hora_inicio']) {
-                                                                echo "<div class='dia-dato'>
-                                                <strong>{$m['nombre_asignatura']}</strong>
-                                              </div>";
-                                                                $mostro = true;
-                                                            }
-                                                        }
-                                                        if (!$mostro) {
-                                                            echo "<div class='dia-dato'><em>---</em></div>";
-                                                        }
-                                    ?>
-                                <?php endforeach; ?>
-                            </div> <?php endwhile; ?>
-                    </div>
+                    
                 <?php endif; ?>
+            </div>
             </div>
         </main>
     </body>
@@ -202,62 +184,17 @@ else {
                         </select>
                     </div>
                 </div>
-                <div class="datos-header">
-                    <div class="datos-row">
-                        <div class="horas-titulo"><?= t("label_hours") ?></div>
-                        <div class="dias"><?= t("day_monday") ?></div>
-                        <div class="dias"><?= t("day_tuesday") ?></div>
-                        <div class="dias"><?= t("day_wednesday") ?></div>
-                        <div class="dias"><?= t("day_thursday") ?></div>
-                        <div class="dias"><?= t("day_friday") ?></div>
-                    </div>
-                </div>
+
+                <?php echo cabecera_horarios()?>
+
                 <?php if (isset($_GET['curso_id'])): ?>
-                    <?php mysqli_data_seek($query, 0); // Reset del puntero 
-                    ?>
-                    <div class="datos-body"> <?php while ($row = mysqli_fetch_array($query)): ?>
-                            <div class="datos-row mostrar-datos">
-                                <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
-                                <?php foreach ($dias as $dia): ?>
-                                    <?php
-                                                        $mostro = false;
-                                                        foreach ($materias_por_dia[$dia] as $m) {
-                                                            if ($m['hora_inicio'] == $row['hora_inicio']) {
-                                                                echo "<div class='dia-dato'>
-                                                <strong>{$m['nombre_asignatura']}</strong>
-                                              </div>";
-                                                                $mostro = true;
-                                                            }
-                                                        }
-                                                        if (!$mostro) {
-                                                            echo "<div class='dia-dato'><em>---</em></div>";
-                                                        }
-                                    ?>
-                                <?php endforeach; ?>
-                            </div> <?php endwhile; ?>
-                    </div>
+
+                    <?php echo cargar_horarios($query, $dias, $materias_por_dia, "nombre_asignatura")?>
+
                 <?php elseif (isset($_GET['espacio_id'])): ?>
-                    <div class="datos-body"> <?php while ($row = mysqli_fetch_array($query)): ?>
-                            <div class="datos-row mostrar-datos">
-                                <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
-                                <?php foreach ($dias as $dia): ?>
-                                    <?php
-                                                        $mostro = false;
-                                                        foreach ($materias_por_dia[$dia] as $m) {
-                                                            if ($m['hora_inicio'] == $row['hora_inicio']) {
-                                                                echo "<div class='dia-dato'>
-                                                <strong>{$m['nombre_espacio']}</strong>
-                                              </div>";
-                                                                $mostro = true;
-                                                            }
-                                                        }
-                                                        if (!$mostro) {
-                                                            echo "<div class='dia-dato'><em>---</em></div>";
-                                                        }
-                                    ?>
-                                <?php endforeach; ?>
-                            </div> <?php endwhile; ?>
-                    </div>
+
+                    <?php echo cargar_horarios($query, $dias, $materias_por_dia,'nombre_espacio')?>
+
                 <?php endif; ?>
             </div>
         </main>
@@ -315,46 +252,10 @@ else {
                         </div>
                     </div>
 
+                    <?php echo cabecera_horarios()?>
 
-                    <div class="datos-header">
-                        <div class="datos-row">
-                            <div class="horas-titulo"><?= t("label_hours") ?></div>
-                            <div class="dias"><?= t("day_monday") ?></div>
-                            <div class="dias"><?= t("day_tuesday") ?></div>
-                            <div class="dias"><?= t("day_wednesday") ?></div>
-                            <div class="dias"><?= t("day_thursday") ?></div>
-                            <div class="dias"><?= t("day_friday") ?></div>
-                        </div>
-                    </div>
+                        <?php echo cargar_horarios($query, $dias, $materias_por_dia,"nombre_curso")?>
 
-                    <div class="datos-body">
-                        <?php mysqli_data_seek($query, 0); // Reset del puntero 
-                        ?>
-                        <?php while ($row = mysqli_fetch_array($query)): ?>
-                            <div class="datos-row mostrar-datos">
-                                <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
-                                <?php foreach ($dias as $dia): ?>
-                                    <?php
-                                    $mostro = false;
-                                    foreach ($materias_por_dia[$dia] as $m) {
-                                        if ($m['hora_inicio'] == $row['hora_inicio']) {
-                                            echo "<div class='dia-dato'>
-                                                <small>Curso: {$m['nombre_curso']} </small>
-                                              </div>";
-                                            $mostro = true;
-                                            break; // Solo mostrar una vez por horario
-                                        }
-                                    }
-                                    if (!$mostro && $row['tipo'] == 'recreo') {
-                                        echo "<div class='dia-dato-recreo'><em>Recreo</em></div>";
-                                    } else if (!$mostro) {
-                                        echo "<div class='dia-dato'><em>---</em></div>";
-                                    }
-                                    ?>
-                                <?php endforeach; ?>
-                            </div>
-                        <?php endwhile; ?>
-                    </div>
                 </div>
             </main>
         </body>
