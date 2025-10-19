@@ -1,8 +1,24 @@
-<?php 
+<?php
 include_once('../backend/db/conexion.php');
 include_once('functions.php');
 include_once('../backend/queries.php');
 include_once('../backend/helpers.php');
+
+$result = query_espaciosfisicos($con);
+
+$espacios_sin_general = query_espacios_sin_general($con);
+
+$profesores_info = query_profesores($con);
+
+$asignaturas_info = query_asignaturas($con);
+
+$horarios_info = query_horarios($con);
+
+$cursos_info = query_cursos($con);
+
+$orientacion_info = query_orientacion($con);
+
+
 
 //seleccionamos los horarios para desplegarlos en forma ascendente
 $connect = conectar_a_bd();
@@ -73,7 +89,8 @@ while ($inasist = mysqli_fetch_assoc($resultado_inasistencias)) {
 //se aniade "tiene_inasistencia" como un "atributo" del resultado de la consulta.
 //Si llega a haber una llave igual a la de las inasistencias, se marca la inasistencia como true
 // 
-function procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias) {
+function procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias)
+{
     $materias = [];
     while ($fila = mysqli_fetch_assoc($resultado)) {
         //Se agarra la fecha de la semana actual (segun un dia) y se crea una "llave"
@@ -82,7 +99,7 @@ function procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $
         $id_hor = $fila['id_horario'] ?? 0;
         $key_inasist = "{$fecha_dia}_{$ci_prof}_{$id_hor}"; //2025-10-10_26197140_1
         $fila['tiene_inasistencia'] = isset($inasistencias[$key_inasist]); //booleano, devuelve true si hay coincidencia,si no false
-        
+
         $materias[] = $fila;
     }
     return $materias;
@@ -123,11 +140,12 @@ else {
 <?php include 'nav.php'; ?>
 
 <?php if (!isset($_SESSION['ci'])): ?>
+
     <body>
         <main>
             <div id="contenido-mostrar-datos">
                 <h1><?= t("title_schedules") ?></h1>
-                <div class="filtros"> 
+                <div class="filtros">
                     <div id="div-curso" style="display: block;">
                         <label for="Cursos" id="select-cursos"><?= t("label_select_course") ?></label>
                         <select name="Cursos" id="cursos-select" class="cursos-select" onchange="cambiarCurso(this.value)">
@@ -140,28 +158,41 @@ else {
                     </div>
                 </div>
 
-                <?php echo cabecera_horarios()?>
+                <?php echo cabecera_horarios() ?>
 
                 <?php if (isset($_GET['curso_id'])): ?>
                     <?php mysqli_data_seek($query4, 0); // Reset del puntero 
                     echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura");
                     ?>
-                    
+
                 <?php endif; ?>
-            </div>
             </div>
         </main>
     </body>
 <?php elseif (isset($_SESSION['nivel_acceso'])): ?>
-    <body>
+
+    <body id="body-register">
         <main>
             <div id="contenido-mostrar-datos">
-                <h1><?= t("title_schedules") ?></h1>
-                <div class="filtros"> <label for="horario-select"><?= t("label_select_schedule") ?></label> 
-                <select id="select-horarios" name="horario-select">
-                        <option value="1"><?= t("label_select_course") ?></option>
-                        <option value="2"><?= t("label_select_classroom") ?></option>
-                    </select>
+                <div class="div-mostrar-datos">
+                    <h1><?= t("title_schedules") ?></h1>
+                    <div class="botones-register-horarios">
+                        <button class="btn btn-register-horario" data-toggle="modal">
+                            Agregar Horas
+                        </button>
+                        <button class="btn btn-register-horario" data-toggle="modal">
+                            Agregar Horarios
+                        </button>
+                    </div>
+                </div>
+                <div class="filtros">
+                    <div class="filtro">
+                        <label for="horario-select"><?= t("label_select_schedule") ?></label>
+                        <select id="select-horarios" name="horario-select">
+                            <option value="1"><?= t("label_select_course") ?></option>
+                            <option value="2"><?= t("label_select_classroom") ?></option>
+                        </select>
+                    </div> 
                     <div id="div-salones" style="display: none;">
                         <label for="Salones" id="select-salones"><?= t("label_select_classroom") ?></label>
                         <select name="salones" class="salones-select" id="salones-select" onchange="cambiarEspacio(this.value)">
@@ -185,113 +216,236 @@ else {
                     </div>
                 </div>
 
-                <?php echo cabecera_horarios()?>
+                <?php echo cabecera_horarios() ?>
 
                 <?php if (isset($_GET['curso_id'])): ?>
 
-                    <?php echo cargar_horarios($query, $dias, $materias_por_dia, "nombre_asignatura")?>
+                    <?php echo cargar_horarios($query, $dias, $materias_por_dia, "nombre_asignatura") ?>
 
                 <?php elseif (isset($_GET['espacio_id'])): ?>
 
-                    <?php echo cargar_horarios($query, $dias, $materias_por_dia,'nombre_espacio')?>
+                    <?php echo cargar_horarios($query, $dias, $materias_por_dia, 'nombre_espacio') ?>
 
                 <?php endif; ?>
             </div>
+
+            <div class="overlay">
+                <div class="dialogs">
+                    <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                            alt=""></button>
+                    <form class="registro-div horarios-form">
+                        <h1><?= t("header_schedules") ?></h1>
+                        <hr>
+                        <div class="div-labels">
+                            <label for="hora_inicio" class="label"><?= t("label_start_time") ?></label>
+                            <input class="input-register" type="time" name="hora_inicio" id="horaInicioHorario"
+                                maxlength="20" minlength="8" required placeholder="<?= t("placeholder_start_time") ?>">
+                        </div>
+                        <div class="div-labels">
+                            <label for="hora_final" class="label"><?= t("label_end_time") ?></label>
+                            <input class="input-register" type="time" name="hora_final" id="horaFinalHorario"
+                                maxlength="20" minlength="8" required placeholder="<?= t("placeholder_end_time") ?>">
+                        </div>
+                        <div class="div-botones-register">
+                            <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
+                                name="registroHorario"></input>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="overlay">
+                <div class="dialogs">
+                    <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                            alt=""></button>
+                    <form class="registro-div dependencias-form"
+                        action="../backend/functions/dependencias/dependencias_api.php" method="POST">
+                        <h1><?= t("header_dependencies") ?></h1>
+                        <hr>
+
+                        <div class="div-labels">
+                            <label for="profesor_asignado" class="label"><?= t("label_teacher") ?></label>
+                            <select name="profesor_asignado" id="profesor_asignado" type="text" class="input-register">
+                                <option value=""></option>
+                                <?php while ($row = mysqli_fetch_array($profesores_info)): ?>
+                                    <option value="<?= $row['ci_profesor'] ?>">
+                                        <?= $row['nombre'] ?>
+                                        <?= $row['apellido'] ?>
+                                    </option>
+                                <?php endwhile; ?>
+                            </select>
+                        </div>
+
+                        <div class="div-labels">
+                            <label for="asignatura_dada" class="label"><?= t("label_subject_taught") ?></label>
+                            <select name="asignatura_dada" id="asignatura_dada" type="text" class="input-register">
+                                <option value=""></option>
+                                <?php while ($row = mysqli_fetch_array($asignaturas_info)): ?>
+                                    <option value="<?= $row['id_asignatura'] ?>">
+                                        <?= $row['nombre'] ?>
+                                    </option>
+                                <?php endwhile; ?>
+                            </select>
+                        </div>
+
+                        <div class="div-labels">
+                            <label for="dia" class="label"><?= t("label_day") ?></label>
+                            <select class="input-register" type="text" name="dia_dictado" id="dia_dictado" required
+                                placeholder="<?= t("placeholder_day") ?>">
+                                <option value=""></option>
+                                <option value="lunes"><?= t("day_monday") ?></option>
+                                <option value="martes"><?= t("day_tuesday") ?></option>
+                                <option value="miercoles"><?= t("day_wednesday") ?></option>
+                                <option value="jueves"><?= t("day_thursday") ?></option>
+                                <option value="viernes"><?= t("day_friday") ?></option>
+                            </select>
+                        </div>
+
+                        <div class="div-labels">
+                            <label for="capacity" class="label"><?= t("label_hours_taught") ?></label>
+                            <input class="input-register" type="number" id="crear_campos"
+                                maxlength="3" minlength="1" required>
+                        </div>
+
+                        <div id="campos-dinamicos"></div>
+
+                        <div class="div-labels">
+                            <label for="salon_ocupado" class="label"><?= t("label_room_used") ?></label>
+                            <select name="salon_ocupado" id="salon_a_ocupar" type="text" class="input-register" required>
+                                <option value=""></option>
+                                <?php
+                                mysqli_data_seek($espacios_sin_general, 0); //Reinicia el while para que empiece de cero otra vez (el anterior while que utilizo los recursos lo dejo en el final)
+                                while ($row = mysqli_fetch_array($espacios_sin_general)): ?>
+                                    <option value="<?= $row['id_espacio'] ?>">
+                                        <?= $row['nombre'] ?>
+                                    </option>
+                                <?php endwhile; ?>
+                            </select>
+                        </div>
+
+                        <div class="div-labels">
+                            <label for="curso_dictado" class="label"><?= t("label_course_taught") ?></label>
+                            <select name="curso_dictado" id="curso_dictado" type="text" class="input-register">
+                                <option value=""></option>
+                                <?php while ($row = mysqli_fetch_array($cursos_info)): ?>
+                                    <option value="<?= $row['id_curso'] ?>">
+                                        <?= $row['nombre'] ?>
+                                    </option>
+                                <?php endwhile; ?>
+                            </select>
+                        </div>
+
+                        <div class="div-botones-register">
+                            <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
+                                name="registrarDependencia"></input>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
         </main>
     </body>
-        <footer id="footer" class="footer">
-            <p> &copy; <b><?= t("footer") ?></b></p>
-        </footer>
+    <footer id="footer" class="footer">
+        <p> &copy; <b><?= t("footer") ?></b></p>
+    </footer>
 
 
-        <!-- VISTA DEL PROFESOR -->
-    <?php else: ?>
+    <!-- VISTA DEL PROFESOR -->
+<?php else: ?>
 
-        <body id="body-register">
-            <?php include 'nav.php'; ?>
+    <body id="body-register">
+        <?php include 'nav.php'; ?>
 
-            <main>
-                <div id="contenido-mostrar-datos">
-                    <h1><?= t("title_my_schedules") ?></h1>
+        <main>
+            <div id="contenido-mostrar-datos">
+                <h1><?= t("title_my_schedules") ?></h1>
 
-                    <button type="button" id="Profesores-boton" class="btn" data-toggle="modal" data-target="#exampleModal">
-                       <?= t("btn_register_absence") ?>
-                    </button>
+                <button type="button" id="Profesores-boton" data-toggle="modal" data-target="#exampleModal">
+                    <?= t("btn_register_absence") ?>
+                </button>
 
 
-                    <div id="div-dialogs">
-                        <div class="overlay">
-                            <div class="dialogs" id="dialogs">
-                                <button class="btn-Cerrar" type="button"><img class="cruz-register"
-                                        src="/frontend/img/cruz.png" alt=""></button>
-                                <form class="registro-div inasistencia-form">
-                                    <h1><?= t("btn_register_absence") ?></h1>
-                                    <hr>
+                <div id="div-dialogs">
+                    <div class="overlay">
+                        <div class="dialogs" id="dialogs">
+                            <button class="btn-Cerrar" type="button"><img class="cruz-register"
+                                    src="/frontend/img/cruz.png" alt=""></button>
+                            <form class="registro-div inasistencia-form">
+                                <h1><?= t("btn_register_absence") ?></h1>
+                                <hr>
 
-                                    <div class="div-labels">
-                                        <label for="dia" class="label">En el dia:</label>
-                                            <input type="date" name="dia_falta" id="dia_falta" class="input-register" required>                                            
-                                    </div>
+                                <div class="div-labels">
+                                    <label for="dia" class="label">En el dia:</label>
+                                    <input type="date" name="dia_falta" id="dia_falta" class="input-register" required>
+                                </div>
 
-                                    <div class="div-labels" id="horas_falta">
-                                        <label for="nose" class="label">Cantidad de horas a faltar:</label>
-                                            <input type="number" name ="cantidad_horas_falta" id="cantidad_horas_falta" class="input-register" required>                                            
-                                    </div>
+                                <div class="div-labels" id="horas_falta">
+                                    <label for="nose" class="label">Cantidad de horas a faltar:</label>
+                                    <input type="number" name="cantidad_horas_falta" id="cantidad_horas_falta" class="input-register" required>
+                                </div>
 
-                                    <div class="div-labels" id="horas_clase_profe"></div>
+                                <div class="div-labels" id="horas_clase_profe"></div>
 
-                                    <div id="campos-dinamicos"></div>
+                                <div id="campos-dinamicos"></div>
 
-                                    <div class="div-botones-register">
-                                        <input class="btn-enviar-registro" type="submit" value="Registrar"
+                                <div class="div-botones-register">
+                                    <input class="btn-enviar-registro" type="submit" value="Registrar"
                                         name="registrarFalta"></input>
-                                    </div>
-                                    
-                                </form>
-                            </div>
+                                </div>
+
+                            </form>
                         </div>
                     </div>
-
-                    <?php echo cabecera_horarios()?>
-
-                        <?php echo cargar_horarios($query, $dias, $materias_por_dia,"nombre_curso")?>
-
                 </div>
-            </main>
-        </body>
-    <?php endif; ?> <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
-    <script type="module" src="/frontend/js/prueba.js"></script>
-    <script src="./js/horarios-lunes.js"></script>
-    <script src="js/Register-Modal.js"></script>
-    <script type='module' src="../backend/functions/Profesores/inasistencia/marcar_inasistencia.js"></script>
-    <script src="js/horarios-lunes.js"></script>
-    <script>
-        // Función que se ejecuta cuando el usuario selecciona un curso
-        // Recibe como parámetro el identificador del curso (idCurso)
-        function cambiarCurso(idCurso) {
 
-            // Verifica que el idCurso exista y que no sea igual a "0"
-            // (Por ejemplo, "0" podría representar la opción "Seleccionar curso" en un <select>)
-            if (idCurso && idCurso !== "0") {
+                <?php echo cabecera_horarios() ?>
 
-                // Si la condición se cumple, redirige al usuario a la misma página
-                // pero agregando el parámetro 'curso_id' en la URL.
-                // Esto permite que el backend o PHP filtre los datos según el curso seleccionado.
-                window.location.href = "?curso_id=" + idCurso;
-            }
-        }
+                <?php echo cargar_horarios($query, $dias, $materias_por_dia, "nombre_curso") ?>
 
-        function cambiarEspacio(idEspacio) {
-
-            // Verifica que el idEspacio exista y que no sea igual a "0"
-            // (Por ejemplo, "0" podría representar la opción "Seleccionar curso" en un <select>)
-            if (idEspacio && idEspacio !== "0") {
-
-                // Si la condición se cumple, redirige al usuario a la misma página
-                // pero agregando el parámetro 'curso_id' en la URL.
-                // Esto permite que el backend o PHP filtre los datos según el curso seleccionado.
-                window.location.href = "?espacio_id=" + idEspacio;
-            }
-        }
-    </script>
+            </div>
+        </main>
     </body>
+<?php endif; ?> <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
+<script type="module" src="/frontend/js/prueba.js"></script>
+<script src="./js/horarios-lunes.js"></script>
+<script src="js/Register-Modal.js"></script>
+<script type='module' src="../backend/functions/Profesores/inasistencia/marcar_inasistencia.js"></script>
+<script src="js/horarios-lunes.js"></script>
+
+<!-- Registros -->
+<script type="module" src="../backend/functions/dependencias/crear_campos.js"></script>
+<script type="module" src="js/validaciones-registro.js" defer></script>
+<script type="module" src="js/swalerts.js"></script>
+
+
+<script>
+    // Función que se ejecuta cuando el usuario selecciona un curso
+    // Recibe como parámetro el identificador del curso (idCurso)
+    function cambiarCurso(idCurso) {
+
+        // Verifica que el idCurso exista y que no sea igual a "0"
+        // (Por ejemplo, "0" podría representar la opción "Seleccionar curso" en un <select>)
+        if (idCurso && idCurso !== "0") {
+
+            // Si la condición se cumple, redirige al usuario a la misma página
+            // pero agregando el parámetro 'curso_id' en la URL.
+            // Esto permite que el backend o PHP filtre los datos según el curso seleccionado.
+            window.location.href = "?curso_id=" + idCurso;
+        }
+    }
+
+    function cambiarEspacio(idEspacio) {
+
+        // Verifica que el idEspacio exista y que no sea igual a "0"
+        // (Por ejemplo, "0" podría representar la opción "Seleccionar curso" en un <select>)
+        if (idEspacio && idEspacio !== "0") {
+
+            // Si la condición se cumple, redirige al usuario a la misma página
+            // pero agregando el parámetro 'curso_id' en la URL.
+            // Esto permite que el backend o PHP filtre los datos según el curso seleccionado.
+            window.location.href = "?espacio_id=" + idEspacio;
+        }
+    }
+</script>
+</body>

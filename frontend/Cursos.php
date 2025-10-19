@@ -10,6 +10,9 @@ $query = mysqli_query($connect, $sql);
 <?php else: ?>
     <div class="div-mostrar-datos">
     <h1>Cursos</h1>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill btn" data-toggle="modal" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+    </svg>
     </div>
     <!-- Vista para computadora -->
     <div class="datos-grid">
@@ -95,8 +98,8 @@ $query = mysqli_query($connect, $sql);
             <h2>¿Estás seguro?</h2>
             <p>Esta acción eliminará el curso de forma permanente.</p>
             <div class="botones_confirmar">
-                <button class="btn btn-confirmar" id="confirmar-curso">Eliminar</button>
-                <button class="btn btn-cancelar" id="cancelar-curso">Cancelar</button>
+                <button class="btn-confirmar" id="confirmar-curso">Eliminar</button>
+                <button class="btn-cancelar" id="cancelar-curso">Cancelar</button>
             </div>
         </div>
     </div>

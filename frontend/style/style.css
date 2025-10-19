@@ -613,22 +613,11 @@ aside>ul {
 }
 
 .btn {
-    font-size: 18px;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    background-color: #1d1d1d;
-    border: none;
-    color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.btn:hover {
-    background-color: #100d0d;
-    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border-width: 5px;
+    padding: 0;
 }
 
 .contenedor-password-register {
@@ -832,6 +821,8 @@ hr {
 }
 
 .div-mostrar-datos {
+    display: flex;
+    justify-content: space-between;
     background: white; /* opcional */
     width: 100%;
     height: auto;
@@ -967,6 +958,31 @@ hr {
 .titulo-tabla {
     display: flex;
     width: 100%;
+}
+
+.botones-register-horarios {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    text-align: center;
+}
+
+.btn-register-horario {
+    background-color: #1e1e1e;
+    color: aliceblue;
+    text-align: center;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    border-width: 5px;
+    padding: 10px;
+    transition: 1s;
+}
+
+.btn-register-horario:hover {
+    background-color: #585858;
+    color: aliceblue;
+    transition: 1s;
 }
 
 .horas-tabla {
@@ -1712,8 +1728,15 @@ abajito cuando el ancho es menos de 700px */
     }
 
     .div-mostrar-datos {
-        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
+
+    .btn {
+        margin-bottom: 20px;
+    }
+    
 }
 
 /* Responsive Perfil */
@@ -1752,6 +1775,7 @@ abajito cuando el ancho es menos de 700px */
         flex-direction: column;
         gap: 10px;
     }
+
 }
 
 @media (max-width: 700px) {
@@ -1761,3 +1785,11 @@ abajito cuando el ancho es menos de 700px */
     }
 
 }
+
+/*  Horarios */
+@media (max-width: 1100px) {
+    .filtros {
+        flex-direction: column;
+    }
+}
+
