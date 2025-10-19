@@ -77,6 +77,10 @@ function toggle_mostrar_info($nombre){
     <?php
 }
 
+function prestarRecursos() {
+    
+}
+
 
 
 ?>
