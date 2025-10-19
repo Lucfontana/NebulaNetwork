@@ -1,6 +1,7 @@
 <?php
 include_once('../backend/db/conexion.php');
 include_once 'functions.php';
+include_once ('../backend/helpers.php');
 $connect = conectar_a_bd();
 $sql = "SELECT * FROM asignaturas";
 $query = mysqli_query($connect, $sql);
@@ -52,18 +53,9 @@ $query = mysqli_query($connect, $sql);
     <!-- Vista para celular -->
     <?php mysqli_data_seek($query, 0); ?>
     <div class="flex-mostrar-datos">
-        <?php while ($row = mysqli_fetch_array($query)): ?>
+        <?php while ($row = mysqli_fetch_array($query)): $nombre = $row['nombre'] ?>
             <div class="datos-header-celu">
-                <div class="datos-tabla-flex">
-                    <div class="nombre-titulo grid-cell flex-header"><?= $row['nombre'] ?>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill mostrar-informacion-oculta" viewBox="0 0 16 16">
-                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill icono-guardar-informacion" viewBox="0 0 16 16">
-                            <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
-                        </svg>
-                    </div>
-                </div>
+                <?= toggle_mostrar_info($nombre)?>
                 <div class="informacion-escondida">
                     <div class="datos-tabla-flex">
                         <div class="grid-cell">ID: <?= $row['id_asignatura'] ?></div>
@@ -91,16 +83,7 @@ $query = mysqli_query($connect, $sql);
     </div>
 
     <!-- ID ÚNICO para asignaturas -->
-    <div class="overlay" id="overlay-asignatura">
-        <div class="confirmacion">
-            <h2>¿Estás seguro?</h2>
-            <p>Esta acción eliminará la asignatura de forma permanente.</p>
-            <div class="botones_confirmar">
-                <button class="btn-confirmar" id="confirmar-asignatura">Eliminar</button>
-                <button class="btn-cancelar" id="cancelar-asignatura">Cancelar</button>
-            </div>
-        </div>
-    </div>
+    <?php echo boton_eliminar("overlay-asignatura", "la asignatura", "confirmar-asignatura", "cancelar-asignatura")?>
 
     <!-- ID ÚNICO para editar asignatura -->
     <div id="overlay-edit-asignatura" class="overlay-edit">

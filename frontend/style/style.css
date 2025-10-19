@@ -503,16 +503,6 @@ aside>ul {
     transition: 0.5s;
 }
 
-.alert {
-    position: absolute;
-    width: auto;
-    top: 0;
-    left: 50%;
-    width: auto;
-    padding: 20px;
-    visibility: hidden;
-}
-
 .bi {
     overflow: hidden;
 }
