@@ -1,3 +1,6 @@
+<?php if (!isset($_SESSION['nivel_acceso'])): ?>
+    <?php include_once('error.php') ?>
+<?php else: ?>
 <?php
 
 include_once 'functions.php';
@@ -325,3 +328,4 @@ $orientacion_info = query_orientacion($con);
 
             </div>
 
+<?php endif; ?>

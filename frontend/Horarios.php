@@ -361,7 +361,7 @@ else {
             <div id="contenido-mostrar-datos">
                 <h1><?= t("title_my_schedules") ?></h1>
 
-                <button type="button" id="Profesores-boton" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" id="Profesores-boton" class="btn-primary btn" data-toggle="modal" data-target="#exampleModal">
                     <?= t("btn_register_absence") ?>
                 </button>
 

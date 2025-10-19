@@ -116,7 +116,7 @@ $query = mysqli_query($connect, $sql);
                 </div>
 
                 <div class="buttons-modal">
-                    <input type="submit" value="Actualizar Información" class="btn-primary">
+                    <input type="submit" value="Actualizar Información" class="btn-primary-actualiza">
                     <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit-asignatura">
                 </div>
             </form>
