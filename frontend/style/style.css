@@ -1666,7 +1666,7 @@ abajito cuando el ancho es menos de 700px */
         display: flex;
         flex-direction: column;
         width: 100%;
-        z-index: 1000;
+        z-index: 900;
     }
 
     .flex-header {
