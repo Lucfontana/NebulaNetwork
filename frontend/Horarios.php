@@ -53,6 +53,9 @@ $fin_semana_str = date('Y-m-d', strtotime('friday this week', $base_time));
 // Arreglo con los días de la semana
 $dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'];
 
+//Celular
+$dia_celu = ['lunes', 'martes'];
+
 // Mapeo de días en español a fechas específicas de esta semana
 $dias_a_fechas = [
     'lunes' => date('Y-m-d', strtotime('monday this week', $base_time)),
@@ -111,12 +114,22 @@ if ($cursosql > 0) {
         $resultado = query_horas_dia_curso($con, $dia, $cursosql);
         $materias_por_dia[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
     }
+
+    foreach ($dia_celu as $dia) {
+        $resultado = query_horas_dia_curso($con, $dia, $cursosql);
+        $materias_por_dia_celu[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
+    }
 }
 // Si se seleccionó un espacio físico
 elseif ($espaciossql > 0) {
     foreach ($dias as $dia) {
         $resultado = query_espacios_por_dia($con, $dia, $espaciossql);
         $materias_por_dia[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
+    }
+
+    foreach ($dia_celu as $dia) {
+        $resultado = query_espacios_por_dia($con, $dia, $espaciossql);
+        $materias_por_dia_celu[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
     }
 }
 // Si se seleccionó un profesor
@@ -125,11 +138,20 @@ elseif ($professql > 0) {
         $resultado = query_horarios_profe_pordia($con, $dia, $professql);
         $materias_por_dia[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
     }
+
+    foreach ($dia_celu as $dia) {
+        $resultado = query_horarios_profe_pordia($con, $dia, $professql);
+        $materias_por_dia_celu[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
+    }
 }
 // Si no se seleccionó nada (primera carga de la página)
 else {
     foreach ($dias as $dia) {
         $materias_por_dia[$dia] = []; // vacío para evitar errores al recorrer luego
+    }
+
+    foreach ($dia_celu as $dia) {
+        $materias_por_dia_celu[$dia] = []; // vacío para evitar errores al recorrer luego
     }
 }
 ?>
@@ -160,8 +182,8 @@ else {
 
                 <?php if (isset($_GET['curso_id'])): ?>
                     <?php mysqli_data_seek($query4, 0); // Reset del puntero 
-                            echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura");
-                            ?>
+                    echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura");
+                    ?>
 
                 <?php endif; ?>
             </div>
@@ -215,18 +237,30 @@ else {
                     </div>
                 </div>
 
-                <?php echo cabecera_horarios() ?>
 
-                <?php if (isset($_GET['curso_id'])): ?>
+                <!-- Vista para computadora -->
+                <div class="computadora">
+                    <?php echo cabecera_horarios() ?>
 
-                    <?php echo cargar_horarios($query, $dias, $materias_por_dia, "nombre_asignatura") ?>
+                    <?php if (isset($_GET['curso_id'])): ?>
+                        <?php echo cargar_horarios($query, $dias, $materias_por_dia, "nombre_asignatura") ?>
+                    <?php elseif (isset($_GET['espacio_id'])): ?>
+                        <?php echo cargar_horarios($query, $dias, $materias_por_dia, 'nombre_espacio') ?>
+                    <?php endif; ?>
+                </div>
 
-                <?php elseif (isset($_GET['espacio_id'])): ?>
-
-                    <?php echo cargar_horarios($query, $dias, $materias_por_dia, 'nombre_espacio') ?>
-
-                <?php endif; ?>
+                <!-- Vista para celular -->
+                <div class="celular">
+                    <?php echo cabecera_horarios_celular() ?>
+                    <?php if (isset($_GET['curso_id'])): ?>
+                        <?php echo cargar_horarios($query, $dia_celu, $materias_por_dia_celu, "nombre_asignatura") ?>
+                    <?php elseif (isset($_GET['espacio_id'])): ?>
+                        <?php echo cargar_horarios($query, $dia_celu, $materias_por_dia_celu, 'nombre_espacio') ?>
+                    <?php endif; ?>
+                </div>
             </div>
+
+
 
             <div class="overlay">
                 <div class="dialogs">

@@ -46,6 +46,17 @@ function cabecera_horarios(){
     <?php
 }
 
+function cabecera_horarios_celular(){
+    ?>
+    <div class="datos-header">
+        <div class="datos-row">
+            <div class="horas-titulo"><?= t("label_hours") ?></div>
+            <div class="dias"><?= t("day_monday") ?></div>
+        </div>
+    </div>
+    <?php
+}
+
 function boton_eliminar($id_contenedor, $texto, $id_confirmar, $id_cancelar) {
     ?>
     <div class="overlay" id="<?= $id_contenedor; ?>">
