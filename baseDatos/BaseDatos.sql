@@ -73,7 +73,7 @@ CREATE TABLE inasistencia (
     ci_profesor INT,
     id_horario INT,
     FOREIGN KEY (ci_profesor) REFERENCES profesores(ci_profesor) ON DELETE CASCADE,
-    FOREIGN KEY (id_horario) REFERENCES horarios(id_horario)
+    FOREIGN KEY (id_horario) REFERENCES horarios(id_horario) ON DELETE CASCADE
 );
 
 

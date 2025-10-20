@@ -107,7 +107,6 @@ function query_horarios($con){
     return $stmt->get_result();
 }
 
-
 function query_cursos($con){
     $query_cursos = "SELECT * FROM cursos";
     $stmt = $con->prepare($query_cursos);

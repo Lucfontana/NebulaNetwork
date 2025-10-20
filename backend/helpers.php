@@ -1,38 +1,40 @@
 <?php
 
-function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar){
+function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar)
+{
+?>
+    <?php mysqli_data_seek($query, 0); // Reset del puntero 
     ?>
-        <?php mysqli_data_seek($query, 0); // Reset del puntero 
-    ?>
-    <div class="datos-body"> 
+    <div class="datos-body">
         <?php while ($row = mysqli_fetch_array($query)): ?>
             <div class="datos-row mostrar-datos">
                 <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
                 <?php foreach ($dias as $dia): ?>
                     <?php
-                        $mostro = false;
-                        foreach ($materias_por_dia[$dia] as $m) {
-                            if ($m['hora_inicio'] == $row['hora_inicio']) {
-                                $clase_inasistencia = isset($m['tiene_inasistencia']) && $m['tiene_inasistencia'] ? 'inasistencia-marcada' : '';
-                                echo "<div class='dia-dato {$clase_inasistencia}'>
+                    $mostro = false;
+                    foreach ($materias_por_dia[$dia] as $m) {
+                        if ($m['hora_inicio'] == $row['hora_inicio']) {
+                            $clase_inasistencia = isset($m['tiene_inasistencia']) && $m['tiene_inasistencia'] ? 'inasistencia-marcada' : '';
+                            echo "<div class='dia-dato {$clase_inasistencia}'>
                                 <strong>{$m[$dato_mostrar]}</strong>
                                 </div>";
-                                $mostro = true;
-                            }
+                            $mostro = true;
                         }
-                        if (!$mostro) {
-                            echo "<div class='dia-dato'><em>---</em></div>";
-                        }
+                    }
+                    if (!$mostro) {
+                        echo "<div class='dia-dato'><em>---</em></div>";
+                    }
                     ?>
                 <?php endforeach; ?>
-            </div> 
+            </div>
         <?php endwhile; ?>
     </div>
-    <?php
+<?php
 }
 
-function cabecera_horarios(){
-    ?>
+function cabecera_horarios()
+{
+?>
     <div class="datos-header">
         <div class="datos-row">
             <div class="horas-titulo"><?= t("label_hours") ?></div>
@@ -43,22 +45,30 @@ function cabecera_horarios(){
             <div class="dias"><?= t("day_friday") ?></div>
         </div>
     </div>
-    <?php
+<?php
 }
 
-function cabecera_horarios_celular(){
-    ?>
+function cabecera_horarios_celular()
+{
+?>
     <div class="datos-header">
         <div class="datos-row">
             <div class="horas-titulo"><?= t("label_hours") ?></div>
-            <div class="dias"><?= t("day_monday") ?></div>
+            <select class="dias" id="select-dias">
+                <option value="lunes" class="dias"><?= t("day_monday") ?></option>
+                <option value="martes" class="dias"><?= t("day_tuesday") ?></option>
+                <option value="miercoles" class="dias"><?= t("day_wednesday") ?></option>
+                <option value="jueves" class="dias"><?= t("day_thursday") ?></option>
+                <option value="viernes" class="dias"><?= t("day_friday") ?></option>
+            </select>
         </div>
     </div>
-    <?php
+<?php
 }
 
-function boton_eliminar($id_contenedor, $texto, $id_confirmar, $id_cancelar) {
-    ?>
+function boton_eliminar($id_contenedor, $texto, $id_confirmar, $id_cancelar)
+{
+?>
     <div class="overlay" id="<?= $id_contenedor; ?>">
         <div class="confirmacion">
             <h2>¿Estás seguro?</h2>
@@ -69,11 +79,12 @@ function boton_eliminar($id_contenedor, $texto, $id_confirmar, $id_cancelar) {
             </div>
         </div>
     </div>
-    <?php
+<?php
 }
 
-function toggle_mostrar_info($nombre){
-    ?>
+function toggle_mostrar_info($nombre)
+{
+?>
     <div class="datos-tabla-flex">
         <div class="nombre-titulo grid-cell flex-header">
             <?= $nombre ?>
@@ -85,7 +96,7 @@ function toggle_mostrar_info($nombre){
             </svg>
         </div>
     </div>
-    <?php
+<?php
 }
 
 

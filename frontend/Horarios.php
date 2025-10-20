@@ -32,6 +32,7 @@ session_start();
 // Verificar si se envio un ID de curso o de espacio a traves de GET
 $cursosql = isset($_GET['curso_id']) ? intval($_GET['curso_id']) : 0;
 $espaciossql = isset($_GET['espacio_id']) ? intval($_GET['espacio_id']) : 0;
+$diasql = isset($_GET['dia_id']) ? intval($_GET['dia_id']) : 0;
 
 if (!isset($_SESSION['nivel_acceso']) && isset($_SESSION['ci'])) {
     $_GET['ci_profe'] = $_SESSION['ci'];
@@ -40,11 +41,11 @@ if (!isset($_SESSION['nivel_acceso']) && isset($_SESSION['ci'])) {
 $professql = isset($_GET['ci_profe']) ? intval($_GET['ci_profe']) : 0;
 
 // SOLO PARA TESTING - Comentar para usar con la fecha actual
-$fecha_test = '2025-11-27'; // Miércoles - Si quieren testear, cambien la fecha esta
-$base_time = strtotime($fecha_test);
+//$fecha_test = '2025-10-20'; // Miércoles - Si quieren testear, cambien la fecha esta
+//$base_time = strtotime($fecha_test);
 
 // Para uso actual usar esto (comentar las lineas de arriba):
-// $base_time = time();
+$base_time = time();
 
 // Calcular inicio y fin de la semana actual (Lunes a Viernes)
 $inicio_semana_str = date('Y-m-d', strtotime('monday this week', $base_time));
@@ -52,9 +53,6 @@ $fin_semana_str = date('Y-m-d', strtotime('friday this week', $base_time));
 
 // Arreglo con los días de la semana
 $dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'];
-
-//Celular
-$dia_celu = ['lunes', 'martes'];
 
 // Mapeo de días en español a fechas específicas de esta semana
 $dias_a_fechas = [
@@ -113,10 +111,6 @@ if ($cursosql > 0) {
     foreach ($dias as $dia) {
         $resultado = query_horas_dia_curso($con, $dia, $cursosql);
         $materias_por_dia[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
-    }
-
-    foreach ($dia_celu as $dia) {
-        $resultado = query_horas_dia_curso($con, $dia, $cursosql);
         $materias_por_dia_celu[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
     }
 }
@@ -125,10 +119,6 @@ elseif ($espaciossql > 0) {
     foreach ($dias as $dia) {
         $resultado = query_espacios_por_dia($con, $dia, $espaciossql);
         $materias_por_dia[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
-    }
-
-    foreach ($dia_celu as $dia) {
-        $resultado = query_espacios_por_dia($con, $dia, $espaciossql);
         $materias_por_dia_celu[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
     }
 }
@@ -137,10 +127,6 @@ elseif ($professql > 0) {
     foreach ($dias as $dia) {
         $resultado = query_horarios_profe_pordia($con, $dia, $professql);
         $materias_por_dia[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
-    }
-
-    foreach ($dia_celu as $dia) {
-        $resultado = query_horarios_profe_pordia($con, $dia, $professql);
         $materias_por_dia_celu[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
     }
 }
@@ -148,9 +134,6 @@ elseif ($professql > 0) {
 else {
     foreach ($dias as $dia) {
         $materias_por_dia[$dia] = []; // vacío para evitar errores al recorrer luego
-    }
-
-    foreach ($dia_celu as $dia) {
         $materias_por_dia_celu[$dia] = []; // vacío para evitar errores al recorrer luego
     }
 }
@@ -177,15 +160,40 @@ else {
                         </select>
                     </div>
                 </div>
+                <!-- Computadora -->
+                <div class="computadora">
+                    <?php echo cabecera_horarios() ?>
 
-                <?php echo cabecera_horarios() ?>
+                    <?php if (isset($_GET['curso_id'])): ?>
+                        <?php mysqli_data_seek($query4, 0); // Reset del puntero 
+                        echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura");
+                        ?>
+                    <?php endif; ?>
+                </div>
 
-                <?php if (isset($_GET['curso_id'])): ?>
-                    <?php mysqli_data_seek($query4, 0); // Reset del puntero 
-                    echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura");
+                <!-- Vista para celular -->
+                <div class="celular">
+                    <?php
+                    // Muestra el título "Horas" y un menú desplegable (<select>) con los días de la semana.
+                    echo cabecera_horarios_celular();
                     ?>
+                    <div id="contenedor-horarios-celular">
+                        <?php foreach ($dias as $dia_celu): // Bucle que recorre cada día de la semana 
+                        ?>
+                            <!-- Cada div representa los horarios correspondientes a un día específico.
+                                Solo el div del lunes se muestra por defecto, los demás se ocultan con display:none. -->
+                            <div class="horario-dia" id="horario-<?= $dia_celu ?>" style="<?= $dia_celu === 'lunes' ? '' : 'display:none;' ?>">
+                                <?php if (isset($_GET['curso_id'])): ?>
+                                    <?php mysqli_data_seek($query4, 0); // Reset del puntero 
+                                    echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura");
+                                    ?>
+                                <?php endif; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
 
-                <?php endif; ?>
+
             </div>
         </main>
     </body>
@@ -251,130 +259,146 @@ else {
 
                 <!-- Vista para celular -->
                 <div class="celular">
-                    <?php echo cabecera_horarios_celular() ?>
-                    <?php if (isset($_GET['curso_id'])): ?>
-                        <?php echo cargar_horarios($query, $dia_celu, $materias_por_dia_celu, "nombre_asignatura") ?>
-                    <?php elseif (isset($_GET['espacio_id'])): ?>
-                        <?php echo cargar_horarios($query, $dia_celu, $materias_por_dia_celu, 'nombre_espacio') ?>
-                    <?php endif; ?>
-                </div>
-            </div>
-
-
-
-            <div class="overlay">
-                <div class="dialogs">
-                    <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
-                            alt=""></button>
-                    <form class="registro-div horarios-form">
-                        <h1><?= t("header_schedules") ?></h1>
-                        <hr>
-                        <div class="div-labels">
-                            <label for="hora_inicio" class="label"><?= t("label_start_time") ?></label>
-                            <input class="input-register" type="time" name="hora_inicio" id="horaInicioHorario"
-                                maxlength="20" minlength="8" required placeholder="<?= t("placeholder_start_time") ?>">
-                        </div>
-                        <div class="div-labels">
-                            <label for="hora_final" class="label"><?= t("label_end_time") ?></label>
-                            <input class="input-register" type="time" name="hora_final" id="horaFinalHorario" maxlength="20"
-                                minlength="8" required placeholder="<?= t("placeholder_end_time") ?>">
-                        </div>
-                        <div class="div-botones-register">
-                            <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
-                                name="registroHorario"></input>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="overlay">
-                <div class="dialogs">
-                    <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
-                            alt=""></button>
-                    <form class="registro-div dependencias-form"
-                        action="../backend/functions/dependencias/dependencias_api.php" method="POST">
-                        <h1><?= t("header_dependencies") ?></h1>
-                        <hr>
-
-                        <div class="div-labels">
-                            <label for="profesor_asignado" class="label"><?= t("label_teacher") ?></label>
-                            <select name="profesor_asignado" id="profesor_asignado" type="text" class="input-register">
-                                <option value=""></option>
-                                <?php while ($row = mysqli_fetch_array($profesores_info)): ?>
-                                    <option value="<?= $row['ci_profesor'] ?>">
-                                        <?= $row['nombre'] ?>
-                                        <?= $row['apellido'] ?>
-                                    </option>
-                                <?php endwhile; ?>
-                            </select>
-                        </div>
-
-                        <div class="div-labels">
-                            <label for="asignatura_dada" class="label"><?= t("label_subject_taught") ?></label>
-                            <select name="asignatura_dada" id="asignatura_dada" type="text" class="input-register">
-                                <option value=""></option>
-                                <?php while ($row = mysqli_fetch_array($asignaturas_info)): ?>
-                                    <option value="<?= $row['id_asignatura'] ?>">
-                                        <?= $row['nombre'] ?>
-                                    </option>
-                                <?php endwhile; ?>
-                            </select>
-                        </div>
-
-                        <div class="div-labels">
-                            <label for="dia" class="label"><?= t("label_day") ?></label>
-                            <select class="input-register" type="text" name="dia_dictado" id="dia_dictado" required
-                                placeholder="<?= t("placeholder_day") ?>">
-                                <option value=""></option>
-                                <option value="lunes"><?= t("day_monday") ?></option>
-                                <option value="martes"><?= t("day_tuesday") ?></option>
-                                <option value="miercoles"><?= t("day_wednesday") ?></option>
-                                <option value="jueves"><?= t("day_thursday") ?></option>
-                                <option value="viernes"><?= t("day_friday") ?></option>
-                            </select>
-                        </div>
-
-                        <div class="div-labels">
-                            <label for="capacity" class="label"><?= t("label_hours_taught") ?></label>
-                            <input class="input-register" type="number" id="crear_campos" maxlength="3" minlength="1"
-                                required>
-                        </div>
-
-                        <div id="campos-dinamicos"></div>
-
-                        <div class="div-labels">
-                            <label for="salon_ocupado" class="label"><?= t("label_room_used") ?></label>
-                            <select name="salon_ocupado" id="salon_a_ocupar" type="text" class="input-register" required>
-                                <option value=""></option>
+                    <?php
+                    // Muestra el título "Horas" y un menú desplegable (<select>) con los días de la semana.
+                    echo cabecera_horarios_celular();
+                    ?>
+                    <div id="contenedor-horarios-celular">
+                        <?php foreach ($dias as $dia_celu): // Bucle que recorre cada día de la semana 
+                        ?>
+                            <!-- Cada div representa los horarios correspondientes a un día específico.
+                                Solo el div del lunes se muestra por defecto, los demás se ocultan con display:none. -->
+                            <div class="horario-dia" id="horario-<?= $dia_celu ?>" style="<?= $dia_celu === 'lunes' ? '' : 'display:none;' ?>">
                                 <?php
-                                mysqli_data_seek($espacios_sin_general, 0); //Reinicia el while para que empiece de cero otra vez (el anterior while que utilizo los recursos lo dejo en el final)
-                                while ($row = mysqli_fetch_array($espacios_sin_general)): ?>
-                                    <option value="<?= $row['id_espacio'] ?>">
-                                        <?= $row['nombre'] ?>
-                                    </option>
-                                <?php endwhile; ?>
-                            </select>
-                        </div>
-
-                        <div class="div-labels">
-                            <label for="curso_dictado" class="label"><?= t("label_course_taught") ?></label>
-                            <select name="curso_dictado" id="curso_dictado" type="text" class="input-register">
-                                <option value=""></option>
-                                <?php while ($row = mysqli_fetch_array($cursos_info)): ?>
-                                    <option value="<?= $row['id_curso'] ?>">
-                                        <?= $row['nombre'] ?>
-                                    </option>
-                                <?php endwhile; ?>
-                            </select>
-                        </div>
-
-                        <div class="div-botones-register">
-                            <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
-                                name="registrarDependencia"></input>
-                        </div>
-                    </form>
+                                // - [$dia_celu]: día actual dentro de un array (por ejemplo ['martes']).
+                                if (isset($_GET['curso_id'])) {
+                                    // Si se seleccionó un curso, se muestran las asignaturas por día.
+                                    echo cargar_horarios($query, [$dia_celu], $materias_por_dia, "nombre_asignatura");
+                                } elseif (isset($_GET['espacio_id'])) {
+                                    // Si se seleccionó un espacio físico (salón), se muestran los horarios de ese salón.
+                                    echo cargar_horarios($query, [$dia_celu], $materias_por_dia, 'nombre_espacio');
+                                }
+                                ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-            </div>
+
+
+
+                <div class="overlay">
+                    <div class="dialogs">
+                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                                alt=""></button>
+                        <form class="registro-div horarios-form">
+                            <h1><?= t("header_schedules") ?></h1>
+                            <hr>
+                            <div class="div-labels">
+                                <label for="hora_inicio" class="label"><?= t("label_start_time") ?></label>
+                                <input class="input-register" type="time" name="hora_inicio" id="horaInicioHorario"
+                                    maxlength="20" minlength="8" required placeholder="<?= t("placeholder_start_time") ?>">
+                            </div>
+                            <div class="div-labels">
+                                <label for="hora_final" class="label"><?= t("label_end_time") ?></label>
+                                <input class="input-register" type="time" name="hora_final" id="horaFinalHorario" maxlength="20"
+                                    minlength="8" required placeholder="<?= t("placeholder_end_time") ?>">
+                            </div>
+                            <div class="div-botones-register">
+                                <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
+                                    name="registroHorario"></input>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="overlay">
+                    <div class="dialogs">
+                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                                alt=""></button>
+                        <form class="registro-div dependencias-form"
+                            action="../backend/functions/dependencias/dependencias_api.php" method="POST">
+                            <h1><?= t("header_dependencies") ?></h1>
+                            <hr>
+
+                            <div class="div-labels">
+                                <label for="profesor_asignado" class="label"><?= t("label_teacher") ?></label>
+                                <select name="profesor_asignado" id="profesor_asignado" type="text" class="input-register">
+                                    <option value=""></option>
+                                    <?php while ($row = mysqli_fetch_array($profesores_info)): ?>
+                                        <option value="<?= $row['ci_profesor'] ?>">
+                                            <?= $row['nombre'] ?>
+                                            <?= $row['apellido'] ?>
+                                        </option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+
+                            <div class="div-labels">
+                                <label for="asignatura_dada" class="label"><?= t("label_subject_taught") ?></label>
+                                <select name="asignatura_dada" id="asignatura_dada" type="text" class="input-register">
+                                    <option value=""></option>
+                                    <?php while ($row = mysqli_fetch_array($asignaturas_info)): ?>
+                                        <option value="<?= $row['id_asignatura'] ?>">
+                                            <?= $row['nombre'] ?>
+                                        </option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+
+                            <div class="div-labels">
+                                <label for="dia" class="label"><?= t("label_day") ?></label>
+                                <select class="input-register" type="text" name="dia_dictado" id="dia_dictado" required
+                                    placeholder="<?= t("placeholder_day") ?>">
+                                    <option value=""></option>
+                                    <option value="lunes"><?= t("day_monday") ?></option>
+                                    <option value="martes"><?= t("day_tuesday") ?></option>
+                                    <option value="miercoles"><?= t("day_wednesday") ?></option>
+                                    <option value="jueves"><?= t("day_thursday") ?></option>
+                                    <option value="viernes"><?= t("day_friday") ?></option>
+                                </select>
+                            </div>
+
+                            <div class="div-labels">
+                                <label for="capacity" class="label"><?= t("label_hours_taught") ?></label>
+                                <input class="input-register" type="number" id="crear_campos" maxlength="3" minlength="1"
+                                    required>
+                            </div>
+
+                            <div id="campos-dinamicos"></div>
+
+                            <div class="div-labels">
+                                <label for="salon_ocupado" class="label"><?= t("label_room_used") ?></label>
+                                <select name="salon_ocupado" id="salon_a_ocupar" type="text" class="input-register" required>
+                                    <option value=""></option>
+                                    <?php
+                                    mysqli_data_seek($espacios_sin_general, 0); //Reinicia el while para que empiece de cero otra vez (el anterior while que utilizo los recursos lo dejo en el final)
+                                    while ($row = mysqli_fetch_array($espacios_sin_general)): ?>
+                                        <option value="<?= $row['id_espacio'] ?>">
+                                            <?= $row['nombre'] ?>
+                                        </option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+
+                            <div class="div-labels">
+                                <label for="curso_dictado" class="label"><?= t("label_course_taught") ?></label>
+                                <select name="curso_dictado" id="curso_dictado" type="text" class="input-register">
+                                    <option value=""></option>
+                                    <?php while ($row = mysqli_fetch_array($cursos_info)): ?>
+                                        <option value="<?= $row['id_curso'] ?>">
+                                            <?= $row['nombre'] ?>
+                                        </option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+
+                            <div class="div-botones-register">
+                                <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
+                                    name="registrarDependencia"></input>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
 
         </main>
@@ -434,9 +458,32 @@ else {
                     </div>
                 </div>
 
-                <?php echo cabecera_horarios() ?>
+                <div class="computadora">
+                    <?php echo cabecera_horarios() ?>
 
-                <?php echo cargar_horarios($query, $dias, $materias_por_dia, "nombre_curso") ?>
+                    <?php echo cargar_horarios($query, $dias, $materias_por_dia, "nombre_curso") ?>
+                </div>
+
+                <!-- Vista para celular -->
+                <div class="celular">
+                    <?php
+                    // Muestra el título "Horas" y un menú desplegable (<select>) con los días de la semana.
+                    echo cabecera_horarios_celular();
+                    ?>
+                    <div id="contenedor-horarios-celular">
+                        <?php foreach ($dias as $dia_celu): // Bucle que recorre cada día de la semana 
+                        ?>
+                            <!-- Cada div representa los horarios correspondientes a un día específico.
+                                Solo el div del lunes se muestra por defecto, los demás se ocultan con display:none. -->
+                            <div class="horario-dia" id="horario-<?= $dia_celu ?>" style="<?= $dia_celu === 'lunes' ? '' : 'display:none;' ?>">
+                                <?php
+                                echo cargar_horarios($query, [$dia_celu], $materias_por_dia, "nombre_curso");
+                                ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
 
             </div>
         </main>
@@ -452,8 +499,7 @@ else {
 <script type="module" src="../backend/functions/dependencias/crear_campos.js"></script>
 <script type="module" src="js/validaciones-registro.js" defer></script>
 <script type="module" src="js/swalerts.js"></script>
-
-
+<script src="./js/select-dia-celular.js"></script>
 <script>
     // Función que se ejecuta cuando el usuario selecciona un curso
     // Recibe como parámetro el identificador del curso (idCurso)
@@ -471,14 +517,7 @@ else {
     }
 
     function cambiarEspacio(idEspacio) {
-
-        // Verifica que el idEspacio exista y que no sea igual a "0"
-        // (Por ejemplo, "0" podría representar la opción "Seleccionar curso" en un <select>)
         if (idEspacio && idEspacio !== "0") {
-
-            // Si la condición se cumple, redirige al usuario a la misma página
-            // pero agregando el parámetro 'curso_id' en la URL.
-            // Esto permite que el backend o PHP filtre los datos según el curso seleccionado.
             window.location.href = "?espacio_id=" + idEspacio;
         }
     }

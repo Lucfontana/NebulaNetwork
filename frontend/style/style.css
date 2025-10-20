@@ -788,6 +788,12 @@ hr {
     display: none;
 }
 
+.div-mostrar-datos-main {
+    background-color: white;
+    width: 100%;
+    z-index: 1;
+}
+
 .btn-confirmar, .btn-cancelar {
     background-color: #1e1e1e;
     color: aliceblue;
@@ -835,7 +841,7 @@ hr {
     background: white; /* opcional */
     width: 100%;
     height: auto;
-    z-index: 900;
+    z-index: 1;
 }
 
 /* Contenedor principal */
@@ -916,6 +922,15 @@ hr {
     border-radius: 8px 8px 0 0;
 }
 
+/* Estructura específica para la tabla de Inasistencias */
+.inasistencias-grid .grid-header,
+.inasistencias-grid .grid-row {
+    display: grid;
+    grid-template-columns: 150px 220px 200px 190px 200px 200px; /* ID, Fecha, CI Profesor, Horario, Botones */
+    align-items: center;
+    text-align: center;
+}
+
 /* Estructura específica para la tabla de SuperUsuario */
 .superusuario-grid .grid-header,
 .superusuario-grid .grid-row {
@@ -971,6 +986,13 @@ hr {
 .titulo-tabla {
     display: flex;
     width: 100%;
+}
+
+.dias {
+    background: #2c3e50;
+    color: aliceblue;
+    border-radius: 0;
+    text-align: center;
 }
 
 .botones-register-horarios {
@@ -1160,7 +1182,8 @@ hr {
 #overlay-edit-orientacion,
 #overlay-edit-profesor,
 #overlay-edit-recurso,
-#overlay-edit-super {
+#overlay-edit-super,
+#overlay-edit-inasistencia {
     display: none;
     opacity: 0;
 }
@@ -1250,6 +1273,7 @@ select {
     background-color: rgb(34, 34, 34);
     border: none;
     color: #fff;
+    border: 1px solid #a7c7ff;
     padding: 10px 20px;
     border-radius: 12px;
     width: auto;
@@ -1676,7 +1700,7 @@ abajito cuando el ancho es menos de 700px */
         display: flex;
         flex-direction: column;
         width: 100%;
-        z-index: 900;
+        z-index: 1;
     }
 
     .flex-header {
@@ -1820,7 +1844,7 @@ abajito cuando el ancho es menos de 700px */
     }
 
     .datos-row {
-    grid-template-columns: 200px repeat(2, 1fr);
+    grid-template-columns: 200px repeat(1, 1fr);
     }
 
     .dias {
@@ -1830,7 +1854,7 @@ abajito cuando el ancho es menos de 700px */
 
 @media (max-width: 700px) {
     .datos-row {
-    grid-template-columns: 100px repeat(2, 1fr);
+    grid-template-columns: 100px repeat(1, 1fr);
     font-size: 12px;
     }
 

@@ -24,6 +24,7 @@ session_start();
                             <option value="cursos">Cursos</option>
                             <option value="asignatura">Asignaturas</option>
                             <option value="orientaciones">Orientaciones</option>
+                            <option value="inasistencias">Inasistencias</option>
                         </select>
                     </div>
                 </div>
@@ -56,6 +57,10 @@ session_start();
                     <?php include_once("./Orientaciones.php") ?>
                 </div>
 
+                <div data-seccion="inasistencias" class="seccion-oculta">
+                    <?php include_once("./inasistencias.php") ?>
+                </div>
+
             </div>
         </main>
 
@@ -75,6 +80,7 @@ session_start();
     <script type="module" src="/frontend/js/confirm-profesores.js"></script>
     <script type="module" src="/frontend/js/confirm-recursos.js"></script>
     <script type="module" src="/frontend/js/confirm-superusuario.js"></script>
+    <script type="module" src="/frontend/js/confirm-inasistencia.js"></script>
 
     <!-- Scripts generales -->
     <script type="module" src="/frontend/js/prueba.js"></script>
