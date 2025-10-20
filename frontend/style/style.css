@@ -103,7 +103,7 @@ main {
 }
 
 .icono {
-    filter: invert(30%) sepia(45%) saturate(2200%) hue-rotate(210deg) brightness(95%) contrast(90%);
+    filter: invert(30%) sepia(45%) saturate(2200%) hue-rotate(210deg) brightness(30%) contrast(90%);
     transition: filter 0.5s ease;
 }
 
