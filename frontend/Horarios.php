@@ -18,8 +18,6 @@ $cursos_info = query_cursos($con);
 
 $orientacion_info = query_orientacion($con);
 
-
-
 //seleccionamos los horarios para desplegarlos en forma ascendente
 $connect = conectar_a_bd();
 
@@ -42,7 +40,7 @@ if (!isset($_SESSION['nivel_acceso']) && isset($_SESSION['ci'])) {
 $professql = isset($_GET['ci_profe']) ? intval($_GET['ci_profe']) : 0;
 
 // SOLO PARA TESTING - Comentar para usar con la fecha actual
-$fecha_test = '2025-10-20'; // Miércoles - Si quieren testear, cambien la fecha esta
+$fecha_test = '2025-11-27'; // Miércoles - Si quieren testear, cambien la fecha esta
 $base_time = strtotime($fecha_test);
 
 // Para uso actual usar esto (comentar las lineas de arriba):
@@ -162,8 +160,8 @@ else {
 
                 <?php if (isset($_GET['curso_id'])): ?>
                     <?php mysqli_data_seek($query4, 0); // Reset del puntero 
-                    echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura");
-                    ?>
+                            echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura");
+                            ?>
 
                 <?php endif; ?>
             </div>
@@ -192,10 +190,11 @@ else {
                             <option value="1"><?= t("label_select_course") ?></option>
                             <option value="2"><?= t("label_select_classroom") ?></option>
                         </select>
-                    </div> 
+                    </div>
                     <div id="div-salones" style="display: none;">
                         <label for="Salones" id="select-salones"><?= t("label_select_classroom") ?></label>
-                        <select name="salones" class="salones-select" id="salones-select" onchange="cambiarEspacio(this.value)">
+                        <select name="salones" class="salones-select" id="salones-select"
+                            onchange="cambiarEspacio(this.value)">
                             <option value="0"><?= t("option_select_classroom") ?></option>
                             <?php mysqli_data_seek($query3, 0); ?>
                             <?php while ($row3 = mysqli_fetch_array($query3)): ?>
@@ -243,8 +242,8 @@ else {
                         </div>
                         <div class="div-labels">
                             <label for="hora_final" class="label"><?= t("label_end_time") ?></label>
-                            <input class="input-register" type="time" name="hora_final" id="horaFinalHorario"
-                                maxlength="20" minlength="8" required placeholder="<?= t("placeholder_end_time") ?>">
+                            <input class="input-register" type="time" name="hora_final" id="horaFinalHorario" maxlength="20"
+                                minlength="8" required placeholder="<?= t("placeholder_end_time") ?>">
                         </div>
                         <div class="div-botones-register">
                             <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
@@ -303,8 +302,8 @@ else {
 
                         <div class="div-labels">
                             <label for="capacity" class="label"><?= t("label_hours_taught") ?></label>
-                            <input class="input-register" type="number" id="crear_campos"
-                                maxlength="3" minlength="1" required>
+                            <input class="input-register" type="number" id="crear_campos" maxlength="3" minlength="1"
+                                required>
                         </div>
 
                         <div id="campos-dinamicos"></div>
@@ -361,7 +360,8 @@ else {
             <div id="contenido-mostrar-datos">
                 <h1><?= t("title_my_schedules") ?></h1>
 
-                <button type="button" id="Profesores-boton" class="btn-primary btn" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" id="Profesores-boton" class="btn-primary btn" data-toggle="modal"
+                    data-target="#exampleModal">
                     <?= t("btn_register_absence") ?>
                 </button>
 
@@ -369,8 +369,8 @@ else {
                 <div id="div-dialogs">
                     <div class="overlay">
                         <div class="dialogs" id="dialogs">
-                            <button class="btn-Cerrar" type="button"><img class="cruz-register"
-                                    src="/frontend/img/cruz.png" alt=""></button>
+                            <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                                    alt=""></button>
                             <form class="registro-div inasistencia-form">
                                 <h1><?= t("btn_register_absence") ?></h1>
                                 <hr>
@@ -382,7 +382,8 @@ else {
 
                                 <div class="div-labels" id="horas_falta">
                                     <label for="nose" class="label">Cantidad de horas a faltar:</label>
-                                    <input type="number" name="cantidad_horas_falta" id="cantidad_horas_falta" class="input-register" required>
+                                    <input type="number" name="cantidad_horas_falta" id="cantidad_horas_falta"
+                                        class="input-register" required>
                                 </div>
 
                                 <div class="div-labels" id="horas_clase_profe"></div>
