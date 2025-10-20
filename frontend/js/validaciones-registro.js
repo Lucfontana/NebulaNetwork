@@ -1,21 +1,26 @@
 import { verificarCI, verificarExistenciaCI, mostrarDigVerificador, CIaArreglo } from './validarCI.js';
+import { sw_warning } from './swalerts.js';
 //-----FORMULARIOS-----//
 
 //Por cada formulario, se lo debe llamar (cuando se envia) y verificar que todos sus
 //campos esten limpios y correctos
 
-                                    //querySelector busca y agarra el primer elemento que
-                                    //coincida con selector especifico
+//querySelector busca y agarra el primer elemento que
+//coincida con selector especifico
 
-                                    //"¿Y porque no buscar por la id? no quedamas facil?"
-                                    //no pq todos los formularios tienen la misma id y eso afectaria el
-                                    //register-modal que hizo lautaro (CREO, si quieren prueben)
+//"¿Y porque no buscar por la id? no quedamas facil?"
+//no pq todos los formularios tienen la misma id y eso afectaria el
+//register-modal que hizo lautaro (CREO, si quieren prueben)
 let formulario_asignaturas = document.querySelector(".asignatura-form");
-                                                //Llama a la funcion validar_asignaturas
-formulario_asignaturas.addEventListener("submit", validar_asignaturas);
+
+//Llama a la funcion validar_asignaturas si existe el formulario
+if (formulario_asignaturas){
+    formulario_asignaturas.addEventListener("submit", validar_asignaturas);
+}
+
 
 function validar_asignaturas(evento) {
-    
+
     // Evita que se recargue la página
     evento.preventDefault();
 
@@ -24,13 +29,13 @@ function validar_asignaturas(evento) {
 
     //se crea un objeto para tomar los valores del formulario (aca se pondrian todos los datos con .append)
     const formData = new FormData();
-                    //id del campo      valor a pasarle
+    //id del campo      valor a pasarle
     formData.append('nombreAsignatura', nombre_asignatura);
     formData.append('registrarAsignatura', true);
 
     //Se llaman a todas las funciones de verificar
-    if (!verificarString(nombre_asignatura, "nombre")){ // entre comillas ponemos "nombre" porque es lo que validamos, 
-                                                        //Si verificaramos "apellido" ahi adentro iria apellido
+    if (!verificarString(nombre_asignatura, "nombre")) { // entre comillas ponemos "nombre" porque es lo que validamos, 
+        //Si verificaramos "apellido" ahi adentro iria apellido
         evento.preventDefault(); //Se previene el envio del formulario 
         return;
     }
@@ -41,21 +46,21 @@ function validar_asignaturas(evento) {
         body: formData
     })
 
-    //se toma la respuesta y se devuelve en formato json
-    .then(response => response.json())
-    //la variable data se usa para recorrer el array asociativo del endpoint...
-    .then(data => {
+        //se toma la respuesta y se devuelve en formato json
+        .then(response => response.json())
+        //la variable data se usa para recorrer el array asociativo del endpoint...
+        .then(data => {
 
-        //si el enpoint devuelve 1...
-        if (data.estado === 1) {
-            alerta_success(`${data.mensaje}`, "asignaturas.php", "asignaturas");
-        } else {
-            alerta_fallo(`${data.mensaje}`);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+            //si el enpoint devuelve 1...
+            if (data.estado === 1) {
+                alerta_success(`${data.mensaje}`, "Mostrar_informacion.php", "asignaturas");
+            } else {
+                alerta_fallo(`${data.mensaje}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
 
 //------------------VALIDACIONES-------------------//
@@ -63,28 +68,40 @@ function validar_asignaturas(evento) {
 //Nota: Las validaciones de CI ya estan creadas en el archivo de 'login.js', quedaria importar el archivo y las funciones
 
 let ci_profesor = document.getElementById("ciProfesor");
-ci_profesor.addEventListener("input", function() {
-    ci_profesor.value = ci_profesor.value.replace(/[^0-9]/g, '').slice(0, 8);
-});
 let contrasena_profesor = document.getElementById("contrasenaProfesor");
-contrasena_profesor.addEventListener("input", function() {
-    contrasena_profesor.value = contrasena_profesor.value.replace(/[^0-9]/g, '').slice(0, 8);
-});
 let ci_superusuario = document.getElementById("ciSuperusuario");
-ci_superusuario.addEventListener("input", function() {
-    ci_superusuario.value = ci_superusuario.value.replace(/[^0-9]/g, '').slice(0, 8);
-});
 let contrasena_superusuario = document.getElementById("contrasenaSuperusuario");
-contrasena_superusuario.addEventListener("input", function() {
-    contrasena_superusuario.value = contrasena_superusuario.value.replace(/[^0-9]/g, '').slice(0, 8);
-});
+if (ci_profesor && contrasena_profesor && ci_superusuario && contrasena_superusuario){
+    ci_profesor.addEventListener("input", function () {
+        ci_profesor.value = ci_profesor.value.replace(/[^0-9]/g, '').slice(0, 8);
+    });
+
+    contrasena_profesor.addEventListener("input", function () {
+        contrasena_profesor.value = contrasena_profesor.value.replace(/[^0-9]/g, '').slice(0, 8);
+    });
+    
+    ci_superusuario.addEventListener("input", function () {
+        ci_superusuario.value = ci_superusuario.value.replace(/[^0-9]/g, '').slice(0, 8);
+    });
+    
+    contrasena_superusuario.addEventListener("input", function () {
+        contrasena_superusuario.value = contrasena_superusuario.value.replace(/[^0-9]/g, '').slice(0, 8);
+    });
+}
 
 
 //Verificar en el documento de Drive de "Tareas pendientes PROYECTO" las distintas funciones que hay para hacer
 
 let formulario_profesores = document.querySelector(".profesores-form");
 
-formulario_profesores.addEventListener("submit", function(e) {
+if (formulario_profesores){
+    formulario_profesores.addEventListener("submit", registrar_profesores);
+}
+
+
+function registrar_profesores(e) {
+    e.preventDefault();
+
     let ci_profesor = document.getElementById("ciProfesor").value;
     let contrasena_profesor = document.getElementById("contrasenaProfesor").value;
     let nombre_profesor = document.getElementById("nombreProfesor").value;
@@ -93,9 +110,21 @@ formulario_profesores.addEventListener("submit", function(e) {
     let fecha_nacimiento_profesor = document.getElementById("fechaNacimientoProfesor").value;
     let direccion_profesor = document.getElementById("direccionProfesor").value;
 
-    if (!verificarCI(ci_profesor) || !verificarExistenciaCI(ci_profesor, [2,9,8,7,6,3,4])) {
+    const form_profesor = new FormData();
+
+    form_profesor.append('CI', ci_profesor);
+    form_profesor.append('contrasena', contrasena_profesor);
+    form_profesor.append('name', nombre_profesor);
+    form_profesor.append('apellido', apellido_profesor);
+    form_profesor.append('email', email_profesor);
+    form_profesor.append('nac', fecha_nacimiento_profesor);
+    form_profesor.append('direc', direccion_profesor);
+    form_profesor.append('registroProfesor', true);
+
+    if (!verificarCI(ci_profesor) || !verificarExistenciaCI(ci_profesor, [2, 9, 8, 7, 6, 3, 4])) {
         alerta_fallo("La cédula ingresada no es válida.");
         e.preventDefault();
+        return;
     }
     if (contrasena_profesor !== ci_profesor) {
         alerta_fallo("La contraseña debe ser igual a la cédula.");
@@ -105,139 +134,368 @@ formulario_profesores.addEventListener("submit", function(e) {
     if (!verificarString(nombre_profesor, "nombre")) {
         alerta_fallo("El nombre ingresado no es válido.");
         e.preventDefault();
+        return;
     }
     if (!verificarString(apellido_profesor, "apellido")) {
         alerta_fallo("El apellido ingresado no es válido.");
         e.preventDefault();
+        return;
     }
     if (!verificarEmail(email_profesor)) {
         alerta_fallo("El email ingresado no es válido.");
         e.preventDefault();
+        return;
     }
     if (!verificarFechanacimiento(fecha_nacimiento_profesor)) {
         alerta_fallo("La fecha de nacimiento ingresada no es válida.");
         e.preventDefault();
+        return;
     }
     if (!verificarDireccion(direccion_profesor)) {
         alerta_fallo("La dirección ingresada no es válida.");
         e.preventDefault();
+        return;
     }
-});
+
+    // se le pasa al fetch el endpoint que genera la consulta de busqueda, se pone la direccion del php
+    fetch('../../backend/functions/Profesores/profesores_func.php', {
+        method: 'POST',
+        body: form_profesor
+    })
+
+        //se toma la respuesta y se devuelve en formato json
+        .then(response => response.json())
+        //la variable data se usa para recorrer el array asociativo del endpoint...
+        .then(data => {
+
+            //si el enpoint devuelve 1...
+            if (data.estado === 1) {
+                alerta_success(`${data.mensaje}`, "Mostrar_informacion.php", "profesor");
+            } else {
+                alerta_fallo(`${data.mensaje}`);
+            }
+        })
+};
 
 
 
 let formulario_superusuarios = document.querySelector(".superusuarios-form");
-formulario_superusuarios.addEventListener("submit", function(e) {
+
+if(formulario_superusuarios){
+    formulario_superusuarios.addEventListener("submit", registrar_superusuario);
+}
+
+
+function registrar_superusuario(e) {
+    e.preventDefault();
+
     let ci_superusuario = document.getElementById("ciSuperusuario").value;
     let contrasena_superusuario = document.getElementById("contrasenaSuperusuario").value;
     let nombre_superusuario = document.getElementById("nombreSuperusuario").value;
     let apellido_superusuario = document.getElementById("apellidoSuperusuario").value;
     let email_superusuario = document.getElementById("emailSuperusuario").value;
+    let acceso_superusuario = document.getElementById("acceso").value;
 
-    if (!verificarCI(ci_superusuario) || !verificarExistenciaCI(ci_superusuario, [2,9,8,7,6,3,4])) {
-        e.preventDefault();
+
+    if (!verificarCI(ci_superusuario) || !verificarExistenciaCI(ci_superusuario, [2, 9, 8, 7, 6, 3, 4])) {
+        alerta_fallo("La cédula ingresada no es válida.");
+        return;
     }
     if (contrasena_superusuario !== ci_superusuario) {
         alerta_fallo("La contraseña debe ser igual a la cédula.");
-        e.preventDefault();
         return;
     }
     if (!verificarString(nombre_superusuario, "nombre")) {
-        e.preventDefault();
-    }
-    if (!verificarString(apellido_superusuario, "apellido")) {
-        e.preventDefault();
-    }
-    if (!verificarEmail(email_superusuario)) {
-        alerta_fallo("El email ingresado no es válido");
-        e.preventDefault();
+        alerta_fallo("El nombre ingresado no es válido.");
         return;
     }
-});
-
-let formulario_recursos = document.querySelector(".recursos-form");
-formulario_recursos.addEventListener("submit", function(e) {
-    let nombre_recurso = document.getElementById("nombreRecurso").value;
-    let estado_recurso = document.getElementById("estadoRecurso").value;
-
-    if (!verificarNombreEspecial(nombre_recurso)) {
-        e.preventDefault();
+    if (!verificarString(apellido_superusuario, "apellido")) {
+        alerta_fallo("El apellido ingresado no es válido.");
+        return;
+    }
+    if (!verificarEmail(email_superusuario)) {
+        alerta_fallo("El email ingresado no es válido.");
+        return;
     }
 
-});
+    const form_superusuario = new FormData();
+    form_superusuario.append('CI', ci_superusuario);
+    form_superusuario.append('password', contrasena_superusuario);
+    form_superusuario.append('name', nombre_superusuario);
+    form_superusuario.append('apellido', apellido_superusuario);
+    form_superusuario.append('acceso', acceso_superusuario);
+    form_superusuario.append('email', email_superusuario)
+    form_superusuario.append('registrarSuperuser', true);
+
+    fetch('../../backend/functions/SuperUsuarios/superusuarios_func.php', {
+        method: 'POST',
+        body: form_superusuario
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.estado === 1) {
+                alerta_success(`${data.mensaje}`, "Mostrar_informacion.php", "superusuario");
+            } else {
+                alerta_fallo(`${data.mensaje}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alerta_fallo("Error al conectar con el servidor.");
+        });
+}
+
+let formulario_recursos = document.querySelector(".recursos-form");
+
+if (formulario_recursos){
+formulario_recursos.addEventListener("submit", registrar_recurso);
+}
+
+function registrar_recurso(e) {
+    e.preventDefault();
+
+    let nombre_recurso = document.getElementById("nombreRecurso").value;
+    let estado_recurso = document.getElementById("estadoRecurso").value;
+    let tipo_recurso = document.getElementById("tipo").value;
+    let pertenece_a = document.getElementById("pertenece_a_espacio").value;
+
+    if (!verificarNombreEspecial(nombre_recurso)) {
+        alerta_fallo("El nombre del recurso no es válido.");
+        return;
+    }
+
+    const form_recurso = new FormData();
+    form_recurso.append('name', nombre_recurso);
+    form_recurso.append('estado', estado_recurso);
+    form_recurso.append('tipo', tipo_recurso);
+    form_recurso.append('pertenece', pertenece_a);
+    form_recurso.append('registrarRecurso', true);
+
+    fetch('../../backend/functions/Recursos/recursos_func.php', {
+        method: 'POST',
+        body: form_recurso
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.estado === 1) {
+                alerta_success(`${data.mensaje}`, "Mostrar_informacion.php", "recurso");
+            } else {
+                alerta_fallo(`${data.mensaje}`);
+            }
+        })
+}
 
 let formulario_espacios = document.querySelector(".espacios-form");
-formulario_espacios.addEventListener("submit", function(e) {
+
+if (formulario_espacios){
+formulario_espacios.addEventListener("submit", registrar_espacio);
+}
+
+function registrar_espacio(e) {
+    e.preventDefault();
+
     let nombre_espacio = document.getElementById("nombreEspacio").value;
     let capacidad_espacio = document.getElementById("capacidadEspacio").value;
     let tipo_espacio = document.getElementById("tipoEspacio").value;
 
     if (!verificarNombreEspecial(nombre_espacio)) {
-        e.preventDefault();
+        alerta_fallo("El nombre del espacio no es válido.");
+        return;
     }
     if (!verificarCapacidad(capacidad_espacio)) {
-        e.preventDefault();
+        alerta_fallo("La capacidad ingresada no es válida.");
+        return;
     }
-});
 
+    const form_espacio = new FormData();
+    form_espacio.append('name', nombre_espacio);
+    form_espacio.append('capacity', capacidad_espacio);
+    form_espacio.append('tipo', tipo_espacio);
+    form_espacio.append('registrarEspacio', true);
 
+    fetch('../../backend/functions/Espacios/espacios_func.php', {
+        method: 'POST',
+        body: form_espacio
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.estado === 1) {
+                alerta_success(`${data.mensaje}`, "Mostrar_informacion.php", "espacio");
+            } else {
+                alerta_fallo(`${data.mensaje}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alerta_fallo("Error al conectar con el servidor.");
+        });
+}
 
 let formulario_cursos = document.querySelector(".cursos-form");
-formulario_cursos.addEventListener("submit", function(e) {
+
+if (formulario_cursos){
+formulario_cursos.addEventListener("submit", registrar_curso);
+}
+
+function registrar_curso(e) {
+    e.preventDefault();
+
     let nombre_curso = document.getElementById("nombreCurso").value;
     let capacidad_curso = document.getElementById("capacidadCurso").value;
+    let orientacion_curso = document.getElementById("salon_ocupado").value;
 
     if (!verificarNombreEspecial(nombre_curso)) {
-        e.preventDefault();
+        alerta_fallo("El nombre del curso no es válido.");
+        return;
     }
     if (!verificarCapacidad(capacidad_curso)) {
-        e.preventDefault();
+        alerta_fallo("La capacidad ingresada no es válida.");
+        return;
     }
-});
+
+    const form_curso = new FormData();
+    form_curso.append('name', nombre_curso);
+    form_curso.append('capacity', capacidad_curso);
+    form_curso.append('orientacion_en', orientacion_curso);
+    form_curso.append('registrarCursos', true);
+
+    fetch('../../backend/functions/Cursos/cursos_func.php', {
+        method: 'POST',
+        body: form_curso
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.estado === 1) {
+                alerta_success(`${data.mensaje}`, "Mostrar_informacion.php", "curso");
+            } else {
+                alerta_fallo(`${data.mensaje}`);
+            }
+        })
+
+}
 
 let formulario_horarios = document.querySelector(".horarios-form");
-formulario_horarios.addEventListener("submit", function(e) {
+
+if (formulario_horarios){
+formulario_horarios.addEventListener("submit", registrar_horario);
+}
+
+function registrar_horario(e) {
+    e.preventDefault();
+
     let hora_inicio_horario = document.getElementById("horaInicioHorario").value;
-    let hora_fin_horario = document.getElementById("horaFinHorario").value;
-    let tipo_horario = document.getElementById("tipoHorario").value; // clase o recreo
+    let hora_fin_horario = document.getElementById("horaFinalHorario").value;
 
     if (!verificarHora(hora_inicio_horario) || !verificarHora(hora_fin_horario)) {
-        e.preventDefault();
+        alerta_fallo("Las horas ingresadas no son válidas.");
         return;
     }
-    if (!validarHorario(tipo_horario, hora_inicio_horario, hora_fin_horario)) {
-        e.preventDefault();
-        return;
-    }
-    if (haySolapamiento(hora_inicio_horario, hora_fin_horario, horariosExistentes)) {
-        alert("El horario se solapa con otra clase o recreo.");
-        e.preventDefault();
-        return;
-    }
-});
+    // if (!validarHorario(tipo_horario, hora_inicio_horario, hora_fin_horario)) {
+    //     alerta_fallo("El horario no es válido.");
+    //     return;
+    // }
+    // if (haySolapamiento(hora_inicio_horario, hora_fin_horario, horariosExistentes)) {
+    //     alerta_fallo("El horario se solapa con otra clase o recreo.");
+    //     return;
+    // }
+
+    const form_horario = new FormData();
+    form_horario.append('hora_inicio', hora_inicio_horario);
+    form_horario.append('hora_final', hora_fin_horario);
+    form_horario.append('registroHorario', true);
+
+    fetch('../backend/functions/horarios/horarios_api.php', {
+        method: 'POST',
+        body: form_horario
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.estado === '1') {
+                alerta_success(`${data.mensaje}`, "Horarios.php", "horario");
+            } else if (data.estado === '0'){
+                alerta_fallo(`${data.mensaje}`);
+            } else {
+                sw_warning(`${data.mensaje}`);
+            }
+        })
+        .catch(error => {
+            alerta_fallo("Error al procesar la solicitud.");
+            console.error('Error:', error);
+        });
+}
 
 
+export function borrar_todos_horarios(){
 
-// Ejemplo de uso en el formulario de horarios
-let horariosExistentes = [
-    // {inicio: "07:00", fin: "07:45", tipo: "clase"},
-    // {inicio: "07:45", fin: "07:50", tipo: "recreo"}
-];
+    const form_eliminar_horarios = new FormData();
+    form_eliminar_horarios.append('eliminarTodosHorarios', true);
+
+    fetch('../../backend/functions/horarios/horarios_api.php', {
+        method: 'POST',
+        body: form_eliminar_horarios
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.estado === '1'){
+                alerta_success(`${data.mensaje}`, "horarios.php", "horario");
+            }
+        })
+}
 
 let formulario_dependencias = document.querySelector(".dependencias-form");
-formulario_dependencias.addEventListener("submit", function(e) {
-    
+
+if (formulario_dependencias){
+formulario_dependencias.addEventListener("submit", function (e) {
 });
+}
+
+let formulario_orientaciones = document.querySelector(".orientacion-form");
+
+if (formulario_orientaciones){
+formulario_orientaciones.addEventListener("submit", registrar_orientacion);
+}
+
+function registrar_orientacion(e) {
+    e.preventDefault();
+
+    let nombre_orientacion = document.getElementById("nombreOrientacion").value;
+
+    if (!verificarNombreEspecial(nombre_orientacion)) {
+        alerta_fallo("El nombre de la orientación no es válido.");
+        return;
+    }
+
+    const form_orientacion = new FormData();
+    form_orientacion.append('nombreOrientacion', nombre_orientacion);
+    form_orientacion.append('registrarOrientacion', true);
+
+    fetch('../../backend/functions/orientacion/orientacion_api.php', {
+        method: 'POST',
+        body: form_orientacion
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.estado === 1) {
+                alerta_success(`${data.mensaje}`, "Mostrar_informacion.php", "orientacion");
+            } else {
+                alerta_fallo(`${data.mensaje}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alerta_fallo("Error al conectar con el servidor.");
+        });
+}
 
 //Se hace la funcion del tipo de dato que queremos verificar, entre los parentesis
 //se toman como argumento las siguientes variables: nombre (la string a verificar) y
 //tipoDato (si el dato es un nombre, ese string seria 'nombre', si fuera apellido seria
 // 'apellido').
-function verificarString(nombre, tipoDato){
+function verificarString(nombre, tipoDato) {
 
     //El regex son los caracteres que queremos verificar que nuestra string NO tenga.
     //Regex es una expresion que se marca con //, por eso ese caracter a veces esta repetido
-    let regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; 
+    let regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
 
     if (nombre.length <= 2 || nombre.length >= 40) {
         alerta_fallo("El " + tipoDato + " ingresado debe tener entre 2 y 40 caracteres");
@@ -246,11 +504,11 @@ function verificarString(nombre, tipoDato){
 
         //Le decimos al regex que comience desde el principio de su elemento a investigar
         //para evitar errores
-        regex.lastIndex = 0; 
-        if (!regex.test(nombre)){
-        alerta_fallo("El " + tipoDato + " ingresado no puede contener caracteres especiales");
-        return false;
-    } 
+        regex.lastIndex = 0;
+        if (!regex.test(nombre)) {
+            alerta_fallo("El " + tipoDato + " ingresado no puede contener caracteres especiales");
+            return false;
+        }
     }
     return true; //Si esta todo bien, devuelve TRUE
 }
@@ -360,29 +618,31 @@ function haySolapamiento(nuevoInicio, nuevoFin, horariosExistentes) {
 }
 
 //---------------FUNCIONES DE ALERTAS---------------//
-function alerta_success(mensaje, ventana_a_redirigir, tipo_dato){
-        Swal.fire({
-            title: "Exito!",
-            text: mensaje,
-            icon: "success",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#3085d6",
-            confirmButtonText: "Ver " + tipo_dato,
-            cancelButtonText: "OK"
-            }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = ventana_a_redirigir;
-            }
-        });
+function alerta_success(mensaje, ventana_a_redirigir, tipo_dato) {
+    Swal.fire({
+        title: "Exito!",
+        text: mensaje,
+        icon: "success",
+        showDenyButton: true,
+        confirmButtonColor: "#3085d6",
+        denyButtonColor: "#3085d6",
+        confirmButtonText: "Ver " + tipo_dato,
+        denyButtonText: "Aceptar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = ventana_a_redirigir;
+        } else if (result.isDenied){
+            location.reload();
+        }
+    });
 }
 
-function alerta_fallo(mensaje){
-            Swal.fire({
-                title: "Ups...",
-                text: mensaje,
-                icon: "error"
-            });
+function alerta_fallo(mensaje) {
+    Swal.fire({
+        title: "Ups...",
+        text: mensaje,
+        icon: "error"
+    });
 
 }
 

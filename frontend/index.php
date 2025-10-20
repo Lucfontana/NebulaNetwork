@@ -6,22 +6,10 @@ session_start();
 
 ?>
 
-<!DOCTYPE html>
-<html lang="<?= $lang ?>">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-</head>
-<link rel="stylesheet" href="style/style.css">
+<title>Index</title>
+<?php include 'nav.php'; ?>
 
 <body>
-    <!-- trae las barras de navegacion (sidebar y superior) -->
-    <?php include 'nav.php'; ?>
-
  <div class="hdrBackground" id="hdrBackground">
     <!-- Texto de Bienvenidos -->
     <div class="bienvenida-texto">
@@ -35,9 +23,9 @@ session_start();
 
     <!-- Botones debajo -->
     <div class="bienvenida-botones">
-        <a href="register.php"><button class="btn-bienvenida"><?= t("btn_info") ?></button></a>
-        <a href="respaldo_temp.php"><button class="btn-bienvenida"><?= t("btn_resources") ?></button></a>
-        <button class="btn-bienvenida"><?= t("btn_teachers") ?></button>
+        <a href="Mostrar_informacion.php"><button class="btn-bienvenida" id ="btn-bienvenida"><?= t("btn_info") ?></button></a>
+        <a href="respaldo_temp.php"><button class="btn-bienvenida" id ="btn-bienvenida"><?= t("btn_resources") ?></button></a>
+        <a href="Horarios.php"><button class="btn-bienvenida" id ="btn-bienvenida"><?= t("btn_teachers") ?></button></a>
     </div>
  </div>
 
@@ -49,12 +37,9 @@ session_start();
 
     </footer>
 
+    <script src="js/darkmode.js"></script>
+
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-        crossorigin="anonymous"></script>
-    <script src="js/sideMenu.js"></script>
+
 
 </body>
-
-</html>

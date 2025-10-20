@@ -1,82 +1,39 @@
 <?php
 
 include_once('../backend/db/conexion.php');
+include_once('../backend/queries.php');
+include_once('../backend/helpers.php');
 $con = conectar_a_bd();
-////////////////////////////////
-//Query de profesores
-$query_profesores = "SELECT * FROM profesores";
-$stmt = $con->prepare($query_profesores);
-$stmt->execute();
-$profesores_info = $stmt->get_result();
 
-//////////////////////////////////
-//Query de recursos
-$query_recursos = "SELECT * FROM recursos WHERE estado != 'uso'";
-$stmt = $con->prepare($query_recursos);
-$stmt->execute();
-$recursos_info = $stmt->get_result();
+$profesores_info = query_profesores($con);
 
-//////////////////////////////////
-// Consulta SQL para obtener la información de préstamos
-$query_unida = "SELECT 
--- SAR es el apodo de la tabla su_administra_recursos, 
--- le dice que traiga id_solicita, hora presta y vuelta de esa tabla
-    sar.id_solicita, sar.hora_presta, sar.hora_vuelta, 
+$recursos_info = query_recursos($con);
 
--- p es el apodo de profesores.
--- trae datos con apodos (por ejemplo, nombre 
--- lo trae como nombre_profesor)
-    p.nombre AS nombre_profesor, p.apellido AS apellido_profesor, p.ci_profesor, 
--- r = apodo de tabla RECURSOS
-    r.nombre AS nombre_recurso, r.id_recurso, r.estado AS estado_recurso,
-
--- su = apodo de tabla SUPERUSUARIO
-    su.nombre AS nombre_su, su.apellido AS apellido_su, su.id_superusuario
-
--- Junta tablas que tienen datos en comun, diciendo que el origen es su_administra_usuarios y tiene apodo de 'sar'
--- Nosotros esto lo haciamos con WHERE el anio pasado, pero queda mas legible con INNER JOIN
-    FROM su_administra_recursos sar
-    INNER JOIN profesor_solicita_recurso psr ON sar.id_solicita = psr.id_solicita
-    INNER JOIN profesores p ON psr.ci_profesor = p.ci_profesor
-    INNER JOIN recursos r ON psr.id_recurso = r.id_recurso
-    INNER JOIN superUsuario su ON sar.id_superusuario = su.id_superusuario
-
--- Se ordena como descendiente para que los mas nuevos aparezcan primero
-    ORDER BY sar.hora_presta DESC";
-
-    //Se ejecuta la query y se trae el resultado
-    $stmt = $con->prepare($query_unida);
-    $stmt->execute();
-    $prestamos_info = $stmt->get_result();
+$prestamos_info = query_prestamos($con);
 
 session_start();
 
+if (!isset($_SESSION['acceso']) && isset($_SESSION['ci'])) {
+    $ci_profesor = (int)$_SESSION['ci'];
+}
+
+$prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prestar recursos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-</head>
+<title>Prestar Recursos</title>
 <link rel="stylesheet" href="style/style.css">
 
-<?php if (isset($_SESSION['nivel_acceso'])):?>
-
-<body>
-    <!-- trae las barras de navegacion (sidebar y superior) -->
+<?php if (isset($_SESSION['nivel_acceso'])): ?>
     <?php include 'nav.php'; ?>
 
-    <main>
+    <body id="body-register">
+        <!-- trae las barras de navegacion (sidebar y superior) -->
+        <main>
             <div id="register-content">
                 <div class="article-register">
                     <div>
-                        <h1> Prestar recursos</h1>
+                        <h1><?= t("table_header_person") ?></h1>
                     </div>
                     <button type="button" id="Adscriptas-boton" class="btn btn-primary" data-toggle="modal"
                         data-target="#exampleModal">
@@ -85,129 +42,253 @@ session_start();
                 </div>
 
             </div>
-        </div>
-
-
-        <!--    Inicio de Ventanas Emergentes    -->
-
-        <div id="div-dialogs">
-
-        <dialog>
-            <form id="form-registro" class="registro-div superusuarios-form"
-                action="../backend/functions/Recursos/prestar-recursos/prestar_api.php" method="POST">
-                <h1>Prestar Recursos</h1>
-                <hr>
-
-                <div class="div-labels">
-                    <label for="profesor_asignado" class="label">Profesor a prestar:</label>
-                    <select name="profesor_asignado" id="pertenece" type="text" class="input-register" required>
-                        <option value=""></option>
-                        <?php while ($row = mysqli_fetch_array($profesores_info)): ?>
-                            <option value="<?= $row['ci_profesor']?>"><?= $row['nombre']?> <?= $row['apellido']?></option>
-                        <?php endwhile; ?>
-                    </select>
-                </div>
-
-                <div class="div-labels">
-                    <label for="recurso_prestado" class="label">Recurso a prestar:</label>
-                    <select name="recurso_prestado" id="pertenece" type="text" class="input-register" required>
-                        <option value=""></option>
-                        <?php while ($row = mysqli_fetch_array($recursos_info)): ?>
-                            <option value="<?= $row['id_recurso']?>"><?= $row['nombre']?></option>
-                        <?php endwhile; ?>
-                    </select>
-                </div>                
-                    
-                    <div class="div-botones-register">
-                        <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
-                            name="prestarRecurso"></input>
-            </form>
-            <button class="btn-Cerrar" type="button">Cerrar</button>
             </div>
-        </dialog>
-    </main>
-    <main>
+
+
+            <!--    Inicio de Ventanas Emergentes    -->
+
+            <div id="div-dialogs">
+
+                <div class="overlay">
+                    <div class="dialogs">
+                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
+                        <form id="form-registro" class="registro-div prestar-form">
+                            <h1><?= t("table_header_person") ?></h1>
+                            <hr>
+
+                            <div class="div-labels">
+                                <label for="profesor_asignado" class="label"><?= t("label_teacherlend") ?></label>
+                                <select name="profesor_asignado" id="profesor_asignado" type="text" class="input-register" required>
+                                    <option value=""></option>
+                                    <?php while ($row = mysqli_fetch_array($profesores_info)): ?>
+                                        <option value="<?= $row['ci_profesor'] ?>"><?= $row['nombre'] ?> <?= $row['apellido'] ?></option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+
+                            <div class="div-labels">
+                                <label for="recurso_prestado" class="label"><?= t("label_resource") ?></label>
+                                <select name="recurso_prestado" id="recurso_prestado" type="text" class="input-register" required>
+                                    <option value=""></option>
+                                    <?php while ($row = mysqli_fetch_array($recursos_info)): ?>
+                                        <option value="<?= $row['id_recurso'] ?>"><?= $row['nombre'] ?></option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+
+                            <div class="div-botones-register">
+                                <input id="envRegistro" class="btn-enviar-registro" type="submit" value="Registrar"
+                                    name="prestarRecurso"></input>
+                        </form>
+                    </div>
+                </div>
+        </main>
+        <main>
 
             <div id="contenido-mostrar-datos">
-            <h1>Recursos</h1>
+                <div class="div-mostrar-datos">
+                    <h1><?= t("title_lend_resources") ?></h1>
+                </div>
+                <div class="datos-grid prestamos-grid">
+                    <!-- Cabecera -->
+                    <div class="grid-header prestamos-header">
+                        <div class="grid-cell id">ID</div>
+                        <div class="grid-cell nombre-titulo"><?= t("table_header_person") ?></div>
+                        <div class="grid-cell nombre-titulo"><?= t("table_header_resource") ?></div>
+                        <div class="grid-cell nombre-titulo"><?= t("table_header_admin") ?></div>
+                        <div class="grid-cell nombre-titulo"><?= t("table_header_start_time") ?></div>
+                        <div class="grid-cell titulo-ult"><?= t("table_header_end_time") ?></div>
+                        <div class="grid-cell boton-titulo"><?= t("table_header_status") ?></div>
+                    </div>
 
-<table id="datos">
-    <tr>
-        <th class="id">Id Solicitud</th>
-        <th class="nombre-titulo">Persona que Pidió</th>
-        <th class="nombre-titulo">Recurso Prestado</th>
-        <th class="nombre-titulo">Administrador que Prestó</th>
-        <th class="nombre-titulo">Hora Prestado</th>
-        <th class="titulo-ult">Hora Devolución</th>
-        <th class="boton-titulo">Estado</th>
-    </tr>
+                    <!-- Filas de datos -->
+                    <?php
+                    if (mysqli_num_rows($prestamos_info) > 0) {
+                        while ($row = mysqli_fetch_array($prestamos_info)):
+                    ?>
+                            <div class="grid-row prestamos-row mostrar-datos">
+                                <div class="grid-cell"><?= $row['id_solicita'] ?></div>
+                                <div class="grid-cell">
+                                    <?= $row['nombre_profesor'] . ' ' . $row['apellido_profesor'] ?>
+                                    <br><small>(CI: <?= $row['ci_profesor'] ?>)</small>
+                                </div>
+                                <div class="grid-cell"><?= $row['nombre_recurso'] ?></div>
+                                <div class="grid-cell"><?= $row['nombre_su'] . ' ' . $row['apellido_su'] ?></div>
+                                <div class="grid-cell"><?= date('d/m/Y H:i:s', strtotime($row['hora_presta'])) ?></div>
+                                <div class="grid-cell"><?= $row['hora_vuelta'] ? date('d/m/Y H:i', strtotime($row['hora_vuelta'])) : 'Pendiente' ?></div>
+                                <div class="grid-cell">
+                                    <?php if ($row['hora_vuelta']): ?>
+                                        <span style="color: green; margin-left: 20px;"><?= t("status_returned") ?></span>
+                                    <?php else: ?>
+                                        <a class="boton-datos-editar botones-datos btn-devolver"
+                                            data-id="<?= $row['id_solicita'] ?>"
+                                            data-recurso="<?= $row['id_recurso'] ?>"
+                                            data-nombre-recurso="<?= htmlspecialchars($row['nombre_recurso']) ?>">
+                                            Devolver
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                    <?php
+                        endwhile;
+                    } else {
+                        echo '<div class="grid-row" style="text-align:center;"><div class="grid-cell" style="grid-column: 1 / -1;">No hay préstamos registrados</div></div>';
+                    }
+                    ?>
+                </div>
 
-    <?php 
-    if (mysqli_num_rows($prestamos_info) > 0) {
-        while ($row = mysqli_fetch_array($prestamos_info)): 
-    ?>
-        <tr class="mostrar-datos">
-            <th class="nombre"><?= $row['id_solicita'] ?></th>
-            <th class="nombre">
-                <?= $row['nombre_profesor'] . ' ' . $row['apellido_profesor'] ?>
-                <br><small>(CI: <?= $row['ci_profesor'] ?>)</small>
-            </th>
-            <th class="nombre">
-                <?= $row['nombre_recurso'] ?>
-            </th>
-            <th class="nombre">
-                <?= $row['nombre_su'] . ' ' . $row['apellido_su']?>
-            </th>
-            <th class="nombre">
-                <?= date('d/m/Y H:i:s', strtotime(($row['hora_presta']))) ?>
-            </th>
-            <th class="ultimo-dato">
-                <?= $row['hora_vuelta'] ? date('d/m/Y H:i', strtotime($row['hora_vuelta'])) : 'Pendiente' ?>
-            </th>
-            <th class="boton-dato">
-                <?php if ($row['hora_vuelta']): ?>
-                    <span style="color: green; margin-left: 20px;"> Devuelto</span>
-                <?php else: ?>
-                    <a class="boton-datos-editar botones-datos btn-devolver" 
-                       data-id="<?= $row['id_solicita'] ?>"
-                       data-recurso="<?= $row['id_recurso'] ?>"
-                       data-nombre-recurso="<?= htmlspecialchars($row['nombre_recurso']) ?>">
-                       Devolver
-                    </a>
-                <?php endif; ?>
-            </th>
-        </tr>
-    <?php 
-        endwhile;
-    } else {
-        echo '<tr><td colspan="7" style="text-align:center;">No hay préstamos registrados</td></tr>';
-    }
-    ?>
-</table>
-        </div>
-    </main>
 
-    <!--    Cierre de Ventanas Emergentes    -->
+                <!-- Vista de celular -->
+                <?php mysqli_data_seek($prestamos_info, 0); ?>
+                <div class="flex-mostrar-datos">
+                    <?php
+                    if (mysqli_num_rows($prestamos_info) > 0) {
+                        while ($row = mysqli_fetch_array($prestamos_info)):
+                    ?>
+                            <div class="datos-header-celu">
+                                <div class="datos-tabla-flex">
+                                    <div class="nombre-titulo grid-cell flex-header">
+                                        <?= $row['nombre_profesor'] . ' ' . $row['apellido_profesor'] . ' - ' ?>
+                                        <br><small>( CI: <?= $row['ci_profesor'] ?> )</small>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill mostrar-informacion-oculta" viewBox="0 0 16 16">
+                                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill icono-guardar-informacion" viewBox="0 0 16 16">
+                                            <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="informacion-escondida">
+                                <div class="datos-tabla-flex">
+                                    <div class="grid-cell">ID SOLICITA: <?= $row['id_solicita'] ?></div>
+                                </div>
+                                <div class="datos-tabla-flex">
+                                    <div class="grid-cell"><?= $row['nombre_recurso'] ?></div>
+                                </div>
+                                <div class="datos-tabla-flex">
+                                    <div class="grid-cell"><?= $row['nombre_su'] . ' ' . $row['apellido_su'] ?></div>
+                                </div>
+                                <div class="datos-tabla-flex">
+                                    <div class="grid-cell"><?= date('d/m/Y H:i:s', strtotime($row['hora_presta'])) ?></div>
+                                </div>
+                                <div class="datos-tabla-flex">
+                                    <div class="grid-cell"><?= $row['nombre_recurso'] ?></div>
+                                </div>
+                                <div class="grid-cell">
+                                    <?php if ($row['hora_vuelta']): ?>
+                                        <span style="color: green; margin-left: 20px;"><?= t("status_returned") ?></span>
+                                    <?php else: ?>
+                                        <a class="boton-datos-editar botones-datos btn-devolver"
+                                            data-id="<?= $row['id_solicita'] ?>"
+                                            data-recurso="<?= $row['id_recurso'] ?>"
+                                            data-nombre-recurso="<?= htmlspecialchars($row['nombre_recurso']) ?>">
+                                            Devolver
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                    <?php
+                        endwhile;
+                    } else {
+                        echo '<div class="grid-row" style="text-align:center;"><div class="grid-cell" style="grid-column: 1 / -1;">No hay préstamos registrados</div></div>';
+                    }
+                    ?>
+                </div>
+            </div>
+        </main>
 
-    <footer id="footer" class="footer">
-        <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
-    </footer>
-    <?php elseif (isset($_SESSION['ci'])):?>
-        <p>HOLA SOY UN PROFESOR!!! PAGINA EN DESARROLLO</p>
-    <?php elseif (!isset($_SESSION['ci'])):?>
-        <?php include_once('error.php')?>
-    <?php endif;?>
+        <!--    Cierre de Ventanas Emergentes    -->
+
+        <footer id="footer" class="footer">
+            <p> &copy; <b><?= t("footer") ?></b></p>
+        </footer>
+    <?php elseif (isset($_SESSION['ci'])): ?>
+        <?php include_once('nav.php') ?>
+        <main>
+            <div id="contenido-mostrar-datos">
+                <div class="div-mostrar-datos">
+                    <h1>Préstamos de Recursos</h1>
+                </div>
+                <div class="datos-grid prestamos-grid">
+                    <!-- Cabecera -->
+                    <div class="grid-header prestamos-header">
+                        <div class="grid-cell nombre-titulo"><?= t("table_header_resource") ?></div>
+                        <div class="grid-cell nombre-titulo"><?= t("table_header_start_time") ?></div>
+                        <div class="grid-cell titulo-ult"><?= t("table_header_end_time") ?></div>
+                    </div>
+
+                    <!-- Filas de datos -->
+                    <?php
+                    if (mysqli_num_rows($prestamos_info2) > 0) {
+                        while ($row = mysqli_fetch_array($prestamos_info2)):
+                    ?>
+                            <div class="grid-row prestamos-row mostrar-datos">
+                                <div class="grid-cell"><?= $row['nombre_recurso'] ?></div>
+                                <div class="grid-cell">
+                                    <?= date('d/m/Y H:i:s', strtotime($row['hora_presta'])) ?>
+                                </div>
+                                <div class="grid-cell">
+                                    <?php if ($row['hora_vuelta']): ?>
+                                        <?= date('d/m/Y H:i:s', strtotime($row['hora_vuelta'])) ?>
+                                    <?php else: ?>
+                                        <span style="color: orange;"><?= t("status_not_returned") ?></span>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                    <?php
+                        endwhile;
+                    } else {
+                        echo '<div class="grid-row" style="text-align:center;"><div class="grid-cell" style="grid-column: 1 / -1;">No tienes préstamos registrados</div></div>';
+                    }
+                    ?>
+                </div>
+
+                <!-- Vista profesores celular -->
+                <div class="flex-mostrar-datos">
+                    <?php mysqli_data_seek($prestamos_info2, 0); ?>
+                    <?php if (mysqli_num_rows($prestamos_info2) > 0) { ?>
+                        <?php while ($row = mysqli_fetch_array($prestamos_info2)): ?>
+                            <div class="datos-header-celu">
+                                <?= toggle_mostrar_info($row['nombre_recurso']) ?>
+                            </div>
+                            <div class="informacion-escondida">
+                                <div class="datos-tabla-flex">
+                                    <div class="grid-cell">Hora de presta: <?= date('d/m/Y H:i:s', strtotime($row['hora_presta'])) ?></div>
+                                    <div class="grid-cell">
+                                        <?php if ($row['hora_vuelta']): ?>
+                                            <?= date('d/m/Y H:i:s', strtotime($row['hora_vuelta'])) ?>
+                                        <?php else: ?>
+                                            <span style="color: orange;"><?= t("status_not_returned") ?></span>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                    <?php
+                        endwhile;
+                    } else {
+                        echo '<div class="grid-row" style="text-align:center;"><div class="grid-cell" style="grid-column: 1 / -1;">No tienes préstamos registrados</div></div>';
+                    }
+                    ?>
+                </div>
+            </div>
+        </main>
+        <footer id="footer" class="footer">
+            <p> &copy; <b><?= t("footer") ?></b></p>
+        </footer>
+
+    <?php elseif (!isset($_SESSION['ci'])): ?>
+        <?php include_once('error.php') ?>
+    <?php endif; ?>
 
     <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-        crossorigin="anonymous"></script>
-
-    <script src="../../backend/functions/Recursos/prestar-recursos/procesar_devolucion.js"></script>
+    <script type="module" src="../../backend/functions/Recursos/prestar-recursos/prestar.js"></script>
+    <script type="module" src="../../backend/functions/Recursos/prestar-recursos/procesar_devolucion.js"></script>
     <script src="js/Register-Modal.js"></script>
 
     <!-- Sweet alerts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</body>
 
-</html>
+    <!-- Mostrar informacion celular -->
+    <script src="./js/Mostrar-informacion-general.js"></script>
+    </body>

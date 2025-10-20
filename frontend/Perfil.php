@@ -2,31 +2,25 @@
 session_start();
 ?>
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/perfil.css">
-</head>
+<title>Perfil</title>
+<?php if (!isset($_SESSION['ci'])): ?>
+    <?php include_once('error.php') ?>
+<?php else: ?>
+<?php include 'nav.php'; ?>
 
 <body class="body-perfil">
-    <?php include 'nav.php'; ?>
-
-    <main class="main-perfil">
+<div id="perfil-principal">
+    <div class="main-perfil">
+        <div class="header-banner"></div>
         <div class="header-perfil">
-            <div>
+            <div id="icono-perfil-div">
                 <img class="icono-perfil" src="/frontend/img/Imagenes Luca/calendario.png" alt="Icono de usuario">
+                <button id="edit-perfil">✏️</button>
             </div>
             <div class="bienvenida-perfil">
                 <?php if (isset($_SESSION['ci'])): ?>
-                    <h2>¡Bienvenido, <?= $_SESSION['nombre_usuario']; ?>!</h2>
+                    <h2><?= $_SESSION['nombre_usuario']; ?> <?= $_SESSION['apellido']; ?></h2>
+                    <p>CI: <?= $_SESSION['ci']; ?></p>
                 <?php endif; ?>
             </div>
 
@@ -48,40 +42,42 @@ session_start();
                 <?php endif; ?>
             </div>
             <div>
-                <h2>Contraseña</h2>
-                <p>************</p>
                 <button id="change-passwd">Cambiar contraseña</button>
             </div>
         </div>
 
-
-
-        <div id="dialog-change-passwd" class="dialog-change">
-            <form action="/backend/functions/edit-paswd-user.php" method="POST" id="comprobarcontraseña">
+        <div id="dialog-change-passwd" class="overlay-edit">
+            <div class="popup">
                 <h1>Cambia tu contraseña</h1>
-                <hr>
-                <div class="datos-change-passwd">
-                    <label for="passwd" class="label">Ingrese su contraseña actual</label>
-                    <input class="dato-usuario-editar" type="password" name="passwd" id="passwd" maxlength="20" minlength="8" required placeholder="Ingresa su contraseña actual">
-                    <label for="newpasswd" class="label">Ingrese su nueva contraseña</label>
-                    <input class="dato-usuario-editar" type="password" name="newpasswd" id="newpasswd" maxlength="20" minlength="8" required placeholder="Ingresa su nueva contraseña">
-                </div>
-                <div>
-                    <input type="submit" value="Actualizar Contraseña" class="actualizar" id="confirmarpasswd"></input>
-                    <input type="button" value="Cancelar" id="cancelarEdit"></input>
-                </div>
-                    <p id="mensajeContraseña"></p>
-            </form>
-        </div>
+                <p class="subtext">Por seguridad, ingresa tu contraseña actual y una nueva.</p>
+                <form action="/backend/functions/edit-paswd-user.php" method="POST" id="comprobarcontraseña">
+                    <div class="input-group">
+                        <label for="passwd">Ingresa tu contraseña actual</label>
+                        <div class="contenedor-password">
+                            <input type="password" name="passwd" id="passwd" maxlength="20" minlength="8" required placeholder="Ingresa su contraseña actual">
+                            <i class="far fa-eye fa-eye-slash togglePassword"></i>
+                        </div>
+                    </div>
 
-    </main>
+                    <div class="input-group">
+                        <label for="newpasswd">Ingresa tu nueva contraseña</label>
+                        <div class="contenedor-password">
+                            <input type="password" name="newpasswd" id="newpasswd" maxlength="20" minlength="8" required placeholder="Ingresa su nueva contraseña">
+                            <i class="far fa-eye fa-eye-slash togglePassword"></i>
+                        </div>
+                    </div>
+                    <div class="buttons-modal">
+                        <input type="submit" value="Actualizar Contraseña" id="confirmarpasswd" class="btn-primary"></input>
+                        <input type="button" value="Cancelar" id="cancelarEdit" class="btn-secondary"></input>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-        crossorigin="anonymous"></script>
-    <script src="js/sideMenu.js"></script>
     <script src="/frontend/js/changeName.js"></script>
+    <script src="./js/togglepasswd.js"></script>
 </body>
-
-</html>
+<?php endif; ?>

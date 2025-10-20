@@ -1,6 +1,6 @@
 <?php
 
-include_once ('../db/conexion.php');
+include_once ('../../db/conexion.php');
 
 $con = conectar_a_bd();
 
@@ -20,6 +20,8 @@ if(isset($_POST['registrarRecurso'])){
 
     $insert_recursos = insert_datos_recursos($con, $existe, $nombre, $estado, $tipo, $pertenece_a);
 
+    error_log("Valor recibido de pertenece: " . $_POST['pertenece']);
+    error_log("Tipo de dato: " . gettype($_POST['pertenece']));
     //Se codifica el resultado de la insercion como json
     echo json_encode($insert_recursos);
 }
@@ -45,26 +47,40 @@ $result = $stmt->get_result();
 }
 
 function insert_datos_recursos($con, $existe, $nombre, $estado, $tipo, $pertenece_a){
-    // Array para almacenar la respuesta
     $respuesta_json = array();
 
     if ($existe == false){
-        // No incluir id_recurso - es AUTO_INCREMENT (pero si la del espacio pq es la fk que recibe el formulario)
-        $query_insertar = "INSERT INTO recursos (id_espacio, nombre, estado, tipo) VALUES ( ?, ?, ?, ?)";
+        
+        // VALIDAR QUE EL ID_ESPACIO EXISTE (si no es NULL)
+        if ($pertenece_a !== NULL) {
+            $query_validar = "SELECT id_espacio FROM espacios_fisicos WHERE id_espacio = ?";
+            $stmt_validar = $con->prepare($query_validar);
+            $stmt_validar->bind_param("i", $pertenece_a);
+            $stmt_validar->execute();
+            $result_validar = $stmt_validar->get_result();
+            
+            if ($result_validar->num_rows == 0) {
+                $respuesta_json['estado'] = 0;
+                $respuesta_json['mensaje'] = "El espacio físico seleccionado no existe";
+                return $respuesta_json;
+            }
+        }
+        
+        $query_insertar = "INSERT INTO recursos (id_espacio, nombre, estado, tipo) VALUES (?, ?, ?, ?)";
         $stmt = $con->prepare($query_insertar);
         
-        // 4 parámetros, 4 tipos
-        $stmt->bind_param("isss", $pertenece_a, $nombre, $estado, $tipo);
+        if ($pertenece_a === NULL) {
+            $stmt->bind_param("isss", $pertenece_a, $nombre, $estado, $tipo);
+        } else {
+            $stmt->bind_param("isss", $pertenece_a, $nombre, $estado, $tipo);
+        }
         
         if ($stmt->execute()) {
-
-        $respuesta_json['estado'] = 1;
-        $respuesta_json['mensaje'] = "Insertado correctamente";
-        
+            $respuesta_json['estado'] = 1;
+            $respuesta_json['mensaje'] = "Insertado correctamente";
         } else {
-
-        $respuesta_json['estado'] = 0;
-        $respuesta_json['mensaje'] = "Error al insertar: " . $stmt->error;
+            $respuesta_json['estado'] = 0;
+            $respuesta_json['mensaje'] = "Error al insertar: " . $stmt->error;
         }
         
     } else {

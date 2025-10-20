@@ -1,3 +1,7 @@
+<?php
+include 'functions.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,14 +14,14 @@
     <div class="error">
         <h1>Error...</h1>
         <?php if (!isset($_SESSION['ci'])):?>
-            <p>No tienes permiso para acceder a esta pagina, necesitas iniciar sesión.</p>
+            <p><?= t("error_not_logged_in") ?></p>
         <?php elseif(!isset($_SESSION['nivel_acceso'])):?>
-            <p>No tienes el rango suficiente para acceder a esta pagina, debes ser un Superusuario.</p>
+            <p><?= t("error_insufficient_access") ?></p>
         <?php endif;?>
 
         <div class="botones-error">
-            <a href="Login.php"><button id ="boton-inicio">Iniciar Sesion</button></a>
-            <a href="index.php"><button id ="boton-inicio">Volver al inicio</button></a>
+            <a href="Login.php"><button id ="boton-inicio"><?= t("btn_login") ?></button></a>
+            <a href="index.php"><button id ="boton-inicio"><?= t("btn_home") ?></button></a>
         </div>
     </div>
 </body>

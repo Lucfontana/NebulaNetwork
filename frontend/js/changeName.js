@@ -5,10 +5,6 @@ const closeChangePasswd = document.getElementById('cancelarEdit');
 const confirmarpasswd = document.getElementById('confirmarpasswd');
 const btnActualizar = document.getElementById("confirmar");
 
-const mensaje = document.getElementById("mensajeContraseña");
-
-
-
 changePasswd.addEventListener("click", function (a) {
     a.preventDefault();
     dialogChangePasswd.style.display = "flex";
@@ -21,14 +17,18 @@ confirmarpasswd.addEventListener("click", (e) => {
     const newpasswd = document.getElementById("newpasswd").value;
 
     if (passwd === "" || newpasswd === "") {
-        mensaje.textContent = "Por favor, complete todos los campos.";
+        alerta_fallo("Por favor, complete todos los campos.");
         e.preventDefault();
         return;
     } else if (passwd === newpasswd) {
-        mensaje.textContent = "La nueva contraseña debe ser diferente a la actual.";
+        alerta_fallo("La nueva contraseña debe ser diferente a la actual.");
         e.preventDefault();
         return;
-    } 
+    } else if (newpasswd.length < 8) {
+        alerta_fallo("La nueva contraseña debe ser de al menos 8 caracteres.");
+        e.preventDefault();
+        return;
+    }
 
 });
 
@@ -50,11 +50,14 @@ document.getElementById("comprobarcontraseña").addEventListener("submit", async
     });
 
     const data = await res.json();
-    mensaje.textContent = data.message;
+    mensaje= data.message;
+
 
     if (data.success) {
       // redirigir después de 1 segundo
-      setTimeout(() => window.location.href = "../frontend/Perfil.php", 1000);
+      alerta_success(mensaje, "../frontend/Perfil.php");
+    } else {
+      alerta_fallo(mensaje);
     }
   } catch (err) {
     console.error(err);
@@ -62,5 +65,28 @@ document.getElementById("comprobarcontraseña").addEventListener("submit", async
   }
 });
 
+// Sweet Alert 
 
+function alerta_success(mensaje, ventana_a_redirigir){
+        Swal.fire({
+            title: "Exito!",
+            text: mensaje,
+            icon: "success",
+            cancelButtonColor: "#3085d6",
+            cancelButtonText: "OK"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = ventana_a_redirigir;
+            }
+        });
+}
+
+function alerta_fallo(mensaje){
+            Swal.fire({
+                title: "Ups...",
+                text: mensaje,
+                icon: "error"
+            });
+
+}
 

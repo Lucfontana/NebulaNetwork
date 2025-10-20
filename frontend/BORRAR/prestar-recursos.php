@@ -1,6 +1,6 @@
 <?php
 
-include_once('../backend/db/conexion.php');
+include_once '../backend/db/conexion.php';
 
 $con = conectar_a_bd();
 $sql = "SELECT * FROM espacios_fisicos";
@@ -100,6 +100,7 @@ session_start();
 
 <div id="div-dialogs">
 <dialog>
+    <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png" alt=""></button>
     <form id="form-registro" class="registro-div profesores-form" action="../backend/functions/profesores_func.php" method="POST"> 
     <h1>Prestar recursos</h1><hr>
         <div class="div-labels">
@@ -131,7 +132,6 @@ Se tiene que declarar el boton como de tipo "button" pq por defecto,
 los botones adentro de un formulario son de tipo submit, por lo tanto
 esto causaba que el formulario se enviara cuando necesitabamos cerrar 
 el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
-<button class="btn-Cerrar" type="button">Cerrar</button>
     </div>
 </dialog>
 
@@ -165,7 +165,7 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
 
                 <!-- ARREGLAR!! SI SE SELECCIONA GENERAL NO FUNCIONA!! -->
                 <option value="general">General</option>
-                <?php while ($row = mysqli_fetch_array($sql)): ?>
+                <?php while (1 + 1): ?>
                     <option value="<?= $row['id_espacio']?>"><?= $row['nombre']?></option>
                 <?php endwhile; ?>
             </select>
@@ -214,10 +214,6 @@ el modal. Esta explicacion sirve para todos los botones de ceerrar que hay-->
 
 
     <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-        crossorigin="anonymous"></script>
-    <script src="js/sideMenu.js"></script>
     <script src="js/Register-Modal.js"></script>
     <script src="js/Validaciones-registro.js"></script>
 

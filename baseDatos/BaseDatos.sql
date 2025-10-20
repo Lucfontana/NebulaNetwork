@@ -67,6 +67,16 @@ create table profesor_dicta_asignatura (
     foreign key (id_asignatura) references asignaturas(id_asignatura) ON DELETE CASCADE
 );
 
+CREATE TABLE inasistencia (
+    id_inasistencia INT AUTO_INCREMENT PRIMARY KEY,
+    fecha_inasistencia DATE NOT NULL,
+    ci_profesor INT,
+    id_horario INT,
+    FOREIGN KEY (ci_profesor) REFERENCES profesores(ci_profesor) ON DELETE CASCADE,
+    FOREIGN KEY (id_horario) REFERENCES horarios(id_horario)
+);
+
+
 create table profesor_solicita_recurso(
     id_solicita int AUTO_INCREMENT primary key not null,
     ci_profesor int,
@@ -78,6 +88,7 @@ create table profesor_solicita_recurso(
 create table cumple (
     id_horario int,
     id_dicta int,
+    dia ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes'),
     FOREIGN KEY (id_horario) references horarios(id_horario) ON DELETE CASCADE,
     FOREIGN KEY (id_dicta) references profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE
 );
@@ -135,16 +146,13 @@ INSERT INTO asignaturas (nombre) VALUES
 ('Lengua Española');
 
 INSERT INTO espacios_fisicos (capacidad, nombre, tipo) VALUES
+(35, 'General', 'Aula'),
 (35, 'Aula 101', 'aula'),
 (25, 'Laboratorio de Química', 'laboratorio');
 
 INSERT INTO recursos (id_espacio, nombre, estado, tipo) VALUES
 (2, 'Microscopio Digital', 'libre', 'interno'),
 (1, 'Proyector Multimedia', 'uso', 'interno');
-
-INSERT INTO horarios (hora_inicio, hora_final, tipo) VALUES
-('08:00:00', '08:45:00', 'clase'),
-('09:30:00', '09:45:00', 'recreo');
 
 INSERT INTO superUsuario (id_superusuario, nombre, pass_superusuario, apellido, nivel_acceso) VALUES
 (12345672, 'Carlos', '$2y$10$hVNDXu5Z2mLgC1bBGoJGt./fMxBEG/hAa.q378y1ezY52kMdNpQYi', 'Rodríguez', '3');
@@ -157,18 +165,6 @@ INSERT INTO profesor_dicta_asignatura (ci_profesor, id_asignatura) VALUES
 
 INSERT INTO profesor_solicita_recurso (ci_profesor, id_recurso) VALUES
 (26197140, 1);
-
-INSERT INTO cumple (id_horario, id_dicta) VALUES
-(1, 1);
-
-INSERT INTO dicta_en_curso (id_dicta, id_curso) VALUES
-(1, 1);
-
-INSERT INTO dicta_ocupa_espacio (id_dicta, id_espacio) VALUES
-(1, 1);
-
-INSERT INTO su_administra_horarios (id_superusuario, id_horario) VALUES
-(12345672, 1);
 
 INSERT INTO su_administra_recursos (id_superusuario, id_solicita, hora_presta, hora_vuelta) VALUES
 (12345672, 1, '2025-09-29', '2025-09-29');

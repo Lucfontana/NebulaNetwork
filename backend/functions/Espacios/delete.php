@@ -9,5 +9,7 @@ $consulta = "DELETE FROM espacios_fisicos WHERE id_espacio=?";
 $stmt = $connect->prepare($consulta);
 $stmt->bind_param("i", $id);
 $stmt->execute();
+$stmt->close();
 
-Header("location: ../../../frontend/Espacios.php");
+Header("location: ../../../frontend/Mostrar_informacion.php");
+?>

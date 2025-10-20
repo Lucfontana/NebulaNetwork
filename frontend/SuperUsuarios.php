@@ -1,103 +1,145 @@
 <?php
 include_once('../backend/db/conexion.php');
-
+include_once 'functions.php';
+include_once '../backend/helpers.php';
 $connect = conectar_a_bd();
 $sql = "SELECT * FROM superusuario";
-
 $query = mysqli_query($connect, $sql);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<?php if (!isset($_SESSION['nivel_acceso'])): ?>
+    <?php include_once('error.php') ?>
+<?php else: ?>
+    <div class="div-mostrar-datos">
+    <h1>Super Usuarios</h1>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill btn" data-toggle="modal" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+    </svg>
+    </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuperUsuario</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-</head>
-
-<link rel="stylesheet" href="style/style.css">
-
-<body>
-    <!-- trae las barras de navegacion (sidebar y superior) -->
-    <?php include 'nav.php'; ?>
-    <main>
-        <div id="contenido-mostrar-datos">
-            <h1>SuperUsuario</h1>
-            <table id="datos">
-                <tr>
-                    <th class="id">ID </th>
-                    <th class="nombre-titulo">Nombre</th>
-                    <th class="nombre-titulo">Apellido</th>
-                    <th class="titulo-ult">Nivel de Acceso</th>
-                    <th class="boton-titulo">Borrar</th>
-                    <th class="boton-titulo">Editar</th>
-                </tr>
-                <?php while ($row = mysqli_fetch_array($query)): ?>
-                    <tr class="mostrar-datos">
-                        <th class="nombre"><?= $row['id_superusuario'] ?></th>
-                        <th class="nombre"><?= $row['nombre'] ?></th>
-                        <th class="nombre"><?= $row['apellido'] ?></th>
-                        <th class="ultimo-dato"><?= $row['nivel_acceso'] ?></th>
-                        <th class="boton-dato"><a href="#" class="boton-datos-eliminar botones-datos" data-id="<?= $row['id_superusuario'] ?>">Eliminar</a></th>
-                        <th class="boton-dato"><a class="boton-datos-editar botones-datos" data-id="<?= $row['id_superusuario'] ?>" data-nombre="<?= $row['nombre'] ?>" data-apellido="<?= $row['apellido'] ?>" data-nivel="<?= $row['nivel_acceso'] ?>">Editar</a></th>
-                    </tr>
-                <?php endwhile; ?>
-            </table>
+    <!-- Vista para PC -->
+    <div class="datos-grid superusuario-grid">
+        <div class="grid-header superusuario-header">
+            <div class="grid-cell id">CI</div>
+            <div class="grid-cell nombre-titulo">Nombre</div>
+            <div class="grid-cell nombre-titulo">Apellido</div>
+            <div class="grid-cell nombre-titulo">Nivel de Acceso</div>
+            <div class="grid-cell nombre-titulo">Email</div>
+            <div class="grid-cell boton-titulo">Eliminar</div>
+            <div class="grid-cell boton-titulo">Editar</div>
         </div>
 
-        <div class="overlay" id="overlay">
-            <div class="confirmacion">
-                <h2>¿Estás seguro?</h2>
-                <p>Esta acción eliminará el registro de forma permanente.</p>
-                <div class="botones_confirmar">
-                    <button class="btn btn-confirmar" id="confirmar" href="backend/functions/Cursos/delete.php?id=<?= $row['id_superusuario'] ?>">Eliminar</button>
-                    <button class="btn btn-cancelar" id="cancelar">Cancelar</button>
+        <?php while ($row = mysqli_fetch_array($query)): ?>
+            <div class="grid-row superusuario-row mostrar-datos">
+                <div class="grid-cell"><?= $row['id_superusuario'] ?></div>
+                <div class="grid-cell"><?= $row['nombre'] ?></div>
+                <div class="grid-cell"><?= $row['apellido'] ?></div>
+                <div class="grid-cell"><?= $row['nivel_acceso'] ?></div>
+                <div class="grid-cell"><?= $row['email_superusuario'] ?></div>
+                <div class="grid-cell">
+                    <a href="#"
+                        class="boton-datos-eliminar boton-eliminar-super botones-datos"
+                        data-id="<?= $row['id_superusuario'] ?>">
+                        Eliminar
+                    </a>
+                </div>
+                <div class="grid-cell">
+                    <a class="boton-datos-editar boton-editar-super botones-datos"
+                        data-id="<?= $row['id_superusuario'] ?>"
+                        data-nombre="<?= $row['nombre'] ?>"
+                        data-apellido="<?= $row['apellido'] ?>"
+                        data-nivel="<?= $row['nivel_acceso'] ?>"
+                        data-email="<?= $row['email_superusuario'] ?>">
+                        Editar
+                    </a>
                 </div>
             </div>
-        </div>
+        <?php endwhile; ?>
+    </div>
 
+    <!-- Vista para celular -->
+    <?php mysqli_data_seek($query, 0); ?>
+    <div class="flex-mostrar-datos">
+        <?php while ($row = mysqli_fetch_array($query)): $nombre = $row['nombre'] . ' ' . $row['apellido']?>
+            <div class="datos-header-celu">
+                <?php echo toggle_mostrar_info($nombre)?>
 
-        <div id="overlay-edit" class="overlay-edit">
-            <form action="\backend\functions\SuperUsuarios\edit.php" method="POST">
-                <h1>Registro de SuperUsuarios</h1>
-                <hr>
-                <div class="div-labels">
-                    <input class="input-register" type="hidden" name="id_superusuario" id="id_edit">
+                <div class="informacion-escondida">
+                    <div class="datos-tabla-flex">
+                        <div class="grid-cell">CI: <?= $row['id_superusuario'] ?></div>
+                    </div>
+                    <div class="datos-tabla-flex">
+                        <div class="grid-cell">Nivel de Acceso: <?= $row['nivel_acceso'] ?></div>
+                    </div>
+                    <div class="datos-tabla-flex">
+                        <div class="grid-cell">Email: <?= $row['email_superusuario'] ?></div>
+                    </div>
+
+                    <div class="grid-cell">
+                        <a href="#"
+                            class="boton-datos-eliminar boton-eliminar-super botones-datos"
+                            data-id="<?= $row['id_superusuario'] ?>">
+                            Eliminar
+                        </a>
+                    </div>
+                    <div class="grid-cell">
+                        <a class="boton-datos-editar boton-editar-super botones-datos"
+                            data-id="<?= $row['id_superusuario'] ?>"
+                            data-nombre="<?= $row['nombre'] ?>"
+                            data-apellido="<?= $row['apellido'] ?>"
+                            data-nivel="<?= $row['nivel_acceso'] ?>"
+                            data-email="<?= $row['email_superusuario'] ?>">
+                            Editar
+                        </a>
+                    </div>
                 </div>
-                <div class="editar-edit">
-                    <label for="nombre" class="label">Nombre:</label>
-                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit" maxlength="20" minlength="3" required placeholder="Ingresa Nombre">
-                    <label for="apellido" class="label">Apellido:</label>
-                    <input class="class-datos-editar" type="text" name="apellido" id="apellido_edit" maxlength="20" minlength="3" required placeholder="Ingresa Apellido">
-                    <label for="nivelacceso" class="label">Nivel de Acceso:</label>
-                    <select class="class-datos-editar" type="text" name="nivelacceso" id="nivel_edit" maxlength="20" minlength="8" required placeholder="">
+            </div>
+        <?php endwhile; ?>
+    </div>
+
+    <!-- ID único para eliminar -->
+     <?php boton_eliminar('overlay-super', 'el registro', 'confirmar-super', 'cancelar-super')?>
+
+    <!-- ID único para editar -->
+    <div id="overlay-edit-super" class="overlay-edit">
+        <div class="popup">
+            <h1>Modificación de Super Usuario</h1>
+            <form action="/backend/functions/SuperUsuarios/edit.php" method="POST" id="form-update-super">
+                <input type="hidden" name="id_superusuario" id="id_edit_super">
+
+                <div class="input-group">
+                    <label for="nombre">Nombre:</label>
+                    <input class="class-datos-editar" type="text" name="nombre" id="name_edit_super"
+                        maxlength="20" minlength="3" required placeholder="Ingresa nombre">
+                </div>
+
+                <div class="input-group">
+                    <label for="apellido">Apellido:</label>
+                    <input class="class-datos-editar" type="text" name="apellido" id="apellido_edit_super"
+                        maxlength="20" minlength="3" required placeholder="Ingresa apellido">
+                </div>
+
+                <div class="input-group">
+                    <label for="nivelacceso">Nivel de Acceso:</label>
+                    <select class="class-datos-editar" name="nivelacceso" id="nivel_edit_super" required>
                         <option value=""></option>
                         <option value="1">1 - Adscripta</option>
-                        <option value="2">2 - Secretaria</option>
+                        <option value="2">2 - Secretaría</option>
                         <option value="3">3 - Administrador</option>
                     </select>
                 </div>
-                <div>
-                    <input type="submit" value="Actualizar Infomacion" class="actualizar" id="actualizar"></input>
-                    <input type="button" value="Cancelar" id="cancelarEdit"></input>
+
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="class-datos-editar" name="email" id="email_edit_super" required>
+                </div>
+
+                <div class="buttons-modal">
+                    <input type="submit" value="Actualizar Información" class="btn-primary" id="actualizar-super">
+                    <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit-super">
                 </div>
             </form>
         </div>
-    </main>
+    </div>
 
-    <footer id="footer" class="footer">
-        <p> &copy; <b> 2025 ITSP. Todos los derechos reservados </b></p>
-    </footer>
-
-    <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-        crossorigin="anonymous"></script>
-    <script src="js/sideMenu.js"></script>
-    <script src="/frontend/js/confirm-superusuario.js"></script>
-</body>
-
-</html>
+<?php endif; ?>

@@ -1,24 +1,36 @@
 <?php
 
-// Indicar que la respuesta de este PHP es un JSON
-header('Content-Type: application/json');
+include_once("../../db/conexion.php");
+include_once("dependencias_func.php");
 
-include_once ('../../db/conexion.php');
-include_once ('dependencias_func.php');
+$con = conectar_a_bd();
 
-if(isset($_POST['registrarDependencia'])){
-    // profesor_asignado asignatura_dada hora_inicio hora_final salon_ocupado, curso_dictado
-    $profesor_asignado = $_POST['profesor_asignado'];
-    $asignatura_dada = $_POST['asignatura_dada'];
-    $hora_inicio = $_POST['hora_inicio'];
-    $hora_final = $_POST['hora_final'];
-    $salon_ocupado = $_POST['salon_ocupado'];
-    $curso_dictado = $_POST['curso_dictado'];
-
-    $id_dicta = seleccionar_id_dicta($con, $asignatura_dada, $profesor_asignado);
-
-    insert_dicta_ocupa_espacio($con, $id_dicta, $salon_ocupado);
-    insert_dicta_en_curso($con, $id_dicta, $curso_dictado);
+// Fijarse si se mando el formulario por post y registrar la dependencia
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registrarDependencia'])) {
+    
+    header('Content-Type: application/json');
+    
+    // Sanitizar y validar datos
+    $ci_profesor = (int)$_POST['profesor_asignado'];
+    $id_asignatura = (int)$_POST['asignatura_dada'];
+    $id_espacio = (int)$_POST['salon_ocupado'];
+    $id_curso = (int)$_POST['curso_dictado'];
+    $horarios = $_POST['hora_profesor_da_clase']; // Array
+    $dia_dictado = trim(strip_tags($_POST['dia_dictado']));
+    
+    // Llamar a la función principal
+    $resultado = registrar_dependencia_completa(
+        $con, 
+        $ci_profesor, 
+        $id_asignatura, 
+        $horarios, 
+        $id_espacio, 
+        $id_curso,
+        $dia_dictado
+    );
+    
+    echo json_encode($resultado);
+    
+    $con->close();
 }
-
 ?>
