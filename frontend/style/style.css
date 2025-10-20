@@ -664,7 +664,7 @@ aside>ul {
     background-color: white;
     border-radius: 20px;
     padding: 35px 40px;
-    margin: 5%;
+    margin: 10px;
     width: 80%;
     height: 90%;
     border-style: solid;
@@ -721,6 +721,10 @@ aside>ul {
     width: 100%;
     height: auto;
     margin-bottom: 10px;
+}
+
+.registro-div > h1 {
+    text-align: center;
 }
 
 hr {
@@ -1116,6 +1120,8 @@ hr {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    margin: 10px;
     background-color: white;
     border-radius: 20px;
     padding: 35px 40px;
