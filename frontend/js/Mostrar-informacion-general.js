@@ -2,6 +2,7 @@ const titulo = document.getElementById("titulo-mostrar-informacion");
 const botonMostrar = document.querySelectorAll(".mostrar-informacion-oculta");
 const informacionEscondida = document.querySelectorAll(".informacion-escondida");
 const botonGuardar = document.querySelectorAll(".icono-guardar-informacion");
+const selectInformacion = document.getElementById('informacion-change');
 
 botonMostrar.forEach((mostrar, index) => {
     mostrar.addEventListener("click", function () {
@@ -23,7 +24,7 @@ botonGuardar.forEach((guardar, index) => {
         informacionEscondida[index].style.transform = "translateY(-100%)";
         informacionEscondida[index].style.opacity = "0";
         informacionEscondida[index].style.transition = "0.5s";
-     guardar.style.display = "none";
+        guardar.style.display = "none";
         botonMostrar[index].style.display = "flex";
 
         setTimeout(() => {
@@ -32,13 +33,13 @@ botonGuardar.forEach((guardar, index) => {
     });
 });
 
-document.getElementById('informacion-change').addEventListener('change', function () {
+// Función para mostrar la sección correspondiente
+function mostrarSeccion(valor) {
     titulo.style.display = "none";
     document.querySelectorAll('.seccion-oculta').forEach(seccion => {
         seccion.style.display = 'none';
-    })
-    // Mostrar la sección seleccionada
-    const valor = this.value;
+    });
+    
     if (valor == "0") {
         titulo.style.display = "flex";
     } else if (valor) {
@@ -47,11 +48,34 @@ document.getElementById('informacion-change').addEventListener('change', functio
             seccionSeleccionada.style.display = 'flex';
         }
     }
+}
+
+// Evento change del select - Guardar en localStorage
+selectInformacion.addEventListener('change', function () {
+    const valor = this.value;
+    
+    // Guardar en localStorage
+    localStorage.setItem('seccionSeleccionada', valor);
+    
+    // Mostrar la sección
+    mostrarSeccion(valor);
 });
 
-// Ocultar todo al cargar
+// Al cargar la página, restaurar el valor guardado
 document.addEventListener('DOMContentLoaded', function () {
+    // Ocultar todas las secciones inicialmente
     document.querySelectorAll('.seccion-oculta').forEach(seccion => {
         seccion.style.display = 'none';
     });
+    
+    // Recuperar el valor guardado en localStorage
+    const valorGuardado = localStorage.getItem('seccionSeleccionada');
+    
+    if (valorGuardado) {
+        // Establecer el valor del select
+        selectInformacion.value = valorGuardado;
+        
+        // Mostrar la sección correspondiente
+        mostrarSeccion(valorGuardado);
+    }
 });

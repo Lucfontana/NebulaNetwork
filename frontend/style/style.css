@@ -664,7 +664,7 @@ aside>ul {
     background-color: white;
     border-radius: 20px;
     padding: 35px 40px;
-    margin: 5%;
+    margin: 10px;
     width: 80%;
     height: 90%;
     border-style: solid;
@@ -721,6 +721,10 @@ aside>ul {
     width: 100%;
     height: auto;
     margin-bottom: 10px;
+}
+
+.registro-div > h1 {
+    text-align: center;
 }
 
 hr {
@@ -960,6 +964,10 @@ hr {
 }
 
 /* Datos Horarios */
+.celular {
+    display: none;
+}
+
 .titulo-tabla {
     display: flex;
     width: 100%;
@@ -1116,6 +1124,8 @@ hr {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    margin: 10px;
     background-color: white;
     border-radius: 20px;
     padding: 35px 40px;
@@ -1794,9 +1804,38 @@ abajito cuando el ancho es menos de 700px */
 }
 
 /*  Horarios */
+
+
 @media (max-width: 1100px) {
     .filtros {
         flex-direction: column;
+    }
+
+    .celular {
+        display: block;
+    }
+
+    .computadora {
+        display: none;
+    }
+
+    .datos-row {
+    grid-template-columns: 200px repeat(2, 1fr);
+    }
+
+    .dias {
+        width: 200px;
+    }
+}
+
+@media (max-width: 700px) {
+    .datos-row {
+    grid-template-columns: 100px repeat(2, 1fr);
+    font-size: 12px;
+    }
+
+    .dias {
+        width: 100px;
     }
 }
 

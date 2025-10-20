@@ -18,8 +18,6 @@ $cursos_info = query_cursos($con);
 
 $orientacion_info = query_orientacion($con);
 
-
-
 //seleccionamos los horarios para desplegarlos en forma ascendente
 $connect = conectar_a_bd();
 
@@ -42,7 +40,7 @@ if (!isset($_SESSION['nivel_acceso']) && isset($_SESSION['ci'])) {
 $professql = isset($_GET['ci_profe']) ? intval($_GET['ci_profe']) : 0;
 
 // SOLO PARA TESTING - Comentar para usar con la fecha actual
-$fecha_test = '2025-10-20'; // Miércoles - Si quieren testear, cambien la fecha esta
+$fecha_test = '2025-11-27'; // Miércoles - Si quieren testear, cambien la fecha esta
 $base_time = strtotime($fecha_test);
 
 // Para uso actual usar esto (comentar las lineas de arriba):
@@ -54,6 +52,9 @@ $fin_semana_str = date('Y-m-d', strtotime('friday this week', $base_time));
 
 // Arreglo con los días de la semana
 $dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'];
+
+//Celular
+$dia_celu = ['lunes', 'martes'];
 
 // Mapeo de días en español a fechas específicas de esta semana
 $dias_a_fechas = [
@@ -113,12 +114,22 @@ if ($cursosql > 0) {
         $resultado = query_horas_dia_curso($con, $dia, $cursosql);
         $materias_por_dia[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
     }
+
+    foreach ($dia_celu as $dia) {
+        $resultado = query_horas_dia_curso($con, $dia, $cursosql);
+        $materias_por_dia_celu[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
+    }
 }
 // Si se seleccionó un espacio físico
 elseif ($espaciossql > 0) {
     foreach ($dias as $dia) {
         $resultado = query_espacios_por_dia($con, $dia, $espaciossql);
         $materias_por_dia[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
+    }
+
+    foreach ($dia_celu as $dia) {
+        $resultado = query_espacios_por_dia($con, $dia, $espaciossql);
+        $materias_por_dia_celu[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
     }
 }
 // Si se seleccionó un profesor
@@ -127,11 +138,20 @@ elseif ($professql > 0) {
         $resultado = query_horarios_profe_pordia($con, $dia, $professql);
         $materias_por_dia[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
     }
+
+    foreach ($dia_celu as $dia) {
+        $resultado = query_horarios_profe_pordia($con, $dia, $professql);
+        $materias_por_dia_celu[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
+    }
 }
 // Si no se seleccionó nada (primera carga de la página)
 else {
     foreach ($dias as $dia) {
         $materias_por_dia[$dia] = []; // vacío para evitar errores al recorrer luego
+    }
+
+    foreach ($dia_celu as $dia) {
+        $materias_por_dia_celu[$dia] = []; // vacío para evitar errores al recorrer luego
     }
 }
 ?>
@@ -192,10 +212,11 @@ else {
                             <option value="1"><?= t("label_select_course") ?></option>
                             <option value="2"><?= t("label_select_classroom") ?></option>
                         </select>
-                    </div> 
+                    </div>
                     <div id="div-salones" style="display: none;">
                         <label for="Salones" id="select-salones"><?= t("label_select_classroom") ?></label>
-                        <select name="salones" class="salones-select" id="salones-select" onchange="cambiarEspacio(this.value)">
+                        <select name="salones" class="salones-select" id="salones-select"
+                            onchange="cambiarEspacio(this.value)">
                             <option value="0"><?= t("option_select_classroom") ?></option>
                             <?php mysqli_data_seek($query3, 0); ?>
                             <?php while ($row3 = mysqli_fetch_array($query3)): ?>
@@ -216,18 +237,30 @@ else {
                     </div>
                 </div>
 
-                <?php echo cabecera_horarios() ?>
 
-                <?php if (isset($_GET['curso_id'])): ?>
+                <!-- Vista para computadora -->
+                <div class="computadora">
+                    <?php echo cabecera_horarios() ?>
 
-                    <?php echo cargar_horarios($query, $dias, $materias_por_dia, "nombre_asignatura") ?>
+                    <?php if (isset($_GET['curso_id'])): ?>
+                        <?php echo cargar_horarios($query, $dias, $materias_por_dia, "nombre_asignatura") ?>
+                    <?php elseif (isset($_GET['espacio_id'])): ?>
+                        <?php echo cargar_horarios($query, $dias, $materias_por_dia, 'nombre_espacio') ?>
+                    <?php endif; ?>
+                </div>
 
-                <?php elseif (isset($_GET['espacio_id'])): ?>
-
-                    <?php echo cargar_horarios($query, $dias, $materias_por_dia, 'nombre_espacio') ?>
-
-                <?php endif; ?>
+                <!-- Vista para celular -->
+                <div class="celular">
+                    <?php echo cabecera_horarios_celular() ?>
+                    <?php if (isset($_GET['curso_id'])): ?>
+                        <?php echo cargar_horarios($query, $dia_celu, $materias_por_dia_celu, "nombre_asignatura") ?>
+                    <?php elseif (isset($_GET['espacio_id'])): ?>
+                        <?php echo cargar_horarios($query, $dia_celu, $materias_por_dia_celu, 'nombre_espacio') ?>
+                    <?php endif; ?>
+                </div>
             </div>
+
+
 
             <div class="overlay">
                 <div class="dialogs">
@@ -243,8 +276,8 @@ else {
                         </div>
                         <div class="div-labels">
                             <label for="hora_final" class="label"><?= t("label_end_time") ?></label>
-                            <input class="input-register" type="time" name="hora_final" id="horaFinalHorario"
-                                maxlength="20" minlength="8" required placeholder="<?= t("placeholder_end_time") ?>">
+                            <input class="input-register" type="time" name="hora_final" id="horaFinalHorario" maxlength="20"
+                                minlength="8" required placeholder="<?= t("placeholder_end_time") ?>">
                         </div>
                         <div class="div-botones-register">
                             <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
@@ -303,8 +336,8 @@ else {
 
                         <div class="div-labels">
                             <label for="capacity" class="label"><?= t("label_hours_taught") ?></label>
-                            <input class="input-register" type="number" id="crear_campos"
-                                maxlength="3" minlength="1" required>
+                            <input class="input-register" type="number" id="crear_campos" maxlength="3" minlength="1"
+                                required>
                         </div>
 
                         <div id="campos-dinamicos"></div>
@@ -361,7 +394,8 @@ else {
             <div id="contenido-mostrar-datos">
                 <h1><?= t("title_my_schedules") ?></h1>
 
-                <button type="button" id="Profesores-boton" class="btn-primary btn" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" id="Profesores-boton" class="btn-primary btn" data-toggle="modal"
+                    data-target="#exampleModal">
                     <?= t("btn_register_absence") ?>
                 </button>
 
@@ -369,8 +403,8 @@ else {
                 <div id="div-dialogs">
                     <div class="overlay">
                         <div class="dialogs" id="dialogs">
-                            <button class="btn-Cerrar" type="button"><img class="cruz-register"
-                                    src="/frontend/img/cruz.png" alt=""></button>
+                            <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                                    alt=""></button>
                             <form class="registro-div inasistencia-form">
                                 <h1><?= t("btn_register_absence") ?></h1>
                                 <hr>
@@ -382,7 +416,8 @@ else {
 
                                 <div class="div-labels" id="horas_falta">
                                     <label for="nose" class="label">Cantidad de horas a faltar:</label>
-                                    <input type="number" name="cantidad_horas_falta" id="cantidad_horas_falta" class="input-register" required>
+                                    <input type="number" name="cantidad_horas_falta" id="cantidad_horas_falta"
+                                        class="input-register" required>
                                 </div>
 
                                 <div class="div-labels" id="horas_clase_profe"></div>

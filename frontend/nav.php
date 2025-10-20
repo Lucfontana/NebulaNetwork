@@ -49,42 +49,47 @@ include_once 'functions.php';
     <aside id="aside">
         <ul class="link-aside-images" id="link-aside-images">
 
-        <!-- Login / Perfil -->
-        <li class="aside-item">
-        <?php if (!isset($_SESSION['ci'])): ?>
-            <a href="Login.php" data-tooltip="Loginperson-circle_white_no_bg">
-            <img src="img/Iconos sidebar/person-circle.svg" alt="Login" width="25" height="25" class="icono">
-            </a>
-        <?php else: ?>
-            <div class="settings-icon" data-tooltip="Perfil">
-            <img src="img/Iconos sidebar/person-circle.svg" alt="Configuraciones" width="25" height="25" class="icono">
-            <div class="settings-menu">
-                <a href="/frontend/Perfil.php"><?= t("Perfil") ?></a>
-                <a id="logout" href="#logout"><?= t("Cerrar Sesión") ?></a>
-            </div>
-            </div>
+            <!-- Login / Perfil -->
+            <li class="aside-item">
+                <?php if (!isset($_SESSION['ci'])): ?>
+                    <a href="Login.php" data-tooltip="Loginperson-circle_white_no_bg">
+                        <img src="img/Iconos sidebar/person-circle.svg" alt="Login" width="25" height="25" class="icono">
+                    </a>
+                <?php else: ?>
+
+            <li class="aside-item" data-tooltip="<?= t("Perfil") ?>">
+                <a href="/frontend/Perfil.php">
+                    <img src="img/Iconos sidebar/person-circle.svg" alt="Configuraciones" width="25" height="25" class="icono">
+                </a>
+            </li>
+
+            <li class="aside-item" data-tooltip="<?= t("Cerrar Sesión") ?>">
+                <a id="logout" href="#logout">
+                <img src="img/Iconos sidebar/person-circle.svg" alt="Cerrar Sesión" width="25" height="25" class="icono">
+                </a>
+            </li>
         <?php endif; ?>
         </li>
 
         <!-- Horarios -->
         <li class="aside-item" data-tooltip="<?= t('aside_schedule') ?>">
-        <a href="./Horarios.php">
-            <img src="img/Iconos sidebar/calendar4-week.svg" alt="Calendario" width="25" height="25" class="icono">
-        </a>
+            <a href="./Horarios.php">
+                <img src="img/Iconos sidebar/calendar4-week.svg" alt="Calendario" width="25" height="25" class="icono">
+            </a>
         </li>
 
         <!-- Idioma -->
         <li class="aside-item lang-icon" data-tooltip="<?= t('aside_lang') ?>">
-        <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
-            <img src="img/Iconos sidebar/translate.svg" alt="Idioma" width="25" height="25" class="icono">
-        </a>
+            <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
+                <img src="img/Iconos sidebar/translate.svg" alt="Idioma" width="25" height="25" class="icono">
+            </a>
         </li>
 
         <!-- Modo oscuro -->
         <li class="aside-item" id="darkmode-icon" data-tooltip="<?= t('aside_darkmode') ?>">
-        <a href="#modo-oscuro">
-            <img src="img/Iconos sidebar/moon.svg" alt="Modo oscuro" width="25" height="25" class="icono">
-        </a>
+            <a href="#modo-oscuro">
+                <img src="img/Iconos sidebar/moon.svg" alt="Modo oscuro" width="25" height="25" class="icono">
+            </a>
         </li>
 
         </ul>
