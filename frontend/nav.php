@@ -63,11 +63,6 @@ include_once 'functions.php';
                 </a>
             </li>
 
-            <li class="aside-item" data-tooltip="<?= t("Cerrar Sesión") ?>">
-                <a id="logout" href="#logout">
-                <img src="img/Iconos sidebar/person-circle.svg" alt="Cerrar Sesión" width="25" height="25" class="icono">
-                </a>
-            </li>
         <?php endif; ?>
         </li>
 
@@ -91,6 +86,13 @@ include_once 'functions.php';
                 <img src="img/Iconos sidebar/moon.svg" alt="Modo oscuro" width="25" height="25" class="icono">
             </a>
         </li>
+        <?php if (isset($_SESSION['ci'])): ?>
+        <li class="aside-item" data-tooltip="<?= t("Cerrar Sesión") ?>">
+                <a id="logout" href="#logout">
+                <img src="img/Iconos sidebar/box-arrow-right.svg" alt="Cerrar Sesión" width="25" height="25" class="icono">
+                </a>
+        </li>
+        <?php endif; ?>
 
         </ul>
     </aside>
