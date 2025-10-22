@@ -41,11 +41,11 @@ if (!isset($_SESSION['nivel_acceso']) && isset($_SESSION['ci'])) {
 $professql = isset($_GET['ci_profe']) ? intval($_GET['ci_profe']) : 0;
 
 // SOLO PARA TESTING - Comentar para usar con la fecha actual
-//$fecha_test = '2025-10-20'; // Miércoles - Si quieren testear, cambien la fecha esta
-//$base_time = strtotime($fecha_test);
+$fecha_test = '2025-10-27'; // Miércoles - Si quieren testear, cambien la fecha esta
+$base_time = strtotime($fecha_test);
 
 // Para uso actual usar esto (comentar las lineas de arriba):
-$base_time = time();
+// $base_time = time();
 
 // Calcular inicio y fin de la semana actual (Lunes a Viernes)
 $inicio_semana_str = date('Y-m-d', strtotime('monday this week', $base_time));
@@ -165,8 +165,7 @@ else {
                     <?php echo cabecera_horarios() ?>
 
                     <?php if (isset($_GET['curso_id'])): ?>
-                        <?php mysqli_data_seek($query4, 0); // Reset del puntero 
-                        echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura");
+                        <?php echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura");
                         ?>
                     <?php endif; ?>
                 </div>
@@ -184,8 +183,7 @@ else {
                                 Solo el div del lunes se muestra por defecto, los demás se ocultan con display:none. -->
                             <div class="horario-dia" id="horario-<?= $dia_celu ?>" style="<?= $dia_celu === 'lunes' ? '' : 'display:none;' ?>">
                                 <?php if (isset($_GET['curso_id'])): ?>
-                                    <?php mysqli_data_seek($query4, 0); // Reset del puntero 
-                                    echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura");
+                                    <?php echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura");
                                     ?>
                                 <?php endif; ?>
                             </div>

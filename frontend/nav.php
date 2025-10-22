@@ -52,47 +52,49 @@ include_once 'functions.php';
             <!-- Login / Perfil -->
             <li class="aside-item">
                 <?php if (!isset($_SESSION['ci'])): ?>
-                    <a href="Login.php" data-tooltip="Loginperson-circle_white_no_bg">
+                    <a href="Login.php" data-tooltip="<?= t("Log-in") ?>">
                         <img src="img/Iconos sidebar/person-circle.svg" alt="Login" width="25" height="25" class="icono">
                     </a>
                 <?php else: ?>
 
-            <li class="aside-item" data-tooltip="<?= t("Perfil") ?>">
-                <a href="/frontend/Perfil.php">
-                    <img src="img/Iconos sidebar/person-circle.svg" alt="Configuraciones" width="25" height="25" class="icono">
+                <li class="aside-item" data-tooltip="<?= t("Perfil") ?>">
+                    <a href="/frontend/Perfil.php">
+                        <img src="img/Iconos sidebar/person-circle.svg" alt="Configuraciones" width="25" height="25"
+                            class="icono">
+                    </a>
+                </li>
+            <?php endif; ?>
+            </li>
+
+            <!-- Horarios -->
+            <li class="aside-item" data-tooltip="<?= t('aside_schedule') ?>">
+                <a href="./Horarios.php">
+                    <img src="img/Iconos sidebar/calendar4-week.svg" alt="Calendario" width="25" height="25"
+                        class="icono">
                 </a>
             </li>
 
-        <?php endif; ?>
-        </li>
-
-        <!-- Horarios -->
-        <li class="aside-item" data-tooltip="<?= t('aside_schedule') ?>">
-            <a href="./Horarios.php">
-                <img src="img/Iconos sidebar/calendar4-week.svg" alt="Calendario" width="25" height="25" class="icono">
-            </a>
-        </li>
-
-        <!-- Idioma -->
-        <li class="aside-item lang-icon" data-tooltip="<?= t('aside_lang') ?>">
-            <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
-                <img src="img/Iconos sidebar/translate.svg" alt="Idioma" width="25" height="25" class="icono">
-            </a>
-        </li>
-
-        <!-- Modo oscuro -->
-        <li class="aside-item" id="darkmode-icon" data-tooltip="<?= t('aside_darkmode') ?>">
-            <a href="#modo-oscuro">
-                <img src="img/Iconos sidebar/moon.svg" alt="Modo oscuro" width="25" height="25" class="icono">
-            </a>
-        </li>
-        <?php if (isset($_SESSION['ci'])): ?>
-        <li class="aside-item" data-tooltip="<?= t("Cerrar Sesión") ?>">
-                <a id="logout" href="#logout">
-                <img src="img/Iconos sidebar/box-arrow-right.svg" alt="Cerrar Sesión" width="25" height="25" class="icono">
+            <!-- Idioma -->
+            <li class="aside-item lang-icon" data-tooltip="<?= t('aside_lang') ?>">
+                <a href="?lang=<?= $lang === 'es' ? 'en' : 'es' ?>">
+                    <img src="img/Iconos sidebar/translate.svg" alt="Idioma" width="25" height="25" class="icono">
                 </a>
-        </li>
-        <?php endif; ?>
+            </li>
+
+            <!-- Modo oscuro -->
+            <li class="aside-item" id="darkmode-icon" data-tooltip="<?= t('aside_darkmode') ?>">
+                <a href="#modo-oscuro">
+                    <img src="img/Iconos sidebar/moon.svg" alt="Modo oscuro" width="25" height="25" class="icono">
+                </a>
+            </li>
+
+            <?php if (isset($_SESSION['ci'])): ?>
+            <li class="aside-item" data-tooltip="<?= t("Cerrar Sesión") ?>">
+                <a id="logout">
+                <img src="img/log out.png" alt="Cerrar Sesión" width="25" height="25" class="icono">
+                </a>
+            </li>
+            <?php endif; ?>
 
         </ul>
     </aside>
