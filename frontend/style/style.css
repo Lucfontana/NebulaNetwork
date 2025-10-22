@@ -1853,23 +1853,22 @@ abajito cuando el ancho es menos de 700px */
 }
 
 @media (prefers-color-scheme: dark) {
-    .navStyle.darkmode {
-        transition: all 0.5s ease;
+    .darkmode .navStyle {
         background-color: #2b2b2b;
         color: #fff;
     }
 
-    .nav-link.darkmode,
-    .navbar-brand.darkmode,
-    .nav-item a.darkmode {
+    .darkmode .nav-link,
+    .darkmode .navbar-brand,
+    .darkmode .nav-item a {
         color: #fff;
     }
 
-    .nav-link.darkmode:hover {
+    .darkmode .nav-link:hover {
         color: #6d6d6d;
     }
 
-    .navbar-brand.darkmode:hover {
+    .darkmode .navbar-brand:hover {
         color: #6d6d6d;
     }
 
@@ -1877,28 +1876,28 @@ abajito cuando el ancho es menos de 700px */
         filter: invert(100%);
     }
 
-    .navbar-toggler-icon.darkmode {
+    .darkmode .navbar-toggler-icon {
         filter: invert(1) brightness(2);
     }
 
-    .navbar-toggler-icon.darkmode :hover {
+    .darkmode .navbar-toggler-icon:hover {
         filter: invert(1) brightness(2);
     }
 
-    .btn-bienvenida.darkmode {
+    .darkmode .btn-bienvenida {
         background-color: #333;
         color: #fff;
     }
 
-    .btn-bienvenida.darkmode:hover {
+    .darkmode .btn-bienvenida:hover {
         background-color: #3c3b3b;
     }
 
-    aside.darkmode {
+    .darkmode aside {
         background-color: #1e1e1e;
     }
 
-    .footer.darkmode {
+    .darkmode footer {
         background-color:  #2b2b2b;
         padding: 20px 0 10px 0;
         text-align: center;
