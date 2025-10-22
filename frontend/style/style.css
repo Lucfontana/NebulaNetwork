@@ -6,7 +6,7 @@
     ---gradientNav: rgb(26, 56, 155);
 }
 
-/*------------------------ GENERALIDADES ----------------------*/
+/* ------------------------ GENERALIDADES ---------------------- */
 * {
     padding: 0;
     margin: 0;
@@ -37,7 +37,7 @@ main {
     background-size: 18px 18px;
 }
 
-/*NAVBAR DE BOOTSTRAP*/
+/* NAVBAR DE BOOTSTRAP */
 .navbar-nav {
     display: flex;
     width: 98%;
@@ -47,9 +47,9 @@ main {
 .navStyle {
     padding: 10px 0 10px 0;
     font-size: 18px;
-    position: fixed; /*hace que la navbar se quede fija, esto junto al top*/
+    position: fixed; /* hace que la navbar se quede fija, esto junto al top */
     top: 0px;
-    z-index: 999; /*Navbar encima del aside*/
+    z-index: 999; /* Navbar encima del aside */
     color: #2b2b2b;
     margin: 0 0 0 0;
     background-color: #E0E3EB;
@@ -57,11 +57,11 @@ main {
 
 }
 
-.navStyle.darkmode {
+/*.navStyle.darkmode {
     transition: all 0.5s ease;
     background-color: #2b2b2b;
     color: #fff;
-}
+} */
 
 #navbarcontent {
     display: none;
@@ -80,67 +80,56 @@ main {
     padding-left: 10px;
 }
 
-.nav-link.darkmode,
+/* .nav-link.darkmode,
 .navbar-brand.darkmode,
 .nav-item a.darkmode {
     color: #fff;
-}
+} */
 
 .nav-link:hover {
-    color: #17264b;
+    color: #233A78;
 }
 
-.nav-link.darkmode:hover {
+/* .nav-link.darkmode:hover {
     color: #6d6d6d;
-}
+} */
 
 .navbar-brand:hover {
-    color: #17264b;
+    color: #233A78;
 }
 
-.navbar-brand.darkmode:hover {
+/* .navbar-brand.darkmode:hover {
     color: #6d6d6d;
-}
+} */
 
 .icono {
-    filter: invert(30%) sepia(45%) saturate(2200%) hue-rotate(210deg) brightness(30%) contrast(90%);
+    filter: invert(15%);
     transition: filter 0.5s ease;
 }
 
-.darkmode .icono {
+/* .darkmode .icono {
     filter: invert(100%);
-}
+} */
 
 .icono:hover {
-    filter: invert(25%) sepia(60%) saturate(2500%) hue-rotate(210deg) brightness(10%) contrast(120%);
+    filter: invert(40%);
 }
 
-.darkmode .icono:hover {
+.navbar-toggler-icon:hover {
     filter: invert(30%);
-}
-
-.navbar-toggler-icon {
-    filter: invert(20%) sepia(90%) saturate(2200%) hue-rotate(210deg) brightness(35%) contrast(95%);
-    transition: filter 0.3s ease;
-}
-
-.navbar-toggler-icon:hover,
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
-    filter: invert(15%) sepia(60%) saturate(2500%) hue-rotate(210deg) brightness(15%) contrast(120%);
-}
-
-.darkmode .navbar-toggler-icon {
-    filter: invert(100%);
     transition: filter 0.5s ease;
 }
 
-.darkmode .navbar-toggler-icon:hover,
-.darkmode .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon { /*Esto es para que mientras la hamburguesa esté desplegada, el hover se mantenga*/
-  filter: invert(60%);
+/* .navbar-toggler-icon.darkmode {
+    filter: invert(1) brightness(2);
 }
 
+.navbar-toggler-icon.darkmode :hover {
+    filter: invert(1) brightness(2);
+} */
+
 .navbar-brand {
-    font-size: 30px; /*Tamaño del titulo (ITSP)*/
+    font-size: 30px; /* Tamaño del titulo (ITSP) */
     margin: 0;
     padding-left: 10px; /* un poquito de separación del borde */
     display: flex;
@@ -151,7 +140,7 @@ main {
     justify-content: space-around;
 }
 
-/*------------------------ CONTENIDO DE LA PAGINA ----------------------*/
+/* /------------------------ CONTENIDO DE LA PAGINA ----------------------/ */
 
 /* Contenedor principal en columna para texto y botones */
 
@@ -203,18 +192,18 @@ main {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
 }
 
-.btn-bienvenida.darkmode {
+/* .btn-bienvenida.darkmode {
     background-color: #333;
     color: #fff;
-}
+} */
 
 .btn-bienvenida:hover {
     background-color: #233A78;
 }
 
-.btn-bienvenida.darkmode:hover {
+/* .btn-bienvenida.darkmode:hover {
     background-color: #3c3b3b;
-}
+} */
 
 .contenido {
     display: flex;
@@ -228,7 +217,7 @@ main {
     justify-content: center;
 }
 
-/*------------------------ BARRA LATERAL ----------------------*/
+/* /------------------------ BARRA LATERAL ----------------------/ */
 
 aside {
     display: block;
@@ -241,9 +230,9 @@ aside {
 
 }
 
-aside.darkmode {
+/* aside.darkmode {
     background-color: #1e1e1e;
-}
+} */
 
 aside>ul {
     height: 100%;
@@ -346,24 +335,24 @@ aside>ul {
 .settings-menu a:hover {
     background-color: black;
     color: #fff;
-    transition: 0, 0.5s;
+    transition: 0, 0.5s;
 }
-
 
 /*------------------------ FOOTER ----------------------*/
 .footer {
     background-color:#E0E3EB;
     padding: 20px 0 10px 0;
     text-align: center;
-    color: #2F4C97;
+    color: #2b2b2b;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 20px;
     width: auto;
-}
+    transition: 0.5s;
+    }
 
-.footer.darkmode {
+/* .footer.darkmode {
     background-color:  #2b2b2b;
     padding: 20px 0 10px 0;
     text-align: center;
@@ -373,7 +362,7 @@ aside>ul {
     justify-content: center;
     font-size: 20px;
     width: auto;
-}
+} */
 
 /* Login - CSS */
 
@@ -1863,3 +1852,61 @@ abajito cuando el ancho es menos de 700px */
     }
 }
 
+@media (prefers-color-scheme: dark) {
+    .navStyle.darkmode {
+        transition: all 0.5s ease;
+        background-color: #2b2b2b;
+        color: #fff;
+    }
+
+    .nav-link.darkmode,
+    .navbar-brand.darkmode,
+    .nav-item a.darkmode {
+        color: #fff;
+    }
+
+    .nav-link.darkmode:hover {
+        color: #6d6d6d;
+    }
+
+    .navbar-brand.darkmode:hover {
+        color: #6d6d6d;
+    }
+
+    .darkmode .icono {
+        filter: invert(100%);
+    }
+
+    .navbar-toggler-icon.darkmode {
+        filter: invert(1) brightness(2);
+    }
+
+    .navbar-toggler-icon.darkmode :hover {
+        filter: invert(1) brightness(2);
+    }
+
+    .btn-bienvenida.darkmode {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .btn-bienvenida.darkmode:hover {
+        background-color: #3c3b3b;
+    }
+
+    aside.darkmode {
+        background-color: #1e1e1e;
+    }
+
+    .footer.darkmode {
+        background-color:  #2b2b2b;
+        padding: 20px 0 10px 0;
+        text-align: center;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        width: auto;
+    }
+}
