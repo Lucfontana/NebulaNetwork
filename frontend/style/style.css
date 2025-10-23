@@ -851,13 +851,6 @@ hr {
 }
 
 /* Cabecera general */
-.grid-header,
-.datos-header {
-    background: #2c3e50;
-    color: white;
-    font-weight: 600;
-}
-
 .grid-row,
 .grid-header {
     display: grid;
@@ -886,7 +879,7 @@ hr {
     text-align: center;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ecf0f1;
+    border: 1px solid #d8d8d8;
 }
 
 .grid-cell:last-child {
@@ -1062,9 +1055,14 @@ hr {
 .filtros {
     display: flex;
     align-items: center;
+    background-color: white;
     width: 100%;
     margin-bottom: 20px;
     gap: 20px;
+}
+
+.filtros>label {
+    color: #1c1c1c;
 }
 
 #select-horarios,
@@ -1077,6 +1075,7 @@ hr {
 #informacion-change {
     width: 200px;
     font-size: 14px;
+    color: #333;
 }
 
 /* Botones de acción */
@@ -1895,13 +1894,51 @@ abajito cuando el ancho es menos de 700px */
 
     .darkmode footer {
         background-color:  #2b2b2b;
-        padding: 20px 0 10px 0;
-        text-align: center;
         color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        width: auto;
+    }
+
+    .darkmode #contenido-mostrar-datos {
+        background-color: #333;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* opcional */
+    }
+
+    .darkmode .div-mostrar-datos {
+        background: #333;
+    }
+
+    .darkmode #contenido-mostrar-datos h1 {
+        color: #fff;
+    }
+
+    .darkmode .datos-grid {
+        background: #ecf0f1;
+    }
+
+    .darkmode .filtros {
+        background-color: #333;
+    }
+
+    .darkmode div.filtros {
+        background-color: #333;
+    }
+
+    .darkmode .div-mostrar-datos-main {
+        background-color: #333;
+    }
+
+    .darkmode .grid-cell {
+        border: 1px solid #2b2b2b;
+    }
+
+    .darkmode .btn {
+        color: #000;
+    }
+
+    .darkmode .filtros>label {
+        color: #fff;
+    }
+
+    .darkmode .informacion-escondida {
+        background: #fff;
     }
 }

@@ -57,5 +57,37 @@
 }
 
 .darkmode #contenido-mostrar-datos h1 {
-    color: #a0a0a0;
+    color: #fff;
+}
+
+.darkmode .datos-grid {
+    background: #ecf0f1;
+}
+
+.darkmode .filtros {
+    background-color: #333;
+}
+
+.darkmode div.filtros {
+    background-color: #333;
+}
+
+.darkmode .div-mostrar-datos-main {
+    background-color: #333;
+}
+
+.darkmode .grid-cell {
+    border: 1px solid #2b2b2b;
+}
+
+.darkmode .btn {
+    color: #000;
+}
+
+.darkmode .filtros>label {
+    color: #fff;
+}
+
+.darkmode .informacion-escondida {
+    background: #fff;
 }
