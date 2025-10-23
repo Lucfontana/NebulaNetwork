@@ -76,7 +76,7 @@ main {
 .nav-link,
 .navbar-brand,
 .nav-item a {
-    color: #2F4C97;
+    color: #2c3e50;
     padding-left: 10px;
 }
 
@@ -87,7 +87,7 @@ main {
 } */
 
 .nav-link:hover {
-    color: #233A78;
+    color: #45607a;
 }
 
 /* .nav-link.darkmode:hover {
@@ -95,7 +95,7 @@ main {
 } */
 
 .navbar-brand:hover {
-    color: #233A78;
+    color: #45607a;
 }
 
 /* .navbar-brand.darkmode:hover {
@@ -179,7 +179,7 @@ main {
     font-size: 22px;
     width: 250px; /* ancho consistente */
     height: 120px; /* alto consistente */
-    background-color: #2F4C97;
+    background-color: #2c3e50;
     color: #ffffff;
     border: none;
     border-radius: 10px;
@@ -198,7 +198,7 @@ main {
 } */
 
 .btn-bienvenida:hover {
-    background-color: #233A78;
+    background-color: #45607a;
 }
 
 /* .btn-bienvenida.darkmode:hover {
@@ -834,10 +834,6 @@ hr {
 }
 
 /* Contenedor principal */
-#contenido-mostrar-datos {
-    padding: 20px;
-}
-
 #contenido-mostrar-datos h1 {
     margin-bottom: 20px;
     color: #2c3e50;
@@ -855,13 +851,6 @@ hr {
 }
 
 /* Cabecera general */
-.grid-header,
-.datos-header {
-    background: #2c3e50;
-    color: white;
-    font-weight: 600;
-}
-
 .grid-row,
 .grid-header {
     display: grid;
@@ -890,7 +879,7 @@ hr {
     text-align: center;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ecf0f1;
+    border: 1px solid #d8d8d8;
 }
 
 .grid-cell:last-child {
@@ -1066,9 +1055,14 @@ hr {
 .filtros {
     display: flex;
     align-items: center;
+    background-color: white;
     width: 100%;
     margin-bottom: 20px;
     gap: 20px;
+}
+
+.filtros>label {
+    color: #1c1c1c;
 }
 
 #select-horarios,
@@ -1081,6 +1075,7 @@ hr {
 #informacion-change {
     width: 200px;
     font-size: 14px;
+    color: #333;
 }
 
 /* Botones de acción */
@@ -1853,23 +1848,22 @@ abajito cuando el ancho es menos de 700px */
 }
 
 @media (prefers-color-scheme: dark) {
-    .navStyle.darkmode {
-        transition: all 0.5s ease;
+    .darkmode .navStyle {
         background-color: #2b2b2b;
         color: #fff;
     }
 
-    .nav-link.darkmode,
-    .navbar-brand.darkmode,
-    .nav-item a.darkmode {
+    .darkmode .nav-link,
+    .darkmode .navbar-brand,
+    .darkmode .nav-item a {
         color: #fff;
     }
 
-    .nav-link.darkmode:hover {
+    .darkmode .nav-link:hover {
         color: #6d6d6d;
     }
 
-    .navbar-brand.darkmode:hover {
+    .darkmode .navbar-brand:hover {
         color: #6d6d6d;
     }
 
@@ -1877,36 +1871,78 @@ abajito cuando el ancho es menos de 700px */
         filter: invert(100%);
     }
 
-    .navbar-toggler-icon.darkmode {
+    .darkmode .icono:hover {
+        filter: invert(40%);
+    }
+
+    .darkmode .navbar-toggler-icon {
         filter: invert(1) brightness(2);
     }
 
-    .navbar-toggler-icon.darkmode :hover {
-        filter: invert(1) brightness(2);
+    .darkmode .navbar-toggler-icon:hover {
+        filter: invert(0) brightness(4);
     }
 
-    .btn-bienvenida.darkmode {
+    .darkmode .btn-bienvenida {
         background-color: #333;
         color: #fff;
     }
 
-    .btn-bienvenida.darkmode:hover {
+    .darkmode .btn-bienvenida:hover {
         background-color: #3c3b3b;
     }
 
-    aside.darkmode {
+    .darkmode aside {
         background-color: #1e1e1e;
     }
 
-    .footer.darkmode {
+    .darkmode footer {
         background-color:  #2b2b2b;
-        padding: 20px 0 10px 0;
-        text-align: center;
         color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        width: auto;
+    }
+
+    .darkmode #contenido-mostrar-datos {
+        background-color: #333;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* opcional */
+    }
+
+    .darkmode .div-mostrar-datos {
+        background: #333;
+    }
+
+    .darkmode #contenido-mostrar-datos h1 {
+        color: #fff;
+    }
+
+    .darkmode .datos-grid {
+        background: #ecf0f1;
+    }
+
+    .darkmode .filtros {
+        background-color: #333;
+    }
+
+    .darkmode div.filtros {
+        background-color: #333;
+    }
+
+    .darkmode .div-mostrar-datos-main {
+        background-color: #333;
+    }
+
+    .darkmode .grid-cell {
+        border: 1px solid #2b2b2b;
+    }
+
+    .darkmode .btn {
+        color: #000;
+    }
+
+    .darkmode .filtros>label {
+        color: #fff;
+    }
+
+    .darkmode .informacion-escondida {
+        background: #fff;
     }
 }
