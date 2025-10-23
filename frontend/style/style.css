@@ -1871,12 +1871,16 @@ abajito cuando el ancho es menos de 700px */
         filter: invert(100%);
     }
 
+    .darkmode .icono:hover {
+        filter: invert(40%);
+    }
+
     .darkmode .navbar-toggler-icon {
         filter: invert(1) brightness(2);
     }
 
     .darkmode .navbar-toggler-icon:hover {
-        filter: invert(1) brightness(2);
+        filter: invert(0) brightness(4);
     }
 
     .darkmode .btn-bienvenida {
