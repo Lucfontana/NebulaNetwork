@@ -17,7 +17,7 @@ function query_espacios_sin_general($con){
 }
 
 function query_espacios_por_dia($con, $dia, $espaciossql){
-    $sql = "SELECT 
+    $sql = "SELECT DISTINCT
             a.nombre AS nombre_asignatura,
             e.nombre AS nombre_espacio,
             h.hora_inicio,
@@ -26,14 +26,18 @@ function query_espacios_por_dia($con, $dia, $espaciossql){
             h.tipo,
             c.nombre AS nombre_curso,
             cu.dia,
-            pda.ci_profesor
+            pda.ci_profesor,
+            CONCAT (p.nombre, ' ', p.apellido) as nombre_profesor
         FROM cumple cu
         INNER JOIN profesor_dicta_asignatura pda ON cu.id_dicta = pda.id_dicta
         INNER JOIN asignaturas a ON pda.id_asignatura = a.id_asignatura
         INNER JOIN dicta_en_curso dc ON pda.id_dicta = dc.id_dicta
         INNER JOIN cursos c ON dc.id_curso = c.id_curso
         INNER JOIN horarios h ON cu.id_horario = h.id_horario
-        INNER JOIN dicta_ocupa_espacio doe ON cu.id_dicta = doe.id_dicta
+        INNER JOIN dicta_ocupa_espacio doe ON cu.id_dicta = doe.id_dicta 
+        INNER JOIN profesores p ON p.ci_profesor = pda.ci_profesor
+            AND cu.id_horario = doe.id_horario 
+            AND cu.dia = doe.dia
         INNER JOIN espacios_fisicos e ON doe.id_espacio = e.id_espacio
         WHERE cu.dia = ?
             AND e.id_espacio = ?
@@ -65,7 +69,7 @@ function query_profesor_especifico($con, $ci_profesor){
 }
 
 function query_horarios_profe_pordia($con, $dia, $professql){
-    $sql = "SELECT 
+    $sql = "SELECT distinct
         a.nombre AS nombre_asignatura,
         e.nombre AS nombre_espacio,
         h.hora_inicio, 
@@ -80,7 +84,9 @@ function query_horarios_profe_pordia($con, $dia, $professql){
     INNER JOIN dicta_en_curso dc ON pda.id_dicta = dc.id_dicta
     INNER JOIN cursos c ON dc.id_curso = c.id_curso
     INNER JOIN horarios h ON cu.id_horario = h.id_horario
-    INNER JOIN dicta_ocupa_espacio doe ON cu.id_dicta = doe.id_dicta
+    INNER JOIN dicta_ocupa_espacio doe ON cu.id_dicta = doe.id_dicta 
+        AND cu.id_horario = doe.id_horario 
+        AND cu.dia = doe.dia
     INNER JOIN espacios_fisicos e ON doe.id_espacio = e.id_espacio
     INNER JOIN profesores p ON p.ci_profesor = pda.ci_profesor
     WHERE cu.dia = ?
@@ -115,21 +121,22 @@ function query_cursos($con){
 }
 
 function query_horas_curso($con, $cursosql){
-    $sql4 = "SELECT DISTINCT
+    $sql = "SELECT DISTINCT
+                h.id_horario,
                 h.hora_inicio,
-                h.hora_final
+                h.hora_final,
+                CONCAT (p.nombre, ' ', p.apellido) as nombre_profesor
             FROM cumple cu
             INNER JOIN profesor_dicta_asignatura pda ON cu.id_dicta = pda.id_dicta
-            INNER JOIN asignaturas a ON pda.id_asignatura = a.id_asignatura
             INNER JOIN dicta_en_curso dc ON pda.id_dicta = dc.id_dicta
             INNER JOIN cursos c ON dc.id_curso = c.id_curso
             INNER JOIN horarios h ON cu.id_horario = h.id_horario
-            INNER JOIN dicta_ocupa_espacio doe ON cu.id_dicta = doe.id_dicta
-            INNER JOIN espacios_fisicos e ON doe.id_espacio = e.id_espacio
-            WHERE c.id_curso = $cursosql
+            INNER JOIN profesores p ON p.ci_profesor = pda.ci_profesor
+            WHERE c.id_curso = ?
                 AND h.tipo = 'clase'
             ORDER BY h.hora_inicio ASC";
-    $stmt = $con->prepare($sql4);
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("i", $cursosql);
     $stmt->execute();
     return $stmt->get_result();
 }
@@ -144,14 +151,20 @@ function query_horas_dia_curso($con, $dia, $cursosql){
         h.tipo,
         c.nombre AS nombre_curso,
         cu.dia,
-        pda.ci_profesor
+        pda.ci_profesor,
+        CONCAT (p.nombre, ' ', p.apellido) as nombre_profesor
     FROM cumple cu
     INNER JOIN profesor_dicta_asignatura pda ON cu.id_dicta = pda.id_dicta
     INNER JOIN asignaturas a ON pda.id_asignatura = a.id_asignatura
-    INNER JOIN dicta_en_curso dc ON pda.id_dicta = dc.id_dicta
+    INNER JOIN dicta_en_curso dc ON pda.id_dicta = dc.id_dicta 
+        AND cu.id_horario = dc.id_horario 
+        AND cu.dia = dc.dia
     INNER JOIN cursos c ON dc.id_curso = c.id_curso
     INNER JOIN horarios h ON cu.id_horario = h.id_horario
-    INNER JOIN dicta_ocupa_espacio doe ON cu.id_dicta = doe.id_dicta
+    INNER JOIN profesores p ON p.ci_profesor = pda.ci_profesor
+    INNER JOIN dicta_ocupa_espacio doe ON cu.id_dicta = doe.id_dicta 
+        AND cu.id_horario = doe.id_horario 
+        AND cu.dia = doe.dia
     INNER JOIN espacios_fisicos e ON doe.id_espacio = e.id_espacio
     WHERE cu.dia = ?
         AND c.id_curso = ?

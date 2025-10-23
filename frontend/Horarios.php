@@ -41,7 +41,7 @@ if (!isset($_SESSION['nivel_acceso']) && isset($_SESSION['ci'])) {
 $professql = isset($_GET['ci_profe']) ? intval($_GET['ci_profe']) : 0;
 
 // SOLO PARA TESTING - Comentar para usar con la fecha actual
-$fecha_test = '2025-10-27'; // Miércoles - Si quieren testear, cambien la fecha esta
+$fecha_test = '2025-11-04'; // Miércoles - Si quieren testear, cambien la fecha esta
 $base_time = strtotime($fecha_test);
 
 // Para uso actual usar esto (comentar las lineas de arriba):
@@ -141,6 +141,12 @@ else {
 
 <title><?= t("title_schedules") ?></title>
 <?php include 'nav.php'; ?>
+<style>
+    .dia-dato{
+        display: flex;
+        flex-direction: column;
+    }
+</style>
 
 <?php if (!isset($_SESSION['ci'])): ?>
 
@@ -165,7 +171,7 @@ else {
                     <?php echo cabecera_horarios() ?>
 
                     <?php if (isset($_GET['curso_id'])): ?>
-                        <?php echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura");
+                        <?php echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura", "nombre_profesor");
                         ?>
                     <?php endif; ?>
                 </div>
@@ -183,7 +189,7 @@ else {
                                 Solo el div del lunes se muestra por defecto, los demás se ocultan con display:none. -->
                             <div class="horario-dia" id="horario-<?= $dia_celu ?>" style="<?= $dia_celu === 'lunes' ? '' : 'display:none;' ?>">
                                 <?php if (isset($_GET['curso_id'])): ?>
-                                    <?php echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura");
+                                    <?php echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura", "nombre_profesor");
                                     ?>
                                 <?php endif; ?>
                             </div>
@@ -249,9 +255,9 @@ else {
                     <?php echo cabecera_horarios() ?>
 
                     <?php if (isset($_GET['curso_id'])): ?>
-                        <?php echo cargar_horarios($query, $dias, $materias_por_dia, "nombre_asignatura") ?>
+                        <?php echo cargar_horarios($query, $dias, $materias_por_dia, "nombre_asignatura", "nombre_profesor") ?>
                     <?php elseif (isset($_GET['espacio_id'])): ?>
-                        <?php echo cargar_horarios($query, $dias, $materias_por_dia, 'nombre_espacio') ?>
+                        <?php echo cargar_horarios($query, $dias, $materias_por_dia, 'nombre_espacio', "nombre_profesor") ?>
                     <?php endif; ?>
                 </div>
 
@@ -271,10 +277,10 @@ else {
                                 // - [$dia_celu]: día actual dentro de un array (por ejemplo ['martes']).
                                 if (isset($_GET['curso_id'])) {
                                     // Si se seleccionó un curso, se muestran las asignaturas por día.
-                                    echo cargar_horarios($query, [$dia_celu], $materias_por_dia, "nombre_asignatura");
+                                    echo cargar_horarios($query, [$dia_celu], $materias_por_dia, "nombre_asignatura", "nombre_profesor");
                                 } elseif (isset($_GET['espacio_id'])) {
                                     // Si se seleccionó un espacio físico (salón), se muestran los horarios de ese salón.
-                                    echo cargar_horarios($query, [$dia_celu], $materias_por_dia, 'nombre_espacio');
+                                    echo cargar_horarios($query, [$dia_celu], $materias_por_dia, 'nombre_espacio', "nombre_profesor");
                                 }
                                 ?>
                             </div>
@@ -459,7 +465,7 @@ else {
                 <div class="computadora">
                     <?php echo cabecera_horarios() ?>
 
-                    <?php echo cargar_horarios($query, $dias, $materias_por_dia, "nombre_curso") ?>
+                    <?php echo cargar_horarios($query, $dias, $materias_por_dia, "nombre_curso", "nombre_espacio") ?>
                 </div>
 
                 <!-- Vista para celular -->
@@ -475,7 +481,7 @@ else {
                                 Solo el div del lunes se muestra por defecto, los demás se ocultan con display:none. -->
                             <div class="horario-dia" id="horario-<?= $dia_celu ?>" style="<?= $dia_celu === 'lunes' ? '' : 'display:none;' ?>">
                                 <?php
-                                echo cargar_horarios($query, [$dia_celu], $materias_por_dia, "nombre_curso");
+                                echo cargar_horarios($query, [$dia_celu], $materias_por_dia, "nombre_curso", "nombre_espacio");
                                 ?>
                             </div>
                         <?php endforeach; ?>

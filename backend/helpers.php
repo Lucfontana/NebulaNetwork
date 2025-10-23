@@ -1,10 +1,9 @@
 <?php
 
-function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar)
+function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar, $dato_adicional)
 {
 ?>
-    <?php mysqli_data_seek($query, 0); // Reset del puntero 
-    ?>
+    <?php mysqli_data_seek($query, 0); ?>
     <div class="datos-body">
         <?php while ($row = mysqli_fetch_array($query)): ?>
             <div class="datos-row mostrar-datos">
@@ -12,15 +11,24 @@ function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar)
                 <?php foreach ($dias as $dia): ?>
                     <?php
                     $mostro = false;
+                    
+                    // CAMBIO CRÍTICO: Filtrar por hora_inicio, hora_final E id_horario
                     foreach ($materias_por_dia[$dia] as $m) {
-                        if ($m['hora_inicio'] == $row['hora_inicio']) {
+                        // Comparar también el id_horario para evitar duplicados
+                        if ($m['hora_inicio'] == $row['hora_inicio'] && 
+                            $m['hora_final'] == $row['hora_final'] &&
+                            $m['id_horario'] == $row['id_horario']) {
+                            
                             $clase_inasistencia = isset($m['tiene_inasistencia']) && $m['tiene_inasistencia'] ? 'inasistencia-marcada' : '';
                             echo "<div class='dia-dato {$clase_inasistencia}'>
                                 <strong>{$m[$dato_mostrar]}</strong>
+                                <small>{$m[$dato_adicional]}</small>
                                 </div>";
                             $mostro = true;
+                            break; // IMPORTANTE: Salir del loop después de encontrar la primera coincidencia
                         }
                     }
+                    
                     if (!$mostro) {
                         echo "<div class='dia-dato'><em>---</em></div>";
                     }
