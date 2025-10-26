@@ -149,7 +149,7 @@ else {
 </style>
 
 <?php if (!isset($_SESSION['ci'])): ?>
-
+<!-- Vista para Alumnos -->
     <body>
         <main>
             <div id="contenido-mostrar-datos">
@@ -202,7 +202,7 @@ else {
         </main>
     </body>
 <?php elseif (isset($_SESSION['nivel_acceso'])): ?>
-
+<!-- Vista para adscripta -->
     <body id="body-register">
         <main>
             <div id="contenido-mostrar-datos">
@@ -521,7 +521,14 @@ else {
     }
 
     function cambiarEspacio(idEspacio) {
+
+        // Verifica que el idEspacio exista y que no sea igual a "0"
+        // (Por ejemplo, "0" podría representar la opción "Seleccionar curso" en un <select>)
         if (idEspacio && idEspacio !== "0") {
+
+            // Si la condición se cumple, redirige al usuario a la misma página
+            // pero agregando el parámetro 'curso_id' en la URL.
+            // Esto permite que el backend o PHP filtre los datos según el curso seleccionado.
             window.location.href = "?espacio_id=" + idEspacio;
         }
     }
