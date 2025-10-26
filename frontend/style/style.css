@@ -879,7 +879,7 @@ hr {
     text-align: center;
     align-items: center;
     justify-content: center;
-    border: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
 }
 
 .grid-cell:last-child {
@@ -904,7 +904,7 @@ hr {
 .inasistencias-grid .grid-header,
 .inasistencias-grid .grid-row {
     display: grid;
-    grid-template-columns: 150px 220px 200px 190px 200px 200px; /* ID, Fecha, CI Profesor, Horario, Botones */
+    grid-template-columns: 150px 290px 280px 220px 220px !important; /* ID, Fecha, CI Profesor, Horario, Botones */
     align-items: center;
     text-align: center;
 }
