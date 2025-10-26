@@ -1711,6 +1711,7 @@ abajito cuando el ancho es menos de 700px */
 
     .grid-cell {
         width: 100%;
+        border: 1px solid rgb(209, 223, 235);
     }
 
     #contenido-mostrar-datos {

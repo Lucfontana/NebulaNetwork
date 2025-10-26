@@ -41,11 +41,11 @@ if (!isset($_SESSION['nivel_acceso']) && isset($_SESSION['ci'])) {
 $professql = isset($_GET['ci_profe']) ? intval($_GET['ci_profe']) : 0;
 
 // SOLO PARA TESTING - Comentar para usar con la fecha actual
-$fecha_test = '2025-11-04'; // Miércoles - Si quieren testear, cambien la fecha esta
+$fecha_test = '2025-10-27'; // Miércoles - Si quieren testear, cambien la fecha esta
 $base_time = strtotime($fecha_test);
 
 // Para uso actual usar esto (comentar las lineas de arriba):
-// $base_time = time();
+//$base_time = time();
 
 // Calcular inicio y fin de la semana actual (Lunes a Viernes)
 $inicio_semana_str = date('Y-m-d', strtotime('monday this week', $base_time));
