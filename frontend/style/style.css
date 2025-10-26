@@ -1736,12 +1736,15 @@ abajito cuando el ancho es menos de 700px */
     }
 
     .mostrar-informacion-oculta {
-        margin-left: 5px;
         cursor: pointer;
         transition: 1s;
     }
 
-    .icono-guardar-informacion {
+    .mostrar-informacion-icono {
+        margin-left: 5px;
+    }
+
+    .guardar-informacion-icono {
         display: none;
         margin-left: 5px;
         cursor: pointer;
