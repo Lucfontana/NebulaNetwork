@@ -12,20 +12,40 @@ function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar, $dato_
                     <?php
                     $mostro = false;
                     
-                    // CAMBIO CRÍTICO: Filtrar por hora_inicio, hora_final E id_horario
+                    // PRIORIDAD 1: Verificar si hay RESERVA en este horario
                     foreach ($materias_por_dia[$dia] as $m) {
-                        // Comparar también el id_horario para evitar duplicados
-                        if ($m['hora_inicio'] == $row['hora_inicio'] && 
+                        // Si es una reserva, mostrarla con estilo especial
+                        if (isset($m['es_reserva']) && $m['es_reserva'] === true &&
+                            $m['hora_inicio'] == $row['hora_inicio'] && 
                             $m['hora_final'] == $row['hora_final'] &&
                             $m['id_horario'] == $row['id_horario']) {
                             
-                            $clase_inasistencia = isset($m['tiene_inasistencia']) && $m['tiene_inasistencia'] ? 'inasistencia-marcada' : '';
-                            echo "<div class='dia-dato {$clase_inasistencia}'>
+                            echo "<div class='dia-dato reserva-clase'>
                                 <strong>{$m[$dato_mostrar]}</strong>
                                 <small>{$m[$dato_adicional]}</small>
                                 </div>";
                             $mostro = true;
-                            break; // IMPORTANTE: Salir del loop después de encontrar la primera coincidencia
+                            break;
+                        }
+                    }
+                    
+                    // PRIORIDAD 2: Si no hay reserva, mostrar clase regular
+                    if (!$mostro) {
+                        foreach ($materias_por_dia[$dia] as $m) {
+                            // Solo mostrar clases regulares (sin es_reserva o es_reserva = false)
+                            if ((!isset($m['es_reserva']) || $m['es_reserva'] === false) &&
+                                $m['hora_inicio'] == $row['hora_inicio'] && 
+                                $m['hora_final'] == $row['hora_final'] &&
+                                $m['id_horario'] == $row['id_horario']) {
+                                
+                                $clase_inasistencia = isset($m['tiene_inasistencia']) && $m['tiene_inasistencia'] ? 'inasistencia-marcada' : '';
+                                echo "<div class='dia-dato {$clase_inasistencia}'>
+                                    <strong>{$m[$dato_mostrar]}</strong>
+                                    <small>{$m[$dato_adicional]}</small>
+                                    </div>";
+                                $mostro = true;
+                                break;
+                            }
                         }
                     }
                     
@@ -39,7 +59,6 @@ function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar, $dato_
     </div>
 <?php
 }
-
 function cabecera_horarios()
 {
 ?>

@@ -94,6 +94,23 @@ create table cumple (
     FOREIGN KEY (id_dicta) REFERENCES profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE
 );
 
+CREATE TABLE reservas_espacios (
+    id_reserva INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    ci_profesor INT NOT NULL,
+    id_dicta INT NOT NULL,
+    id_curso INT NOT NULL,
+    id_espacio INT NOT NULL,
+    id_horario INT NOT NULL,
+    fecha_reserva DATE NOT NULL,
+    dia ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes') NOT NULL,
+    FOREIGN KEY (ci_profesor) REFERENCES profesores(ci_profesor) ON DELETE CASCADE,
+    FOREIGN KEY (id_dicta) REFERENCES profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE,
+    FOREIGN KEY (id_curso) REFERENCES cursos(id_curso) ON DELETE CASCADE,
+    FOREIGN KEY (id_espacio) REFERENCES espacios_fisicos(id_espacio) ON DELETE CASCADE,
+    FOREIGN KEY (id_horario) REFERENCES horarios(id_horario) ON DELETE CASCADE,
+    UNIQUE KEY unique_reserva (id_espacio, id_horario, fecha_reserva)
+);
+
 CREATE TABLE dicta_en_curso (
     id_dicta int,
     id_curso int,

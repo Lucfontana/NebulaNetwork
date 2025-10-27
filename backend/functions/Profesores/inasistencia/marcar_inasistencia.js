@@ -168,7 +168,7 @@ async function registrar_falta(e){
     form_falta.append("registrarFalta", true);
 
     //Se hace fetch al php que maneja el formulario (para que se hagan las inserciones)
-    let respuesta = await fetch("../../backend/functions/Profesores/inasistencia/reg_inasistencia_api.php", 
+    let respuesta = await fetch("../../backend/functions/reserva_espacio/reserva_esp_api.php", 
         {
             method: "POST",
             body: form_falta
