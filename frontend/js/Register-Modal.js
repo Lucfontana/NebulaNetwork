@@ -7,6 +7,8 @@ const body = document.getElementById("body-register");
 
 // Evita que el fondo se desplace cuando el modal está abierto
 
+
+//Cada boton abre su respectivo modal, ya que son arrays
 botones.forEach((boton, index) => {
   boton.addEventListener("click", function () {
     overlays[index].style.display = "flex"; // Muestra el overlay
@@ -19,6 +21,7 @@ botones.forEach((boton, index) => {
   });
 })
 
+//Cada boton cierra su respectivo modal, ya que son arrays
 closeBoton.forEach((botonCerrar, index) => {
   botonCerrar.addEventListener("click", function () {
     overlays[index].style.opacity = "0"; // Muestra el overlay
