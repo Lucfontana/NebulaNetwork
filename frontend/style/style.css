@@ -777,6 +777,10 @@ hr {
     display: none;
 }
 
+#dialog-change-passwd {
+    opacity: 0;
+}
+
 .div-mostrar-datos-main {
     background-color: white;
     width: 100%;

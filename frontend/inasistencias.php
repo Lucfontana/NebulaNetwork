@@ -1,9 +1,8 @@
 <?php
 include_once('../backend/db/conexion.php');
 include_once 'functions.php';
+include_Once('../backend/queries.php');
 include_once('../backend/helpers.php');
-
-$connect = conectar_a_bd();
 
 if (!isset($_SESSION['ci'])) {
     include_once('error.php');
@@ -12,16 +11,7 @@ if (!isset($_SESSION['ci'])) {
 
 $ci = $_SESSION['ci'];
 
-// Consulta preparada
-$sql = "SELECT i.*, h.hora_inicio, h.hora_final, h.tipo
-        FROM inasistencia i
-        INNER JOIN horarios h ON i.id_horario = h.id_horario
-        WHERE i.ci_profesor = ?";
-
-$stmt = mysqli_prepare($connect, $sql);
-mysqli_stmt_bind_param($stmt, "i", $ci);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
+$result = inasistenciasMostrar($ci);
 ?>
 
 <div class="div-mostrar-datos">

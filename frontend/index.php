@@ -14,7 +14,7 @@ session_start();
     <!-- Texto de Bienvenidos -->
     <div class="bienvenida-texto">
         <?php if (!isset($_SESSION['ci'])): ?>
-        <h2><?= t("welcome") ?></h2>
+        <h2><?= t("welcome") ?></h2> <!-- Cargamos el texto desde lang.json --> 
         <?php elseif (isset($_SESSION['ci'])): ?>
          <h2><?= t("welcome_user", $_SESSION['nombre_usuario']); ?></h2>
         <?php endif; ?>

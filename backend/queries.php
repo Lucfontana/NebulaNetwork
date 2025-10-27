@@ -270,3 +270,29 @@ function saber_dia_seleccionado($dia_semana_seleccionado) {
     $devuelto = isset($dias[$dia_semana_seleccionado]) ? $dias[$dia_semana_seleccionado] : null;
     return $devuelto;
 }
+
+
+//Funcion de mostrar datos
+function mostrardatos($buscar) {
+    $connect = conectar_a_bd();
+    $sql = "SELECT * FROM $buscar";
+    $stmt = mysqli_prepare($connect, $sql);
+    mysqli_stmt_execute($stmt);
+    return $result = mysqli_stmt_get_result($stmt);
+}
+
+//Function inasistencias mostrar datos
+function inasistenciasMostrar($ci) {
+    $connect = conectar_a_bd();
+
+    $sql = "SELECT i.*, h.hora_inicio, h.hora_final, h.tipo
+        FROM inasistencia i
+        INNER JOIN horarios h ON i.id_horario = h.id_horario
+        WHERE i.ci_profesor = ?";
+
+    $stmt = mysqli_prepare($connect, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $ci);
+    mysqli_stmt_execute($stmt);
+    return $result = mysqli_stmt_get_result($stmt);
+
+}
