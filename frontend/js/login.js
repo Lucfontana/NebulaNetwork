@@ -39,7 +39,7 @@ if (!verificarCI(CI)) {
     alerta_fallo("Su cedula de identidad no existe");
     return;
 } else {
-        //se crea un objeto para tomar los valores del formulario (aca se pondrian todos los datos con .append)
+    //se crea un objeto para tomar los valores del formulario (aca se pondrian todos los datos con .append)
     const formData = new FormData();
                     //id del campo      valor a pasarle
     formData.append('CI', CI);
@@ -56,7 +56,6 @@ if (!verificarCI(CI)) {
     .then(response => response.json())
     //la variable data se usa para recorrer el array asociativo del endpoint...
     .then(data => {
-
         //si el enpoint devuelve 1...
         if (data.estado === 1) {
             sw_redirect(`${data.mensaje}`, "index.php");

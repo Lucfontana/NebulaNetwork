@@ -89,22 +89,35 @@ create table cumple (
     id_horario int,
     id_dicta int,
     dia ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes'),
-    FOREIGN KEY (id_horario) references horarios(id_horario) ON DELETE CASCADE,
-    FOREIGN KEY (id_dicta) references profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE
+    PRIMARY KEY (id_dicta, id_horario, dia),
+    FOREIGN KEY (id_horario) REFERENCES horarios(id_horario) ON DELETE CASCADE,
+    FOREIGN KEY (id_dicta) REFERENCES profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE
 );
 
-create table dicta_en_curso (
+CREATE TABLE dicta_en_curso (
     id_dicta int,
     id_curso int,
-    FOREIGN KEY (id_dicta) references profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE,
-    FOREIGN KEY (id_curso) references cursos(id_curso) ON DELETE CASCADE
+    id_horario int,
+    dia ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes'),
+    PRIMARY KEY (id_dicta, id_curso, id_horario, dia),
+    FOREIGN KEY (id_dicta) REFERENCES profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE,
+    FOREIGN KEY (id_curso) REFERENCES cursos(id_curso) ON DELETE CASCADE,
+    FOREIGN KEY (id_horario) REFERENCES horarios(id_horario) ON DELETE CASCADE,
+    FOREIGN KEY (id_dicta, id_horario, dia) REFERENCES cumple(id_dicta, id_horario, dia) ON DELETE CASCADE
 );
 
-create table dicta_ocupa_espacio (
-    id_dicta int,
-    id_espacio int,
-    FOREIGN KEY (id_dicta) references profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE,
-    FOREIGN KEY (id_espacio) references espacios_fisicos(id_espacio) ON DELETE CASCADE
+CREATE TABLE dicta_ocupa_espacio (
+    id_dicta INT,
+    id_horario INT,
+    dia ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes'),
+    id_espacio INT,
+    PRIMARY KEY (id_dicta, id_horario, dia),
+    FOREIGN KEY (id_dicta) REFERENCES profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE,
+    FOREIGN KEY (id_horario) REFERENCES horarios(id_horario) ON DELETE CASCADE,
+    FOREIGN KEY (id_espacio) REFERENCES espacios_fisicos(id_espacio) ON DELETE CASCADE,
+    FOREIGN KEY (id_dicta, id_horario, dia)
+        REFERENCES cumple(id_dicta, id_horario, dia)
+        ON DELETE CASCADE
 );
 
 create table su_administra_horarios (

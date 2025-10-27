@@ -1,35 +1,41 @@
 const titulo = document.getElementById("titulo-mostrar-informacion");
 const botonMostrar = document.querySelectorAll(".mostrar-informacion-oculta");
+const iconoMostrar = document.querySelectorAll(".mostrar-informacion-icono");
+const iconoGuardar = document.querySelectorAll(".guardar-informacion-icono")
 const informacionEscondida = document.querySelectorAll(".informacion-escondida");
-const botonGuardar = document.querySelectorAll(".icono-guardar-informacion");
 const selectInformacion = document.getElementById('informacion-change');
 
+//creamos una variable para establecer si hay que abrirlo o cerrarlo
+let variable = 0;
 botonMostrar.forEach((mostrar, index) => {
     mostrar.addEventListener("click", function () {
-        informacionEscondida[index].style.display = "flex";
-        informacionEscondida[index].style.transition = "1s";
-        mostrar.style.display = "none";
-        botonGuardar[index].style.display = "flex";
+        if (variable === 0) {
+            informacionEscondida[index].style.display = "flex";
+            informacionEscondida[index].style.transition = "1s";
+            iconoMostrar[index].style.display = "none";
+            iconoGuardar[index].style.display = "flex";
 
-        setTimeout(() => {
-            informacionEscondida[index].style.transform = "translateY(0%)";
-            informacionEscondida[index].style.opacity = "1";
+            setTimeout(() => {
+                informacionEscondida[index].style.transform = "translateY(0%)";
+                informacionEscondida[index].style.opacity = "1";
+                informacionEscondida[index].style.transition = "0.5s";
+            }, 0.1)
+
+            variable = 1;
+
+        } else {
+            informacionEscondida[index].style.transform = "translateY(-100%)";
+            informacionEscondida[index].style.opacity = "0";
             informacionEscondida[index].style.transition = "0.5s";
-        }, 0.1)
-    });
-});
+            iconoGuardar[index].style.display = "none";
+            iconoMostrar[index].style.display = "flex";
 
-botonGuardar.forEach((guardar, index) => {
-    guardar.addEventListener("click", function () {
-        informacionEscondida[index].style.transform = "translateY(-100%)";
-        informacionEscondida[index].style.opacity = "0";
-        informacionEscondida[index].style.transition = "0.5s";
-        guardar.style.display = "none";
-        botonMostrar[index].style.display = "flex";
+            setTimeout(() => {
+                informacionEscondida[index].style.display = "none";
+            }, 500)
 
-        setTimeout(() => {
-            informacionEscondida[index].style.display = "none";
-        }, 500)
+            variable = 0;
+        }
     });
 });
 
@@ -39,7 +45,7 @@ function mostrarSeccion(valor) {
     document.querySelectorAll('.seccion-oculta').forEach(seccion => {
         seccion.style.display = 'none';
     });
-    
+
     if (valor == "0") {
         titulo.style.display = "flex";
     } else if (valor) {
@@ -53,10 +59,10 @@ function mostrarSeccion(valor) {
 // Evento change del select - Guardar en localStorage
 selectInformacion.addEventListener('change', function () {
     const valor = this.value;
-    
+
     // Guardar en localStorage
     localStorage.setItem('seccionSeleccionada', valor);
-    
+
     // Mostrar la sección
     mostrarSeccion(valor);
 });
@@ -67,14 +73,14 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.seccion-oculta').forEach(seccion => {
         seccion.style.display = 'none';
     });
-    
+
     // Recuperar el valor guardado en localStorage
     const valorGuardado = localStorage.getItem('seccionSeleccionada');
-    
+
     if (valorGuardado) {
         // Establecer el valor del select
         selectInformacion.value = valorGuardado;
-        
+
         // Mostrar la sección correspondiente
         mostrarSeccion(valorGuardado);
     }

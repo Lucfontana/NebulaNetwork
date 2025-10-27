@@ -2,9 +2,8 @@
 include_once('../backend/db/conexion.php');
 include_once 'functions.php';
 include_once '../backend/helpers.php';
-$connect = conectar_a_bd();
-$sql = "SELECT * FROM recursos";
-$query = mysqli_query($connect, $sql);
+
+$result = mostrardatos("recursos");
 ?>
 
 <?php if (!isset($_SESSION['nivel_acceso'])): ?>
@@ -28,7 +27,7 @@ $query = mysqli_query($connect, $sql);
             <div class="grid-cell boton-titulo">Editar</div>
         </div>
 
-        <?php while ($row = mysqli_fetch_array($query)): ?>
+        <?php while ($row = mysqli_fetch_array($result)): ?>
             <div class="grid-row recursos-row mostrar-datos">
                 <div class="grid-cell"><?= $row['id_recurso'] ?></div>
                 <div class="grid-cell"><?= $row['id_espacio'] ?></div>
@@ -57,9 +56,9 @@ $query = mysqli_query($connect, $sql);
     </div>
 
     <!-- Vista para celular -->
-    <?php mysqli_data_seek($query, 0); ?>
+    <?php mysqli_data_seek($result, 0); ?>
     <div class="flex-mostrar-datos">
-        <?php while ($row = mysqli_fetch_array($query)): $nombre = $row['nombre']; ?>
+        <?php while ($row = mysqli_fetch_array($result)): $nombre = $row['nombre']; ?>
             <div class="datos-header-celu">
                 <?php echo toggle_mostrar_info($nombre)?>
                 <div class="informacion-escondida">

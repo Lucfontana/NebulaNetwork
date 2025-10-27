@@ -777,6 +777,10 @@ hr {
     display: none;
 }
 
+#dialog-change-passwd {
+    opacity: 0;
+}
+
 .div-mostrar-datos-main {
     background-color: white;
     width: 100%;
@@ -879,7 +883,7 @@ hr {
     text-align: center;
     align-items: center;
     justify-content: center;
-    border: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
 }
 
 .grid-cell:last-child {
@@ -904,7 +908,7 @@ hr {
 .inasistencias-grid .grid-header,
 .inasistencias-grid .grid-row {
     display: grid;
-    grid-template-columns: 150px 220px 200px 190px 200px 200px; /* ID, Fecha, CI Profesor, Horario, Botones */
+    grid-template-columns: 150px 290px 280px 220px 220px !important; /* ID, Fecha, CI Profesor, Horario, Botones */
     align-items: center;
     text-align: center;
 }
@@ -1711,6 +1715,7 @@ abajito cuando el ancho es menos de 700px */
 
     .grid-cell {
         width: 100%;
+        border: 1px solid rgb(209, 223, 235);
     }
 
     #contenido-mostrar-datos {
@@ -1736,12 +1741,15 @@ abajito cuando el ancho es menos de 700px */
     }
 
     .mostrar-informacion-oculta {
-        margin-left: 5px;
         cursor: pointer;
         transition: 1s;
     }
 
-    .icono-guardar-informacion {
+    .mostrar-informacion-icono {
+        margin-left: 5px;
+    }
+
+    .guardar-informacion-icono {
         display: none;
         margin-left: 5px;
         cursor: pointer;

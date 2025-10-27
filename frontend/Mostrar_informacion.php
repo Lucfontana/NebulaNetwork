@@ -1,13 +1,11 @@
 <?php
 session_start();
 ?>
-<?php if (!isset($_SESSION['nivel_acceso'])): ?>
-    <?php include_once('error.php') ?>
-<?php else: ?>
+    
+<?php if (isset($_SESSION['nivel_acceso'])): ?>
     <title>Mostrar Información</title>
-
-    <?php include 'nav.php'; ?>
-    <?php include 'register.php'; ?>
+    <?php include_once 'nav.php'; ?>
+    <?php include_once 'register.php'; ?>
 
     <body id="body-register">
         <main>
@@ -24,7 +22,6 @@ session_start();
                             <option value="cursos">Cursos</option>
                             <option value="asignatura">Asignaturas</option>
                             <option value="orientaciones">Orientaciones</option>
-                            <option value="inasistencias">Inasistencias</option>
                         </select>
                     </div>
                 </div>
@@ -52,15 +49,10 @@ session_start();
                 <div data-seccion="asignatura" class="seccion-oculta">
                     <?php include_once("./asignaturas.php") ?>
                 </div>
-                
+
                 <div data-seccion="orientaciones" class="seccion-oculta">
                     <?php include_once("./Orientaciones.php") ?>
                 </div>
-
-                <div data-seccion="inasistencias" class="seccion-oculta">
-                    <?php include_once("./inasistencias.php") ?>
-                </div>
-
             </div>
         </main>
 
@@ -69,32 +61,50 @@ session_start();
 
         </footer>
 
-    <?php endif; ?>
+    <?php elseif (isset($_SESSION['ci'])): ?>
+        <title>Mostrar Información</title>
 
-    <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
-    <!-- scripts para mostrar informacion -->
-    <script type="module" src="/frontend/js/confirm-asignatura.js"></script>
-    <script type="module" src="/frontend/js/confirm-cursos.js"></script>
-    <script type="module" src="/frontend/js/confirm-espacios.js"></script>
-    <script type="module" src="/frontend/js/confirm-orientacion.js"></script>
-    <script type="module" src="/frontend/js/confirm-profesores.js"></script>
-    <script type="module" src="/frontend/js/confirm-recursos.js"></script>
-    <script type="module" src="/frontend/js/confirm-superusuario.js"></script>
-    <script type="module" src="/frontend/js/confirm-inasistencia.js"></script>
+        <?php include_once 'nav.php'; ?>
 
-    <!-- Scripts generales -->
-    <script type="module" src="/frontend/js/prueba.js"></script>
-    <script src="./js/Mostrar-informacion-general.js"></script>
+        <body id="body-register">
+            <main>
+                <div id="contenido-mostrar-datos">
+                    <?php include_once("./inasistencias.php") ?>
+                </div>
+            </main>
 
-    <!-- Scripts register -->
-    <script type="module" src="../backend/functions/dependencias/crear_campos.js"></script>
-    <script type="module" src="js/validaciones-registro.js" defer></script>
-    <script type="module" src="js/swalerts.js"></script>
-    <script src="./js/togglepasswd.js"></script>
+            <footer id="footer" class="footer">
+                <p> &copy; <b> <?= t("footer") ?> </b></p>
+            </footer>
+
+        <?php elseif (!isset($_SESSION['ci'])): ?>
+            <?php include_once('error.php') ?>
+        <?php endif; ?>
+
+        <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
+        <!-- scripts para mostrar informacion -->
+        <script type="module" src="/frontend/js/confirm-asignatura.js"></script>
+        <script type="module" src="/frontend/js/confirm-cursos.js"></script>
+        <script type="module" src="/frontend/js/confirm-espacios.js"></script>
+        <script type="module" src="/frontend/js/confirm-orientacion.js"></script>
+        <script type="module" src="/frontend/js/confirm-profesores.js"></script>
+        <script type="module" src="/frontend/js/confirm-recursos.js"></script>
+        <script type="module" src="/frontend/js/confirm-superusuario.js"></script>
+        <script type="module" src="/frontend/js/confirm-inasistencia.js"></script>
+
+        <!-- Scripts generales -->
+        <script type="module" src="/frontend/js/prueba.js"></script>
+        <script src="./js/Mostrar-informacion-general.js"></script>
+
+        <!-- Scripts register -->
+        <script type="module" src="../backend/functions/dependencias/crear_campos.js"></script>
+        <script type="module" src="js/validaciones-registro.js" defer></script>
+        <script type="module" src="js/swalerts.js"></script>
+        <script src="./js/togglepasswd.js"></script>
 
 
-    <!-- Sweet alerts -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/frontend/js/Register-Modal.js"></script>
+        <!-- Sweet alerts -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="/frontend/js/Register-Modal.js"></script>
 
-    </body>
+        </body>

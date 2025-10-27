@@ -2,9 +2,7 @@
 include_once('../backend/db/conexion.php');
 include_once('../backend/helpers.php');
 
-$connect = conectar_a_bd();
-$sql = "SELECT * FROM espacios_fisicos";
-$query = mysqli_query($connect, $sql);
+$result = mostrardatos("espacios_fisicos");
 ?>
 
 <?php if (!isset($_SESSION['nivel_acceso'])): ?>
@@ -28,7 +26,7 @@ $query = mysqli_query($connect, $sql);
         </div>
 
         <!-- Filas de datos -->
-        <?php while ($row = mysqli_fetch_array($query)): ?>
+        <?php while ($row = mysqli_fetch_array($result)): ?>
             <div class="grid-row espacios-row mostrar-datos">
                 <div class="grid-cell"><?= $row['id_espacio'] ?></div>
                 <div class="grid-cell"><?= $row['capacidad'] ?></div>
@@ -55,9 +53,9 @@ $query = mysqli_query($connect, $sql);
     </div>
 
     <!-- Vista para celular -->
-    <?php mysqli_data_seek($query, 0); ?>
+    <?php mysqli_data_seek($result, 0); ?>
     <div class="flex-mostrar-datos">
-        <?php while ($row = mysqli_fetch_array($query)): $nombre = $row['nombre']?>
+        <?php while ($row = mysqli_fetch_array($result)): $nombre = $row['nombre']?>
             <div class="datos-header-celu">
                 <?php echo toggle_mostrar_info($nombre)?>
                 <div class="informacion-escondida">
