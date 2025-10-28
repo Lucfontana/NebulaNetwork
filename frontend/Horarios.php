@@ -1,142 +1,7 @@
 <?php
-include_once('../backend/db/conexion.php');
-include_once('functions.php');
-include_once('../backend/queries.php');
-include_once('../backend/helpers.php');
 
-$result = query_espaciosfisicos($con);
+include_once("../backend/functions/Horarios/logica_calendario.php");
 
-$espacios_sin_general = query_espacios_sin_general($con);
-
-$profesores_info = query_profesores($con);
-
-$asignaturas_info = query_asignaturas($con);
-
-$horarios_info = query_horarios($con);
-
-$cursos_info = query_cursos($con);
-
-$orientacion_info = query_orientacion($con);
-
-//seleccionamos los horarios para desplegarlos en forma ascendente
-$connect = conectar_a_bd();
-
-$query = query_horarios($con);
-
-$query2 = query_cursos($con);
-
-//seleccionamos los salones para el select
-$query3 = query_espacios_sin_general($con);
-session_start();
-
-// Verificar si se envio un ID de curso o de espacio a traves de GET
-$cursosql = isset($_GET['curso_id']) ? intval($_GET['curso_id']) : 0;
-$espaciossql = isset($_GET['espacio_id']) ? intval($_GET['espacio_id']) : 0;
-$diasql = isset($_GET['dia_id']) ? intval($_GET['dia_id']) : 0;
-
-if (!isset($_SESSION['nivel_acceso']) && isset($_SESSION['ci'])) {
-    $_GET['ci_profe'] = $_SESSION['ci'];
-}
-
-$professql = isset($_GET['ci_profe']) ? intval($_GET['ci_profe']) : 0;
-
-// SOLO PARA TESTING - Comentar para usar con la fecha actual
-$fecha_test = '2025-10-27'; // Miércoles - Si quieren testear, cambien la fecha esta
-$base_time = strtotime($fecha_test);
-
-// Para uso actual usar esto (comentar las lineas de arriba):
-//$base_time = time();
-
-// Calcular inicio y fin de la semana actual (Lunes a Viernes)
-$inicio_semana_str = date('Y-m-d', strtotime('monday this week', $base_time));
-$fin_semana_str = date('Y-m-d', strtotime('friday this week', $base_time));
-
-// Arreglo con los días de la semana
-$dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'];
-
-// Mapeo de días en español a fechas específicas de esta semana
-$dias_a_fechas = [
-    'lunes' => date('Y-m-d', strtotime('monday this week', $base_time)),
-    'martes' => date('Y-m-d', strtotime('tuesday this week', $base_time)),
-    'miercoles' => date('Y-m-d', strtotime('wednesday this week', $base_time)),
-    'jueves' => date('Y-m-d', strtotime('thursday this week', $base_time)),
-    'viernes' => date('Y-m-d', strtotime('friday this week', $base_time))
-];
-
-// Arreglo para almacenar las materias por día
-$materias_por_dia = [];
-
-// Consulta para obtener inasistencias de la semana actual
-$resultado_inasistencias = query_inasistencias_esta_semana($con, $inicio_semana_str, $fin_semana_str);
-
-// Crear un arreglo para búsqueda rápida de inasistencias
-// Función auxiliar para procesar resultados y agregar información de inasistencias
-
-// Código principal simplificado
-
-//Cada inasistencia se guarda en una llave unica (como una PK) y se guarda 
-//en booleano (Si hay inasistencia, es true, si no, false)
-$inasistencias = [];
-while ($inasist = mysqli_fetch_assoc($resultado_inasistencias)) {
-    $fecha = $inasist['fecha_inasistencia'];
-    $ci = $inasist['ci_profesor'];
-    $horario = $inasist['id_horario'];
-    $key = "{$fecha}_{$ci}_{$horario}";
-    $inasistencias[$key] = true;
-}
-
-//se aniade "tiene_inasistencia" como un "atributo" del resultado de la consulta.
-//Si llega a haber una llave igual a la de las inasistencias, se marca la inasistencia como true
-// 
-function procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias)
-{
-    $materias = [];
-    while ($fila = mysqli_fetch_assoc($resultado)) {
-        //Se agarra la fecha de la semana actual (segun un dia) y se crea una "llave"
-        $fecha_dia = $dias_a_fechas[$dia];
-        $ci_prof = $fila['ci_profesor'] ?? 0;
-        $id_hor = $fila['id_horario'] ?? 0;
-        $key_inasist = "{$fecha_dia}_{$ci_prof}_{$id_hor}"; //2025-10-10_26197140_1
-        $fila['tiene_inasistencia'] = isset($inasistencias[$key_inasist]); //booleano, devuelve true si hay coincidencia,si no false
-
-        $materias[] = $fila;
-    }
-    return $materias;
-}
-
-$query4 = query_horas_curso($con, $cursosql);
-
-// Si se seleccionó un curso
-if ($cursosql > 0) {
-    foreach ($dias as $dia) {
-        $resultado = query_horas_dia_curso($con, $dia, $cursosql);
-        $materias_por_dia[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
-        $materias_por_dia_celu[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
-    }
-}
-// Si se seleccionó un espacio físico
-elseif ($espaciossql > 0) {
-    foreach ($dias as $dia) {
-        $resultado = query_espacios_por_dia($con, $dia, $espaciossql);
-        $materias_por_dia[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
-        $materias_por_dia_celu[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
-    }
-}
-// Si se seleccionó un profesor
-elseif ($professql > 0) {
-    foreach ($dias as $dia) {
-        $resultado = query_horarios_profe_pordia($con, $dia, $professql);
-        $materias_por_dia[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
-        $materias_por_dia_celu[$dia] = procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias);
-    }
-}
-// Si no se seleccionó nada (primera carga de la página)
-else {
-    foreach ($dias as $dia) {
-        $materias_por_dia[$dia] = []; // vacío para evitar errores al recorrer luego
-        $materias_por_dia_celu[$dia] = []; // vacío para evitar errores al recorrer luego
-    }
-}
 ?>
 
 <title><?= t("title_schedules") ?></title>
@@ -145,6 +10,12 @@ else {
     .dia-dato{
         display: flex;
         flex-direction: column;
+    }
+    .reserva-clase {
+        background-color: #06b5d422  !important;
+        color: black !important;
+        border-left: 4px solid #29829bff;
+        position: relative;
     }
 </style>
 
@@ -427,6 +298,10 @@ else {
                     <?= t("btn_register_absence") ?>
                 </button>
 
+                <button type="button" id="espacios_reserva_boton" class="btn-primary btn" data-toggle="modal"
+                    data-target="#exampleModal">
+                    <?= t("Reservar espacio") ?>
+                </button>
 
                 <div id="div-dialogs">
                     <div class="overlay">
@@ -455,6 +330,50 @@ else {
                                 <div class="div-botones-register">
                                     <input class="btn-enviar-registro" type="submit" value="Registrar"
                                         name="registrarFalta"></input>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="div-dialogs">
+                    <div class="overlay">
+                        <div class="dialogs" id="dialogs">
+                            <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
+                                    alt=""></button>
+                            <form class="registro-div reserva-form">
+                                <h1><?= t("Reservar espacio") ?></h1>
+                                <hr>
+                                <div class="div-labels" ><i><b>Nota:</b> Si reserva un espacio a una hora en la que tiene clases, su clase será cambiada para ese espacio. En caso contrario, se reservará el espacio como "Evento especial".</i></div>
+                                <div class="div-labels">
+                                    <label for="dia" class="label">En el dia:</label>
+                                    <input type="date" name="dia_reserva" id="dia_reserva" class="input-register" required>
+                                </div>
+
+                                <div class="div-labels">
+                                    <label for="espacio" class="label">Espacio a reservar: </label>
+                                    <select name="espacio_reservar" id="espacio_reservar" type="text" class="input-register">
+                                        <option value=""></option>
+                                        <?php while ($row = mysqli_fetch_array($espacios_sin_general)): ?>
+                                            <option value="<?= $row['id_espacio'] ?>">
+                                                <?= $row['nombre'] ?>
+                                            </option>
+                                        <?php endwhile; ?>
+                                    </select>
+                                </div>
+
+                                <div class="div-labels" id="horas_reserva">
+                                    <label for="nose" class="label">Cantidad de horas a reservar:</label>
+                                    <input type="number" name="cantidad_horas_reserva" id="cantidad_horas_reserva"
+                                        class="input-register" required>
+                                </div>
+
+                                <div id="campos-reservas"></div>
+
+                                <div class="div-botones-register">
+                                    <input class="btn-enviar-registro" type="submit" value="Registrar"
+                                        name="registrarReservaEspacio"></input>
                                 </div>
 
                             </form>
@@ -502,6 +421,7 @@ else {
 <!-- Registros -->
 <script type="module" src="../backend/functions/dependencias/crear_campos.js"></script>
 <script type="module" src="js/validaciones-registro.js" defer></script>
+<script type="module" src="../backend/functions/reserva_espacio/reservar_espacio.js"></script>
 <script type="module" src="js/swalerts.js"></script>
 <script src="./js/select-dia-celular.js"></script>
 <script>

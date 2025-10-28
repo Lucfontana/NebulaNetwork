@@ -73,6 +73,7 @@ function query_horarios_profe_pordia($con, $dia, $professql){
         a.nombre AS nombre_asignatura,
         e.nombre AS nombre_espacio,
         h.hora_inicio, 
+        e.id_espacio,
         h.hora_final,
         h.id_horario,
         c.nombre AS nombre_curso,
@@ -145,6 +146,7 @@ function query_horas_dia_curso($con, $dia, $cursosql){
     $sql = "SELECT 
         a.nombre AS nombre_asignatura,
         e.nombre AS nombre_espacio,
+        e.id_espacio,
         h.hora_inicio,
         h.hora_final,
         h.id_horario,
@@ -176,6 +178,7 @@ function query_horas_dia_curso($con, $dia, $cursosql){
     $stmt->execute();
     return $stmt->get_result();
 }
+
 
 function query_orientacion($con){
     $query_orientacion = "SELECT * FROM orientacion";
@@ -242,6 +245,7 @@ function query_prestamos_profesores($con, $ci_profesor){
     return $stmt->get_result();
 }
 
+//Devuelve todas las inasistencias que hay en esta semana
 function query_inasistencias_esta_semana($con, $inicio_semana, $fin_semana){
     $query_inasistencias = "SELECT 
     i.fecha_inasistencia, i.ci_profesor, i.id_horario,
@@ -254,6 +258,32 @@ function query_inasistencias_esta_semana($con, $inicio_semana, $fin_semana){
     $stmt_inasistencias->bind_param("ss", $inicio_semana, $fin_semana);
     $stmt_inasistencias->execute();
     return $stmt_inasistencias->get_result();
+}
+
+
+//Retorna toda la informacion de las reservas en una semana especifica (para mostrar en el calendario)
+function query_reservas_semana($con, $inicio_semana, $fin_semana) {
+    $sql = "SELECT 
+        r.id_reserva, r.fecha_reserva, r.dia, r.id_espacio, r.id_horario, r.ci_profesor, r.id_dicta, r.id_curso,
+        a.nombre AS nombre_asignatura,
+        e.nombre AS nombre_espacio,
+        h.hora_inicio, h.hora_final,
+        c.nombre AS nombre_curso,
+        CONCAT(p.nombre, ' ', p.apellido) AS nombre_profesor
+    FROM reservas_espacios r
+    INNER JOIN profesor_dicta_asignatura pda ON r.id_dicta = pda.id_dicta
+    INNER JOIN asignaturas a ON pda.id_asignatura = a.id_asignatura
+    INNER JOIN cursos c ON r.id_curso = c.id_curso
+    INNER JOIN horarios h ON r.id_horario = h.id_horario
+    INNER JOIN espacios_fisicos e ON r.id_espacio = e.id_espacio
+    INNER JOIN profesores p ON r.ci_profesor = p.ci_profesor
+    WHERE r.fecha_reserva BETWEEN ? AND ?
+    ORDER BY r.fecha_reserva, h.hora_inicio ASC";
+    
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("ss", $inicio_semana, $fin_semana);
+    $stmt->execute();
+    return $stmt->get_result();
 }
 
 
