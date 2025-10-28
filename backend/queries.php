@@ -245,6 +245,7 @@ function query_prestamos_profesores($con, $ci_profesor){
     return $stmt->get_result();
 }
 
+//Devuelve todas las inasistencias que hay en esta semana
 function query_inasistencias_esta_semana($con, $inicio_semana, $fin_semana){
     $query_inasistencias = "SELECT 
     i.fecha_inasistencia, i.ci_profesor, i.id_horario,
@@ -259,20 +260,14 @@ function query_inasistencias_esta_semana($con, $inicio_semana, $fin_semana){
     return $stmt_inasistencias->get_result();
 }
 
+
+//Retorna toda la informacion de las reservas en una semana especifica (para mostrar en el calendario)
 function query_reservas_semana($con, $inicio_semana, $fin_semana) {
     $sql = "SELECT 
-        r.id_reserva,
-        r.fecha_reserva,
-        r.dia,
-        r.id_espacio,
-        r.id_horario,
-        r.ci_profesor,
-        r.id_dicta,
-        r.id_curso,
+        r.id_reserva, r.fecha_reserva, r.dia, r.id_espacio, r.id_horario, r.ci_profesor, r.id_dicta, r.id_curso,
         a.nombre AS nombre_asignatura,
         e.nombre AS nombre_espacio,
-        h.hora_inicio,
-        h.hora_final,
+        h.hora_inicio, h.hora_final,
         c.nombre AS nombre_curso,
         CONCAT(p.nombre, ' ', p.apellido) AS nombre_profesor
     FROM reservas_espacios r

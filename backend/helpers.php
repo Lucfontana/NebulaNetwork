@@ -5,7 +5,7 @@ function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar, $dato_
 ?>
     <?php mysqli_data_seek($query, 0); ?>
     <div class="datos-body">
-        <?php while ($row = mysqli_fetch_array($query)): ?>
+        <?php while ($row = mysqli_fetch_array($query)): ?> <!-- Para cada horario, se muestra la hora de inicio y la hora final -->
             <div class="datos-row mostrar-datos">
                 <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
                 <?php foreach ($dias as $dia): ?>

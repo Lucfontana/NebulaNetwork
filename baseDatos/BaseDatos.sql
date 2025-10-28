@@ -96,13 +96,13 @@ create table cumple (
 
 CREATE TABLE reservas_espacios (
     id_reserva INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    ci_profesor INT NOT NULL,
-    id_dicta INT NOT NULL,
-    id_curso INT NOT NULL,
-    id_espacio INT NOT NULL,
-    id_horario INT NOT NULL,
+    ci_profesor INT NOT NULL, 
+    id_dicta INT,
+    id_curso INT,
+    id_espacio INT NOT NULL, 
+    id_horario INT NOT NULL, 
     fecha_reserva DATE NOT NULL,
-    dia ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes') NOT NULL,
+    dia ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes') NOT NULL, done
     FOREIGN KEY (ci_profesor) REFERENCES profesores(ci_profesor) ON DELETE CASCADE,
     FOREIGN KEY (id_dicta) REFERENCES profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE,
     FOREIGN KEY (id_curso) REFERENCES cursos(id_curso) ON DELETE CASCADE,

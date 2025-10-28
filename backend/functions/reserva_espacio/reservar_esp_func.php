@@ -17,18 +17,11 @@ function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_
                     AND denc.dia = ?";
 
     $stmt_dicta = $con->prepare($sql_dicta);
-    if (!$stmt_dicta) {
-        die("Error preparando SQL dicta: " . $con->error);
-    }
 
-    $query_insertar_reserva = "INSERT INTO reservas_espacios 
-        (ci_profesor, id_dicta, id_curso, id_espacio, id_horario, fecha_reserva, dia)
-        VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $query_insertar_reserva = "INSERT INTO reservas_espacios (ci_profesor, id_dicta, id_curso, id_espacio, id_horario, fecha_reserva, dia)
+                               VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     $stmt_insert = $con->prepare($query_insertar_reserva);
-    if (!$stmt_insert) {
-        die("Error preparando SQL reserva: " . $con->error);
-    }
 
     foreach ($horas_reservar as $id_horario) {
         $stmt_dicta->bind_param("iis", $ci_profesor, $id_horario, $dia_semana_seleccionado);
@@ -39,7 +32,7 @@ function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_
             $id_dicta = intval($row['id_dicta']);
             $id_curso = intval($row['id_curso']);
         } else {
-            // No hay coincidencia → usar 0 en ambos campos
+            // No hay coincidencia usar 0 en ambos campos
             $id_dicta = null;
             $id_curso = null;
         }
@@ -49,7 +42,7 @@ function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_
         if ($stmt_insert->execute()) {
             $horarios_insertados++;
         } else {
-            // Si falla la inserción por restricción (FK, UNIQUE, etc.)
+            // Si falla la insercion quiere decir que no existe algún id_dicta 
             $error = true;
             $mensaje_error = "Error al insertar reserva: No tienes clases a la hora que quieres reservar.";
             break;
@@ -59,7 +52,7 @@ function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_
     $stmt_dicta->close();
     $stmt_insert->close();
 
-    // Confirmar o revertir según corresponda
+    // Confirmar o revertir segun corresponda
     if ($error) {
         $con->rollback();
         $respuesta_json = [

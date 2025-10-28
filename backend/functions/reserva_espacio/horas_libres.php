@@ -23,14 +23,12 @@ $inicio_semana_str = date('Y-m-d', strtotime('monday this week', $base_time));
 $fin_semana_str = date('Y-m-d', strtotime('friday this week', $base_time));
 
 $dia = saber_dia_seleccionado($dia_semana_seleccionado);
-// echo "Esto es lo que vale el dia: " . $dia;
 
 if (is_null($dia)){
     $respuesta_json['dia'] = $dia;
     $respuesta_json["mensaje"] = "No hay horarios para este día; ingrese una opción válida";
     $respuesta_json["estado"] = '0';
     $respuesta_json["horarios"] = [];
-    $respuesta_json["valores"] = "Dia seleccionado: " . $dia . " ID espacio seleccionado: " . $espacio . " Fecha seleccionada: " . $fecha_seleccionada . " Inicio semana: " . $inicio_semana_str . " Fin semana: " . $fin_semana_str;
     echo json_encode($respuesta_json);
     exit;
 }
