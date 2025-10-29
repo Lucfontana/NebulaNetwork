@@ -1897,9 +1897,8 @@ abajito cuando el ancho es menos de 700px */
     color: #f1f1f1;
 }
 
-.darkmode div.grid-cell{
-    color:#fff;
-    background-color: #404043;
+.darkmode .mostrar-datos .grid-cell{
+    color: #333;
 }
 
 }
