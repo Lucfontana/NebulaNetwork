@@ -1,9 +1,12 @@
 #!/bin/bash
+
+#Primero se declaran todas las funciones, ya que el codigo se va ejecutando linea por linea
 continuar_o_salir(){
     echo ''
-    echo "Desea continuar o salir? (1- Continuar; Cualquier otro caracter para salir)"
-    read opc
-    case "$opc" in 
+    echo "Desea continuar o salir? (1- Continuar; Cualquier otro caracter para salir)" #echo: Muestra un mensaje
+    read opc #read: Lee la entrada del usuario
+
+    case "$opc" in #Case es lo mismo que el switch en cualquier otro lenguaje; se indica case y la variable a analizar
         1) menu
             ;;
         *) exit 
@@ -12,7 +15,7 @@ continuar_o_salir(){
 
 }
 
-
+#Funcion para ingesar profesores 
 ingresar_profesor() {
     #Se declaran los parametros que van a usarse con su debido orden 
 
@@ -37,12 +40,14 @@ ingresar_profesor() {
     #  -e Indica la consulta a ejecutar en la bd
     mysql -h localhost -u "$usuario_db" -p"$contra_db" "$nombre_db" -e "$query"
 
+    #$? tiene el estado de exito del ultimo comando ejecutado
+    #si $? es igual a 0 (-eq) significa que la operacion fue exitosa
     if [ $? -eq 0 ]; then
         echo "Profesor agregado correctamente."
-        continuar_o_salir
-    else
+        continuar_o_salir #Se llama a la funcion coninuar_o_salir, que pregunta al usuario si quiere realizar otra accion o salir del sistema
+    else #si $? tiene otro valor significa que hubo un error, por lo que se muestra mensaje de error
         echo "Error al registrar al profesor; vuelva a intentarlo"
-        continuar_o_salir
+        continuar_o_salir #Llamar funcion continuar_o_salir para lo mismo q arriba
     fi
 
 } 
@@ -63,6 +68,7 @@ Eliminar() {
     fi
 }
 
+#Se declara el menu para ser cargado nuevamente dependiendo de continuar_o_salir
 menu(){
 echo "=================================="
 echo "Administracion de NEBULANETWORK DB"
@@ -73,7 +79,6 @@ echo "3- Modificar nombre profesor"
 echo "4- Salir"
 echo "=================================="
 read opc
-
 
 nombre_db="nebulanetwork"
 usuario_db="root"
@@ -118,6 +123,7 @@ case "$opc" in
         ;;
     *)
         echo "Opcion invalida"
+        continuar_o_salir
         ;;
 esac
 }
