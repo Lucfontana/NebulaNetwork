@@ -1,4 +1,17 @@
 #!/bin/bash
+continuar_o_salir(){
+    echo ''
+    echo "Desea continuar o salir? (1- Continuar; Cualquier otro caracter para salir)"
+    read opc
+    case "$opc" in 
+        1) menu
+            ;;
+        *) exit 
+            ;;
+    esac
+
+}
+
 
 ingresar_profesor() {
     #Se declaran los parametros que van a usarse con su debido orden 
@@ -24,6 +37,14 @@ ingresar_profesor() {
     #  -e Indica la consulta a ejecutar en la bd
     mysql -h localhost -u "$usuario_db" -p"$contra_db" "$nombre_db" -e "$query"
 
+    if [ $? -eq 0 ]; then
+        echo "Profesor agregado correctamente."
+        continuar_o_salir
+    else
+        echo "Error al registrar al profesor; vuelva a intentarlo"
+        continuar_o_salir
+    fi
+
 } 
 
 Eliminar() {
@@ -35,10 +56,14 @@ Eliminar() {
     mysql -u"$usuario_db" -p"$contra_db" "$nombre_db" -e "DELETE FROM profesores WHERE ci_profesor=$ci;"
     if [ $? -eq 0 ]; then
         echo "Profesor con CI $ci eliminado correctamente."
+        continuar_o_salir
         else
         echo "Error al eliminar profesor con CI $ci."
+        continuar_o_salir
     fi
 }
+
+menu(){
 echo "=================================="
 echo "Administracion de NEBULANETWORK DB"
 echo "Ingrese una opcion: "
@@ -83,7 +108,7 @@ case "$opc" in
     2)
         echo "Ingrese la CI del profesor a eliminar: "
         read CI
-        Eliminar "$usuario_db" "$contra_db" "$nommbre_db" "$CI"
+        Eliminar "$usuario_db" "$contra_db" "$nombre_db" "$CI"
         ;;
     3)
         echo "Opcion 3"
@@ -95,3 +120,6 @@ case "$opc" in
         echo "Opcion invalida"
         ;;
 esac
+}
+
+menu
