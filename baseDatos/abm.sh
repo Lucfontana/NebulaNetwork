@@ -1,4 +1,18 @@
-#!/bin/bash
+ #!/bin/bash
+Eliminar() {
+    local usuario_db=$1
+    local contra_db=$2
+    local nombre_db=$3
+    local ci=$4
+
+    mysql -u"$usuario_db" -p"$contra_db" "$nombre_db" -e "DELETE FROM profesores WHERE ci_profesor=$ci;"
+    if [ $? -eq 0 ]; then
+        echo "Profesor con CI $ci eliminado correctamente."
+        else
+        echo "Error al eliminar profesor con CI $ci."
+    fi
+}
+
 echo "=================================="
 echo "Administracion de NEBULANETWORK DB"
 echo "Ingrese una opcion: "
@@ -9,10 +23,9 @@ echo "4- Salir"
 echo "=================================="
 read opc
 
-
-nombre_db = "nebulanetwork"
-usuario_db = "root"
-contra_db = ""
+nombre_db="nebulanetwork"
+usuario_db="root"
+contra_db=""
 
 case "$opc" in 
     1)
@@ -38,7 +51,9 @@ case "$opc" in
         read direccion
         ;;
     2)
-        echo "Opcion 2"
+        echo "Ingrese la CI del profesor a eliminar: "
+        read CI
+        Eliminar "$usuario_db" "$contra_db" "$nommbre_db" "$CI"
         ;;
     3)
         echo "Opcion 3"
