@@ -39,7 +39,10 @@ function insert_datos_asignatura($con, $existe, $nombre){ //$con: conexión a la
         $stmt->bind_param("s", $nombre);
         $stmt->execute();
 
-        $respuesta_json['estado'] = 1;
+        // Guarda en el arreglo que la operación fue exitosa (estado = 1)
+        $respuesta_json['estado'] = 1; 
+
+        // Agrega un mensaje descriptivo al arreglo
         $respuesta_json['mensaje'] = "Insertado correctamente"; // mensaje devuelto
 
     } else {
@@ -47,6 +50,7 @@ function insert_datos_asignatura($con, $existe, $nombre){ //$con: conexión a la
         $respuesta_json['mensaje'] = "Esta asignatura ya existe";
     }
 
+    // Devuelve el arreglo $respuesta_json con el estado y mensaje de la operación
     return $respuesta_json;
 }
 
