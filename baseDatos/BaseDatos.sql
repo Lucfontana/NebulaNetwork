@@ -171,6 +171,10 @@ INSERT INTO cursos (nombre, capacidad) VALUES
 ('1° Año A', 30),
 ('2° Año A', 28);
 
+INSERT INTO orientacion (nombre) VALUES
+('Informatica'),
+('Informatica Bilingue');
+
 INSERT INTO asignaturas (nombre) VALUES
 ('Matemática'),
 ('Lengua Española');
@@ -184,8 +188,8 @@ INSERT INTO recursos (id_espacio, nombre, estado, tipo) VALUES
 (2, 'Microscopio Digital', 'libre', 'interno'),
 (1, 'Proyector Multimedia', 'uso', 'interno');
 
-INSERT INTO superUsuario (id_superusuario, nombre, pass_superusuario, apellido, nivel_acceso) VALUES
-(12345672, 'Carlos', '$2y$10$hVNDXu5Z2mLgC1bBGoJGt./fMxBEG/hAa.q378y1ezY52kMdNpQYi', 'Rodríguez', '3');
+INSERT INTO superUsuario (id_superusuario, nombre, pass_superusuario, apellido, nivel_acceso, email_superusuario) VALUES
+(12345672, 'Carlos', '$2y$10$hVNDXu5Z2mLgC1bBGoJGt./fMxBEG/hAa.q378y1ezY52kMdNpQYi', 'Rodríguez', '3', 'luca@gmail.com');
 
 INSERT INTO profesores (ci_profesor, pass_profesor, nombre, apellido, email, fecha_nac, direccion) VALUES
 (26197140, '$2y$10$Urjrq9L9F/cExXM0EzqhvucDWeDfsYqgjb7VQBeCJQH8K0dDSAewq', 'Pedro', 'López', 'pedro.lopez@escuela.edu.uy', '1980-07-22', 'Bvar. Artigas 567');
