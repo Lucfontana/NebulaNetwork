@@ -1,8 +1,5 @@
 #!/bin/bash
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 ingresar_profesor() {
     #Se declaran los parametros que van a usarse con su debido orden 
 
@@ -29,7 +26,6 @@ ingresar_profesor() {
 
 } 
 
-<<<<<<< Updated upstream
 Eliminar() {
     local usuario_db=$1
     local contra_db=$2
@@ -43,8 +39,6 @@ Eliminar() {
         echo "Error al eliminar profesor con CI $ci."
     fi
 }
-=======
->>>>>>> Stashed changes
 echo "=================================="
 echo "Administracion de NEBULANETWORK DB"
 echo "Ingrese una opcion: "
