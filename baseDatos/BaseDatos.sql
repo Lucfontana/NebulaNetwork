@@ -102,7 +102,7 @@ CREATE TABLE reservas_espacios (
     id_espacio INT NOT NULL, 
     id_horario INT NOT NULL, 
     fecha_reserva DATE NOT NULL,
-    dia ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes') NOT NULL, done
+    dia ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes') NOT NULL,
     FOREIGN KEY (ci_profesor) REFERENCES profesores(ci_profesor) ON DELETE CASCADE,
     FOREIGN KEY (id_dicta) REFERENCES profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE,
     FOREIGN KEY (id_curso) REFERENCES cursos(id_curso) ON DELETE CASCADE,
