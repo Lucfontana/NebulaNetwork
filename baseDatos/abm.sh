@@ -52,6 +52,7 @@ ingresar_profesor() {
 
 } 
 
+#Mismo funcionamiento q arriba
 Eliminar() {
     local usuario_db=$1
     local contra_db=$2
@@ -68,15 +69,67 @@ Eliminar() {
     fi
 }
 
+editar(){
+    #Declarar los parametros que son enviados
+    local ci=$1
+    local nombre=$2
+    local usuario_db=$3
+    local contra_db=$4
+    local nombre_db=$5
+
+    #Query para verificar si el profesor existe
+    query_verificar_profe="SELECT COUNT(*) FROM profesores WHERE ci_profesor='$ci';"
+
+    #Query para actualizar el nombre del profesor
+    query_editar="UPDATE profesores SET nombre = '$nombre' WHERE ci_profesor='$ci';"
+
+    #Primero, se ejecuta la consulta para verificar si el profesor existe
+    #-N hace que nosalga el nombre de las columnas en el resultado (porque el resultado de un select viene con el formato de columpa y etc etc)
+    #-s remueve todos los bordes y espacios (todos los caracteres adicionales) (silent mode)
+    filas=$(mysql -N -s -h localhost -u "$usuario_db" -p"$contra_db" "$nombre_db" -e "$query_verificar_profe")
+
+    #Si la query se pudo ejecutar significa que no existe el profe ingresado
+    if [ "$filas" -eq 0 ]; then
+        echo "Error: El profesor con CI $ci no existe."
+        continuar_o_salir #se consulta al usuario si quiere seguir con la ejecucion del programa o no
+        return #se termina la ejecucion aca (SOLAMENTE Si el profesor NO EXISTE)
+    fi
+
+    #Como el codigo siguio significa q esta todo bien, por lo que se actualiza el nombre 
+    mysql -h localhost -u "$usuario_db" -p"$contra_db" "$nombre_db" -e "$query_editar"
+
+    if [ $? -eq 0 ]; then
+        echo "Nombre modificado correctamente"
+        continuar_o_salir
+    else
+        echo "Hubo un error al actualizar la informacion"
+        continuar_o_salir
+    fi
+}
+
+mostrar_profes(){
+    local usuario_db=$1
+    local contra_db=$2
+    local nombre_db=$3
+
+    query="SELECT * FROM profesores"
+    mysql -h localhost -u "$usuario_db" -p"$contra_db" "$nombre_db" -e "$query"
+
+    continuar_o_salir
+
+}
+
 #Se declara el menu para ser cargado nuevamente dependiendo de continuar_o_salir
 menu(){
+clear #Se limpia todo lo que estaba antes en la consola cada vez que es llamada la funcion
 echo "=================================="
 echo "Administracion de NEBULANETWORK DB"
 echo "Ingrese una opcion: "
 echo "1- Registrar Profesores"
 echo "2- Eliminar profesores"
 echo "3- Modificar nombre profesor"
-echo "4- Salir"
+echo "4- Mostrar tabla profesores"
+echo "5- Salir"
 echo "=================================="
 read opc
 
@@ -116,9 +169,19 @@ case "$opc" in
         Eliminar "$usuario_db" "$contra_db" "$nombre_db" "$CI"
         ;;
     3)
-        echo "Opcion 3"
+        echo "Ingrese la CI del profesor a editar"
+        read CI
+
+        echo "Ingrese el nuevo nombre"
+        read nombre
+
+        editar "$CI" "$nombre" "$usuario_db" "$contra_db" "$nombre_db"
         ;;
     4)
+        mostrar_profes "$usuario_db" "$contra_db" "$nombre_db"
+        ;;
+
+    5)
         exit;
         ;;
     *)
