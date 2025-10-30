@@ -199,10 +199,6 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
         </main>
 
         <!--    Cierre de Ventanas Emergentes    -->
-
-        <footer id="footer" class="footer">
-            <p> &copy; <b><?= t("footer") ?></b></p>
-        </footer>
     <?php elseif (isset($_SESSION['ci'])): ?>
         <?php include_once('./Complementos/nav.php') ?>
         <main>
@@ -273,14 +269,10 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
                 </div>
             </div>
         </main>
-        <footer id="footer" class="footer">
-            <p> &copy; <b><?= t("footer") ?></b></p>
-        </footer>
-
     <?php elseif (!isset($_SESSION['ci'])): ?>
         <?php include_once('error.php') ?>
     <?php endif; ?>
-
+    <?php include_once("./Complementos/footer.php") ?>
     <!-- Bootstrap -->
     <script type="module" src="../../backend/functions/Recursos/prestar-recursos/prestar.js"></script>
     <script type="module" src="../../backend/functions/Recursos/prestar-recursos/procesar_devolucion.js"></script>

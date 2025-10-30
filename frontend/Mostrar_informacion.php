@@ -65,12 +65,6 @@ session_start();
                 </div>
             </div>
         </main>
-
-        <footer id="footer" class="footer">
-            <p> &copy; <b> <?= t("footer") ?> </b></p>
-
-        </footer>
-
     <?php elseif (isset($_SESSION['ci'])): ?>
         <title>Mostrar Información</title>
 
@@ -97,15 +91,10 @@ session_start();
                     </div>
                 </div>
             </main>
-
-            <footer id="footer" class="footer">
-                <p> &copy; <b> <?= t("footer") ?> </b></p>
-            </footer>
-
         <?php elseif (!isset($_SESSION['ci'])): ?>
             <?php include_once('error.php') ?>
         <?php endif; ?>
-
+        <?php include_once("./Complementos/footer.php") ?>
         <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
         <!-- scripts para mostrar informacion -->
         <script type="module" src="/frontend/js/confirm-asignatura.js"></script>

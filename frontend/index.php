@@ -32,11 +32,7 @@ session_start();
     <!-- <main class="contenido" id="contenido">
 
     </main> -->
-     <footer id="footer" class="footer">
-       <p> &copy; <b> <?= t("footer") ?> </b></p>
-
-    </footer>
-
+    <?php include_once("./Complementos/footer.php") ?>
     <script src="js/darkmode.js"></script>
 
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->

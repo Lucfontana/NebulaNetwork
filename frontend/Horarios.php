@@ -269,10 +269,6 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
 
         </main>
     </body>
-    <footer id="footer" class="footer">
-        <p> &copy; <b><?= t("footer") ?></b></p>
-    </footer>
-
 
     <!-- VISTA DEL PROFESOR -->
 <?php else: ?>
@@ -392,6 +388,7 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
         </main>
     </body>
 <?php endif; ?> <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
+<?php include_once("./Complementos/footer.php") ?>
 <script type="module" src="/frontend/js/prueba.js"></script>
 <script src="./js/horarios-lunes.js"></script>
 <script src="js/Register-Modal.js"></script>
