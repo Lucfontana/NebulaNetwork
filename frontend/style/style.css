@@ -1576,7 +1576,6 @@ abajito cuando el ancho es menos de 700px */
     }
 
     .btn-bienvenida {
-        width: 90%;
         max-width: 280px;
         height: 80px;
         font-size: 16px;
