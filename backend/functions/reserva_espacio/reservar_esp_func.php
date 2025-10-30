@@ -32,6 +32,7 @@ function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_
 
     //Se verifica que un horario no se haya repetido dos veces
     if (!$error) {
+                                //funcion de helpers.php
         $horarios_duplicados = horarios_duplicados($horas_reservar);        
         // Si hay al menos un horario duplicado en el array
         if (count($horarios_duplicados) > 0) {
@@ -72,6 +73,8 @@ function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_
             // No hay coincidencia usar 0 en ambos campos
             $id_dicta = null;
             $id_curso = null;
+            $error = true;
+            $mensaje_error= 'Horario inválido: No estás disctando clase en una de las horas seleccionadas';
         }
 
         $stmt_insert->bind_param("iiiiiss", $ci_profesor, $id_dicta, $id_curso, $id_espacio, $id_horario, $fecha_reservar, $dia_semana_seleccionado);

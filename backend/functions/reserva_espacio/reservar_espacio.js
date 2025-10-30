@@ -23,6 +23,7 @@ async function cargar_horarios() {
     try {
         let valor_fecha_reservado = document.getElementById("dia_reserva").value;
         let valor_espacio_reserva = document.getElementById("espacio_reservar").value;
+        let cantidad_horas_reserva = document.getElementById("cantidad_horas_reserva");
 
         //Se calcula el dia de la semana y se lo fuerza a que sea de la hora local.
         //Se divide la fecha en cada - que hay (si la fecha es 2025-10-10, queda un array de [2025, 10, 10])
@@ -71,8 +72,8 @@ async function cargar_horarios() {
         if (data.estado === '1' && horariosDisponibles.length > 0) {
 
         //Se trae el valor de la cantidad de horas, si es mayor a uno se generan los campos
-        const cantidad_horas = document.getElementById("cantidad_horas_falta").value;
-            if (cantidad_horas > 0) {
+        const cantidad_horas_reserva = document.getElementById("cantidad_horas_falta").value;
+            if (cantidad_horas_reserva > 0 || cantidad_horas_reserva <= 15)  {
                 generar_campos_horarios();
             }
         } else {
