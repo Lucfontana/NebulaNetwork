@@ -1,23 +1,12 @@
 <?php
 
+//IMPORTANTISIMO!!!! TODA LA LOGICA DEL CALENDARIO ESTA ACA!!!
 include_once("../backend/functions/Horarios/logica_calendario.php");
 
 ?>
 
 <title><?= t("title_schedules") ?></title>
 <?php include 'nav.php'; ?>
-<style>
-    .dia-dato{
-        display: flex;
-        flex-direction: column;
-    }
-    .reserva-clase {
-        background-color: #06b5d422  !important;
-        color: black !important;
-        border-left: 4px solid #29829bff;
-        position: relative;
-    }
-</style>
 
 <?php if (!isset($_SESSION['ci'])): ?>
 <!-- Vista para Alumnos -->
@@ -302,7 +291,6 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
                     data-target="#exampleModal">
                     <?= t("Reservar espacio") ?>
                 </button>
-
                 <div id="div-dialogs">
                     <div class="overlay">
                         <div class="dialogs" id="dialogs">

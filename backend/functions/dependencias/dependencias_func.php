@@ -1,6 +1,7 @@
 <?php
 include_once('../../db/conexion.php');
 include_once('../../queries.php');
+include_once('../../helpers.php');
 
 $con = conectar_a_bd();
 
@@ -76,6 +77,20 @@ function registrar_dependencia_completa($con, $ci_profesor, $id_asignatura, $hor
             $mensaje_error = "El curso no existe";
         }
         $stmt->close();
+    }
+
+    //Paso 1.5 Se verifica que un horario no se haya repetido dos veces
+    if (!$error) {
+                                //funcion de helpers.php
+        $horarios_duplicados = horarios_duplicados($horarios);        
+        // Si hay al menos un horario duplicado en el array
+        if (count($horarios_duplicados) > 0) {
+            // Marcamos que hay error para detener el proceso
+            $error = true;
+            
+            // Creamos un mensaje de error personalizado
+            $mensaje_error = "No puedes seleccionar el mismo horario más de una vez";
+        }
     }
     
     // PASO 2: Obtener ID_DICTA

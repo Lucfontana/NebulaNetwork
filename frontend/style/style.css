@@ -910,6 +910,18 @@ hr {
     border-left: 4px solid #cc0000 !important;
 }
 
+.dia-dato{
+    display: flex;
+    flex-direction: column;
+}
+
+.reserva-clase {
+    background-color: #06b5d422  !important;
+    color: black !important;
+    border-left: 4px solid #29829bff;
+    position: relative;
+}
+
 /* Datos Horarios */
 .celular {
     display: none;
