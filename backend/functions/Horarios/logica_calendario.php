@@ -43,7 +43,7 @@ if (!isset($_SESSION['nivel_acceso']) && isset($_SESSION['ci'])) {
 $professql = isset($_GET['ci_profe']) ? intval($_GET['ci_profe']) : 0;
 
 // SOLO PARA TESTING - Comentar para usar con la fecha actual
-$fecha_test = '2025-10-28'; // Miércoles - Si quieren testear, cambien la fecha est
+$fecha_test = '2025-11-03'; // Miércoles - Si quieren testear, cambien la fecha est
 $base_time = strtotime($fecha_test);
 
 // Para uso actual usar esto (comentar las lineas de arriba):
