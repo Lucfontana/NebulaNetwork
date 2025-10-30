@@ -4,7 +4,7 @@ session_start();
 
 <?php if (isset($_SESSION['nivel_acceso'])): ?>
     <title>Mostrar Información</title>
-    <?php include_once 'nav.php'; ?>
+    <?php include_once './Complementos/nav.php'; ?>
     <?php include_once 'register.php'; ?>
 
     <body id="body-register">
@@ -29,39 +29,39 @@ session_start();
                 </div>
 
                 <div data-seccion="profesores" class="seccion-oculta">
-                    <?php include_once("./Profesores.php") ?>
+                    <?php include_once("./CRUD/Profesores.php") ?>
                 </div>
 
                 <div data-seccion="superusuarios" class="seccion-oculta">
-                    <?php include_once("./SuperUsuarios.php") ?>
+                    <?php include_once("./CRUD/SuperUsuarios.php") ?>
                 </div>
 
                 <div data-seccion="recursos" class="seccion-oculta">
-                    <?php include_once("./Recursos.php") ?>
+                    <?php include_once("./CRUD/Recursos.php") ?>
                 </div>
 
                 <div data-seccion="espacios" class="seccion-oculta">
-                    <?php include_once("./Espacios.php") ?>
+                    <?php include_once("./CRUD/Espacios.php") ?>
                 </div>
 
                 <div data-seccion="cursos" class="seccion-oculta">
-                    <?php include_once("./Cursos.php") ?>
+                    <?php include_once("./CRUD/Cursos.php") ?>
                 </div>
 
                 <div data-seccion="asignatura" class="seccion-oculta">
-                    <?php include_once("./asignaturas.php") ?>
+                    <?php include_once("./CRUD/asignaturas.php") ?>
                 </div>
 
                 <div data-seccion="orientaciones" class="seccion-oculta">
-                    <?php include_once("./Orientaciones.php") ?>
+                    <?php include_once("./CRUD/Orientaciones.php") ?>
                 </div>
 
                 <div data-seccion="inasistencias" class="seccion-oculta">
-                    <?php include_once("./inasistencias.php") ?>
+                    <?php include_once("./CRUD/inasistencias.php") ?>
                 </div>
 
                 <div data-seccion="reserva" class="seccion-oculta">
-                    <?php include_once("./reserva.php") ?>
+                    <?php include_once("./CRUD/reserva.php") ?>
                 </div>
             </div>
         </main>
@@ -90,10 +90,10 @@ session_start();
                         </div>
                     </div>
                     <div data-seccion="inasistencias" class="seccion-oculta">
-                        <?php include_once("./inasistencias.php") ?>
+                        <?php include_once("./CRUD/inasistencias.php") ?>
                     </div>
                     <div data-seccion="reserva" class="seccion-oculta">
-                        <?php include_once("./reserva.php") ?>
+                        <?php include_once("./CRUD/reserva.php") ?>
                     </div>
                 </div>
             </main>

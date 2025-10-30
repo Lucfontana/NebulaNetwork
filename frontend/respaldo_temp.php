@@ -25,7 +25,7 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
 <link rel="stylesheet" href="style/style.css">
 
 <?php if (isset($_SESSION['nivel_acceso'])): ?>
-    <?php include 'nav.php'; ?>
+    <?php include './Complementos/nav.php'; ?>
 
     <body id="body-register">
         <!-- trae las barras de navegacion (sidebar y superior) -->
@@ -204,7 +204,7 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
             <p> &copy; <b><?= t("footer") ?></b></p>
         </footer>
     <?php elseif (isset($_SESSION['ci'])): ?>
-        <?php include_once('nav.php') ?>
+        <?php include_once('./Complementos/nav.php') ?>
         <main>
             <div id="contenido-mostrar-datos">
                 <div class="div-mostrar-datos">

@@ -7,7 +7,7 @@ session_start();
 ?>
 
 <title>Index</title>
-<?php include 'nav.php'; ?>
+<?php include './Complementos/nav.php'; ?>
 
 <body>
  <div class="hdrBackground" id="hdrBackground">
