@@ -1,7 +1,7 @@
 <?php
 session_start();
 ?>
-    
+
 <?php if (isset($_SESSION['nivel_acceso'])): ?>
     <title>Mostrar Información</title>
     <?php include_once 'nav.php'; ?>
@@ -69,7 +69,22 @@ session_start();
         <body id="body-register">
             <main>
                 <div id="contenido-mostrar-datos">
-                    <?php include_once("./inasistencias.php") ?>
+                    <div class="div-mostrar-datos-main">
+                        <h1 id="titulo-mostrar-informacion">Mostrar Información</h1>
+                        <div class="filtros"> <label for="horario-select">Seleccione Dato a Mostrar:</label>
+                            <select name="informacion" class="salones-select" id="informacion-change" onchange="cambiarDato(this.value)">
+                                <option value="0">Seleccione Dato</option>
+                                <option value="inasistencias">Inasistencias</option>
+                                <option value="reserva">Reservas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div data-seccion="inasistencias" class="seccion-oculta">
+                        <?php include_once("./inasistencias.php") ?>
+                    </div>
+                    <div data-seccion="reserva" class="seccion-oculta">
+                        <?php include_once("./reserva.php") ?>
+                    </div>
                 </div>
             </main>
 
@@ -91,6 +106,7 @@ session_start();
         <script type="module" src="/frontend/js/confirm-recursos.js"></script>
         <script type="module" src="/frontend/js/confirm-superusuario.js"></script>
         <script type="module" src="/frontend/js/confirm-inasistencia.js"></script>
+        <script type="module" src="/frontend/js/confirm-reserva.js"></script>
 
         <!-- Scripts generales -->
         <script type="module" src="/frontend/js/prueba.js"></script>

@@ -891,6 +891,13 @@ hr {
     grid-template-columns: 80px 250px 170px 180px 180px 180px 120px; /* ID angosto, Persona más ancha, Recurso, Admin, Hora Prestado/Devolución, Estado */
 }
 
+/* Estructura específica para la tabla de reserva */
+.reserva-grid .grid-header,
+.reserva-grid .grid-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 1fr 1fr 120px; 
+}
+
 /* Estructura específica para la tabla de Asignaturas */
 .asignaturas-grid .grid-header,
 .asignaturas-grid .grid-row {
