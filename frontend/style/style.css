@@ -390,19 +390,8 @@ aside>ul {
     z-index: 1;
 }
 
-.input-form {
-    color: aliceblue;
-    margin-top: 20px;
-    border-radius: 10px;
-    padding: 15px;
-    width: 100%;
-    font-size: 18px;
-    background-color: #fff;
-    border-style: none;
-}
-
 .input-form::placeholder {
-    color: rgb(255, 255, 255);
+    color: #333;
 }
 
 .contraseña {
@@ -620,14 +609,11 @@ aside>ul {
 .cruz-register {
     width: 25px;
     height: 25px;
-    position: fixed;
 }
 
 .cruz-register:hover {
-    color: #2a3380;
     background-color: rgba(0, 0, 0, 0.2); /* sombra de fondo ligera */
     border-radius: 100%; /* forma redondeada */
-    padding: 1px;
 }
 
 .btn-enviar-registro {
@@ -664,6 +650,16 @@ hr {
     border-width: 5px;
     width: 60%;
 }
+#form {
+    display: flex;
+    width: 40%;
+    height: auto;
+    flex-direction: column;
+    padding: 20px;
+    font-size: 18px;
+    background-color: rgb(216, 229, 240);
+    z-index: 1;
+}
 
 .input-register {
     color: white;
@@ -677,14 +673,18 @@ hr {
 }
 
 .input-form {
-    color: aliceblue;
+    color: #333;
     margin-top: 20px;
     border-radius: 10px;
     padding: 15px;
     width: 100%;
     font-size: 18px;
-    background-color: #ffffff;
+    background-color: #fff;
     border-style: none;
+}
+
+.input-form::placeholder {
+    color: #333;
 }
 
 .input-register:focus {
@@ -693,7 +693,7 @@ hr {
 }
 
 .input-register::placeholder {
-    color: rgb(255, 255, 255);
+    color: #fff;
 }
 
 .registro-div>label {
@@ -1822,105 +1822,119 @@ abajito cuando el ancho es menos de 700px */
 }
 
 @media (prefers-color-scheme: dark) {
-    .darkmode {
-    color: #f1f1f1;
-}
+    /* NAVBAR */
+    .darkmode .navStyle,
+    .darkmode footer {
+        background-color: #1e1e1e;
+        color: #f1f1f1;
+    }
 
-/* NAVBAR */
-.darkmode .navStyle,
-.darkmode footer {
-    background-color: #1e1e1e;
-    color: #f1f1f1;
-}
+    .darkmode .nav-link,
+    .darkmode .navbar-brand,
+    .darkmode .nav-item a {
+        color: #f1f1f1;
+    }
 
-.darkmode .nav-link,
-.darkmode .navbar-brand,
-.darkmode .nav-item a {
-    color: #f1f1f1;
-}
+    .darkmode .nav-link:hover,
+    .darkmode .navbar-brand:hover {
+        color: #6d6d6d;
+    }
 
-.darkmode .nav-link:hover,
-.darkmode .navbar-brand:hover {
-    color: #6d6d6d;
-}
+    /* ICONOS */
+    .darkmode .icono,
+    .darkmode .navbar-toggler-icon {
+        filter: invert(100%);
+    }
 
-/* ICONOS */
-.darkmode .icono,
-.darkmode .navbar-toggler-icon {
-    filter: invert(100%);
-}
+    .darkmode .icono:hover,
+    .darkmode .navbar-toggler-icon:hover {
+        filter: invert(60%);
+    }
 
-.darkmode .icono:hover,
-.darkmode .navbar-toggler-icon:hover {
-    filter: invert(60%);
-}
+    /* BOTONES */
+    .darkmode .btn,
+    .darkmode .btn-bienvenida,
+    .darkmode .btn-login {
+        background-color: #3a3a3a;
+        color: #f1f1f1;
+        border: 1px solid #3a3a3a;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
 
-/* BOTONES */
-.darkmode .btn,
-.darkmode .btn-bienvenida,
-.darkmode .btn-login {
-    background-color: #3a3a3a;
-    color: #f1f1f1;
-    border: 1px solid #3a3a3a;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
+    .darkmode .btn:hover,
+    .darkmode .btn-bienvenida:hover,
+    .darkmode .btn-login:hover {
+        background-color: #505050;
+        color: #ffffff;
+    }
 
-.darkmode .btn:hover,
-.darkmode .btn-bienvenida:hover,
-.darkmode .btn-login:hover {
-    background-color: #505050;
-    color: #ffffff;
-}
+    /* SECCIONES */
+    .darkmode aside,
+    .darkmode #contenido-mostrar-datos,
+    .darkmode .div-mostrar-datos,
+    .darkmode .div-mostrar-datos-main,
+    .darkmode .filtros,
+    .darkmode #form {
+        background-color: #2b2b2b;
+        color: #f1f1f1;
+    }
 
-/* SECCIONES */
-.darkmode aside,
-.darkmode #contenido-mostrar-datos,
-.darkmode .div-mostrar-datos,
-.darkmode .div-mostrar-datos-main,
-.darkmode .filtros,
-.darkmode #form {
-    background-color: #2b2b2b;
-    color: #f1f1f1;
-}
+    /* TEXTO */
+    .darkmode #contenido-mostrar-datos h1,
+    .darkmode .filtros>label,
+    .darkmode #titulo-login,
+    .darkmode .label,
+    .darkmode .flecha-volver {
+        color: #f1f1f1;
+    }
 
-/* TEXTO */
-.darkmode #contenido-mostrar-datos h1,
-.darkmode .filtros>label,
-.darkmode #titulo-login,
-.darkmode .label,
-.darkmode .flecha-volver {
-    color: #f1f1f1;
-}
+    .darkmode .flecha-volver:hover {
+        color: #bababa;
+        background-color: #3a3a3a;
+    }
 
-.darkmode .flecha-volver:hover {
-    color: #bababa;
-    background-color: #3a3a3a;
-}
+    /* INPUTS */
+    .darkmode .input-form {
+        color: #f1f1f1;
+        background-color: #3a3a3a;
+        border: 1px solid #505050;
+    }
 
-/* INPUTS */
-.darkmode .input-form {
-    color: #f1f1f1;
-    background-color: #3a3a3a;
-    border: 1px solid #505050;
-}
+    .darkmode .input-form::placeholder {
+        color: #cfcfcf;
+    }
 
-.darkmode .input-form::placeholder {
-    color: #cfcfcf;
-}
+    /* GRID Y DATOS */
+    .darkmode .grid-cell {
+        border: 1px solid #3a3a3a;
+    }
 
-/* GRID Y DATOS */
-.darkmode .grid-cell {
-    border: 1px solid #3a3a3a;
-}
+    .darkmode .informacion-escondida {
+        background-color: #2b2b2b;
+        color: #000000;
+    }
 
-/* ELEMENTOS BLANCOS ESPECIALES */
-.darkmode .informacion-escondida {
-    background-color: #2b2b2b;
-    color: #f1f1f1;
-}
+    .darkmode .mostrar-datos .grid-cell {
+        color: #333;
+    }
 
-.darkmode .mostrar-datos .grid-cell{
-    color: #333;
-}
+    .darkmode .dialogs {
+        background-color: #2b2b2b;
+        color: #2b2b2b;
+    }
 
+    .darkmode .dialogs h1 {
+        color: #ffffff;
+    }
+    
+    .darkmode .contenedor-password-register>i {
+        color: white;
+        background-color: #3b3b3b;
+    }
+
+    .darkmode .input-register {
+        background-color: #3b3b3b;
+        color: white;
+        border: 1px solid #505050;
+    }
 }
