@@ -334,8 +334,7 @@ function mostrardatos($buscar)
 }
 
 //Function inasistencias mostrar datos
-function inasistenciasMostrar($ci)
-{
+function inasistenciasMostrar($ci){
     $connect = conectar_a_bd();
 
     $sql = "SELECT i.*, h.hora_inicio, h.hora_final, h.tipo
@@ -345,6 +344,18 @@ function inasistenciasMostrar($ci)
 
     $stmt = mysqli_prepare($connect, $sql);
     mysqli_stmt_bind_param($stmt, "i", $ci);
+    mysqli_stmt_execute($stmt);
+    return $result = mysqli_stmt_get_result($stmt);
+}
+
+function inasistenciasMostrar2(){
+    $connect = conectar_a_bd();
+
+    $sql = "SELECT i.*, h.hora_inicio, h.hora_final, h.tipo
+        FROM inasistencia i
+        INNER JOIN horarios h ON i.id_horario = h.id_horario";
+
+    $stmt = mysqli_prepare($connect, $sql);
     mysqli_stmt_execute($stmt);
     return $result = mysqli_stmt_get_result($stmt);
 }
@@ -362,6 +373,19 @@ function reservaMostrar($ci)
 
     $stmt = mysqli_prepare($connect, $sql);
     mysqli_stmt_bind_param($stmt, "i", $ci);
+    mysqli_stmt_execute($stmt);
+    return $result = mysqli_stmt_get_result($stmt);
+}
+
+function reservaMostrar2()
+{
+    $connect = conectar_a_bd();
+
+    $sql = "SELECT r.*, h.hora_inicio, h.hora_final, h.tipo, e.nombre
+        FROM reservas_espacios r
+        INNER JOIN horarios h ON r.id_horario = h.id_horario
+        INNER JOIN espacios_fisicos e ON r.id_espacio = e.id_espacio";
+    $stmt = mysqli_prepare($connect, $sql);
     mysqli_stmt_execute($stmt);
     return $result = mysqli_stmt_get_result($stmt);
 }

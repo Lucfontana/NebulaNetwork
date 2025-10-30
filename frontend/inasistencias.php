@@ -9,9 +9,13 @@ if (!isset($_SESSION['ci'])) {
     exit;
 }
 
-$ci = $_SESSION['ci'];
+if (!isset($_SESSION['nivel_acceso'])) {
+    $ci = $_SESSION['ci'];
+    $result = inasistenciasMostrar($ci);
+} else {
+    $result = inasistenciasMostrar2();
+}
 
-$result = inasistenciasMostrar($ci);
 ?>
 
 <div class="div-mostrar-datos">

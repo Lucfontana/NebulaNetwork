@@ -22,6 +22,8 @@ session_start();
                             <option value="cursos">Cursos</option>
                             <option value="asignatura">Asignaturas</option>
                             <option value="orientaciones">Orientaciones</option>
+                            <option value="inasistencias">Inasistencias</option>
+                            <option value="reserva">Reservas</option>
                         </select>
                     </div>
                 </div>
@@ -52,6 +54,14 @@ session_start();
 
                 <div data-seccion="orientaciones" class="seccion-oculta">
                     <?php include_once("./Orientaciones.php") ?>
+                </div>
+
+                <div data-seccion="inasistencias" class="seccion-oculta">
+                    <?php include_once("./inasistencias.php") ?>
+                </div>
+
+                <div data-seccion="reserva" class="seccion-oculta">
+                    <?php include_once("./reserva.php") ?>
                 </div>
             </div>
         </main>

@@ -1,7 +1,7 @@
 <?php
 include_once('../backend/db/conexion.php');
 include_once 'functions.php';
-include_Once('../backend/queries.php');
+include_once('../backend/queries.php');
 include_once('../backend/helpers.php');
 
 if (!isset($_SESSION['ci'])) {
@@ -9,9 +9,14 @@ if (!isset($_SESSION['ci'])) {
     exit;
 }
 
-$ci = $_SESSION['ci'];
+if (!isset($_SESSION['nivel_acceso'])) {
+    $ci = $_SESSION['ci'];
+    $result = reservaMostrar($ci);
+} else {
+    $result = reservaMostrar2();
+}
 
-$result = reservaMostrar($ci);
+
 ?>
 
 <div class="div-mostrar-datos">
