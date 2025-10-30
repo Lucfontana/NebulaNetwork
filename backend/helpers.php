@@ -8,13 +8,14 @@ function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar, $dato_
         <?php while ($row = mysqli_fetch_array($query)): ?> <!-- Para cada horario, se muestra la hora de inicio y la hora final -->
             <div class="datos-row mostrar-datos">
                 <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
-                <?php foreach ($dias as $dia): ?>
+                <?php foreach ($dias as $dia): ?> <!--Por cada dia se repite la busqueda-->
                     <?php
                     $mostro = false;
                     
-                    // PRIORIDAD 1: Verificar si hay RESERVA en este horario
-                    foreach ($materias_por_dia[$dia] as $m) {
-                        // Si es una reserva, mostrarla con estilo especial
+                    // 1: Verificar si hay RESERVA en este horario
+                    foreach ($materias_por_dia[$dia] as $m) { //Para cada materia en un dia especifico
+                        // Si la reserva a una hora especifica esta marcada como true, se muestra el horario con la clase
+                        //(Si la query de horas a la que esta ocupada un curso ($row) es igual a un horario donde hay reserva )
                         if (isset($m['es_reserva']) && $m['es_reserva'] === true &&
                             $m['hora_inicio'] == $row['hora_inicio'] && 
                             $m['hora_final'] == $row['hora_final'] &&
@@ -32,12 +33,14 @@ function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar, $dato_
                     // PRIORIDAD 2: Si no hay reserva, mostrar clase regular
                     if (!$mostro) {
                         foreach ($materias_por_dia[$dia] as $m) {
-                            // Solo mostrar clases regulares (sin es_reserva o es_reserva = false)
+                            // Si no hay reservas, o la reserva es false (y si las horas coinciden) 
+                            // se muestra la clase normal (o con inasistencia, si llega a tener)
                             if ((!isset($m['es_reserva']) || $m['es_reserva'] === false) &&
                                 $m['hora_inicio'] == $row['hora_inicio'] && 
                                 $m['hora_final'] == $row['hora_final'] &&
                                 $m['id_horario'] == $row['id_horario']) {
                                 
+                                //Si la clase llega a tener una inasistencia, se la muestra con la $clase_inasistencia
                                 $clase_inasistencia = isset($m['tiene_inasistencia']) && $m['tiene_inasistencia'] ? 'inasistencia-marcada' : '';
                                 echo "<div class='dia-dato {$clase_inasistencia}'>
                                     <strong>{$m[$dato_mostrar]}</strong>
@@ -126,6 +129,27 @@ function toggle_mostrar_info($nombre)
 <?php
 }
 
+function horarios_duplicados($horas){
 
+    // array_count_values() cuenta cuántas veces aparece cada valor en el array
+    // Si $horarios = [1, 2, 1, 3], entonces $horarios_contados = [1 => 2, 2 => 1, 3 => 1]
+    // Esto significa: el horario 1 aparece 2 veces, el 2 aparece 1 vez, el 3 aparece 1 vez
+    $horarios_contados = array_count_values($horas);
+    
+    // Array para guardar los IDs de horarios que están duplicados
+    $horarios_duplicados = array();
+    
+    // Recorrer el array de horarios contados
+    // $id_horario es la clave (el ID del horario)
+    // $cantidad es el valor (cuántas veces aparece ese ID)
+    foreach ($horarios_contados as $id_horario => $cantidad) {
+        // Si un horario aparece más de una vez, es un duplicado
+        if ($cantidad > 1) {
+            // Agregamos ese ID al array de duplicados
+            $horarios_duplicados[] = $id_horario;
+        }
+    }
+    return $horarios_duplicados;
+}
 
 ?>

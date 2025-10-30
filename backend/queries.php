@@ -326,3 +326,20 @@ function inasistenciasMostrar($ci) {
     return $result = mysqli_stmt_get_result($stmt);
 
 }
+
+//Function  mostrar datos
+function reservaMostrar($ci) {
+    $connect = conectar_a_bd();
+
+    $sql = "SELECT r.*, h.hora_inicio, h.hora_final, h.tipo, e.nombre
+        FROM reservas_espacios r
+        INNER JOIN horarios h ON r.id_horario = h.id_horario
+        INNER JOIN espacios_fisicos e ON r.id_espacio = e.id_espacio
+        WHERE r.ci_profesor = ?";
+
+    $stmt = mysqli_prepare($connect, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $ci);
+    mysqli_stmt_execute($stmt);
+    return $result = mysqli_stmt_get_result($stmt);
+
+}

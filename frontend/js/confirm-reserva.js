@@ -1,14 +1,14 @@
 import { verificarString, alerta_success_update, alerta_fallo } from './prueba.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.getElementById("overlay-inasistencia");
-  const btnCancelar = document.getElementById("cancelar-inasistencia");
-  const btnConfirmar = document.getElementById("confirmar-inasistencia");
+  const overlay = document.getElementById("overlay-reserva");
+  const btnCancelar = document.getElementById("cancelar-reserva");
+  const btnConfirmar = document.getElementById("confirmar-reserva");
 
   let currentId = null;
 
   // --- ABRIR MODAL ELIMINAR (solo inasistencias) ---
-  document.querySelectorAll(".boton-eliminar-inasistencia").forEach(boton => {
+  document.querySelectorAll(".boton-eliminar-reserva").forEach(boton => {
     boton.addEventListener("click", (e) => {
       e.preventDefault();
       currentId = boton.dataset.id;
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- CONFIRMAR ELIMINAR ---
   btnConfirmar.addEventListener("click", () => {
     if (currentId) {
-      window.location.href = `/backend/functions/inasistencias/delete.php?id=${currentId}`;
+      window.location.href = `/backend/functions/reserva_espacio/delete.php?id=${currentId}`;
     }
   });
 });
