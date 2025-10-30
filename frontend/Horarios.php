@@ -329,7 +329,7 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
                             <form class="registro-div reserva-form">
                                 <h1><?= t("Reservar espacio") ?></h1>
                                 <hr>
-                                <div class="div-labels"><i><b>Nota:</b> Si reserva un espacio a una hora en la que tiene clases, su clase será cambiada para ese espacio. En caso contrario, se reservará el espacio como "Evento especial".</i></div>
+                                <div class="div-labels" ><i><b>Nota:</b> Solamente puedes reservar espacios en los momentos que tienes clases.</i></div>
                                 <div class="div-labels">
                                     <label for="dia" class="label">En el dia:</label>
                                     <input type="date" name="dia_reserva" id="dia_reserva" class="input-register" required>
@@ -393,7 +393,6 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
 <script src="./js/horarios-lunes.js"></script>
 <script src="js/Register-Modal.js"></script>
 <script type='module' src="../backend/functions/Profesores/inasistencia/marcar_inasistencia.js"></script>
-<script src="js/horarios-lunes.js"></script>
 
 <!-- Registros -->
 <script type="module" src="../backend/functions/dependencias/crear_campos.js"></script>
