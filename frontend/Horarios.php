@@ -6,10 +6,11 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
 ?>
 
 <title><?= t("title_schedules") ?></title>
-<?php include 'nav.php'; ?>
+<?php include './Complementos/nav.php'; ?>
 
 <?php if (!isset($_SESSION['ci'])): ?>
-<!-- Vista para Alumnos -->
+    <!-- Vista para Alumnos -->
+
     <body>
         <main>
             <div id="contenido-mostrar-datos">
@@ -62,7 +63,8 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
         </main>
     </body>
 <?php elseif (isset($_SESSION['nivel_acceso'])): ?>
-<!-- Vista para adscripta -->
+    <!-- Vista para adscripta -->
+
     <body id="body-register">
         <main>
             <div id="contenido-mostrar-datos">
@@ -267,17 +269,11 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
 
         </main>
     </body>
-    <footer id="footer" class="footer">
-        <p> &copy; <b><?= t("footer") ?></b></p>
-    </footer>
-
 
     <!-- VISTA DEL PROFESOR -->
 <?php else: ?>
 
     <body id="body-register">
-        <?php include 'nav.php'; ?>
-
         <main>
             <div id="contenido-mostrar-datos">
                 <h1><?= t("title_my_schedules") ?></h1>
@@ -333,12 +329,11 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
                             <form class="registro-div reserva-form">
                                 <h1><?= t("Reservar espacio") ?></h1>
                                 <hr>
-                                <div class="div-labels" ><i><b>Nota:</b> Si reserva un espacio a una hora en la que tiene clases, su clase será cambiada para ese espacio. En caso contrario, se reservará el espacio como "Evento especial".</i></div>
+                                <div class="div-labels"><i><b>Nota:</b> Si reserva un espacio a una hora en la que tiene clases, su clase será cambiada para ese espacio. En caso contrario, se reservará el espacio como "Evento especial".</i></div>
                                 <div class="div-labels">
                                     <label for="dia" class="label">En el dia:</label>
                                     <input type="date" name="dia_reserva" id="dia_reserva" class="input-register" required>
                                 </div>
-
                                 <div class="div-labels">
                                     <label for="espacio" class="label">Espacio a reservar: </label>
                                     <select name="espacio_reservar" id="espacio_reservar" type="text" class="input-register">
@@ -350,20 +345,16 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
                                         <?php endwhile; ?>
                                     </select>
                                 </div>
-
                                 <div class="div-labels" id="horas_reserva">
                                     <label for="nose" class="label">Cantidad de horas a reservar:</label>
                                     <input type="number" name="cantidad_horas_reserva" id="cantidad_horas_reserva"
                                         class="input-register" required>
                                 </div>
-
                                 <div id="campos-reservas"></div>
-
                                 <div class="div-botones-register">
                                     <input class="btn-enviar-registro" type="submit" value="Registrar"
                                         name="registrarReservaEspacio"></input>
                                 </div>
-
                             </form>
                         </div>
                     </div>
@@ -371,7 +362,6 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
 
                 <div class="computadora">
                     <?php echo cabecera_horarios() ?>
-
                     <?php echo cargar_horarios($query, $dias, $materias_por_dia, "nombre_curso", "nombre_espacio") ?>
                 </div>
 
@@ -394,12 +384,11 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
                         <?php endforeach; ?>
                     </div>
                 </div>
-
-
             </div>
         </main>
     </body>
 <?php endif; ?> <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
+<?php include_once("./Complementos/footer.php") ?>
 <script type="module" src="/frontend/js/prueba.js"></script>
 <script src="./js/horarios-lunes.js"></script>
 <script src="js/Register-Modal.js"></script>

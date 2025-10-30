@@ -4,7 +4,7 @@ session_start();
 
 <?php if (isset($_SESSION['nivel_acceso'])): ?>
     <title>Mostrar Información</title>
-    <?php include_once 'nav.php'; ?>
+    <?php include_once './Complementos/nav.php'; ?>
     <?php include_once 'register.php'; ?>
 
     <body id="body-register">
@@ -22,45 +22,49 @@ session_start();
                             <option value="cursos">Cursos</option>
                             <option value="asignatura">Asignaturas</option>
                             <option value="orientaciones">Orientaciones</option>
+                            <option value="inasistencias">Inasistencias</option>
+                            <option value="reserva">Reservas</option>
                         </select>
                     </div>
                 </div>
 
                 <div data-seccion="profesores" class="seccion-oculta">
-                    <?php include_once("./Profesores.php") ?>
+                    <?php include_once("./CRUD/Profesores.php") ?>
                 </div>
 
                 <div data-seccion="superusuarios" class="seccion-oculta">
-                    <?php include_once("./SuperUsuarios.php") ?>
+                    <?php include_once("./CRUD/SuperUsuarios.php") ?>
                 </div>
 
                 <div data-seccion="recursos" class="seccion-oculta">
-                    <?php include_once("./Recursos.php") ?>
+                    <?php include_once("./CRUD/Recursos.php") ?>
                 </div>
 
                 <div data-seccion="espacios" class="seccion-oculta">
-                    <?php include_once("./Espacios.php") ?>
+                    <?php include_once("./CRUD/Espacios.php") ?>
                 </div>
 
                 <div data-seccion="cursos" class="seccion-oculta">
-                    <?php include_once("./Cursos.php") ?>
+                    <?php include_once("./CRUD/Cursos.php") ?>
                 </div>
 
                 <div data-seccion="asignatura" class="seccion-oculta">
-                    <?php include_once("./asignaturas.php") ?>
+                    <?php include_once("./CRUD/asignaturas.php") ?>
                 </div>
 
                 <div data-seccion="orientaciones" class="seccion-oculta">
-                    <?php include_once("./Orientaciones.php") ?>
+                    <?php include_once("./CRUD/Orientaciones.php") ?>
+                </div>
+
+                <div data-seccion="inasistencias" class="seccion-oculta">
+                    <?php include_once("./CRUD/inasistencias.php") ?>
+                </div>
+
+                <div data-seccion="reserva" class="seccion-oculta">
+                    <?php include_once("./CRUD/reserva.php") ?>
                 </div>
             </div>
         </main>
-
-        <footer id="footer" class="footer">
-            <p> &copy; <b> <?= t("footer") ?> </b></p>
-
-        </footer>
-
     <?php elseif (isset($_SESSION['ci'])): ?>
         <title>Mostrar Información</title>
 
@@ -80,22 +84,17 @@ session_start();
                         </div>
                     </div>
                     <div data-seccion="inasistencias" class="seccion-oculta">
-                        <?php include_once("./inasistencias.php") ?>
+                        <?php include_once("./CRUD/inasistencias.php") ?>
                     </div>
                     <div data-seccion="reserva" class="seccion-oculta">
-                        <?php include_once("./reserva.php") ?>
+                        <?php include_once("./CRUD/reserva.php") ?>
                     </div>
                 </div>
             </main>
-
-            <footer id="footer" class="footer">
-                <p> &copy; <b> <?= t("footer") ?> </b></p>
-            </footer>
-
         <?php elseif (!isset($_SESSION['ci'])): ?>
             <?php include_once('error.php') ?>
         <?php endif; ?>
-
+        <?php include_once("./Complementos/footer.php") ?>
         <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
         <!-- scripts para mostrar informacion -->
         <script type="module" src="/frontend/js/confirm-asignatura.js"></script>
