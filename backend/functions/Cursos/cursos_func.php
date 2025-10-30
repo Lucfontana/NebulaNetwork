@@ -7,13 +7,17 @@ $con = conectar_a_bd();
 // Indicar que la respuesta de este PHP es un JSON
 header('Content-Type: application/json');
 
-if(isset($_POST['registrarCursos'])){
+if(isset($_POST['registrarCursos'])){ //si el formulario fue enviado, se hace lo de adentro
     $nombre_curso = strip_tags(trim($_POST['name']));
+    //strip_tags() elimina etiquetas HTML para evitar inyecciones.
+    //trim() elimina espacios en blanco.
     $capacidad = (int)$_POST['capacity'];
-    $id_orientacion = (int)$_POST['orientacion_en'];
+    $id_orientacion = (int)$_POST['orientacion_en']; //ID de orientación.
 
+    //Llama a la función consultar_si_existe_curso() para ver si ya hay un curso con ese nombre en la base de datos.
     $existe = consultar_si_existe_curso($con, $nombre_curso);
 
+    //Si el curso no existe, se inserta. Si ya existe, se devuelve un mensaje de error.
     $insert_cursos = insert_datos_cursos($con, $existe, $nombre_curso, $capacidad, $id_orientacion);
 
     //Se codifica el resultado de la insercion como json
@@ -33,9 +37,9 @@ $result = $stmt->get_result();
 //Si hay mas de una coincidencia, quiere decir que el nombre existe (por lo tanto, el CURSO EXISTE)
 //si no, quiere decir q es nuevo y que se puede agregar sin problemas    
     if ($result->num_rows > 0){
-        return true;
+        return true; // El curso ya existe
     } else {
-        return false;
+        return false; // El curso es nuevo
     }
 
 }
@@ -45,7 +49,7 @@ function insert_datos_cursos($con, $existe, $nombre_curso, $capacidad, $id_orien
     // Array para almacenar la respuesta
     $respuesta_json = array();
     
-    if ($existe == false){
+    if ($existe == false){ //Si el curso no existe, lo inserta en la tabla cursos.
         $query_insertar = "INSERT INTO cursos (nombre, capacidad, id_orientacion) VALUES (?, ?, ?)";
         $stmt = $con->prepare($query_insertar);
         $stmt->bind_param("sii", $nombre_curso, $capacidad, $id_orientacion);
@@ -54,7 +58,7 @@ function insert_datos_cursos($con, $existe, $nombre_curso, $capacidad, $id_orien
         $respuesta_json['estado'] = 1;
         $respuesta_json['mensaje'] = "Insertado correctamente";
 
-    } else {
+    } else { //Si ya existe, no hace nada, solo devuelve un mensaje.
 
         $respuesta_json['estado'] = 0;
         $respuesta_json['mensaje'] = "Este curso ya existe";

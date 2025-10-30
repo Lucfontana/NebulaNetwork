@@ -1,4 +1,9 @@
 <?php
+include_once("../../helpers.php");
+
+//Aclara que la hora con la que se va a trabajar es la hora de uruguay
+date_default_timezone_set('America/Montevideo');
+
 function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_reservar, $dia_semana_seleccionado, $id_espacio) {
     $respuesta_json = [];
     $error = false;
@@ -7,6 +12,38 @@ function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_
 
     $con->begin_transaction();
 
+    //Obtiene la fecha actual
+    $fecha_actual = new DateTime();
+
+    //La pasa a un formato de anio mes dia
+    $fecha_actual->format("Y-m-d");
+
+    //Se hace lo mismo con la fecha de inasistencia, pero se lo pasa a un objeto "DateTime" para poder hacer la comparacion
+    $fecha_reserva_datetime = new DateTime($fecha_reservar);
+    $fecha_reserva_datetime->format("Y-m-d");
+
+    // Verificación: comprobar que la fecha no sea anterior a la actual
+    if (!$error) {
+        if ($fecha_reserva_datetime < $fecha_actual) {
+            $error = true;
+            $mensaje_error = "Tienes que elegir un día próximo al actual";
+        }
+    }
+
+    //Se verifica que un horario no se haya repetido dos veces
+    if (!$error) {
+        $horarios_duplicados = horarios_duplicados($horas_reservar);        
+        // Si hay al menos un horario duplicado en el array
+        if (count($horarios_duplicados) > 0) {
+            // Marcamos que hay error para detener el proceso
+            $error = true;
+            
+            // Creamos un mensaje de error personalizado
+            $mensaje_error = "No puedes seleccionar el mismo horario más de una vez";
+        }
+    }
+
+    if (!$error){
     // Preparar las queries una sola vez fuera del bucle
     $sql_dicta = "SELECT pda.id_dicta, c.id_curso
                   FROM profesor_dicta_asignatura pda
@@ -48,9 +85,7 @@ function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_
             break;
         }
     }
-
-    $stmt_dicta->close();
-    $stmt_insert->close();
+    }
 
     // Confirmar o revertir segun corresponda
     if ($error) {
@@ -58,7 +93,7 @@ function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_
         $respuesta_json = [
             'estado' => 0,
             'mensaje' => $mensaje_error,
-            'datos' => null
+            'datos' => $datos ?? null
         ];
     } else {
         $con->commit();

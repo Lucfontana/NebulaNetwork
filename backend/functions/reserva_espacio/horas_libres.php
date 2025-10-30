@@ -33,29 +33,30 @@ if (is_null($dia)){
     exit;
 }
 
+//Se tra
 $query = "SELECT 
     h.id_horario, h.hora_inicio, h.hora_final, h.tipo
-FROM horarios h
-    WHERE (
-    (
-        h.id_horario NOT IN (
-            SELECT doe.id_horario
-            FROM dicta_ocupa_espacio doe
-            WHERE doe.id_espacio = ? AND doe.dia = ?
+    FROM horarios h
+        WHERE (
+        (
+            h.id_horario NOT IN (
+                SELECT doe.id_horario
+                FROM dicta_ocupa_espacio doe
+                WHERE doe.id_espacio = ? AND doe.dia = ?
+            )
+            AND h.id_horario NOT IN ( 
+                SELECT r.id_horario
+                FROM reservas_espacios r
+                WHERE r.id_espacio = ? AND r.dia = ? AND r.fecha_reserva BETWEEN ? AND ?
+            )
+            OR h.id_horario IN (
+                SELECT i.id_horario
+                FROM inasistencia i
+                JOIN cumple c ON i.id_horario = c.id_horario
+                WHERE c.dia = ? AND i.fecha_inasistencia BETWEEN ? AND ?
+            )
         )
-        AND h.id_horario NOT IN ( 
-            SELECT r.id_horario
-            FROM reservas_espacios r
-            WHERE r.id_espacio = ? AND r.dia = ? AND r.fecha_reserva BETWEEN ? AND ?
-        )
-        OR h.id_horario IN (
-            SELECT i.id_horario
-            FROM inasistencia i
-            JOIN cumple c ON i.id_horario = c.id_horario
-            WHERE c.dia = ? AND i.fecha_inasistencia BETWEEN ? AND ?
-        )
-    )
-    AND h.tipo != 'recreo'
+        AND h.tipo != 'recreo'
 )";
 $stmt = $con->prepare($query);
 $stmt->bind_param("isissssss", $espacio, $dia, $espacio, $dia, $inicio_semana_str, $fin_semana_str, $dia, $inicio_semana_str, $fin_semana_str,);

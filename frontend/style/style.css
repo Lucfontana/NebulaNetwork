@@ -910,6 +910,18 @@ hr {
     border-left: 4px solid #cc0000 !important;
 }
 
+.dia-dato{
+    display: flex;
+    flex-direction: column;
+}
+
+.reserva-clase {
+    background-color: #06b5d422  !important;
+    color: black !important;
+    border-left: 4px solid #29829bff;
+    position: relative;
+}
+
 /* Datos Horarios */
 .celular {
     display: none;
@@ -929,9 +941,13 @@ hr {
 
 .botones-register-horarios {
     display: flex;
+    border-width: 5px;
     gap: 40px;
     align-items: center;
+    border-radius: 10px;
+    border-style: none;
     text-align: center;
+    color: white;
 }
 
 .btn-register-horario {
@@ -1584,7 +1600,6 @@ abajito cuando el ancho es menos de 700px */
     }
 
     .btn-bienvenida {
-        width: 90%;
         max-width: 280px;
         height: 80px;
         font-size: 16px;
