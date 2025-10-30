@@ -37,10 +37,10 @@ include_once 'functions.php';
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><?= t("nav_info") ?></a>
+                        <a target="_blank" class="nav-link" href="https://docs.google.com/document/d/1WDWj47ideOv1RfzDdR-rDbzqRiPQkiu0ycgtXHn3DeQ/edit?usp=sharing"><?= t("nav_info") ?></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><?= t("nav_courses") ?></a>
+                        <a class="nav-link" href="./About-us.php"><?= t("nav_courses") ?></a>
                     </li>
                 </ul>
             </div>
