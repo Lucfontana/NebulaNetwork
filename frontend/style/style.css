@@ -941,9 +941,13 @@ hr {
 
 .botones-register-horarios {
     display: flex;
+    border-width: 5px;
     gap: 40px;
     align-items: center;
+    border-radius: 10px;
+    border-style: none;
     text-align: center;
+    color: white;
 }
 
 .btn-register-horario {
