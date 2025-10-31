@@ -2,6 +2,7 @@
 
 include_once("../../../db/conexion.php");
 include_once("../../../queries.php");
+include_once("../../../helpers.php");
 
 date_default_timezone_set('America/Montevideo');
 
@@ -49,37 +50,10 @@ function registrar_falta_completa($con, $ci_profesor, $horarios, $dia, $fecha_in
     //estuviera previamente registrada como una hora en la que se iba a faltar
 
     if (!$error){
-        $horarios_validos = array();
-        $horarios_con_falta = array();
-
-        $query_verificar_falta = "SELECT * from inasistencia i
-                                 INNER JOIN horarios h on h.id_horario = i.id_horario
-                                  WHERE i.fecha_inasistencia = ? AND i.id_horario = ? AND i.ci_profesor = ?";
-
-        $stmt_inasistencias = $con->prepare($query_verificar_falta);
-
-        foreach ($horarios as $id_horario){
-            $stmt_inasistencias->bind_param("sii", $fecha_inasistencia, $id_horario, $ci_profesor);
-            $stmt_inasistencias->execute();
-            $resultado_verificar_inasistencia = $stmt_inasistencias->get_result();
-            $horario_info = $resultado_verificar_inasistencia->fetch_assoc();
-
-            if ($resultado_verificar_inasistencia->num_rows == 0){
-                $horarios_validos[] = $horario_info;
-            }
-            else {
-                $horarios_con_falta[] = $horario_info['hora_inicio'] . '-' . $horario_info['hora_final'];
-            }
-
-
-        // Si hay horarios donde el profesor no tiene clase, mostrar error
-        if (count($horarios_con_falta) > 0) {
-            $error = true;
-            $mensaje_error = "El profesor ya tiene faltas registradas en los siguientes horarios: " . implode(", ", $horarios_con_falta);
-        }
-        }
-
-        $stmt_inasistencias->close();
+        //realiza la validacion de inasistencia y trae las variables de: $error y $mensaje_error por si llega a haber
+        //List se usa para traer resultados de una funciopn que devuelve mas de un valor
+        //                          esta funcion VIENE DE HELPERS.PHP
+        list($error, $mensaje_error) = verificar_inasistencia($con, $fecha_inasistencia, $horarios, $ci_profesor);
     }
 
     //Paso 1.7: Verificar que las horas no esten repetidas
@@ -123,7 +97,6 @@ if (!$error) {
     //hay error y el programa se detiene.
     if (!$error) {
     $horarios_sin_clase = array();
-    $horarios_validos = array();
 
     // Query para verificar que el profesor tenga clase en esos horarios
     $query_verificar_clase = "SELECT h.id_horario, h.hora_inicio, h.hora_final 
@@ -142,17 +115,11 @@ if (!$error) {
             $stmt_verificar_clase->execute();
             $resultado_verificar_clase = $stmt_verificar_clase->get_result();
             
-            //Si hay una coincidencia, significa que el horario existe
-            if ($resultado_verificar_clase->num_rows > 0) {
-                // El profesor SÍ tiene clase en este horario - válido para inasistencia
-                $horario_info = $resultado_verificar_clase->fetch_assoc();
-                $horarios_validos[] = $horario_info;
-
-            //Si el profesor no tiene clase en ese horario, el resultado se va a guardar en una variable    
-            } else {
+            //Si no hay coincidencias, significa que el profesor no tiene clases a esa gora
+            if ($resultado_verificar_clase->num_rows == 0) {
                 // El profesor NO tiene clase en este horario - error
-                $horarios_sin_clase[] = $id_horario;
-            }
+                $horarios_sin_clase[] = $id_horario; 
+            } 
         }
 
     $stmt_verificar_clase->close();

@@ -23,7 +23,6 @@ async function cargar_horarios() {
     try {
         let valor_fecha_reservado = document.getElementById("dia_reserva").value;
         let valor_espacio_reserva = document.getElementById("espacio_reservar").value;
-        let cantidad_horas_reserva = document.getElementById("cantidad_horas_reserva");
 
         //Se calcula el dia de la semana y se lo fuerza a que sea de la hora local.
         //Se divide la fecha en cada - que hay (si la fecha es 2025-10-10, queda un array de [2025, 10, 10])

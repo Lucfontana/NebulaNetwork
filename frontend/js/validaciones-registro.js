@@ -569,35 +569,6 @@ function verificarHora(hora) {
     return true;
 }
 
-// Validar rango y duración según tipo
-function validarHorario(tipo, horaInicio, horaFin) {
-    function aMinutos(hora) {
-        let [h, m] = hora.split(':').map(Number);
-        return h * 60 + m;
-    }
-    let inicio = aMinutos(horaInicio);
-    let fin = aMinutos(horaFin);
-
-    if (tipo === "clase") {
-        let minInicio = aMinutos("07:00");
-        let maxFin = aMinutos("17:00");
-        if (inicio < minInicio || fin > maxFin) {
-            alert("Las clases deben estar entre 07:00 y 17:00");
-            return false;
-        }
-        if (fin - inicio !== 45) {
-            alert("Cada clase debe durar exactamente 45 minutos");
-            return false;
-        }
-    } else if (tipo === "recreo") {
-        if (fin - inicio !== 5) {
-            alert("El recreo debe durar exactamente 5 minutos");
-            return false;
-        }
-    }
-    return true;
-}
-
 // Verificar solapamiento de horarios
 function haySolapamiento(nuevoInicio, nuevoFin, horariosExistentes) {
     function aMinutos(hora) {

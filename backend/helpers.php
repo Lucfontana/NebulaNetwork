@@ -152,4 +152,42 @@ function horarios_duplicados($horas){
     return $horarios_duplicados;
 }
 
+function verificar_inasistencia($con, $fecha, $horarios, $ci_profesor){
+    $horarios_con_falta = array();
+
+    //Se declaran los errores como false ya que al inicio, no hay errores
+    $error = false;
+    $mensaje_error = "";
+
+    //Query que trae las inasistencias segun una fecha, un horario y un profesor
+    $query_verificar_falta = "SELECT h.hora_inicio, h.hora_final FROM inasistencia i
+                              INNER JOIN horarios h ON h.id_horario = i.id_horario
+                              WHERE i.fecha_inasistencia = ? AND i.id_horario = ? AND i.ci_profesor = ?";
+
+    $stmt_inasistencias = $con->prepare($query_verificar_falta);
+
+    //Para cada horario ingresado, se realiza una query
+    foreach ($horarios as $id_horario){
+        $stmt_inasistencias->bind_param("sii", $fecha, $id_horario, $ci_profesor);
+        $stmt_inasistencias->execute();
+        $resultado_verificar_inasistencia = $stmt_inasistencias->get_result();
+
+        //Si el numero de rows (filas) es distinto a 0 (quiere decir que hay inasistencia) se guarda en el array de horarios_con_falta
+        if ($resultado_verificar_inasistencia->num_rows !== 0){
+            $horario_info = $resultado_verificar_inasistencia->fetch_assoc();
+            $horarios_con_falta[] = $horario_info['hora_inicio'] . '-' . $horario_info['hora_final'];
+        }
+    }
+
+    $stmt_inasistencias->close();
+
+    // Verificar DESPUES del foreach si hay mas de un valor en el array. En caso positivo se marca error
+    if (count($horarios_con_falta) > 0) {
+        $error = true;
+        $mensaje_error = "El profesor ya tiene faltas registradas en los siguientes horarios: " . implode(", ", $horarios_con_falta);
+    }
+
+    return [$error, $mensaje_error];
+}
+
 ?>

@@ -18,7 +18,7 @@ function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_
     //La pasa a un formato de anio mes dia
     $fecha_actual->format("Y-m-d");
 
-    //Se hace lo mismo con la fecha de inasistencia, pero se lo pasa a un objeto "DateTime" para poder hacer la comparacion
+    //Se hace lo mismo con la fecha de reserva, pero se lo pasa a un objeto "DateTime" para poder hacer la comparacion
     $fecha_reserva_datetime = new DateTime($fecha_reservar);
     $fecha_reserva_datetime->format("Y-m-d");
 
@@ -44,6 +44,15 @@ function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_
         }
     }
 
+    //Verifica que el profesor no tenga una inasistencia en el horario que desea reservar
+    if (!$error){
+        //realiza la validacion de inasistencia y trae las variables de: $error y $mensaje_error por si llega a haber
+        //List se usa para traer resultados de una funciopn que devuelve mas de un valor
+        //                          esta funcion VIENE DE HELPERS.PHP
+        list($error, $mensaje_error) = verificar_inasistencia($con, $fecha_reservar, $horas_reservar, $ci_profesor);
+    }
+
+    //Inserta los datos como una reserva
     if (!$error){
     // Preparar las queries una sola vez fuera del bucle
     $sql_dicta = "SELECT pda.id_dicta, c.id_curso
