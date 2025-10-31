@@ -792,7 +792,7 @@ hr {
 }
 
 .input-register {
-    color: white;
+    color: #fff;
     margin-top: 20px;
     border-radius: 15px;
     width: 60%;
@@ -1338,7 +1338,7 @@ hr {
     margin-bottom: 6px;
     margin-right: 6px;
     font-size: 0.9em;
-    color: #2c3e50;
+    color: #000000;
 }
 
 .input-group>.contenedor-password>.togglePassword {
@@ -1351,14 +1351,12 @@ select {
     padding: 10px 12px;
     border: 1px solid #000000;
     border-radius: 10px;
-    background: rgb(216, 229, 240);
-    color: #2c3e50;
+    background: #3b3b3b;
     font-size: 0.95em;
     transition: border-color 0.5s ease;
 }
 
 .input-group>input:focus {
-    border-color: #000000;
     outline: none;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
