@@ -23,14 +23,18 @@ a {
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* ocupa siempre el alto completo */
+    min-height: 100vh;
+    /* ocupa siempre el alto completo */
 }
 
 main {
-    flex: 1; /* ocupa todo el espacio disponible entre nav y footer */
+    flex: 1;
+    /* ocupa todo el espacio disponible entre nav y footer */
     display: flex;
-    justify-content: center; /* centra horizontal */
-    align-items: center; /* centra vertical */
+    justify-content: center;
+    /* centra horizontal */
+    align-items: center;
+    /* centra vertical */
     padding: 20px;
     background-color: #57575b;
     background-image: radial-gradient(#404043 0.9px, #6a6a70 0.9px);
@@ -47,9 +51,11 @@ main {
 .navStyle {
     padding: 10px 0 10px 0;
     font-size: 18px;
-    position: fixed; /* hace que la navbar se quede fija, esto junto al top */
+    position: fixed;
+    /* hace que la navbar se quede fija, esto junto al top */
     top: 0px;
-    z-index: 999; /* Navbar encima del aside */
+    z-index: 999;
+    /* Navbar encima del aside */
     color: #2b2b2b;
     margin: 0 0 0 0;
     background-color: #E0E3EB;
@@ -97,15 +103,112 @@ main {
 }
 
 .navbar-brand {
-    font-size: 30px; /* Tamaño del titulo (ITSP) */
+    font-size: 30px;
+    /* Tamaño del titulo (ITSP) */
     margin: 0;
-    padding-left: 10px; /* un poquito de separación del borde */
+    padding-left: 10px;
+    /* un poquito de separación del borde */
     display: flex;
     align-items: center;
 }
 
 .container-fluid {
     justify-content: space-around;
+}
+
+/* /--------------- Sobre Nosotros -------------------/ */
+
+.hdrBackground {
+    padding-bottom: 4rem;
+}
+
+.container-aboutus {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 5rem;
+    padding-top: 5rem;
+}
+
+.miembro {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(207, 224, 255, 1), rgba(178, 197, 255, 1));
+    border: 2px solid rgba(0, 26, 255, 0.4);
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    width: 280px;
+    position: relative;
+    overflow: hidden;
+}
+
+.miembro>img {
+    z-index: 1000;
+}
+
+/* Efecto de partículas en el fondo - Crea un contenido antes del section */
+.miembro::before {
+    content: '';
+    /* Crea un objeto vacio */
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    /* Para que al rotarlo siga abarcando todo el contenedor */
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent,
+            rgba(78, 81, 243, 0.45),
+            transparent);
+    /* background con transperencia :v pacman*/
+    transform: rotate(45deg);
+    /* hacia donde se va mover, en este caso de esquina inferior izquierda a esquina superior derecha */
+    transition: all 1s ease;
+}
+
+.miembro:hover::before {
+    left: 100%;
+    /* Mueve el degradado fuera del contenedor */
+}
+
+.miembro:hover {
+    border-color: rgba(74, 77, 255, 0.6);
+    box-shadow: 0 20px 60px rgba(83, 80, 252, 0.3);
+    /* Iluminación */
+}
+
+.img-logo-nosotros {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    margin: 30px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.img-logo-nosotros:hover {
+    scale: 1.05;
+    transition: 1s;
+}
+
+.container-miembros {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: 20px;
+    color: black;
+    cursor: pointer;
+}
+
+.github-vinculo {
+    color: black;
 }
 
 /* /------------------------ CONTENIDO DE LA PAGINA ----------------------/ */
@@ -132,7 +235,8 @@ main {
 
 /* Texto de Bienvenidos */
 .bienvenida-texto {
-    margin-bottom: 2.5rem; /* Separación del bloque de los botones */
+    margin-bottom: 2.5rem;
+    /* Separación del bloque de los botones */
 }
 
 /* Botones de Bienvenidos */
@@ -145,8 +249,10 @@ main {
 
 .btn-bienvenida {
     font-size: 22px;
-    width: 250px; /* ancho consistente */
-    height: 120px; /* alto consistente */
+    width: 250px;
+    /* ancho consistente */
+    height: 120px;
+    /* alto consistente */
     background-color: #2c3e50;
     color: #ffffff;
     border: none;
@@ -182,7 +288,8 @@ aside {
     display: block;
     padding: 50px 0 0 0;
     width: var(---marginAside);
-    height: 100vh; /* 100% del alto visible de la ventana */
+    height: 100vh;
+    /* 100% del alto visible de la ventana */
     background-color: #E9EEF6;
     position: fixed;
     transition: all 0.5s ease;
@@ -194,15 +301,18 @@ aside>ul {
     display: flex;
     flex-direction: column;
     text-align: center;
-    list-style-type: none; /*Sacar los puntitos de la lista*/
+    list-style-type: none;
+    /*Sacar los puntitos de la lista*/
     padding: 0;
 }
 
 .link-aside-images li {
     position: relative;
     margin: 35px 0;
-    margin: 20px 0; /* mismo espacio vertical */
-    display: flex; /* centra el ícono */
+    margin: 20px 0;
+    /* mismo espacio vertical */
+    display: flex;
+    /* centra el ícono */
     justify-content: center;
     align-items: center;
 }
@@ -227,7 +337,8 @@ aside>ul {
 
 .link-aside-images li:hover::after {
     opacity: 1;
-    transform: translateY(-50%) translateX(0); /* vuelve a su lugar */
+    transform: translateY(-50%) translateX(0);
+    /* vuelve a su lugar */
 }
 
 /* Todos los iconos del sidebar con mismo tamaño */
@@ -242,9 +353,11 @@ aside>ul {
 .link-aside-images {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* reparte los íconos arriba-abajo */
+    justify-content: space-between;
+    /* reparte los íconos arriba-abajo */
     align-items: center;
-    height: 100%; /* ocupa todo el sidebar */
+    height: 100%;
+    /* ocupa todo el sidebar */
     margin: 0;
     padding: 30px 0;
 }
@@ -254,7 +367,8 @@ aside>ul {
     position: absolute;
     top: 50%;
     left: 60px;
-    transform: translateY(-50%) translateX(-10px); /* desplazado igual que los otros tooltips */
+    transform: translateY(-50%) translateX(-10px);
+    /* desplazado igual que los otros tooltips */
     flex-direction: column;
     align-items: flex-start;
     padding: 4px 0;
@@ -266,7 +380,8 @@ aside>ul {
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s, transform 0.5s; /* animación */
+    transition: opacity 0.3s, transform 0.5s;
+    /* animación */
 }
 
 /* Al hacer hover en el icono de configuración */
@@ -290,12 +405,12 @@ aside>ul {
 .settings-menu a:hover {
     background-color: black;
     color: #fff;
-    transition: 0, 0.5s;
+    transition: 0, 0.5s;
 }
 
 /*------------------------ FOOTER ----------------------*/
 .footer {
-    background-color:#E0E3EB;
+    background-color: #E0E3EB;
     padding: 20px 0 10px 0;
     text-align: center;
     color: #2b2b2b;
@@ -305,7 +420,7 @@ aside>ul {
     font-size: 20px;
     width: auto;
     transition: 0.5s;
-    }
+}
 
 /* Login - CSS */
 
@@ -327,7 +442,8 @@ aside>ul {
     text-decoration: none;
     text-align: center;
     min-width: 180px;
-    flex: 1 1 auto; /* se adaptan al espacio disponible */
+    flex: 1 1 auto;
+    /* se adaptan al espacio disponible */
 }
 
 .btn-login:hover {
@@ -360,7 +476,8 @@ aside>ul {
     text-decoration: none;
     font-weight: bold;
     z-index: 10;
-    width: 50px; /* ancho del círculo */
+    width: 50px;
+    /* ancho del círculo */
     height: 50px;
     align-items: center;
     justify-content: center;
@@ -369,8 +486,10 @@ aside>ul {
 
 .flecha-volver:hover {
     color: #222222;
-    background-color: rgba(0, 0, 0, 0.2); /* sombra de fondo ligera */
-    border-radius: 70%; /* forma redondeada */
+    background-color: rgba(0, 0, 0, 0.2);
+    /* sombra de fondo ligera */
+    border-radius: 70%;
+    /* forma redondeada */
 }
 
 .flex,
@@ -470,7 +589,8 @@ aside>ul {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3); /* negro con 30% de opacidad */
+    background: rgba(0, 0, 0, 0.3);
+    /* negro con 30% de opacidad */
 }
 
 #boton-inicio {
@@ -487,7 +607,7 @@ aside>ul {
 }
 
 #boton-inicio:hover {
-   background-color: #100d0d;
+    background-color: #100d0d;
 
 }
 
@@ -590,10 +710,13 @@ aside>ul {
     height: 90%;
     border-style: solid;
     color: #303030;
-    box-shadow: 0 10px 30px rgba(0, 60, 130, 0.3);
-    max-height: 80vh; /* altura máxima: 80% del alto visible de la ventana */
-    overflow-y: auto; /* activa la barra de scroll vertical si el contenido se pasa */
-    overflow-x: hidden; /* evita que aparezca una barra horizontal */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-height: 80vh;
+    /* altura máxima: 80% del alto visible de la ventana */
+    overflow-y: auto;
+    /* activa la barra de scroll vertical si el contenido se pasa */
+    overflow-x: hidden;
+    /* evita que aparezca una barra horizontal */
     animation: aparecer 0.4s ease;
 }
 
@@ -612,8 +735,10 @@ aside>ul {
 }
 
 .cruz-register:hover {
-    background-color: rgba(0, 0, 0, 0.2); /* sombra de fondo ligera */
-    border-radius: 100%; /* forma redondeada */
+    background-color: rgba(0, 0, 0, 0.2);
+    /* sombra de fondo ligera */
+    border-radius: 100%;
+    /* forma redondeada */
 }
 
 .btn-enviar-registro {
@@ -641,7 +766,7 @@ aside>ul {
     margin-bottom: 10px;
 }
 
-.registro-div > h1 {
+.registro-div>h1 {
     text-align: center;
 }
 
@@ -650,6 +775,7 @@ hr {
     border-width: 5px;
     width: 60%;
 }
+
 #form {
     display: flex;
     width: 40%;
@@ -730,7 +856,8 @@ hr {
     z-index: 1;
 }
 
-.btn-confirmar, .btn-cancelar {
+.btn-confirmar,
+.btn-cancelar {
     background-color: #1e1e1e;
     color: aliceblue;
     padding: 10px;
@@ -740,7 +867,8 @@ hr {
     transition: 1s;
 }
 
-.btn-confirmar:hover, .btn-cancelar:hover {
+.btn-confirmar:hover,
+.btn-cancelar:hover {
     background-color: #525252;
     transition: 1s;
 }
@@ -763,10 +891,14 @@ hr {
 #contenido-mostrar-datos {
     width: 100%;
     max-width: 1200px;
-    margin: 40px; /* límite para que no se estire demasiado */
-    background: white; /* opcional */
-    border-radius: 10px; /* opcional */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* opcional */
+    margin: 40px;
+    /* límite para que no se estire demasiado */
+    background: white;
+    /* opcional */
+    border-radius: 10px;
+    /* opcional */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* opcional */
     padding: 20px;
     margin-top: 80px;
 }
@@ -774,7 +906,8 @@ hr {
 .div-mostrar-datos {
     display: flex;
     justify-content: space-between;
-    background: white; /* opcional */
+    background: white;
+    /* opcional */
     width: 100%;
     height: auto;
     z-index: 1;
@@ -837,7 +970,8 @@ hr {
 .profesores-grid .grid-header,
 .profesores-grid .grid-row {
     display: grid;
-    grid-template-columns: 100px 130px 130px 225px 130px 200px 120px 120px; /* Ajuste equilibrado de columnas */
+    grid-template-columns: 100px 130px 130px 225px 130px 200px 120px 120px;
+    /* Ajuste equilibrado de columnas */
 }
 
 .grid-header {
@@ -851,7 +985,8 @@ hr {
 .inasistencias-grid .grid-header,
 .inasistencias-grid .grid-row {
     display: grid;
-    grid-template-columns: 150px 290px 280px 220px 220px !important; /* ID, Fecha, CI Profesor, Horario, Botones */
+    grid-template-columns: 150px 290px 280px 220px 220px !important;
+    /* ID, Fecha, CI Profesor, Horario, Botones */
     align-items: center;
     text-align: center;
 }
@@ -860,49 +995,55 @@ hr {
 .superusuario-grid .grid-header,
 .superusuario-grid .grid-row {
     display: grid;
-    grid-template-columns: 100px 150px 150px 160px 1.3fr 120px 120px; /* Ajuste balanceado entre identificadores, texto y botones */
+    grid-template-columns: 100px 150px 150px 160px 1.3fr 120px 120px;
+    /* Ajuste balanceado entre identificadores, texto y botones */
 }
 
 /* Estructura específica para la tabla de Espacios Físicos */
 .espacios-grid .grid-header,
 .espacios-grid .grid-row {
     display: grid;
-    grid-template-columns: 80px 120px 1fr 150px 120px 120px; /* Ajuste balanceado: ID pequeño, nombre flexible */
+    grid-template-columns: 80px 120px 1fr 150px 120px 120px;
+    /* Ajuste balanceado: ID pequeño, nombre flexible */
 }
 
 /* Estilo específico para Orientaciones */
 .orientaciones-grid .grid-header,
 .orientaciones-grid .grid-row {
     display: grid;
-    grid-template-columns: 80px 1fr 120px 120px; /* ID pequeño, Nombre flexible, botones fijos */
+    grid-template-columns: 80px 1fr 120px 120px;
+    /* ID pequeño, Nombre flexible, botones fijos */
 }
 
 /* Estilo específico para Recursos */
 .recursos-grid .grid-header,
 .recursos-grid .grid-row {
     display: grid;
-    grid-template-columns: 80px 120px 1fr 120px 120px 120px 120px; /* ID angosto, Espacio fijo, Nombre flexible, Estado y Tipo fijos, botones fijos */
+    grid-template-columns: 80px 120px 1fr 120px 120px 120px 120px;
+    /* ID angosto, Espacio fijo, Nombre flexible, Estado y Tipo fijos, botones fijos */
 }
 
 /* Estilo específico para Préstamos de Recursos */
 .prestamos-grid .grid-header,
 .prestamos-grid .grid-row {
     display: grid;
-    grid-template-columns: 80px 250px 170px 180px 180px 180px 120px; /* ID angosto, Persona más ancha, Recurso, Admin, Hora Prestado/Devolución, Estado */
+    grid-template-columns: 80px 250px 170px 180px 180px 180px 120px;
+    /* ID angosto, Persona más ancha, Recurso, Admin, Hora Prestado/Devolución, Estado */
 }
 
 /* Estructura específica para la tabla de reserva */
 .reserva-grid .grid-header,
 .reserva-grid .grid-row {
     display: grid;
-    grid-template-columns: 100px 1fr 1fr 1fr 1fr 120px; 
+    grid-template-columns: 100px 1fr 1fr 1fr 1fr 120px;
 }
 
 /* Estructura específica para la tabla de Asignaturas */
 .asignaturas-grid .grid-header,
 .asignaturas-grid .grid-row {
     display: grid;
-    grid-template-columns: 100px 1fr 120px 120px; /* Equilibrado: ID estrecho, nombre flexible, botones fijos */
+    grid-template-columns: 100px 1fr 120px 120px;
+    /* Equilibrado: ID estrecho, nombre flexible, botones fijos */
 }
 
 .inasistencia-marcada {
@@ -910,13 +1051,13 @@ hr {
     border-left: 4px solid #cc0000 !important;
 }
 
-.dia-dato{
+.dia-dato {
     display: flex;
     flex-direction: column;
 }
 
 .reserva-clase {
-    background-color: #06b5d422  !important;
+    background-color: #06b5d422 !important;
     color: black !important;
     border-left: 4px solid #29829bff;
     position: relative;
@@ -1159,10 +1300,12 @@ hr {
     width: 600px;
     border-style: solid;
     color: #2c3e50;
-    box-shadow: 0 10px 30px rgba(0, 60, 130, 0.3);
-    max-height: 80vh; /* altura máxima: 80% del alto visible de la ventana */
-    overflow-y: auto; /* activa la barra de scroll vertical si el contenido se pasa */
-    overflow-x: hidden; /* evita que aparezca una barra horizontal */
+    max-height: 80vh;
+    /* altura máxima: 80% del alto visible de la ventana */
+    overflow-y: auto;
+    /* activa la barra de scroll vertical si el contenido se pasa */
+    overflow-x: hidden;
+    /* evita que aparezca una barra horizontal */
     animation: aparecer 0.4s ease;
 }
 
@@ -1283,7 +1426,8 @@ select {
     width: 80%;
 }
 
-.main-perfil h2, .main-perfil p {
+.main-perfil h2,
+.main-perfil p {
     color: #000;
 }
 
@@ -1397,7 +1541,7 @@ select {
 }
 
 .error {
-    background-color:white;
+    background-color: white;
     padding: 30px;
     border-radius: 20px;
     max-width: 400px;
@@ -1497,7 +1641,8 @@ abajito cuando el ancho es menos de 700px */
         width: 100%;
         height: 50px;
         display: flex;
-        flex-direction: row; /* íconos en fila */
+        flex-direction: row;
+        /* íconos en fila */
         justify-content: space-around;
         align-items: center;
         padding: 0;
@@ -1506,7 +1651,8 @@ abajito cuando el ancho es menos de 700px */
     /* Ajuste de íconos */
     .link-aside-images {
         display: flex;
-        flex-direction: row; /* horizontal */
+        flex-direction: row;
+        /* horizontal */
         height: auto;
         justify-content: space-evenly;
         width: 100vw;
@@ -1514,7 +1660,8 @@ abajito cuando el ancho es menos de 700px */
     }
 
     .link-aside-images li {
-        margin: 0; /* eliminar márgenes verticales */
+        margin: 0;
+        /* eliminar márgenes verticales */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1739,7 +1886,7 @@ abajito cuando el ancho es menos de 700px */
     .btn {
         margin-bottom: 20px;
     }
-    
+
 }
 
 /* Responsive Perfil */
@@ -1806,7 +1953,7 @@ abajito cuando el ancho es menos de 700px */
     }
 
     .datos-row {
-    grid-template-columns: 200px repeat(1, 1fr);
+        grid-template-columns: 200px repeat(1, 1fr);
     }
 
     .dias {
@@ -1816,8 +1963,8 @@ abajito cuando el ancho es menos de 700px */
 
 @media (max-width: 700px) {
     .datos-row {
-    grid-template-columns: 100px repeat(1, 1fr);
-    font-size: 12px;
+        grid-template-columns: 100px repeat(1, 1fr);
+        font-size: 12px;
     }
 
     .dias {
@@ -1826,6 +1973,7 @@ abajito cuando el ancho es menos de 700px */
 }
 
 @media (prefers-color-scheme: dark) {
+
     /* NAVBAR */
     .darkmode .navStyle,
     .darkmode footer {
@@ -1930,7 +2078,7 @@ abajito cuando el ancho es menos de 700px */
     .darkmode .dialogs h1 {
         color: #ffffff;
     }
-    
+
     .darkmode .contenedor-password-register>i {
         color: white;
         background-color: #3b3b3b;
@@ -1952,22 +2100,25 @@ abajito cuando el ancho es menos de 700px */
         color: #f1f1f1;
     }
 
-    .darkmode .horas-titulo, .darkmode .horas-dato {
+    .darkmode .horas-titulo,
+    .darkmode .horas-dato {
         background: #333;
         border: #333;
     }
 
-    .input-group>div>input, select {
+    .input-group>div>input,
+    select {
         border: #333;
     }
 
     .darkmode .main-perfil {
-    background-color: #333;
-    color: #333;
+        background-color: #333;
+        color: #333;
     }
 
-    .darkmode .main-perfil h2,  .darkmode .main-perfil p {
-    color: #fff;
+    .darkmode .main-perfil h2,
+    .darkmode .main-perfil p {
+        color: #fff;
     }
 
     .darkmode .contenido-perfil {
