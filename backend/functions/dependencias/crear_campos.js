@@ -1,10 +1,16 @@
+//Se importan dos funciones de otro archivo:
 import {alerta_fallo, sw_exito} from '../../../frontend/js/swalerts.js';
 
+//guarda los valores ingresados en las variables variables
 let campos_a_crear = document.getElementById("crear_campos");
 let formulario_dependencias = document.querySelector(".dependencias-form");
 
-//Cuando el usuario INGRESA un numero (input), se crean los campos
 
+
+//Cuando el usuario escribe un número se llama la función crear_campos. 
+// Cuando se envía el formulario se llama registrar_dependencia.
+
+//Cuando el usuario INGRESA un numero (input), se crean los campos
 //Si existen los campos, se ejecuta
 if(campos_a_crear) campos_a_crear.addEventListener("input", crear_campos)
 
@@ -36,6 +42,8 @@ async function crear_campos(){
                         //ejecutando todo lo otro (para que la pagina no se quede estatica mientras se hace fetch).
         const respuesta = await fetch("../../backend/functions/dependencias/obtener_horarios.php");
         const data = await respuesta.json();
+        //(Se hace una petición AJAX al archivo PHP que devuelve los horarios disponibles
+        // El await hace que el código espere la respuesta antes de seguir, pero sin congelar la página.)
 
 
         //Si data.estado (viene del PHP) es distinto a 1 o no esta con valor, tira error
@@ -44,7 +52,7 @@ async function crear_campos(){
             return;
         }
 
-        let horarios = data.horarios;
+        let horarios = data.horarios; //extrae la lista de horarios y la guarda en la variable horarios para usarla en el código después
         
         //Si no hay horarios, o la respuesta esta vacia, hay alerta de que no hay hroarios
         if (!horarios || horarios.length === '0') {
@@ -57,19 +65,22 @@ async function crear_campos(){
 
         crear_selects_horarios(contenedor, horarios, cantidad_campos);
 
+        //estructura de manejo de errores en js
     } catch (error) {
         console.error('Error completo:', error);
-        alerta_fallo('Error al cargar los horarios');
+        alerta_fallo('Error al cargar los horarios'); //se ejecuta solo si ocurre un error dentro del bloque try.
     }
 }
 
+
+//Esta función crea los campos de selección (uno por cada número indicado).
 export function crear_selects_horarios(contenedor, horarios, cantidad_campos) {
     console.log("creando campos");
     for (let i = 1; i <= cantidad_campos; i++) {
-        let campoDiv = document.createElement('div');
+        let campoDiv = document.createElement('div'); //Crea un div con clase div-labels.
         campoDiv.className = 'div-labels';
 
-        let label = document.createElement('label');
+        let label = document.createElement('label'); //Crea un label con el texto “Hora de la clase X”.
         label.textContent = `Hora de la clase ${i}:`;
         label.setAttribute('for', `hora_clase`);
         label.className = 'label';
@@ -100,8 +111,9 @@ export function crear_selects_horarios(contenedor, horarios, cantidad_campos) {
     }
 }
 
+
 async function registrar_dependencia(e){
-    e.preventDefault();
+    e.preventDefault(); //Evita recargar la página
 
     let profesor_asignado = document.getElementById("profesor_asignado").value;
     let asignatura_dictada = document.getElementById("asignatura_dada").value;

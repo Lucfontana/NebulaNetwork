@@ -32,7 +32,7 @@ $stmt = $con->prepare($consulta);
 $stmt->bind_param("s", $nombre_curso);
 $stmt->execute();
 
-$result = $stmt->get_result();
+$result = $stmt->get_result(); //recupera los resultados de la consulta ejecutada y los guarda en la variable $result.
 
 //Si hay mas de una coincidencia, quiere decir que el nombre existe (por lo tanto, el CURSO EXISTE)
 //si no, quiere decir q es nuevo y que se puede agregar sin problemas    
