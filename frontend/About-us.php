@@ -7,10 +7,10 @@ session_start();
 <?php include './Complementos/nav.php'; ?>
 
 <body>
-    <div class="hdrBackground" id="hdrBackground">
+    <div class="body-aboutus">
         <div class="container-aboutus">
-            <a target="_blank" href="https://github.com/Lucfontana/NebulaNetwork">
-                <div class="img-logo-nosotros">
+            <a class="img-logo-nosotros" target="_blank" href="https://github.com/Lucfontana/NebulaNetwork">
+                <div>
                     <img src="./img/logologo.png">
                 </div>
             </a>
@@ -40,5 +40,5 @@ session_start();
             </div>
         </div>
     </div>
+    <?php include './Complementos/footer.php'; ?>
 </body>
-<?php include './Complementos/footer.php'; ?>

@@ -118,8 +118,19 @@ main {
 
 /* /--------------- Sobre Nosotros -------------------/ */
 
-.hdrBackground {
-    padding-bottom: 4rem;
+.body-aboutus {
+    background-image: linear-gradient(rgba(9, 4, 0, 0.6),
+            rgba(9, 4, 0, 0.6)),
+        url(../img/backgroundItsp.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    display: flex;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin: 75px 0 0 var(---marginAside);
+    flex-direction: column;
 }
 
 .container-aboutus {
@@ -128,8 +139,6 @@ main {
     width: 100%;
     align-items: center;
     justify-content: center;
-    padding-bottom: 5rem;
-    padding-top: 5rem;
 }
 
 .miembro {
@@ -141,15 +150,9 @@ main {
     padding: 20px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     width: 280px;
-    position: relative;
     overflow: hidden;
 }
 
-.miembro>img {
-    z-index: 1000;
-}
-
-/* Efecto de partículas en el fondo - Crea un contenido antes del section */
 .miembro::before {
     content: '';
     /* Crea un objeto vacio */
@@ -161,7 +164,7 @@ main {
     height: 200%;
     background: linear-gradient(45deg,
             transparent,
-            rgba(78, 81, 243, 0.45),
+                #2c3e5080,
             transparent);
     /* background con transperencia :v pacman*/
     transform: rotate(45deg);
@@ -175,8 +178,8 @@ main {
 }
 
 .miembro:hover {
-    border-color: rgba(74, 77, 255, 0.6);
-    box-shadow: 0 20px 60px rgba(83, 80, 252, 0.3);
+    border-color: rgba(133, 133, 133, 0.6);
+    box-shadow: 0 20px 60px rgba(30, 30, 58, 0.623);
     /* Iluminación */
 }
 
@@ -200,15 +203,16 @@ main {
 
 .container-miembros {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
     gap: 10px;
     margin-top: 20px;
     color: black;
-    cursor: pointer;
 }
 
 .github-vinculo {
     color: black;
+    cursor: pointer;
 }
 
 /* /------------------------ CONTENIDO DE LA PAGINA ----------------------/ */
@@ -1579,6 +1583,29 @@ select {
 #boton-inicio:hover {
     background-color: #100d0d;
     color: white;
+}
+
+/* About us */
+@media (width < 1000px) {
+    .container-miembros {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .body-aboutus {
+        width: 100%;
+    }
+
+    .miembro {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .github-vinculo {
+        width: 50%;
+    }
 }
 
 @media (width < 1000px) {
