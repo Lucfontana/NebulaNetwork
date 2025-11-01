@@ -383,6 +383,9 @@ function eliminar_dependencia($con, $curso, $horario, $dia){
         //Se declaran las dos queries para eliminar las clases
         $query_liberar_curso = "DELETE FROM dicta_en_curso WHERE id_curso = ? AND id_horario = ? AND dia = ?";
         $query_liberar_espacio = "DELETE FROM dicta_ocupa_espacio WHERE id_dicta = ? AND id_horario = ? AND dia = ?";
+        // $query_borrar_inasistencia ="DELETE FROM inasistencias i INNER JOIN profesor_dicta_asignatura pda WHERE i.ci_profesor = pda.ci_profesor";
+        $query_liberar_profe ="DELETE FROM cumple WHERE id_dicta = ? AND id_horario = ? AND dia = ?";
+        $query_liberar_reserva ="DELETE FROM reservas_espacios WHERE id_dicta = ? AND id_horario = ? AND dia = ? AND id_curso = ?";
 
         $stmt = $con->prepare($query_liberar_curso);
         $stmt->bind_param("iis", $curso, $horario, $dia);
@@ -394,7 +397,17 @@ function eliminar_dependencia($con, $curso, $horario, $dia){
         $resultado2 = $stmt2->execute();  //Ejecutar y guardar
         $stmt2->close();
 
-        if (!$resultado1 || !$resultado2){  //Verificar si ambas queries se ejecutaron
+    $stmt3 = $con->prepare($query_liberar_profe);
+        $stmt3->bind_param("iis", $id_dicta, $horario, $dia);
+        $resultado3 = $stmt3->execute();
+        $stmt3->close();
+
+        $stmt4 = $con->prepare($query_liberar_reserva);
+        $stmt4->bind_param("iisi", $id_dicta, $horario, $dia, $curso);
+        $resultado4 = $stmt4->execute();
+        $stmt4->close();
+
+        if (!$resultado1 || !$resultado2 ||!$resultado3 ||!$resultado4){  //Verificar si ambas queries se ejecutaron
             $error = true;
             $mensaje_error = "Error al eliminar los horarios, vuelva a intentarlo";
         }

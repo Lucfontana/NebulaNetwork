@@ -68,7 +68,7 @@ session_start();
     <?php elseif (isset($_SESSION['ci'])): ?>
         <title>Mostrar Información</title>
 
-        <?php include_once 'nav.php'; ?>
+        <?php include_once 'Complementos/nav.php'; ?>
 
         <body id="body-register">
             <main>

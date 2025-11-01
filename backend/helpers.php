@@ -192,7 +192,7 @@ function verificar_inasistencia($con, $fecha, $horarios, $ci_profesor){
 
 function obtener_hora_calendario(){
     // SOLO PARA TESTING - Comentar para usar con la fecha actual
-    $fecha_test = '2025-11-04'; // Miércoles - Si quieren testear, cambien la fecha est
+    $fecha_test = '2025-12-08'; // Miércoles - Si quieren testear, cambien la fecha est
     $base_time = strtotime($fecha_test);
 
     // Para uso actual usar esto (comentar las lineas de arriba):
