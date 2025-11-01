@@ -5,10 +5,10 @@ include_once("dependencias_func.php");
 
 $con = conectar_a_bd();
 
+header('Content-Type: application/json');
+
 // Fijarse si se mando el formulario por post y registrar la dependencia
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registrarDependencia'])) {
-    
-    header('Content-Type: application/json');
     
     // Sanitizar y validar datos
     $ci_profesor = (int)$_POST['profesor_asignado'];
@@ -32,5 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registrarDependencia'
     echo json_encode($resultado);
     
     $con->close();
+} else if (isset($_POST['eliminarClase'])) {
+    $curso_eliminar = $_POST['curso_eliminar'];
+    $hora_eliminar = $_POST['hora_eliminar'];
+    $dia = $_POST['dia_eliminar'];
+
+    $resultado = eliminar_dependencia($con, $curso_eliminar, $hora_eliminar, $dia);
+
+    echo json_encode($resultado);
 }
 ?>

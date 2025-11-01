@@ -73,7 +73,7 @@ CREATE TABLE inasistencia (
     ci_profesor INT,
     id_horario INT,
     FOREIGN KEY (ci_profesor) REFERENCES profesores(ci_profesor) ON DELETE CASCADE,
-    FOREIGN KEY (id_horario) REFERENCES horarios(id_horario)
+    FOREIGN KEY (id_horario) REFERENCES horarios(id_horario) ON DELETE CASCADE
 );
 
 
@@ -89,22 +89,52 @@ create table cumple (
     id_horario int,
     id_dicta int,
     dia ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes'),
-    FOREIGN KEY (id_horario) references horarios(id_horario) ON DELETE CASCADE,
-    FOREIGN KEY (id_dicta) references profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE
+    PRIMARY KEY (id_dicta, id_horario, dia),
+    FOREIGN KEY (id_horario) REFERENCES horarios(id_horario) ON DELETE CASCADE,
+    FOREIGN KEY (id_dicta) REFERENCES profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE
 );
 
-create table dicta_en_curso (
+CREATE TABLE reservas_espacios (
+    id_reserva INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    ci_profesor INT NOT NULL, 
+    id_dicta INT,
+    id_curso INT,
+    id_espacio INT NOT NULL, 
+    id_horario INT NOT NULL, 
+    fecha_reserva DATE NOT NULL,
+    dia ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes') NOT NULL,
+    FOREIGN KEY (ci_profesor) REFERENCES profesores(ci_profesor) ON DELETE CASCADE,
+    FOREIGN KEY (id_dicta) REFERENCES profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE,
+    FOREIGN KEY (id_curso) REFERENCES cursos(id_curso) ON DELETE CASCADE,
+    FOREIGN KEY (id_espacio) REFERENCES espacios_fisicos(id_espacio) ON DELETE CASCADE,
+    FOREIGN KEY (id_horario) REFERENCES horarios(id_horario) ON DELETE CASCADE,
+    UNIQUE KEY unique_reserva (id_espacio, id_horario, fecha_reserva)
+);
+
+CREATE TABLE dicta_en_curso (
     id_dicta int,
     id_curso int,
-    FOREIGN KEY (id_dicta) references profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE,
-    FOREIGN KEY (id_curso) references cursos(id_curso) ON DELETE CASCADE
+    id_horario int,
+    dia ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes'),
+    PRIMARY KEY (id_dicta, id_curso, id_horario, dia),
+    FOREIGN KEY (id_dicta) REFERENCES profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE,
+    FOREIGN KEY (id_curso) REFERENCES cursos(id_curso) ON DELETE CASCADE,
+    FOREIGN KEY (id_horario) REFERENCES horarios(id_horario) ON DELETE CASCADE,
+    FOREIGN KEY (id_dicta, id_horario, dia) REFERENCES cumple(id_dicta, id_horario, dia) ON DELETE CASCADE
 );
 
-create table dicta_ocupa_espacio (
-    id_dicta int,
-    id_espacio int,
-    FOREIGN KEY (id_dicta) references profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE,
-    FOREIGN KEY (id_espacio) references espacios_fisicos(id_espacio) ON DELETE CASCADE
+CREATE TABLE dicta_ocupa_espacio (
+    id_dicta INT,
+    id_horario INT,
+    dia ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes'),
+    id_espacio INT,
+    PRIMARY KEY (id_dicta, id_horario, dia),
+    FOREIGN KEY (id_dicta) REFERENCES profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE,
+    FOREIGN KEY (id_horario) REFERENCES horarios(id_horario) ON DELETE CASCADE,
+    FOREIGN KEY (id_espacio) REFERENCES espacios_fisicos(id_espacio) ON DELETE CASCADE,
+    FOREIGN KEY (id_dicta, id_horario, dia)
+        REFERENCES cumple(id_dicta, id_horario, dia)
+        ON DELETE CASCADE
 );
 
 create table su_administra_horarios (
@@ -141,6 +171,10 @@ INSERT INTO cursos (nombre, capacidad) VALUES
 ('1° Año A', 30),
 ('2° Año A', 28);
 
+INSERT INTO orientacion (nombre) VALUES
+('Informatica'),
+('Informatica Bilingue');
+
 INSERT INTO asignaturas (nombre) VALUES
 ('Matemática'),
 ('Lengua Española');
@@ -154,8 +188,8 @@ INSERT INTO recursos (id_espacio, nombre, estado, tipo) VALUES
 (2, 'Microscopio Digital', 'libre', 'interno'),
 (1, 'Proyector Multimedia', 'uso', 'interno');
 
-INSERT INTO superUsuario (id_superusuario, nombre, pass_superusuario, apellido, nivel_acceso) VALUES
-(12345672, 'Carlos', '$2y$10$hVNDXu5Z2mLgC1bBGoJGt./fMxBEG/hAa.q378y1ezY52kMdNpQYi', 'Rodríguez', '3');
+INSERT INTO superUsuario (id_superusuario, nombre, pass_superusuario, apellido, nivel_acceso, email_superusuario) VALUES
+(12345672, 'Carlos', '$2y$10$hVNDXu5Z2mLgC1bBGoJGt./fMxBEG/hAa.q378y1ezY52kMdNpQYi', 'Rodríguez', '3', 'luca@gmail.com');
 
 INSERT INTO profesores (ci_profesor, pass_profesor, nombre, apellido, email, fecha_nac, direccion) VALUES
 (26197140, '$2y$10$Urjrq9L9F/cExXM0EzqhvucDWeDfsYqgjb7VQBeCJQH8K0dDSAewq', 'Pedro', 'López', 'pedro.lopez@escuela.edu.uy', '1980-07-22', 'Bvar. Artigas 567');

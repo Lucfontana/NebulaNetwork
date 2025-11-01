@@ -11,7 +11,7 @@ const formulario_falta = document.querySelector(".inasistencia-form");
 let horariosDisponibles = [];
 
 // Event listeners
-dia_falta.addEventListener("input", cargar_horarios_dia);
+dia_falta.addEventListener("change", cargar_horarios_dia);
 cantidad_horas_falta.addEventListener("input", generar_campos_horarios);
 formulario_falta.addEventListener("submit", registrar_falta);
 
@@ -33,32 +33,9 @@ async function cargar_horarios_dia() {
         const fecha_seleccionada = new Date(año, mes - 1, dia);
         let dia_semana_seleccionada = fecha_seleccionada.getDay();
         
-        //Si el dia de la semana es Domingo (representado con 0) o sabado (6) 
-        //indica quue no se puede faltar en esos dias
-        if (dia_semana_seleccionada === 0) {
-            alerta_fallo("No se pueden registrar inasistencias los domingos");
-            return;
-        }
-        if (dia_semana_seleccionada === 6) {
-            alerta_fallo("No se pueden registrar inasistencias los sábados");
-            return;
-        }
-        
         //El PHP maneja los dias como si el 0 fuera lunes, 1 = martes y asi progresivamente, por lo que
         //adaptamos el valor
         dia_semana_seleccionada = dia_semana_seleccionada - 1;
-
-        // Se declara la fecha actual cruda
-        const ahora = new Date();
-
-        // Transforma la fecha a un estándar de fechas internacional (ISO)
-        const fecha_actual = ahora.toISOString().split('T')[0];
-
-        // Si la fecha ingresada por el usuario es menor a la fecha actual, se detiene el programa
-        if(dia_falta_valor < fecha_actual) {
-            alerta_fallo("El dia seleccionado no es valido");
-            return;
-        }
 
         //Fetch especificando el tipo de respuesta que se le va a mandar al php (para q no hayan errores)
         const respuesta = await fetch("../../backend/functions/Profesores/inasistencia/cargar_horarios.php", {
@@ -130,9 +107,21 @@ async function registrar_falta(e){
         alerta_fallo("No se pueden registrar inasistencias los fines de semana");
         return;
     }
-
+    //El PHP maneja los dias como si el 0 fuera lunes, 1 = martes y asi progresivamente, por lo que
+    //adaptamos el valor
     dia_semana_seleccionada = dia_semana_seleccionada - 1;
 
+    // Se declara la fecha actual cruda
+    const ahora = new Date();
+
+    // Transforma la fecha a un estándar de fechas internacional (ISO)
+    const fecha_actual = ahora.toISOString().split('T')[0];
+
+    // Si la fecha ingresada por el usuario es menor a la fecha actual, se detiene el programa
+    if(dia_faltar < fecha_actual) {
+        alerta_fallo("El dia seleccionado no es valido");
+        return;
+    }
 
     //Obtiene TODOS los elementos <select> que tengan name="hora_profesor_da_clase[]"
     let horas_faltar = document.getElementsByName("hora_profesor_da_clase[]");

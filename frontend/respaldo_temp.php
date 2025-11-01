@@ -25,7 +25,7 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
 <link rel="stylesheet" href="style/style.css">
 
 <?php if (isset($_SESSION['nivel_acceso'])): ?>
-    <?php include 'nav.php'; ?>
+    <?php include './Complementos/nav.php'; ?>
 
     <body id="body-register">
         <!-- trae las barras de navegacion (sidebar y superior) -->
@@ -139,40 +139,20 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
 
 
                 <!-- Vista de celular -->
-                <?php mysqli_data_seek($prestamos_info, 0); ?>
                 <div class="flex-mostrar-datos">
-                    <?php
-                    if (mysqli_num_rows($prestamos_info) > 0) {
-                        while ($row = mysqli_fetch_array($prestamos_info)):
-                    ?>
+                    <?php mysqli_data_seek($prestamos_info, 0); ?>
+                    <?php if (mysqli_num_rows($prestamos_info) > 0) { ?>
+                        <?php while ($row = mysqli_fetch_array($prestamos_info)): ?>
                             <div class="datos-header-celu">
                                 <div class="datos-tabla-flex">
-                                    <div class="nombre-titulo grid-cell flex-header">
-                                        <?= $row['nombre_profesor'] . ' ' . $row['apellido_profesor'] . ' - ' ?>
-                                        <br><small>( CI: <?= $row['ci_profesor'] ?> )</small>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill mostrar-informacion-oculta" viewBox="0 0 16 16">
-                                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill icono-guardar-informacion" viewBox="0 0 16 16">
-                                            <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
-                                        </svg>
-                                    </div>
+                                    <?= toggle_mostrar_info($row['nombre_recurso']) ?>
                                 </div>
                             </div>
                             <div class="informacion-escondida">
                                 <div class="datos-tabla-flex">
                                     <div class="grid-cell">ID SOLICITA: <?= $row['id_solicita'] ?></div>
-                                </div>
-                                <div class="datos-tabla-flex">
-                                    <div class="grid-cell"><?= $row['nombre_recurso'] ?></div>
-                                </div>
-                                <div class="datos-tabla-flex">
                                     <div class="grid-cell"><?= $row['nombre_su'] . ' ' . $row['apellido_su'] ?></div>
-                                </div>
-                                <div class="datos-tabla-flex">
                                     <div class="grid-cell"><?= date('d/m/Y H:i:s', strtotime($row['hora_presta'])) ?></div>
-                                </div>
-                                <div class="datos-tabla-flex">
                                     <div class="grid-cell"><?= $row['nombre_recurso'] ?></div>
                                 </div>
                                 <div class="grid-cell">
@@ -199,12 +179,8 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
         </main>
 
         <!--    Cierre de Ventanas Emergentes    -->
-
-        <footer id="footer" class="footer">
-            <p> &copy; <b><?= t("footer") ?></b></p>
-        </footer>
     <?php elseif (isset($_SESSION['ci'])): ?>
-        <?php include_once('nav.php') ?>
+        <?php include_once('./Complementos/nav.php') ?>
         <main>
             <div id="contenido-mostrar-datos">
                 <div class="div-mostrar-datos">
@@ -273,14 +249,10 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
                 </div>
             </div>
         </main>
-        <footer id="footer" class="footer">
-            <p> &copy; <b><?= t("footer") ?></b></p>
-        </footer>
-
     <?php elseif (!isset($_SESSION['ci'])): ?>
         <?php include_once('error.php') ?>
     <?php endif; ?>
-
+    <?php include_once("./Complementos/footer.php") ?>
     <!-- Bootstrap -->
     <script type="module" src="../../backend/functions/Recursos/prestar-recursos/prestar.js"></script>
     <script type="module" src="../../backend/functions/Recursos/prestar-recursos/procesar_devolucion.js"></script>

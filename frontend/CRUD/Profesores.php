@@ -2,9 +2,8 @@
 include_once('../backend/db/conexion.php');
 include_once 'functions.php';
 include_once('../backend/helpers.php');
-$connect = conectar_a_bd();
-$sql = "SELECT * FROM profesores";
-$query = mysqli_query($connect, $sql);
+
+$result = mostrardatos("profesores");
 ?>
 
 <?php if (!isset($_SESSION['nivel_acceso'])): ?>
@@ -29,7 +28,7 @@ $query = mysqli_query($connect, $sql);
             <div class="grid-cell boton-titulo">Editar</div>
         </div>
 
-        <?php while ($row = mysqli_fetch_array($query)): ?>
+        <?php while ($row = mysqli_fetch_array($result)): ?>
             <div class="grid-row profesores-row mostrar-datos">
                 <div class="grid-cell"><?= $row['ci_profesor'] ?></div>
                 <div class="grid-cell"><?= $row['nombre'] ?></div>
@@ -60,9 +59,9 @@ $query = mysqli_query($connect, $sql);
     </div>
 
     <!-- Vista para celular -->
-    <?php mysqli_data_seek($query, 0); ?>
+    <?php mysqli_data_seek($result, 0); ?>
     <div class="flex-mostrar-datos">
-        <?php while ($row = mysqli_fetch_array($query)): $nombre = $row['nombre'] . ' ' . $row['apellido'] ?>
+        <?php while ($row = mysqli_fetch_array($result)): $nombre = $row['nombre'] . ' ' . $row['apellido'] ?>
             <div class="datos-header-celu">
                 <?php echo toggle_mostrar_info($nombre)?>
 

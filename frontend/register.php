@@ -177,7 +177,6 @@ $orientacion_info = query_orientacion($con);
                                     <option value=""></option>
 
                                     <!-- ARREGLAR!! SI SE SELECCIONA GENERAL NO FUNCIONA!! -->
-                                    <option value="general"><?= t("option_general") ?></option>
 
                                     <!-- ARREGLAR!! SI SE SELECCIONA GENERAL NO FUNCIONA!! -->
 

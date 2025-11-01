@@ -1,4 +1,5 @@
 import { verificarString, alerta_success_update, alerta_fallo } from './prueba.js';
+//importamos los js necesarios, como alertas o validaciones
 
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("overlay-asignatura");
@@ -14,11 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
     boton.addEventListener("click", (e) => {
       e.preventDefault();
       currentId = boton.dataset.id;
+      //cargamos el id enviado por data en currenId
       overlay.style.display = "flex";
       setTimeout(() => {
         overlay.style.opacity = "1";
         overlay.style.transition = "0.5s";
       }, 1);
+      //pequeña animación
     });
   });
 
@@ -30,10 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       overlay.style.display = "none"; 
     }, 500);
+    //pequeña animación
   });
 
   // Confirmar eliminar
   btnConfirmar.addEventListener("click", () => {
+    // si el currentId recibió correctamente el dataset entonces se ejecutara el el delete.php y se le cargara el id
     if (currentId) {
       window.location.href = `/backend/functions/asignaturas/delete.php?id=${currentId}`;
     }
@@ -50,6 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       document.getElementById("id_edit_asignatura").value = editID;
       document.getElementById("name_edit_asignatura").value = nombre;
+
+      // Se  le cargan los datos a editar en el input para que el usuario sepa que está editando
 
       setTimeout(() => {
         overlayEdit.style.opacity = "1";
@@ -74,28 +81,36 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       
       let nombreInput = document.getElementById("name_edit_asignatura").value;
+      // guarda el nombre a editar dentro de la variable y validamos
 
       if (!verificarString(nombreInput, "Nombre")) {
         return;
       }
 
+      //hace referencia al elemento que ejecuto el evento, en este caso el formulario
       const fd = new FormData(e.target);
 
+      // Si hay errores de conexión le permite enviar un mensaje al usuario
       try {
-        const res = await fetch("/backend/functions/asignaturas/edit.php", {
-          method: "POST",
-          body: fd,
+          const res = await fetch("/backend/functions/asignaturas/edit.php", { //es quien va a procesar la solicitud
+          method: "POST", // Envia los datos por meotodo post
+          body: fd, // Permite acceder a los datos del formulario
           credentials: "same-origin"
         });
 
-        const data = await res.json();
-        let mensaje = data.message;
 
+        //espera la respuesta de edit.php
+        const data = await res.json();
+        //Guarda el mensaje recibido en una variable
+        let mensaje = data.message;
+        
+        // Si el json dio como respuesta un success se ejecuta lo de abajo
         if (data.success) {
           alerta_success_update(mensaje, "/frontend/Mostrar_informacion.php");
         } else {
           alerta_fallo(mensaje);
         }
+      //En caso de error se muestra el catch, muestra el error en la consola y le muestra una alerta de fallo al usuario
       } catch (err) {
         console.error(err);
         alerta_fallo("Error de conexión");

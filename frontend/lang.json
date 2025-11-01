@@ -150,7 +150,7 @@
     "welcome": "Welcome!",
     "welcome_user": "Welcome, {user}!",
     "description": "This the institute management tool, where you can manage resource requests as well as teacher schedules.",
-    "btn_info": "Enter Information",
+    "btn_info": "Submit data",
     "btn_resources": "Resources",
     "btn_teachers": "Schedules",
     

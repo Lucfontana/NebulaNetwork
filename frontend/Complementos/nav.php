@@ -16,6 +16,7 @@ include_once 'functions.php';
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/darkmode.css">
 </head>
 
 <body>
@@ -36,10 +37,10 @@ include_once 'functions.php';
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><?= t("nav_info") ?></a>
+                        <a target="_blank" class="nav-link" href="https://docs.google.com/document/d/1WDWj47ideOv1RfzDdR-rDbzqRiPQkiu0ycgtXHn3DeQ/edit?usp=sharing"><?= t("nav_info") ?></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><?= t("nav_courses") ?></a>
+                        <a class="nav-link" href="./About-us.php"><?= t("nav_courses") ?></a>
                     </li>
                 </ul>
             </div>
@@ -63,11 +64,6 @@ include_once 'functions.php';
                 </a>
             </li>
 
-            <li class="aside-item" data-tooltip="<?= t("Cerrar Sesión") ?>">
-                <a id="logout" href="#logout">
-                <img src="img/Iconos sidebar/person-circle.svg" alt="Cerrar Sesión" width="25" height="25" class="icono">
-                </a>
-            </li>
         <?php endif; ?>
         </li>
 
@@ -91,6 +87,13 @@ include_once 'functions.php';
                 <img src="img/Iconos sidebar/moon.svg" alt="Modo oscuro" width="25" height="25" class="icono">
             </a>
         </li>
+        <?php if (isset($_SESSION['ci'])): ?>
+        <li class="aside-item" data-tooltip="<?= t("Cerrar Sesión") ?>">
+                <a id="logout" href="#logout">
+                <img src="img/Iconos sidebar/box-arrow-right.svg" alt="Cerrar Sesión" width="25" height="25" class="icono">
+                </a>
+        </li>
+        <?php endif; ?>
 
         </ul>
     </aside>
@@ -100,7 +103,7 @@ include_once 'functions.php';
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
     <script src="js/confirm-logout.js"></script>
-    <!-- <script src="js/darkmode.js"></script> -->
+    <script src="js/darkmode.js"></script>
 
     <!-- Sweet alerts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

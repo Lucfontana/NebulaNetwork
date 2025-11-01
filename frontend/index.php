@@ -1,20 +1,18 @@
 <?php
-
 include_once 'functions.php';
-
 session_start();
 
 ?>
 
 <title>Index</title>
-<?php include 'nav.php'; ?>
+<?php include './Complementos/nav.php'; ?>
 
 <body>
  <div class="hdrBackground" id="hdrBackground">
     <!-- Texto de Bienvenidos -->
     <div class="bienvenida-texto">
         <?php if (!isset($_SESSION['ci'])): ?>
-        <h2><?= t("welcome") ?></h2>
+        <h2><?= t("welcome") ?></h2> <!-- Cargamos el texto desde lang.json --> 
         <?php elseif (isset($_SESSION['ci'])): ?>
          <h2><?= t("welcome_user", $_SESSION['nombre_usuario']); ?></h2>
         <?php endif; ?>
@@ -32,11 +30,7 @@ session_start();
     <!-- <main class="contenido" id="contenido">
 
     </main> -->
-     <footer id="footer" class="footer">
-       <p> &copy; <b> <?= t("footer") ?> </b></p>
-
-    </footer>
-
+    <?php include_once("./Complementos/footer.php") ?>
     <script src="js/darkmode.js"></script>
 
     <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
