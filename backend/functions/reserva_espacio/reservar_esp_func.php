@@ -13,11 +13,9 @@ function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_
 
     $con->begin_transaction();
 
-    //Obtiene la fecha actual
-    $fecha_actual = new DateTime();
-
-    //La pasa a un formato de anio mes dia
-    $fecha_actual->format("Y-m-d");
+    $fecha_actual = obtener_hora_calendario(); //Viene de helpers.php, devuelve un timestamp
+    $fecha_actual_datetime = new DateTime();
+    $fecha_actual_datetime->setTimestamp($fecha_actual); // Así se convierte timestamp a DateTime
 
     //Se hace lo mismo con la fecha de reserva, pero se lo pasa a un objeto "DateTime" para poder hacer la comparacion
     $fecha_reserva_datetime = new DateTime($fecha_reservar);
@@ -25,7 +23,7 @@ function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_
 
     // Verificación: comprobar que la fecha no sea anterior a la actual
     if (!$error) {
-        if ($fecha_reserva_datetime < $fecha_actual) {
+        if ($fecha_reserva_datetime < $fecha_actual_datetime) {
             $error = true;
             $mensaje_error = "Tienes que elegir un día próximo al actual";
         }
