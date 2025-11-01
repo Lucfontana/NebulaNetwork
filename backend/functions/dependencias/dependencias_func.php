@@ -350,4 +350,73 @@ if (!$error) {
     return $respuesta_json;
 }
 
+function eliminar_dependencia($con, $curso, $horario, $dia){
+    $con->begin_transaction();
+
+    $respuesta_json = array();
+    $error = false;
+    $mensaje_error = "";
+
+    $query_comprobar = "SELECT * FROM dicta_en_curso WHERE id_curso = ? AND id_horario = ? AND dia = ?";
+
+    //Se comprueba que la clase exista
+    if (!$error){
+        $stmt = $con->prepare($query_comprobar);
+        $stmt->bind_param("iis", $curso, $horario, $dia);
+        $stmt->execute();
+ 
+        $resultado = $stmt->get_result();
+
+        if ($resultado->num_rows == 0) {
+            $error = true;
+            $mensaje_error = "No existe una clase con los datos elegidos, vuelva a intentarlo";
+            $datos = "Curso: " . $curso . " Id horario: " . $horario . " Dia: " . $dia; 
+        } else {
+            $fila = $resultado->fetch_assoc();
+            $id_dicta = $fila['id_dicta'];
+        }
+        $stmt->close(); 
+    }
+
+
+    if (!$error){
+        //Se declaran las dos queries para eliminar las clases
+        $query_liberar_curso = "DELETE FROM dicta_en_curso WHERE id_curso = ? AND id_horario = ? AND dia = ?";
+        $query_liberar_espacio = "DELETE FROM dicta_ocupa_espacio WHERE id_dicta = ? AND id_horario = ? AND dia = ?";
+
+        $stmt = $con->prepare($query_liberar_curso);
+        $stmt->bind_param("iis", $curso, $horario, $dia);
+        $resultado1 = $stmt->execute();  //Ejecutar y guardar
+        $stmt->close();
+
+        $stmt2 = $con->prepare($query_liberar_espacio);
+        $stmt2->bind_param("iis", $id_dicta, $horario, $dia);
+        $resultado2 = $stmt2->execute();  //Ejecutar y guardar
+        $stmt2->close();
+
+        if (!$resultado1 || !$resultado2){  //Verificar si ambas queries se ejecutaron
+            $error = true;
+            $mensaje_error = "Error al eliminar los horarios, vuelva a intentarlo";
+        }
+    }
+
+    if ($error) {
+        // Hubo algún error, revertir todo
+        $con->rollback();
+        
+        $respuesta_json['estado'] = 0;
+        $respuesta_json['mensaje'] = $mensaje_error;
+        $respuesta_json['datos'] = $datos;
+        
+    } else {
+        // todo bien, confirmar cambios
+        $con->commit();
+        
+        $respuesta_json['estado'] = 1;
+        $respuesta_json['mensaje'] = "Clase eliminada correctamente.";
+    }
+        return $respuesta_json;
+}
+
+
 ?>

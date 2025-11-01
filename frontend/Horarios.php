@@ -78,6 +78,9 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
                         <button class="btn btn-register-horario" data-toggle="modal">
                             Agregar Horarios
                         </button>
+                        <button class="btn btn-register-horario" data-toggle="modal">
+                            Eliminar Horarios
+                        </button>
                     </div>
                 </div>
                 <div class="filtros">
@@ -152,8 +155,7 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
                     </div>
                 </div>
 
-
-
+                <!-- Modal para crear el cronograma de horarios -->
                 <div class="overlay">
                     <div class="dialogs">
                         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
@@ -179,96 +181,8 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
                     </div>
                 </div>
 
-                <div class="overlay">
-                    <div class="dialogs">
-                        <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
-                                alt=""></button>
-                        <form class="registro-div dependencias-form"
-                            action="../backend/functions/dependencias/dependencias_api.php" method="POST">
-                            <h1><?= t("header_dependencies") ?></h1>
-                            <hr>
-
-                            <div class="div-labels">
-                                <label for="profesor_asignado" class="label"><?= t("label_teacher") ?></label>
-                                <select name="profesor_asignado" id="profesor_asignado" type="text" class="input-register">
-                                    <option value=""></option>
-                                    <?php while ($row = mysqli_fetch_array($profesores_info)): ?>
-                                        <option value="<?= $row['ci_profesor'] ?>">
-                                            <?= $row['nombre'] ?>
-                                            <?= $row['apellido'] ?>
-                                        </option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </div>
-
-                            <div class="div-labels">
-                                <label for="asignatura_dada" class="label"><?= t("label_subject_taught") ?></label>
-                                <select name="asignatura_dada" id="asignatura_dada" type="text" class="input-register">
-                                    <option value=""></option>
-                                    <?php while ($row = mysqli_fetch_array($asignaturas_info)): ?>
-                                        <option value="<?= $row['id_asignatura'] ?>">
-                                            <?= $row['nombre'] ?>
-                                        </option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </div>
-
-                            <div class="div-labels">
-                                <label for="dia" class="label"><?= t("label_day") ?></label>
-                                <select class="input-register" type="text" name="dia_dictado" id="dia_dictado" required
-                                    placeholder="<?= t("placeholder_day") ?>">
-                                    <option value=""></option>
-                                    <option value="lunes"><?= t("day_monday") ?></option>
-                                    <option value="martes"><?= t("day_tuesday") ?></option>
-                                    <option value="miercoles"><?= t("day_wednesday") ?></option>
-                                    <option value="jueves"><?= t("day_thursday") ?></option>
-                                    <option value="viernes"><?= t("day_friday") ?></option>
-                                </select>
-                            </div>
-
-                            <div class="div-labels">
-                                <label for="capacity" class="label"><?= t("label_hours_taught") ?></label>
-                                <input class="input-register" type="number" id="crear_campos" maxlength="3" minlength="1"
-                                    required>
-                            </div>
-
-                            <div id="campos-dinamicos"></div>
-
-                            <div class="div-labels">
-                                <label for="salon_ocupado" class="label"><?= t("label_room_used") ?></label>
-                                <select name="salon_ocupado" id="salon_a_ocupar" type="text" class="input-register"
-                                    required>
-                                    <option value=""></option>
-                                    <?php
-                                    mysqli_data_seek($espacios_sin_general, 0); //Reinicia el while para que empiece de cero otra vez (el anterior while que utilizo los recursos lo dejo en el final)
-                                    while ($row = mysqli_fetch_array($espacios_sin_general)): ?>
-                                        <option value="<?= $row['id_espacio'] ?>">
-                                            <?= $row['nombre'] ?>
-                                        </option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </div>
-
-                            <div class="div-labels">
-                                <label for="curso_dictado" class="label"><?= t("label_course_taught") ?></label>
-                                <select name="curso_dictado" id="curso_dictado" type="text" class="input-register">
-                                    <option value=""></option>
-                                    <?php while ($row = mysqli_fetch_array($cursos_info)): ?>
-                                        <option value="<?= $row['id_curso'] ?>">
-                                            <?= $row['nombre'] ?>
-                                        </option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </div>
-
-                            <div class="div-botones-register">
-                                <input class="btn-enviar-registro" type="submit" value="<?= t("btn_register") ?>"
-                                    name="registrarDependencia"></input>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
+                <!-- Trae los formularios para agregar y eliminar horarios (clases) -->
+                <?php include_once("CRUD/dependencias_cd.php")?>
 
         </main>
     </body>
@@ -325,6 +239,7 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
     </body>
 <?php endif; ?> <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
 <?php include_once("./Complementos/footer.php") ?>
+
 <script type="module" src="/frontend/js/prueba.js"></script>
 <script src="./js/horarios-calendario.js"></script>
 <script src="js/Register-Modal.js"></script>
@@ -334,7 +249,6 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
 <script type="module" src="../backend/functions/dependencias/crear_campos.js"></script>
 <script type="module" src="js/validaciones-registro.js" defer></script>
 <script type="module" src="../backend/functions/reserva_espacio/reservar_espacio.js"></script>
-<script type="module" src="js/swalerts.js"></script>
 <script src="./js/select-dia-celular.js"></script>
 <script>
     // Función que se ejecuta cuando el usuario selecciona un curso

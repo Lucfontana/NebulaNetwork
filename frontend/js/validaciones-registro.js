@@ -1,5 +1,5 @@
 import { verificarCI, verificarExistenciaCI, mostrarDigVerificador, CIaArreglo } from './validarCI.js';
-import { sw_warning } from './swalerts.js';
+import { sw_exito, sw_warning } from './swalerts.js';
 //-----FORMULARIOS-----//
 
 //Por cada formulario, se lo debe llamar (cuando se envia) y verificar que todos sus
@@ -487,6 +487,37 @@ function registrar_orientacion(e) {
         });
 }
 
+let eliminar_clase_form = document.querySelector(".eliminar-clase-form");
+
+if (eliminar_clase_form) eliminar_clase_form.addEventListener("submit", eliminar_clase);
+
+async function eliminar_clase(e){
+    e.preventDefault();
+
+    let curso = document.getElementById("curso_eliminar").value;
+    let hora = document.getElementById("hora_eliminar").value;
+    let dia = document.getElementById("dia_eliminar").value;
+
+    const form_eliminar_clase = new FormData();
+    form_eliminar_clase.append("dia_eliminar", dia);
+    form_eliminar_clase.append("curso_eliminar", curso);
+    form_eliminar_clase.append("hora_eliminar", hora);
+    form_eliminar_clase.append("eliminarClase", true);
+
+    let respuesta = await fetch("../../backend/functions/dependencias/dependencias_api.php", {
+        method: 'POST',
+        body: form_eliminar_clase
+    });
+
+    let data = await respuesta.json();
+
+    if (data.estado == 1){
+        sw_exito(data.mensaje);
+    } else {
+        alerta_fallo(data.mensaje);
+    }
+}  
+
 //Se hace la funcion del tipo de dato que queremos verificar, entre los parentesis
 //se toman como argumento las siguientes variables: nombre (la string a verificar) y
 //tipoDato (si el dato es un nombre, ese string seria 'nombre', si fuera apellido seria
@@ -567,25 +598,6 @@ function verificarHora(hora) {
         return false;
     }
     return true;
-}
-
-// Verificar solapamiento de horarios
-function haySolapamiento(nuevoInicio, nuevoFin, horariosExistentes) {
-    function aMinutos(hora) {
-        let [h, m] = hora.split(':').map(Number);
-        return h * 60 + m;
-    }
-    let inicioNuevo = aMinutos(nuevoInicio);
-    let finNuevo = aMinutos(nuevoFin);
-
-    for (let horario of horariosExistentes) {
-        let inicioExistente = aMinutos(horario.inicio);
-        let finExistente = aMinutos(horario.fin);
-        if (inicioNuevo < finExistente && finNuevo > inicioExistente) {
-            return true;
-        }
-    }
-    return false;
 }
 
 //---------------FUNCIONES DE ALERTAS---------------//
