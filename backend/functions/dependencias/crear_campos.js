@@ -115,7 +115,7 @@ export function crear_selects_horarios(contenedor, horarios, cantidad_campos) {
 async function registrar_dependencia(e){
     e.preventDefault(); //Evita recargar la página
 
-    let profesor_asignado = document.getElementById("profesor_asignado").value;
+    let profesor_asignado = document.getElementById("profesor_asignado").value; //obtiene los valores de los campos
     let asignatura_dictada = document.getElementById("asignatura_dada").value;
     let salon_ocupado = document.getElementById("salon_a_ocupar").value;
     let curso_dictado = document.getElementById("curso_dictado").value;
@@ -136,6 +136,8 @@ async function registrar_dependencia(e){
         return;
     }
 
+
+//Se construye un formulario virtual (sin HTML) para enviar los datos mediante fetch.
     const form_dependencia = new FormData();
     form_dependencia.append('profesor_asignado', profesor_asignado);
     form_dependencia.append('asignatura_dada', asignatura_dictada);
