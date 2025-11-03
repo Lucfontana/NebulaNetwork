@@ -23,7 +23,6 @@ create table espacios_fisicos (
     tipo ENUM('aula', 'laboratorio', 'salon', 'SUM') not null
 );
 
-
 Create table recursos (
     id_recurso int AUTO_INCREMENT primary key not null,
     id_espacio int,
@@ -137,13 +136,6 @@ CREATE TABLE dicta_ocupa_espacio (
         ON DELETE CASCADE
 );
 
-create table su_administra_horarios (
-    id_superusuario int,
-    id_horario int,
-    FOREIGN KEY (id_superusuario) references superUsuario(id_superusuario) ON DELETE CASCADE,
-    FOREIGN KEY (id_horario) references horarios(id_horario) ON DELETE CASCADE
-);
-
 create table su_administra_recursos (
     id_superusuario int,
     id_solicita int,
@@ -153,19 +145,6 @@ create table su_administra_recursos (
     hora_vuelta datetime
 );
 
-create table su_administra_profesores (
-    id_superusuario int,
-    id_dicta int,
-    FOREIGN KEY (id_superusuario) references superUsuario(id_superusuario) ON DELETE CASCADE,
-    FOREIGN KEY (id_dicta) references profesor_dicta_asignatura(id_dicta) ON DELETE CASCADE
-);
-
-create table su_administra_espacios(
-    id_superusuario int,
-    id_espacio int,
-    foreign key (id_superusuario) references superUsuario(id_superusuario) ON DELETE CASCADE,
-    foreign key (id_espacio) references espacios_fisicos(id_espacio) ON DELETE CASCADE
-);
 
 INSERT INTO cursos (nombre, capacidad) VALUES
 ('1° Año A', 30),
@@ -202,9 +181,3 @@ INSERT INTO profesor_solicita_recurso (ci_profesor, id_recurso) VALUES
 
 INSERT INTO su_administra_recursos (id_superusuario, id_solicita, hora_presta, hora_vuelta) VALUES
 (12345672, 1, '2025-09-29', '2025-09-29');
-
-INSERT INTO su_administra_profesores (id_superusuario, id_dicta) VALUES
-(12345672, 1);
-
-INSERT INTO su_administra_espacios (id_superusuario, id_espacio) VALUES
-(12345672, 1);

@@ -17,7 +17,8 @@ if (!isset($_SESSION['acceso']) && isset($_SESSION['ci'])) {
     $ci_profesor = (int)$_SESSION['ci'];
 }
 
-$prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
+if(isset($_SESSION['ci'])) $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
+
 
 ?>
 
