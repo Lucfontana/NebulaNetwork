@@ -197,8 +197,6 @@ export function alerta_fallo(mensaje) {
         text: mensaje,
         icon: "error"
     });
-
-
 }
 
 

@@ -2,93 +2,94 @@
 const changePasswd = document.getElementById('change-passwd');
 const dialogChangePasswd = document.getElementById('dialog-change-passwd');
 const closeChangePasswd = document.getElementById('cancelarEdit');
-const confirmarpasswd = document.getElementById('confirmarpasswd');
-const btnActualizar = document.getElementById("confirmar");
 
-changePasswd.addEventListener("click", function (a) {
-  a.preventDefault();
+changePasswd.addEventListener("click", function (e) {
+  e.preventDefault();
   dialogChangePasswd.style.display = "flex";
   setTimeout(() => {
     dialogChangePasswd.style.opacity = "1";
     dialogChangePasswd.style.transition = "0.5s";
-  }, 1)
-
-  //Pequeña animación al abrir
+  }, 1);
 });
 
-confirmarpasswd.addEventListener("click", (e) => {
-  const passwd = document.getElementById("passwd").value;
-  const newpasswd = document.getElementById("newpasswd").value;
-  //Guardamos el contenido de los inputs en constantes y validamos
-  if (passwd === "" || newpasswd === "") {
-    alerta_fallo("Por favor, complete todos los campos.");
-    e.preventDefault();
-    return;
-  } else if (passwd === newpasswd) {
-    alerta_fallo("La nueva contraseña debe ser diferente a la actual.");
-    e.preventDefault();
-    return;
-  } else if (newpasswd.length < 8) {
-    alerta_fallo("La nueva contraseña debe ser de al menos 8 caracteres.");
-    e.preventDefault();
-    return;
-  }
-
-});
 
 closeChangePasswd.addEventListener("click", () => {
   dialogChangePasswd.style.opacity = "0";
   dialogChangePasswd.style.transition = "0.5s";
   setTimeout(() => {
     dialogChangePasswd.style.display = "none";
-  }, 500)
+  }, 500);
 });
 
-document.getElementById("comprobarcontraseña").addEventListener("submit", async (e) => {
-  e.preventDefault(); // Evita recargar la página
 
+// Formulario de cambio de contraseña
+const formChangePasswd = document.getElementById("comprobarcontraseña");
 
-  //hace referencia al elemento que ejecuto el evento, en este caso el formulario comprobarcontraseña
-  const form = e.target;
-  //permite acceder al contenido del form
-  const fd = new FormData(form);
+  formChangePasswd.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
+    const passwd = document.getElementById("passwd").value.trim();
+    const newpasswd = document.getElementById("newpasswd").value.trim();
 
-  //evita errores - los encapsula
-  try {
-    const res = await fetch("../../backend/functions/edit-paswd-user.php", {
-      method: "POST", //establece el metodo post
-      body: fd, //Enviar los datos necesarios
-      credentials: "same-origin"
-    });
-
-    // Espero recibir la respuesta del edit-paswd_user.php en json
-    const data = await res.json();
-    //cargamos el mensaje en una variable
-    mensaje = data.message;
-
-    //si el mensaje json es correcto entonces se ejecuta el alerta_success
-    if (data.success) {
-      // redirigir después de 1 segundo
-      alerta_success(mensaje, "../frontend/Perfil.php");
-    } else {
-      alerta_fallo(mensaje);
+    // Validaciones en el usuario
+    if (!passwd || !newpasswd) {
+      alerta_fallo("Por favor, complete todos los campos.");
+      return;
     }
-  } catch (err) {
-    console.error(err);
-    mensaje.textContent = "Error de conexión"; //si el try tiene error va a salir este mensaje
-  }
-});
 
-// Sweet Alert 
+    if (passwd === newpasswd) {
+      alerta_fallo("La nueva contraseña debe ser diferente a la actual.");
+      return;
+    }
 
+    if (newpasswd.length < 8) {
+      alerta_fallo("La nueva contraseña debe tener al menos 8 caracteres.");
+      return;
+    }
+
+    // Crear FormData
+    const fd = new FormData(e.target);
+
+    try {
+      const res = await fetch("/backend/functions/edit-paswd-user.php", {
+        method: "POST", 
+        body: fd,
+        credentials: "same-origin"
+      });
+
+      // Verificar si la respuesta es JSON válida
+      const contentType = res.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("La respuesta no es JSON válida");
+      }
+
+      // Espera Respuesta de edit-paswd-user
+      const data = await res.json();
+
+      // Declarar correctamente la variable mensaje
+      const mensaje = data.message || "Sin mensaje del servidor";
+
+      if (data.success) {
+        alerta_success(mensaje, "/frontend/Perfil.php");
+      } else {
+        alerta_fallo(mensaje);
+      }
+
+    } catch (err) {
+      console.error("Error completo:", err);
+      alerta_fallo("Error de conexión con el servidor");
+    }
+  });
+
+
+// Sweet Alerts
 function alerta_success(mensaje, ventana_a_redirigir) {
   Swal.fire({
-    title: "Exito!",
+    title: "¡Éxito!",
     text: mensaje,
     icon: "success",
-    cancelButtonColor: "#3085d6",
-    cancelButtonText: "OK"
+    confirmButtonColor: "#3085d6",
+    confirmButtonText: "Ok",
   }).then((result) => {
     if (result.isConfirmed) {
       window.location.href = ventana_a_redirigir;
@@ -102,6 +103,4 @@ function alerta_fallo(mensaje) {
     text: mensaje,
     icon: "error"
   });
-
 }
-

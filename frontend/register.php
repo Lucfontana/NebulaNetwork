@@ -263,7 +263,7 @@ $orientacion_info = query_orientacion($con);
 
                             <div class="div-labels">
                                 <label for="curso_dictado" class="label"><?= t("label_orientation") ?></label>
-                                <select name="orientacion_en" id="salon_ocupado" type="text" class="input-register">
+                                <select name="orientacion_en" id="salon_ocupado" type="text" class="input-register" required>
                                     <option value=""></option>
                                     <?php while ($row = mysqli_fetch_array($orientacion_info)): ?>
                                         <option value="<?= $row['id_orientacion'] ?>">
