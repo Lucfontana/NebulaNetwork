@@ -19,7 +19,11 @@ function consultar_si_existe_horario($con) {
 
 }
 
+//función que borra todos los registros de la tabla 'horarios' y de 'profesor_dicta_asignatura'
+
 function borrar_horarios($con){
+
+    // consukta que elimina todos los registros de la tabla horarios.
         $consulta = "DELETE FROM horarios";
         $stmt = $con->prepare($consulta);
         $stmt->execute();
@@ -30,20 +34,26 @@ function borrar_horarios($con){
         $stmt2->execute();
 
         $respuesta_json['estado'] = '1';
-        $respuesta_json['mensaje'] = 'Horarios eliminados exitosamente';    
+        $respuesta_json['mensaje'] = 'Horarios eliminados exitosamente';  
+        //// Prepara un arreglo asociativo (tipo JSON) con un estado y un mensaje de éxito.
+  
 
         return $respuesta_json;
+        //// Devuelve ese arreglo con la respuesta.
 }
 
 function registrarHorarios($horaInicio, $horaFinal, $conexion, $existe) {
-    if (!$existe){
-        $respuesta_json = array();
+
+    if (!$existe){ //// Si NO existen horarios, procedemos a crear/insertar.
+
+        $respuesta_json = array(); // // Inicializa el array de respuesta.
 
         // Convertir las horas a objetos DateTime
-        
         $inicio = new DateTime($horaInicio);
 
         $hora_inicio = (int)$inicio->format('H');
+        // // Extrae la hora (formato 24h) y la convierte a entero. 
+        // Ej: '07:30:00' -> formato 'H' -> '07' -> (int) -> 7
 
         $final = new DateTime($horaFinal);
 
@@ -55,6 +65,7 @@ function registrarHorarios($horaInicio, $horaFinal, $conexion, $existe) {
             return $respuesta_json;
         }
 
+        //validr que la hora de inicio no sea antes de las 6
         if ($hora_inicio <= 6){
             $respuesta_json['estado'] = '0';
             $respuesta_json['mensaje'] = 'La hora de inicio debe ser despues de las 6';    
@@ -63,6 +74,7 @@ function registrarHorarios($horaInicio, $horaFinal, $conexion, $existe) {
 
         //Se usa CLONE porque $inicio es un objeto.
         $horaActual = clone $inicio;
+        //// Clona el objeto $inicio para poder modificar $horaActual sin alterar $inicio original.
         
         // Preparar la consulta, para despues pasarle los valores con el bind param
         $sql = "INSERT INTO horarios (hora_inicio, hora_final, tipo) VALUES (?, ?, ?)";
@@ -87,6 +99,7 @@ function registrarHorarios($horaInicio, $horaFinal, $conexion, $existe) {
             if ($horaFinalClase > $final) {
                 $horaFinalClase = clone $final;
             }
+            //Si al sumar 45 minutos se pasa de la hora límite, la acorta hasta la hora final exacta.
             
             // Insertar clase            Se le pasa el formato de la hora (hora:minutos:segundos)
             $horaInicioStr = $horaActual->format('H:i:s');
@@ -95,8 +108,9 @@ function registrarHorarios($horaInicio, $horaFinal, $conexion, $existe) {
             $tipoClase = "clase";
             
             $stmt->bind_param('sss', $horaInicioStr, $horaFinalStr, $tipoClase);
+            //Asocia las tres variables al statement (todas strings 's','s','s').
             
-            if (!$stmt->execute()) {
+            if (!$stmt->execute()) { //Ejecuta la inserción. Si falla, cierra el statement y retorna error.
                 $respuesta_json['estado'] = '0'; 
                 $respuesta_json['mensaje'] = 'Error al insertar clase: ' . $stmt->error;
 
@@ -112,7 +126,9 @@ function registrarHorarios($horaInicio, $horaFinal, $conexion, $existe) {
             // Solo insertar recreo si hay espacio antes del final
             $horaFinalRecreo = clone $horaActual;
             $horaFinalRecreo->modify('+5 minutes');
+            //Calcula fin del recreo sumando 5 minutos.
             
+         // Prepara los strings y el tipo 'recreo'.
             if ($horaFinalRecreo <= $final) {
                 $horaInicioStr = $horaActual->format('H:i:s');
                 $horaFinalStr = $horaFinalRecreo->format('H:i:s');
@@ -120,7 +136,7 @@ function registrarHorarios($horaInicio, $horaFinal, $conexion, $existe) {
                 
                 $stmt->bind_param('sss', $horaInicioStr, $horaFinalStr, $tipoClase);
                 
-                if (!$stmt->execute()) {
+                if (!$stmt->execute()) { //Ejecuta la inserción del recreo y maneja posible error.
                     $respuesta_json['estado'] = '0'; 
                     $respuesta_json['mensaje'] = 'Error al insertar recreo: ' . $stmt->error;
                     $stmt->close();
@@ -130,18 +146,19 @@ function registrarHorarios($horaInicio, $horaFinal, $conexion, $existe) {
                 // Avanzar 5 minutos después del recreo
                 $horaActual->modify('+5 minutes');
             } else {
-                // Si no hay espacio para el recreo, terminamos
+                 // Si no hay espacio para el recreo (excedería el final), terminamos el bucle
                 break;
             }
         }
         
         $stmt->close();
         
+          // Devuelve respuesta de éxito.
         $respuesta_json['estado'] = '1';
         $respuesta_json['mensaje'] = 'Horarios registrados exitosamente';
         return $respuesta_json;
 
-    } else {
+    } else { // Si $existe es true, no hace inserciones y devuelve un mensaje indicando que ya existen horarios.
         $respuesta_json['estado'] = '2';
         $respuesta_json['mensaje'] = 'Los horarios ya existen <br>  <strong>Aviso:</strong> Si desea crear los horarios de nuevo,
                                      los horarios actuales y todo lo relacionado a estos será eliminado, ¿Desea continuar?';
