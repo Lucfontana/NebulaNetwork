@@ -5,6 +5,8 @@ include_once('functions.php');
 include_once('../backend/queries.php');
 include_once('../backend/helpers.php');
 
+
+//Estas consultas sirven para llenar listas desplegables (selects) en el frontend.
 $result = query_espaciosfisicos($con);
 
 $espacios_sin_general = query_espacios_sin_general($con);
@@ -32,6 +34,8 @@ $query3 = query_espacios_sin_general($con);
 session_start();
 
 // Verificar si se envio un ID de curso o de espacio a traves de GET
+
+//Si existe el parámetro curso_id en la URL, lo convierte a entero; si no, pone 0.
 $cursosql = isset($_GET['curso_id']) ? intval($_GET['curso_id']) : 0;
 $espaciossql = isset($_GET['espacio_id']) ? intval($_GET['espacio_id']) : 0;
 $diasql = isset($_GET['dia_id']) ? intval($_GET['dia_id']) : 0;
@@ -41,6 +45,7 @@ if (!isset($_SESSION['nivel_acceso']) && isset($_SESSION['ci'])) {
 }
 
 $professql = isset($_GET['ci_profe']) ? intval($_GET['ci_profe']) : 0;
+//Si llega un ci_profe por URL, se guarda como entero; si no, 0.
 
 $base_time = obtener_hora_calendario(); //Viene de helpers.php  obtiene hora a usar
 
@@ -63,7 +68,7 @@ $dias_a_fechas = [
 // Arreglo para almacenar las materias por día
 $materias_por_dia = [];
 
-// Consulta para obtener inasistencias de la semana actual
+// Consulta para obtener las inasistencias registradas desde el lunes hasta el viernes de la semana actual
 $resultado_inasistencias = query_inasistencias_esta_semana($con, $inicio_semana_str, $fin_semana_str);
 
 //Cada inasistencia se guarda en una llave unica (como una PK) y se guarda 
@@ -77,6 +82,7 @@ while ($inasist = mysqli_fetch_assoc($resultado_inasistencias)) {
     $inasistencias[$key] = true;
 }
 
+//Función para marcar inasistencias en horarios
 //se aniade "tiene_inasistencia" como un "atributo" del resultado de la consulta.
 //Si llega a haber una llave igual a la de las inasistencias, se marca la inasistencia como true
 function procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias)
@@ -89,12 +95,14 @@ function procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $
         $id_hor = $fila['id_horario'] ?? 0;
         $key_inasist = "{$fecha_dia}_{$ci_prof}_{$id_hor}"; //2025-10-10_26197140_1
         $fila['tiene_inasistencia'] = isset($inasistencias[$key_inasist]); //booleano, devuelve true si hay coincidencia,si no false
+//Si la clave de esa clase está en $inasistencias, marca la clase como inasistente.
 
         $materias[] = $fila;
     }
     return $materias;
 }
 
+//Función para marcar inasistencias en reservas
 function procesar_reservas_con_inasistencias($resultado_reservas, $dias_a_fechas, $inasistencias)
 {
     $reservas = [];

@@ -11,7 +11,7 @@ $name = $_POST['nombre'];
 $capacity = $_POST['capacidad'];
 $type = $_POST['tipo'];
 
-// s eprepara la consulta
+// se prepara la consulta
 $consulta = "UPDATE espacios_fisicos SET capacidad=? ,nombre=?, tipo=? WHERE id_espacio=?";
 $stmt = $con->prepare($consulta);
 $stmt->bind_param("issi", $capacity, $name, $type, $id);
