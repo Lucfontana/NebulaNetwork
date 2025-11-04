@@ -144,7 +144,6 @@ main {
 
 .miembro {
     text-align: center;
-    background: var(---formsColorClaro);
     border: 2px solid rgba(0, 26, 255, 0.4);
     border-radius: 30px;
     backdrop-filter: blur(10px);
@@ -497,12 +496,7 @@ aside>ul {
     flex-direction: column;
     padding: 20px;
     font-size: 18px;
-    background-color: var(---formsColorClaro);
     z-index: 1;
-}
-
-.input-form::placeholder {
-    color: #333;
 }
 
 .contraseña {
@@ -605,7 +599,6 @@ aside>ul {
 
 /* Registro */
 .article-register {
-    background-color: var(---formsColorClaro);
     min-width: 300px;
     width: 30%;
     text-align: center;
@@ -643,6 +636,7 @@ aside>ul {
     padding: 0;
 }
 
+/* Todos los botones del sistema iguales*/
 .btn-bienvenida, #change-passwd, .btn-primary,
 .btn-secondary, .btn-enviar-registro, .btn-login,
 .btn-register-horario, #boton-inicio, .btn-confirmar,
@@ -663,6 +657,22 @@ aside>ul {
 .horas-titulo, .horas-dato, .flex-header {
     background-color: var(---btnClaro);
     color: aliceblue;
+}
+
+/* Todos los inputs y forms iguales */
+.main-perfil, .popup, .miembro,
+#form, .article-register, .dialogs,
+.div-mostrar-datos-main, .div-mostrar-datos, .class-datos-editar,
+#contenido-mostrar-datos, .filtros, .error {
+    background-color: var(---formsColorClaro);
+    color: #333;
+}
+
+.input-group>div>input, #informacion-change, .input-register,
+select, #select-horarios, #salones-select, #cursos-select,.input-form {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
 }
 
 .contenedor-password-register {
@@ -713,14 +723,12 @@ aside>ul {
 
 /* -------------- dialog de Registro -------------- */
 .dialogs {
-    background-color: var(---formsColorClaro);
     border-radius: 20px;
     padding: 35px 40px;
     margin: 10px;
     width: 80%;
     height: 90%;
     border-style: solid;
-    color: #303030;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     max-height: 80vh;
     /* altura máxima: 80% del alto visible de la ventana */
@@ -788,7 +796,6 @@ hr {
     flex-direction: column;
     padding: 20px;
     font-size: 18px;
-    background-color: var(---formsColorClaro);
     z-index: 1;
 }
 
@@ -856,7 +863,6 @@ hr {
 }
 
 .div-mostrar-datos-main {
-    background-color: var(---formsColorClaro);
     width: 100%;
     z-index: 1;
 }
@@ -882,20 +888,14 @@ hr {
     padding: 10px;
     border-color: #2980b9;
     border-radius: 10px;
-    background-color: var(---formsColorClaro);
 }
 
 #contenido-mostrar-datos {
     width: 100%;
     max-width: 1200px;
-    margin: 40px;
-    /* límite para que no se estire demasiado */
-    background: var(---formsColorClaro);
-    /* opcional */
-    border-radius: 10px;
-    /* opcional */
+    margin: 40px; /* límite para que no se estire demasiado */
+    border-radius: 10px; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    /* opcional */
     padding: 20px;
     margin-top: 80px;
 }
@@ -903,8 +903,6 @@ hr {
 .div-mostrar-datos {
     display: flex;
     justify-content: space-between;
-    background: var(---formsColorClaro);
-    /* opcional */
     width: 100%;
     height: auto;
     z-index: 1;
@@ -1146,7 +1144,6 @@ hr {
 .filtros {
     display: flex;
     align-items: center;
-    background-color: var(---formsColorClaro);
     width: 100%;
     margin-bottom: 20px;
     gap: 20px;
@@ -1159,7 +1156,6 @@ hr {
 #select-horarios,
 #salones-select,
 #cursos-select {
-    background: #ffffff;
     width: 200px;
     font-size: 14px;
     
@@ -1277,7 +1273,6 @@ hr {
 }
 
 .popup {
-    background: var(---formsColorClaro);
     border-radius: 20px;
     padding: 35px 40px;
     width: 600px;
@@ -1388,8 +1383,6 @@ select {
     flex-direction: column;
     justify-content: left;
     align-items: start;
-    background-color: #fff;
-    color: #fff;
     margin: 5%;
     margin-top: 100px;
     border-radius: 25px;
@@ -1510,8 +1503,6 @@ select {
     padding: 30px;
     border-radius: 20px;
     max-width: 400px;
-    color: #333;
-    background-color: var(---formsColorClaro);
 }
 
 .error h1 {
@@ -1958,6 +1949,45 @@ abajito cuando el ancho es menos de 700px */
 
 @media (prefers-color-scheme: dark) {
 
+    /* Todos los botones del sistema iguales*/
+    .darkmode .btn-bienvenida, .darkmode #change-passwd, .darkmode .btn-primary,
+    .darkmode .btn-secondary, .darkmode .btn-enviar-registro, .darkmode .btn-login,
+    .darkmode .btn-register-horario, .darkmode #boton-inicio, .darkmode .btn-confirmar,
+    .darkmode .btn-cancelar, .darkmode .btn-registro {
+        background-color: var(---btnClaro);
+        color: aliceblue;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .darkmode .btn-bienvenida:hover, .darkmode #change-passwd:hover, .darkmode .btn-primary:hover,
+    .darkmode .btn-secondary:hover, .darkmode .btn-enviar-registro:hover, .darkmode .btn-login:hover,
+    .darkmode .btn-register-horario:hover, .darkmode #boton-inicio:hover, .darkmode .btn-confirmar:hover,
+    .darkmode .btn-cancelar:hover, .darkmode .btn-registro:hover {
+        background-color: var(---btnClaroHover);
+    }
+
+    .darkmode .grid-header, .darkmode .dias,
+    .darkmode .horas-titulo, .darkmode .horas-dato, .darkmode .flex-header {
+        background-color: var(---btnClaro);
+        color: aliceblue;
+    }
+
+    /* Todos los inputs y forms iguales */
+    .darkmode .main-perfil, .darkmode .popup, .darkmode .miembro,
+    .darkmode #form, .darkmode .article-register, .darkmode .dialogs,
+    .darkmode .div-mostrar-datos-main, .darkmode .div-mostrar-datos, .darkmode .class-datos-editar,
+    .darkmode #contenido-mostrar-datos, .darkmode .filtros, .darkmode .error {
+        background-color: var(---formsColorOscuro);
+        color: aliceblue;
+    }
+
+    .darkmode .input-group>div>input, .darkmode #informacion-change, .darkmode .input-register,
+    .darkmode select, .darkmode #select-horarios, .darkmode #salones-select, .darkmode #cursos-select,.darkmode .input-form {
+        background-color: #444;
+        color: aliceblue;
+        border: 1px solid #666;
+    }
+
     /* NAVBAR */
     .darkmode .navStyle,
     .darkmode footer {
@@ -1991,8 +2021,8 @@ abajito cuando el ancho es menos de 700px */
     .darkmode .btn,
     .darkmode .btn-bienvenida,
     .darkmode .btn-login {
-        background-color: #3a3a3a;
-        color: #f1f1f1;
+        background-color: #555;
+        color: aliceblue;
         border: 1px solid #3a3a3a;
         transition: background-color 0.2s ease, color 0.2s ease;
     }
@@ -2000,8 +2030,8 @@ abajito cuando el ancho es menos de 700px */
     .darkmode .btn:hover,
     .darkmode .btn-bienvenida:hover,
     .darkmode .btn-login:hover {
-        background-color: #505050;
-        color: #121212;
+        background-color: #666;
+        color: aliceblue;
     }
 
     /* SECCIONES */
