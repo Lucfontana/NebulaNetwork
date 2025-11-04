@@ -4,6 +4,8 @@
     ---marginAside: 50px;
     ---marginAsideActivo: 120px;
     ---gradientNav: rgb(26, 56, 155);
+    ---formsColorClaro: rgb(216, 229, 240);
+    ---formsColorOscuro: rgb(54, 54, 54);
 }
 
 /* ------------------------ GENERALIDADES ---------------------- */
@@ -143,7 +145,7 @@ main {
 
 .miembro {
     text-align: center;
-    background: linear-gradient(135deg, rgba(207, 224, 255, 1), rgba(178, 197, 255, 1));
+    background: var(---formsColorClaro);
     border: 2px solid rgba(0, 26, 255, 0.4);
     border-radius: 30px;
     backdrop-filter: blur(10px);
@@ -509,7 +511,7 @@ aside>ul {
     flex-direction: column;
     padding: 20px;
     font-size: 18px;
-    background-color: rgb(216, 229, 240);
+    background-color: var(---formsColorClaro);
     z-index: 1;
 }
 
@@ -617,12 +619,12 @@ aside>ul {
 
 /* Registro */
 .article-register {
-    background-color: #333;
+    background-color: var(---formsColorClaro);
     min-width: 300px;
     width: 30%;
     text-align: center;
     margin-top: 50px;
-    color: #fff;
+    color: #2c3e50;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
@@ -692,9 +694,6 @@ aside>ul {
     color: var(--color);
 }
 
-.article-register {
-    --color: #4db8ff;
-}
 
 #register-content {
     display: flex;
@@ -706,7 +705,7 @@ aside>ul {
 
 /* -------------- dialog de Registro -------------- */
 .dialogs {
-    background-color: white;
+    background-color: var(---formsColorClaro);
     border-radius: 20px;
     padding: 35px 40px;
     margin: 10px;
@@ -787,18 +786,18 @@ hr {
     flex-direction: column;
     padding: 20px;
     font-size: 18px;
-    background-color: rgb(216, 229, 240);
+    background-color: var(---formsColorClaro);
     z-index: 1;
 }
 
 .input-register {
-    color: #fff;
+    color: #333;
     margin-top: 20px;
     border-radius: 15px;
     width: 60%;
     padding: 15px;
     font-size: 18px;
-    background-color: #3b3b3b;
+    background-color: var(---formsColorClaro);
     border-style: none;
 }
 
@@ -809,7 +808,7 @@ hr {
     padding: 15px;
     width: 100%;
     font-size: 18px;
-    background-color: #fff;
+    background-color: var(---formsColorClaro);
     border-style: none;
 }
 
@@ -855,7 +854,7 @@ hr {
 }
 
 .div-mostrar-datos-main {
-    background-color: white;
+    background-color: var(---formsColorClaro);
     width: 100%;
     z-index: 1;
 }
@@ -889,7 +888,7 @@ hr {
     padding: 10px;
     border-color: #2980b9;
     border-radius: 10px;
-    background-color: #b9c0ff;
+    background-color: var(---formsColorClaro);
 }
 
 #contenido-mostrar-datos {
@@ -897,7 +896,7 @@ hr {
     max-width: 1200px;
     margin: 40px;
     /* límite para que no se estire demasiado */
-    background: white;
+    background: var(---formsColorClaro);
     /* opcional */
     border-radius: 10px;
     /* opcional */
@@ -910,7 +909,7 @@ hr {
 .div-mostrar-datos {
     display: flex;
     justify-content: space-between;
-    background: white;
+    background: var(---formsColorClaro);
     /* opcional */
     width: 100%;
     height: auto;
@@ -1166,7 +1165,7 @@ hr {
 .filtros {
     display: flex;
     align-items: center;
-    background-color: white;
+    background-color: var(---formsColorClaro);
     width: 100%;
     margin-bottom: 20px;
     gap: 20px;
@@ -1179,8 +1178,10 @@ hr {
 #select-horarios,
 #salones-select,
 #cursos-select {
+    background: #ffffff;
     width: 200px;
     font-size: 14px;
+    
 }
 
 #informacion-change {
@@ -1295,7 +1296,7 @@ hr {
 }
 
 .popup {
-    background: linear-gradient(145deg, #ffffff, #e8f2ff);
+    background: var(---formsColorClaro);
     border-radius: 20px;
     padding: 35px 40px;
     width: 600px;
@@ -1313,7 +1314,7 @@ hr {
 .popup>h1 {
     text-align: center;
     margin-bottom: 10px;
-    font-size: 2em;
+    font-size: 2rem;
     color: #2c3e50;
 }
 
@@ -1348,7 +1349,6 @@ select {
     padding: 10px 12px;
     border: 1px solid #000000;
     border-radius: 10px;
-    background: #3b3b3b;
     font-size: 0.95em;
     transition: border-color 0.5s ease;
 }
@@ -1365,7 +1365,7 @@ select {
 }
 
 .btn-primary {
-    background-color: rgb(34, 34, 34);
+    background-color: #2c3e50;
     border: none;
     color: #fff;
     padding: 10px 20px;
@@ -1378,7 +1378,7 @@ select {
 }
 
 .btn-primary:hover {
-    background-color: #666666;
+    background-color: #45607a;
 }
 
 .btn-secondary {
@@ -1455,6 +1455,7 @@ select {
 .bienvenida-perfil>h2 {
     font-size: 30px;
     font-weight: bold;
+    color: #fff;
 }
 
 .bienvenida-perfil>p {
@@ -1478,6 +1479,7 @@ select {
 
 #change-passwd {
     background-color: #34495e;
+    color: #fff;
     padding: 15px;
     font-size: 20px;
     border: none;
@@ -1486,7 +1488,7 @@ select {
 }
 
 #change-passwd:hover {
-    color: white;
+    background-color: #45607a;
     cursor: pointer;
     transition: 0.5s;
 }
@@ -1522,7 +1524,7 @@ select {
 }
 
 #edit-perfil:hover {
-    background: #3498db;
+    background: #45607a;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
     transform: scale(1.05);
 }
@@ -1539,12 +1541,11 @@ select {
 }
 
 .error {
-    background-color: white;
     padding: 30px;
     border-radius: 20px;
     max-width: 400px;
-    background-color: #333;
-    color: #fff;
+    color: #333;
+    background-color: var(---formsColorClaro);
 }
 
 .error h1 {
@@ -1566,7 +1567,7 @@ select {
 #boton-inicio {
     display: block;
     margin: 20px auto;
-    background-color: #1d1d1d;
+    background-color: #2c3e50;
     color: #fff;
     border: none;
     font-size: 18px;
@@ -1575,7 +1576,7 @@ select {
 }
 
 #boton-inicio:hover {
-    background-color: #100d0d;
+    background-color: #45607a;
     color: white;
 }
 
@@ -1699,6 +1700,10 @@ abajito cuando el ancho es menos de 700px */
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .darkmode .article-register {
+        background-color: var(---formsColorOscuro);
+        color: #ddd;
     }
 
     /* Asegurar tamaño igual al resto */
@@ -1853,7 +1858,7 @@ abajito cuando el ancho es menos de 700px */
 
     .grid-cell {
         width: 100%;
-        border: 1px solid rgb(209, 223, 235);
+        border: 1px solid #2c3e50 !important;
     }
 
     #contenido-mostrar-datos {
@@ -1933,6 +1938,10 @@ abajito cuando el ancho es menos de 700px */
         align-items: center;
         justify-content: center;
         text-align: center;
+    }
+
+    .bienvenida-perfil {
+        margin-left: 0px;
     }
 
     .popup {
@@ -2077,6 +2086,7 @@ abajito cuando el ancho es menos de 700px */
     /* GRID Y DATOS */
     .darkmode .grid-cell {
         border: 1px solid #3a3a3a;
+        color: #f1f1f1;
     }
 
     .darkmode .informacion-escondida {
@@ -2124,9 +2134,11 @@ abajito cuando el ancho es menos de 700px */
         border: #333;
     }
 
-    .input-group>div>input,
-    select {
-        border: #333;
+    .darkmode .input-group>div>input,
+    , .darkmode #select-horarios,
+    .darkmode #salones-select,
+    .darkmode #cursos-select {
+        background: #3b3b3b;
     }
 
     .darkmode .main-perfil {
@@ -2143,22 +2155,42 @@ abajito cuando el ancho es menos de 700px */
         color: #fff;
     }
 
-    .error {
+    .darkmode .error {
         background-color: #333;
         color: #fff;
     }
 
-    .error h1 {
+    .darkmode .error h1 {
         color: #fff;
     }
 
-    #boton-inicio {
+    .darkmode #boton-inicio {
         background-color: #1d1d1d;
         color: #fff;
     }
 
-    #boton-inicio:hover {
+    .darkmode #boton-inicio:hover {
         background-color: #100d0d;
         color: white;
     }
+
+    .darkmode .popup {
+        background: #333;
+        color: #333;
+    }
+
+    .darkmode .fa-eye-slash {
+        color: #ccc;
+    }
+
+    .darkmode .popup>h1 {
+        color: #fff;
+    }
+
+    .darkmode .subtext {
+        text-align: center;
+        font-size: 0.9em;
+        color: #fff;
+        margin-bottom: 25px;
+}
 }

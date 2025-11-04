@@ -102,7 +102,7 @@
     .darkmode .dialogs h1 {
         color: #ffffff;
     }
-    
+
     .darkmode .contenedor-password-register>i {
         color: white;
         background-color: #3b3b3b;
@@ -122,4 +122,48 @@
     .darkmode .btn-register-horario:hover {
         background-color: #45607a;
         color: #f1f1f1;
+    }
+
+    .darkmode .horas-titulo,
+    .darkmode .horas-dato {
+        background: #333;
+        border: #333;
+    }
+
+    .input-group>div>input,
+    select {
+        border: #333;
+    }
+
+    .darkmode .main-perfil {
+        background-color: #333;
+        color: #333;
+    }
+
+    .darkmode .main-perfil h2,
+    .darkmode .main-perfil p {
+        color: #fff;
+    }
+
+    .darkmode .contenido-perfil {
+        color: #fff;
+    }
+
+    .darkmode .error {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .darkmode .error h1 {
+        color: #fff;
+    }
+
+    .darkmode #boton-inicio {
+        background-color: #1d1d1d;
+        color: #fff;
+    }
+
+    .darkmode #boton-inicio:hover {
+        background-color: #100d0d;
+        color: white;
     }
