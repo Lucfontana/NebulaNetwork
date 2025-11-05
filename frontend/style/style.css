@@ -58,7 +58,6 @@ main {
     z-index: 999;
     /* Navbar encima del aside */
     color: #2b2b2b;
-    margin: 0 0 0 0;
     background-color: #E0E3EB;
     transition: all 0.5s ease;
 
@@ -74,20 +73,15 @@ main {
     width: 40px;
 }
 
-.nav-link,
-.navbar-brand,
-.nav-item a {
-    color: var(---btnClaro);
+.nav-link, .navbar-brand, .nav-item a {
+    color: #2c3e50;
     padding-left: 10px;
 }
 
-.nav-link:hover {
-    color: var(---btnClaroHover);
+.nav-link:hover, .navbar-brand:hover{
+    color: #45607a;
 }
 
-.navbar-brand:hover {
-    color: var(---btnClaroHover);
-}
 
 .icono {
     filter: invert(15%);
@@ -106,33 +100,13 @@ main {
 .navbar-brand {
     font-size: 30px;
     /* Tamaño del titulo (ITSP) */
-    margin: 0;
     padding-left: 10px;
     /* un poquito de separación del borde */
     display: flex;
     align-items: center;
 }
 
-.container-fluid {
-    justify-content: space-around;
-}
-
 /* /--------------- Sobre Nosotros -------------------/ */
-
-.body-aboutus {
-    background-image: linear-gradient(rgba(9, 4, 0, 0.6),
-            rgba(9, 4, 0, 0.6)),
-        url(../img/backgroundItsp.jpg);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    display: flex;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin: 75px 0 0 var(---marginAside);
-    flex-direction: column;
-}
 
 .container-aboutus {
     display: flex;
@@ -192,7 +166,6 @@ main {
     width: 250px;
     height: 250px;
     margin: 30px;
-    cursor: pointer;
     transition: 1s;
 }
 
@@ -206,12 +179,9 @@ main {
     justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 20px;
-    color: black;
 }
 
 .github-vinculo {
-    color: black;
     cursor: pointer;
 }
 
@@ -219,7 +189,7 @@ main {
 
 /* Contenedor principal en columna para texto y botones */
 
-.hdrBackground {
+.hdrBackground, .body-aboutus {
     background-image: linear-gradient(rgba(9, 4, 0, 0.6),
             rgba(9, 4, 0, 0.6)),
         url(../img/backgroundItsp.jpg);
@@ -237,14 +207,9 @@ main {
     flex-direction: column;
 }
 
-/* Texto de Bienvenidos */
-.bienvenida-texto {
-    margin-bottom: 2.5rem;
-    /* Separación del bloque de los botones */
-}
-
 /* Botones de Bienvenidos */
 .bienvenida-botones {
+    margin-top: 2.5rem; /* Separación del bloque de los botones */
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -261,23 +226,12 @@ main {
     border-radius: 10px;
     font-weight: bold;
     transition: 0.5s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     text-align: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
 }
 
-.contenido {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 30px;
-}
-
-.contenido-centrado {
-    display: flex;
-    justify-content: center;
+.btn-bienvenida:hover {
+    background-color: #45607a;
 }
 
 /* /------------------------ BARRA LATERAL ----------------------/ */
@@ -295,24 +249,13 @@ aside {
 }
 
 aside>ul {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    list-style-type: none;
-    /*Sacar los puntitos de la lista*/
-    padding: 0;
+    list-style-type: none; /*Sacar los puntitos de la lista*/
+    cursor: pointer;
 }
 
 .link-aside-images li {
     position: relative;
-    margin: 35px 0;
     margin: 20px 0;
-    /* mismo espacio vertical */
-    display: flex;
-    /* centra el ícono */
-    justify-content: center;
-    align-items: center;
 }
 
 /* Tooltip */
@@ -334,7 +277,7 @@ aside>ul {
 }
 
 .link-aside-images li:hover::after {
-    opacity: 1;
+    opacity: 1; /*Cuando hace hover, se muestra */
     transform: translateY(-50%) translateX(0);
     /* vuelve a su lugar */
 }
@@ -343,7 +286,6 @@ aside>ul {
 .link-aside-images img {
     width: 28px;
     height: 28px;
-    object-fit: contain;
 }
 
 
@@ -382,41 +324,14 @@ aside>ul {
     /* animación */
 }
 
-/* Al hacer hover en el icono de configuración */
-.settings-icon:hover .settings-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(-50%) translateX(0);
-}
-
-.settings-menu a {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 8px 12px;
-    text-align: left;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 3px;
-}
-
-.settings-menu a:hover {
-    background-color: black;
-    color: #fff;
-    transition: 0, 0.5s;
-}
-
 /*------------------------ FOOTER ----------------------*/
 .footer {
     background-color: #E0E3EB;
     padding: 20px 0 10px 0;
-    text-align: center;
     color: #2b2b2b;
     display: flex;
-    align-items: center;
     justify-content: center;
     font-size: 20px;
-    width: auto;
     transition: 0.5s;
 }
 
@@ -425,7 +340,6 @@ aside>ul {
 #botones-login {
     display: flex;
     justify-content: center;
-    gap: 15px;
     margin-top: 50px;
 }
 
@@ -435,20 +349,11 @@ aside>ul {
     font-size: 18px;
     border-radius: 8px;
     cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    min-width: 180px;
-    flex: 1 1 auto;
-    /* se adaptan al espacio disponible */
 }
 
 .contenedor-password {
     display: flex;
     position: relative;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-
 }
 
 .togglePassword {
@@ -464,12 +369,8 @@ aside>ul {
     left: 20px;
     font-size: 32px;
     color: #000000;
-    text-decoration: none;
-    font-weight: bold;
     z-index: 10;
-    width: 50px;
-    /* ancho del círculo */
-    height: 50px;
+    width: 50px; /* ancho del círculo */
     align-items: center;
     justify-content: center;
     display: flex;
@@ -477,15 +378,11 @@ aside>ul {
 
 .flecha-volver:hover {
     color: #222222;
-    background-color: rgba(0, 0, 0, 0.2);
-    /* sombra de fondo ligera */
-    border-radius: 70%;
-    /* forma redondeada */
+    background-color: rgba(0, 0, 0, 0.2); /* sombra de fondo ligera */
+    border-radius: 70%; /* forma redondeada */
 }
 
-.flex,
-#navbar-content.show,
-.div-botones-register {
+.flex, #navbar-content.show, .div-botones-register {
     display: flex;
 }
 
@@ -499,9 +396,8 @@ aside>ul {
     z-index: 1;
 }
 
-.contraseña {
-    width: 30%;
-    height: 80px;
+.input-form::placeholder {
+    color: #333;
 }
 
 .label {
@@ -514,19 +410,6 @@ aside>ul {
     color: black;
     text-align: center;
     margin-top: 20px;
-}
-
-#envFormulario {
-    width: 170px;
-    font-size: 20px;
-    margin-top: 30px;
-    background-color: #333;
-    color: aliceblue;
-    padding: 15px;
-    border-style: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: 0.5s;
 }
 
 .bi {
@@ -691,27 +574,10 @@ select, #select-horarios, #salones-select, #cursos-select,.input-form {
     color: #fff;
 }
 
-
-/* Primer grupo (elementos 1, 2 y 3) */
-.article-register:nth-child(-n + 3) {
-    --color: #da9768;
-}
-
-/* Segundo grupo (elementos 4, 5 y 6) */
-.article-register:nth-child(n + 4):nth-child(-n + 6) {
-    --color: #2E8B92;
-}
-
-/* Tercer grupo (elementos 7, 8 y 9) */
-.article-register:nth-child(n + 7):nth-child(-n + 9) {
-    --color: #73b382;
-}
-
 /* Aplica el color al texto dentro del span */
 .article-register h1 span {
     color: var(--color);
 }
-
 
 #register-content {
     display: flex;
@@ -787,16 +653,6 @@ hr {
     color: var(---btnClaro);
     border-width: 5px;
     width: 60%;
-}
-
-#form {
-    display: flex;
-    width: 40%;
-    height: auto;
-    flex-direction: column;
-    padding: 20px;
-    font-size: 18px;
-    z-index: 1;
 }
 
 .input-register {
@@ -1597,8 +1453,7 @@ abajito cuando el ancho es menos de 700px */
 
     /* se le cambia el margen a 0 para que
     no se le agregue cuando el aside se acomoda */
-    .contenido,
-    .contenido.activo {
+    .contenido {
         margin: 0;
     }
 

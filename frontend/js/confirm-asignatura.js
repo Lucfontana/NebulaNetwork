@@ -1,12 +1,13 @@
 import { verificarString, alerta_success_update, alerta_fallo } from './prueba.js';
 //importamos los js necesarios, como alertas o validaciones
 
-document.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.getElementById("overlay-asignatura");
-  const btnCancelar = document.getElementById("cancelar-asignatura");
-  const btnConfirmar = document.getElementById("confirmar-asignatura");
-  const overlayEdit = document.getElementById("overlay-edit-asignatura");
-  const btnCancelarEdit = document.getElementById("cancelarEdit-asignatura");
+//Todo esto se ejecuta en frontend/CRUD/asignaturas.php
+document.addEventListener("DOMContentLoaded", () => { //Cuando se carga todo el contenido del DOM, se comienza a ejecutar el codigo
+  const overlay = document.getElementById("overlay-asignatura"); //Overlay que pregunta si quiere borrar o no
+  const btnCancelar = document.getElementById("cancelar-asignatura"); //Boton para cancelar la eliminacion
+  const btnConfirmar = document.getElementById("confirmar-asignatura"); //Boton para confirmar la eliminacion
+  const overlayEdit = document.getElementById("overlay-edit-asignatura"); //popup para editar
+  const btnCancelarEdit = document.getElementById("cancelarEdit-asignatura"); //Boton de cancelar edicion
   
   let currentId = null;
 
@@ -14,14 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".boton-eliminar-asignatura").forEach(boton => {
     boton.addEventListener("click", (e) => {
       e.preventDefault();
-      currentId = boton.dataset.id;
-      //cargamos el id enviado por data en currenId
-      overlay.style.display = "flex";
-      setTimeout(() => {
+      currentId = boton.dataset.id; //cargamos el id enviado por data en currenId
+      overlay.style.display = "flex"; //Se muestra el overlay para borrar
+      setTimeout(() => { //Se le aplica una animacion mientras se empieza a mostrar
         overlay.style.opacity = "1";
         overlay.style.transition = "0.5s";
       }, 1);
-      //pequeña animación
     });
   });
 
@@ -29,8 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
   btnCancelar.addEventListener("click", () => {
     overlay.style.opacity = "0";
     overlay.style.transition = "0.5s";
-    currentId = null;
-    setTimeout(() => {
+    currentId = null; //Se resetea el currentId pq le guardamos un valor antes 
+                      //(por si el usuario quiere borrar otro elemento que no sea este)
+    setTimeout(() => { //Espera hasta que termine la trancision para esconder completamente el boton,
+                       //por que o si no estos botones seguirian en la p'agina pero estarian invisibles ante el usuario
       overlay.style.display = "none"; 
     }, 500);
     //pequeña animación

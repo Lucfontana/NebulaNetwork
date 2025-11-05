@@ -23,6 +23,21 @@ $orientacion_info = query_orientacion($con);
 
 
 ?>
+            <!-- Este archivo tiene los siguientes formularios de registro, en el siguiente orden:
+                - Profesores
+                - Superusuarios
+                - Recursos
+                - Espacios fisicos
+                - Cursos
+                - Asignaturas
+                - Orientaciones -->
+
+            <!-- Los register restantes son:
+            - CRUD/inasistencias_add (agregar inasistencias)
+            - CRUD/dependencias_cd (agregar y eliminar dependencias (C-reate) y eliminar (D-elete))
+            - CRUD/reservas_esp_add (agregar reservas de espacio) -->
+
+
             <!--    Inicio de Ventanas Emergentes    -->
 
             <div id="div-dialogs">
