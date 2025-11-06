@@ -33,8 +33,7 @@ $result = mostrardatos("asignaturas");
                 <div class="grid-cell"><?= $row['nombre'] ?></div>
                 <div class="grid-cell">
                     <!-- Clase específica para asignaturas -->
-                    <a href="#"
-                        class="boton-datos-eliminar boton-eliminar-asignatura botones-datos"
+                    <a class="boton-datos-eliminar boton-eliminar-asignatura botones-datos"
                         data-id="<?= $row['id_asignatura'] ?>"> <!-- le cargamos el id_asignatura para que al eliminar tenga un valor de referencia -->
                         Eliminar
                     </a>
@@ -103,7 +102,7 @@ $result = mostrardatos("asignaturas");
                 </div>
 
                 <div class="buttons-modal">
-                    <input type="submit" value="Actualizar Información" class="btn-primary-actualiza">
+                    <input type="submit" value="Actualizar Información" class="btn-primary">
                     <input type="button" value="Cancelar" class="btn-secondary" id="cancelarEdit-asignatura">
                 </div>
             </form>

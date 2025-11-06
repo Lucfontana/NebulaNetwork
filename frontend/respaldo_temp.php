@@ -17,6 +17,7 @@ if (!isset($_SESSION['acceso']) && isset($_SESSION['ci'])) {
     $ci_profesor = (int)$_SESSION['ci'];
 }
 
+//Se hace esa validacion asi no sale error cuando estas sin sesion iniciada
 if(isset($_SESSION['ci'])) $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
 
 

@@ -23,6 +23,21 @@ $orientacion_info = query_orientacion($con);
 
 
 ?>
+            <!-- Este archivo tiene los siguientes formularios de registro, en el siguiente orden:
+                - Profesores
+                - Superusuarios
+                - Recursos
+                - Espacios fisicos
+                - Cursos
+                - Asignaturas
+                - Orientaciones -->
+
+            <!-- Los register restantes son:
+            - CRUD/inasistencias_add (agregar inasistencias)
+            - CRUD/dependencias_cd (agregar y eliminar dependencias (C-reate) y eliminar (D-elete))
+            - CRUD/reservas_esp_add (agregar reservas de espacio) -->
+
+
             <!--    Inicio de Ventanas Emergentes    -->
 
             <div id="div-dialogs">
@@ -263,7 +278,7 @@ $orientacion_info = query_orientacion($con);
 
                             <div class="div-labels">
                                 <label for="curso_dictado" class="label"><?= t("label_orientation") ?></label>
-                                <select name="orientacion_en" id="salon_ocupado" type="text" class="input-register">
+                                <select name="orientacion_en" id="salon_ocupado" type="text" class="input-register" required>
                                     <option value=""></option>
                                     <?php while ($row = mysqli_fetch_array($orientacion_info)): ?>
                                         <option value="<?= $row['id_orientacion'] ?>">

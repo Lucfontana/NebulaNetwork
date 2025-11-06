@@ -20,7 +20,7 @@ if (!isset($_SESSION['nivel_acceso'])) {
 ?>
 
 <div class="div-mostrar-datos">
-    <h1>Reserva</h1>
+    <h1>Reservas de espacios físicos</h1>
 </div>
 
 <!-- Vista para PC -->
