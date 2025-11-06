@@ -5,6 +5,7 @@ include_once ('../../db/conexion.php');
     
     $id = $_GET['id'];
  
+    //consulta paa eliminar orientaciones
     $consulta = "DELETE FROM orientacion WHERE id_orientacion=?";
     $stmt = $con->prepare($consulta);
     $stmt->bind_param("i", $id);

@@ -1,3 +1,8 @@
+
+//Este código controla qué parte de la página se muestra (un bloque de salones o un bloque de cursos) 
+// según la opción que el usuario elija en un menú desplegable (select).
+
+
 //Busca en el documento HTML un elemento que tenga el id="select-horarios" (lista desplegable)
 document.getElementById("select-horarios").addEventListener("change", function () {
 //El evento "change" se activa cuando el usuario selecciona una opción diferente.
@@ -13,7 +18,7 @@ document.getElementById("select-horarios").addEventListener("change", function (
         divSalones.style.display = "block"; // Muestra el select de salones
         divCurso.style.display = "none"; // Oculta el select de cursos
     } else {
-        divSalones.style.display = "none"; // Lo oculta
-        divCurso.style.display = "block"; // Lo oculta
+        divSalones.style.display = "none"; //Muestra el select de cursos
+        divCurso.style.display = "block"; // Oculta el select de salones
     }
 });

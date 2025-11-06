@@ -2,6 +2,10 @@
 import { alerta_fallo, sw_exito } from '../../../../frontend/js/swalerts.js';
 import { crear_selects_horarios } from '../../dependencias/crear_campos.js';
 
+//alerta_fallo: muestra una alerta de error (por ejemplo, con SweetAlert). 
+//sw_exito: muestra una alerta de éxito.
+//crear_selects_horarios: función que genera los campos <select> para que el usuario elija los horarios de inasistencia.
+
 //Se declaran variables para ir greando los campos
 const dia_falta = document.getElementById("dia_falta");
 const cantidad_horas_falta = document.getElementById("cantidad_horas_falta");
@@ -11,9 +15,9 @@ const formulario_falta = document.querySelector(".inasistencia-form");
 let horariosDisponibles = [];
 
 // Event listeners
-dia_falta.addEventListener("change", cargar_horarios_dia);
-cantidad_horas_falta.addEventListener("input", generar_campos_horarios);
-formulario_falta.addEventListener("submit", registrar_falta);
+dia_falta.addEventListener("change", cargar_horarios_dia); //se ejecuta cuando el usuario cambia la fecha.
+cantidad_horas_falta.addEventListener("input", generar_campos_horarios);//se ejecuta cuando modifica la cantidad de horas
+formulario_falta.addEventListener("submit", registrar_falta);//se ejecuta cuando envía el formulario
 
 // Funcion que hace el fetch cuando cambia el día
 async function cargar_horarios_dia() {
