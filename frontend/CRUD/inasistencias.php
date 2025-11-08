@@ -19,17 +19,17 @@ if (!isset($_SESSION['nivel_acceso'])) {
 ?>
 
 <div class="div-mostrar-datos">
-    <h1>Inasistencias</h1>
+    <h1><?= t("header_absences") ?></h1>
 </div>
 
 <!-- Vista para PC -->
 <div class="datos-grid inasistencias-grid">
     <div class="grid-header inasistencias-header">
         <div class="grid-cell id">ID</div>
-        <div class="grid-cell nombre-titulo">Fecha</div>
-        <div class="grid-cell nombre-titulo">CI Profesor</div>
-        <div class="grid-cell nombre-titulo">Horario</div>
-        <div class="grid-cell boton-titulo">Eliminar</div>
+        <div class="grid-cell nombre-titulo"><?= t("table_date") ?></div>
+        <div class="grid-cell nombre-titulo"><?= t("table_teacher_id") ?></div>
+        <div class="grid-cell nombre-titulo"><?= t("aside_schedule") ?></div>
+        <div class="grid-cell boton-titulo"><?= t("btn_delete") ?></div>
     </div>
 
     <?php while ($row = mysqli_fetch_array($result)): ?>
@@ -44,7 +44,7 @@ if (!isset($_SESSION['nivel_acceso'])) {
                 <a href="#"
                     class="boton-datos-eliminar boton-eliminar-inasistencia botones-datos"
                     data-id="<?= htmlspecialchars($row['id_inasistencia']) ?>">
-                    Eliminar
+                    <?= t("btn_delete") ?>
                 </a>
             </div>
         </div>
@@ -60,10 +60,10 @@ if (!isset($_SESSION['nivel_acceso'])) {
             <?= toggle_mostrar_info($titulo) ?>
             <div class="informacion-escondida">
                 <div class="datos-tabla-flex">
-                    <div class="grid-cell">Fecha: <?= htmlspecialchars($row['fecha_inasistencia']) ?></div>
-                    <div class="grid-cell">CI Profesor: <?= htmlspecialchars($row['ci_profesor']) ?></div>
+                    <div class="grid-cell"><?= t("label_date") ?>:  <?= htmlspecialchars($row['fecha_inasistencia']) ?></div>
+                    <div class="grid-cell"><?= t("label_teacher_id") ?>:<?= htmlspecialchars($row['ci_profesor']) ?></div>
                     <div class="grid-cell">
-                        Horario: <?= htmlspecialchars($row['hora_inicio'] . " - " . $row['hora_final']) ?>
+                        <?= t("label_schedule") ?>:<?= htmlspecialchars($row['hora_inicio'] . " - " . $row['hora_final']) ?>
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@ if (!isset($_SESSION['nivel_acceso'])) {
                     <a href="#"
                         class="boton-datos-eliminar boton-eliminar-inasistencia botones-datos"
                         data-id="<?= htmlspecialchars($row['id_inasistencia']) ?>">
-                        Eliminar
+                          <?= t("btn_delete") ?>
                     </a>
                 </div>
             </div>

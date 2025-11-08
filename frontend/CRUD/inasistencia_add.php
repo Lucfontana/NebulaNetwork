@@ -14,12 +14,12 @@ include_once("functions.php");
                 <hr>
 
                 <div class="div-labels">
-                    <label for="dia" class="label">En el dia:</label>
+                    <label for="dia" class="label"><?= t("label_day_absence") ?></label>
                     <input type="date" name="dia_falta" id="dia_falta" class="input-register" required>
                 </div>
 
                 <div class="div-labels" id="horas_falta">
-                    <label for="nose" class="label">Cantidad de horas a faltar:</label>
+                    <label for="nose" class="label"><?= t("label_hours_to_absent") ?></label>
                     <input type="number" name="cantidad_horas_falta" id="cantidad_horas_falta" class="input-register"
                         required>
                 </div>

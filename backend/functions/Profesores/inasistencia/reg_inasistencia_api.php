@@ -1,5 +1,7 @@
 <?php
 
+//Este código registra una falta  de un profesor en la base de datos.
+
 include_once("../../../db/conexion.php");
 include_once("reg_inasistencia.php");
 include_once("../../../queries.php");
