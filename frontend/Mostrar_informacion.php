@@ -15,7 +15,7 @@ include_once("functions.php");
                 <div class="div-mostrar-datos-main">
                     <h1 id="titulo-mostrar-informacion"><?= t("title_show_info") ?></h1>
                     <div class="filtros"> <label for="horario-select"><?= t("label_select_data") ?></label>
-                        <select name="informacion" class="salones-select" id="informacion-change" onchange="cambiarDato(this.value)">
+                        <select name="informacion" class="salones-select" id="informacion-change">
                             <option value="0"><?= t("option_select_data")?> </option> 
                             <option value="profesores"><?=t("option_teachers")?></option>
                             <option value="superusuarios"><?=t("option_superusers")?></option>
@@ -78,7 +78,7 @@ include_once("functions.php");
                     <div class="div-mostrar-datos-main">
                         <h1 id="titulo-mostrar-informacion"><?= t("title_show_info") ?></h1>
                         <div class="filtros"> <label for="horario-select"><?= t("title_show_info") ?></label>
-                            <select name="informacion" class="salones-select" id="informacion-change" onchange="cambiarDato(this.value)">
+                            <select name="informacion" class="salones-select" id="informacion-change">
                                 <option value="0"><?= t("label_select_data") ?></option>
                                 <option value="inasistencias"><?= t("option_absences") ?></option>
                                 <option value="reserva"><?= t("option_reservations") ?></option>
