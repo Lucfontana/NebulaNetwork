@@ -19,7 +19,7 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
                     <div id="div-curso" style="display: block;">
                         <label for="Cursos" id="select-cursos"><?= t("label_select_course") ?></label>
                         <select name="Cursos" id="cursos-select" class="cursos-select" onchange="cambiarCurso(this.value)">
-                            <option value="0"><?= t("option_select_course") ?></option>
+                            <option value="0"><?= t("placeholder_course") ?></option>
                             <?php mysqli_data_seek($query2, 0); ?>
                             <?php while ($row2 = mysqli_fetch_array($query2)): ?>
                                 <option value="<?= $row2['id_curso'] ?>" <?= (isset($_GET['curso_id']) && $_GET['curso_id'] == $row2['id_curso']) ? 'selected' : '' ?>><?= $row2['nombre'] ?></option>
@@ -73,13 +73,12 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
                     <h1><?= t("title_schedules") ?></h1>
                     <div class="botones-register-horarios">
                         <button class="btn btn-register-horario" data-toggle="modal">
-                            Agregar Horas
+                            <?= t("btn_add_hours") ?>                        </button>
+                        <button class="btn btn-register-horario" data-toggle="modal">
+                            <?= t("btn_add_schedules") ?>
                         </button>
                         <button class="btn btn-register-horario" data-toggle="modal">
-                            Agregar Horarios
-                        </button>
-                        <button class="btn btn-register-horario" data-toggle="modal">
-                            Eliminar Horarios
+                            <?= t("btn_delete_schedules") ?>
                         </button>
                     </div>
                 </div>
@@ -106,7 +105,7 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
                     <div id="div-curso" style="display: block;">
                         <label for="Cursos" id="select-cursos"><?= t("label_select_course") ?></label>
                         <select name="Cursos" class="cursos-select" id="cursos-select" onchange="cambiarCurso(this.value)">
-                            <option value="0"><?= t("option_select_course") ?></option>
+                            <option value="0"><?= t("placeholder_course") ?></option>
                             <?php mysqli_data_seek($query2, 0); ?>
                             <?php while ($row2 = mysqli_fetch_array($query2)): ?>
                                 <option value="<?= $row2['id_curso'] ?>" <?= (isset($_GET['curso_id']) && $_GET['curso_id'] == $row2['id_curso']) ? 'selected' : '' ?>><?= $row2['nombre'] ?></option>
@@ -202,7 +201,7 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
 
                 <button type="button" id="espacios_reserva_boton" class="btn-primary btn" data-toggle="modal"
                     data-target="#exampleModal">
-                    <?= t("Reservar espacio") ?>
+                    <?= t("btn_reserve_space") ?>
                 </button>
 
                 <?php include_once("CRUD/inasistencia_add.php") ?> <!-- Div para registrar la inasistencia -->

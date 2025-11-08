@@ -1,5 +1,7 @@
 <?php
 
+//funciones para registrar inacistencia de profes
+
 include_once("../../../db/conexion.php");
 include_once("../../../queries.php");
 include_once("../../../helpers.php");

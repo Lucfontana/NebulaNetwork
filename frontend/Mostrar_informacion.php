@@ -1,9 +1,11 @@
 <?php
 session_start();
+
+include_once("functions.php");
 ?>
 
 <?php if (isset($_SESSION['nivel_acceso'])): ?>
-    <title>Mostrar Información</title>
+    <title><?= t("title_show_info") ?></title>
     <?php include_once './Complementos/nav.php'; ?>
     <?php include_once 'register.php'; ?>
 
@@ -11,19 +13,19 @@ session_start();
         <main>
             <div id="contenido-mostrar-datos">
                 <div class="div-mostrar-datos-main">
-                    <h1 id="titulo-mostrar-informacion">Mostrar Información</h1>
-                    <div class="filtros"> <label for="horario-select">Seleccione Dato a Mostrar:</label>
+                    <h1 id="titulo-mostrar-informacion"><?= t("title_show_info") ?></h1>
+                    <div class="filtros"> <label for="horario-select"><?= t("label_select_data") ?></label>
                         <select name="informacion" class="salones-select" id="informacion-change" onchange="cambiarDato(this.value)">
-                            <option value="0">Seleccione Dato</option>
-                            <option value="profesores">Profesores</option>
-                            <option value="superusuarios">Super Usuarios</option>
-                            <option value="recursos">Recursos</option>
-                            <option value="espacios">Espacios Fisicos</option>
-                            <option value="cursos">Cursos</option>
-                            <option value="asignatura">Asignaturas</option>
-                            <option value="orientaciones">Orientaciones</option>
-                            <option value="inasistencias">Inasistencias</option>
-                            <option value="reserva">Reservas</option>
+                            <option value="0"><?= t("option_select_data")?> </option> 
+                            <option value="profesores"><?=t("option_teachers")?></option>
+                            <option value="superusuarios"><?=t("option_superusers")?></option>
+                            <option value="recursos"><?=t("option_resources")?></option>
+                            <option value="espacios"><?=t("option_spaces")?></option>
+                            <option value="cursos"><?=t("option_courses")?></option>
+                            <option value="asignatura"><?=t("option_subjects")?></option>
+                            <option value="orientaciones"><?=t("option_orientations")?></option>
+                            <option value="inasistencias"><?=t("option_absences")?></option>
+                            <option value="reserva"><?=t("option_reservations")?></option>
                         </select>
                     </div>
                 </div>
@@ -66,7 +68,7 @@ session_start();
             </div>
         </main>
     <?php elseif (isset($_SESSION['ci'])): ?>
-        <title>Mostrar Información</title>
+        <title><?= t("title_show_info") ?></title>
 
         <?php include_once 'Complementos/nav.php'; ?>
 
@@ -74,12 +76,12 @@ session_start();
             <main>
                 <div id="contenido-mostrar-datos">
                     <div class="div-mostrar-datos-main">
-                        <h1 id="titulo-mostrar-informacion">Mostrar Información</h1>
-                        <div class="filtros"> <label for="horario-select">Seleccione Dato a Mostrar:</label>
+                        <h1 id="titulo-mostrar-informacion"><?= t("title_show_info") ?></h1>
+                        <div class="filtros"> <label for="horario-select"><?= t("title_show_info") ?></label>
                             <select name="informacion" class="salones-select" id="informacion-change" onchange="cambiarDato(this.value)">
-                                <option value="0">Seleccione Dato</option>
-                                <option value="inasistencias">Inasistencias</option>
-                                <option value="reserva">Reservas</option>
+                                <option value="0"><?= t("label_select_data") ?></option>
+                                <option value="inasistencias"><?= t("option_absences") ?></option>
+                                <option value="reserva"><?= t("option_reservations") ?></option>
                             </select>
                         </div>
                     </div>

@@ -3,7 +3,7 @@ include_once 'functions.php';
 session_start();
 ?>
 
-<title>About Us</title>
+<title><?= t("aboutus_title") ?></title>
 <?php include './Complementos/nav.php'; ?>
 
 <body>
@@ -14,8 +14,8 @@ session_start();
                     <img src="./img/logologo.png">
                 </div>
             </a>
-            <h1>¡Somos Nebula Network!</h1>
-            <h5>Un equipo de desarrollo de software dedicado y pasional hacia el desarrollo de aplicaciones web.</h5>
+            <h1><?= t("aboutus_heading") ?></h1>
+            <h5><?= t("aboutus_description") ?></h5>
             <div class="container-miembros">
                 <a class="github-vinculo" target="_blank" href="https://github.com/MineAbel">
                     <section class="miembro">

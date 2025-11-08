@@ -1,6 +1,7 @@
 <?php
 include_once('../backend/db/conexion.php');
 include_once('../backend/helpers.php');
+include_once 'functions.php';
 
 $result = mostrardatos("cursos");
 ?>
@@ -18,10 +19,10 @@ $result = mostrardatos("cursos");
     <div class="datos-grid">
         <div class="grid-header">
             <div class="grid-cell id">Id</div>
-            <div class="grid-cell nombre-titulo">Nombre</div>
-            <div class="grid-cell nombre-titulo">Capacidad</div>
-            <div class="grid-cell boton-titulo">Eliminar</div>
-            <div class="grid-cell boton-titulo">Editar</div>
+            <div class="grid-cell nombre-titulo"><?= t('header_name') ?></div>
+            <div class="grid-cell nombre-titulo"><?= t('header_capacity') ?></div>
+            <div class="grid-cell boton-titulo"><?= t('btn_delete') ?></div>
+            <div class="grid-cell boton-titulo"><?= t('btn_edit') ?></div>
         </div>
 
         <?php while ($row = mysqli_fetch_array($result)): ?>
@@ -33,7 +34,7 @@ $result = mostrardatos("cursos");
                     <a href="#"
                         class="boton-datos-eliminar boton-eliminar-curso botones-datos"
                         data-id="<?= $row['id_curso'] ?>">
-                        Eliminar
+                        <?= t('btn_delete') ?>
                     </a>
                 </div>
                 <div class="grid-cell boton-dato">
@@ -41,7 +42,7 @@ $result = mostrardatos("cursos");
                         data-id="<?= $row['id_curso'] ?>"
                         data-nombre="<?= $row['nombre'] ?>"
                         data-capacidad="<?= $row['capacidad'] ?>">
-                        Editar
+                         <?= t('btn_edit') ?>
                     </a>
                 </div>
             </div>
@@ -59,14 +60,14 @@ $result = mostrardatos("cursos");
                         <div class="grid-cell">ID: <?= $row['id_curso'] ?></div>
                     </div>
                     <div class="datos-tabla-flex">
-                        <div class="grid-cell">Capacidad: <?= $row['capacidad'] ?></div>
+                        <div class="grid-cell">"<?= t('placeholder_capacity') ?> <?= $row['capacidad'] ?></div>
                     </div>
 
                     <div class="grid-cell">
                         <a href="#"
                             class="boton-datos-eliminar boton-eliminar-curso botones-datos"
                             data-id="<?= $row['id_curso'] ?>">
-                            Eliminar
+                            <?= t('btn_delete') ?>
                         </a>
                     </div>
                     <div class="grid-cell">
@@ -74,7 +75,7 @@ $result = mostrardatos("cursos");
                             data-id="<?= $row['id_curso'] ?>"
                             data-nombre="<?= $row['nombre'] ?>"
                             data-capacidad="<?= $row['capacidad'] ?>">
-                            Editar
+                             <?= t('btn_edit') ?>
                         </a>
                     </div>
                 </div>
@@ -88,18 +89,18 @@ $result = mostrardatos("cursos");
     <!-- ID ÚNICO para editar curso -->
     <div id="overlay-edit-curso" class="overlay-edit">
         <div class="popup">
-            <h1>Modificación de Curso</h1>
+            <h1><?= t('title_edit_course') ?></h1>
             <form action="/backend/functions/Cursos/edit.php" method="POST" id="form-update-curso">
                 <input type="hidden" name="id_curso" id="id_edit_curso">
 
                 <div class="input-group">
-                    <label for="name_edit_curso">Nombre:</label>
+                    <label for="name_edit_curso"><?= t('label_name') ?></label>
                     <input class="class-datos-editar" type="text" name="nombre" id="name_edit_curso"
                         maxlength="20" minlength="3" required placeholder="Ingresa nombre">
                 </div>
 
                 <div class="input-group">
-                    <label for="capacidad_edit_curso">Capacidad:</label>
+                    <label for="capacidad_edit_curso">"<?= t('placeholder_capacity') ?>":</label>
                     <input class="class-datos-editar" type="number" name="capacidad" id="capacidad_edit_curso"
                         maxlength="3" minlength="1" required placeholder="Ingresa capacidad">
                 </div>
