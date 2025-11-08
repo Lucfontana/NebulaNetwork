@@ -5,9 +5,9 @@
 # ===============================================
 
 # --- CONFIGURACIÓN BÁSICA ---
-DB_NAME="nebulanetwork"
-DB_USER="root"
-DB_PASS=""
+DB_NAME="nebulanetwork" # Nombre de la base de datos
+DB_USER="root" # Usuario de la base de datos
+DB_PASS="" # Contraseña 
 BACKUP_PATH="/nebulanetwork/backups"
 NOW=$(date +"%Y-%m-%d_%H-%M")
 
