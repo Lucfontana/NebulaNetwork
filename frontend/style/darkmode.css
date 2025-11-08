@@ -1,0 +1,37 @@
+.darkmode .btn-bienvenida, .darkmode #change-passwd, .darkmode .btn-primary,
+    .darkmode .btn-secondary, .darkmode .btn-enviar-registro, .darkmode .btn-login,
+    .darkmode .btn-register-horario, .darkmode #boton-inicio, .darkmode .btn-confirmar,
+    .darkmode .btn-cancelar, .darkmode .btn-registro {
+        background-color: var(---btnClaro);
+        color: aliceblue;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .darkmode .btn-bienvenida:hover, .darkmode #change-passwd:hover, .darkmode .btn-primary:hover,
+    .darkmode .btn-secondary:hover, .darkmode .btn-enviar-registro:hover, .darkmode .btn-login:hover,
+    .darkmode .btn-register-horario:hover, .darkmode #boton-inicio:hover, .darkmode .btn-confirmar:hover,
+    .darkmode .btn-cancelar:hover, .darkmode .btn-registro:hover {
+        background-color: var(---btnClaroHover);
+    }
+
+    .darkmode .grid-header, .darkmode .dias,
+    .darkmode .horas-titulo, .darkmode .horas-dato, .darkmode .flex-header {
+        background-color: var(---btnClaro);
+        color: aliceblue;
+    }
+
+    /* Todos los inputs y forms iguales */
+    .darkmode .main-perfil, .darkmode .popup, .darkmode .miembro,
+    .darkmode #form, .darkmode .article-register, .darkmode .dialogs,
+    .darkmode .div-mostrar-datos-main, .darkmode .div-mostrar-datos, .darkmode .class-datos-editar,
+    .darkmode #contenido-mostrar-datos, .darkmode .filtros, .darkmode .error {
+        background-color: var(---formsColorOscuro);
+        color: aliceblue;
+    }
+
+    .darkmode .input-group>div>input, .darkmode #informacion-change, .darkmode .input-register,
+    .darkmode select, .darkmode #select-horarios, .darkmode #salones-select, .darkmode #cursos-select,.darkmode .input-form {
+        background-color: #444;
+        color: aliceblue;
+        border: 1px solid #666;
+    }
