@@ -5,6 +5,8 @@
     ---formsColorOscuro: rgb(54, 54, 54);
     ---btnClaro: #2c3e50;
     ---btnClaroHover: #45607a;
+    ---btnOscuro: #575757;
+    ---btnOscuroHover: #777777;
 }
 
 /* ------------------------ GENERALIDADES ---------------------- */
@@ -675,10 +677,6 @@ hr {
     font-size: 18px;
     background-color: #fff;
     border-style: none;
-}
-
-.input-form::placeholder {
-    color: #333;
 }
 
 .input-register:focus {
@@ -1803,13 +1801,12 @@ abajito cuando el ancho es menos de 700px */
 }
 
 @media (prefers-color-scheme: dark) {
-
     /* Todos los botones del sistema iguales*/
     .darkmode .btn-bienvenida, .darkmode #change-passwd, .darkmode .btn-primary,
     .darkmode .btn-secondary, .darkmode .btn-enviar-registro, .darkmode .btn-login,
     .darkmode .btn-register-horario, .darkmode #boton-inicio, .darkmode .btn-confirmar,
     .darkmode .btn-cancelar, .darkmode .btn-registro {
-        background-color: var(---btnClaro);
+        background-color: var(---btnOscuro);
         color: aliceblue;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
@@ -1818,12 +1815,12 @@ abajito cuando el ancho es menos de 700px */
     .darkmode .btn-secondary:hover, .darkmode .btn-enviar-registro:hover, .darkmode .btn-login:hover,
     .darkmode .btn-register-horario:hover, .darkmode #boton-inicio:hover, .darkmode .btn-confirmar:hover,
     .darkmode .btn-cancelar:hover, .darkmode .btn-registro:hover {
-        background-color: var(---btnClaroHover);
+        background-color: var(---btnOscuroHover);
     }
 
     .darkmode .grid-header, .darkmode .dias,
     .darkmode .horas-titulo, .darkmode .horas-dato, .darkmode .flex-header {
-        background-color: var(---btnClaro);
+        background-color: var(---btnOscuro);
         color: aliceblue;
     }
 
@@ -1872,30 +1869,8 @@ abajito cuando el ancho es menos de 700px */
         filter: invert(60%);
     }
 
-    /* BOTONES */
-    .darkmode .btn,
-    .darkmode .btn-bienvenida,
-    .darkmode .btn-login {
-        background-color: #555;
-        color: aliceblue;
-        border: 1px solid #3a3a3a;
-        transition: background-color 0.2s ease, color 0.2s ease;
-    }
-
-    .darkmode .btn:hover,
-    .darkmode .btn-bienvenida:hover,
-    .darkmode .btn-login:hover {
-        background-color: #666;
-        color: aliceblue;
-    }
-
     /* SECCIONES */
-    .darkmode aside,
-    .darkmode #contenido-mostrar-datos,
-    .darkmode .div-mostrar-datos,
-    .darkmode .div-mostrar-datos-main,
-    .darkmode .filtros,
-    .darkmode #form {
+    .darkmode aside {
         background-color: #2b2b2b;
         color: #f1f1f1;
     }
@@ -1914,13 +1889,6 @@ abajito cuando el ancho es menos de 700px */
         background-color: #3a3a3a;
     }
 
-    /* INPUTS */
-    .darkmode .input-form {
-        color: #f1f1f1;
-        background-color: #3a3a3a;
-        border: 1px solid #505050;
-    }
-
     .darkmode .input-form::placeholder {
         color: #cfcfcf;
     }
@@ -1933,59 +1901,16 @@ abajito cuando el ancho es menos de 700px */
 
     .darkmode .informacion-escondida {
         background-color: #2b2b2b;
-        color: #000000;
+        color: #ffffff;
     }
 
     .darkmode .mostrar-datos .grid-cell {
         color: #333;
     }
 
-    .darkmode .dialogs {
-        background-color: #2b2b2b;
-        color: #2b2b2b;
-    }
-
-    .darkmode .dialogs h1 {
-        color: #ffffff;
-    }
-
     .darkmode .contenedor-password-register>i {
         color: white;
         background-color: #3b3b3b;
-    }
-
-    .darkmode .input-register {
-        background-color: #3b3b3b;
-        color: white;
-        border: 1px solid #505050;
-    }
-
-    .darkmode .btn-register-horario {
-        background-color: #2c3e50;
-        color: #f1f1f1;
-    }
-
-    .darkmode .btn-register-horario:hover {
-        background-color: #45607a;
-        color: #f1f1f1;
-    }
-
-    .darkmode .horas-titulo,
-    .darkmode .horas-dato {
-        background: #333;
-        border: #333;
-    }
-
-    .darkmode .input-group>div>input,
-    .darkmode #select-horarios,
-    .darkmode #salones-select,
-    .darkmode #cursos-select {
-        background: #3b3b3b;
-    }
-
-    .darkmode .main-perfil {
-        background-color: #333;
-        color: #333;
     }
 
     .darkmode .main-perfil h2,
@@ -1997,36 +1922,12 @@ abajito cuando el ancho es menos de 700px */
         color: #fff;
     }
 
-    .darkmode .error {
-        background-color: #333;
-        color: #fff;
-    }
-
     .darkmode .error h1 {
         color: #fff;
     }
 
-    .darkmode #boton-inicio {
-        background-color: #1d1d1d;
-        color: #fff;
-    }
-
-    .darkmode #boton-inicio:hover {
-        background-color: #100d0d;
-        color: white;
-    }
-
-    .darkmode .popup {
-        background: #333;
-        color: #333;
-    }
-
     .darkmode .fa-eye-slash {
         color: #ccc;
-    }
-
-    .darkmode .popup>h1 {
-        color: #fff;
     }
 
     .darkmode .subtext {
@@ -2035,4 +1936,5 @@ abajito cuando el ancho es menos de 700px */
         color: #fff;
         margin-bottom: 25px;
 }
+    
 }

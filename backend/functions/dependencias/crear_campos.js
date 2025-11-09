@@ -8,7 +8,7 @@ let formulario_dependencias = document.querySelector(".dependencias-form");
 
 
 //Cuando el usuario escribe un número se llama la función crear_campos. 
-// Cuando se envía el formulario se llama registrar_dependencia.
+//Cuando se envía el formulario se llama registrar_dependencia.
 
 //Cuando el usuario INGRESA un numero (input), se crean los campos
 //Si existen los campos, se ejecuta
@@ -20,7 +20,7 @@ if(formulario_dependencias) formulario_dependencias.addEventListener("submit", r
 
 //Funcion asincronica, se usa para ejecutar el codigo mientras se hace las peticiones
 //Y que el codigo no se detenga una vez llegue a las peticiones (fetch). Es lo mismo que habiamos
-//usado en validaciones-regustro.js solo que ahi lo haciamos con .then, lo que a la larga podia ser confuso
+//usado en validaciones-registro.js solo que ahi lo haciamos con .then, lo que a la larga podia ser confuso
 async function crear_campos(){
     try {
 
