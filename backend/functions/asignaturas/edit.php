@@ -1,6 +1,6 @@
 <?php
 
-//se importa archivo php que  contiene la función conectar_a_bd().
+//se importa archivo php que contiene la función conectar_a_bd().
 include_once ('../../db/conexion.php');
  
 //se llama a esta función para conectarse a la base de datos
