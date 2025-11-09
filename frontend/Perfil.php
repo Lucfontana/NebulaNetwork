@@ -2,7 +2,7 @@
 session_start();
 ?>
 
-<title>Perfil</title>
+<title><?= t("title_profile") ?></title>
 <?php if (!isset($_SESSION['ci'])): ?>
     <?php include_once('error.php') ?>
 <?php else: ?>
@@ -16,7 +16,7 @@ session_start();
                     <div class="bienvenida-perfil">
                         <?php if (isset($_SESSION['ci'])): ?>
                             <h2><?= $_SESSION['nombre_usuario']; ?> <?= $_SESSION['apellido']; ?></h2>
-                            <p>CI: <?= $_SESSION['ci']; ?></p>
+                            <p><?= t("label_ci") ?>: <?= $_SESSION['ci']; ?></p>
                         <?php endif; ?>
                     </div>
 
@@ -24,31 +24,31 @@ session_start();
                 <div class="contenido-perfil">
                     <div>
                         <?php if (!isset($_SESSION['nivel_acceso'])): ?>
-                            <h2>Rango Profesor</h2>
-                            <p>Con el rango profesor vas a poder ver los horarios presentado en la aplicación. Eres un miembro escencial para la enseñanza del ITSP.</p>
+                            <h2><?= t("role_teacher") ?></h2>
+                            <p><?= t("desc_teacher_role") ?></p>
                         <?php elseif ($_SESSION['nivel_acceso'] == "1"): ?>
-                            <h2>Rango Adscripta</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex incidunt iure deserunt quia quam facilis eius quisquam laudantium mollitia facere, a molestias ea iste neque odio tenetur non possimus veniam.</p>
+                            <h2><?= t("role_assistant") ?></h2>
+                            <p><?= t("desc_assistant_role") ?></p>
                         <?php elseif ($_SESSION['nivel_acceso'] == "2"): ?>
-                            <h2>Rango Secretaria</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex incidunt iure deserunt quia quam facilis eius quisquam laudantium mollitia facere, a molestias ea iste neque odio tenetur non possimus veniam.</p>
+                            <h2><?= t("role_secretary") ?></h2>
+                            <p><?= t("desc_secretary_role") ?></p>
                         <?php elseif ($_SESSION['nivel_acceso'] == "3"): ?>
-                            <h2>Rango Administrador</h2>
-                            <p>El rango administrador es el rango mas alto en la aplicación, este rango es exclusivo de los desarrolladores principales de la pagina y estos tienen completo control de edición, eliminación y creación de datos en la base de datos de la aplicación.</p>
+                            <h2><?= t("role_admin") ?></h2>
+                            <p><?= t("desc_admin_role") ?></p>
                         <?php endif; ?>
                     </div>
                     <div>
-                        <button id="change-passwd">Cambiar contraseña</button>
+                        <button id="change-passwd"><?= t("btn_change_password") ?></button>
                     </div>
                 </div>
 
                 <div id="dialog-change-passwd" class="overlay-edit">
                     <div class="popup">
-                        <h1>Cambia tu contraseña</h1>
-                        <p class="subtext">Por seguridad, ingresa tu contraseña actual y una nueva.</p>
+                        <h1><?= t("title_change_password") ?></h1>
+                        <p class="subtext"><?= t("desc_change_password") ?></p>
                         <form action="/backend/functions/edit-paswd-user.php" method="POST" id="comprobarcontraseña">
                             <div class="input-group">
-                                <label for="passwd">Ingresa tu contraseña actual</label>
+                                <label for="passwd"><?= t("label_current_password") ?></label>
                                 <div class="contenedor-password">
                                     <input type="password" name="passwd" id="passwd" maxlength="20" minlength="8" required placeholder="Ingresa su contraseña actual">
                                     <i class="far fa-eye fa-eye-slash togglePassword"></i>
@@ -56,7 +56,7 @@ session_start();
                             </div>
 
                             <div class="input-group">
-                                <label for="newpasswd">Ingresa tu nueva contraseña</label>
+                                <label for="newpasswd"><?= t("label_new_password") ?></label>
                                 <div class="contenedor-password">
                                     <input type="password" name="newpasswd" id="newpasswd" maxlength="20" minlength="8" required placeholder="Ingresa su nueva contraseña">
                                     <i class="far fa-eye fa-eye-slash togglePassword"></i>

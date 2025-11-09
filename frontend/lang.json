@@ -223,6 +223,29 @@
     "label_classroom_with_colon": "Salón:",
     "label_schedule_with_colon": "Horario:",
 
+    "btn_lend": "Prestar",
+    "label_id_request": "ID Solicita",
+    "label_loan_time": "Hora de préstamo",
+
+  "title_profile": "Perfil",
+  "role_teacher": "Rango Profesor",
+  "desc_teacher_role": "Con el rango profesor puedes ver los horarios presentados en la aplicación. Eres un miembro esencial para la enseñanza del ITSP.",
+  "role_assistant": "Rango Adscripta",
+  "desc_assistant_role": "Como adscripta, puedes gestionar horarios, docentes y recursos del sistema.",
+  "role_secretary": "Rango Secretaria",
+  "desc_secretary_role": "Como secretaria, tienes acceso a funciones administrativas del instituto.",
+  "role_admin": "Rango Administrador",
+  "desc_admin_role": "El rango administrador es el más alto en la aplicación y tiene control total sobre la gestión de datos.",
+  "btn_change_password": "Cambiar contraseña",
+  "title_change_password": "Cambia tu contraseña",
+  "desc_change_password": "Por seguridad, ingresa tu contraseña actual y una nueva.",
+  "label_current_password": "Ingresa tu contraseña actual",
+  "label_new_password": "Ingresa tu nueva contraseña",
+  "placeholder_current_password": "Ingresa tu contraseña actual",
+  "placeholder_new_password": "Ingresa tu nueva contraseña",
+  "btn_update_password": "Actualizar Contraseña",
+
+
     "footer": "2025 ITSP. Todos los derechos reservados"
   },
   "en": {
@@ -448,7 +471,30 @@
     "label_ci_professor_with_colon": "Professor ID:",
     "label_classroom_with_colon": "Classroom:",
     "label_schedule_with_colon": "Schedule:",
+
+    "label_loan_time": "Loan time",
+    "label_id_request": "Request ID",
+    "btn_lend": "Lend",
   
+  "title_profile": "Profile",
+  "role_teacher": "Teacher Role",
+  "desc_teacher_role": "As a teacher, you can view the schedules displayed in the application. You are an essential member of the ITSP faculty.",
+  "role_assistant": "Assistant Role",
+  "desc_assistant_role": "As an assistant, you can manage schedules, teachers, and system resources.",
+  "role_secretary": "Secretary Role",
+  "desc_secretary_role": "As a secretary, you have access to the administrative functions of the institute.",
+  "role_admin": "Administrator Role",
+  "desc_admin_role": "The administrator role is the highest in the system and has full control over data management.",
+  "btn_change_password": "Change Password",
+  "title_change_password": "Change Your Password",
+  "desc_change_password": "For security reasons, please enter your current password and a new one.",
+  "label_current_password": "Enter your current password",
+  "label_new_password": "Enter your new password",
+  "placeholder_current_password": "Enter your current password",
+  "placeholder_new_password": "Enter your new password",
+  "btn_update_password": "Update Password",
+
+
     "footer": "2025 ITSP. All rights reserved"
   }
 }
