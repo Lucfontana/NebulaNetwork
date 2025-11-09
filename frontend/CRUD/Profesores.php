@@ -67,16 +67,16 @@ $result = mostrardatos("profesores");
 
                 <div class="informacion-escondida">
                     <div class="datos-tabla-flex">
-                        <div class="grid-cell"><?= t("label_ci") ?><?= $row['ci_profesor'] ?></div>
+                        <div class="grid-cell"><?= t("label_ci") ?> <?= $row['ci_profesor'] ?></div>
                     </div>
                     <div class="datos-tabla-flex">
                         <div class="grid-cell"><?= t("label_email") ?> <?= $row['email'] ?></div>
                     </div>
                     <div class="datos-tabla-flex">
-                        <div class="grid-cell"><?= t("label_birth_short") ?><?= $row['fecha_nac'] ?></div>
+                        <div class="grid-cell"><?= t("header_birth") ?> <?= $row['fecha_nac'] ?></div>
                     </div>
                     <div class="datos-tabla-flex">
-                        <div class="grid-cell"><?= t("label_address") ?><?= $row['direccion'] ?></div>
+                        <div class="grid-cell"><?= t("label_address") ?> <?= $row['direccion'] ?></div>
                     </div>
 
                     <div class="grid-cell">

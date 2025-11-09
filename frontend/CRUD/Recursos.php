@@ -66,10 +66,10 @@ $result = mostrardatos("recursos");
                         <div class="grid-cell">ID: <?= $row['id_recurso'] ?></div>
                     </div>
                     <div class="datos-tabla-flex">
-                        <div class="grid-cell"><?= t("label_physical_space") ?><?= $row['id_espacio'] ?></div>
+                        <div class="grid-cell"><?= t("label_physical_space") ?>: <?= $row['id_espacio'] ?></div>
                     </div>
                     <div class="datos-tabla-flex">
-                        <div class="grid-cell"><?= t("label_status") ?> <?= $row['estado'] ?></div>
+                        <div class="grid-cell"><?= t("label_status") ?>: <?= $row['estado'] ?></div>
                     </div>
                     <div class="datos-tabla-flex">
                         <div class="grid-cell"><?= t("label_type") ?> <?= $row['tipo'] ?></div>
