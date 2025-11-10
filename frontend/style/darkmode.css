@@ -1,8 +1,9 @@
-.darkmode .btn-bienvenida, .darkmode #change-passwd, .darkmode .btn-primary,
+/* Todos los botones del sistema iguales*/
+    .darkmode .btn-bienvenida, .darkmode #change-passwd, .darkmode .btn-primary,
     .darkmode .btn-secondary, .darkmode .btn-enviar-registro, .darkmode .btn-login,
     .darkmode .btn-register-horario, .darkmode #boton-inicio, .darkmode .btn-confirmar,
     .darkmode .btn-cancelar, .darkmode .btn-registro {
-        background-color: var(---btnClaro);
+        background-color: var(---btnOscuro);
         color: aliceblue;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
@@ -11,12 +12,12 @@
     .darkmode .btn-secondary:hover, .darkmode .btn-enviar-registro:hover, .darkmode .btn-login:hover,
     .darkmode .btn-register-horario:hover, .darkmode #boton-inicio:hover, .darkmode .btn-confirmar:hover,
     .darkmode .btn-cancelar:hover, .darkmode .btn-registro:hover {
-        background-color: var(---btnClaroHover);
+        background-color: var(---btnOscuroHover);
     }
 
     .darkmode .grid-header, .darkmode .dias,
     .darkmode .horas-titulo, .darkmode .horas-dato, .darkmode .flex-header {
-        background-color: var(---btnClaro);
+        background-color: var(---btnOscuro);
         color: aliceblue;
     }
 
@@ -34,4 +35,101 @@
         background-color: #444;
         color: aliceblue;
         border: 1px solid #666;
+    }
+
+    /* NAVBAR */
+    .darkmode .navStyle,
+    .darkmode footer {
+        background-color: #1e1e1e;
+        color: #f1f1f1;
+    }
+
+    .darkmode .nav-link,
+    .darkmode .navbar-brand,
+    .darkmode .nav-item a {
+        color: #f1f1f1;
+    }
+
+    .darkmode .nav-link:hover,
+    .darkmode .navbar-brand:hover {
+        color: #6d6d6d;
+    }
+
+    /* ICONOS */
+    .darkmode .icono,
+    .darkmode .navbar-toggler-icon {
+        filter: invert(100%);
+    }
+
+    .darkmode .icono:hover,
+    .darkmode .navbar-toggler-icon:hover {
+        filter: invert(60%);
+    }
+
+    /* SECCIONES */
+    .darkmode aside {
+        background-color: #2b2b2b;
+        color: #f1f1f1;
+    }
+
+    /* TEXTO */
+    .darkmode #contenido-mostrar-datos h1,
+    .darkmode .filtros>label,
+    .darkmode #titulo-login,
+    .darkmode .label,
+    .darkmode .flecha-volver {
+        color: #f1f1f1;
+    }
+
+    .darkmode .flecha-volver:hover {
+        color: #bababa;
+        background-color: #3a3a3a;
+    }
+
+    .darkmode .input-form::placeholder {
+        color: #cfcfcf;
+    }
+
+    /* GRID Y DATOS */
+    .darkmode .grid-cell {
+        border: 1px solid #3a3a3a;
+        color: #f1f1f1;
+    }
+
+    .darkmode .informacion-escondida {
+        background-color: #2b2b2b;
+        color: #ffffff;
+    }
+
+    .darkmode .mostrar-datos .grid-cell {
+        color: #333;
+    }
+
+    .darkmode .contenedor-password-register>i {
+        color: white;
+        background-color: #3b3b3b;
+    }
+
+    .darkmode .main-perfil h2,
+    .darkmode .main-perfil p {
+        color: #fff;
+    }
+
+    .darkmode .contenido-perfil {
+        color: #fff;
+    }
+
+    .darkmode .error h1 {
+        color: #fff;
+    }
+
+    .darkmode .fa-eye-slash {
+        color: #ccc;
+    }
+
+    .darkmode .subtext {
+        text-align: center;
+        font-size: 0.9em;
+        color: #fff;
+        margin-bottom: 25px;
     }
