@@ -18,6 +18,8 @@ $con = conectar_a_bd();
 
 //El usuario puede editar los valores con "inspeccionar", por lo que 
 //nos fijamos si los valores que se mandaron realmente existen
+
+//Busca en la tabla profesores si existe un profesor con la cédula ingresada.
 function existe_profesor($con, $profesor){
     //Consulta
     $consulta_profesor = "SELECT ci_profesor FROM profesores WHERE (ci_profesor) = (?)";
@@ -27,8 +29,11 @@ function existe_profesor($con, $profesor){
     $result = $stmt->get_result();
 
     return ($result->num_rows > 0);
+    //Devuelve true si existe, false si no.
 }
 
+
+//Verifica que el recurso exista y no esté actualmente en uso.
 function existe_recurso($con, $recurso){
 
     //Consulta
@@ -44,9 +49,9 @@ function existe_recurso($con, $recurso){
 }
 
 function insertar_profesor_solicita_recurso($con, $existe_profesor, $existe_recurso, $profesor, $recurso){
-    if ($existe_profesor && $existe_recurso){
+    if ($existe_profesor && $existe_recurso){ //Si el profesor y recurso existen
 
-        //Se inserta el valor en la tabla profesor_solicita_recurso
+        //Se inserta el registro en la tabla profesor_solicita_recurso
         $query_insertar = "INSERT INTO profesor_solicita_recurso (ci_profesor, id_recurso) VALUES (?, ?)";
         $stmt = $con->prepare($query_insertar);
         $stmt->bind_param("ss", $profesor, $recurso);
@@ -62,26 +67,31 @@ function insertar_profesor_solicita_recurso($con, $existe_profesor, $existe_recu
 
         $result = $stmt->get_result();
         // Obtener el valor de id_solicita
-        if ($row = $result->fetch_assoc()) {
-            $id_solicita = $row['id_solicita'];
+        if ($row = $result->fetch_assoc()) { //intenta obtener una fila de la consulta.
+            $id_solicita = $row['id_solicita'];//Si sí hay una fila, $row será un array. Si no hay filas, $row será false.
         } else {
-            return null;
+            return null; //Si no se encontró ninguna fila (la consulta no devolvió nada), la función devuelve null.
         }
 
-        //Se cambia el estado del recurso a "uso"
+        //se actualiza el estado del recurso
+        //se cambia el estado del recurso a "uso"
         $actualizar_tabla = "UPDATE recursos SET estado = 'uso' WHERE id_recurso = ?";
         $stmt = $con->prepare($actualizar_tabla);
         $stmt->bind_param("i", $recurso);
         $stmt->execute();
 
     } else {
-        $id_solicita = null;
+        $id_solicita = null; //Si algo falla (profesor o recurso no válidos), devuelve null.
     }
     return $id_solicita;
 }
 
+//Esta función guarda en la base de datos quién prestó el recurso, cuándo y a qué solicitud corresponde.
 function insertar_su_presta_recurso($con, $id_solicita, $superusuario, $hora_prestado){
-    if (isset($id_solicita)){
+    if (isset($id_solicita)){ //Se verifica si $id_solicita existe
+
+        //Se prepara una sentencia SQL para insertar un nuevo registro en la tabla
+        //que guarda las acciones de los superusuarios sobre los recursos.
         $query_insertar = "INSERT INTO su_administra_recursos (id_solicita, id_superusuario, hora_presta) VALUES (?, ?, ?)";
         $stmt = $con->prepare($query_insertar);
         $stmt->bind_param("iis", $id_solicita, $superusuario, $hora_prestado);
