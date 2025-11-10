@@ -30,6 +30,7 @@ session_start();
     <!-- <main class="contenido" id="contenido">
 
     </main> -->
+    <?php ("./Complementos/footer.php") ?>
     <?php include_once("./Complementos/footer.php") ?>
     <script src="js/darkmode.js"></script>
 

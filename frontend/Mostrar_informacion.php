@@ -67,6 +67,7 @@ include_once("functions.php");
                 </div>
             </div>
         </main>
+    <?php include_once("./Complementos/footer.php") ?>
     <?php elseif (isset($_SESSION['ci'])): ?>
         <title><?= t("title_show_info") ?></title>
 
@@ -93,10 +94,10 @@ include_once("functions.php");
                     </div>
                 </div>
             </main>
+            <?php include_once("./Complementos/footer.php") ?>
         <?php elseif (!isset($_SESSION['ci'])): ?>
             <?php include_once('error.php') ?>
         <?php endif; ?>
-        <?php include_once("./Complementos/footer.php") ?>
         <!-- PARA HACER: ARREGLAR EL FOOTER QUE CON "ACTIVO" ANDA MAL -->
         <!-- scripts para mostrar informacion -->
         <script type="module" src="/frontend/js/confirm-asignatura.js"></script>

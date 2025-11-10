@@ -10,7 +10,7 @@ function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar, $dato_
                 <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
                 <?php foreach ($dias as $dia): ?> <!--Por cada dia se repite la busqueda-->
                     <?php
-                    $mostro = false;
+                    $mostrar = false;
                     
                     // 1: Verificar si hay RESERVA en este horario
                     foreach ($materias_por_dia[$dia] as $m) { //Para cada materia en un dia especifico
@@ -25,13 +25,13 @@ function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar, $dato_
                                 <strong>{$m[$dato_mostrar]}</strong>
                                 <small>{$m[$dato_adicional]}</small>
                                 </div>";
-                            $mostro = true;
+                            $mostrar = true;
                             break;
                         }
                     }
                     
                     // PRIORIDAD 2: Si no hay reserva, mostrar clase regular
-                    if (!$mostro) {
+                    if (!$mostrar) {
                         foreach ($materias_por_dia[$dia] as $m) {
                             // Si no hay reservas, o la reserva es false (y si las horas coinciden) 
                             // se muestra la clase normal (o con inasistencia, si llega a tener)
@@ -46,13 +46,13 @@ function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar, $dato_
                                     <strong>{$m[$dato_mostrar]}</strong>
                                     <small>{$m[$dato_adicional]}</small>
                                     </div>";
-                                $mostro = true;
+                                $mostrar = true;
                                 break;
                             }
                         }
                     }
                     
-                    if (!$mostro) {
+                    if (!$mostrar) {
                         echo "<div class='dia-dato'><em>---</em></div>";
                     }
                     ?>

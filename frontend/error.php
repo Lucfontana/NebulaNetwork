@@ -25,4 +25,7 @@ include 'functions.php';
         </div>
     </div>
 </body>
+
+<script src="js/darkmode.js"></script>
+
 </html>

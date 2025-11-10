@@ -228,12 +228,9 @@ main {
     border-radius: 10px;
     font-weight: bold;
     transition: 0.5s;
+    padding: 8px;
     text-align: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
-}
-
-.btn-bienvenida:hover {
-    background-color: #45607a;
 }
 
 /* /------------------------ BARRA LATERAL ----------------------/ */
@@ -465,19 +462,17 @@ aside>ul {
 }
 
 #boton-inicio {
-    margin-top: 10px;
-    border-radius: 20px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px;
+    border: none;
     padding: 15px;
     width: 200px;
     height: auto;
     border-style: none;
     font-size: 18px;
+    border-radius: 8px;
     cursor: pointer;
-}
-
-#boton-inicio:hover {
-    background-color: #100d0d;
-
 }
 
 /* Registro */
@@ -809,6 +804,10 @@ hr {
     border-right: 1px solid #d8d8d8;
 }
 
+.grid-cell.nombre-titulo, .grid-cell.boton-titulo, .grid-cell.id, .grid-cell.titulo-ult {
+    background-color: var(---btnClaro);
+}
+
 .grid-cell:last-child {
     border-right: none;
 }
@@ -902,7 +901,7 @@ hr {
 }
 
 .reserva-clase {
-    background-color: #06b5d422 !important;
+    background-color: var(---btnClaro) !important;
     color: black !important;
     border-left: 4px solid #29829bff;
     position: relative;
@@ -971,6 +970,7 @@ hr {
 }
 
 .datos-body .datos-row>div {
+    color: #333;
     padding: 10px;
     background: white;
     display: flex;
@@ -1373,15 +1373,6 @@ select {
 
 }
 
-#boton-inicio {
-    display: block;
-    margin: 20px auto;
-    border: none;
-    font-size: 18px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
 /* About us */
 @media (width < 1000px) {
     .container-miembros {
@@ -1655,11 +1646,6 @@ abajito cuando el ancho es menos de 700px */
         width: 100%;
     }
 
-    .grid-cell {
-        width: 100%;
-        border: 1px solid #2c3e50 !important;
-    }
-
     #contenido-mostrar-datos {
         display: flex;
         flex-direction: column;
@@ -1817,7 +1803,7 @@ abajito cuando el ancho es menos de 700px */
     }
 
     .darkmode .grid-header, .darkmode .dias,
-    .darkmode .horas-titulo, .darkmode .horas-dato, .darkmode .flex-header {
+    .darkmode .horas-titulo, .darkmode .horas-dato {
         background-color: var(---btnOscuro);
         color: aliceblue;
     }
@@ -1892,11 +1878,6 @@ abajito cuando el ancho es menos de 700px */
     }
 
     /* GRID Y DATOS */
-    .darkmode .grid-cell {
-        border: 1px solid #3a3a3a;
-        color: #f1f1f1;
-    }
-
     .darkmode .informacion-escondida {
         background-color: #2b2b2b;
         color: #ffffff;
@@ -1933,6 +1914,22 @@ abajito cuando el ancho es menos de 700px */
         font-size: 0.9em;
         color: #fff;
         margin-bottom: 25px;
-}
-    
+    }
+
+    .darkmode .registro-div>h1 {
+        color: aliceblue;
+    }
+
+    .darkmode .miembro {
+        border: rgba(0, 0, 0, 0.2);
+    }
+
+    .darkmode .miembro::before {
+            background: linear-gradient(45deg, transparent, #7a7a7a80, transparent);
+    }
+
+    .darkmode .miembro:hover {
+    border-color: rgba(133, 133, 133, 0.6);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.623);
+    }
 }
