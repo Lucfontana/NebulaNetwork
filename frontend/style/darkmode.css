@@ -16,7 +16,7 @@
     }
 
     .darkmode .grid-header, .darkmode .dias,
-    .darkmode .horas-titulo, .darkmode .horas-dato, .darkmode .flex-header {
+    .darkmode .horas-titulo, .darkmode .horas-dato {
         background-color: var(---btnOscuro);
         color: aliceblue;
     }
@@ -132,4 +132,22 @@
         font-size: 0.9em;
         color: #fff;
         margin-bottom: 25px;
+    }
+
+    .darkmode .registro-div>h1 {
+        color: aliceblue;
+    }
+
+    .darkmode .miembro {
+        border: rgba(0, 0, 0, 0.2);
+    }
+
+    .darkmode .miembro::before {
+            background: linear-gradient(45deg, transparent, #7a7a7a80, transparent);
+    }
+
+    .darkmode .miembro:hover {
+    border-color: rgba(133, 133, 133, 0.6);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.623);
+    /* Iluminación */
     }
