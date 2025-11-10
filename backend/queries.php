@@ -48,7 +48,8 @@ function query_espacios_por_dia($con, $dia, $espaciossql)
         INNER JOIN espacios_fisicos e ON doe.id_espacio = e.id_espacio
         WHERE cu.dia = ?
             AND e.id_espacio = ?
-            AND h.tipo = 'clase'
+            AND h.tipo = 'clase' --solo horarios de clase, evita otros tipos como recreo
+
         ORDER BY h.hora_inicio ASC";
 
     $stmt_espacios = $con->prepare($sql);
