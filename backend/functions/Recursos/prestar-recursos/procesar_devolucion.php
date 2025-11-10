@@ -18,10 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_solicita']) && iss
     $id_solicita = (int)$_POST['id_solicita'];
     $id_recurso = (int)$_POST['id_recurso'];
     
-    // Verifica que el préstamo existe y no ha sido devuelto
+    //llama funcion que verifica que el préstamo existe y no ha sido devuelto
     $existe_prestamo = verificar_prestamo_pendiente($con, $id_solicita);
     
-    // Procesa la devolución
+    // funcion que procesa la devolución (poner hora de devolución y marcar el recurso como libre).
     $resultado_devolucion = procesar_devolucion_recurso($con, $existe_prestamo, $id_solicita, $id_recurso);
     
     // Se codifica el resultado como JSON
