@@ -60,7 +60,7 @@ $result = mostrardatos("cursos");
                         <div class="grid-cell">ID: <?= $row['id_curso'] ?></div>
                     </div>
                     <div class="datos-tabla-flex">
-                        <div class="grid-cell">"<?= t('placeholder_capacity') ?> <?= $row['capacidad'] ?></div>
+                        <div class="grid-cell"><?= t('label_capacity') ?> <?= $row['capacidad'] ?></div>
                     </div>
 
                     <div class="grid-cell">
@@ -100,7 +100,7 @@ $result = mostrardatos("cursos");
                 </div>
 
                 <div class="input-group">
-                    <label for="capacidad_edit_curso">"<?= t('placeholder_capacity') ?>":</label>
+                    <label for="capacidad_edit_curso"><?= t('placeholder_capacity') ?>:</label>
                     <input class="class-datos-editar" type="number" name="capacidad" id="capacidad_edit_curso"
                         maxlength="3" minlength="1" required placeholder="Ingresa capacidad">
                 </div>

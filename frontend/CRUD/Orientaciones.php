@@ -85,7 +85,7 @@ $result = mostrardatos("orientacion");
     <div id="overlay-edit-orientacion" class="overlay-edit">
         <div class="popup">
             <h1><?= t("title_edit_orientation") ?></h1>
-            <form action="\backend\functions\Orientaciones\edit.php" method="POST" id="form-update-orientacion">
+            <form id="form-update-orientacion">
                 <input type="hidden" name="id_orientacion" id="id_edit_orientacion">
 
                 <div class="input-group">

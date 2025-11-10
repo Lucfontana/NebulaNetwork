@@ -1,5 +1,3 @@
-import { verificarString, alerta_success_update, alerta_fallo } from './prueba.js';
-
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("overlay-inasistencia");
   const btnCancelar = document.getElementById("cancelar-inasistencia");

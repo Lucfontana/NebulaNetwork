@@ -98,7 +98,7 @@ $result = mostrardatos("espacios_fisicos");
     <div id="overlay-edit-espacio" class="overlay-edit">
         <div class="popup">
             <h1>Modificación de Espacio</h1>
-            <form action="/backend/functions/Espacios/edit.php" method="POST" id="form-update-espacio">
+            <form id="form-update-espacio">
                 <input type="hidden" name="id_espacio" id="id_edit_espacio">
 
                 <div class="input-group">
