@@ -3,9 +3,13 @@ include_once("db/conexion.php");
 
 function query_espaciosfisicos($con)
 {
+    // 1. Define la consulta SQL
     $sql = "SELECT * FROM espacios_fisicos";
+    // 2. Prepara la consulta
     $stmt = $con->prepare($sql);
+    // 3. Ejecuta la consulta
     $stmt->execute();
+    // 4. Devuelve el resultado
     return $stmt->get_result();
 }
 
@@ -20,18 +24,18 @@ function query_espacios_sin_general($con)
 
 function query_espacios_por_dia($con, $dia, $espaciossql)
 {
-    $sql = "SELECT DISTINCT
-            a.nombre AS nombre_asignatura,
-            e.nombre AS nombre_espacio,
-            h.hora_inicio,
-            h.hora_final,
-            h.id_horario,
-            h.tipo,
-            c.nombre AS nombre_curso,
-            cu.dia,
-            pda.ci_profesor,
-            CONCAT (p.nombre, ' ', p.apellido) as nombre_profesor
-        FROM cumple cu
+    $sql = "SELECT DISTINCT --elimina duplicados
+            a.nombre AS nombre_asignatura, --nombre de la asignatura
+            e.nombre AS nombre_espacio, --nombre del espacio
+            h.hora_inicio, --hora de inicio
+            h.hora_final, --hora final
+            h.id_horario, --id del horario
+            h.tipo, --tipo de horario
+            c.nombre AS nombre_curso, --nombre del curso
+            cu.dia, --dia de la semana
+            pda.ci_profesor, --ci del profesor
+            CONCAT (p.nombre, ' ', p.apellido) as nombre_profesor --nombre completo del profesor
+        FROM cumple cu --tabla cumple, relaciona dictas, horarios y dias
         INNER JOIN profesor_dicta_asignatura pda ON cu.id_dicta = pda.id_dicta
         INNER JOIN asignaturas a ON pda.id_asignatura = a.id_asignatura
         INNER JOIN dicta_en_curso dc ON pda.id_dicta = dc.id_dicta
