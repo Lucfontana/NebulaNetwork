@@ -92,7 +92,7 @@ $result = mostrardatos("asignaturas");
     <div id="overlay-edit-asignatura" class="overlay-edit">
         <div class="popup">
             <h1><?= t("title_edit_subject") ?></h1>
-            <form action="\backend\functions\asignaturas\edit.php" method="POST" id="form-update-asignatura">
+            <form id="form-update-asignatura">
                 <input type="hidden" name="id_asignatura" id="id_edit_asignatura">
 
                 <div class="input-group">

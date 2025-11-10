@@ -89,8 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const res = await fetch("/backend/functions/Espacios/edit.php", {
           method: "POST",
-          body: fd,
-          credentials: "same-origin"
+          body: fd
         });
 
         const data = await res.json();

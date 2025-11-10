@@ -103,7 +103,7 @@ $result = mostrardatos("superusuario");
     <div id="overlay-edit-super" class="overlay-edit">
         <div class="popup">
             <h1><?= t("title_edit_superuser") ?></h1>
-            <form action="/backend/functions/SuperUsuarios/edit.php" method="POST" id="form-update-super">
+            <form id="form-update-super">
                 <input type="hidden" name="id_superusuario" id="id_edit_super">
 
                 <div class="input-group">

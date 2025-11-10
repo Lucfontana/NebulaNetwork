@@ -88,8 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const res = await fetch("/backend/functions/orientacion/edit.php", {
           method: "POST",
-          body: fd,
-          credentials: "same-origin"
+          body: fd
         });
   
         const data = await res.json();

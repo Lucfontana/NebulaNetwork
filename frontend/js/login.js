@@ -19,15 +19,8 @@ form.addEventListener("submit", function(event) {
 
 event.preventDefault();
 
-const cedulaInput = document.getElementById("CI");
-const contrasenaInput = document.getElementById("contrasena");
-
 const CI = String(document.getElementById("CI").value);
 const contrasena = String(document.getElementById("contrasena").value);
-const alertdiv = document.getElementById("alert");
-const alerttext = document.getElementById("alert.text");
-
-
 
 if (!verificarCI(CI)) {
     alerta_fallo("La CI debe ser de 8 digitos, sin puntos, ni guiones.");

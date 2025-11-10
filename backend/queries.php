@@ -337,10 +337,12 @@ function mostrardatos($buscar)
     return $result = mysqli_stmt_get_result($stmt);
 }
 
-//Function inasistencias mostrar datos
+//Function inasistencias mostrar datos, donde se muestran las inasistencias de un profesor específico
 function inasistenciasMostrar($ci){
     $connect = conectar_a_bd();
 
+    //Se selecciona todo de la tabla inasistencias y los datos de los hoarrios
+    //Se junta la tabla de hoarrios con la de inasistencias
     $sql = "SELECT i.*, h.hora_inicio, h.hora_final, h.tipo
         FROM inasistencia i
         INNER JOIN horarios h ON i.id_horario = h.id_horario
@@ -352,6 +354,7 @@ function inasistenciasMostrar($ci){
     return $result = mysqli_stmt_get_result($stmt);
 }
 
+//Se muestran las inasistenicas de TODOS los profesores 
 function inasistenciasMostrar2(){
     $connect = conectar_a_bd();
 

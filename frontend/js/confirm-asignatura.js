@@ -89,14 +89,16 @@ document.addEventListener("DOMContentLoaded", () => { //Cuando se carga todo el 
       }
 
       //hace referencia al elemento que ejecuto el evento, en este caso el formulario
-      const fd = new FormData(e.target);
+      const fd = new FormData(e.target); //Trae todos los elementos del formulario al que llamamos
+                                        //Es una alternativa mas corta, antes que hacer append y pasarle
+                                        //todos los campos al formulario (como en validaciones-registro) se puede
+                                        //Hacer esto q directamente trae todos los valores del formulario original
 
       // Si hay errores de conexión le permite enviar un mensaje al usuario
       try {
           const res = await fetch("/backend/functions/asignaturas/edit.php", { //es quien va a procesar la solicitud
           method: "POST", // Envia los datos por meotodo post
-          body: fd, // Permite acceder a los datos del formulario
-          credentials: "same-origin"
+          body: fd // Permite acceder a los datos del formulario
         });
 
 

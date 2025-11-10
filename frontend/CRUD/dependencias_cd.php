@@ -2,8 +2,7 @@
     <div class="dialogs">
         <button class="btn-Cerrar" type="button"><img class="cruz-register" src="/frontend/img/cruz.png"
                 alt=""></button>
-        <form class="registro-div dependencias-form" action="../backend/functions/dependencias/dependencias_api.php"
-            method="POST">
+        <form class="registro-div dependencias-form">
             <h1><?= t("header_dependencies") ?></h1>
             <hr>
 
