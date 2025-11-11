@@ -19,10 +19,10 @@ if (isset($_POST['registrarEspacio'])){
    //Llama a una función que busca si hay un registro con ese mismo nombre en la tabla espacios_fisicos.
    $existe = consultar_si_existe_espacio($con, $nombre);
 
-   //Si no existe, llsms esta funcion y lo intenta registrar y luego devuelve un JSON con el resultado (éxito o error).
+   //Si no existe, llsms esta funcion y lo intenta registrar y luego devuelve un arreglo asociativo con el resultado (éxito o error).
    $insert_espacio = insert_datos_espacios($con, $existe, $nombre, $capacity, $tipo);
 
-   echo json_encode($insert_espacio);
+   echo json_encode($insert_espacio); //convierte array PHP en un JSON
 }
 
 function consultar_si_existe_espacio($con, $nombre){
@@ -73,7 +73,7 @@ function insert_datos_espacios($con, $existe, $nombre, $capacity, $tipo){
         $respuesta_json['mensaje'] = "Este curso ya existe";
     }
 
-    return $respuesta_json; //convierte array PHP en un JSON
+    return $respuesta_json;
 }
 
 ?>

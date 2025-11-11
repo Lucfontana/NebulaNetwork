@@ -4,18 +4,6 @@ include_once('../../../db/conexion.php');
 
 $con = conectar_a_bd();
 
-// Ingresar profesor solicita recurso (pronto)
-
-// Si tipo recurso esta en uso, error de que no se puede prestar (pronto)
-
-// Alterar tabla a recurso para cambiar su estado a uso (pronto)
-
-// Guardar superusuario administra recurso, pasando la id de SOLICITA y guardando la HORA ACTUAL (pronto)
-
-
-//Se podria simplificar la BD??
-
-
 //El usuario puede editar los valores con "inspeccionar", por lo que 
 //nos fijamos si los valores que se mandaron realmente existen
 
