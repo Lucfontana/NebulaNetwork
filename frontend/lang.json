@@ -103,7 +103,7 @@
     "label_teacherlend": "Profesor a prestar:",
     "label_resource": "Recurso a prestar:",
      
-    "table_header_person": "Persona que Pidió",
+    "table_header_person": "Prestar Recursos",
     "table_header_resource": "Recurso Prestado",
     "table_header_admin": "Administrador que Prestó",
     "table_header_start_time": "Hora Prestado",
@@ -356,7 +356,7 @@
     "label_teacherlend": "Teacher to lend:",
     "label_resource": "Resource to lend:",
 
-    "table_header_person": "Requester",
+    "table_header_person": "Lend Resources",
     "table_header_resource": "Resource",
     "table_header_admin": "Admin",
     "table_header_start_time": "Lent At",
