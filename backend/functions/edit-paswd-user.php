@@ -48,6 +48,7 @@ if (!isset($_SESSION['nivel_acceso'])) {
     $row = mysqli_fetch_assoc($result);
 
     // Verifcia que la contraseña actual sea igual a la contraseña ingresada por el usuario
+    //Row sería falso (!$row) cuando no haya ningun valor que traer, por otro lado, password_verify devuelve un boolean.
     if (!$row || !password_verify($currentpasswd, $row['pass_profesor'])) {
         echo json_encode(["success" => false, "message" => "Contraseña actual incorrecta"]);
         $stmt->close();

@@ -24,7 +24,7 @@ function prestar_recurso(evento) {
 
     //se crea un objeto formdata para tomar los valores del formulario (aca se pondrian todos los datos con .append)
     const formData = new FormData();
-                    //id del campo      valor a pasarle
+                    //name del campo      valor a pasarle
     formData.append('profesor_asignado', profesor_prestado);
     formData.append('recurso_prestado', recurso_prestado);
     formData.append('prestarRecurso', true);

@@ -8,8 +8,6 @@ $con = conectar_a_bd();
 header('Content-Type: application/json');
 
 if (isset($_POST['registroProfesor'])){
-    //TO DO:Se deberian primero declarar las variables crudas, pasarlas por las validaciones y despues sanitizarlas (creo).
-
     //Trim es funcion de PHP, saca los espacios al inicio y final de una string
     //strip_tags tambien es funcion de PHP, borra todos los caracteres de php
     //password_hash encripta la contrasena
