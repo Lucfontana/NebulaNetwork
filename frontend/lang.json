@@ -252,6 +252,12 @@
     "title_edit_orientation": "Editar orientación",
 
     "btn_return": "Devolver",
+
+    "error_invalid_ci": "La CI debe ser de 8 dígitos, sin puntos ni guiones.",
+  "error_invalid_password_length": "La contraseña debe tener entre 8 y 20 caracteres.",
+  "error_ci_not_exist": "Su cédula de identidad no existe.",
+  "msg_login_success": "Inicio de sesión exitoso.",
+  "msg_login_failed": "Credenciales incorrectas.",
  
 
     "footer": "2025 ITSP. Todos los derechos reservados"
@@ -505,6 +511,15 @@
     "title_edit_orientation": "Edit orientation",
 
     "btn_return": "Return",
+
+  
+  "error_invalid_ci": "The ID must be 8 digits, without dots or hyphens.",
+  "error_invalid_password_length": "Password must be between 8 and 20 characters.",
+  "error_ci_not_exist": "Your ID number does not exist.",
+  "msg_login_success": "Login successful.",
+  "msg_login_failed": "Incorrect credentials.",
+
+
 
 
     "footer": "2025 ITSP. All rights reserved"

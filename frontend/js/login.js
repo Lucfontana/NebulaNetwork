@@ -23,13 +23,13 @@ const CI = String(document.getElementById("CI").value);
 const contrasena = String(document.getElementById("contrasena").value);
 
 if (!verificarCI(CI)) {
-    alerta_fallo("La CI debe ser de 8 digitos, sin puntos, ni guiones.");
+    alerta_fallo(t("error_invalid_ci"));
     return;
 }  else if (!tamanoPassword(contrasena)) {
-    alerta_fallo("Contraseña debe tener entre 8 y 20 caracteres.");
+    alerta_fallo(t("error_invalid_password_length"));
     return;
 }  else if (!verificarExistenciaCI(CI, multiplicadorACadaUno)) {
-    alerta_fallo("Su cedula de identidad no existe");
+    alerta_fallo(t("error_ci_not_exist"));
     return;
 } else {
     //se crea un objeto para tomar los valores del formulario (aca se pondrian todos los datos con .append)
