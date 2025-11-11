@@ -3,7 +3,7 @@ include_once('../backend/db/conexion.php');
 include_once 'functions.php';
 include_once '../backend/helpers.php';
 
-$result = mostrardatos("recursos");
+$result = mostrarRecursos();
 ?>
 
 <?php if (!isset($_SESSION['nivel_acceso'])): ?>
@@ -30,7 +30,7 @@ $result = mostrardatos("recursos");
         <?php while ($row = mysqli_fetch_array($result)): ?>
             <div class="grid-row recursos-row mostrar-datos">
                 <div class="grid-cell"><?= $row['id_recurso'] ?></div>
-                <div class="grid-cell"><?= $row['id_espacio'] ?></div>
+                <div class="grid-cell"><?= $row['nombre_espacio'] ?></div>
                 <div class="grid-cell"><?= $row['nombre'] ?></div>
                 <div class="grid-cell"><?= $row['estado'] ?></div>
                 <div class="grid-cell"><?= $row['tipo'] ?></div>
@@ -44,7 +44,7 @@ $result = mostrardatos("recursos");
                 <div class="grid-cell">
                     <a class="boton-datos-editar boton-editar-recurso botones-datos"
                         data-id="<?= $row['id_recurso'] ?>"
-                        data-espacio="<?= $row['id_espacio'] ?>"
+                        data-espacio="<?= $row['nombre_espacio'] ?>"
                         data-nombre="<?= $row['nombre'] ?>"
                         data-estado="<?= $row['estado'] ?>"
                         data-tipo="<?= $row['tipo'] ?>">
@@ -66,7 +66,7 @@ $result = mostrardatos("recursos");
                         <div class="grid-cell">ID: <?= $row['id_recurso'] ?></div>
                     </div>
                     <div class="datos-tabla-flex">
-                        <div class="grid-cell"><?= t("label_physical_space") ?>: <?= $row['id_espacio'] ?></div>
+                        <div class="grid-cell"><?= t("label_physical_space") ?>: <?= $row['nombre_espacio'] ?></div>
                     </div>
                     <div class="datos-tabla-flex">
                         <div class="grid-cell"><?= t("label_status") ?>: <?= $row['estado'] ?></div>
@@ -85,7 +85,7 @@ $result = mostrardatos("recursos");
                     <div class="grid-cell">
                         <a class="boton-datos-editar boton-editar-recurso botones-datos"
                             data-id="<?= $row['id_recurso'] ?>"
-                            data-espacio="<?= $row['id_espacio'] ?>"
+                            data-espacio="<?= $row['nombre_espacio'] ?>"
                             data-nombre="<?= $row['nombre'] ?>"
                             data-estado="<?= $row['estado'] ?>"
                             data-tipo="<?= $row['tipo'] ?>">

@@ -339,18 +339,17 @@ function mostrardatos($buscar)
 }
 
 // Funcion de mostrar datos de recursos
-// function recursosMostrar($id_recurso) 
-// {
-//     $connect = conectar_a_bd();
-//     $sql = "SELECT 
-//         r.id_recurso, r.nombre, r.estado, r.tipo,
-//         e.nombre AS nombre_espacio
-//     FROM recursos r
-//     INNER JOIN espacios_fisicos e ON r.id_espacio = e.id_espacio";
-//     $stmt = mysqli_prepare($connect, $sql);
-//     mysqli_stmt_execute($stmt);
-//     return $result = mysqli_stmt_get_result($stmt);
-// }
+function mostrarRecursos() {
+    $connect = conectar_a_bd();
+    $sql = "SELECT 
+            r.*, 
+            e.nombre AS nombre_espacio FROM recursos r
+        INNER JOIN espacios_fisicos e ON r.id_espacio = e.id_espacio;";
+    $stmt = mysqli_prepare($connect, $sql);
+    mysqli_stmt_execute($stmt);
+    return $result = mysqli_stmt_get_result($stmt);
+}
+
 
 //Function inasistencias mostrar datos, donde se muestran las inasistencias de un profesor específico
 function inasistenciasMostrar($ci){
