@@ -11,9 +11,11 @@ if (!isset($_SESSION['ci'])) {
 
 if (!isset($_SESSION['nivel_acceso'])) {
     $ci = $_SESSION['ci'];
-    $result = inasistenciasMostrar($ci);
+    $result = inasistenciasMostrar($ci); 
+    //Inasistencias con un profesor dado
 } else {
-    $result = inasistenciasMostrar2();
+    $result = inasistenciasMostrar2(); 
+    //Inasistencias en general
 }
 
 ?>

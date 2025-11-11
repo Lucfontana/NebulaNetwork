@@ -24,18 +24,18 @@ function query_espacios_sin_general($con)
 
 function query_espacios_por_dia($con, $dia, $espaciossql)
 {
-    $sql = "SELECT DISTINCT --elimina duplicados
-            a.nombre AS nombre_asignatura, --nombre de la asignatura
-            e.nombre AS nombre_espacio, --nombre del espacio
-            h.hora_inicio, --hora de inicio
-            h.hora_final, --hora final
-            h.id_horario, --id del horario
-            h.tipo, --tipo de horario
-            c.nombre AS nombre_curso, --nombre del curso
-            cu.dia, --dia de la semana
-            pda.ci_profesor, --ci del profesor
-            CONCAT (p.nombre, ' ', p.apellido) as nombre_profesor --nombre completo del profesor
-        FROM cumple cu --tabla cumple, relaciona dictas, horarios y dias
+    $sql = "SELECT DISTINCT 
+            a.nombre AS nombre_asignatura,
+            e.nombre AS nombre_espacio, 
+            h.hora_inicio, 
+            h.hora_final, 
+            h.id_horario, 
+            h.tipo, 
+            c.nombre AS nombre_curso, 
+            cu.dia, 
+            pda.ci_profesor, 
+            CONCAT (p.nombre, ' ', p.apellido) as nombre_profesor
+        FROM cumple cu 
         INNER JOIN profesor_dicta_asignatura pda ON cu.id_dicta = pda.id_dicta
         INNER JOIN asignaturas a ON pda.id_asignatura = a.id_asignatura
         INNER JOIN dicta_en_curso dc ON pda.id_dicta = dc.id_dicta
@@ -48,7 +48,7 @@ function query_espacios_por_dia($con, $dia, $espaciossql)
         INNER JOIN espacios_fisicos e ON doe.id_espacio = e.id_espacio
         WHERE cu.dia = ?
             AND e.id_espacio = ?
-            AND h.tipo = 'clase' --solo horarios de clase, evita otros tipos como recreo
+            AND h.tipo = 'clase' 
 
         ORDER BY h.hora_inicio ASC";
 
