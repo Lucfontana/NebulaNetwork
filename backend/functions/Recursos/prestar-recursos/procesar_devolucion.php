@@ -1,4 +1,8 @@
 <?php
+
+//Procesa la devolución de un recurso prestado
+
+
 // Incluye el archivo de conexión a la base de datos
 include_once('../../../db/conexion.php');
 
@@ -51,11 +55,12 @@ function verificar_prestamo_pendiente($con, $id_solicita) {
     return ($result->num_rows > 0);
 }
 
+//función que maneja la lógica de marcaje de devolución.
 function procesar_devolucion_recurso($con, $existe_prestamo, $id_solicita, $id_recurso) {
     // Array para almacenar la respuesta
     $respuesta_json = array();
     
-    if ($existe_prestamo) {
+    if ($existe_prestamo) { //sólo procede con la devolución si hay un préstamo pendiente.
         
         // Obtiene la hora actual en formato MySQL
         $hora_actual = date('Y-m-d H:i:s');
@@ -78,7 +83,10 @@ function procesar_devolucion_recurso($con, $existe_prestamo, $id_solicita, $id_r
         $stmt2->bind_param("i", $id_recurso);
         $stmt2->execute();
 
+
         // Respuesta exitosa
+
+        //Si todo va bien, rellena $respuesta_json con success: true, un mensaje y hora_devolucion formateada en d/m/Y H:i.
         $respuesta_json['success'] = true;
         $respuesta_json['message'] = 'Devolución registrada exitosamente';
         $respuesta_json['hora_devolucion'] = date('d/m/Y H:i', strtotime($hora_actual));
