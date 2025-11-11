@@ -251,7 +251,8 @@
     "label_teacher_id": "CI Profesor",
     "title_edit_orientation": "Editar orientación",
 
-
+    "btn_return": "Devolver",
+ 
 
     "footer": "2025 ITSP. Todos los derechos reservados"
   },
@@ -501,7 +502,9 @@
     "placeholder_new_password": "Enter your new password",
     "btn_update_password": "Update Password",
 
-   "title_edit_orientation": "Edit orientation",
+    "title_edit_orientation": "Edit orientation",
+
+    "btn_return": "Return",
 
 
     "footer": "2025 ITSP. All rights reserved"

@@ -118,7 +118,7 @@ if(isset($_SESSION['ci'])) $prestamos_info2 = query_prestamos_profesores($con, $
                                 <div class="grid-cell"><?= $row['nombre_recurso'] ?></div>
                                 <div class="grid-cell"><?= $row['nombre_su'] . ' ' . $row['apellido_su'] ?></div>
                                 <div class="grid-cell"><?= date('d/m/Y H:i:s', strtotime($row['hora_presta'])) ?></div>
-                                <div class="grid-cell"><?= $row['hora_vuelta'] ? date('d/m/Y H:i', strtotime($row['hora_vuelta'])) : 'Pendiente' ?></div>
+                                <div class="grid-cell"><?= $row['hora_vuelta'] ? date('d/m/Y H:i', strtotime($row['hora_vuelta'])) : '<?= t("status_pending") ?>' ?></div>
                                 <div class="grid-cell">
                                     <?php if ($row['hora_vuelta']): ?>
                                         <span style="color: green; margin-left: 20px;"><?= t("status_returned") ?></span>
