@@ -7,17 +7,17 @@ date_default_timezone_set('America/Montevideo');
 function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_reservar, $dia_semana_seleccionado, $id_espacio)
 {
     $respuesta_json = [];
-    $error = false;
-    $mensaje_error = "";
-    $horarios_insertados = 0;
+    $error = false; //$error booleano para interrumpir flujo si ocurre algo
+    $mensaje_error = ""; //para dar feedback
+    $horarios_insertados = 0; //cuenta rows insertados
 
-    $con->begin_transaction();
+    $con->begin_transaction();//abre una transacción: todo lo que se haga después puede confirmarse (commit) o deshacerse (rollback) al final.
 
     $fecha_actual = obtener_hora_calendario(); //Viene de helpers.php, devuelve un timestamp
-    $fecha_actual_datetime = new DateTime();
+    $fecha_actual_datetime = new DateTime(); //Se crean objetos DateTime para la fecha actual y la fecha a reservar
     $fecha_actual_datetime->setTimestamp($fecha_actual); // Así se convierte timestamp a DateTime
 
-    //Se hace lo mismo con la fecha de reserva, pero se lo pasa a un objeto "DateTime" para poder hacer la comparacion
+    //Se hace lo mismo con la fecha de reserva, pero se lo pasa a un objeto "DateTime" para poder hacer la comparacion > o <
     $fecha_reserva_datetime = new DateTime($fecha_reservar);
     $fecha_reserva_datetime->format("Y-m-d");
 
@@ -31,7 +31,8 @@ function registrar_reserva_completa($con, $ci_profesor, $fecha_reservar, $horas_
 
     //Se verifica que un horario no se haya repetido dos veces
     if (!$error) {
-        //funcion de helpers.php
+         //funcion de helpers.php
+        //Esa función recibe el array $horas_reservar y devuelve los duplicados.
         $horarios_duplicados = horarios_duplicados($horas_reservar);
         // Si hay al menos un horario duplicado en el array
         if (count($horarios_duplicados) > 0) {

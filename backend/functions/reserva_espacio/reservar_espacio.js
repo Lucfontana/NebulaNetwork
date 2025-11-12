@@ -2,23 +2,31 @@
 import { alerta_fallo, sw_exito } from '../../../../frontend/js/swalerts.js';
 import { crear_selects_horarios } from '../dependencias/crear_campos.js';
 
+//Se guardan en variables los elementos del formulario:
 let dia_reservar = document.getElementById("dia_reserva");
 let espacio_reserva = document.getElementById("espacio_reservar");
 let reserva_form = document.querySelector(".reserva-form");
 let cantidad_horas = document.getElementById("cantidad_horas_reserva");
+
 // Variable global para almacenar los horarios obtenidos
 let horariosDisponibles = [];
 
+//La parte donde se seleccionan las horas está oculta al principio hasta que el usuario elija fecha y espacio.
 //Horas a reservar esta oculto desde un inicio
 let horas_reservar = document.getElementById("horas_reserva");
 horas_reservar.style.visibility = "hidden";
 
 //Event listeners
+//Cuando cambia el día o el espacio, se ejecuta cargar_horarios().
+// Cuando cambia la cantidad de horas, se generan los campos para elegir horarios.
+// Cuando se envía el formulario, se llama registrar_reserva().
 dia_reservar.addEventListener("input", cargar_horarios);
 espacio_reserva.addEventListener("input", cargar_horarios);
 cantidad_horas.addEventListener("input", generar_campos_horarios);
 reserva_form.addEventListener("submit", registrar_reserva);
 
+//Esta función se ejecuta cuando el usuario elige una fecha o un espacio. 
+//con el proposito de consultar al servidor qué horarios están libres.
 async function cargar_horarios() {
     try {
         let valor_fecha_reservado = document.getElementById("dia_reserva").value;
