@@ -113,7 +113,7 @@ function generar_campos_horarios() {
     }
     
     // Validar cantidad de horas
-    if (cantidad_horas <= 0 || cantidad_horas >= 20) {
+    if (cantidad_horas_reserva <= 0 || cantidad_horas_reserva >= 20) {
         return;
     }
     

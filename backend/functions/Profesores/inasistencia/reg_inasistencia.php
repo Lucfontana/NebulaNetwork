@@ -26,7 +26,7 @@ function registrar_falta_completa($con, $ci_profesor, $horarios, $dia, $fecha_in
     $fecha_actual_datetime = new DateTime();//se crea un nuevo objeto DateTime de PHP.
     $fecha_actual_datetime->setTimestamp($fecha_actual); // Así se convierte timestamp a DateTime
 
-    //DateTime es una clase que permite trabajar con fechas y horas fácilmente (comparar, sumar días, formatear, etc.)
+    //DateTime pasa un string de fecha a un objeto que permite trabajar con fechas y horas fácilmente (comparar, sumar días, formatear, etc.)
     //Cuando se usa sin argumentos PHP lo inicializa con la fecha y hora actuales según la zona horaria establecida anteriormente
 
     //Se hace lo mismo con la fecha de inasistencia, pero se lo pasa a un objeto "DateTime" para poder hacer la comparacion
