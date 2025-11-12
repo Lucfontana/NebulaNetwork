@@ -38,7 +38,6 @@ session_start();
 //Si existe el parámetro curso_id en la URL, lo convierte a entero; si no, pone 0.
 $cursosql = isset($_GET['curso_id']) ? intval($_GET['curso_id']) : 0;
 $espaciossql = isset($_GET['espacio_id']) ? intval($_GET['espacio_id']) : 0;
-$diasql = isset($_GET['dia_id']) ? intval($_GET['dia_id']) : 0;
 
 if (!isset($_SESSION['nivel_acceso']) && isset($_SESSION['ci'])) {
     $_GET['ci_profe'] = $_SESSION['ci'];
@@ -90,7 +89,7 @@ function procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $
     $materias = [];
     while ($fila = mysqli_fetch_assoc($resultado)) {
         //Se agarra la fecha de la semana actual (segun un dia) y se crea una "llave"
-        $fecha_dia = $dias_a_fechas[$dia];
+        $fecha_dia = $dias_a_fechas[$dia]; ///Le pasas el nombre de un dia (lunes martes etc) y te devuelve la fecha de ese dia en la semana actual
         $ci_prof = $fila['ci_profesor'] ?? 0;
         $id_hor = $fila['id_horario'] ?? 0;
         $key_inasist = "{$fecha_dia}_{$ci_prof}_{$id_hor}"; //2025-10-10_26197140_1

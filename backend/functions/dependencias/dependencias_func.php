@@ -412,7 +412,7 @@ function eliminar_dependencia($con, $curso, $horario, $dia){
         $resultado2 = $stmt2->execute();  //Ejecutar y guardar
         $stmt2->close();
 
-      $stmt3 = $con->prepare($query_liberar_profe);
+        $stmt3 = $con->prepare($query_liberar_profe);
         $stmt3->bind_param("iis", $id_dicta, $horario, $dia);
         $resultado3 = $stmt3->execute();
         $stmt3->close();

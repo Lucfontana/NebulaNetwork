@@ -8,12 +8,14 @@ include_once('../db/conexion.php');
 
 $connect = conectar_a_bd();
 
-// Validación de sesión
+// Validación de sesión - debe estar iniciada, si no, se retorna un error
 if (!isset($_SESSION['ci'])) {
     echo json_encode(["success" => false, "message" => "Sesión no válida"]);
     exit;
 }
 
+
+// Si esta iniciado obtener CI del usuario desde la sesión
 $ci = $_SESSION['ci'];
 
 // Valida que lleguen los datos
@@ -22,6 +24,7 @@ if (!isset($_POST['passwd']) || !isset($_POST['newpasswd'])) {
     exit;
 }
 
+// Obtener datos del formulario
 $currentpasswd = $_POST['passwd'];
 $newpasswd = $_POST['newpasswd'];
 
@@ -56,7 +59,7 @@ if (!isset($_SESSION['nivel_acceso'])) {
     }
     $stmt->close();
 
-    // Actualizar contraseña y hasheo de contraseña
+    //Hhasheo de contraseña y actualizacion de contraseña
     $hash = password_hash($newpasswd, PASSWORD_DEFAULT);
     $consultaUPDATE = "UPDATE profesores SET pass_profesor = ? WHERE ci_profesor = ?";
     $stmt = $connect->prepare($consultaUPDATE);
@@ -94,6 +97,7 @@ if (!isset($_SESSION['nivel_acceso'])) {
     $stmt->bind_param("si", $hash, $ci);
     $stmt->execute();
 
+    
     if ($stmt->affected_rows > 0) {
         echo json_encode(["success" => true, "message" => "Contraseña actualizada con éxito"]);
     } else {

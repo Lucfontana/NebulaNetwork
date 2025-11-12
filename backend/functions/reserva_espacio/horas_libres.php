@@ -34,7 +34,7 @@ if (is_null($dia)){ //Si el día es inválido:
     exit;
 }
 
-//Se tra
+//Se traen los horarios libres según los criterios establecidos
 $query = "SELECT 
     h.id_horario, h.hora_inicio, h.hora_final, h.tipo
     FROM horarios h
