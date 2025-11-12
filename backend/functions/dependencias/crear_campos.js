@@ -30,7 +30,7 @@ async function crear_campos(){
 
         //Validaciones por si se ingresan mas de 8 horas o menos de 0
         if (cantidad_campos <= 0 ){
-            alerta_fallo("La cantidad de campos debe ser mayor a 0");
+            alerta_fallo("La cantidad de campos debe ser al menos 1");
             return;
         }
         if (cantidad_campos > 8) {
