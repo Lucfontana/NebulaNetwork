@@ -8,7 +8,7 @@ $con = conectar_a_bd();
 //Registra toda la dependencia
 function registrar_dependencia_completa($con, $ci_profesor, $id_asignatura, $horarios, $id_espacio, $id_curso, $dia_dictado) {
     $respuesta_json = array(); //Este array se usará al final de la función para devolver la respuesta al frontend
-    $error = false; // si el eror no existe, se ejecuta el bloque
+    $error = false; // si el error no existe, se ejecuta el bloque
     $mensaje_error = ""; //Guarda el texto explicativo del error, en caso de que ocurra alguno.
     
     // Iniciar transacción, las transacciones sirven para que, cuando hay que hacer muchas inserciones
@@ -241,10 +241,10 @@ if (!$error) {
     }
 }
     
-    //  PASO 5: Insertar los horarios en tabla cumple (m estoy cansando de comentar)
+    //  PASO 5: Insertar los horarios en tabla cumple
     $horarios_insertados = 0;
 
-    if (!$error) { // esto sgnifica:“Si hasta ahora no se ha producido ningún error, entonces hacemos esta 
+    if (!$error) { // esto significa:“Si hasta ahora no se ha producido ningún error, entonces hacemos esta
                    // parte.” "si error es false"
         $query_insert_cumple = "INSERT INTO cumple (id_horario, id_dicta, dia) VALUES (?, ?, ?)";
         $stmt_cumple = $con->prepare($query_insert_cumple);
@@ -337,7 +337,7 @@ if (!$error) { //Este bloque se ejecuta solo si no hubo errores anteriores, es d
     //con lo de las transacciones que se explico al principio es importante aca.
 
     //Si llega a haber error, se puede hacer rollback. Esto quiere decir que esas inserciones se van a borrar
-    //asi no quedan hechas al pedo.
+    //asi no quedan hechas porque si.
     if ($error) {
         // Hubo algún error, revertir todo
         $con->rollback();
