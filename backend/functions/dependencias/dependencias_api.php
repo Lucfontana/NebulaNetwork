@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registrarDependencia'
     $hora_eliminar = $_POST['hora_eliminar'];
     $dia = $_POST['dia_eliminar'];
 
-    //deués de obtener los datos para identificarlas, llama a eliminar_dependencia() para borrarla.
+    //después de obtener los datos para identificarlas, llama a eliminar_dependencia() para borrarla.
     $resultado = eliminar_dependencia($con, $curso_eliminar, $hora_eliminar, $dia);
 
     echo json_encode($resultado);
