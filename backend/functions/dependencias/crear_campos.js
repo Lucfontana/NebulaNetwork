@@ -54,7 +54,7 @@ async function crear_campos(){
 
         let horarios = data.horarios; //extrae la lista de horarios y la guarda en la variable horarios para usarla en el código después
         
-        //Si no hay horarios, o la respuesta esta vacia, hay alerta de que no hay hroarios
+        //Si no hay horarios, o la respuesta esta vacia, hay alerta de que no hay horarios
         if (!horarios || horarios.length === '0') {
             alerta_fallo("No hay horarios disponibles");
             return;
