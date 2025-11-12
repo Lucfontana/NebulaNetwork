@@ -23,7 +23,7 @@ function consultar_si_existe_horario($con) {
 
 function borrar_horarios($con){
 
-    // consukta que elimina todos los registros de la tabla horarios.
+    // consulta que elimina todos los registros de la tabla horarios.
         $consulta = "DELETE FROM horarios";
         $stmt = $con->prepare($consulta);
         $stmt->execute();
