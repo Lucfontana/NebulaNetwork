@@ -65,7 +65,7 @@ function registrarHorarios($horaInicio, $horaFinal, $conexion, $existe) {
             return $respuesta_json;
         }
 
-        //validr que la hora de inicio no sea antes de las 6
+        //valida que la hora de inicio no sea antes de las 6
         if ($hora_inicio <= 6){
             $respuesta_json['estado'] = '0';
             $respuesta_json['mensaje'] = 'La hora de inicio debe ser despues de las 6';    
