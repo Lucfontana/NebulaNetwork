@@ -93,8 +93,8 @@ function procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $
         $ci_prof = $fila['ci_profesor'] ?? 0;
         $id_hor = $fila['id_horario'] ?? 0;
         $key_inasist = "{$fecha_dia}_{$ci_prof}_{$id_hor}"; //2025-10-10_26197140_1
-        $fila['tiene_inasistencia'] = isset($inasistencias[$key_inasist]); //booleano, devuelve true si hay coincidencia,si no false
-//Si la clave de esa clase está en $inasistencias, marca la clase como inasistente.
+        $fila['tiene_inasistencia'] = isset($inasistencias[$key_inasist]); //booleano, devuelve true si hay coincidencia, si no false
+//Si la clave de esa clase está en $inasistencias, marca la clase como faltante.
 
         $materias[] = $fila;
     }
@@ -134,12 +134,14 @@ foreach ($dias as $dia) {//Se repite el ciclo por cada dia
                                 //array_filter solo guarda las reservas_semana que son TRUE 
                                 //(las otras las saca) y se devuelve un arreglo filtrado 
                                 //con las reservas en cada dia, guardandolo en $reservas_por_dia[dia]
-                                        //Arreglo usado                     funcion           usando este valor
+                                            //Arreglo usado        funcion     usando este valor
     $reservas_por_dia[$dia] = array_filter($reservas_semana, function($r) use ($dia) {
         return $r['dia'] === $dia;
     });
 }
 
+
+//-------- SI SE SELECCIONA CURSOS
 //Las siguientes lineas filtran la informacion y las unen para mostrarla ordenadamente
 $query4 = query_horas_curso($con, $cursosql);
 // Si se seleccionó un curso
@@ -183,7 +185,7 @@ if ($cursosql > 0) {
         $materias_por_dia_celu[$dia] = $materias_por_dia[$dia];
     }
 }
-// Si se seleccionó un espacio físico
+//-------- SI SE SELECCIONA ESPACIOS FISICOS
 elseif ($espaciossql > 0) {
     foreach ($dias as $dia) {
         $resultado = query_espacios_por_dia($con, $dia, $espaciossql);
@@ -215,7 +217,7 @@ elseif ($espaciossql > 0) {
         $materias_por_dia_celu[$dia] = $materias_por_dia[$dia];
     }
 }
-// Si se seleccionó un profesor
+//-------- SI SE SELECCIONA PROFESORES
 elseif ($professql > 0) {
     foreach ($dias as $dia) {
         $resultado = query_horarios_profe_pordia($con, $dia, $professql);
