@@ -21,7 +21,7 @@ $stmt->execute();
 
 //Si la cantidad de registros editados es mayor a 0 entonces el edit se ha ejecutado correctamente
 if ($stmt->affected_rows > 0) {
-    echo json_encode(["success" => true, "message" => "Asignatura editado correctamente"]);
+    echo json_encode(["success" => true, "message" => "Asignatura editada correctamente"]);
 } else {
     echo json_encode(["success" => false, "message" => "Error al actualizar"]);
     //Se responde con un mensaje en formato JSON
