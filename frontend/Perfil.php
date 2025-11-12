@@ -17,7 +17,7 @@ session_start();
                     <div class="bienvenida-perfil">
                         <?php if (isset($_SESSION['ci'])): ?>
                             <h2><?= $_SESSION['nombre_usuario']; ?> <?= $_SESSION['apellido']; ?></h2>
-                            <p><?= t("label_ci") ?>: <?= $_SESSION['ci']; ?></p>
+                            <p><?= t("label_ci") ?> <?= $_SESSION['ci']; ?></p>
                         <?php endif; ?>
                     </div>
 
