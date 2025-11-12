@@ -1,6 +1,6 @@
 <?php
 
-//ste codigo entrega los horarios de clases almacenados en la base de datos.
+//este codigo entrega los horarios de clases almacenados en la base de datos.
 
 include_once("../../db/conexion.php");
 
