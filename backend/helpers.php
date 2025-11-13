@@ -21,7 +21,10 @@ function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar, $dato_
                             $m['hora_final'] == $row['hora_final'] &&
                             $m['id_horario'] == $row['id_horario']) {
                             
-                            echo "<div class='dia-dato reserva-clase'>
+                            $clase_inasistencia = isset($m['tiene_inasistencia']) && $m['tiene_inasistencia'] ? 'inasistencia-marcada' : '';
+                            
+                            //Si tiene inasistencia y reserva, le da prioridad a la inasistencia mostrando las dos clases 
+                            echo "<div class='dia-dato reserva-clase {$clase_inasistencia}'>
                                 <strong>{$m[$dato_mostrar]}</strong>
                                 <small>{$m[$dato_adicional]}</small>
                                 </div>";
@@ -33,14 +36,11 @@ function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar, $dato_
                     // PRIORIDAD 2: Si no hay reserva, mostrar clase regular
                     if (!$mostrar) {
                         foreach ($materias_por_dia[$dia] as $m) {
-                            // Si no hay reservas, o la reserva es false (y si las horas coinciden) 
-                            // se muestra la clase normal (o con inasistencia, si llega a tener)
                             if ((!isset($m['es_reserva']) || $m['es_reserva'] === false) &&
                                 $m['hora_inicio'] == $row['hora_inicio'] && 
                                 $m['hora_final'] == $row['hora_final'] &&
                                 $m['id_horario'] == $row['id_horario']) {
                                 
-                                //Si la clase llega a tener una inasistencia, se la muestra con la $clase_inasistencia
                                 $clase_inasistencia = isset($m['tiene_inasistencia']) && $m['tiene_inasistencia'] ? 'inasistencia-marcada' : '';
                                 echo "<div class='dia-dato {$clase_inasistencia}'>
                                     <strong>{$m[$dato_mostrar]}</strong>

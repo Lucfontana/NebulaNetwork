@@ -890,6 +890,13 @@ hr {
     /* Equilibrado: ID estrecho, nombre flexible, botones fijos */
 }
 
+.reserva-clase {
+    background-color: #cadcef !important;
+    color: black !important;
+    border-left: 4px solid #29829bff;
+    position: relative;
+}
+
 .inasistencia-marcada {
     background-color: #ffcccc !important;
     border-left: 4px solid #cc0000 !important;
@@ -898,13 +905,6 @@ hr {
 .dia-dato {
     display: flex;
     flex-direction: column;
-}
-
-.reserva-clase {
-    background-color: var(---btnClaro) !important;
-    color: black !important;
-    border-left: 4px solid #29829bff;
-    position: relative;
 }
 
 /* Datos Horarios */

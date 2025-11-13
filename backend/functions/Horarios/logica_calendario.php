@@ -129,6 +129,7 @@ $resultado_reservas = query_reservas_semana($con, $inicio_semana_str, $fin_seman
 $reservas_semana = procesar_reservas_con_inasistencias($resultado_reservas, $dias_a_fechas, $inasistencias);
 
 // Organizar reservas por día (Se van cargando las reservas segun el dia)
+//Se dejan las reservas del lunes con el lunes, las del martes con las del martes y asi sucesivamente
 $reservas_por_dia = [];
 foreach ($dias as $dia) {//Se repite el ciclo por cada dia
                                 //array_filter solo guarda las reservas_semana que son TRUE 
