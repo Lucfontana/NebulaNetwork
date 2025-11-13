@@ -25,10 +25,11 @@ espacio_reserva.addEventListener("input", cargar_horarios);
 cantidad_horas.addEventListener("input", generar_campos_horarios);
 reserva_form.addEventListener("submit", registrar_reserva);
 
-//Esta función se ejecuta cuando el usuario elige una fecha o un espacio. 
+//Esta función se ejecuta cuando el usuario elige una fecha o un espacio 
 //con el proposito de consultar al servidor qué horarios están libres.
 async function cargar_horarios() {
     try {
+        //Leer valores del formulario
         let valor_fecha_reservado = document.getElementById("dia_reserva").value;
         let valor_espacio_reserva = document.getElementById("espacio_reservar").value;
 
@@ -40,11 +41,13 @@ async function cargar_horarios() {
         let fecha_seleccionada = new Date(año, mes - 1, dia);
 
         let dia_semana_seleccionada = fecha_seleccionada.getDay();
+        //getDay() devuelve: 0 = domingo, 1 = lunes, 2 = martes, … 6 = sábado.
 
                             //Se ordena como anio mes dia, por eso se lo pasa a fecha
                             //canadiense (tiene ese formato y la BD se maneja asi)
         fecha_seleccionada = fecha_seleccionada.toLocaleDateString('en-CA');
 
+        //Si los dias selccionados son fin de semana, muestra error
         if (dia_semana_seleccionada === 0 || dia_semana_seleccionada === 6) {
             alerta_fallo("No se pueden realizar reservas en los fines de semana");
             horas_reservar.style.visibility = "hidden";
@@ -62,6 +65,7 @@ async function cargar_horarios() {
             console.log("Las variables TIENEN un valor asignado.");
             horas_reservar.style.visibility = "visible";
 
+            //Si hay fecha y espacio, hacer la consulta:
         const respuesta = await fetch("../../backend/functions/reserva_espacio/horas_libres.php", {
             method: "POST",
             headers: {
@@ -69,16 +73,16 @@ async function cargar_horarios() {
             },
                                             //Los valores se concatenan con & (las string se concatenan asi)
             body: `fecha=${encodeURIComponent(dia_semana_seleccionada)}&espacio=${encodeURIComponent(valor_espacio_reserva)}&fecha_seleccionada=${encodeURIComponent(fecha_seleccionada)}`
-        });
+        });//Esto llama a un PHP que devuelve un JSON con los horarios disponibles.
 
         const data = await respuesta.json();
-
-        horariosDisponibles = data.horarios || [];
+        horariosDisponibles = data.horarios || [];//Guardar los horarios obtenidos
 
         //Si el estado del fetch es 1 (1 significa que todo esta bien) y hay mas de un horario, prosigue
         if (data.estado === '1' && horariosDisponibles.length > 0) {
 
         //Se trae el valor de la cantidad de horas, si es mayor a uno se generan los campos
+        //Si hay horarios disponibles, generar campos de selección
         const cantidad_horas_reserva = document.getElementById("cantidad_horas_falta").value;
             if (cantidad_horas_reserva > 0 || cantidad_horas_reserva <= 15)  {
                 generar_campos_horarios();
@@ -121,10 +125,13 @@ function generar_campos_horarios() {
     crear_selects_horarios(contenedor, horariosDisponibles, cantidad_horas_reserva);
 }
 
+//Esta función se ejecuta cuando el usuario envía el formulario.
+// envia los datos al servidor para registrar la reserva.
 async function registrar_reserva(e){
     e.preventDefault();
 
-    let dia_reservar = document.getElementById("dia_reserva").value;
+    //Lee los valores del formulario
+    let dia_reservar = document.getElementById("dia_reserva").value; //value sirve para obtener o establecer el valor actual de ese elemento.
     const espacio_reservar = document.getElementById("espacio_reservar").value;
 
     // Solo calculamos el día de la semana para enviarlo al PHP (explicacion de eso arriba)
@@ -166,7 +173,7 @@ async function registrar_reserva(e){
     }
 
     //Se crea el formulario y se pasan sus valores para cada campo que existe
-    const form_reserva = new FormData();
+    const form_reserva = new FormData(); //Crea un objeto FormData con todos los datos
 
     horas_reservadas.forEach(hora => {
         form_reserva.append('hora_profesor_da_clase[]', hora);

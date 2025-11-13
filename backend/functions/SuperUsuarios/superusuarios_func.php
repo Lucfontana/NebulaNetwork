@@ -1,5 +1,8 @@
 <?php
 
+//Este script PHP registra un “superusuario” en una base de datos, verificando primero si el usuario 
+//ya existe como profesor o como superusuario antes de insertarlo.
+
 include_once ('../../db/conexion.php');
 include_once('../Profesores/profesores_func.php');
 
@@ -17,19 +20,25 @@ if (isset($_POST['registrarSuperuser'])){
     $email_superusuario = strip_tags(trim($_POST['email']));
     $acceso = (int)$_POST['acceso'];
 
-    //Verifica si existe el usuario, llamando ala funcion y guarda el valor en una variable
+    //trim() elimina espacios en blanco.
+    //trip_tags() elimina etiquetas HTML para evitar inyecciones.
+    //(int) convierte a número entero.
+    //password_hash() cifra la contraseña antes de guardarla.
+
+    //Verifica si existe el usuario, llamando a la funcion y guarda el valor en una variable
     //la funcion viene del archivo 'profesores_func', verificar en ese archivo para los comentarios
+    //verifica si el número de CI ya está en la base de datos.
     $consultar_existencia = consultar_si_existe_usuario($con, $ci);
 
+    //funcion que hace la inserción o devuelve un mensaje de error.
     $insert_superusuario = insert_datos_superuser($con, $consultar_existencia, $ci, $password, $nombre, $apellido, $acceso, $email_superusuario);
 
+    //Convierte la respuesta de php a JSON y la envía.
     echo json_encode($insert_superusuario);
     //TO DO: Llamar a  verificaciones para cada variable
 }
 
-
-
-
+//Esta función es la que realmente inserta el superusuario.
 function insert_datos_superuser($con, $existe, $ci, $password, $nombre, $apellido, $acceso, $email_superusuario){
     // Array para almacenar la respuesta
     $respuesta_json = array();

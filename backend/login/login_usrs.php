@@ -81,12 +81,14 @@ function traer_datos_usuario($con, $ci_usuario)
     }
 }
 
+//Esta función sirve para verificar si un usuario existe (profesor o superusuario), comprobar su contraseña 
+//y crear una sesión si los datos son correctos.
 function login($con, $ci_usuario, $password)
 {
     // CRÍTICO: Inicializar la variable 
+    //Se crea un array asociativo llamado $respuesta_json que almacenará el resultado del login.
     $respuesta_json['estado'] = 0;
     $respuesta_json['mensaje'] = 'Error desconocido';
-
 
     //Se trae el array asociativo con la informacion del usuario que exista
     $datos_usuario = traer_datos_usuario($con, $ci_usuario);
@@ -98,9 +100,12 @@ function login($con, $ci_usuario, $password)
     //Si los datos del usuario no estan vacios, el codigo prosigue (que no sea null)
     if ($datos_usuario !== null) {
         //Si el usuario ingresado es un profesor, se ejecuta el siguiente codigo
+
+        //Se obtiene la contraseña encriptada que está guardada en la base de datos
         if ($datos_usuario['tipo'] === 'profesor') {
             $password_bd = $datos_usuario['pass_profesor'];
 
+            //compara la contraseña ingresada con la versión de la base de datos.
             if (password_verify($password, $password_bd)) {
                 //Se pasan los valores a la sesion para que se acceda desde cualquier pagina
                 $_SESSION['ci'] = $ci_usuario;
@@ -109,6 +114,8 @@ function login($con, $ci_usuario, $password)
                 $_SESSION['pass_profesor'] = $datos_usuario['pass_profesor'];
 
                 //Redirecciona al index
+
+                //se actualiza la respuesta JSON
                 $respuesta_json['estado'] = 1;
                 $respuesta_json['mensaje'] = "Sesion iniciada correctamente como PROFESOR";
             } else {
@@ -116,9 +123,11 @@ function login($con, $ci_usuario, $password)
                 $respuesta_json['mensaje'] = "Contraseña incorrecta";
             }
             
+            //Si no es profesor pero sí es superusuario
         } else if ($datos_usuario['tipo'] === 'superusuario') {
             $password_bd = $datos_usuario['pass_superusuario'];
 
+            //Si la contraseña es correcta, se guardan los datos en la sesión
             if (password_verify($password, $password_bd)) {
                 $_SESSION['ci'] = $ci_usuario;
                 $_SESSION['nombre_usuario'] = $datos_usuario['nombre'];
@@ -133,7 +142,7 @@ function login($con, $ci_usuario, $password)
                 $respuesta_json['mensaje'] = "Contraseña incorrecta";
             }
         }
-    } else {
+    } else { // Si el usuario no existe
         $respuesta_json['estado'] = 0;
         $respuesta_json['mensaje'] = "El usuario ingresado no existe";
     }

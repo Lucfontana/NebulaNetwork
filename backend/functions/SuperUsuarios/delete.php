@@ -1,4 +1,7 @@
 <?php
+
+//Eliminar un superusuario
+
 include_once ('../../db/conexion.php');           
 
     $connect = conectar_a_bd();
