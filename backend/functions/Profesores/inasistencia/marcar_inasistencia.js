@@ -6,7 +6,7 @@ import { crear_selects_horarios } from '../../dependencias/crear_campos.js';
 //sw_exito: muestra una alerta de éxito.
 //crear_selects_horarios: función que genera los campos <select> para que el usuario elija los horarios de inasistencia.
 
-//Se declaran variables para ir greando los campos
+//Se declaran variables para ir creando los campos
 const dia_falta = document.getElementById("dia_falta");
 const cantidad_horas_falta = document.getElementById("cantidad_horas_falta");
 const formulario_falta = document.querySelector(".inasistencia-form");
