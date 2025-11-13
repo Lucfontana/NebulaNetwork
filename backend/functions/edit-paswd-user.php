@@ -8,7 +8,13 @@ include_once('../db/conexion.php');
 
 $connect = conectar_a_bd();
 
+<<<<<<< Updated upstream
 // Validación de sesión - debe estar iniciada, si no, se retorna un error
+=======
+// Validación de sesión
+//Comprueba que el usuario esté logueado (que tenga un valor en $_SESSION['ci']). 
+//Si no, devuelve un JSON de error y termina el script.
+>>>>>>> Stashed changes
 if (!isset($_SESSION['ci'])) {
     echo json_encode(["success" => false, "message" => "Sesión no válida"]);
     exit;
@@ -19,8 +25,9 @@ if (!isset($_SESSION['ci'])) {
 $ci = $_SESSION['ci'];
 
 // Valida que lleguen los datos
+//Se asegura de que lleguen por POST los campos de la contraseña actualy la contraseña nueva
 if (!isset($_POST['passwd']) || !isset($_POST['newpasswd'])) {
-    echo json_encode(["success" => false, "message" => "Datos incompletos"]);
+    echo json_encode(["success" => false, "message" => "Datos incompletos"]);//Si falta alguno, responde con error.
     exit;
 }
 
@@ -40,9 +47,13 @@ if ($currentpasswd === $newpasswd) {
 }
 
 // Determinar tipo de usuario
+//El sistema diferencia dos tipos: 
+// Profesor (no tiene $_SESSION['nivel_acceso']).
+// Superusuario (sí tiene $_SESSION['nivel_acceso']).
 if (!isset($_SESSION['nivel_acceso'])) {
     // PROFESOR
     // Consulta Preparada
+    //Consulta la contraseña del profesor según su CI.
     $consulta = "SELECT pass_profesor FROM profesores WHERE ci_profesor = ?";
     $stmt = $connect->prepare($consulta);
     $stmt->bind_param("i", $ci);
@@ -52,6 +63,7 @@ if (!isset($_SESSION['nivel_acceso'])) {
 
     // Verifcia que la contraseña actual sea igual a la contraseña ingresada por el usuario
     //Row sería falso (!$row) cuando no haya ningun valor que traer, por otro lado, password_verify devuelve un boolean.
+    //Si no existe el usuario o la contraseña no coincide con el hash guardado en la base, da error.
     if (!$row || !password_verify($currentpasswd, $row['pass_profesor'])) {
         echo json_encode(["success" => false, "message" => "Contraseña actual incorrecta"]);
         $stmt->close();
@@ -83,6 +95,9 @@ if (!isset($_SESSION['nivel_acceso'])) {
     $result = $stmt->get_result();
     $row = mysqli_fetch_assoc($result);
 
+    // Verifcia que la contraseña actual sea igual a la contraseña ingresada por el usuario
+    //Row sería falso (!$row) cuando no haya ningun valor que traer, por otro lado, password_verify devuelve un boolean.
+    //Si no existe el usuario o la contraseña no coincide con el hash guardado en la base, da error.
     if (!$row || !password_verify($currentpasswd, $row['pass_superusuario'])) {
         echo json_encode(["success" => false, "message" => "Contraseña actual incorrecta"]);
         $stmt->close();
