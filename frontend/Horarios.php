@@ -51,7 +51,7 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
                             <div class="horario-dia" id="horario-<?= $dia_celu ?>"
                                 style="<?= $dia_celu === 'lunes' ? '' : 'display:none;' ?>">
                                 <?php if (isset($_GET['curso_id'])): ?>
-                                    <?php echo cargar_horarios($query4, $dias, $materias_por_dia, "nombre_asignatura", "nombre_profesor");
+                                    <?php echo cargar_horarios($query4, [$dia_celu], $materias_por_dia, "nombre_asignatura", "nombre_profesor");
                                     ?>
                                 <?php endif; ?>
                             </div>
@@ -95,7 +95,7 @@ include_once("../backend/functions/Horarios/logica_calendario.php");
                         <select name="salones" class="salones-select" id="salones-select"
                             onchange="cambiarEspacio(this.value)">
                             <option value="0"><?= t("option_select_classroom") ?></option>
-                            <?php mysqli_data_seek($query3, 0); ?>
+                            <?php mysqli_data_seek($espacios_sin_general, 0); ?>
                             <?php while ($row3 = mysqli_fetch_array($query3)): ?>
                                 <option value="<?= $row3['id_espacio'] ?>" <?= (isset($_GET['espacio_id']) && $_GET['espacio_id'] == $row3['id_espacio']) ? 'selected' : '' ?>><?= $row3['nombre'] ?>
                                 </option>
