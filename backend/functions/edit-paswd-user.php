@@ -8,13 +8,9 @@ include_once('../db/conexion.php');
 
 $connect = conectar_a_bd();
 
-<<<<<<< Updated upstream
-// Validación de sesión - debe estar iniciada, si no, se retorna un error
-=======
 // Validación de sesión
 //Comprueba que el usuario esté logueado (que tenga un valor en $_SESSION['ci']). 
 //Si no, devuelve un JSON de error y termina el script.
->>>>>>> Stashed changes
 if (!isset($_SESSION['ci'])) {
     echo json_encode(["success" => false, "message" => "Sesión no válida"]);
     exit;
