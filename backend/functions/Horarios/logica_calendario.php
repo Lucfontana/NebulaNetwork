@@ -5,6 +5,8 @@ include_once('functions.php');
 include_once('../backend/queries.php');
 include_once('../backend/helpers.php');
 
+
+//Estas consultas sirven para llenar listas desplegables (selects) en el frontend.
 $result = query_espaciosfisicos($con);
 
 $espacios_sin_general = query_espacios_sin_general($con);
@@ -32,15 +34,17 @@ $query3 = query_espacios_sin_general($con);
 session_start();
 
 // Verificar si se envio un ID de curso o de espacio a traves de GET
+
+//Si existe el parámetro curso_id en la URL, lo convierte a entero; si no, pone 0.
 $cursosql = isset($_GET['curso_id']) ? intval($_GET['curso_id']) : 0;
 $espaciossql = isset($_GET['espacio_id']) ? intval($_GET['espacio_id']) : 0;
-$diasql = isset($_GET['dia_id']) ? intval($_GET['dia_id']) : 0;
 
 if (!isset($_SESSION['nivel_acceso']) && isset($_SESSION['ci'])) {
     $_GET['ci_profe'] = $_SESSION['ci'];
 }
 
 $professql = isset($_GET['ci_profe']) ? intval($_GET['ci_profe']) : 0;
+//Si llega un ci_profe por URL, se guarda como entero; si no, 0.
 
 $base_time = obtener_hora_calendario(); //Viene de helpers.php  obtiene hora a usar
 
@@ -63,7 +67,7 @@ $dias_a_fechas = [
 // Arreglo para almacenar las materias por día
 $materias_por_dia = [];
 
-// Consulta para obtener inasistencias de la semana actual
+// Consulta para obtener las inasistencias registradas desde el lunes hasta el viernes de la semana actual
 $resultado_inasistencias = query_inasistencias_esta_semana($con, $inicio_semana_str, $fin_semana_str);
 
 //Cada inasistencia se guarda en una llave unica (como una PK) y se guarda 
@@ -77,6 +81,7 @@ while ($inasist = mysqli_fetch_assoc($resultado_inasistencias)) {
     $inasistencias[$key] = true;
 }
 
+//Función para marcar inasistencias en horarios
 //se aniade "tiene_inasistencia" como un "atributo" del resultado de la consulta.
 //Si llega a haber una llave igual a la de las inasistencias, se marca la inasistencia como true
 function procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $inasistencias)
@@ -84,17 +89,19 @@ function procesar_horarios_con_inasistencias($resultado, $dia, $dias_a_fechas, $
     $materias = [];
     while ($fila = mysqli_fetch_assoc($resultado)) {
         //Se agarra la fecha de la semana actual (segun un dia) y se crea una "llave"
-        $fecha_dia = $dias_a_fechas[$dia];
+        $fecha_dia = $dias_a_fechas[$dia]; ///Le pasas el nombre de un dia (lunes martes etc) y te devuelve la fecha de ese dia en la semana actual
         $ci_prof = $fila['ci_profesor'] ?? 0;
         $id_hor = $fila['id_horario'] ?? 0;
         $key_inasist = "{$fecha_dia}_{$ci_prof}_{$id_hor}"; //2025-10-10_26197140_1
-        $fila['tiene_inasistencia'] = isset($inasistencias[$key_inasist]); //booleano, devuelve true si hay coincidencia,si no false
+        $fila['tiene_inasistencia'] = isset($inasistencias[$key_inasist]); //booleano, devuelve true si hay coincidencia, si no false
+//Si la clave de esa clase está en $inasistencias, marca la clase como faltante.
 
         $materias[] = $fila;
     }
     return $materias;
 }
 
+//Función para marcar inasistencias en reservas
 function procesar_reservas_con_inasistencias($resultado_reservas, $dias_a_fechas, $inasistencias)
 {
     $reservas = [];
@@ -122,17 +129,20 @@ $resultado_reservas = query_reservas_semana($con, $inicio_semana_str, $fin_seman
 $reservas_semana = procesar_reservas_con_inasistencias($resultado_reservas, $dias_a_fechas, $inasistencias);
 
 // Organizar reservas por día (Se van cargando las reservas segun el dia)
+//Se dejan las reservas del lunes con el lunes, las del martes con las del martes y asi sucesivamente
 $reservas_por_dia = [];
 foreach ($dias as $dia) {//Se repite el ciclo por cada dia
                                 //array_filter solo guarda las reservas_semana que son TRUE 
                                 //(las otras las saca) y se devuelve un arreglo filtrado 
                                 //con las reservas en cada dia, guardandolo en $reservas_por_dia[dia]
-                                        //Arreglo usado                     funcion           usando este valor
+                                            //Arreglo usado        funcion     usando este valor
     $reservas_por_dia[$dia] = array_filter($reservas_semana, function($r) use ($dia) {
         return $r['dia'] === $dia;
     });
 }
 
+
+//-------- SI SE SELECCIONA CURSOS
 //Las siguientes lineas filtran la informacion y las unen para mostrarla ordenadamente
 $query4 = query_horas_curso($con, $cursosql);
 // Si se seleccionó un curso
@@ -176,7 +186,7 @@ if ($cursosql > 0) {
         $materias_por_dia_celu[$dia] = $materias_por_dia[$dia];
     }
 }
-// Si se seleccionó un espacio físico
+//-------- SI SE SELECCIONA ESPACIOS FISICOS
 elseif ($espaciossql > 0) {
     foreach ($dias as $dia) {
         $resultado = query_espacios_por_dia($con, $dia, $espaciossql);
@@ -208,7 +218,7 @@ elseif ($espaciossql > 0) {
         $materias_por_dia_celu[$dia] = $materias_por_dia[$dia];
     }
 }
-// Si se seleccionó un profesor
+//-------- SI SE SELECCIONA PROFESORES
 elseif ($professql > 0) {
     foreach ($dias as $dia) {
         $resultado = query_horarios_profe_pordia($con, $dia, $professql);

@@ -22,7 +22,7 @@
     "aside_lang": "Cambiar idioma",
 
 
-    "title": "Registro",
+
 
     "header_teachers": "Registro de <span>Profesores</span>",
     "header_superusers": "Registro de <span>SuperUsuarios</span>",
@@ -62,7 +62,6 @@
     "label_course_taught": "Curso al que se dicta:",
 
     "option_empty": "",
-    "option_general": "General",
     "option_use": "Uso",
     "option_free": "Libre",
     "option_broken": "Roto",
@@ -88,11 +87,8 @@
     "placeholder_end_time": "Hora de finalización",
     "placeholder_orientation": "Selecciona una orientación",
     "placeholder_select": "Selecciona una opción",
-    "placeholder_room": "Selecciona un salón",
-    "placeholder_general": "General",
     "placeholder_type": "Selecciona un tipo",
     "placeholder_day": "Selecciona un día",
-    "placeholder_hours": "Ingresa cantidad de horas",
     "placeholder_course": "Selecciona un curso",
 
     
@@ -107,7 +103,7 @@
     "label_teacherlend": "Profesor a prestar:",
     "label_resource": "Recurso a prestar:",
      
-    "table_header_person": "Persona que Pidió",
+    "table_header_person": "Prestar Recursos",
     "table_header_resource": "Recurso Prestado",
     "table_header_admin": "Administrador que Prestó",
     "table_header_start_time": "Hora Prestado",
@@ -128,7 +124,6 @@
     "label_select_schedule": "Seleccionar Horario:",
     "label_select_course": "Seleccionar Curso:",
     "label_select_classroom": "Seleccionar Salón:",
-    "option_select_course": "Seleccione un curso",
     "option_select_classroom": "Seleccione un salón",
     "label_hours": "Horas",
     "day_monday": "Lunes",
@@ -142,6 +137,128 @@
     "modal_title_absence": "Registrar inasistencia",
     "label_day_absence": "En el día:",
 
+    "btn_add_hours": "Agregar Horas",
+    "btn_add_schedules": "Agregar Horarios",
+    "btn_delete_schedules": "Eliminar Horarios",
+    "btn_reserve_space": "Reservar espacio",
+
+
+
+    "aboutus_title": "Sobre nosotros",
+    "aboutus_heading": "¡Somos Nebula Network!",
+    "aboutus_description": "Un equipo de desarrollo de software dedicado y apasionado por la creación de aplicaciones web.",
+
+
+    "title_login": "Inicio de sesión",
+
+    "title_show_info": "Mostrar Información",
+    "label_select_data": "Seleccione Dato a Mostrar:",
+    "option_select_data": "Seleccione Dato",
+    "option_teachers": "Profesores",
+    "option_superusers": "Super Usuarios",
+    "option_resources": "Recursos",
+    "option_spaces": "Espacios Físicos",
+    "option_courses": "Cursos",
+    "option_subjects": "Asignaturas",
+    "option_orientations": "Orientaciones",
+    "option_absences": "Inasistencias",
+    "option_reservations": "Reservas",
+
+    "btn_edit": "Editar",
+    "btn_delete": "Eliminar",
+    "btn_update_info": "Actualizar información",
+    "btn_cancel": "Cancelar",
+    "title_edit_subject": "Modificación de Asignatura",
+
+    "title_edit_course": "Modificación de Curso",
+
+    "select_teacher": "Seleccione un Profesor",
+    "select_subject": "Seleccione una Asignatura",
+    "select_day": "Seleccione un Día",
+    "select_room": "Seleccione un Salón",
+    "select_course": "Seleccione un Curso",
+    "title_delete_class": "Eliminar Clase",
+    "label_hour_delete": "Hora a eliminar:",
+    "select_hour_delete": "Seleccione Hora a Eliminar",
+    "placeholder_hours": "Cantidad de Horas",
+
+    "label_hours_to_absent": "Cantidad de horas a faltar",
+
+    "label_birth_short": "F. Nac",
+    "title_edit_teacher": "Modificación de Profesor",
+  
+
+    "title_physical_spaces": "Espacios Físicos",
+    "header_capacity": "Capacidad",
+    "header_name": "Nombre",
+    "header_type": "Tipo",
+    "header_ci": "CI",
+    "header_lastname": "Apellido",
+    "header_email": "Correo electrónico",
+    "header_address": "Dirección",
+    "header_birth": "Fecha de nacimiento",
+
+    "header_access_level": "Nivel de Acceso",
+    "title_edit_superuser": "Modificación de Super Usuario",
+    "placeholder_enter_name": "Ingresa nombre",
+    "placeholder_enter_lastname": "Ingresa apellido",
+    "placeholder_select_access": "Selecciona nivel de acceso",
+ 
+    "label_physical_space": "Espacio Físico",
+    "label_status": "Estado",
+    "title_edit_resource": "Modificación de Recurso",
+    "option_status_in_use": "Uso",
+    "option_status_free": "Libre",
+    "option_status_broken": "Roto",
+    "option_type_internal": "Interno",
+    "option_type_external": "Externo",
+
+    "header_reservations": "Reservas de espacios físicos",
+    "label_date": "Fecha",
+    "label_ci_professor": "CI Profesor",
+    "label_classroom": "Salón",
+    "label_schedule": "Horario",
+    "label_date_with_colon": "Fecha:",
+    "label_ci_professor_with_colon": "CI Profesor:",
+    "label_classroom_with_colon": "Salón:",
+    "label_schedule_with_colon": "Horario:",
+
+    "btn_lend": "Prestar",
+    "label_id_request": "ID Solicita",
+    "label_loan_time": "Hora de préstamo",
+
+    "title_profile": "Perfil",
+    "role_teacher": "Rango Profesor",
+    "desc_teacher_role": "Con el rango profesor puedes ver los horarios presentados en la aplicación. Eres un miembro esencial para la enseñanza del ITSP.",
+    "role_assistant": "Rango Adscripta",
+    "desc_assistant_role": "Como adscripta, puedes gestionar horarios, docentes y recursos del sistema.",
+    "role_secretary": "Rango Secretaria",
+    "desc_secretary_role": "Como secretaria, tienes acceso a funciones administrativas del instituto.",
+    "role_admin": "Rango Administrador",
+    "desc_admin_role": "El rango administrador es el más alto en la aplicación y tiene control total sobre la gestión de datos.",
+    "btn_change_password": "Cambiar contraseña",
+    "title_change_password": "Cambia tu contraseña",
+    "desc_change_password": "Por seguridad, ingresa tu contraseña actual y una nueva.",
+    "label_current_password": "Ingresa tu contraseña actual",
+    "label_new_password": "Ingresa tu nueva contraseña",
+    "placeholder_current_password": "Ingresa tu contraseña actual",
+    "placeholder_new_password": "Ingresa tu nueva contraseña",
+    "btn_update_password": "Actualizar Contraseña",
+
+    "header_absences": "Inasistencias",
+    "table_date": "Fecha",
+    "table_teacher_id": "CI Profesor",
+    "label_teacher_id": "CI Profesor",
+    "title_edit_orientation": "Editar orientación",
+
+    "btn_return": "Devolver",
+
+    "error_invalid_ci": "La CI debe ser de 8 dígitos, sin puntos ni guiones.",
+  "error_invalid_password_length": "La contraseña debe tener entre 8 y 20 caracteres.",
+  "error_ci_not_exist": "Su cédula de identidad no existe.",
+  "msg_login_success": "Inicio de sesión exitoso.",
+  "msg_login_failed": "Credenciales incorrectas.",
+ 
 
     "footer": "2025 ITSP. Todos los derechos reservados"
   },
@@ -165,7 +282,6 @@
     "aside_lang": "Change language",
 
     
-    "title": "Register",
     "header_teachers": "<span>Teacher</span> Registration",
     "header_superusers": "<span>Superuser</span> Registration",
     "header_resources": "<span>Resources</span> Registration",
@@ -204,7 +320,6 @@
     "label_course_taught": "Course Taught To:",
 
     "option_empty": "",
-    "option_general": "General",
     "option_use": "In Use",
     "option_free": "Free",
     "option_broken": "Broken",
@@ -230,8 +345,6 @@
     "placeholder_end_time": "End time",
     "placeholder_orientation": "Select an orientation",
     "placeholder_select": "Select an option",
-    "placeholder_room": "Select a room",
-    "placeholder_general": "General",
     "placeholder_type": "Select a type",
     "placeholder_day": "Select a day",
     "placeholder_hours": "Enter number of hours",
@@ -250,7 +363,7 @@
     "label_teacherlend": "Teacher to lend:",
     "label_resource": "Resource to lend:",
 
-    "table_header_person": "Requester",
+    "table_header_person": "Lend Resources",
     "table_header_resource": "Resource",
     "table_header_admin": "Admin",
     "table_header_start_time": "Lent At",
@@ -272,7 +385,6 @@
     "label_select_course": "Select Course:",
     "label_select_classroom": "Select Classroom:",
 
-    "option_select_course": "Select a course",
     "option_select_classroom": "Select a classroom",
     "label_hours": "Hours",
     "day_monday": "Monday",
@@ -284,9 +396,132 @@
     "msg_break": "Break",
     "btn_register_absence": "Register absence",
     "label_day_absence": "On the day:",
-    
+
+    "btn_add_hours": "Add Hours",
+    "btn_add_schedules": "Add Schedules",
+    "btn_delete_schedules": "Delete Schedules",
+    "btn_reserve_space": "Reserve Space",
+
+
+    "aboutus_title": "About Us",
+    "aboutus_heading": "We are Nebula Network!",
+    "aboutus_description": "A passionate and dedicated software development team focused on creating powerful web applications.",
+
+    "title_login": "Login",
+
+     "title_show_info": "Show Information",
+    "label_select_data": "Select Data to Display:",
+    "option_select_data": "Select Data",
+    "option_teachers": "Teachers",
+    "option_superusers": "Superusers",
+    "option_resources": "Resources",
+    "option_spaces": "Spaces",
+    "option_courses": "Courses",
+    "option_subjects": "Subjects",
+    "option_orientations": "Orientations",
+    "option_absences": "Absences",
+    "option_reservations": "Reservations",
+
+    "btn_edit": "Edit",
+    "btn_delete": "Delete",
+    "btn_update_info": "Update information",
+    "btn_cancel": "Cancel",
+    "title_edit_subject": "Edit Subject",
+
+    "title_edit_course": "Edit Course",
+
+
+    "select_teacher": "Select a Teacher",
+    "select_subject": "Select a Subject",
+    "select_day": "Select a Day",
+    "select_room": "Select a Room",
+    "select_course": "Select a Course",
+    "title_delete_class": "Delete Class",
+    "label_hour_delete": "Hour to delete:",
+    "select_hour_delete": "Select Hour to Delete",
+
+    "label_hours_to_absent": "Number of hours to miss",
+
+    "header_absences": "Absences",
+    "table_date": "Date",
+    "table_teacher_id": "Teacher ID",
+
+    "label_birth_short": "Birth",
+    "title_edit_teacher": "Edit Teacher",
+
+    "title_physical_spaces": "Physical Spaces",
+    "header_capacity": "Capacity",
+    "header_name": "Name",
+    "header_type": "Type",
+
+    "header_ci": "ID",
+    "header_lastname": "Last Name",
+    "header_email": "Email",
+    "header_birth": "Date of Birth",
+    "header_address": "Address",
+
+   
+    "header_access_level": "Access Level",
+    "title_edit_superuser": "Edit Super User",
+    "placeholder_enter_name": "Enter name",
+    "placeholder_enter_lastname": "Enter last name",
+    "placeholder_select_access": "Select access level",
+
+    "label_physical_space": "Physical Space",
+    "label_status": "Status",
+    "title_edit_resource": "Edit Resource",
+    "option_status_in_use": "In Use",
+    "option_status_free": "Free",
+    "option_status_broken": "Broken",
+    "option_type_internal": "Internal",
+    "option_type_external": "External",
+
+    "header_reservations": "Physical Space Reservations",
+    "label_date": "Date",
+    "label_ci_professor": "Professor ID",
+    "label_classroom": "Classroom",
+    "label_schedule": "Schedule",
+    "label_date_with_colon": "Date:",
+    "label_ci_professor_with_colon": "Professor ID:",
+    "label_classroom_with_colon": "Classroom:",
+    "label_schedule_with_colon": "Schedule:",
+
+    "label_loan_time": "Loan time",
+    "label_id_request": "Request ID",
+    "btn_lend": "Lend",
+  
+    "title_profile": "Profile",
+    "role_teacher": "Teacher Role",
+    "desc_teacher_role": "As a teacher, you can view the schedules displayed in the application. You are an essential member of the ITSP faculty.",
+    "role_assistant": "Assistant Role",
+    "desc_assistant_role": "As an assistant, you can manage schedules, teachers, and system resources.",
+    "role_secretary": "Secretary Role",
+    "desc_secretary_role": "As a secretary, you have access to the administrative functions of the institute.",
+    "role_admin": "Administrator Role",
+    "desc_admin_role": "The administrator role is the highest in the system and has full control over data management.",
+    "btn_change_password": "Change Password",
+    "title_change_password": "Change Your Password",
+    "desc_change_password": "For security reasons, please enter your current password and a new one.",
+    "label_current_password": "Enter your current password",
+    "label_new_password": "Enter your new password",
+    "placeholder_current_password": "Enter your current password",
+    "placeholder_new_password": "Enter your new password",
+    "btn_update_password": "Update Password",
+
+    "title_edit_orientation": "Edit orientation",
+
+    "btn_return": "Return",
+
+  
+  "error_invalid_ci": "The ID must be 8 digits, without dots or hyphens.",
+  "error_invalid_password_length": "Password must be between 8 and 20 characters.",
+  "error_ci_not_exist": "Your ID number does not exist.",
+  "msg_login_success": "Login successful.",
+  "msg_login_failed": "Incorrect credentials.",
+
+
+
 
     "footer": "2025 ITSP. All rights reserved"
-
   }
 }

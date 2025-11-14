@@ -20,15 +20,13 @@ if(isset($_POST['registrarRecurso'])){
 
     $insert_recursos = insert_datos_recursos($con, $existe, $nombre, $estado, $tipo, $pertenece_a);
 
-    error_log("Valor recibido de pertenece: " . $_POST['pertenece']);
-    error_log("Tipo de dato: " . gettype($_POST['pertenece']));
     //Se codifica el resultado de la insercion como json
     echo json_encode($insert_recursos);
 }
 
 function consultar_si_existe_recurso($con, $nombre){
 //Declaramos la consulta que vamos a hacer a la base de datos para despues pasarla como variable
-$consulta = "SELECT nombre FROM recursos WHERE nombre = ?";
+$consulta = "SELECT nombre FROM recursos WHERE LOWER(nombre) = LOWER(?)";
 
 $stmt = $con->prepare($consulta);
 

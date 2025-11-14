@@ -89,9 +89,6 @@ if (ci_profesor && contrasena_profesor && ci_superusuario && contrasena_superusu
     });
 }
 
-
-//Verificar en el documento de Drive de "Tareas pendientes PROYECTO" las distintas funciones que hay para hacer
-
 let formulario_profesores = document.querySelector(".profesores-form");
 
 if (formulario_profesores){

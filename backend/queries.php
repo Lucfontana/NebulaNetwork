@@ -3,9 +3,13 @@ include_once("db/conexion.php");
 
 function query_espaciosfisicos($con)
 {
+    // 1. Define la consulta SQL
     $sql = "SELECT * FROM espacios_fisicos";
+    // 2. Prepara la consulta
     $stmt = $con->prepare($sql);
+    // 3. Ejecuta la consulta
     $stmt->execute();
+    // 4. Devuelve el resultado
     return $stmt->get_result();
 }
 
@@ -20,18 +24,18 @@ function query_espacios_sin_general($con)
 
 function query_espacios_por_dia($con, $dia, $espaciossql)
 {
-    $sql = "SELECT DISTINCT
+    $sql = "SELECT DISTINCT 
             a.nombre AS nombre_asignatura,
-            e.nombre AS nombre_espacio,
-            h.hora_inicio,
-            h.hora_final,
-            h.id_horario,
-            h.tipo,
-            c.nombre AS nombre_curso,
-            cu.dia,
-            pda.ci_profesor,
+            e.nombre AS nombre_espacio, 
+            h.hora_inicio, 
+            h.hora_final, 
+            h.id_horario, 
+            h.tipo, 
+            c.nombre AS nombre_curso, 
+            cu.dia, 
+            pda.ci_profesor, 
             CONCAT (p.nombre, ' ', p.apellido) as nombre_profesor
-        FROM cumple cu
+        FROM cumple cu 
         INNER JOIN profesor_dicta_asignatura pda ON cu.id_dicta = pda.id_dicta
         INNER JOIN asignaturas a ON pda.id_asignatura = a.id_asignatura
         INNER JOIN dicta_en_curso dc ON pda.id_dicta = dc.id_dicta
@@ -44,7 +48,8 @@ function query_espacios_por_dia($con, $dia, $espaciossql)
         INNER JOIN espacios_fisicos e ON doe.id_espacio = e.id_espacio
         WHERE cu.dia = ?
             AND e.id_espacio = ?
-            AND h.tipo = 'clase'
+            AND h.tipo = 'clase' 
+
         ORDER BY h.hora_inicio ASC";
 
     $stmt_espacios = $con->prepare($sql);
@@ -333,10 +338,25 @@ function mostrardatos($buscar)
     return $result = mysqli_stmt_get_result($stmt);
 }
 
-//Function inasistencias mostrar datos
+// Funcion de mostrar datos de recursos
+function mostrarRecursos() {
+    $connect = conectar_a_bd();
+    $sql = "SELECT 
+            r.*, 
+            e.nombre AS nombre_espacio FROM recursos r
+        INNER JOIN espacios_fisicos e ON r.id_espacio = e.id_espacio;";
+    $stmt = mysqli_prepare($connect, $sql);
+    mysqli_stmt_execute($stmt);
+    return $result = mysqli_stmt_get_result($stmt);
+}
+
+
+//Function inasistencias mostrar datos, donde se muestran las inasistencias de un profesor específico
 function inasistenciasMostrar($ci){
     $connect = conectar_a_bd();
 
+    //Se selecciona todo de la tabla inasistencias y los datos de los hoarrios
+    //Se junta la tabla de hoarrios con la de inasistencias
     $sql = "SELECT i.*, h.hora_inicio, h.hora_final, h.tipo
         FROM inasistencia i
         INNER JOIN horarios h ON i.id_horario = h.id_horario
@@ -348,6 +368,7 @@ function inasistenciasMostrar($ci){
     return $result = mysqli_stmt_get_result($stmt);
 }
 
+//Se muestran las inasistenicas de TODOS los profesores 
 function inasistenciasMostrar2(){
     $connect = conectar_a_bd();
 

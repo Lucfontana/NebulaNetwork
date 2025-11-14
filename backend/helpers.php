@@ -10,7 +10,7 @@ function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar, $dato_
                 <div class="horas-dato"><?= $row['hora_inicio'] ?> - <?= $row['hora_final'] ?></div>
                 <?php foreach ($dias as $dia): ?> <!--Por cada dia se repite la busqueda-->
                     <?php
-                    $mostro = false;
+                    $mostrar = false;
                     
                     // 1: Verificar si hay RESERVA en este horario
                     foreach ($materias_por_dia[$dia] as $m) { //Para cada materia en un dia especifico
@@ -21,38 +21,38 @@ function cargar_horarios($query, $dias, $materias_por_dia, $dato_mostrar, $dato_
                             $m['hora_final'] == $row['hora_final'] &&
                             $m['id_horario'] == $row['id_horario']) {
                             
-                            echo "<div class='dia-dato reserva-clase'>
+                            $clase_inasistencia = isset($m['tiene_inasistencia']) && $m['tiene_inasistencia'] ? 'inasistencia-marcada' : '';
+                            
+                            //Si tiene inasistencia y reserva, le da prioridad a la inasistencia mostrando las dos clases 
+                            echo "<div class='dia-dato reserva-clase {$clase_inasistencia}'>
                                 <strong>{$m[$dato_mostrar]}</strong>
                                 <small>{$m[$dato_adicional]}</small>
                                 </div>";
-                            $mostro = true;
+                            $mostrar = true;
                             break;
                         }
                     }
                     
                     // PRIORIDAD 2: Si no hay reserva, mostrar clase regular
-                    if (!$mostro) {
+                    if (!$mostrar) {
                         foreach ($materias_por_dia[$dia] as $m) {
-                            // Si no hay reservas, o la reserva es false (y si las horas coinciden) 
-                            // se muestra la clase normal (o con inasistencia, si llega a tener)
                             if ((!isset($m['es_reserva']) || $m['es_reserva'] === false) &&
                                 $m['hora_inicio'] == $row['hora_inicio'] && 
                                 $m['hora_final'] == $row['hora_final'] &&
                                 $m['id_horario'] == $row['id_horario']) {
                                 
-                                //Si la clase llega a tener una inasistencia, se la muestra con la $clase_inasistencia
                                 $clase_inasistencia = isset($m['tiene_inasistencia']) && $m['tiene_inasistencia'] ? 'inasistencia-marcada' : '';
                                 echo "<div class='dia-dato {$clase_inasistencia}'>
                                     <strong>{$m[$dato_mostrar]}</strong>
                                     <small>{$m[$dato_adicional]}</small>
                                     </div>";
-                                $mostro = true;
+                                $mostrar = true;
                                 break;
                             }
                         }
                     }
                     
-                    if (!$mostro) {
+                    if (!$mostrar) {
                         echo "<div class='dia-dato'><em>---</em></div>";
                     }
                     ?>
@@ -192,11 +192,12 @@ function verificar_inasistencia($con, $fecha, $horarios, $ci_profesor){
 
 function obtener_hora_calendario(){
     // SOLO PARA TESTING - Comentar para usar con la fecha actual
-    $fecha_test = '2025-12-08'; // Miércoles - Si quieren testear, cambien la fecha est
-    $base_time = strtotime($fecha_test);
+                  //yyyy-mm-dd
+    // $fecha_test = '2025-12-08'; // Miércoles - Si quieren testear, cambien la fecha est
+    // $base_time = strtotime($fecha_test);
 
     // Para uso actual usar esto (comentar las lineas de arriba):
-    //$base_time = time();
+    $base_time = time();
 
     return $base_time;
 }

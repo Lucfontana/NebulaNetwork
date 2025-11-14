@@ -8,7 +8,7 @@ let formulario_dependencias = document.querySelector(".dependencias-form");
 
 
 //Cuando el usuario escribe un número se llama la función crear_campos. 
-// Cuando se envía el formulario se llama registrar_dependencia.
+//Cuando se envía el formulario se llama registrar_dependencia.
 
 //Cuando el usuario INGRESA un numero (input), se crean los campos
 //Si existen los campos, se ejecuta
@@ -20,7 +20,7 @@ if(formulario_dependencias) formulario_dependencias.addEventListener("submit", r
 
 //Funcion asincronica, se usa para ejecutar el codigo mientras se hace las peticiones
 //Y que el codigo no se detenga una vez llegue a las peticiones (fetch). Es lo mismo que habiamos
-//usado en validaciones-regustro.js solo que ahi lo haciamos con .then, lo que a la larga podia ser confuso
+//usado en validaciones-registro.js solo que ahi lo haciamos con .then, lo que a la larga podia ser confuso
 async function crear_campos(){
     try {
 
@@ -30,7 +30,7 @@ async function crear_campos(){
 
         //Validaciones por si se ingresan mas de 8 horas o menos de 0
         if (cantidad_campos <= 0 ){
-            alerta_fallo("La cantidad de campos debe ser mayor a 0");
+            alerta_fallo("La cantidad de campos debe ser al menos 1");
             return;
         }
         if (cantidad_campos > 8) {
@@ -54,7 +54,7 @@ async function crear_campos(){
 
         let horarios = data.horarios; //extrae la lista de horarios y la guarda en la variable horarios para usarla en el código después
         
-        //Si no hay horarios, o la respuesta esta vacia, hay alerta de que no hay hroarios
+        //Si no hay horarios, o la respuesta esta vacia, hay alerta de que no hay horarios
         if (!horarios || horarios.length === '0') {
             alerta_fallo("No hay horarios disponibles");
             return;
@@ -76,21 +76,22 @@ async function crear_campos(){
 //Esta función crea los campos de selección (uno por cada número indicado).
 export function crear_selects_horarios(contenedor, horarios, cantidad_campos) {
     console.log("creando campos");
-    for (let i = 1; i <= cantidad_campos; i++) {
+    for (let i = 1; i <= cantidad_campos; i++) { //mientras que i sea menor o igual a la cantidad de campos, se crea uno mas
         let campoDiv = document.createElement('div'); //Crea un div con clase div-labels.
         campoDiv.className = 'div-labels';
 
         let label = document.createElement('label'); //Crea un label con el texto “Hora de la clase X”.
-        label.textContent = `Hora de la clase ${i}:`;
-        label.setAttribute('for', `hora_clase`);
-        label.className = 'label';
+        label.textContent = `Hora de la clase ${i}:`; //Texto del label
+        label.setAttribute('for', `hora_clase`); //Atributos que tiene el label
+        label.className = 'label'; //Clase del label (para estilizarlo en css)
 
-        let select = document.createElement('select');
-        select.className = 'input-register';
-        select.id = `hora_profesor_da_clase${i}`;
-        select.name = 'hora_profesor_da_clase[]';
-        select.required = true;
+        let select = document.createElement('select'); //Se crea un select
+        select.className = 'input-register'; //Se le da la clase de input-register
+        select.id = `hora_profesor_da_clase${i}`; //Su id es hora_profesor_da_clase y el valor actual del iterador (para q no se repitan)
+        select.name = 'hora_profesor_da_clase[]'; //El nombre es un arreglo de valores
+        select.required = true; //Requerido para enviar el formulario
 
+        //Se crea una opcion predeterminada que no tiene valor, y leindica al usuario que tiene que elegir algo
         let opcionPredeterminada = document.createElement("option");
         opcionPredeterminada.value = '';
         opcionPredeterminada.textContent = 'Selecciona una opción';
@@ -98,13 +99,14 @@ export function crear_selects_horarios(contenedor, horarios, cantidad_campos) {
         opcionPredeterminada.selected = true;
         select.appendChild(opcionPredeterminada);
 
-        horarios.forEach(horario => {
+        horarios.forEach(horario => { //Para cada horario que traho el fetch, se hace una opcion
             let opcion = document.createElement("option");
-            opcion.value = horario.id_horario;
+            opcion.value = horario.id_horario; //El valor de la opcion es la id del horario
             opcion.textContent = `${horario.hora_inicio} - ${horario.hora_final}`;
-            select.appendChild(opcion);
+            select.appendChild(opcion); //Se lo adjunta a su padre, el SELECT!!1
         });
 
+        //Se juntan todos los campos (label y select pasan como hijos de campoDiv, campoDiv se hace hijo de contenedor)
         campoDiv.appendChild(label);
         campoDiv.appendChild(select);
         contenedor.appendChild(campoDiv);
@@ -115,7 +117,8 @@ export function crear_selects_horarios(contenedor, horarios, cantidad_campos) {
 async function registrar_dependencia(e){
     e.preventDefault(); //Evita recargar la página
 
-    let profesor_asignado = document.getElementById("profesor_asignado").value;
+    //Se obtienen todos los valores enviados por el formulario
+    let profesor_asignado = document.getElementById("profesor_asignado").value; //obtiene los valores de los campos
     let asignatura_dictada = document.getElementById("asignatura_dada").value;
     let salon_ocupado = document.getElementById("salon_a_ocupar").value;
     let curso_dictado = document.getElementById("curso_dictado").value;
@@ -125,6 +128,8 @@ async function registrar_dependencia(e){
     let selects_horarios = document.getElementsByName("hora_profesor_da_clase[]");
     let horas_dictadas = [];
     
+    //Para cada valor de selects_horarios (horarios elegidos por el superusuario), se ingresan en el
+    //arreglo de las horas dictadas.
     for(let select of selects_horarios) {
         if(select.value) {
             horas_dictadas.push(select.value);
@@ -136,6 +141,7 @@ async function registrar_dependencia(e){
         return;
     }
 
+    //Se construye un formulario en js (sin HTML) para enviar los datos mediante fetch.
     const form_dependencia = new FormData();
     form_dependencia.append('profesor_asignado', profesor_asignado);
     form_dependencia.append('asignatura_dada', asignatura_dictada);

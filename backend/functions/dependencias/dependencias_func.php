@@ -1,22 +1,22 @@
 <?php
 include_once('../../db/conexion.php');
-include_once('../../queries.php');
-include_once('../../helpers.php');
+include_once('../../queries.php'); //contiene funciones SQL ya preparadas
+include_once('../../helpers.php'); //contiene funciones de ayuda
 
 $con = conectar_a_bd();
 
 //Registra toda la dependencia
 function registrar_dependencia_completa($con, $ci_profesor, $id_asignatura, $horarios, $id_espacio, $id_curso, $dia_dictado) {
-    $respuesta_json = array();
-    $error = false;
-    $mensaje_error = "";
+    $respuesta_json = array(); //Este array se usará al final de la función para devolver la respuesta al frontend
+    $error = false; // si el error no existe, se ejecuta el bloque
+    $mensaje_error = ""; //Guarda el texto explicativo del error, en caso de que ocurra alguno.
     
     // Iniciar transacción, las transacciones sirven para que, cuando hay que hacer muchas inserciones
     //anidadas, si alguna tira error, que se peudan borrar las inserciones anteriores y que no se queden ahi
     $con->begin_transaction();
     
     // PASO 1: VERIFICAR QUE LOS DATOS INGRESADOS EXISTAN! el usuario se puede hacer el loco, y con
-    //inspeccionar le puede camviar el value a los option que son enviados por el formulario. Entonces 
+    //inspeccionar le puede cambiar el value a los option que son enviados por el formulario. Entonces 
     //hay que verificar que todas las cosas existan
 
     //Paso 1.a: Verificar que existan los profesores, se pasa como ? lo que ingreso el usuario
@@ -189,20 +189,21 @@ function registrar_dependencia_completa($con, $ci_profesor, $id_asignatura, $hor
         
         $stmt_verificar_salon = $con->prepare($query_verificar_salon);
         
-        //Se van recorriendo los horarios, para ver si en algunos de esos el salon esta ocupado
+        //Se van recorriendo los horarios, para ver si en algunos de esos el salon esta ocupado.
+        //el bloque se ejecuta una vez por cada horario que el usuario quiere registrar.
         foreach ($horarios as $id_horario) {
             $stmt_verificar_salon->bind_param("iis", $id_espacio, $id_horario, $dia_dictado);
             $stmt_verificar_salon->execute();
             $resultado_verificar_salon = $stmt_verificar_salon->get_result();
             
-            if ($resultado_verificar_salon->num_rows > 0) {
-                $horario_info = $resultado_verificar_salon->fetch_assoc();
-                $horarios_salon_ocupado[] = $horario_info['hora_inicio'] . ' - ' . $horario_info['hora_final'];
+            if ($resultado_verificar_salon->num_rows > 0) { //si hay alguna fila que coincida, significa que el salón ya está ocupado en ese horario y día
+                $horario_info = $resultado_verificar_salon->fetch_assoc(); //fetch_assoc() obtiene los datos de esa fila en forma de array asociativo
+                $horarios_salon_ocupado[] = $horario_info['hora_inicio'] . ' - ' . $horario_info['hora_final']; //Luego concatena esas horas en un string y lo agrega al arreglo $horarios_salon_ocupado[].
             }
         }
         $stmt_verificar_salon->close();
         
-        if (count($horarios_salon_ocupado) > 0) {
+        if (count($horarios_salon_ocupado) > 0) { //Verifica si se detectaron horarios ocupados
             $error = true;
             $mensaje_error = "El salón en el dia " . $dia_dictado . " ya está ocupado en estos horarios: " . implode(", ", $horarios_salon_ocupado);
         }
@@ -240,10 +241,11 @@ if (!$error) {
     }
 }
     
-    //  PASO 5: Insertar los horarios en tabla cumple (m estoy cansando de comentar)
+    //  PASO 5: Insertar los horarios en tabla cumple
     $horarios_insertados = 0;
 
-    if (!$error) {
+    if (!$error) { // esto significa:“Si hasta ahora no se ha producido ningún error, entonces hacemos esta
+                   // parte.” "si error es false"
         $query_insert_cumple = "INSERT INTO cumple (id_horario, id_dicta, dia) VALUES (?, ?, ?)";
         $stmt_cumple = $con->prepare($query_insert_cumple);
         
@@ -251,7 +253,7 @@ if (!$error) {
         foreach ($horarios as $id_horario) {
             $stmt_cumple->bind_param("iis", $id_horario, $id_dicta, $dia_dictado);
             
-            if ($stmt_cumple->execute()) {
+            if ($stmt_cumple->execute()) { //Si la inserción fue exitosa se ejecuta el INSERT en la base de datos.
                 $horarios_insertados++;
 
             //Si llega a haber error, se marca como error y se detiene todo
@@ -269,8 +271,9 @@ if (!$error) {
                                   VALUES (?, ?, ?, ?)";
         $stmt_espacio = $con->prepare($query_insertar_espacio);
         
-        foreach ($horarios as $id_horario) {
-            // Verificar si ya existe esta combinación específica
+        foreach ($horarios as $id_horario) { //recorre el array de horarios seleccionados por el usuario
+           
+            // Verificar si ya existe esta combinación específica para no duplicar datos
             $query_verificar = "SELECT * FROM dicta_ocupa_espacio 
                                WHERE id_dicta = ? AND id_horario = ? AND dia = ? AND id_espacio = ?";
             $stmt_ver = $con->prepare($query_verificar);
@@ -278,10 +281,10 @@ if (!$error) {
             $stmt_ver->execute();
             $result_ver = $stmt_ver->get_result();
             
-            if ($result_ver->num_rows == 0) {
+            if ($result_ver->num_rows == 0) { //Si no existe ya una clase con esos mismos datos, inserta una nueva
                 $stmt_espacio->bind_param("iisi", $id_dicta, $id_horario, $dia_dictado, $id_espacio);
                 
-                if (!$stmt_espacio->execute()) {
+                if (!$stmt_espacio->execute()) { //Si execute() falla, se marca $error = true y se interrumpe el ciclo (break)
                     $error = true;
                     $mensaje_error = "Error al asignar el espacio para el horario";
                     break;
@@ -291,13 +294,19 @@ if (!$error) {
         }
         $stmt_espacio->close();
     }
+
+
     // PASO 7: Insertar en dicta_en_curso
-if (!$error) {
+
+if (!$error) { //Este bloque se ejecuta solo si no hubo errores anteriores, es decir si: 
+// el profesor existe,la asignatura existe,el salón no está ocupado, etc.
+
     $query_insertar_curso = "INSERT INTO dicta_en_curso (id_dicta, id_curso, id_horario, dia) 
                             VALUES (?, ?, ?, ?)";
     $stmt_curso = $con->prepare($query_insertar_curso);
     
-    foreach ($horarios as $id_horario) {
+    foreach ($horarios as $id_horario) {//Se repite una acción por cada horario seleccionado
+
         // Verificar si ya existe esta combinación específica
         $query_verificar = "SELECT * FROM dicta_en_curso 
                            WHERE id_dicta = ? AND id_curso = ? AND id_horario = ? AND dia = ?";
@@ -306,10 +315,12 @@ if (!$error) {
         $stmt_ver_curso->execute();
         $result_ver_curso = $stmt_ver_curso->get_result();
         
-        if ($result_ver_curso->num_rows == 0) {
+        if ($result_ver_curso->num_rows == 0) { //Si no existe todavía una relación entre ese profesor, 
+                                               // curso, horario y día, entonces se inserta en la tabla.
             $stmt_curso->bind_param("iiis", $id_dicta, $id_curso, $id_horario, $dia_dictado);
             
-            if (!$stmt_curso->execute()) {
+            if (!$stmt_curso->execute()) { //Si ocurre algún error al hacerlo, marcá $error = true y sale 
+                                           // del bucle.
                 $error = true;
                 $mensaje_error = "Error al asignar el curso para el horario";
                 break;
@@ -326,14 +337,14 @@ if (!$error) {
     //con lo de las transacciones que se explico al principio es importante aca.
 
     //Si llega a haber error, se puede hacer rollback. Esto quiere decir que esas inserciones se van a borrar
-    //asi no quedan hechas al pedo.
+    //asi no quedan hechas porque si.
     if ($error) {
         // Hubo algún error, revertir todo
         $con->rollback();
         
-        $respuesta_json['estado'] = 0;
-        $respuesta_json['mensaje'] = $mensaje_error;
-        $respuesta_json['datos'] = null;
+        $respuesta_json['estado'] = 0; //0 = error
+        $respuesta_json['mensaje'] = $mensaje_error; //Guarda dentro de la respuesta el mensaje de error que se generó antes.
+        $respuesta_json['datos'] = null; //Esto indica que no hay datos que devolver, ya que el proceso falló.
         
     } else {
         // todo bien, confirmar cambios
@@ -357,6 +368,7 @@ function eliminar_dependencia($con, $curso, $horario, $dia){
     $error = false;
     $mensaje_error = "";
 
+    //Esta consulta busca si existe una clase con ese curso, horario y día
     $query_comprobar = "SELECT * FROM dicta_en_curso WHERE id_curso = ? AND id_horario = ? AND dia = ?";
 
     //Se comprueba que la clase exista
@@ -367,11 +379,12 @@ function eliminar_dependencia($con, $curso, $horario, $dia){
  
         $resultado = $stmt->get_result();
 
-        if ($resultado->num_rows == 0) {
+        if ($resultado->num_rows == 0) { //Si no existe, se marca error
             $error = true;
             $mensaje_error = "No existe una clase con los datos elegidos, vuelva a intentarlo";
             $datos = "Curso: " . $curso . " Id horario: " . $horario . " Dia: " . $dia; 
-        } else {
+       
+        } else {//Si sí existe, guarda el id_dicta (la relación del profesor con la materia):
             $fila = $resultado->fetch_assoc();
             $id_dicta = $fila['id_dicta'];
         }
@@ -383,10 +396,12 @@ function eliminar_dependencia($con, $curso, $horario, $dia){
         //Se declaran las dos queries para eliminar las clases
         $query_liberar_curso = "DELETE FROM dicta_en_curso WHERE id_curso = ? AND id_horario = ? AND dia = ?";
         $query_liberar_espacio = "DELETE FROM dicta_ocupa_espacio WHERE id_dicta = ? AND id_horario = ? AND dia = ?";
+       
         // $query_borrar_inasistencia ="DELETE FROM inasistencias i INNER JOIN profesor_dicta_asignatura pda WHERE i.ci_profesor = pda.ci_profesor";
         $query_liberar_profe ="DELETE FROM cumple WHERE id_dicta = ? AND id_horario = ? AND dia = ?";
         $query_liberar_reserva ="DELETE FROM reservas_espacios WHERE id_dicta = ? AND id_horario = ? AND dia = ? AND id_curso = ?";
 
+        // luego se ejecutan las queries una por una, se repite para cada tabla relacionada con esa clase.
         $stmt = $con->prepare($query_liberar_curso);
         $stmt->bind_param("iis", $curso, $horario, $dia);
         $resultado1 = $stmt->execute();  //Ejecutar y guardar
@@ -397,7 +412,7 @@ function eliminar_dependencia($con, $curso, $horario, $dia){
         $resultado2 = $stmt2->execute();  //Ejecutar y guardar
         $stmt2->close();
 
-    $stmt3 = $con->prepare($query_liberar_profe);
+        $stmt3 = $con->prepare($query_liberar_profe);
         $stmt3->bind_param("iis", $id_dicta, $horario, $dia);
         $resultado3 = $stmt3->execute();
         $stmt3->close();
@@ -407,8 +422,9 @@ function eliminar_dependencia($con, $curso, $horario, $dia){
         $resultado4 = $stmt4->execute();
         $stmt4->close();
 
+        //Verifica que todos los DELETE funcionaron
         if (!$resultado1 || !$resultado2 ||!$resultado3 ||!$resultado4){  //Verificar si ambas queries se ejecutaron
-            $error = true;
+            $error = true; //Si alguna de las consultas falló, marca error.
             $mensaje_error = "Error al eliminar los horarios, vuelva a intentarlo";
         }
     }

@@ -3,6 +3,8 @@
 include_once('../backend/db/conexion.php');
 include_once('../backend/queries.php');
 include_once('../backend/helpers.php');
+include_once 'functions.php';
+
 $con = conectar_a_bd();
 
 $profesores_info = query_profesores($con);
@@ -17,11 +19,13 @@ if (!isset($_SESSION['acceso']) && isset($_SESSION['ci'])) {
     $ci_profesor = (int)$_SESSION['ci'];
 }
 
-$prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
+//Se hace esa validacion asi no sale error cuando estas sin sesion iniciada
+if(isset($_SESSION['ci'])) $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
+
 
 ?>
 
-<title>Prestar Recursos</title>
+<title><?= t("title_lend_resources") ?> </title>
 <link rel="stylesheet" href="style/style.css">
 
 <?php if (isset($_SESSION['nivel_acceso'])): ?>
@@ -37,13 +41,12 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
                     </div>
                     <button type="button" id="Adscriptas-boton" class="btn btn-primary" data-toggle="modal"
                         data-target="#exampleModal">
-                        Prestar
+                         <?= t("btn_lend") ?>
                     </button>
                 </div>
 
             </div>
-            </div>
-
+            
 
             <!--    Inicio de Ventanas Emergentes    -->
 
@@ -115,7 +118,7 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
                                 <div class="grid-cell"><?= $row['nombre_recurso'] ?></div>
                                 <div class="grid-cell"><?= $row['nombre_su'] . ' ' . $row['apellido_su'] ?></div>
                                 <div class="grid-cell"><?= date('d/m/Y H:i:s', strtotime($row['hora_presta'])) ?></div>
-                                <div class="grid-cell"><?= $row['hora_vuelta'] ? date('d/m/Y H:i', strtotime($row['hora_vuelta'])) : 'Pendiente' ?></div>
+                                <div class="grid-cell"><?= $row['hora_vuelta'] ? date('d/m/Y H:i', strtotime($row['hora_vuelta'])) : '<?= t("status_pending") ?>' ?></div>
                                 <div class="grid-cell">
                                     <?php if ($row['hora_vuelta']): ?>
                                         <span style="color: green; margin-left: 20px;"><?= t("status_returned") ?></span>
@@ -124,7 +127,7 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
                                             data-id="<?= $row['id_solicita'] ?>"
                                             data-recurso="<?= $row['id_recurso'] ?>"
                                             data-nombre-recurso="<?= htmlspecialchars($row['nombre_recurso']) ?>">
-                                            Devolver
+                                            <?= t("btn_return") ?>    
                                         </a>
                                     <?php endif; ?>
                                 </div>
@@ -150,7 +153,7 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
                             </div>
                             <div class="informacion-escondida">
                                 <div class="datos-tabla-flex">
-                                    <div class="grid-cell">ID SOLICITA: <?= $row['id_solicita'] ?></div>
+                                    <div class="grid-cell"><?= t("label_id_request") ?>:  <?= $row['id_solicita'] ?></div>
                                     <div class="grid-cell"><?= $row['nombre_su'] . ' ' . $row['apellido_su'] ?></div>
                                     <div class="grid-cell"><?= date('d/m/Y H:i:s', strtotime($row['hora_presta'])) ?></div>
                                     <div class="grid-cell"><?= $row['nombre_recurso'] ?></div>
@@ -163,7 +166,7 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
                                             data-id="<?= $row['id_solicita'] ?>"
                                             data-recurso="<?= $row['id_recurso'] ?>"
                                             data-nombre-recurso="<?= htmlspecialchars($row['nombre_recurso']) ?>">
-                                            Devolver
+                                             <?= t("btn_return") ?>   
                                         </a>
                                     <?php endif; ?>
                                 </div>
@@ -184,7 +187,7 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
         <main>
             <div id="contenido-mostrar-datos">
                 <div class="div-mostrar-datos">
-                    <h1>Préstamos de Recursos</h1>
+                    <h1><?= t("title_lend_resources") ?> </h1>
                 </div>
                 <div class="datos-grid prestamos-grid">
                     <!-- Cabecera -->
@@ -230,7 +233,7 @@ $prestamos_info2 = query_prestamos_profesores($con, $ci_profesor);
                             </div>
                             <div class="informacion-escondida">
                                 <div class="datos-tabla-flex">
-                                    <div class="grid-cell">Hora de presta: <?= date('d/m/Y H:i:s', strtotime($row['hora_presta'])) ?></div>
+                                    <div class="grid-cell"><?= t("label_loan_time") ?>:  <?= date('d/m/Y H:i:s', strtotime($row['hora_presta'])) ?></div>
                                     <div class="grid-cell">
                                         <?php if ($row['hora_vuelta']): ?>
                                             <?= date('d/m/Y H:i:s', strtotime($row['hora_vuelta'])) ?>

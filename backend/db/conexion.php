@@ -3,7 +3,7 @@
 //Acá se hace la conexión con la base de datos
 function conectar_a_bd(){
 
-    //Se declara la conexion, comenzando con el nombre del host, nombre del usuario, contraseña, nombre de BD, y el puerto
+//Se declara la conexion, comenzando con el nombre del host, nombre del usuario, contraseña, nombre de BD, y el puerto
 $conexion = mysqli_connect("localhost", "root", "", "nebulanetwork", "3306");
 
     if (!$conexion) {

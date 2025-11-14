@@ -7,15 +7,16 @@ $connect = conectar_a_bd();
 $id = $_POST['id_orientacion'];
 $name = $_POST['nombre'];
 
+//consulta para editar oientaciones
 $consulta = "UPDATE orientacion SET nombre=? WHERE id_orientacion=?";
 $stmt = $con->prepare($consulta);
 $stmt->bind_param("si", $name ,$id);
 $stmt->execute();
 
 
-if ($stmt->affected_rows > 0) {
+if ($stmt->affected_rows > 0) { //si se modificó alguna línea, significa que se hicieron los cambios exitosamente
     echo json_encode(["success" => true, "message" => "Orientacion editado correctamente"]);
-} else {
+} else { //si no, no hubo cambios o hubo errores
     echo json_encode(["success" => false, "message" => "Error al actualizar"]);
 }
 $stmt->close();

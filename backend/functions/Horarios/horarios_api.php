@@ -4,8 +4,8 @@
 header('Content-Type: application/json');
 
 include_once('../../db/conexion.php');
-
 include_once('horarios_test.php');
+
 $con = conectar_a_bd();
 
 if (isset($_POST['registroHorario'])){
@@ -19,7 +19,11 @@ if (isset($_POST['registroHorario'])){
 
     //Pasar el resultado de la insercion cono JSON
     echo json_encode($registroHorarios);
-} else if (isset($_POST['eliminarTodosHorarios'])){
+
+} else if (isset($_POST['eliminarTodosHorarios'])){ 
+//Si el POST recibe la variable eliminarTodosHorarios, significa que el usuario quiere borrar todos los horarios.
+
+//Llama a la función borrar_horarios, que ejecuta el borrado en la base de datos.
     $borrar = borrar_horarios($con);
 
     echo json_encode($borrar);
